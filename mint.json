@@ -63,6 +63,10 @@
     {
       "name": "Changelog",
       "url": "changelog"
+    },
+    {
+      "name": "FAQs",
+      "url": "faq"
     }
   ],
   "navigation": [
@@ -70,9 +74,10 @@
       "group": "Getting Started",
       "pages": [
         "introduction",
+        "why-phidata",
         "first-agent",
-        "local-dev",
-        "agent-ui",
+        "playground",
+        "monitoring",
         "getting-help"
       ]
     },
@@ -282,8 +287,7 @@
                 "workflows/storage/sqlite"
               ]
             },
-            "workflows/streaming",
-            "workflows/news-report-generator"
+            "workflows/advanced"
           ]
         }
       ]
@@ -444,6 +448,38 @@
       ]
     },
     {
+      "group": "Command Line",
+      "pages": [
+        {
+          "group": "phi",
+          "pages": [
+            "templates/cli/phi/init",
+            "templates/cli/phi/auth",
+            "templates/cli/phi/start",
+            "templates/cli/phi/stop",
+            "templates/cli/phi/patch",
+            "templates/cli/phi/restart",
+            "templates/cli/phi/config",
+            "templates/cli/phi/set",
+            "templates/cli/phi/reset"
+          ]
+        },
+        {
+          "group": "phi ws",
+          "pages": [
+            "templates/cli/ws/create",
+            "templates/cli/ws/up",
+            "templates/cli/ws/down",
+            "templates/cli/ws/patch",
+            "templates/cli/ws/restart",
+            "templates/cli/ws/config",
+            "templates/cli/ws/delete",
+            "templates/cli/ws/setup"
+          ]
+        }
+      ]
+    },
+    {
       "group": "Resources",
       "pages": [
         "templates/resources/introduction",
@@ -467,54 +503,16 @@
     {
       "group": "Reference",
       "pages": [
-        {
-          "group": "Agent",
-          "pages": [
-            "reference/agents/base",
-            "reference/agents/python",
-            "reference/agents/duckdb"
-          ]
-        },
+        "reference/agent",
         "reference/model",
         "reference/knowledge_base"
       ]
     },
     {
-      "group": "Command Line",
-      "pages": [
-        {
-          "group": "phi",
-          "pages": [
-            "reference/cli/phi/init",
-            "reference/cli/phi/auth",
-            "reference/cli/phi/start",
-            "reference/cli/phi/stop",
-            "reference/cli/phi/patch",
-            "reference/cli/phi/restart",
-            "reference/cli/phi/config",
-            "reference/cli/phi/set",
-            "reference/cli/phi/reset"
-          ]
-        },
-        {
-          "group": "phi ws",
-          "pages": [
-            "reference/cli/ws/create",
-            "reference/cli/ws/up",
-            "reference/cli/ws/down",
-            "reference/cli/ws/patch",
-            "reference/cli/ws/restart",
-            "reference/cli/ws/config",
-            "reference/cli/ws/delete",
-            "reference/cli/ws/setup"
-          ]
-        }
-      ]
-    },
-    {
       "group": "Migration Guides",
       "pages": [
-        "migration/2-5-0"
+        "migration/2-5-0",
+        "migration/phidata-to-agno"
       ]
     },
     {

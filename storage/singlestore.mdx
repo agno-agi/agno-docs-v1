@@ -10,6 +10,11 @@ Phidata supports using Singlestore as a storage backend for Agents using the `S2
 Obtain the credentials for Singlestore from [here](https://portal.singlestore.com/)
 
 ```python storage.py
+from os import getenv
+
+from sqlalchemy.engine import create_engine
+
+from phi.agent import Agent
 from phi.storage.agent.singlestore import S2AgentStorage
 
 # SingleStore Configuration
