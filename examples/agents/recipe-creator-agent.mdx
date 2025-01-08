@@ -54,7 +54,7 @@ recipe_agent.print_response(
 
     <Step title="Install required libraries">
         ```bash
-        pip install phidata openai duckdb exa_py pypdf packaging
+        pip install agno openai duckdb exa_py pypdf packaging
         pip install sqlalchemy pgvector
         pip install -U "psycopg[binary]"
         ```
@@ -77,7 +77,7 @@ recipe_agent.print_response(
   -v pgvolume:/var/lib/postgresql/data \
   -p 5532:5432 \
   --name pgvector \
-  phidata/pgvector:16
+  agno/pgvector:16
         ```
     </Step>
 

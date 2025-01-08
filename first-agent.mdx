@@ -2,7 +2,7 @@
 title: Create your first agent
 ---
 
-Phidata Agents are simple and elegant, resulting in minimal, beautiful code.
+Agno Agents are simple and elegant, resulting in minimal, beautiful code.
 
 For example, you can create a web search agent in 10 lines of code.
 
@@ -24,7 +24,7 @@ web_agent.print_response("Tell me about OpenAI Sora?", stream=True)
 
 ## Run it locally
 
-We recommend installing `phidata` using `pip` in a python virtual environment
+We recommend installing `agno` using `pip` in a python virtual environment
 
 <Steps>
   <Step title="Setup your virtual environment">
@@ -46,18 +46,18 @@ We recommend installing `phidata` using `pip` in a python virtual environment
 
     <CodeGroup>
     ```bash Mac
-    pip install -U phidata openai duckduckgo-search
+    pip install -U agno openai duckduckgo-search
     ```
 
     ```bash Windows
-    pip install -U phidata openai duckduckgo-search
+    pip install -U agno openai duckduckgo-search
     ```
     </CodeGroup>
 
   </Step>
   <Step title="Export your model keys">
 
-    Phidata works with most model providers but for these examples let's use OpenAI.
+    Agno works with most model providers but for these examples let's use OpenAI.
 
     <CodeGroup>
     ```bash Mac
@@ -84,7 +84,7 @@ We recommend installing `phidata` using `pip` in a python virtual environment
 
 ## Debugging
 
-Phidata includes a built-in debugger that will show debug logs in the terminal. You can set `debug_mode=True` on any agent to view debug logs or set `PHI_DEBUG=true` in your environment.
+Agno includes a built-in debugger that will show debug logs in the terminal. You can set `debug_mode=True` on any agent to view debug logs or set `PHI_DEBUG=true` in your environment.
 
 ```python debugging.py
 from phi.agent import Agent

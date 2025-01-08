@@ -38,8 +38,8 @@ from phi.model.openai import OpenAIChat
 from phi.tools.mlx_transcribe import MLXTranscribe
 
 # Get audio files from storage/audio directory
-phidata_root_dir = Path(__file__).parent.parent.parent.resolve()
-audio_storage_dir = phidata_root_dir.joinpath("storage/audio")
+agno_root_dir = Path(__file__).parent.parent.parent.resolve()
+audio_storage_dir = agno_root_dir.joinpath("storage/audio")
 if not audio_storage_dir.exists():
     audio_storage_dir.mkdir(exist_ok=True, parents=True)
 
@@ -89,4 +89,4 @@ agent.print_response("Summarize the reid hoffman ted talk, split into sections",
 
 ## Information
 
-- View on [Github](https://github.com/phidatahq/phidata/blob/main/phi/tools/mlx_transcribe.py)
+- View on [Github](https://github.com/phidatahq/agno/blob/main/phi/tools/mlx_transcribe.py)

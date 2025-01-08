@@ -1,6 +1,6 @@
 ---
 title: Basics
-description: "Phidata is a framework for building AI Agents with memory, knowledge and tools."
+description: "Agno is a framework for building AI Agents with memory, knowledge and tools."
 ---
 
 - **Memory:** Stores chat history, summaries, facts in a database.
@@ -32,17 +32,17 @@ Let's work through a few examples
     </CodeGroup>
 
   </Step>
-  <Step title="Install phidata">
-    Install the latest version of `phidata`
+  <Step title="Install agno">
+    Install the latest version of `agno`
 
     <CodeGroup>
 
     ```bash Mac
-    pip install -U phidata
+    pip install -U agno
     ```
 
     ```bash Windows
-    pip install -U phidata
+    pip install -U agno
     ```
 
     </CodeGroup>
@@ -129,7 +129,7 @@ docker run -d \
   -v pgvolume:/var/lib/postgresql/data \
   -p 5532:5432 \
   --name pgvector \
-  phidata/pgvector:16
+  agno/pgvector:16
 ```
 
 ### RAG Agent

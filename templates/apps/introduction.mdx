@@ -4,7 +4,7 @@ title: Introduction
 
 Apps are tools like `FastApi`, `PgVector`, `Streamlit`, `Jupyter`, `Django` that we define as python classes and run using `phi start` or `phi ws up`.
 
-When running Apps using phidata, think of them as infrastructure as code but at a higher level of abstraction. Instead of defining containers, volumes etc. we define the application we want to run. We run **Applications as Code** instead of Infrastructure as Code.
+When running Apps using agno, think of them as infrastructure as code but at a higher level of abstraction. Instead of defining containers, volumes etc. we define the application we want to run. We run **Applications as Code** instead of Infrastructure as Code.
 
 The same `App` can run on docker, AWS (ECS) or Kubernetes (EKS). The App creates the underlying resources like LoadBalancers, Services, Deployments. As the underlying resources become more complex, the concept of Apps become more appealing.
 
@@ -41,7 +41,7 @@ Apps provide the **"Application Layer"** for our AI products.
 
 The software we write needs to be served by an Application, and this Application needs to **run the same** locally for development and in the cloud for production. By defining **Applications as Code**, we bring the benefits of **Infrastructure as Code** to the software layer.
 
-Defining **Applications as Code** also allows us to package "software systems" into templates. Meaning every phidata template can run locally using docker or on AWS with 1 command.
+Defining **Applications as Code** also allows us to package "software systems" into templates. Meaning every agno template can run locally using docker or on AWS with 1 command.
 
 Finally, defining **Applications as python objects** means we can import them in our code like regular objects making the following code possible:
 

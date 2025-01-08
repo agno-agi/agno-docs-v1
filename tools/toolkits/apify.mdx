@@ -18,14 +18,14 @@ export MY_APIFY_TOKEN=***
 
 ## Example
 
-The following agent will use Apify to crawl the webpage: https://docs.phidata.com/introduction and summarize it.
+The following agent will use Apify to crawl the webpage: https://docs.agno.com/introduction and summarize it.
 
 ```python cookbook/tools/apify_tools.py
 from phi.agent import Agent
 from phi.tools.apify import ApifyTools
 
 agent = Agent(tools=[ApifyTools()], show_tool_calls=True)
-agent.print_response("Tell me about https://docs.phidata.com/introduction", markdown=True)
+agent.print_response("Tell me about https://docs.agno.com/introduction", markdown=True)
 ```
 
 ## Toolkit Params
@@ -46,4 +46,4 @@ agent.print_response("Tell me about https://docs.phidata.com/introduction", mark
 
 ## Information
 
-- View on [Github](https://github.com/phidatahq/phidata/blob/main/phi/tools/apify.py)
+- View on [Github](https://github.com/phidatahq/agno/blob/main/phi/tools/apify.py)

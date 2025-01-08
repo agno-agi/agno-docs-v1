@@ -1,6 +1,6 @@
 ---
 title: Agent Playground
-description: Phidata provides a beautiful Agent Playground for interacting with your agents.
+description: Agno provides a beautiful Agent Playground for interacting with your agents.
 ---
 
 <Frame caption="Agent Playground">
@@ -12,7 +12,7 @@ description: Phidata provides a beautiful Agent Playground for interacting with 
 </Frame>
 
 <Note>
-No data is sent to phidata, all agent sessions are stored locally in a sqlite database.
+No data is sent to `agno`, all agent sessions are stored locally in a sqlite database.
 </Note>
 
 Let's take it for a spin, create a file `playground.py`
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 <Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
 
-<Snippet file="authenticate-with-phidata.mdx" />
+<Snippet file="authenticate-with-agno.mdx" />
 
 ### Run the playground
 
@@ -67,7 +67,7 @@ python playground.py
 
 ### View the playground
 
-- Open the link provided or navigate to `http://phidata.app/playground` (login required)
+- Open the link provided or navigate to `http://agno.app/playground` (login required)
 - Select the `localhost:7777` endpoint and start chatting with your agents!
 
 <video
@@ -101,7 +101,7 @@ agent = Agent(markdown=True, monitoring=True)
 agent.print_response("Share a 2 sentence horror story")
 ```
 
-Run the agent locally and view the session on [phidata.app/sessions](https://www.phidata.app/sessions)
+Run the agent locally and view the session on [agno.app/sessions](https://www.agno.app/sessions)
 
 <img
   height="200"

@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Phidata",
+  "name": "Agno",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -44,12 +44,12 @@
     },
     {
       "name": "Log In",
-      "url": "https://phidata.app"
+      "url": "https://agno.app"
     }
   ],
   "topbarCtaButton": {
     "type": "github",
-    "url": "https://github.com/phidatahq/phidata"
+    "url": "https://github.com/phidatahq/agno"
   },
   "tabs": [
     {
@@ -74,7 +74,7 @@
       "group": "Getting Started",
       "pages": [
         "introduction",
-        "why-phidata",
+        "why-agno",
         "first-agent",
         "playground",
         "monitoring",
@@ -533,7 +533,7 @@
   ],
   "footerSocials": {
     "x": "https://x.com/phidatahq",
-    "github": "https://github.com/phidatahq/phidata",
+    "github": "https://github.com/phidatahq/agno",
     "discord": "https://phidata.link/discord",
     "youtube": "https://phidata.link/youtube",
     "website": "https://phidata.com"

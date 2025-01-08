@@ -4,7 +4,7 @@ title: Phi
 
 ## Example
 
-The following agent will use the Phi toolkit to create and manage phidata workspaces. It can create new applications from templates like llm-app, api-app, django-app, and streamlit-app. It can also start existing workspaces and validate that Phi is ready to run commands.
+The following agent will use the Phi toolkit to create and manage agno workspaces. It can create new applications from templates like llm-app, api-app, django-app, and streamlit-app. It can also start existing workspaces and validate that Phi is ready to run commands.
 
 ```python cookbook/tools/phi_tools.py
 from phi.agent import Agent
@@ -31,10 +31,10 @@ agent.print_response("Start the workspace agent-app-turing", markdown=True)
 | Function | Description |
 |----------|-------------|
 | `validate_phi_is_ready` | Validates that Phi is ready to run commands |
-| `create_new_app` | Creates a new phidata workspace for a given application template |
+| `create_new_app` | Creates a new agno workspace for a given application template |
 | `start_user_workspace` | Starts the workspace for a user |
 
 
 ## Information
 
-- View on [Github](https://github.com/phidatahq/phidata/blob/main/phi/tools/phi.py)
+- View on [Github](https://github.com/phidatahq/agno/blob/main/phi/tools/phi.py)

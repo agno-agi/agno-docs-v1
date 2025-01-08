@@ -9,7 +9,7 @@ The **CombinedKnowledgeBase** combines multiple knowledge bases into 1 and is us
 
 <Note>
 
-We are using a local PgVector database for this example. [Make sure it's running](https://docs.phidata.com/vectordb/pgvector)
+We are using a local PgVector database for this example. [Make sure it's running](https://docs.agno.com/vectordb/pgvector)
 
 </Note>
 
@@ -31,7 +31,7 @@ url_pdf_knowledge_base = PDFUrlKnowledgeBase(
 )
 
 website_knowledge_base = WebsiteKnowledgeBase(
-    urls=["https://docs.phidata.com/introduction"],
+    urls=["https://docs.agno.com/introduction"],
     # Number of links to follow from the seed URLs
     max_links=10,
     # Table name: ai.website_documents
