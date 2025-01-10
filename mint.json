@@ -465,7 +465,7 @@
           ]
         },
         {
-          "group": "phi ws",
+          "group": "ag ws",
           "pages": [
             "templates/cli/ws/create",
             "templates/cli/ws/up",

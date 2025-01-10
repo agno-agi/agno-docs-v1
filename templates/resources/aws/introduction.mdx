@@ -9,7 +9,7 @@ AWS Resources enable us to create AWS services as pydantic objects, completing o
 
 ### S3 Bucket
 
-Copy the following code to a file `resources.py` and run `phi start resources.py` to create a bucket called `my-bucket-885`.
+Copy the following code to a file `resources.py` and run `ag start resources.py` to create a bucket called `my-bucket-885`.
 
 <CodeGroup>
 
@@ -22,11 +22,11 @@ prd_bucket = S3Bucket(name="my-bucket-885")
 
 </CodeGroup>
 
-Make sure to delete the bucket using `phi stop resources.py`
+Make sure to delete the bucket using `ag stop resources.py`
 
 ### Secret Manager
 
-Copy the following code to a file `resources.py` and run `phi start resources.py` to create a secret called `my-secret`.
+Copy the following code to a file `resources.py` and run `ag start resources.py` to create a secret called `my-secret`.
 
 <CodeGroup>
 
@@ -59,4 +59,4 @@ print(my_secret.get_secret_value("mysecretkey"))
 
 Run this file using `python read_my_secret.py`.
 
-Delete the secret using `phi stop resources.py`
+Delete the secret using `ag stop resources.py`

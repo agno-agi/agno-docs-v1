@@ -16,11 +16,11 @@ Create your codebase using the `llm-os` template
 <CodeGroup>
 
 ```bash Mac
-phi ws create -t llm-os -n llm-os
+ag ws create -t llm-os -n llm-os
 ```
 
 ```bash Windows
-phi ws create -t llm-os -n llm-os
+ag ws create -t llm-os -n llm-os
 ```
 
 </CodeGroup>
@@ -83,11 +83,11 @@ We'll build a simple front-end for the LLM OS using [streamlit](https://streamli
 <CodeGroup>
 
 ```bash terminal
-phi ws up --group app
+ag ws up --group app
 ```
 
 ```bash shorthand
-phi ws up dev:docker:app
+ag ws up dev:docker:app
 ```
 
 </CodeGroup>
@@ -132,11 +132,11 @@ Your LLM OS comes with ready-to-use FastApi endpoints.
     <CodeGroup>
 
     ```bash terminal
-    phi ws up --group api
+    ag ws up --group api
     ```
 
     ```bash shorthand
-    phi ws up dev:docker:api
+    ag ws up dev:docker:api
     ```
 
     </CodeGroup>
@@ -196,15 +196,15 @@ Play around and stop the workspace using:
 <CodeGroup>
 
 ```bash terminal
-phi ws down
+ag ws down
 ```
 
 ```bash full options
-phi ws down --env dev --infra docker
+ag ws down --env dev --infra docker
 ```
 
 ```bash shorthand
-phi ws down dev:docker
+ag ws down dev:docker
 ```
 
 </CodeGroup>
@@ -214,15 +214,15 @@ or stop individual Apps using:
 <CodeGroup>
 
 ```bash app
-phi ws down --group app
+ag ws down --group app
 ```
 
 ```bash api
-phi ws down --group api
+ag ws down --group api
 ```
 
 ```bash database
-phi ws down --group db
+ag ws down --group db
 ```
 
 </CodeGroup>

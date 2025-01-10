@@ -5,11 +5,11 @@ Play around and then delete AWS resources using:
 <CodeGroup>
 
 ```bash terminal
-phi ws down --env prd --infra aws
+ag ws down --env prd --infra aws
 ```
 
 ```bash shorthand
-phi ws down prd:aws
+ag ws down prd:aws
 ```
 
 </CodeGroup>
@@ -19,15 +19,15 @@ or delete individual resource groups using:
 <CodeGroup>
 
 ```bash app
-phi ws down --env prd --infra aws --group app
+ag ws down --env prd --infra aws --group app
 ```
 
 ```bash api
-phi ws down --env prd --infra aws --group api
+ag ws down --env prd --infra aws --group api
 ```
 
 ```bash database
-phi ws down --env prd --infra aws --group db
+ag ws down --env prd --infra aws --group db
 ```
 
 </CodeGroup>

@@ -26,7 +26,7 @@ We still love docker-compose, just want to elevate the experience. With phidata 
 
 ## Container
 
-The `DockerContainer` class defines a container, for example use the following code to define a container running the [whoami](https://github.com/traefik/whoami) image. Start it using `phi start resources.py`
+The `DockerContainer` class defines a container, for example use the following code to define a container running the [whoami](https://github.com/traefik/whoami) image. Start it using `ag start resources.py`
 
 ```python resources.py
 from agno.docker.resource.container import DockerContainer
@@ -52,11 +52,11 @@ from agno.docker.app.whoami import Whoami
 whoami = Whoami()
 ```
 
-Stop resources using `phi stop resources.py`
+Stop resources using `ag stop resources.py`
 
 ## Image
 
-The `DockerImage` class defines an image, for example use the following code create your own python image and run it in a container. Build it using `phi start resources.py`
+The `DockerImage` class defines an image, for example use the following code create your own python image and run it in a container. Build it using `ag start resources.py`
 
 <CodeGroup>
 

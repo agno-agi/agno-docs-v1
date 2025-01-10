@@ -38,11 +38,11 @@ Build the development image using:
 <CodeGroup>
 
 ```bash terminal
-phi ws up --env dev --infra docker --type image
+ag ws up --env dev --infra docker --type image
 ```
 
 ```bash short options
-phi ws up -e dev -i docker -t image
+ag ws up -e dev -i docker -t image
 ```
 
 </CodeGroup>
@@ -52,11 +52,11 @@ To `force` rebuild images, use the `--force` or `-f` flag
 <CodeGroup>
 
 ```bash terminal
-phi ws up --env dev --infra docker --type image --force
+ag ws up --env dev --infra docker --type image --force
 ```
 
 ```bash short options
-phi ws up -e dev -i docker -t image -f
+ag ws up -e dev -i docker -t image -f
 ```
 
 </CodeGroup>
@@ -70,11 +70,11 @@ Restart all docker containers using:
 <CodeGroup>
 
 ```bash terminal
-phi ws restart --env dev --infra docker --type container
+ag ws restart --env dev --infra docker --type container
 ```
 
 ```bash short options
-phi ws restart -e dev -c docker -t container
+ag ws restart -e dev -c docker -t container
 ```
 
 </CodeGroup>
@@ -88,19 +88,19 @@ To recreate all dev resources, use the `--force` flag:
 <CodeGroup>
 
 ```bash terminal
-phi ws up -f
+ag ws up -f
 ```
 
 ```bash full options
-phi ws up --env dev --infra docker --force
+ag ws up --env dev --infra docker --force
 ```
 
 ```bash shorthand
-phi ws up dev:docker -f
+ag ws up dev:docker -f
 ```
 
 ```bash short options
-phi ws up -e dev -i docker -f
+ag ws up -e dev -i docker -f
 ```
 
 </CodeGroup>

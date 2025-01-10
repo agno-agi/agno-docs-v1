@@ -66,11 +66,11 @@ After updating the `requirements.txt` file, rebuild your images.
 <CodeGroup>
 
 ```bash terminal
-phi ws up --env dev --infra docker --type image
+ag ws up --env dev --infra docker --type image
 ```
 
 ```bash short options
-phi ws up -e dev -i docker -t image
+ag ws up -e dev -i docker -t image
 ```
 
 </CodeGroup>
@@ -86,11 +86,11 @@ Remember to [authenticate with ECR](templates/how-to/production-app#ecr-images) 
 <CodeGroup>
 
 ```bash terminal
-phi ws up --env prd --infra docker --type image
+ag ws up --env prd --infra docker --type image
 ```
 
 ```bash short options
-phi ws up -e prd -i docker -t image
+ag ws up -e prd -i docker -t image
 ```
 
 </CodeGroup>
@@ -104,11 +104,11 @@ After rebuilding images, recreate the resources.
 <CodeGroup>
 
 ```bash terminal
-phi ws restart --env dev --infra docker --type container
+ag ws restart --env dev --infra docker --type container
 ```
 
 ```bash short options
-phi ws restart -e dev -c docker -t container
+ag ws restart -e dev -c docker -t container
 ```
 
 </CodeGroup>
@@ -118,11 +118,11 @@ phi ws restart -e dev -c docker -t container
 <CodeGroup>
 
 ```bash terminal
-phi ws patch --env prd --infra aws --name service
+ag ws patch --env prd --infra aws --name service
 ```
 
 ```bash short options
-phi ws patch -e prd -i aws -n service
+ag ws patch -e prd -i aws -n service
 ```
 
 </CodeGroup>

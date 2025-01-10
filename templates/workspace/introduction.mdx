@@ -6,24 +6,24 @@ A phidata template creates a **Workspace**, which is just an umbrella term for y
 
 ## Create new workspace
 
-Run `phi ws create` to create a new workspace using a phidata template
+Run `ag ws create` to create a new workspace using a phidata template
 
 <CodeGroup>
 
 ```bash Create Workspace
-phi ws create
+ag ws create
 ```
 
 ```bash Create AI App
-phi ws create -t ai-app -n ai-app
+ag ws create -t ai-app -n ai-app
 ```
 
 ```bash Create AI Api
-phi ws create -t api-app -n api-app
+ag ws create -t api-app -n api-app
 ```
 
 ```bash Create Django App
-phi ws create -t django-app -n web-app
+ag ws create -t django-app -n web-app
 ```
 
 </CodeGroup>
@@ -38,88 +38,88 @@ phi ws create -t django-app -n web-app
 
 ## Setup existing workspace
 
-Run `phi ws setup` to setup an existing directory as a phidata workspace
+Run `ag ws setup` to setup an existing directory as a phidata workspace
 
 <CodeGroup>
 
 ```bash terminal
-phi ws setup
+ag ws setup
 ```
 
 ```bash with debug logs
-phi ws setup -d
+ag ws setup -d
 ```
 
 </CodeGroup>
 
 ## Start workspace
 
-Run `phi ws up` to create workspace resources
+Run `ag ws up` to create workspace resources
 
 <CodeGroup>
 
 ```bash terminal
-phi ws up
+ag ws up
 ```
 
 ```bash shorthand
-phi ws up dev:docker
+ag ws up dev:docker
 ```
 
 ```bash full options
-phi ws up --env dev --infra docker
+ag ws up --env dev --infra docker
 ```
 
 ```bash short options
-phi ws up -e dev -i docker
+ag ws up -e dev -i docker
 ```
 
 </CodeGroup>
 
 ## Stop workspace
 
-Run `phi ws down` to delete workspace resources
+Run `ag ws down` to delete workspace resources
 
 <CodeGroup>
 
 ```bash terminal
-phi ws down
+ag ws down
 ```
 
 ```bash shorthand
-phi ws down dev:docker
+ag ws down dev:docker
 ```
 
 ```bash full options
-phi ws down --env dev --infra docker
+ag ws down --env dev --infra docker
 ```
 
 ```bash short options
-phi ws down -e dev -i docker
+ag ws down -e dev -i docker
 ```
 
 </CodeGroup>
 
 ## Patch workspace
 
-Run `phi ws patch` to update workspace resources
+Run `ag ws patch` to update workspace resources
 
 <CodeGroup>
 
 ```bash terminal
-phi ws patch
+ag ws patch
 ```
 
 ```bash shorthand
-phi ws patch dev:docker
+ag ws patch dev:docker
 ```
 
 ```bash full options
-phi ws patch --env dev --infra docker
+ag ws patch --env dev --infra docker
 ```
 
 ```bash short options
-phi ws patch -e dev -i docker
+ag ws patch -e dev -i docker
 ```
 
 </CodeGroup>
@@ -134,31 +134,31 @@ The `patch` command in under development for some resources. Use `restart` if ne
 
 ## Restart workspace
 
-Run `phi ws restart` to stop resources and start them again
+Run `ag ws restart` to stop resources and start them again
 
 <CodeGroup>
 
 ```bash terminal
-phi ws restart
+ag ws restart
 ```
 
 ```bash shorthand
-phi ws restart dev:docker
+ag ws restart dev:docker
 ```
 
 ```bash full options
-phi ws restart --env dev --infra docker
+ag ws restart --env dev --infra docker
 ```
 
 ```bash short options
-phi ws restart -e dev -i docker
+ag ws restart -e dev -i docker
 ```
 
 </CodeGroup>
 
 ## Command Options
 
-<Note>Run `phi ws up --help` to view all options</Note>
+<Note>Run `ag ws up --help` to view all options</Note>
 
 ### Environment (`--env`)
 
@@ -167,15 +167,15 @@ Use the `--env` or `-e` flag to filter the environment (dev/prd)
 <CodeGroup>
 
 ```bash flag
-phi ws up --env dev
+ag ws up --env dev
 ```
 
 ```bash shorthand
-phi ws up dev
+ag ws up dev
 ```
 
 ```bash short options
-phi ws up -e dev
+ag ws up -e dev
 ```
 
 </CodeGroup>
@@ -187,15 +187,15 @@ Use the `--infra` or `-i` flag to filter the infra (docker/aws/k8s)
 <CodeGroup>
 
 ```bash flag
-phi ws up --infra docker
+ag ws up --infra docker
 ```
 
 ```bash shorthand
-phi ws up :docker
+ag ws up :docker
 ```
 
 ```bash short options
-phi ws up -i docker
+ag ws up -i docker
 ```
 
 </CodeGroup>
@@ -207,22 +207,22 @@ Use the `--group` or `-g` flag to filter by resource group.
 <CodeGroup>
 
 ```bash flag
-phi ws up --group app
+ag ws up --group app
 ```
 
 ```bash full options
-phi ws up \
+ag ws up \
   --env dev \
   --infra docker \
   --group app
 ```
 
 ```bash shorthand
-phi ws up dev:docker:app
+ag ws up dev:docker:app
 ```
 
 ```bash short options
-phi ws up \
+ag ws up \
   -e dev \
   -i docker \
   -g app
@@ -237,22 +237,22 @@ Use the `--name` or `-n` flag to filter by resource name
 <CodeGroup>
 
 ```bash flag
-phi ws up --name app
+ag ws up --name app
 ```
 
 ```bash full options
-phi ws up \
+ag ws up \
   --env dev \
   --infra docker \
   --name app
 ```
 
 ```bash shorthand
-phi ws up dev:docker::app
+ag ws up dev:docker::app
 ```
 
 ```bash short options
-phi ws up \
+ag ws up \
   -e dev \
   -i docker \
   -n app
@@ -267,22 +267,22 @@ Use the `--type` or `-t` flag to filter by resource type.
 <CodeGroup>
 
 ```bash flag
-phi ws up --type container
+ag ws up --type container
 ```
 
 ```bash full options
-phi ws up \
+ag ws up \
   --env dev \
   --infra docker \
   --type container
 ```
 
 ```bash shorthand
-phi ws up dev:docker:app::container
+ag ws up dev:docker:app::container
 ```
 
 ```bash short options
-phi ws up \
+ag ws up \
   -e dev \
   -i docker \
   -t container
@@ -292,27 +292,27 @@ phi ws up \
 
 ### Dry Run (`--dry-run`)
 
-The `--dry-run` or `-dr` flag can be used to **dry-run** the command. `phi ws up -dr` will only print resources, not create them.
+The `--dry-run` or `-dr` flag can be used to **dry-run** the command. `ag ws up -dr` will only print resources, not create them.
 
 <CodeGroup>
 
 ```bash flag
-phi ws up --dry-run
+ag ws up --dry-run
 ```
 
 ```bash full options
-phi ws up \
+ag ws up \
   --env dev \
   --infra docker \
   --dry-run
 ```
 
 ```bash shorthand
-phi ws up dev:docker -dr
+ag ws up dev:docker -dr
 ```
 
 ```bash short options
-phi ws up \
+ag ws up \
   -e dev \
   -i docker \
   -dr
@@ -327,22 +327,22 @@ Use the `--debug` or `-d` flag to show debug logs.
 <CodeGroup>
 
 ```bash flag
-phi ws up -d
+ag ws up -d
 ```
 
 ```bash full options
-phi ws up \
+ag ws up \
   --env dev \
   --infra docker \
   -d
 ```
 
 ```bash shorthand
-phi ws up dev:docker -d
+ag ws up dev:docker -d
 ```
 
 ```bash short options
-phi ws up \
+ag ws up \
   -e dev \
   -i docker \
   -d
@@ -357,22 +357,22 @@ Use the `--force` or `-f` flag to force recreate images & containers
 <CodeGroup>
 
 ```bash flag
-phi ws up -f
+ag ws up -f
 ```
 
 ```bash full options
-phi ws up \
+ag ws up \
   --env dev \
   --infra docker \
   -f
 ```
 
 ```bash shorthand
-phi ws up dev:docker -f
+ag ws up dev:docker -f
 ```
 
 ```bash short options
-phi ws up \
+ag ws up \
   -e dev \
   -i docker \
   -f
