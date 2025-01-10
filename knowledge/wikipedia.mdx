@@ -18,8 +18,8 @@ pip install wikipedia
 ```
 
 ```python knowledge_base.py
-from phi.knowledge.wikipedia import WikipediaKnowledgeBase
-from phi.vectordb.pgvector import PgVector
+from agno.knowledge.wikipedia import WikipediaKnowledgeBase
+from agno.vectordb.pgvector import PgVector
 
 knowledge_base = WikipediaKnowledgeBase(
     topics=["Manchester United", "Real Madrid"],
@@ -34,7 +34,7 @@ knowledge_base = WikipediaKnowledgeBase(
 Then use the `knowledge_base` with an Agent:
 
 ```python agent.py
-from phi.agent import Agent
+from agno.agent import Agent
 from knowledge_base import knowledge_base
 
 agent = Agent(

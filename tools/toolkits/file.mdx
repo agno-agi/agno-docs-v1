@@ -9,8 +9,8 @@ title: File
 The following agent will generate an answer and save it in a file.
 
 ```python cookbook/tools/file_tools.py
-from phi.agent import Agent
-from phi.tools.file import FileTools
+from agno.agent import Agent
+from agno.tools.file import FileTools
 
 agent = Agent(tools=[FileTools()], show_tool_calls=True)
 agent.print_response("What is the most advanced LLM currently? Save the answer to a file.", markdown=True)

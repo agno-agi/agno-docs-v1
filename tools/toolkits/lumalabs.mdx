@@ -21,9 +21,9 @@ pip install -U lumaai
 The following agent will use Lumalabs to generate any video requested by the user.
 
 ```python cookbook/tools/lumalabs_tool.py
-from phi.agent import Agent
-from phi.llm.openai import OpenAIChat
-from phi.tools.lumalab import LumaLabTools
+from agno.agent import Agent
+from agno.llm.openai import OpenAIChat
+from agno.tools.lumalab import LumaLabTools
 
 luma_agent = Agent(
     name="Luma Video Agent",

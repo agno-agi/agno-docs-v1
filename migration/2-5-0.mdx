@@ -18,14 +18,14 @@ This guide will help you migrate your code to v2.5.0
 
 ```python
 # Version < 2.5.0
-from phi.assistant import Assistant
-from phi.llm.openai import OpenAIChat
-from phi.storage.assistant.postgres import PgAssistantStorage
+from agno.assistant import Assistant
+from agno.llm.openai import OpenAIChat
+from agno.storage.assistant.postgres import PgAssistantStorage
 
 # Version >= 2.5.0
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.storage.agent.postgres import PgAgentStorage
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
+from agno.storage.agent.postgres import PgAgentStorage
 ```
 
 ### 2. Update Arguments
@@ -34,16 +34,16 @@ Replace `llm` with `model` and `model` with `id`.
 
 ```python
 # Version < 2.5.0
-from phi.assistant import Assistant
-from phi.llm.openai import OpenAIChat
+from agno.assistant import Assistant
+from agno.llm.openai import OpenAIChat
 
 assistant = Assistant(
     llm=OpenAIChat(model="gpt-4o"),
 )
 
 # Version >= 2.5.0
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
 
 agent = Agent(
     # Note: 'llm' is now 'model' and 'model' is now 'id'
@@ -57,11 +57,11 @@ Replace `knowledge_base` with `knowledge`.
 
 ```python
 # Version < 2.5.0
-from phi.assistant import Assistant
-from phi.storage.assistant.postgres import PgAssistantStorage
-from phi.knowledge.pdf import PDFUrlKnowledgeBase
-from phi.vectordb.pgvector import PgVector2
-from phi.llm.openai import OpenAIChat
+from agno.assistant import Assistant
+from agno.storage.assistant.postgres import PgAssistantStorage
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.pgvector import PgVector2
+from agno.llm.openai import OpenAIChat
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
@@ -86,11 +86,11 @@ res = assistant.run("What is the recipe for chicken curry?")
 
 
 # Version >= 2.5.0
-from phi.agent import Agent, RunResponse
-from phi.storage.agent.postgres import PgAgentStorage
-from phi.knowledge.pdf import PDFUrlKnowledgeBase
-from phi.vectordb.pgvector import PgVector, SearchType
-from phi.model.openai import OpenAIChat
+from agno.agent import Agent, RunResponse
+from agno.storage.agent.postgres import PgAgentStorage
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.pgvector import PgVector, SearchType
+from agno.model.openai import OpenAIChat
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
@@ -118,8 +118,8 @@ res = response.content
 
 ```python
 # Version < 2.5.0
-from phi.assistant import Assistant
-from phi.llm.openai import OpenAIChat
+from agno.assistant import Assistant
+from agno.llm.openai import OpenAIChat
 
 assistant = Assistant(
     llm=OpenAIChat(model="gpt-4o"),
@@ -128,8 +128,8 @@ assistant = Assistant(
 res = assistant.run("What is the recipe for chicken curry?")
 
 # Version >= 2.5.0
-from phi.agent import Agent, RunResponse
-from phi.model.openai import OpenAIChat
+from agno.agent import Agent, RunResponse
+from agno.model.openai import OpenAIChat
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
@@ -150,8 +150,8 @@ If you are using OpenAI models, you can set `structured_outputs=True` to get a s
 from typing import List
 from pydantic import BaseModel, Field
 from rich.pretty import pprint
-from phi.assistant import Assistant
-from phi.llm.openai import OpenAIChat
+from agno.assistant import Assistant
+from agno.llm.openai import OpenAIChat
 
 
 class MovieScript(BaseModel):
@@ -177,8 +177,8 @@ pprint(movie_assistant.run("New York"))
 from typing import List
 from rich.pretty import pprint
 from pydantic import BaseModel, Field
-from phi.agent import Agent, RunResponse
-from phi.model.openai import OpenAIChat
+from agno.agent import Agent, RunResponse
+from agno.model.openai import OpenAIChat
 
 
 class MovieScript(BaseModel):

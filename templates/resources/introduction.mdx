@@ -13,7 +13,7 @@ Resources are the infrastructure components for your application. Similar to [Ap
 <CodeGroup>
 
 ```python Docker Container
-from phi.docker.resource.container import DockerContainer
+from agno.docker.resource.container import DockerContainer
 
 whoami = DockerContainer(
     name='whoami',
@@ -23,7 +23,7 @@ whoami = DockerContainer(
 ```
 
 ```python Docker Image
-from phi.docker.resource.image import DockerImage
+from agno.docker.resource.image import DockerImage
 
 dev_image = DockerImage(
     name="repo/image",
@@ -33,7 +33,7 @@ dev_image = DockerImage(
 ```
 
 ```python S3 Bucket
-from phi.aws.resource.s3 import S3Bucket
+from agno.aws.resource.s3 import S3Bucket
 
 # -*- S3 bucket called my-bucket
 prd_bucket = S3Bucket(name="my-bucket")
@@ -41,7 +41,7 @@ prd_bucket = S3Bucket(name="my-bucket")
 
 ```python Secret
 from pathlib import Path
-from phi.aws.resource.secret import SecretsManager
+from agno.aws.resource.secret import SecretsManager
 
 # -*- Secret called my-secret
 my_secret = SecretsManager(
@@ -53,7 +53,7 @@ my_secret = SecretsManager(
 
 ```python RDS Database
 from pathlib import Path
-from phi.aws.resource.secret import SecretsManager
+from agno.aws.resource.secret import SecretsManager
 
 # -*- Database Secret
 db_secret = SecretsManager(

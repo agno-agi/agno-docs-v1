@@ -72,9 +72,9 @@ Let's build a simple agent that can search the web, create a file `web_search.py
   <Step title="Create a web search agent">
 
     ```python web_search.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.tools.duckduckgo import DuckDuckGo
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.tools.duckduckgo import DuckDuckGo
 
     web_agent = Agent(
         name="Web Agent",
@@ -113,9 +113,9 @@ Lets create another agent that can query financial data, create a file `finance_
   <Step title="Create a finance agent">
 
     ```python finance_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.tools.yfinance import YFinanceTools
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.tools.yfinance import YFinanceTools
 
     finance_agent = Agent(
         name="Finance Agent",
@@ -154,10 +154,10 @@ A team of agents can work together to solve complex problems, create a file `age
   <Step title="Create an agent team">
 
     ```python agent_team.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.tools.duckduckgo import DuckDuckGo
-    from phi.tools.yfinance import YFinanceTools
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.yfinance import YFinanceTools
 
     web_agent = Agent(
         name="Web Agent",
@@ -214,8 +214,8 @@ Reasoning is an experimental feature that helps agents work through a problem st
   <Step title="Create a reasoning agent">
 
     ```python reasoning_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
 
     task = (
         "Three missionaries and three cannibals need to cross a river. "
@@ -252,11 +252,11 @@ This saves tokens and improves response quality. Create a file `rag_agent.py`
   <Step title="Create a RAG agent">
 
     ```python rag_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.embedder.openai import OpenAIEmbedder
-    from phi.knowledge.pdf import PDFUrlKnowledgeBase
-    from phi.vectordb.lancedb import LanceDb, SearchType
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.embedder.openai import OpenAIEmbedder
+    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.vectordb.lancedb import LanceDb, SearchType
 
     # Create a knowledge base from a PDF
     knowledge_base = PDFUrlKnowledgeBase(
@@ -310,8 +310,8 @@ Use structured outputs to enforce the structure of the output from an agent and 
     ```python structured_output.py
     from typing import List
     from pydantic import BaseModel, Field
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
 
     # Define a Pydantic model to enforce the structure of the output
     class MovieScript(BaseModel):

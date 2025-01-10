@@ -10,9 +10,9 @@ For example, you can create an image agent that can understand images and make t
   <Step title="Create an image agent">
 
     ```python image_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.tools.duckduckgo import DuckDuckGo
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.tools.duckduckgo import DuckDuckGo
 
     agent = Agent(
         model=OpenAIChat(id="gpt-4o"),

@@ -7,7 +7,7 @@ title: Tools
 Tools are functions that an Agent can run to achieve tasks. For example: searching the web, running SQL, sending an email or calling APIs. You can use any python function as a tool or use a pre-built **toolkit**. The general syntax is:
 
 ```python
-from phi.agent import Agent
+from agno.agent import Agent
 
 agent = Agent(
     # Add functions or Toolkits
@@ -28,8 +28,8 @@ Agno provides many pre-built **toolkits** that you can add to your Agents. For e
     Create a file `web_search.py`
 
     ```python web_search.py
-    from phi.agent import Agent
-    from phi.tools.duckduckgo import DuckDuckGo
+    from agno.agent import Agent
+    from agno.tools.duckduckgo import DuckDuckGo
 
     agent = Agent(tools=[DuckDuckGo()], show_tool_calls=True, markdown=True)
     agent.print_response("Whats happening in France?", stream=True)
@@ -60,7 +60,7 @@ For more control, write your own python functions and add them as tools to an Ag
 import json
 import httpx
 
-from phi.agent import Agent
+from agno.agent import Agent
 
 
 def get_top_hackernews_stories(num_stories: int = 10) -> str:

@@ -17,8 +17,8 @@ pip install -U beautifulsoup4
 The following agent will read the contents of a website and add it to the knowledge base.
 
 ```python cookbook/tools/website_tools.py
-from phi.agent import Agent
-from phi.tools.website import WebsiteTools
+from agno.agent import Agent
+from agno.tools.website import WebsiteTools
 
 agent = Agent(tools=[WebsiteTools()], show_tool_calls=True)
 agent.print_response("Search web page: 'https://docs.agno.com/introduction'", markdown=True)

@@ -21,8 +21,8 @@ export MODELS_LAB_API_KEY=****
 The following agent will use ModelsLabs to generate a video based on a text prompt.
 
 ```python cookbook/tools/models_labs_tools.py
-from phi.agent import Agent
-from phi.tools.models_labs import ModelsLabs
+from agno.agent import Agent
+from agno.tools.models_labs import ModelsLabs
 
 # Create an Agent with the ModelsLabs tool
 agent = Agent(tools=[ModelsLabs()], name="ModelsLabs Agent")

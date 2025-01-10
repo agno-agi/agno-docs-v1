@@ -11,10 +11,10 @@ The Recipe Agent generates personalized recipe recommendations based on user inp
 Create a file `ai_recipe_creator_agent.py` with the following code:
 
 ```python ai_recipe_creator_agent.py
-from phi.agent import Agent
-from phi.knowledge.pdf import PDFUrlKnowledgeBase
-from phi.vectordb.pgvector import PgVector
-from phi.tools.exa import ExaTools
+from agno.agent import Agent
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.pgvector import PgVector
+from agno.tools.exa import ExaTools
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 

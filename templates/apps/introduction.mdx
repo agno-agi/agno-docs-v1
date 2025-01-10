@@ -15,9 +15,9 @@ Lets run a Jupyter notebook and PgVector on docker.
 Copy the following contents to a file `resources.py` and run `phi start resources.py`
 
 ```python resources.py
-from phi.docker.app.jupyter import Jupyter
-from phi.docker.app.postgres import PgVectorDb
-from phi.docker.resources import DockerResources
+from agno.docker.app.jupyter import Jupyter
+from agno.docker.app.postgres import PgVectorDb
+from agno.docker.resources import DockerResources
 
 # -*- PgVector running on port 5432:5432
 vector_db = PgVectorDb(pg_user="ai", pg_password="ai", pg_database="ai")

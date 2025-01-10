@@ -11,9 +11,9 @@ import typer
 from typing import Optional
 from rich.prompt import Prompt
 
-from phi.agent import Agent
-from phi.knowledge.pdf import PDFUrlKnowledgeBase
-from phi.vectordb.qdrant import Qdrant
+from agno.agent import Agent
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.qdrant import Qdrant
 
 api_key = os.getenv("QDRANT_API_KEY")
 qdrant_url = os.getenv("QDRANT_URL")

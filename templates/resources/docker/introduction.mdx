@@ -29,7 +29,7 @@ We still love docker-compose, just want to elevate the experience. With phidata 
 The `DockerContainer` class defines a container, for example use the following code to define a container running the [whoami](https://github.com/traefik/whoami) image. Start it using `phi start resources.py`
 
 ```python resources.py
-from phi.docker.resource.container import DockerContainer
+from agno.docker.resource.container import DockerContainer
 
 whoami = DockerContainer(
     name='whoami',
@@ -47,7 +47,7 @@ curl -X POST http://localhost:80
 The same can be defined as an `App`:
 
 ```python resources.py
-from phi.docker.app.whoami import Whoami
+from agno.docker.app.whoami import Whoami
 
 whoami = Whoami()
 ```
@@ -61,8 +61,8 @@ The `DockerImage` class defines an image, for example use the following code cre
 <CodeGroup>
 
 ```python resources.py
-from phi.docker.resource.container import DockerContainer
-from phi.docker.resource.image import DockerImage
+from agno.docker.resource.container import DockerContainer
+from agno.docker.resource.image import DockerImage
 
 python_image = DockerImage(
     name="my/python",

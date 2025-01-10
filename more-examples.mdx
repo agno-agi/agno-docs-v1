@@ -14,9 +14,9 @@ Let's build a research agent to generate a report using Exa.
     from textwrap import dedent
     from datetime import datetime
 
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.tools.exa import ExaTools
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.tools.exa import ExaTools
 
     agent = Agent(
         model=OpenAIChat(id="gpt-4o"),
@@ -95,11 +95,11 @@ This saves tokens and improves response quality.
   <Step title="Create a RAG agent">
 
     ```python rag_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.embedder.openai import OpenAIEmbedder
-    from phi.knowledge.pdf import PDFUrlKnowledgeBase
-    from phi.vectordb.lancedb import LanceDb, SearchType
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.embedder.openai import OpenAIEmbedder
+    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.vectordb.lancedb import LanceDb, SearchType
 
     # Create a knowledge base from a PDF
     knowledge_base = PDFUrlKnowledgeBase(
@@ -155,8 +155,8 @@ Create a file `structured_output.py`
     ```python structured_output.py
     from typing import List
     from pydantic import BaseModel, Field
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
 
     # Define a Pydantic model to enforce the structure of the output
     class MovieScript(BaseModel):
@@ -203,8 +203,8 @@ Reasoning is an experimental feature that helps agents work through a problem st
   <Step title="Create a reasoning agent">
 
     ```python reasoning_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
 
     task = (
         "Three missionaries and three cannibals need to cross a river. "

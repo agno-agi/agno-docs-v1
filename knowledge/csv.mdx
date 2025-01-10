@@ -14,8 +14,8 @@ We are using a local PgVector database for this example. [Make sure it's running
 </Note>
 
 ```python
-from phi.knowledge.csv import CSVKnowledgeBase
-from phi.vectordb.pgvector import PgVector
+from agno.knowledge.csv import CSVKnowledgeBase
+from agno.vectordb.pgvector import PgVector
 
 knowledge_base = CSVKnowledgeBase(
     path="data/csv",
@@ -30,7 +30,7 @@ knowledge_base = CSVKnowledgeBase(
 Then use the `knowledge_base` with an `Agent`:
 
 ```python
-from phi.agent import Agent
+from agno.agent import Agent
 from knowledge_base import knowledge_base
 
 agent = Agent(

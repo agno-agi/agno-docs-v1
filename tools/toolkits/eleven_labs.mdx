@@ -23,8 +23,8 @@ export ELEVEN_LABS_API_KEY=****
 The following agent will use Eleven Labs to generate audio based on a user prompt.
 
 ```python cookbook/tools/eleven_labs_tools.py
-from phi.agent import Agent
-from phi.tools.eleven_labs import ElevenLabs
+from agno.agent import Agent
+from agno.tools.eleven_labs import ElevenLabs
 
 # Create an Agent with the ElevenLabs tool
 agent = Agent(tools=[

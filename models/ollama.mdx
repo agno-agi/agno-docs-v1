@@ -25,8 +25,8 @@ After you have the local model running, use the `Ollama` model to access them
 <CodeGroup>
 
 ```python agent.py
-from phi.agent import Agent, RunResponse
-from phi.model.ollama import Ollama
+from agno.agent import Agent, RunResponse
+from agno.model.ollama import Ollama
 
 agent = Agent(
     model=Ollama(id="llama3.1"),

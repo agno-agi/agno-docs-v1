@@ -63,9 +63,9 @@ Let's create an Agent that prepares a research report by searching the web.
     Create a file `research.py`
 
     ```python research.py
-    from phi.agent import Agent
-    from phi.tools.duckduckgo import DuckDuckGo
-    from phi.tools.newspaper4k import Newspaper4k
+    from agno.agent import Agent
+    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.newspaper4k import Newspaper4k
 
     agent = Agent(
         tools=[DuckDuckGo(), Newspaper4k()],
@@ -162,9 +162,9 @@ Let's build a **PDF Agent** that helps us with food recipes using RAG.
     Create a file `rag_agent.py` with the following contents
 
     ```python rag_agent.py
-    from phi.agent import Agent
-    from phi.knowledge.pdf import PDFUrlKnowledgeBase
-    from phi.vectordb.pgvector import PgVector
+    from agno.agent import Agent
+    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.vectordb.pgvector import PgVector
 
     knowledge_base = PDFUrlKnowledgeBase(
         # Read PDF from this URL
@@ -215,7 +215,7 @@ Let's build a **PDF Agent** that helps us with food recipes using RAG.
 If you want to use local PDFs, use a `PDFKnowledgeBase` instead
 
 ```python agent.py
-from phi.knowledge.pdf import PDFKnowledgeBase
+from agno.knowledge.pdf import PDFKnowledgeBase
 
 ...
 knowledge_base = PDFKnowledgeBase(
@@ -243,9 +243,9 @@ Make the `Agent` Autonomous by setting the `search_knowledge` and `read_chat_his
     Create a file `auto_agent.py` with the following contents
 
     ```python auto_agent.py
-    from phi.agent import Agent
-    from phi.knowledge.pdf import PDFUrlKnowledgeBase
-    from phi.vectordb.pgvector import PgVector
+    from agno.agent import Agent
+    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.vectordb.pgvector import PgVector
 
     knowledge_base = PDFUrlKnowledgeBase(
         urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
@@ -303,10 +303,10 @@ Create a file `pdf_agent.py`
 import typer
 from rich.prompt import Prompt
 from typing import Optional, List
-from phi.agent import Agent
-from phi.storage.agent.postgres import PgAgentStorage
-from phi.knowledge.pdf import PDFUrlKnowledgeBase
-from phi.vectordb.pgvector import PgVector
+from agno.agent import Agent
+from agno.storage.agent.postgres import PgAgentStorage
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.pgvector import PgVector
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 

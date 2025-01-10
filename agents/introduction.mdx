@@ -20,10 +20,10 @@ Let's create a research agent that can search the web, read the top links and wr
     Create a file `research_agent.py`
 
     ```python research_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.tools.duckduckgo import DuckDuckGo
-    from phi.tools.newspaper4k import Newspaper4k
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.newspaper4k import Newspaper4k
 
     agent = Agent(
         model=OpenAIChat(id="gpt-4o"),

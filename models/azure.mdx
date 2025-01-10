@@ -40,8 +40,8 @@ Use `AzureOpenAIChat` with your `Agent`:
 import os
 from typing import Iterator
 
-from phi.agent import Agent, RunResponse
-from phi.model.azure import AzureOpenAIChat
+from agno.agent import Agent, RunResponse
+from agno.model.azure import AzureOpenAIChat
 
 azure_model = AzureOpenAIChat(
     id=os.getenv("AZURE_OPENAI_MODEL_NAME"),

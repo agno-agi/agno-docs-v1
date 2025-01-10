@@ -33,9 +33,9 @@ The following agent will use MLX Transcribe to transcribe audio files.
 ```python cookbook/tools/mlx_transcribe_tools.py
 
 from pathlib import Path
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.tools.mlx_transcribe import MLXTranscribe
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
+from agno.tools.mlx_transcribe import MLXTranscribe
 
 # Get audio files from storage/audio directory
 agno_root_dir = Path(__file__).parent.parent.parent.resolve()

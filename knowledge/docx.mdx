@@ -18,8 +18,8 @@ pip install textract
 ```
 
 ```python
-from phi.knowledge.docx import DocxKnowledgeBase
-from phi.vectordb.pgvector import PgVector
+from agno.knowledge.docx import DocxKnowledgeBase
+from agno.vectordb.pgvector import PgVector
 
 knowledge_base = DocxKnowledgeBase(
     path="data/docs",
@@ -34,7 +34,7 @@ knowledge_base = DocxKnowledgeBase(
 Then use the `knowledge_base` with an `Agent`:
 
 ```python
-from phi.agent import Agent
+from agno.agent import Agent
 from knowledge_base import knowledge_base
 
 agent = Agent(

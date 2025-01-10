@@ -21,8 +21,8 @@ export OPENAI_API_KEY=****
 The following agent will use DALL-E to generate an image based on a text prompt.
 
 ```python cookbook/tools/dalle_tools.py
-from phi.agent import Agent
-from phi.tools.dalle import Dalle
+from agno.agent import Agent
+from agno.tools.dalle import Dalle
 
 # Create an Agent with the DALL-E tool
 agent = Agent(tools=[Dalle()], name="DALL-E Image Generator")

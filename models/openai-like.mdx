@@ -10,8 +10,8 @@ Many providers like Together, Groq, Sambanova, etc support the OpenAI API format
 
 ```python agent.py
 from os import getenv
-from phi.agent import Agent, RunResponse
-from phi.model.openai.like import OpenAILike
+from agno.agent import Agent, RunResponse
+from agno.model.openai.like import OpenAILike
 
 agent = Agent(
     model=OpenAILike(

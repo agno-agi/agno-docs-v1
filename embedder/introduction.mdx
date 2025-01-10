@@ -5,9 +5,9 @@ title: Introduction
 An Embedder converts complex information into vector representations, allowing it to be stored in a vector database. By transforming data into embeddings, the embedder enables efficient searching and retrieval of contextually relevant information. This process enhances the responses of language models by providing them with the necessary business context, ensuring they are context-aware. Agno uses the `OpenAIEmbedder` as the default embedder, but other embedders are supported as well. Here is an example:
 
 ```python
-from phi.agent import Agent, AgentKnowledge
-from phi.vectordb.pgvector import PgVector
-from phi.embedder.openai import OpenAIEmbedder
+from agno.agent import Agent, AgentKnowledge
+from agno.vectordb.pgvector import PgVector
+from agno.embedder.openai import OpenAIEmbedder
 
 # Create knowledge base
 knowledge_base=AgentKnowledge(

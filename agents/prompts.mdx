@@ -20,7 +20,7 @@ The 2 key parameters are:
 The system message is created using `description`, `instructions` and a number of other settings. The `description` is added to the start of the system message and `instructions` are added as a list after `## Instructions`. For example:
 
 ```python instructions.py
-from phi.agent import Agent
+from agno.agent import Agent
 
 agent = Agent(
     description="You are a famous short story writer asked to write for a magazine",
@@ -64,7 +64,7 @@ DEBUG    **************** METRICS END ******************
 You can manually set the system message using the `system_prompt` parameter.
 
 ```python
-from phi.agent import Agent
+from agno.agent import Agent
 
 agent = Agent(system_prompt="Share a 2 sentence story about")
 agent.print_response("Love in the year 12000.")

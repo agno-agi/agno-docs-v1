@@ -12,8 +12,8 @@ Let's create an Movie Agent to write a `MovieScript` for us.
 from typing import List
 from rich.pretty import pprint
 from pydantic import BaseModel, Field
-from phi.agent import Agent, RunResponse
-from phi.model.openai import OpenAIChat
+from agno.agent import Agent, RunResponse
+from agno.model.openai import OpenAIChat
 
 
 class MovieScript(BaseModel):

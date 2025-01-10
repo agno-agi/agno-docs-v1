@@ -31,8 +31,8 @@ docker run -d \
 The following agent will list all tables in the database.
 
 ```python cookbook/tools/postgres.py
-from phi.agent import Agent
-from phi.tools.postgres import PostgresTools
+from agno.agent import Agent
+from agno.tools.postgres import PostgresTools
 
 # Initialize PostgresTools with connection details
 postgres_tools = PostgresTools(

@@ -5,10 +5,10 @@ title: Teams
 We can combine multiple Agents to form a team and tackle tasks as a cohesive unit. Here's a simple example that uses a team of agents to write an article about the top stories on hackernews.
 
 ```python hn_team.py
-from phi.agent import Agent
-from phi.tools.hackernews import HackerNews
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.tools.newspaper4k import Newspaper4k
+from agno.agent import Agent
+from agno.tools.hackernews import HackerNews
+from agno.tools.duckduckgo import DuckDuckGo
+from agno.tools.newspaper4k import Newspaper4k
 
 hn_researcher = Agent(
     name="HackerNews Researcher",

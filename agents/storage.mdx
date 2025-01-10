@@ -9,10 +9,10 @@ Agents come with built-in memory, but it only lasts while the session is active.
 The general syntax for adding storage to an Agent looks like:
 
 ```python
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.storage.agent.postgres import PgAgentStorage
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGo
+from agno.storage.agent.postgres import PgAgentStorage
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
@@ -52,10 +52,10 @@ agent.print_response("Which country are we speaking about?")
     ```python
     import typer
     from typing import Optional, List
-    from phi.agent import Agent
-    from phi.storage.agent.postgres import PgAgentStorage
-    from phi.knowledge.pdf import PDFUrlKnowledgeBase
-    from phi.vectordb.pgvector import PgVector, SearchType
+    from agno.agent import Agent
+    from agno.storage.agent.postgres import PgAgentStorage
+    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.vectordb.pgvector import PgVector, SearchType
 
     db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
     knowledge_base = PDFUrlKnowledgeBase(

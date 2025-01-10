@@ -7,9 +7,9 @@ Agno Agents are simple and elegant, resulting in minimal, beautiful code.
 For example, you can create a web search agent in 10 lines of code.
 
 ```python web_search.py
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.tools.duckduckgo import DuckDuckGo
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGo
 
 web_agent = Agent(
     name="Web Agent",
@@ -87,7 +87,7 @@ We recommend installing `agno` using `pip` in a python virtual environment
 Agno includes a built-in debugger that will show debug logs in the terminal. You can set `debug_mode=True` on any agent to view debug logs or set `PHI_DEBUG=true` in your environment.
 
 ```python debugging.py
-from phi.agent import Agent
+from agno.agent import Agent
 
 agent = Agent(markdown=True, debug_mode=True)
 agent.print_response("Share a 2 sentence horror story")

@@ -82,8 +82,8 @@ Memory & knowledge make agents **smarter** while tools make them **autonomous**.
     Create a file `web_search.py` with an agent that can search the web using DuckDuckGo.
 
     ```python agent.py
-    from phi.agent import Agent
-    from phi.tools.duckduckgo import DuckDuckGo
+    from agno.agent import Agent
+    from agno.tools.duckduckgo import DuckDuckGo
 
     agent = Agent(tools=[DuckDuckGo()], show_tool_calls=True, markdown=True)
     agent.print_response("Whats happening in France?", stream=True)
@@ -129,9 +129,9 @@ Memory & knowledge make agents **smarter** while tools make them **autonomous**.
     Create a file `finance_agent.py`
 
     ```python finance_agent.py
-    from phi.agent import Agent
-    from phi.llm.openai import OpenAIChat
-    from phi.tools.yfinance import YFinanceTools
+    from agno.agent import Agent
+    from agno.llm.openai import OpenAIChat
+    from agno.tools.yfinance import YFinanceTools
 
     agent = Agent(
         llm=OpenAIChat(model="gpt-4o"),

@@ -10,7 +10,7 @@ Agno supports using DynamoDB as a storage backend for Agents using the `DynamoDb
 You need to provide `aws_access_key_id` and `aws_secret_access_key` parameters to the `DynamoDbAgentStorage` class.
 
 ```python storage.py
-from phi.storage.agent.dynamodb import DynamoDbAgentStorage
+from agno.storage.agent.dynamodb import DynamoDbAgentStorage
 
 # AWS Credentials
 AWS_ACCESS_KEY_ID = getenv("AWS_ACCESS_KEY_ID")

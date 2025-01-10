@@ -8,9 +8,9 @@ The `VoyageAIEmbedder` class is used to embed text data into vectors using the V
 ## Usage
 
 ```python cookbook/embedders/voyageai_embedder.py
-from phi.agent import AgentKnowledge
-from phi.vectordb.pgvector import PgVector
-from phi.embedder.voyageai import VoyageAIEmbedder
+from agno.agent import AgentKnowledge
+from agno.vectordb.pgvector import PgVector
+from agno.embedder.voyageai import VoyageAIEmbedder
 
 embeddings = VoyageAIEmbedder().get_embedding("The quick brown fox jumps over the lazy dog.")
 

@@ -17,8 +17,8 @@ pip install -U googlesearch-python pycountry
 The following agent will search Google for the latest news about "Mistral AI":
 
 ```python cookbook/tools/googlesearch_tools.py
-from phi.agent import Agent
-from phi.tools.googlesearch import GoogleSearch
+from agno.agent import Agent
+from agno.tools.googlesearch import GoogleSearch
 
 agent = Agent(
     tools=[GoogleSearch()],

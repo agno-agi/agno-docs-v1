@@ -7,8 +7,8 @@ title: Phi
 The following agent will use the Phi toolkit to create and manage agno workspaces. It can create new applications from templates like llm-app, api-app, django-app, and streamlit-app. It can also start existing workspaces and validate that Phi is ready to run commands.
 
 ```python cookbook/tools/phi_tools.py
-from phi.agent import Agent
-from phi.tools.phi import PhiTools
+from agno.agent import Agent
+from agno.tools.phi import PhiTools
 
 # Create an Agent with the Phi tool
 agent = Agent(tools=[PhiTools()], name="Phi Workspace Manager")

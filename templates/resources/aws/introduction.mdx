@@ -14,7 +14,7 @@ Copy the following code to a file `resources.py` and run `phi start resources.py
 <CodeGroup>
 
 ```python resources.py
-from phi.aws.resource.s3 import S3Bucket
+from agno.aws.resource.s3 import S3Bucket
 
 # -*- S3 bucket called my-bucket-885
 prd_bucket = S3Bucket(name="my-bucket-885")
@@ -32,7 +32,7 @@ Copy the following code to a file `resources.py` and run `phi start resources.py
 
 ```python resources.py
 import json
-from phi.aws.resource.secret import SecretsManager
+from agno.aws.resource.secret import SecretsManager
 
 # -*- Secret called my-secret
 prd_secret = SecretsManager(

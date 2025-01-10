@@ -11,9 +11,9 @@ A jupyter notebook is a must have for AI development. Update the `resources.py` 
 ```python resources.py
 from os import getenv
 
-from phi.docker.app.jupyter import Jupyter
-from phi.docker.app.postgres import PgVectorDb
-from phi.docker.resources import DockerResources
+from agno.docker.app.jupyter import Jupyter
+from agno.docker.app.postgres import PgVectorDb
+from agno.docker.resources import DockerResources
 
 # -*- PgVector running on port 5432:5432
 vector_db = PgVectorDb(

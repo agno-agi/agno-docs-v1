@@ -31,8 +31,8 @@ You will also need a database. The following example uses a Postgres database ru
 The following agent will run a SQL query to list all tables in the database and describe the contents of one of the tables.
 
 ```python cookbook/tools/sql_tools.py
-from phi.agent import Agent
-from phi.tools.sql import SQLTools
+from agno.agent import Agent
+from agno.tools.sql import SQLTools
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 

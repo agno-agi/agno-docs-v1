@@ -18,12 +18,12 @@ No data is sent to `agno`, all agent sessions are stored locally in a sqlite dat
 Let's take it for a spin, create a file `playground.py`
 
 ```python playground.py
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.storage.agent.sqlite import SqlAgentStorage
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.tools.yfinance import YFinanceTools
-from phi.playground import Playground, serve_playground_app
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
+from agno.storage.agent.sqlite import SqlAgentStorage
+from agno.tools.duckduckgo import DuckDuckGo
+from agno.tools.yfinance import YFinanceTools
+from agno.playground import Playground, serve_playground_app
 
 web_agent = Agent(
     name="Web Agent",
@@ -95,7 +95,7 @@ You can set `monitoring=True` on any agent to log that agent's sessions or set `
 Create a file `monitoring.py` with the following code:
 
 ```python monitoring.py
-from phi.agent import Agent
+from agno.agent import Agent
 
 agent = Agent(markdown=True, monitoring=True)
 agent.print_response("Share a 2 sentence horror story")

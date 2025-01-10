@@ -17,8 +17,8 @@ pip install -U jina
 The following agent will use Jina API to summarize the content of https://github.com/phidatahq
 
 ```python cookbook/tools/jinareader_tools.py
-from phi.agent import Agent
-from phi.tools.jina_tools import JinaReaderTools
+from agno.agent import Agent
+from agno.tools.jina_tools import JinaReaderTools
 
 agent = Agent(tools=[JinaReaderTools()])
 agent.print_response("Summarize: https://github.com/phidatahq")

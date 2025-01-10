@@ -27,8 +27,8 @@ Use `Groq` with your `Agent`:
 <CodeGroup>
 
 ```python agent.py
-from phi.agent import Agent, RunResponse
-from phi.model.groq import Groq
+from agno.agent import Agent, RunResponse
+from agno.model.groq import Groq
 
 agent = Agent(
     model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),

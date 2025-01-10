@@ -19,8 +19,8 @@ For more installation options, please refer to [DuckDB documentation](https://du
 The following agent will analyze the movies file using SQL and return the result.
 
 ```python cookbook/tools/duckdb_tools.py
-from phi.agent import Agent
-from phi.tools.duckdb import DuckDbTools
+from agno.agent import Agent
+from agno.tools.duckdb import DuckDbTools
 
 agent = Agent(
     tools=[DuckDbTools()],

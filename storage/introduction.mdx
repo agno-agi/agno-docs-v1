@@ -9,10 +9,10 @@ Storage is a necessary component when building user facing AI products as any pr
 The general syntax for adding storage to an Agent looks like:
 
 ```python storage.py
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.storage.agent.postgres import PgAgentStorage
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGo
+from agno.storage.agent.postgres import PgAgentStorage
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),

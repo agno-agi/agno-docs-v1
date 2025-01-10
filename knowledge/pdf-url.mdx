@@ -18,8 +18,8 @@ pip install pypdf
 ```
 
 ```python knowledge_base.py
-from phi.knowledge.pdf import PDFUrlKnowledgeBase
-from phi.vectordb.pgvector import PgVector
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.pgvector import PgVector
 
 knowledge_base = PDFUrlKnowledgeBase(
     urls=["pdf_url"],
@@ -34,7 +34,7 @@ knowledge_base = PDFUrlKnowledgeBase(
 Then use the `knowledge_base` with an Agent:
 
 ```python agent.py
-from phi.agent import Agent
+from agno.agent import Agent
 from knowledge_base import knowledge_base
 
 agent = Agent(

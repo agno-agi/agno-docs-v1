@@ -22,10 +22,10 @@ Let's create an Agent that can help us research a topic by searching the web. We
     Create a file `research_agent.py`
 
     ```python research_agent.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.tools.duckduckgo import DuckDuckGo
-    from phi.tools.newspaper4k import Newspaper4k
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.newspaper4k import Newspaper4k
 
     agent = Agent(
         model=OpenAIChat(id="gpt-4o"),
@@ -70,8 +70,8 @@ Under the hood, the description and instructions are converted to the system pro
 Use the `Agent.run()` function to capture the response as a variable.
 
 ```python
-from phi.agent import Agent, RunResponse
-from phi.utils.pprint import pprint_run_response
+from agno.agent import Agent, RunResponse
+from agno.utils.pprint import pprint_run_response
 
 agent = Agent(...)
 
@@ -97,8 +97,8 @@ pprint_run_response(response_stream, markdown=True, show_time=True)
 Run the agent as a command line application using `agent.cli_app()`
 
 ```python
-from phi.agent import Agent
-from phi.tools.duckduckgo import DuckDuckGo
+from agno.agent import Agent
+from agno.tools.duckduckgo import DuckDuckGo
 
 agent = Agent(tools=[DuckDuckGo()], show_tool_calls=True, read_chat_history=True)
 agent.cli_app(markdown=True)
@@ -121,7 +121,7 @@ Summarize the last response
 You can manually set the system prompt using the `system_prompt` variable. The `description` and `instructions` only provide a formatting benefit. Learn more in the [prompts](/agents/prompts) guide.
 
 ```python
-from phi.agent import Agent
+from agno.agent import Agent
 
 agent = Agent(system_prompt="Share a 2 sentence story about")
 agent.print_response("Love in the year 12000.")

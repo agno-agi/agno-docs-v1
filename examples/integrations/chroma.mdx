@@ -10,9 +10,9 @@ import typer
 from rich.prompt import Prompt
 from typing import Optional
 
-from phi.agent import Agent
-from phi.knowledge.pdf import PDFUrlKnowledgeBase
-from phi.vectordb.chroma import ChromaDb
+from agno.agent import Agent
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.chroma import ChromaDb
 
 
 knowledge_base = PDFUrlKnowledgeBase(

@@ -35,8 +35,8 @@ Every Agent comes with built-in memory that can be used to access the historical
 ### Example
 
 ```python agent_memory.py
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
 from rich.pretty import pprint
 
 
@@ -75,9 +75,9 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.json import JSON
 
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.storage.agent.sqlite import SqlAgentStorage
+from agno.agent import Agent
+from agno.model.openai import OpenAIChat
+from agno.storage.agent.sqlite import SqlAgentStorage
 
 
 agent = Agent(
@@ -153,10 +153,10 @@ User memories are stored in the `AgentMemory` whereas session summaries are stor
 ```python personalized_memories_and_summaries.py
 from rich.pretty import pprint
 
-from phi.agent import Agent, AgentMemory
-from phi.model.openai import OpenAIChat
-from phi.memory.db.postgres import PgMemoryDb
-from phi.storage.agent.postgres import PgAgentStorage
+from agno.agent import Agent, AgentMemory
+from agno.model.openai import OpenAIChat
+from agno.memory.db.postgres import PgMemoryDb
+from agno.storage.agent.postgres import PgAgentStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 agent = Agent(

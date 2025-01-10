@@ -7,7 +7,7 @@ title: Knowledge
 Knowledge is stored in a vector database and provides agents with business context at query time, helping them respond in a context-aware manner. The general syntax is:
 
 ```python
-from phi.agent import Agent, AgentKnowledge
+from agno.agent import Agent, AgentKnowledge
 
 # Create a knowledge base for the Agent
 knowledge_base = AgentKnowledge(vector_db=...)
@@ -91,10 +91,10 @@ Let's build a **traditional RAG** Agent that answers questions from a PDF of rec
     Create a file `traditional_rag.py` with the following contents
 
     ```python traditional_rag.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.knowledge.pdf import PDFUrlKnowledgeBase
-    from phi.vectordb.pgvector import PgVector, SearchType
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.vectordb.pgvector import PgVector, SearchType
 
     db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
     knowledge_base = PDFUrlKnowledgeBase(
@@ -144,7 +144,7 @@ Let's build a **traditional RAG** Agent that answers questions from a PDF of rec
 If you want to use local PDFs, use a `PDFKnowledgeBase` instead
 
 ```python agent.py
-from phi.knowledge.pdf import PDFKnowledgeBase
+from agno.knowledge.pdf import PDFKnowledgeBase
 
 ...
 knowledge_base = PDFKnowledgeBase(
@@ -172,10 +172,10 @@ Set `search_knowledge=True` and `read_chat_history=True`, giving the Agent tools
     Create a file `agentic_rag.py` with the following contents
 
     ```python agentic_rag.py
-    from phi.agent import Agent
-    from phi.model.openai import OpenAIChat
-    from phi.knowledge.pdf import PDFUrlKnowledgeBase
-    from phi.vectordb.pgvector import PgVector, SearchType
+    from agno.agent import Agent
+    from agno.model.openai import OpenAIChat
+    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.vectordb.pgvector import PgVector, SearchType
 
     db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
     knowledge_base = PDFUrlKnowledgeBase(

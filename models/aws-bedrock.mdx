@@ -31,8 +31,8 @@ Use `AWS BedrockClaude` with your `Agent`:
 <CodeGroup>
 
 ```python agent.py
-from phi.agent import Agent, RunResponse
-from phi.model.aws.claude import Claude
+from agno.agent import Agent, RunResponse
+from agno.model.aws.claude import Claude
 
 agent = Agent(
     model=Claude(id="anthropic.claude-3-5-sonnet-20240620-v1:0"),

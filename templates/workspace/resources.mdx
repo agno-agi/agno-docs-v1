@@ -14,10 +14,10 @@ To add your own resources, just create a python file, define resources and add t
 ### DockerResources
 
 ```python workspace/dev_resources.py
-from phi.docker.app.fastapi import FastApi
-from phi.docker.app.postgres import PgVectorDb
-from phi.docker.app.streamlit import Streamlit
-from phi.docker.resources import DockerResources
+from agno.docker.app.fastapi import FastApi
+from agno.docker.app.postgres import PgVectorDb
+from agno.docker.app.streamlit import Streamlit
+from agno.docker.resources import DockerResources
 
 #
 # -*- Resources for the Development Environment
@@ -54,17 +54,17 @@ dev_docker_resources = DockerResources(
 ### AwsResources
 
 ```python workspace/prd_resources.py
-from phi.aws.app.fastapi import FastApi
-from phi.aws.app.streamlit import Streamlit
-from phi.aws.resources import AwsResources
-from phi.aws.resource.ecs import EcsCluster
-from phi.aws.resource.ec2 import SecurityGroup, InboundRule
-from phi.aws.resource.rds import DbInstance, DbSubnetGroup
-from phi.aws.resource.reference import AwsReference
-from phi.aws.resource.s3 import S3Bucket
-from phi.aws.resource.secret import SecretsManager
-from phi.docker.resources import DockerResources
-from phi.docker.resource.image import DockerImage
+from agno.aws.app.fastapi import FastApi
+from agno.aws.app.streamlit import Streamlit
+from agno.aws.resources import AwsResources
+from agno.aws.resource.ecs import EcsCluster
+from agno.aws.resource.ec2 import SecurityGroup, InboundRule
+from agno.aws.resource.rds import DbInstance, DbSubnetGroup
+from agno.aws.resource.reference import AwsReference
+from agno.aws.resource.s3 import S3Bucket
+from agno.aws.resource.secret import SecretsManager
+from agno.docker.resources import DockerResources
+from agno.docker.resource.image import DockerImage
 
 #
 # -*- Resources for the Production Environment

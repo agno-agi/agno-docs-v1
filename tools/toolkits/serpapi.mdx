@@ -21,8 +21,8 @@ export SERPAPI_API_KEY=***
 The following agent will search Google for the query: "Whats happening in the USA" and share results.
 
 ```python cookbook/tools/serpapi_tools.py
-from phi.agent import Agent
-from phi.tools.serpapi_tools import SerpApiTools
+from agno.agent import Agent
+from agno.tools.serpapi_tools import SerpApiTools
 
 agent = Agent(tools=[SerpApiTools()])
 agent.print_response("Whats happening in the USA?", markdown=True)
