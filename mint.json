@@ -168,7 +168,6 @@
                 "tools/toolkits/newspaper4k",
                 "tools/toolkits/openbb",
                 "tools/toolkits/pandas",
-                "tools/toolkits/phi",
                 "tools/toolkits/postgres",
                 "tools/toolkits/pubmed",
                 "tools/toolkits/python",
@@ -451,17 +450,17 @@
       "group": "Command Line",
       "pages": [
         {
-          "group": "phi",
+          "group": "ag",
           "pages": [
-            "templates/cli/phi/init",
-            "templates/cli/phi/auth",
-            "templates/cli/phi/start",
-            "templates/cli/phi/stop",
-            "templates/cli/phi/patch",
-            "templates/cli/phi/restart",
-            "templates/cli/phi/config",
-            "templates/cli/phi/set",
-            "templates/cli/phi/reset"
+            "templates/cli/ag/init",
+            "templates/cli/ag/auth",
+            "templates/cli/ag/start",
+            "templates/cli/ag/stop",
+            "templates/cli/ag/patch",
+            "templates/cli/ag/restart",
+            "templates/cli/ag/config",
+            "templates/cli/ag/set",
+            "templates/cli/ag/reset"
           ]
         },
         {
