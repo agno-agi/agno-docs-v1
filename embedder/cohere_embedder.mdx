@@ -12,6 +12,7 @@ from agno.agent import AgentKnowledge
 from agno.vectordb.pgvector import PgVector
 from agno.embedder.cohere import CohereEmbedder
 
+# Add embedding to database
 embeddings = CohereEmbedder().get_embedding("The quick brown fox jumps over the lazy dog.")
 # Print the embeddings and their dimensions
 print(f"Embeddings: {embeddings[:5]}")
