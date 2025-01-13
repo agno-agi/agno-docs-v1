@@ -29,6 +29,9 @@ agent = Agent(
         "First always get the list of files",
         "Then check the columns in the file",
         "Then run the query to answer the question",
+        "Always wrap column names with double quotes if they contain spaces or special characters",
+        "Remember to escape the quotes in the JSON string (use \")",
+        "Use single quotes for string values"
     ],
 )
 agent.cli_app(stream=False)
@@ -58,4 +61,4 @@ agent.cli_app(stream=False)
 
 ## Information
 
-- View on [Github](https://github.com/phidatahq/agno/blob/main/phi/tools/csv_tools.py)
+- View on [Github](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/csv_tools.py)
