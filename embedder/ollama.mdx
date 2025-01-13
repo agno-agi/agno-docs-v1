@@ -5,7 +5,7 @@ sidebarTitle: Ollama
 
 The `OllamaEmbedder` can be used to embed text data into vectors locally using Ollama.
 
-<Note>The model used for generating embeddings needs to run locally.</Note>
+<Note>The model used for generating embeddings needs to run locally. In this case it is `openhermes` so you have to [install `ollama`](https://ollama.com/download) and run `ollama pull openhermes` in your terminal.</Note>
 
 ## Usage
 
@@ -14,13 +14,14 @@ from agno.agent import AgentKnowledge
 from agno.vectordb.pgvector import PgVector
 from agno.embedder.ollama import OllamaEmbedder
 
-embeddings = OllamaEmbedder().get_embedding("The quick brown fox jumps over the lazy dog.")
+# Embed sentence in database
+embeddings = OllamaEmbedder(model="openhermes").get_embedding("The quick brown fox jumps over the lazy dog.")
 
 # Print the embeddings and their dimensions
 print(f"Embeddings: {embeddings[:5]}")
 print(f"Dimensions: {len(embeddings)}")
 
-# Example usage:
+# Use an embedder in a knowledge base
 knowledge_base = AgentKnowledge(
     vector_db=PgVector(
         db_url="postgresql+psycopg://ai:ai@localhost:5532/ai",
