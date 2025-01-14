@@ -240,7 +240,8 @@
             "vectordb/pgvector",
             "vectordb/pinecone",
             "vectordb/qdrant",
-            "vectordb/singlestore"
+            "vectordb/singlestore",
+            "vectordb/mongodb"
           ]
         },
         {
