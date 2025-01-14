@@ -5,4 +5,38 @@ sidebarTitle: Cohere
 
 The `CohereEmbedder` class is used to embed text data into vectors using the Cohere model API. Get your key from [here](https://dashboard.cohere.com/api-keys).
 
-TODO
+## Usage
+
+```python cookbook/embedders/cohere_embedder.py
+from agno.agent import AgentKnowledge
+from agno.vectordb.pgvector import PgVector
+from agno.embedder.cohere import CohereEmbedder
+
+embeddings = CohereEmbedder().get_embedding("The quick brown fox jumps over the lazy dog.")
+# Print the embeddings and their dimensions
+print(f"Embeddings: {embeddings[:5]}")
+print(f"Dimensions: {len(embeddings)}")
+
+# Example usage:
+knowledge_base = AgentKnowledge(
+    vector_db=PgVector(
+        db_url="postgresql+psycopg://ai:ai@localhost:5532/ai",
+        table_name="cohere_embeddings",
+        embedder=CohereEmbedder(),
+    ),
+    num_documents=2,
+)
+```
+
+## Params
+
+| Parameter        | Type                       | Default                | Description                                                    |
+| ---------------- | -------------------------- | ---------------------- | -------------------------------------------------------------- |
+| `dimensions`     | `int`                      | -                      | The dimensionality of the generated embeddings                 |
+| `model`          | `str`                      | `"embed-english-v3.0"` | The name of the Cohere model to use                            |
+| `input_type`     | `str`                      | `"search_query"`       | The type of input to embed                                     |
+| `embedding_types`| `Optional[List[str]]`      | -                      | The type of embeddings to generate                             |
+| `api_key`        | `Optional[str]`            | -                      | The API key to use for authentication                          |
+| `request_params` | `Optional[Dict[str, Any]]` | -                      | Additional parameters for the API request                      |
+| `client_params`  | `Optional[Dict[str, Any]]` | -                      | Additional parameters for the Cohere client                    |
+| `cohere_client`  | `Optional[CohereClient]`   | -                      | An instance of the Cohere client to use                        |
