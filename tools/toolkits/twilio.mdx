@@ -1,7 +1,63 @@
 ---
-title: Confluence
+title: Twilio
 ---
 
-**TwilioTools** enable an Agent to interact with your Twilio account.
+**TwilioTools** enables an Agent to interact with Twilio services, such as sending SMS, retrieving call details, and listing messages.
 
-TODO
+## Prerequisites
+
+The following examples require the `twilio` library and appropriate Twilio credentials, which can be obtained from [here](https://www.twilio.com/console).
+
+```shell
+pip install twilio
+```
+
+Set the following environment variables:
+
+```shell
+export TWILIO_ACCOUNT_SID=***
+export TWILIO_AUTH_TOKEN=***
+```
+
+## Example
+
+The following agent will send an SMS message using Twilio:
+
+```python
+from agno.agent import Agent
+from agno.tools.twilio import TwilioTools
+
+agent = Agent(
+    instructions=[
+        "Use your tools to send SMS and retrieve call details using Twilio.",
+    ],
+    tools=[TwilioTools(debug=True)],
+    show_tool_calls=True,
+)
+
+agent.print_response("Send an SMS to +1234567890", markdown=True)
+```
+
+## Toolkit Params
+
+| Name          | Type   | Default | Description                                       |
+| ------------- | ------ | ------- | ------------------------------------------------- |
+| `account_sid` | `str`  | `None`  | Twilio Account SID for authentication.            |
+| `auth_token`  | `str`  | `None`  | Twilio Auth Token for authentication.             |
+| `api_key`     | `str`  | `None`  | Twilio API Key for alternative authentication.    |
+| `api_secret`  | `str`  | `None`  | Twilio API Secret for alternative authentication. |
+| `region`      | `str`  | `None`  | Optional Twilio region (e.g., `au1`).             |
+| `edge`        | `str`  | `None`  | Optional Twilio edge location (e.g., `sydney`).   |
+| `debug`       | `bool` | `False` | Enable debug logging for troubleshooting.         |
+
+## Toolkit Functions
+
+| Function           | Description                                                                                                                                                                                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `send_sms`         | **Sends an SMS message to a recipient.** **Args:** `to` (str): Recipient phone number in E.164 format (e.g., `+1234567890`). `from_` (str): Sender phone number (must be a Twilio number). `body` (str): Message content. **Returns:** `str`: Message SID if successful, error message if failed. |
+| `get_call_details` | **Retrieves details about a specific call using its SID.** **Args:** `call_sid` (str): The SID of the call to retrieve details for. **Returns:** `Dict[str, Any]`: A dictionary containing call details such as status, duration, and more.                                                       |
+| `list_messages`    | **Lists recent SMS messages sent or received.** **Args:** `limit` (int): Maximum number of messages to return. Default is 20. **Returns:** `List[Dict[str, Any]]`: A list of dictionaries containing message details such as SID, to, from, body, status, and date sent.                          |
+
+## Information
+
+- View on [Github](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/twilio.py).
