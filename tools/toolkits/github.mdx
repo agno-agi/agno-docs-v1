@@ -37,30 +37,31 @@ agent.print_response("List open pull requests", markdown=True)
 
 ## Toolkit Params
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `access_token` | `str` | `None` | Github access token for authentication. If not provided, will use GITHUB_ACCESS_TOKEN environment variable. |
-| `base_url` | `str` | `None` | Optional base URL for Github Enterprise installations. |
-| `search_repositories` | `bool` | `True` | Enable searching Github repositories. |
-| `list_repositories` | `bool` | `True` | Enable listing repositories for a user/organization. |
-| `get_repository` | `bool` | `True` | Enable getting repository details. |
-| `list_pull_requests` | `bool` | `True` | Enable listing pull requests for a repository. |
-| `get_pull_request` | `bool` | `True` | Enable getting pull request details. |
-| `get_pull_request_changes` | `bool` | `True` | Enable getting pull request file changes. |
-| `create_issue` | `bool` | `True` | Enable creating issues in repositories. |
+| Parameter                  | Type   | Default | Description                                                                                                 |
+| -------------------------- | ------ | ------- | ----------------------------------------------------------------------------------------------------------- |
+| `access_token`             | `str`  | `None`  | Github access token for authentication. If not provided, will use GITHUB_ACCESS_TOKEN environment variable. |
+| `base_url`                 | `str`  | `None`  | Optional base URL for Github Enterprise installations.                                                      |
+| `search_repositories`      | `bool` | `True`  | Enable searching Github repositories.                                                                       |
+| `list_repositories`        | `bool` | `True`  | Enable listing repositories for a user/organization.                                                        |
+| `get_repository`           | `bool` | `True`  | Enable getting repository details.                                                                          |
+| `list_pull_requests`       | `bool` | `True`  | Enable listing pull requests for a repository.                                                              |
+| `get_pull_request`         | `bool` | `True`  | Enable getting pull request details.                                                                        |
+| `get_pull_request_changes` | `bool` | `True`  | Enable getting pull request file changes.                                                                   |
+| `create_issue`             | `bool` | `True`  | Enable creating issues in repositories.                                                                     |
 
 ## Toolkit Functions
 
-| Function | Description |
-|----------|-------------|
-| `search_repositories` | Searches Github repositories based on a query. |
-| `list_repositories` | Lists repositories for a given user or organization. |
-| `get_repository` | Gets details about a specific repository. |
-| `list_pull_requests` | Lists pull requests for a repository. |
-| `get_pull_request` | Gets details about a specific pull request. |
-| `get_pull_request_changes` | Gets the file changes in a pull request. |
-| `create_issue` | Creates a new issue in a repository. |
+| Function                   | Description                                          |
+| -------------------------- | ---------------------------------------------------- |
+| `search_repositories`      | Searches Github repositories based on a query.       |
+| `list_repositories`        | Lists repositories for a given user or organization. |
+| `get_repository`           | Gets details about a specific repository.            |
+| `list_pull_requests`       | Lists pull requests for a repository.                |
+| `get_pull_request`         | Gets details about a specific pull request.          |
+| `get_pull_request_changes` | Gets the file changes in a pull request.             |
+| `create_issue`             | Creates a new issue in a repository.                 |
 
-## Information
+## Developer Resources
 
-- View on [Github](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/github.py)
+- View [Tools](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/github_tools.py)
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/tools/github_tools.py)

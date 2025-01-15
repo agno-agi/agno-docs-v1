@@ -25,23 +25,24 @@ agent.print_response("Whats happening in France?", markdown=True)
 
 ## Toolkit Params
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `search` | `bool` | `True` | Enables the use of the `duckduckgo_search` function to search DuckDuckGo for a query. |
-| `news` | `bool` | `True` | Enables the use of the `duckduckgo_news` function to fetch the latest news via DuckDuckGo. |
-| `fixed_max_results` | `int` | - | Sets a fixed number of maximum results to return. No default is provided, must be specified if used. |
-| `headers` | `Any` | - | Accepts any type of header values to be sent with HTTP requests. |
-| `proxy` | `str` | - | Specifies a single proxy address as a string to be used for the HTTP requests. |
-| `proxies` | `Any` | - | Accepts a dictionary of proxies to be used for HTTP requests. |
-| `timeout` | `int` | `10` | Sets the timeout for HTTP requests, in seconds. |
+| Parameter           | Type   | Default | Description                                                                                          |
+| ------------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------- |
+| `search`            | `bool` | `True`  | Enables the use of the `duckduckgo_search` function to search DuckDuckGo for a query.                |
+| `news`              | `bool` | `True`  | Enables the use of the `duckduckgo_news` function to fetch the latest news via DuckDuckGo.           |
+| `fixed_max_results` | `int`  | -       | Sets a fixed number of maximum results to return. No default is provided, must be specified if used. |
+| `headers`           | `Any`  | -       | Accepts any type of header values to be sent with HTTP requests.                                     |
+| `proxy`             | `str`  | -       | Specifies a single proxy address as a string to be used for the HTTP requests.                       |
+| `proxies`           | `Any`  | -       | Accepts a dictionary of proxies to be used for HTTP requests.                                        |
+| `timeout`           | `int`  | `10`    | Sets the timeout for HTTP requests, in seconds.                                                      |
 
 ## Toolkit Functions
 
-| Function | Description |
-|----------|-------------|
-| `duckduckgo_search` | Use this function to search DuckDuckGo for a query. |
-| `duckduckgo_news` | Use this function to get the latest news from DuckDuckGo. |
+| Function            | Description                                               |
+| ------------------- | --------------------------------------------------------- |
+| `duckduckgo_search` | Use this function to search DuckDuckGo for a query.       |
+| `duckduckgo_news`   | Use this function to get the latest news from DuckDuckGo. |
 
-## Information
+## Developer Resources
 
-- View on [Github](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/duckduckgo.py)
+- View [Tools](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/duckduckgo_tools.py)
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/tools/duckduckgo_tools.py)
