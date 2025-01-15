@@ -156,6 +156,7 @@
                 "tools/toolkits/firecrawl",
                 "tools/toolkits/giphy",
                 "tools/toolkits/github",
+                "tools/toolkits/googlecalendar",
                 "tools/toolkits/googlesearch",
                 "tools/toolkits/hackernews",
                 "tools/toolkits/jina_reader",
