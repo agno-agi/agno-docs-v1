@@ -54,21 +54,21 @@ agent.print_response("Read the contents of 'example_dag.py'")
 
 ## Toolkit Params
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `dags_dir` | `Path` or `str` | `Path.cwd()` | Directory for DAG files |
-| `save_dag` | `bool` | `True` | Whether to register the save_dag_file function |
-| `read_dag` | `bool` | `True` | Whether to register the read_dag_file function |
-| `name` | `str` | `"AirflowTools"` | The name of the tool |
+| Parameter  | Type            | Default          | Description                                    |
+| ---------- | --------------- | ---------------- | ---------------------------------------------- |
+| `dags_dir` | `Path` or `str` | `Path.cwd()`     | Directory for DAG files                        |
+| `save_dag` | `bool`          | `True`           | Whether to register the save_dag_file function |
+| `read_dag` | `bool`          | `True`           | Whether to register the read_dag_file function |
+| `name`     | `str`           | `"AirflowTools"` | The name of the tool                           |
 
 ## Toolkit Functions
 
-| Function | Description |
-|----------|-------------|
-| `save_dag_file` | Saves python code for an Airflow DAG to a file |
+| Function        | Description                                        |
+| --------------- | -------------------------------------------------- |
+| `save_dag_file` | Saves python code for an Airflow DAG to a file     |
 | `read_dag_file` | Reads an Airflow DAG file and returns the contents |
 
+## Developer Resources
 
-## Information
-
-- View on [Github](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/airflow.py)
+- View [Tools](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/airflow_tools.py)
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/tools/airflow_tools.py)
