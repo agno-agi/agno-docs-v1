@@ -2,6 +2,52 @@
 title: Confluence
 ---
 
-**ConfluenceTools** enable an Agent interact with your Atlassian Confluence server.
+**ConfluenceTools** enable an Agent to retrieve, create, and update pages in Confluence. They also allow you to explore spaces and page details.
 
-TODO
+## Prerequisites
+
+1. You must have valid Confluence credentials (username, password/API key, and Confluence instance URL).
+2. Install the `atlassian-python-api` library:
+
+```shell
+pip install atlassian-python-api
+```
+
+## Example
+The following agent will retrieve the number of spaces and their names.
+
+```python
+from agno.agent import Agent
+from agno.tools.confluence import ConfluenceTools
+
+agent = Agent(
+    name="Confluence agent",
+    tools=[ConfluenceTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+
+agent.print_response("How many spaces are there and what are their names?")
+```
+
+
+## Toolkit Functions
+
+| Parameter | Type     | Default | Description                                                                                                                    |
+| --------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `username`| `str`    | -  | Confluence username. Can also be set via environment variable `CONFLUENCE_USERNAME`.                                           |
+| `password`| `str`    | -  | Confluence password or API key. Can also be set via environment variables `CONFLUENCE_API_KEY` or `CONFLUENCE_PASSWORD`.       |
+| `url`     | `str`    | -  | Confluence instance URL. Can also be set via environment variable `CONFLUENCE_URL`.                                            |
+| `api_key` | `str`    | -  | Confluence API key (alternative to password).                                                                                 |
+
+
+## Toolkit Functions
+
+| Function                                                         | Description                                                                                                                                         |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_page_content` | Retrieves the content of a specific page. Returns a JSON-encoded string of the page’s data or an error message.                                       |
+| `get_all_space_detail`                                         | Fetches details about all Confluence spaces. Returns a string representation of space details.                                                      |
+| `get_space_key`                                 | Retrieves the Confluence key for the specified space. Returns the key or "No space found".                                                        |
+| `get_all_page_from_space`                       | Retrieves details of all pages from the specified space. Returns a list of page titles and IDs.                                                     |
+| `create_page` | Creates a new Confluence page with the provided title and body. Returns a JSON-encoded object containing the new page ID or an error message.       |
+| `update_page`               | Updates an existing Confluence page. Returns a JSON-encoded string with the updated page ID or an error message.                                    |
