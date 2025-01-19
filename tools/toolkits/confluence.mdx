@@ -6,11 +6,18 @@ title: Confluence
 
 ## Prerequisites
 
-1. You must have valid Confluence credentials (username, password/API key, and Confluence instance URL).
-2. Install the `atlassian-python-api` library:
+The following example requires the `atlassian-python-api` library and Confluence credentials. You can obtain an API token by going [here](https://id.atlassian.com/manage-profile/security).
 
 ```shell
 pip install atlassian-python-api
+```
+
+```shell
+export CONFLUENCE_URL="https://your-confluence-instance"
+export CONFLUENCE_USERNAME="your-username"
+export CONFLUENCE_PASSWORD="your-password"
+# or
+export CONFLUENCE_API_KEY="your-api-key"
 ```
 
 ## Example
@@ -35,9 +42,9 @@ agent.print_response("How many spaces are there and what are their names?")
 
 | Parameter | Type     | Default | Description                                                                                                                    |
 | --------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `username`| `str`    | -  | Confluence username. Can also be set via environment variable `CONFLUENCE_USERNAME`.                                           |
-| `password`| `str`    | -  | Confluence password or API key. Can also be set via environment variables `CONFLUENCE_API_KEY` or `CONFLUENCE_PASSWORD`.       |
-| `url`     | `str`    | -  | Confluence instance URL. Can also be set via environment variable `CONFLUENCE_URL`.                                            |
+| `username`| `str`    | -  | Confluence username. Can also be set via environment variable CONFLUENCE_USERNAME.                                           |
+| `password`| `str`    | -  | Confluence password or API key. Can also be set via environment variables CONFLUENCE_API_KEY or CONFLUENCE_PASSWORD.       |
+| `url`     | `str`    | -  | Confluence instance URL. Can also be set via environment variable CONFLUENCE_URL.                                            |
 | `api_key` | `str`    | -  | Confluence API key (alternative to password).                                                                                 |
 
 
@@ -45,9 +52,15 @@ agent.print_response("How many spaces are there and what are their names?")
 
 | Function                                                         | Description                                                                                                                                         |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `get_page_content` | Retrieves the content of a specific page. Returns a JSON-encoded string of the page’s data or an error message.                                       |
-| `get_all_space_detail`                                         | Fetches details about all Confluence spaces. Returns a string representation of space details.                                                      |
-| `get_space_key`                                 | Retrieves the Confluence key for the specified space. Returns the key or "No space found".                                                        |
-| `get_all_page_from_space`                       | Retrieves details of all pages from the specified space. Returns a list of page titles and IDs.                                                     |
-| `create_page` | Creates a new Confluence page with the provided title and body. Returns a JSON-encoded object containing the new page ID or an error message.       |
-| `update_page`               | Updates an existing Confluence page. Returns a JSON-encoded string with the updated page ID or an error message.                                    |
+| `get_page_content` | Gets the content of a specific page.                                |
+| `get_all_space_detail`                                         | Gets details about all Confluence spaces.                                                     |
+| `get_space_key`                                 | Gets the Confluence key for the specified space.                                                        |
+| `get_all_page_from_space`                       | Gets details of all pages from the specified space.                                                     |
+| `create_page` | Creates a new Confluence page with the provided title and body.       |
+| `update_page`               | Updates an existing Confluence page.                                    |
+
+
+## Developer Resources
+
+- View [Tools](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/confluence.py)
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/tools/confluence.py)
