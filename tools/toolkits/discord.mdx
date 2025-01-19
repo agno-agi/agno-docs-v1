@@ -6,7 +6,11 @@ title: Discord
 
 ## Prerequisites
 
-The following example requires a valid Discord bot token. You can set the `DISCORD_BOT_TOKEN` environment variable or pass it to the `DiscordTools` constructor.
+The following example requires a Discord bot token which can be obtained from [here](https://discord.com/developers/applications).
+
+```shell
+export DISCORD_BOT_TOKEN=***
+```
 
 ## Example
 
@@ -14,12 +18,8 @@ The following example requires a valid Discord bot token. You can set the `DISCO
 from agno.agent import Agent
 from agno.tools.discord import DiscordTools
 
-discord_tools = DiscordTools(
-    bot_token="YOUR_BOT_TOKEN",
-)
-
 agent = Agent(
-    tools=[discord_tools],
+    tools=[DiscordTools()],
     show_tool_calls=True,
     markdown=True,
 )
