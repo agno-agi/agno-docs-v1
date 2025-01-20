@@ -1,17 +1,17 @@
 ---
-title: Globe Hopper Agent
+title: Travel Agent
 ---
 
-**Globe Hopper** enables an Agent to plan travel itineraries, recommend flights, hotels, and activities.
+**Travel Agent** is enabled to plan travel itineraries, recommend flights, hotels, and activities.
 
-Create a file `globe_hopper_agent.py` with the following code:
+Create a file `travel_agent.py` with the following code:
 
-```python globe_hopper_agent.py
+```python travel_agent.py
 from agno.model.openai import OpenAIChat
 from agno.agent import Agent
 from agno.tools.exa import ExaTools
 
-globe_hopper_agent = Agent(
+travel_agent = Agent(
     name="Globe Hopper",
     model=OpenAIChat(id="gpt-4o"),
     tools=[ExaTools()],
@@ -27,7 +27,7 @@ globe_hopper_agent = Agent(
     ],
 )
 
-globe_hopper_agent.print_response(
+travel_agent.print_response(
     "I want to plan an offsite for 14 people for 3 days (28th-30th March) in London within 10k dollars. Please suggest options for places to stay, activities, and co working spaces and a detailed itinerary for the 3 days with transportation and activities",
     stream=True,
 )
@@ -52,7 +52,7 @@ globe_hopper_agent.print_response(
 
   <Step title="Run the agent">
     ```bash
-    python globe_hopper_agent.py
+    python travel_agent.py
     ```
   </Step>
 

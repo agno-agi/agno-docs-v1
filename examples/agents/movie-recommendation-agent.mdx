@@ -1,17 +1,17 @@
 ---
-title: Popcorn Pal
+title: Movie Recommendation Agent
 ---
 
-**Popcorn Pal** is a movie recommendation agent that searches and scrapes movie websites to provide detailed recommendations, including ratings, genres, descriptions, trailers, and upcoming releases.
+**Movie Recommendation Agent** searches and scrapes movie websites to provide detailed recommendations, including ratings, genres, descriptions, trailers, and upcoming releases.
 
-Create a file `popcorn_pal_agent.py` with the following code:
+Create a file `movie_recommendation_agent.py` with the following code:
 
-```python popcorn_pal_agent.py
+```python movie_recommendation_agent.py
 from agno.agent import Agent
 from agno.model.openai import OpenAIChat
 from agno.tools.exa import ExaTools
 
-popcorn_pal_agent = Agent(
+movie_recommendation_agent = Agent(
     name="Popcorn Pal",
     tools=[
         ExaTools(),
@@ -32,7 +32,7 @@ popcorn_pal_agent = Agent(
     markdown=True,
 )
 
-popcorn_pal_agent.print_response(
+movie_recommendation_agent.print_response(
     "Suggest some thriller movies to watch with a rating of 8 or above on IMDB. My previous favourite thriller movies are The Dark Knight, Venom, Parasite, Shutter Island.",
     stream=True,
 )
@@ -57,7 +57,7 @@ popcorn_pal_agent.print_response(
 
   <Step title="Run the agent">
     ```bash
-    python popcorn_pal_agent.py
+    python movie_recommendation_agent.py
     ```
   </Step>
 

@@ -323,7 +323,7 @@
             "examples/agents/firecrawl-agent",
             "examples/agents/github-agent",
             "examples/agents/rag-agent",
-            "examples/agents/popcorn-pal-agent",
+            "examples/agents/movie-recommendation-agent",
             "examples/agents/globe-hopper-agent",
             "examples/agents/baidu-search-agent",
             "examples/agents/youtube-timestamp-agent",
