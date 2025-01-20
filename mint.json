@@ -266,7 +266,6 @@
             "embedder/ollama",
             "embedder/azure_openai",
             "embedder/cohere",
-            "embedder/fastembed",
             "embedder/fireworks",
             "embedder/huggingface",
             "embedder/mistral",
@@ -298,36 +297,55 @@
       "pages": [
         "examples/introduction",
         {
-          "group": "Agents",
+          "group": "Use-Cases",
           "pages": [
-            "examples/agents/web-search",
-            "examples/agents/recipe-creator-agent",
-            "examples/agents/finance-agent",
-            "examples/agents/books-recommendation-agent",
-            "examples/agents/shopping-partner-agent",
-            "examples/agents/timeout-agent",
-            "examples/agents/agent-team",
-            "examples/agents/reasoning-agent",
-            "examples/agents/python-agent",
-            "examples/agents/data-analyst",
-            "examples/agents/structured-output",
-            "examples/agents/python-function-agent",
-            "examples/agents/image-agent",
-            "examples/agents/generate-image-agent",
-            "examples/agents/calcom-agent",
-            "examples/agents/image-to-text",
-            "examples/agents/research-agent",
-            "examples/agents/models-labs-agent",
-            "examples/agents/slack-agent",
-            "examples/agents/discord-agent",
-            "examples/agents/firecrawl-agent",
-            "examples/agents/github-agent",
-            "examples/agents/rag-agent",
-            "examples/agents/movie-recommendation-agent",
-            "examples/agents/travel-agent",
-            "examples/agents/baidu-search-agent",
-            "examples/agents/youtube-timestamp-agent",
-            "examples/agents/study-scout-agent"
+            {
+              "group": "Simple",
+              "pages": [
+                "examples/use-cases/books-recommendation-agent",
+                "examples/use-cases/movie-recommendation-agent",
+                "examples/use-cases/youtube-timestamp-agent",
+                "examples/use-cases/travel-agent",
+                "examples/use-cases/legal-advisor",
+                "examples/use-cases/recipe-creator-agent",
+                "examples/use-cases/shopping-partner-agent",
+                "examples/use-cases/study-scout-agent",
+                "examples/use-cases/timeout-agent",
+                "examples/use-cases/calcom-agent",
+                "examples/use-cases/slack-agent",
+                "examples/use-cases/discord-agent",
+                "examples/use-cases/data-analyst",
+                "examples/use-cases/finance-agent",
+                "examples/use-cases/research-agent",
+                "examples/use-cases/github-agent",
+                "examples/use-cases/baidu-search-agent"
+              ]
+            },
+            {
+              "group": "Advanced",
+              "pages": [
+                "examples/use-cases/reddit-post-generator"
+              ]
+            }
+          ]
+        },
+
+        {
+          "group": "Agent Concepts",
+          "pages": [
+            {
+              "group": "Multimodal Examples",
+              "pages": [
+                "examples/agent-concepts/generate-image-agent",
+                "examples/agent-concepts/image-agent",
+                "examples/agent-concepts/video-generation-agent"
+              ]
+            },
+            "examples/agent-concepts/rag-agent",
+            "examples/agent-concepts/structured-output",
+            "examples/agent-concepts/python-function-agent",
+            "examples/agent-concepts/agent-team",
+            "examples/agent-concepts/reasoning-agent"
           ]
         },
         {
@@ -363,23 +381,6 @@
             "examples/integrations/qdrant",
             "examples/integrations/chroma",
             "examples/integrations/portkey"
-          ]
-        },
-        {
-          "group": "Agent Teams",
-          "pages": [
-            "examples/teams/research",
-            "examples/teams/journalist",
-            "examples/teams/investment",
-            "examples/teams/hackernews"
-          ]
-        },
-        {
-          "group": "Use Cases",
-          "pages": [
-            "examples/use-case/sql",
-            "examples/use-case/worldbuilding",
-            "examples/use-case/arxiv-research"
           ]
         }
       ]
