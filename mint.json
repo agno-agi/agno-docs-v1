@@ -324,7 +324,7 @@
             "examples/agents/github-agent",
             "examples/agents/rag-agent",
             "examples/agents/movie-recommendation-agent",
-            "examples/agents/globe-hopper-agent",
+            "examples/agents/travel-agent",
             "examples/agents/baidu-search-agent",
             "examples/agents/youtube-timestamp-agent",
             "examples/agents/study-scout-agent"
