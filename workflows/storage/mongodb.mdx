@@ -1,27 +1,19 @@
 ---
-title: Postgres Workflow Storage
-sidebarTitle: Postgres
+title: MongoDB Workflow Storage
+sidebarTitle: MongoDB
 ---
 
-Agno supports using PostgreSQL as a storage backend for Workflows using the `PostgresWorkflowStorage` class.
+Agno supports using MongoDB as a storage backend for Workflows using the `MongoDbWorkflowStorage` class.
 
 
 ## Usage
 
-## Run PgVector
+## Run MongoDB
 
-Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) and run **PgVector** on port **5532** using:
+Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) and run **MongoDB** on port **27017** using:
 
 ```bash
-docker run -d \
-  -e POSTGRES_DB=ai \
-  -e POSTGRES_USER=ai \
-  -e POSTGRES_PASSWORD=ai \
-  -e PGDATA=/var/lib/postgresql/data/pgdata \
-  -v pgvolume:/var/lib/postgresql/data \
-  -p 5532:5432 \
-  --name pgvector \
-  agno/pgvector:16
+docker run --name mongodb -d -p 27017:27017 mongodb/mongodb-community-server:latest
 ```
 
 ```python storage.py
@@ -32,7 +24,7 @@ from typing import Iterator
 import httpx
 from agno.agent import Agent, RunResponse
 from agno.tools.newspaper4k import Newspaper4kTools
-from agno.storage.workflow.postgres import PostgresWorkflowStorage
+from agno.storage.workflow.mongodb import MongoDbWorkflowStorage
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
@@ -108,9 +100,9 @@ class HackerNewsReporter(Workflow):
 
 # Run workflow
 report: Iterator[RunResponse] = HackerNewsReporter(
-        storage=PgWorkflowStorage(
-            table_name="hacker_news_report",
-            db_url="postgresql+psycopg://ai:ai@localhost:5532/ai",
+        storage=MongoDbWorkflowStorage(
+            collection_name="hacker_news_report",
+            db_url="mongodb://localhost:27017",
         )).run(num_stories=5)
 
 # Print the report
@@ -119,4 +111,4 @@ pprint_run_response(report, markdown=True, show_time=True)
 
 ## Params
 
-<Snippet file="workflow-storage-postgres-params.mdx" />
+<Snippet file="workflow-storage-mongodb-params.mdx" />

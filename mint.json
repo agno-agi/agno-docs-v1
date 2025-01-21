@@ -279,7 +279,8 @@
               "pages": [
                 "workflows/storage/session_state",
                 "workflows/storage/postgres",
-                "workflows/storage/sqlite"
+                "workflows/storage/sqlite",
+                "workflows/storage/mongodb"
               ]
             },
             "workflows/advanced"
