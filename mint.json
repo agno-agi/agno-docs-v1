@@ -321,8 +321,9 @@
               "group": "Advanced",
               "pages": [
                 "examples/use-cases/advanced/blog-post-generator",
-                "examples/use-cases/advanced/coding-agent"
-                "examples/use-cases/advanced/reddit-post-generator"
+                "examples/use-cases/advanced/coding-agent",
+                "examples/use-cases/advanced/reddit-post-generator",
+                "examples/use-cases/advanced/employee-recruiter"
               ]
             }
           ]
