@@ -1,0 +1,66 @@
+---
+title: Mistral
+---
+
+## Example
+
+<CodeGroup>
+
+```python agent.py
+import os
+
+from agno.agent import Agent, RunResponse
+from agno.models.mistral import MistralChat
+
+mistral_api_key = os.getenv("MISTRAL_API_KEY")
+
+agent = Agent(
+    model=MistralChat(
+        id="mistral-large-latest",
+        api_key=mistral_api_key,
+    ),
+)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story.")
+
+```
+
+</CodeGroup>
+
+## Usage
+
+Get your key from [here](https://console.mistral.ai/api-keys/).
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+
+    ```bash
+    pip install -U mistralai agno
+    ```
+
+  </Step>
+
+  <Step title="Export `MISTRAL_API_KEY`">
+
+    ```bash
+    export MISTRAL_API_KEY=xxx
+    ```
+
+  </Step>
+
+  <Step title="Run Mistral Agent">
+
+    ```bash
+    python cookbook/providers/mistral/basic.py
+    ```
+
+  </Step>
+
+  </Steps>
+
+## Information
+
+- View on [Github](https://github.com/phidatahq/agno/tree/main/cookbook/providers/mistral/basic.py)

@@ -15,7 +15,7 @@ Let's build a research agent to generate a report using Exa.
     from datetime import datetime
 
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.tools.exa import ExaTools
 
     agent = Agent(
@@ -96,7 +96,7 @@ This saves tokens and improves response quality.
 
     ```python rag_agent.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.embedder.openai import OpenAIEmbedder
     from agno.knowledge.pdf import PDFUrlKnowledgeBase
     from agno.vectordb.lancedb import LanceDb, SearchType
@@ -156,7 +156,7 @@ Create a file `structured_output.py`
     from typing import List
     from pydantic import BaseModel, Field
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
 
     # Define a Pydantic model to enforce the structure of the output
     class MovieScript(BaseModel):
@@ -204,7 +204,7 @@ Reasoning is an experimental feature that helps agents work through a problem st
 
     ```python reasoning_agent.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
 
     task = (
         "Three missionaries and three cannibals need to cross a river. "

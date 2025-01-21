@@ -7,7 +7,7 @@ Create a file `slack_agent.py` with the following code:
 ```python slack_agent.py
 from agno.agent import Agent
 from agno.tools.slack import SlackTools
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[SlackTools()], show_tool_calls=True)
 

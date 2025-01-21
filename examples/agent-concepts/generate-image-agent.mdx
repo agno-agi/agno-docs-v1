@@ -7,7 +7,7 @@ Create a file `generate_image_agent.py` with the following code:
 ```python generate_image_agent.py
 from agno.agent import Agent
 from agno.tools.dalle import Dalle
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 image_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),

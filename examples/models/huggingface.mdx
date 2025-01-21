@@ -1,0 +1,62 @@
+---
+title: HuggingFace
+---
+
+## Example
+
+<CodeGroup>
+
+```python agent.py
+from agno.agent import Agent, RunResponse
+from agno.models.huggingface import HuggingFaceChat
+
+agent = Agent(
+    model=HuggingFaceChat(
+        id="meta-llama/Meta-Llama-3-8B-Instruct",
+        max_tokens=4096,
+    ),
+    markdown=True
+)
+
+# Print the response on the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
+
+</CodeGroup>
+
+## Usage
+
+Get your API key [from HuggingFace here](https://huggingface.co/settings/tokens).
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+
+    ```bash
+    pip install -U huggingface_hub agno
+    ```
+
+  </Step>
+
+  <Step title="Export Environment Variables">
+
+    ```bash
+    export HF_TOKEN=***
+    ```
+
+  </Step>
+
+  <Step title="Run HuggingFace Agent">
+
+    ```bash
+    python cookbook/providers/huggingface/basic.py
+    ```
+
+  </Step>
+
+  </Steps>
+
+## Information
+
+- View on [Github](https://github.com/phidatahq/agno/tree/main/cookbook/providers/huggingface/basic.py)

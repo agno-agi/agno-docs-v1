@@ -24,7 +24,7 @@ from agno.storage.assistant.postgres import PgAssistantStorage
 
 # Version >= 2.5.0
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from agno.storage.agent.postgres import PgAgentStorage
 ```
 
@@ -43,7 +43,7 @@ assistant = Assistant(
 
 # Version >= 2.5.0
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 agent = Agent(
     # Note: 'llm' is now 'model' and 'model' is now 'id'
@@ -90,7 +90,7 @@ from agno.agent import Agent, RunResponse
 from agno.storage.agent.postgres import PgAgentStorage
 from agno.knowledge.pdf import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector, SearchType
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
@@ -129,7 +129,7 @@ res = assistant.run("What is the recipe for chicken curry?")
 
 # Version >= 2.5.0
 from agno.agent import Agent, RunResponse
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
@@ -178,7 +178,7 @@ from typing import List
 from rich.pretty import pprint
 from pydantic import BaseModel, Field
 from agno.agent import Agent, RunResponse
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 
 class MovieScript(BaseModel):

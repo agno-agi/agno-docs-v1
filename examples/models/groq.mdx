@@ -1,0 +1,59 @@
+---
+title: Groq
+---
+
+## Example
+
+<CodeGroup>
+
+```python agent.py
+from agno.agent import Agent, RunResponse
+from agno.models.groq import Groq
+
+agent = Agent(
+    model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
+)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story.")
+
+```
+
+</CodeGroup>
+
+## Usage
+
+Get your key from [here](https://console.groq.com/keys).
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+
+    ```bash
+    pip install -U groq agno
+    ```
+
+  </Step>
+
+  <Step title="Export `GROQ_API_KEY`">
+
+    ```bash
+    export GROQ_API_KEY=xxx
+    ```
+
+  </Step>
+
+  <Step title="Run Groq Agent">
+
+    ```bash
+    python cookbook/providers/groq/basic.py
+    ```
+
+  </Step>
+
+  </Steps>
+
+## Information
+
+- View on [Github](https://github.com/phidatahq/agno/tree/main/cookbook/providers/groq/basic.py)

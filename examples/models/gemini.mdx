@@ -1,0 +1,61 @@
+---
+title: Gemini
+---
+
+## Example
+
+<CodeGroup>
+
+```python agent.py
+
+from agno.agent import Agent, RunResponse
+from agno.models.google import Gemini
+
+agent = Agent(
+    model=Gemini(id="gemini-1.5-flash"),
+    show_tool_calls=True,
+    markdown=True,
+)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
+
+</CodeGroup>
+
+## Usage
+
+Get your key [from Google here](https://ai.google.dev/aistudio).
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+
+    ```bash
+    pip install -U google-generativeai agno
+    ```
+
+  </Step>
+
+  <Step title="Export `GOOGLE_API_KEY`">
+
+    ```bash
+    export GOOGLE_API_KEY=***
+    ```
+
+  </Step>
+
+  <Step title="Run Gemini Agent">
+
+    ```bash
+    python cookbook/providers/google/basic.py
+    ```
+
+  </Step>
+
+  </Steps>
+
+## Information
+
+- View on [Github](https://github.com/phidatahq/agno/tree/main/cookbook/providers/google/basic.py)

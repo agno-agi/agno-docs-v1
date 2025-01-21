@@ -36,7 +36,7 @@ Every Agent comes with built-in memory that can be used to access the historical
 
 ```python agent_memory.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from rich.pretty import pprint
 
 
@@ -76,7 +76,7 @@ from rich.panel import Panel
 from rich.json import JSON
 
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from agno.storage.agent.sqlite import SqlAgentStorage
 
 
@@ -154,7 +154,7 @@ User memories are stored in the `AgentMemory` whereas session summaries are stor
 from rich.pretty import pprint
 
 from agno.agent import Agent, AgentMemory
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from agno.memory.db.postgres import PgMemoryDb
 from agno.storage.agent.postgres import PgAgentStorage
 

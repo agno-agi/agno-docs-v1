@@ -73,7 +73,7 @@ Let's build a simple agent that can search the web, create a file `web_search.py
 
     ```python web_search.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.tools.duckduckgo import DuckDuckGo
 
     web_agent = Agent(
@@ -114,7 +114,7 @@ Lets create another agent that can query financial data, create a file `finance_
 
     ```python finance_agent.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.tools.yfinance import YFinanceTools
 
     finance_agent = Agent(
@@ -155,7 +155,7 @@ A team of agents can work together to solve complex problems, create a file `age
 
     ```python agent_team.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.tools.duckduckgo import DuckDuckGo
     from agno.tools.yfinance import YFinanceTools
 
@@ -215,7 +215,7 @@ Reasoning is an experimental feature that helps agents work through a problem st
 
     ```python reasoning_agent.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
 
     task = (
         "Three missionaries and three cannibals need to cross a river. "
@@ -253,7 +253,7 @@ This saves tokens and improves response quality. Create a file `rag_agent.py`
 
     ```python rag_agent.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.embedder.openai import OpenAIEmbedder
     from agno.knowledge.pdf import PDFUrlKnowledgeBase
     from agno.vectordb.lancedb import LanceDb, SearchType
@@ -311,7 +311,7 @@ Use structured outputs to enforce the structure of the output from an agent and 
     from typing import List
     from pydantic import BaseModel, Field
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
 
     # Define a Pydantic model to enforce the structure of the output
     class MovieScript(BaseModel):

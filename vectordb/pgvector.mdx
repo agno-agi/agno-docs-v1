@@ -21,7 +21,7 @@ docker run -d \
 
 ```python agent_with_knowledge.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from agno.knowledge.pdf import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector, SearchType
 

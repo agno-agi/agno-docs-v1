@@ -1,18 +1,124 @@
 ---
 title: Introduction
-description: "**Build agents and workflows to automate intelligent work.**"
 ---
 
 ## What is Agno?
 
-**Agno is a framework for building multi-modal agents and workflows.**
+**Agno is a lightning-fast, model-agnostic framework for building Agents.**
 
-- **Build agents with memory, knowledge, tools and reasoning.**
-- **Build teams of agents that can work together to solve problems.**
-- **Interact with your agents and workflows using a beautiful Agent Playground.**
+## Design principles
+
+- **✨ Simplicity**: No graphs, chains, or convoluted patterns — just pure python.
+- **⚡️ Uncompromising Performance**: Blazing fast agents with a minimal memory footprint.
+- **🔥 Truly Agnostic**: Any model, any provider, any modality. Future-proof agents.
+
+## Key features
+
+- **🚀 Lightning Fast**: Agent creation is 6000x faster than LangGraph ([performance](#performance)).
+- **⚙️ Model Agnostic**: Use any provider, any model-no lock-in.
+- **📷 Multi-Modal**: Native support for text, image, audio, and video.
+- **🤝 Multi-Agent**: Delegate tasks across a team of specialized agents.
+- **🧠 Memory Management**: Store user sessions and context in a database.
+- **📚 Knowledge Stores**: Use vector databases for Agentic RAG or dynamic few-shot.
+- **🧩 Structured Outputs**: Respond with structured data.
+- **📈 Monitoring**: Track agent sessions and performance in real-time on [agno.com](https://app.agno.com).
+
+## Installation
+
+```shell
+pip install -U agno
+```
+
+## Create your first agent
+
+Agno Agents are simple and elegant, resulting in minimal, beautiful code.
+
+Let's create an agent that can search the web.
+
+```python web_search_agent.py
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    description="You are an enthusiastic reporter with a flair for storytelling!",
+    tools=[DuckDuckGoTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Summarize news from New York.", stream=True)
+```
+
+### Run it locally
+
+<Steps>
+  <Step title="Setup your virtual environment">
+
+    <CodeGroup>
+    ```bash Mac
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+
+    ```bash Windows
+    python3 -m venv aienv
+    aienv/scripts/activate
+    ```
+    </CodeGroup>
+
+  </Step>
+  <Step title="Install libraries">
+
+    <CodeGroup>
+    ```bash Mac
+    pip install -U openai duckduckgo-search agno
+    ```
+
+    ```bash Windows
+    pip install -U openai duckduckgo-search agno
+    ```
+    </CodeGroup>
+
+  </Step>
+  <Step title="Export your model keys">
+
+    Agno works with most model providers but for this example let's use OpenAI.
+
+    <CodeGroup>
+    ```bash Mac
+    export OPENAI_API_KEY=sk-***
+    ```
+
+    ```bash Windows
+    setx OPENAI_API_KEY sk-***
+    ```
+    </CodeGroup>
+
+    <Tip>
+    You can get an API key from [here](https://platform.openai.com/account/api-keys).
+    </Tip>
+
+  </Step>
+  <Step title="Run the agent">
+
+    ```shell
+    python web_search_agent.py
+    ```
+
+  </Step>
+</Steps>
+
+<video
+  autoPlay
+  muted
+  controls
+  className="w-full aspect-video"
+  src="/videos/web_search_agent.mp4"
+></video>
 
 ## Continue reading
 
-- [Get your first agent up and running](/first-agent).
+- Read more about [Agents](/agents).
 - Chat with your Agents using a beautiful [Agent Playground](/playground).
-- [Debugging](/debugging)
+- Monitor your Agents on [agno.com](/monitoring)

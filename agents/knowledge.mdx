@@ -92,7 +92,7 @@ Let's build a **traditional RAG** Agent that answers questions from a PDF of rec
 
     ```python traditional_rag.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.knowledge.pdf import PDFUrlKnowledgeBase
     from agno.vectordb.pgvector import PgVector, SearchType
 
@@ -173,7 +173,7 @@ Set `search_knowledge=True` and `read_chat_history=True`, giving the Agent tools
 
     ```python agentic_rag.py
     from agno.agent import Agent
-    from agno.model.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.knowledge.pdf import PDFUrlKnowledgeBase
     from agno.vectordb.pgvector import PgVector, SearchType
 

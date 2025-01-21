@@ -6,7 +6,7 @@ Reasoning is an **experimental feature** that enables an `Agent` to think throug
 
 ```python reasoning_agent.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 task = (
     "Three missionaries and three cannibals need to cross a river. "
@@ -62,7 +62,7 @@ Reasoning with tools is currently limited to OpenAI models and will break about 
 
 ```python finance_reasoning.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from agno.tools.yfinance import YFinanceTools
 
 reasoning_agent = Agent(
@@ -92,7 +92,7 @@ python finance_reasoning.py
 
 ```python logical_puzzle.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 task = (
     "Three missionaries and three cannibals need to cross a river. "
@@ -120,7 +120,7 @@ python logical_puzzle.py
 
 ```python mathematical_proof.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 task = "Prove that for any positive integer n, the sum of the first n odd numbers is equal to n squared. Provide a detailed proof."
 reasoning_agent = Agent(
@@ -143,7 +143,7 @@ python mathematical_proof.py
 
 ```python scientific_research.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 task = (
     "Read the following abstract of a scientific paper and provide a critical evaluation of its methodology,"
@@ -173,7 +173,7 @@ python scientific_research.py
 
 ```python ethical_dilemma.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 task = (
     "You are a train conductor faced with an emergency: the brakes have failed, and the train is heading towards "
@@ -203,7 +203,7 @@ python ethical_dilemma.py
 
 ```python planning_itinerary.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 task = "Plan an itinerary from Los Angeles to Las Vegas"
 reasoning_agent = Agent(
@@ -226,7 +226,7 @@ python planning_itinerary.py
 
 ```python creative_writing.py
 from agno.agent import Agent
-from agno.model.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 
 task = "Write a short story about life in 5000000 years"
 reasoning_agent = Agent(
