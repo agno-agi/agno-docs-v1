@@ -274,10 +274,10 @@
           "group": "Workflows",
           "pages": [
             "workflows/introduction",
+            "workflows/session_state",
             {
               "group": "Storage",
               "pages": [
-                "workflows/storage/session_state",
                 "workflows/storage/postgres",
                 "workflows/storage/sqlite",
                 "workflows/storage/mongodb"
