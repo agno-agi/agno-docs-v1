@@ -275,12 +275,13 @@
           "group": "Workflows",
           "pages": [
             "workflows/introduction",
+            "workflows/session_state",
             {
               "group": "Storage",
               "pages": [
-                "workflows/storage/session_state",
                 "workflows/storage/postgres",
-                "workflows/storage/sqlite"
+                "workflows/storage/sqlite",
+                "workflows/storage/mongodb"
               ]
             },
             "workflows/advanced"
@@ -329,12 +330,8 @@
                 "examples/use-cases/advanced/news-report-generator",
                 "examples/use-cases/advanced/personalized-outreach-email-generator",
                 "examples/use-cases/advanced/self-evaluation-workflow",
-                "examples/use-cases/advanced/startup-idea-validator",
                 "examples/use-cases/advanced/product-manager",
                 "examples/use-cases/advanced/content-creator"
-
-
-
               ]
             }
           ]
