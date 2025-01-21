@@ -325,7 +325,14 @@
                 "examples/use-cases/advanced/reddit-post-generator",
                 "examples/use-cases/advanced/employee-recruiter",
                 "examples/use-cases/advanced/game-generator",
-                "examples/use-cases/advanced/investment-report-generator"
+                "examples/use-cases/advanced/investment-report-generator",
+                "examples/use-cases/advanced/news-report-generator",
+                "examples/use-cases/advanced/personalized-outreach-email-generator",
+                "examples/use-cases/advanced/self-evaluation-workflow",
+                "examples/use-cases/advanced/startup-idea-validator"
+
+
+
               ]
             }
           ]
