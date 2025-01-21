@@ -90,6 +90,8 @@ Similar to providing multimodal inputs, you can also get multimodal outputs from
 
 ### Image
 
+The following example demonstrates how to generate an image using DALL-E with an agent.
+
 ```python image_agent.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
@@ -115,6 +117,8 @@ if images and isinstance(images, list):
 
 ### Audio
 
+The following example demonstrates how to obtain both text and audio responses from an agent. The agent will respond with text and audio bytes that can be saved to a file.
+
 ```python audio_agent.py
 from agno.agent import Agent, RunResponse
 from agno.models.openai import OpenAIChat
@@ -139,7 +143,7 @@ if response.response_audio is not None:
 
 ## Multimodal inputs and outputs together
 
-You can create Agents that can take multimodal inputs and return multimodal outputs.
+You can create Agents that can take multimodal inputs and return multimodal outputs. The following example demonstrates how to provide a combination of audio and text inputs to an agent and obtain both text and audio outputs.
 
 ### Audio input and Audio output
 
