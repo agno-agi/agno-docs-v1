@@ -25,7 +25,7 @@
       "weight": 400
     }
   },
-  "layout": "sidenav",
+  "layout": "topnav",
   "sidebar": {
     "items": "undecorated"
   },
@@ -99,6 +99,7 @@
           "group": "Models",
           "pages": [
             "models/introduction",
+            "models/compatibility",
             "models/openai",
             "models/openai-like",
             "models/anthropic",
@@ -261,7 +262,6 @@
             "embedder/ollama",
             "embedder/azure_openai",
             "embedder/cohere",
-            "embedder/fastembed",
             "embedder/fireworks",
             "embedder/huggingface",
             "embedder/mistral",
@@ -275,12 +275,13 @@
           "group": "Workflows",
           "pages": [
             "workflows/introduction",
+            "workflows/session_state",
             {
               "group": "Storage",
               "pages": [
-                "workflows/storage/session_state",
                 "workflows/storage/postgres",
-                "workflows/storage/sqlite"
+                "workflows/storage/sqlite",
+                "workflows/storage/mongodb"
               ]
             },
             "workflows/advanced"
@@ -293,58 +294,56 @@
       "pages": [
         "examples/introduction",
         {
-          "group": "Agents",
+          "group": "Use-Cases",
           "pages": [
-            "examples/agents/web-search",
-            "examples/agents/recipe-creator-agent",
-            "examples/agents/finance-agent",
-            "examples/agents/books-recommendation-agent",
-            "examples/agents/shopping-partner-agent",
-            "examples/agents/timeout-agent",
-            "examples/agents/agent-team",
-            "examples/agents/reasoning-agent",
-            "examples/agents/python-agent",
-            "examples/agents/data-analyst",
-            "examples/agents/structured-output",
-            "examples/agents/python-function-agent",
-            "examples/agents/image-agent",
-            "examples/agents/generate-image-agent",
-            "examples/agents/calcom-agent",
-            "examples/agents/image-to-text",
-            "examples/agents/research-agent",
-            "examples/agents/models-labs-agent",
-            "examples/agents/slack-agent",
-            "examples/agents/discord-agent",
-            "examples/agents/firecrawl-agent",
-            "examples/agents/github-agent",
-            "examples/agents/rag-agent",
-            "examples/agents/movie-recommendation-agent",
-            "examples/agents/travel-agent",
-            "examples/agents/baidu-search-agent",
-            "examples/agents/youtube-timestamp-agent",
-            "examples/agents/study-scout-agent"
+            {
+              "group": "Simple",
+              "pages": [
+                "examples/use-cases/simple/books-recommendation-agent",
+                "examples/use-cases/simple/movie-recommendation-agent",
+                "examples/use-cases/simple/youtube-timestamp-agent",
+                "examples/use-cases/simple/travel-agent",
+                "examples/use-cases/simple/legal-advisor",
+                "examples/use-cases/simple/recipe-creator-agent",
+                "examples/use-cases/simple/shopping-partner-agent",
+                "examples/use-cases/simple/study-scout-agent",
+                "examples/use-cases/simple/timeout-agent",
+                "examples/use-cases/simple/calcom-agent",
+                "examples/use-cases/simple/slack-agent",
+                "examples/use-cases/simple/discord-agent",
+                "examples/use-cases/simple/data-analyst",
+                "examples/use-cases/simple/finance-agent",
+                "examples/use-cases/simple/research-agent",
+                "examples/use-cases/simple/github-agent",
+                "examples/use-cases/simple/baidu-search-agent"
+              ]
+            },
+            {
+              "group": "Advanced",
+              "pages": [
+                "examples/use-cases/advanced/reddit-post-generator"
+              ]
+            }
           ]
         },
+
         {
-          "group": "Models",
+          "group": "Agent Concepts",
           "pages": [
-            "examples/models/openai",
-            "examples/models/azure",
-            "examples/models/claude",
-            "examples/models/cohere",
-            "examples/models/fireworks",
-            "examples/models/gemini",
-            "examples/models/groq",
-            "examples/models/mistral",
-            "examples/models/ollama",
-            "examples/models/together",
-            "examples/models/aws_bedrock",
-            "examples/models/deepseek",
-            "examples/models/huggingface",
-            "examples/models/nvidia",
-            "examples/models/openrouter",
-            "examples/models/sambanova",
-            "examples/models/xai"
+            {
+              "group": "Multimodal Examples",
+              "pages": [
+                "examples/agent-concepts/generate-image-agent",
+                "examples/agent-concepts/image-agent",
+                "examples/agent-concepts/video-generation-agent"
+              ]
+            },
+            "examples/agent-concepts/rag-agent",
+            "examples/agent-concepts/structured-output",
+            "examples/agent-concepts/python-function-agent",
+            "examples/agent-concepts/agent-with-knowledge-and-cli",
+            "examples/agent-concepts/agent-team",
+            "examples/agent-concepts/reasoning-agent"
           ]
         },
         {
@@ -358,23 +357,6 @@
             "examples/integrations/qdrant",
             "examples/integrations/chroma",
             "examples/integrations/portkey"
-          ]
-        },
-        {
-          "group": "Agent Teams",
-          "pages": [
-            "examples/teams/research",
-            "examples/teams/journalist",
-            "examples/teams/investment",
-            "examples/teams/hackernews"
-          ]
-        },
-        {
-          "group": "Use Cases",
-          "pages": [
-            "examples/use-case/sql",
-            "examples/use-case/worldbuilding",
-            "examples/use-case/arxiv-research"
           ]
         }
       ]
