@@ -320,7 +320,8 @@
               "group": "Advanced",
               "pages": [
                 "examples/use-cases/reddit-post-generator",
-                "examples/use-cases/blog-post-generator"
+                "examples/use-cases/blog-post-generator",
+                "examples/use-cases/coding-agent"
               ]
             }
           ]
