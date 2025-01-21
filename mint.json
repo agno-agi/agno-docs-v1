@@ -25,7 +25,7 @@
       "weight": 400
     }
   },
-  "layout": "sidenav",
+  "layout": "topnav",
   "sidebar": {
     "items": "undecorated"
   },
@@ -99,6 +99,7 @@
           "group": "Models",
           "pages": [
             "models/introduction",
+            "models/compatibility",
             "models/openai",
             "models/openai-like",
             "models/anthropic",
@@ -297,31 +298,31 @@
             {
               "group": "Simple",
               "pages": [
-                "examples/use-cases/books-recommendation-agent",
-                "examples/use-cases/movie-recommendation-agent",
-                "examples/use-cases/youtube-timestamp-agent",
-                "examples/use-cases/travel-agent",
-                "examples/use-cases/legal-advisor",
-                "examples/use-cases/recipe-creator-agent",
-                "examples/use-cases/shopping-partner-agent",
-                "examples/use-cases/study-scout-agent",
-                "examples/use-cases/timeout-agent",
-                "examples/use-cases/calcom-agent",
-                "examples/use-cases/slack-agent",
-                "examples/use-cases/discord-agent",
-                "examples/use-cases/data-analyst",
-                "examples/use-cases/finance-agent",
-                "examples/use-cases/research-agent",
-                "examples/use-cases/github-agent",
-                "examples/use-cases/baidu-search-agent"
+                "examples/use-cases/simple/books-recommendation-agent",
+                "examples/use-cases/simple/movie-recommendation-agent",
+                "examples/use-cases/simple/youtube-timestamp-agent",
+                "examples/use-cases/simple/travel-agent",
+                "examples/use-cases/simple/legal-advisor",
+                "examples/use-cases/simple/recipe-creator-agent",
+                "examples/use-cases/simple/shopping-partner-agent",
+                "examples/use-cases/simple/study-scout-agent",
+                "examples/use-cases/simple/timeout-agent",
+                "examples/use-cases/simple/calcom-agent",
+                "examples/use-cases/simple/slack-agent",
+                "examples/use-cases/simple/discord-agent",
+                "examples/use-cases/simple/data-analyst",
+                "examples/use-cases/simple/finance-agent",
+                "examples/use-cases/simple/research-agent",
+                "examples/use-cases/simple/github-agent",
+                "examples/use-cases/simple/baidu-search-agent"
               ]
             },
             {
               "group": "Advanced",
               "pages": [
-                "examples/use-cases/reddit-post-generator",
-                "examples/use-cases/blog-post-generator",
-                "examples/use-cases/coding-agent"
+                "examples/use-cases/advanced/blog-post-generator",
+                "examples/use-cases/advanced/coding-agent"
+                "examples/use-cases/advanced/reddit-post-generator"
               ]
             }
           ]
@@ -341,6 +342,7 @@
             "examples/agent-concepts/rag-agent",
             "examples/agent-concepts/structured-output",
             "examples/agent-concepts/python-function-agent",
+            "examples/agent-concepts/agent-with-knowledge-and-cli",
             "examples/agent-concepts/agent-team",
             "examples/agent-concepts/reasoning-agent"
           ]
