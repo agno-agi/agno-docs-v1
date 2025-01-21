@@ -119,7 +119,7 @@ class BlogPostGenerator(Workflow):
         logger.info(f"Generating a blog post on: {topic}")
 
         # Step 1: Search the web for articles on the topic
-        search_results: Optional[SearchResults] = self.get_search_results(topic)
+        search_results: Optional[SearchResults] = self._get_search_results(topic)
         # If no search_results are found for the topic, end the workflow
         if search_results is None or len(search_results.articles) == 0:
             yield RunResponse(
@@ -129,9 +129,9 @@ class BlogPostGenerator(Workflow):
             return
 
         # Step 2: Write a blog post
-        yield from self.write_blog_post(topic, search_results)
+        yield from self._write_blog_post(topic, search_results)
 
-    def get_search_results(self, topic: str) -> Optional[SearchResults]:
+    def _get_search_results(self, topic: str) -> Optional[SearchResults]:
         """Get the search results for a topic."""
 
         MAX_ATTEMPTS = 3
@@ -159,7 +159,7 @@ class BlogPostGenerator(Workflow):
         logger.error(f"Failed to get search results after {MAX_ATTEMPTS} attempts")
         return None
 
-    def write_blog_post(self, topic: str, search_results: SearchResults) -> Iterator[RunResponse]:
+    def _write_blog_post(self, topic: str, search_results: SearchResults) -> Iterator[RunResponse]:
         """Write a blog post on a topic."""
 
         logger.info("Writing blog post")
@@ -170,7 +170,7 @@ class BlogPostGenerator(Workflow):
 
 ```
 
-4. Add caching to the workflow where needed.
+4. Add [caching](/workflows/session_state) to the workflow where needed.
 
 ```python blog_post_generator.py
 import json
@@ -225,13 +225,13 @@ class BlogPostGenerator(Workflow):
 
         # Step 1: Use the cached blog post if use_cache is True
         if use_cache:
-            cached_blog_post = self.get_cached_blog_post(topic)
+            cached_blog_post = self._get_cached_blog_post(topic)
             if cached_blog_post:
                 yield RunResponse(content=cached_blog_post, event=RunEvent.workflow_completed)
                 return
 
         # Step 2: Search the web for articles on the topic
-        search_results: Optional[SearchResults] = self.get_search_results(topic)
+        search_results: Optional[SearchResults] = self._get_search_results(topic)
         # If no search_results are found for the topic, end the workflow
         if search_results is None or len(search_results.articles) == 0:
             yield RunResponse(
@@ -241,22 +241,22 @@ class BlogPostGenerator(Workflow):
             return
 
         # Step 3: Write a blog post
-        yield from self.write_blog_post(topic, search_results)
+        yield from self._write_blog_post(topic, search_results)
 
-    def get_cached_blog_post(self, topic: str) -> Optional[str]:
+    def _get_cached_blog_post(self, topic: str) -> Optional[str]:
         """Get the cached blog post for a topic."""
 
         logger.info("Checking if cached blog post exists")
         return self.session_state.get("blog_posts", {}).get(topic)
 
-    def add_blog_post_to_cache(self, topic: str, blog_post: Optional[str]):
+    def _add_blog_post_to_cache(self, topic: str, blog_post: Optional[str]):
         """Add a blog post to the cache."""
 
         logger.info(f"Saving blog post for topic: {topic}")
         self.session_state.setdefault("blog_posts", {})
         self.session_state["blog_posts"][topic] = blog_post
 
-    def get_search_results(self, topic: str) -> Optional[SearchResults]:
+    def _get_search_results(self, topic: str) -> Optional[SearchResults]:
         """Get the search results for a topic."""
 
         MAX_ATTEMPTS = 3
@@ -284,7 +284,7 @@ class BlogPostGenerator(Workflow):
         logger.error(f"Failed to get search results after {MAX_ATTEMPTS} attempts")
         return None
 
-    def write_blog_post(self, topic: str, search_results: SearchResults) -> Iterator[RunResponse]:
+    def _write_blog_post(self, topic: str, search_results: SearchResults) -> Iterator[RunResponse]:
         """Write a blog post on a topic."""
 
         logger.info("Writing blog post")
@@ -293,7 +293,7 @@ class BlogPostGenerator(Workflow):
         # Run the writer and yield the response
         yield from self.writer.run(json.dumps(writer_input, indent=4), stream=True)
         # Save the blog post in the cache
-        self.add_blog_post_to_cache(topic, self.writer.run_response.content)
+        self._add_blog_post_to_cache(topic, self.writer.run_response.content)
 ```
 
 5. Run the workflow
@@ -353,13 +353,13 @@ class BlogPostGenerator(Workflow):
 
         # Step 1: Use the cached blog post if use_cache is True
         if use_cache:
-            cached_blog_post = self.get_cached_blog_post(topic)
+            cached_blog_post = self._get_cached_blog_post(topic)
             if cached_blog_post:
                 yield RunResponse(content=cached_blog_post, event=RunEvent.workflow_completed)
                 return
 
         # Step 2: Search the web for articles on the topic
-        search_results: Optional[SearchResults] = self.get_search_results(topic)
+        search_results: Optional[SearchResults] = self._get_search_results(topic)
         # If no search_results are found for the topic, end the workflow
         if search_results is None or len(search_results.articles) == 0:
             yield RunResponse(
@@ -369,22 +369,22 @@ class BlogPostGenerator(Workflow):
             return
 
         # Step 3: Write a blog post
-        yield from self.write_blog_post(topic, search_results)
+        yield from self._write_blog_post(topic, search_results)
 
-    def get_cached_blog_post(self, topic: str) -> Optional[str]:
+    def _get_cached_blog_post(self, topic: str) -> Optional[str]:
         """Get the cached blog post for a topic."""
 
         logger.info("Checking if cached blog post exists")
         return self.session_state.get("blog_posts", {}).get(topic)
 
-    def add_blog_post_to_cache(self, topic: str, blog_post: Optional[str]):
+    def _add_blog_post_to_cache(self, topic: str, blog_post: Optional[str]):
         """Add a blog post to the cache."""
 
         logger.info(f"Saving blog post for topic: {topic}")
         self.session_state.setdefault("blog_posts", {})
         self.session_state["blog_posts"][topic] = blog_post
 
-    def get_search_results(self, topic: str) -> Optional[SearchResults]:
+    def _get_search_results(self, topic: str) -> Optional[SearchResults]:
         """Get the search results for a topic."""
 
         MAX_ATTEMPTS = 3
@@ -412,7 +412,7 @@ class BlogPostGenerator(Workflow):
         logger.error(f"Failed to get search results after {MAX_ATTEMPTS} attempts")
         return None
 
-    def write_blog_post(self, topic: str, search_results: SearchResults) -> Iterator[RunResponse]:
+    def _write_blog_post(self, topic: str, search_results: SearchResults) -> Iterator[RunResponse]:
         """Write a blog post on a topic."""
 
         logger.info("Writing blog post")
@@ -421,7 +421,7 @@ class BlogPostGenerator(Workflow):
         # Run the writer and yield the response
         yield from self.writer.run(json.dumps(writer_input, indent=4), stream=True)
         # Save the blog post in the cache
-        self.add_blog_post_to_cache(topic, self.writer.run_response.content)
+        self._add_blog_post_to_cache(topic, self.writer.run_response.content)
 
 
 # Run the workflow if the script is executed directly
@@ -481,3 +481,6 @@ python blog_post_generator.py
   src="/images/BlogPostGenerator.gif"
   style={{ borderRadius: '8px' }}
 />
+
+
+Checkout more examples in the [examples](/examples/use-cases) section.
