@@ -8,22 +8,27 @@ Agno agents support text, images, audio and video for agent inputs and responses
 
 For example, you can create an image agent that can understand images and make tool calls as needed
 
-### Images
+### Image
 
 ```python image_agent.py
 from agno.agent import Agent
+from agno.media import Image
 from agno.models.openai import OpenAIChat
-from agno.tools.duckduckgo import DuckDuckGo
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[DuckDuckGo()],
+    tools=[DuckDuckGoTools()],
     markdown=True,
 )
 
 agent.print_response(
     "Tell me about this image and give me the latest news about it.",
-    images=["https://upload.wikimedia.org/wikipedia/commons/b/bf/Krakow_-_Kosciol_Mariacki.jpg"],
+    images=[
+        Image(
+            url="https://upload.wikimedia.org/wikipedia/commons/b/bf/Krakow_-_Kosciol_Mariacki.jpg"
+        )
+    ],
     stream=True,
 )
 ```
@@ -61,7 +66,7 @@ agent.print_response(
 )
 ```
 
-### Videos
+### Video
 
 <Note>Currently Agno only supports video as an input for Gemini models.</Note>
 
@@ -115,7 +120,7 @@ if images and isinstance(images, list):
         print(image_url)
 ```
 
-### Audio Responses
+### Audio Response
 
 The following example demonstrates how to obtain both text and audio responses from an agent. The agent will respond with text and audio bytes that can be saved to a file.
 
