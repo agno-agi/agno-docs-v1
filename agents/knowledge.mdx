@@ -93,13 +93,13 @@ Let's build a **traditional RAG** Agent that answers questions from a PDF of rec
     ```python traditional_rag.py
     from agno.agent import Agent
     from agno.models.openai import OpenAIChat
-    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
     from agno.vectordb.pgvector import PgVector, SearchType
 
     db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
     knowledge_base = PDFUrlKnowledgeBase(
         # Read PDF from this URL
-        urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+        urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
         # Store embeddings in the `ai.recipes` table
         vector_db=PgVector(table_name="recipes", db_url=db_url, search_type=SearchType.hybrid),
     )
@@ -110,7 +110,7 @@ Let's build a **traditional RAG** Agent that answers questions from a PDF of rec
         model=OpenAIChat(id="gpt-4o"),
         knowledge=knowledge_base,
         # Enable RAG by adding references from AgentKnowledge to the user prompt.
-        add_context=True,
+        add_references=True,
         # Set as False because Agents default to `search_knowledge=True`
         search_knowledge=False,
         markdown=True,
@@ -161,7 +161,7 @@ knowledge_base = PDFKnowledgeBase(
 
 ### Step 3: Agentic RAG
 
-With traditional RAG above, `add_context=True` always adds information from the knowledge base to the prompt, regardless of whether it is relevant to the question or helpful.
+With traditional RAG above, `add_references=True` always adds information from the knowledge base to the prompt, regardless of whether it is relevant to the question or helpful.
 
 With Agentic RAG, we let the Agent decide **if** it needs to access the knowledge base and what search parameters it needs to query the knowledge base.
 
@@ -229,7 +229,6 @@ Set `search_knowledge=True` and `read_chat_history=True`, giving the Agent tools
 |-----------|------|---------|-------------|
 | `knowledge` | `AgentKnowledge` | `None` | Provides the knowledge base used by the agent. |
 | `search_knowledge` | `bool` | `True` | Adds a tool that allows the Model to search the knowledge base (aka Agentic RAG). Enabled by default when `knowledge` is provided. |
-| `add_context` | `bool` | `False` | Enable RAG by adding references from AgentKnowledge to the user prompt. |
-| `retriever` | `Callable[..., Optional[list[dict]]]` | `None` | Function to get context to add to the user message. This function is called when add_context is True. |
+| `add_references` | `bool` | `False` | Enable RAG by adding references from AgentKnowledge to the user prompt. |
+| `retriever` | `Callable[..., Optional[list[dict]]]` | `None` | Function to get context to add to the user message. This function is called when add_references is True. |
 | `context_format` | `Literal['json', 'yaml']` | `json` | Specifies the format for RAG, either "json" or "yaml". |
-| `add_context_instructions` | `bool` | `False` | If True, add instructions for using the context to the system prompt (if knowledge is also provided). For example: add an instruction to prefer information from the knowledge base over its training data. |

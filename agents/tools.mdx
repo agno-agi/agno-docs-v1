@@ -29,9 +29,9 @@ Agno provides many pre-built **toolkits** that you can add to your Agents. For e
 
     ```python web_search.py
     from agno.agent import Agent
-    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.duckduckgo import DuckDuckGoTools
 
-    agent = Agent(tools=[DuckDuckGo()], show_tool_calls=True, markdown=True)
+    agent = Agent(tools=[DuckDuckGoTools()], show_tool_calls=True, markdown=True)
     agent.print_response("Whats happening in France?", stream=True)
     ```
 

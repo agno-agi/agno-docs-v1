@@ -23,7 +23,11 @@ If you haven't built your first agent yet, [follow this guide](/agents) and then
 
 ## Example: Research Agent
 
-Let's create a research agent that can search the web using DuckDuckGo, scrape the top links using Newspaper4k and write a research report for us. Ideally we'll use specialized tools (like Exa) for this but let's start with the free tools first.
+Let's create a research agent that can search the web using DuckDuckGo, scrape the top links using Newspaper4k and write a research report for us. Ideally we'll use specialized tools (like Exa) but let's start with the free tools first.
+
+<Note>
+The description and instructions are converted to the system message and the input is passed as the user message. Set `debug_mode=True` to view logs behind the scenes.
+</Note>
 
 <Steps>
   <Step title="Create Research Agent">
@@ -128,9 +132,3 @@ Let's create a research agent that can search the web using DuckDuckGo, scrape t
 
   </Step>
 </Steps>
-
-<Note>
-The description and instructions are converted to the system prompt and the input (e.g. `"The current state of artificial intelligence regulation"`) is passed as the user prompt.
-
-Set `debug_mode=True` to view logs behind the scenes.
-</Note>

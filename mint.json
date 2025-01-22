@@ -86,9 +86,9 @@
           "group": "Agents",
           "pages": [
             "agents/introduction",
-            "agents/responses",
+            "agents/run",
             "agents/structured-output",
-            "agents/multimodal-inputs",
+            "agents/multimodal",
             "agents/prompts",
             "agents/tools",
             "agents/knowledge",
@@ -492,18 +492,18 @@
       ]
     },
     {
+      "group": "How to",
+      "pages": [
+        "how-to/install",
+        "how-to/phidata-to-agno"
+      ]
+    },
+    {
       "group": "Reference",
       "pages": [
         "reference/agent",
         "reference/model",
         "reference/knowledge_base"
-      ]
-    },
-    {
-      "group": "Migration Guides",
-      "pages": [
-        "migration/2-5-0",
-        "migration/phidata-to-agno"
       ]
     },
     {
