@@ -99,7 +99,7 @@ Let's build a **traditional RAG** Agent that answers questions from a PDF of rec
     db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
     knowledge_base = PDFUrlKnowledgeBase(
         # Read PDF from this URL
-        urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+        urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
         # Store embeddings in the `ai.recipes` table
         vector_db=PgVector(table_name="recipes", db_url=db_url, search_type=SearchType.hybrid),
     )
@@ -179,7 +179,7 @@ Set `search_knowledge=True` and `read_chat_history=True`, giving the Agent tools
 
     db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
     knowledge_base = PDFUrlKnowledgeBase(
-        urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+        urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
         vector_db=PgVector(table_name="recipes", db_url=db_url, search_type=SearchType.hybrid),
     )
     # Load the knowledge base: Comment out after first run

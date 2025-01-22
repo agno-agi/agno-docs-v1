@@ -66,7 +66,7 @@ from agno.docker.resource.image import DockerImage
 
 python_image = DockerImage(
     name="my/python",
-    tag="3.11",
+    tag="3.12",
     path=".",
     # push_image=True,
 )
@@ -78,7 +78,7 @@ python_container = DockerContainer(
 ```
 
 ```docker Dockerfile
-FROM phidata/python:3.11.5
+FROM agnohq/python:3.12
 
 CMD ["chill"]
 ```

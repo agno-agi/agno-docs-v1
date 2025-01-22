@@ -103,7 +103,7 @@ This saves tokens and improves response quality.
 
     # Create a knowledge base from a PDF
     knowledge_base = PDFUrlKnowledgeBase(
-        urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+        urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
         # Use LanceDB as the vector database
         vector_db=LanceDb(
             table_name="recipes",
