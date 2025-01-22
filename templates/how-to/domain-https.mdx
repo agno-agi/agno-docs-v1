@@ -18,9 +18,9 @@ You can visit the app at [http://app.aidev.run](http://app.aidev.run)
 
 <Note>Note the `http` in the domain name.</Note>
 
-### Custom domain for your FastApi App
+### Custom domain for your FastAPI App
 
-Create a record in the Route53 console to point `api.[YOUR_DOMAIN]` to the FastApi App.
+Create a record in the Route53 console to point `api.[YOUR_DOMAIN]` to the FastAPI App.
 
 <img src="/images/llm-api-aidev-run.png" alt="llm-api-aidev-run" />
 
@@ -44,7 +44,7 @@ To add HTTPS:
 
 <Note>Make sure the certificate is `Issued` before adding it to your Apps</Note>
 
-Update the `llm-app/workspace/prd_resources.py` file and add the `load_balancer_certificate_arn` to the `FastApi` and `Streamlit` Apps.
+Update the `llm-app/workspace/prd_resources.py` file and add the `load_balancer_certificate_arn` to the `FastAPI` and `Streamlit` Apps.
 
 ```python workspace/prd_resources.py
 
@@ -57,7 +57,7 @@ prd_streamlit = Streamlit(
     ...
 )
 
-# -*- FastApi running on ECS
+# -*- FastAPI running on ECS
 prd_fastapi = FastApi(
     ...
     # To enable HTTPS, create an ACM certificate and add the ARN below:
