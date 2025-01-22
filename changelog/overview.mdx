@@ -7,7 +7,7 @@ mode: "wide"
 This update adds new vector database integrations, improvements to DuckDuckGo tool and Gemini model and new cookbooks.
 
 
-### New Features: 
+### New Features:
 - **Cassandra Integration as a Vector Database**: Introduced support for Apache Cassandra as a Vector Database, leveraging CassIO for vector storage and retrieval.
 - **ClickHouse as a Vector Database**: Added support for ClickHouse as a Vector Database.
 
@@ -37,7 +37,7 @@ This update introduces the Confluence tool for collaboration, improves tool comp
 </Update>
 
 <Update label="2024-12-18" description="v2.7.4">
-## Audio Support and Enhancements 
+## Audio Support and Enhancements
 This release enhances multimodal capabilities with audio support, improves session page performance, and fixes various bugs for better stability and usability.
 
 <img height="200" src="/images/changelogs/release-2-7-4.png" />
@@ -62,7 +62,7 @@ This release enhances multimodal capabilities with audio support, improves sessi
 - **Session Page Enhancements**: Fixed the refresh button.
 - **Fix Tool Parsing for Ollama**: Fixed JSON schema tool parsing by transforming `['string', 'null']` parameters to `'string'` for compatibility.
 - **Response Parsing for Gemini Tool**: Improved response parsing to handle unserializable objects in `tool_calls` for Gemini on the playground.
-- **Memory Handling for Google Provider**: Fixed an issue in `monitoring_data` where memory was removed for all providers, causing blank titles on Agno.app; now only modifies memory for Google provider.
+- **Memory Handling for Google Provider**: Fixed an issue in `monitoring_data` where memory was removed for all providers, causing blank titles on app.agno.com; now only modifies memory for Google provider.
 - **RecursiveChunking ID Conflict**: Resolved an issue in RecursiveChunking where processing large files with multiple chunks caused duplicate chunk record IDs, leading to `psycopg.errors.UniqueViolation`.
 
 </Update>

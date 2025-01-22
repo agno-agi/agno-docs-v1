@@ -1,10 +1,10 @@
 ---
-title: Agents
+title: Your first Agent
 ---
 
 ## What are Agents?
 
-Agents are programs that use language models to control the execution flow. They solve problems autonomously by integrating tools, memory, and knowledge.
+Agents are programs that use language models to achieve tasks. They solve problems autonomously by running tools, accessing knowledge and memory to improve responses.
 
 Instead of a rigid binary definition, let's think of Agents in terms of agency and autonomy.
 
@@ -27,7 +27,7 @@ agent = Agent(
 agent.print_response("Tell me about a breaking news story from New York.", stream=True)
 ```
 
-Install dependencies, export your `OPENAI_API_KEY` and run the Agent
+To run the agent, install dependencies and export your `OPENAI_API_KEY`.
 
 <Steps>
   <Step title="Setup your virtual environment">
@@ -80,9 +80,9 @@ Install dependencies, export your `OPENAI_API_KEY` and run the Agent
   </Step>
 </Steps>
 
-This agent will obviously make up a story, lets give it a tool to search the web.
-
 ## Agent with tools
+
+This basic agent will obviously make up a story, lets give it a tool to search the web.
 
 ```python agent_with_tools.py
 from agno.agent import Agent
@@ -128,7 +128,7 @@ Now you should see a much more relevant result.
 
 ## Agent with knowledge
 
-Agents can store knowledge in a vector database which can be used for RAG or dynamic few-shot learning. Eg: If you're building a text-to-sql agent, you can store sample queries in the knowledge base and use them to generate better responses.
+Agents can store knowledge in a vector database which can be used for RAG or dynamic few-shot learning.
 
 **Agno agents use Agentic RAG** by default, which means they will search their knowledge base for the specific information they need to achieve their task.
 
@@ -162,7 +162,7 @@ agent = Agent(
     markdown=True
 )
 
-# Comment out after first run
+# Comment out after the knowledge base is loaded
 if agent.knowledge is not None:
     agent.knowledge.load()
 
@@ -197,7 +197,7 @@ Install dependencies and run the Agent
 
 ## Multi Agent Teams
 
-Agents work best when they have a singular purpose, a narrow scope and a small number of tools. When the number of tools grows beyond what the language model can handle or the tools belong to different categories, use a team of agents to achieve the task.
+Agents work best when they have a singular purpose, a narrow scope and a small number of tools. When the number of tools grows beyond what the language model can handle or the tools belong to different categories, use a team of agents to spread the load.
 
 ```python agent_team.py
 from agno.agent import Agent
@@ -263,7 +263,9 @@ Install dependencies and run the Agent team
 
 ## Debugging
 
-Agno includes a built-in debugger that will show debug logs in the terminal. You can set `debug_mode=True` on any agent or set `AGNO_DEBUG=true` in your environment.
+Want to see the system prompt, user messages and tool calls?
+
+Agno includes a built-in debugger that will print debug logs in the terminal. Set `debug_mode=True` on any agent or set `AGNO_DEBUG=true` in your environment.
 
 ```python debugging.py
 from agno.agent import Agent

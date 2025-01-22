@@ -47,14 +47,17 @@
     "type": "github",
     "url": "https://github.com/phidatahq/phidata"
   },
+  "primaryTab": {
+    "name": "User Guides"
+  },
   "tabs": [
     {
       "name": "Examples",
       "url": "examples"
     },
     {
-      "name": "Templates",
-      "url": "templates"
+      "name": "Workspaces",
+      "url": "workspaces"
     },
     {
       "name": "Changelog",
@@ -67,7 +70,7 @@
   ],
   "navigation": [
     {
-      "group": "Getting Started",
+      "group": "Get Started",
       "pages": [
         "introduction",
         "agents",
@@ -330,10 +333,8 @@
                 "examples/use-cases/advanced/news-report-generator",
                 "examples/use-cases/advanced/personalized-outreach-email-generator",
                 "examples/use-cases/advanced/self-evaluation-workflow",
-                "examples/use-cases/advanced/startup-idea-validator"
-
-
-
+                "examples/use-cases/advanced/product-manager",
+                "examples/use-cases/advanced/content-creator"
               ]
             }
           ]

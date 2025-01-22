@@ -1,6 +1,6 @@
 ---
 title: Agent Playground
-description: Agno provides a beautiful Agent Playground for interacting with your agents.
+description: "**Agno provides a beautiful Agent UI for interacting with your agents.**"
 ---
 
 <Frame caption="Agent Playground">
@@ -12,26 +12,40 @@ description: Agno provides a beautiful Agent Playground for interacting with you
 </Frame>
 
 <Note>
-No data is sent to `agno`, all agent sessions are stored locally in a sqlite database.
+No data is sent to [agno.com](https://app.agno.com), all agent data is stored locally in your sqlite database.
 </Note>
 
-Let's take it for a spin, create a file `playground.py`
+## Running Playground Locally
+
+Let's run the playground application locally so we can chat with our Agents using the Agent UI. Create a file `playground.py`
 
 ```python playground.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.storage.agent.sqlite import SqlAgentStorage
-from agno.tools.duckduckgo import DuckDuckGo
-from agno.tools.yfinance import YFinanceTools
 from agno.playground import Playground, serve_playground_app
+from agno.storage.agent.sqlite import SqliteAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.tools.yfinance import YFinanceTools
+
+agent_storage: str = "tmp/agents.db"
 
 web_agent = Agent(
     name="Web Agent",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[DuckDuckGo()],
-    instructions=["Always include sources"],
-    storage=SqlAgentStorage(table_name="web_agent", db_file="agents.db"),
+    tools=[DuckDuckGoTools()],
+    instructions=[
+        "Break down the users request into 2-3 different searches.",
+        "Always include sources",
+    ],
+    # Store the agent sessions in a sqlite database
+    storage=SqliteAgentStorage(table_name="web_agent", db_file=agent_storage),
+    # Adds the current date and time to the instructions
+    add_datetime_to_instructions=True,
+    # Adds the history of the conversation to the messages
     add_history_to_messages=True,
+    # Number of history responses to add to the messages
+    num_history_responses=5,
+    # Adds markdown formatting to the messages
     markdown=True,
 )
 
@@ -39,13 +53,15 @@ finance_agent = Agent(
     name="Finance Agent",
     model=OpenAIChat(id="gpt-4o"),
     tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
-    instructions=["Use tables to display data"],
-    storage=SqlAgentStorage(table_name="finance_agent", db_file="agents.db"),
+    instructions=["Always use tables to display data"],
+    storage=SqliteAgentStorage(table_name="finance_agent", db_file=agent_storage),
+    add_datetime_to_instructions=True,
     add_history_to_messages=True,
+    num_history_responses=5,
     markdown=True,
 )
 
-app = Playground(agents=[finance_agent, web_agent]).get_app()
+app = Playground(agents=[web_agent, finance_agent]).get_app()
 
 if __name__ == "__main__":
     serve_playground_app("playground:app", reload=True)
@@ -53,21 +69,40 @@ if __name__ == "__main__":
 
 <Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
 
-<Snippet file="authenticate-with-agno.mdx" />
+## Authenticate with agno
 
-### Run the playground
+Authenticate with agno.com so your local application can let agno know that you are running a playground application. Run:
+
+```shell
+ag setup
+```
+
+or export your `AGNO_API_KEY` from [app.agno.com](https://www.app.agno.com)
+
+<CodeGroup>
+```bash Mac
+export AGNO_API_KEY=ag-***
+```
+
+```bash Windows
+setx AGNO_API_KEY ag-***
+```
+</CodeGroup>
+
+
+## Run the playground app
 
 Install dependencies and run your playground application:
 
 ```shell
-pip install 'fastapi[standard]' sqlalchemy
+pip install openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agno
 
 python playground.py
 ```
 
-### View the playground
+## View the playground
 
-- Open the link provided or navigate to `http://agno.app/playground` (login required)
+- Open the link provided or navigate to `http://app.agno.com/playground` (login required)
 - Select the `localhost:7777` endpoint and start chatting with your agents!
 
 <video
@@ -77,13 +112,3 @@ python playground.py
   className="w-full aspect-video"
   src="/images/AgentPlayground.mp4"
 ></video>
-
-## Demo Agents
-
-The Agent Playground includes a few demo agents that you can test with. If you have recommendations for other agents we should build, please let us know in the [community forum](https://community.phidata.com/).
-
-<img
-  height="200"
-  src="/images/demo_agents.png"
-  style={{ borderRadius: '8px' }}
-/>
