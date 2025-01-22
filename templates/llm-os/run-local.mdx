@@ -32,7 +32,7 @@ llm-os                      # root directory of your llm-os
 ├── ai
     ├── agents.py       # AI Agents
 ├── app                     # Streamlit app
-├── api                     # FastApi routes
+├── api                     # FastAPI routes
 ├── db                      # database settings
 ├── Dockerfile              # Dockerfile for the application
 ├── pyproject.toml          # python project definition
@@ -109,12 +109,12 @@ ag ws up dev:docker:app
 
 ## Optional: Serve your LLM OS as an API
 
-Streamlit is great for building micro front-ends but any production application will be built using a front-end framework like [next.js](https://nextjs.org) backed by a RestApi built using [FastApi](https://fastapi.tiangolo.com/).
+Streamlit is great for building micro front-ends but any production application will be built using a front-end framework like [next.js](https://nextjs.org) backed by a RestApi built using [FastAPI](https://fastapi.tiangolo.com/).
 
-Your LLM OS comes with ready-to-use FastApi endpoints.
+Your LLM OS comes with ready-to-use FastAPI endpoints.
 
 <Steps>
-  <Step title="Enable FastApi">
+  <Step title="Enable FastAPI">
     Update the `workspace/settings.py` file and set `dev_api_enabled=True`
 
     ```python workspace/settings.py
@@ -127,7 +127,7 @@ Your LLM OS comes with ready-to-use FastApi endpoints.
     ```
 
   </Step>
-  <Step title="Start FastApi">
+  <Step title="Start FastAPI">
 
     <CodeGroup>
 
