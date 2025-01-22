@@ -22,7 +22,7 @@ from agno.vectordb.chroma import ChromaDb
 
 
 knowledge_base = PDFUrlKnowledgeBase(
-    urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+    urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
     vector_db=ChromaDb(collection="recipes"),
 )
 
