@@ -37,7 +37,6 @@ knowledge_base = PDFUrlKnowledgeBase(
 # Comment out after first run
 knowledge_base.load(recreate=True, upsert=True)
 
-
 def qdrant_agent(user: str = "user"):
     run_id: Optional[str] = None
 
@@ -63,10 +62,8 @@ def qdrant_agent(user: str = "user"):
             break
         agent.print_response(message)
 
-
 if __name__ == "__main__":
     typer.run(qdrant_agent)
-
 ```
 
 ## Qdrant Params

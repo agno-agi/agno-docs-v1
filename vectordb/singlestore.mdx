@@ -45,7 +45,6 @@ knowledge_base = PDFUrlKnowledgeBase(
 # Comment out after first run
 knowledge_base.load(recreate=False)
 
-
 def pdf_assistant(user: str = "user"):
     run_id: Optional[str] = None
 
@@ -67,10 +66,8 @@ def pdf_assistant(user: str = "user"):
     while True:
         assistant.cli_app(markdown=True)
 
-
 if __name__ == "__main__":
     typer.run(pdf_assistant)
-
 ```
 
 ## SingleStore Params
