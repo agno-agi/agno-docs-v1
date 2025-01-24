@@ -1,0 +1,41 @@
+---
+title: SearxNG Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/searxng_tools.py
+from agno.agent import Agent
+from agno.tools.searxng import SearxNGTools
+
+agent = Agent(
+    tools=[SearxNGTools(instance_url="https://your-searxng-instance.com")],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Search for recent news about artificial intelligence")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U searxng-client agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/searxng_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/searxng_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

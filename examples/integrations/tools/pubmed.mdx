@@ -1,0 +1,41 @@
+---
+title: PubMed Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/pubmed_tools.py
+from agno.agent import Agent
+from agno.tools.pubmed import PubMedTools
+
+agent = Agent(
+    tools=[PubMedTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Find recent research papers about COVID-19 vaccines")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U biopython agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/pubmed_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/pubmed_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

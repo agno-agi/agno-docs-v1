@@ -1,0 +1,57 @@
+---
+title: Agent with Knowledge
+---
+
+## Code
+
+```python cookbook/models/groq/knowledge.py
+from agno.agent import Agent
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
+from agno.models.groq import Groq
+from agno.vectordb.pgvector import PgVector
+
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+knowledge_base = PDFUrlKnowledgeBase(
+    urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+    vector_db=PgVector(table_name="recipes", db_url=db_url),
+)
+knowledge_base.load(recreate=False)  # Comment out after first run
+
+agent = Agent(
+    model=Groq(id="llama-3.3-70b-versatile"),
+    knowledge=knowledge_base,
+    show_tool_calls=True,
+)
+agent.print_response("How to make Thai curry?", markdown=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export GROQ_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U groq sqlalchemy pgvector pypdf openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/groq/knowledge.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/groq/knowledge.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

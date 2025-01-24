@@ -1,0 +1,41 @@
+---
+title: Pandas Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/pandas_tools.py
+from agno.agent import Agent
+from agno.tools.pandas import PandasTools
+
+agent = Agent(
+    tools=[PandasTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Load and analyze the dataset from data.csv")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U pandas agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/pandas_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/pandas_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

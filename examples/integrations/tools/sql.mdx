@@ -1,0 +1,41 @@
+---
+title: SQL Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/sql_tools.py
+from agno.agent import Agent
+from agno.tools.sql import SQLTools
+
+agent = Agent(
+    tools=[SQLTools(db_url="sqlite:///database.db")],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Show me all tables in the database and their schemas")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U sqlalchemy agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/sql_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/sql_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

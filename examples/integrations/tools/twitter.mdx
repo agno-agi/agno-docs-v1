@@ -1,0 +1,50 @@
+---
+title: Twitter Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/twitter_tools.py
+from agno.agent import Agent
+from agno.tools.twitter import TwitterTools
+
+agent = Agent(
+    tools=[TwitterTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Post a tweet saying 'Hello World from Agno!'")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your Twitter credentials">
+    ```bash
+    export TWITTER_API_KEY=xxx
+    export TWITTER_API_SECRET=xxx
+    export TWITTER_ACCESS_TOKEN=xxx
+    export TWITTER_ACCESS_TOKEN_SECRET=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U tweepy agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/twitter_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/twitter_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

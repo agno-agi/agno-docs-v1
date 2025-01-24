@@ -2,7 +2,7 @@
 title: Prompts
 ---
 
-We prompt Agents using `description` and `instructions` and a number of other settings. These settings are used to build the **system** prompt that is sent to the language model.
+We prompt Agents using `description` and `instructions` and a number of other settings. These settings are used to build the **system** message that is sent to the language model.
 
 Understanding how these prompts are created will help you build better Agents.
 
@@ -12,12 +12,12 @@ The 2 key parameters are:
 2. **Instructions**: A list of precise, task-specific instructions on how to achieve its goal.
 
 <Note>
-  Description and instructions only provide a formatting benefit, we do not alter or abstract any information and you can always use `system_prompt` to provide your own system prompt.
+  Description and instructions only provide a formatting benefit, we do not alter or abstract any information and you can always set the `system_message` to provide your own system prompt.
 </Note>
 
 ## System message
 
-The system message is created using `description`, `instructions` and a number of other settings. The `description` is added to the start of the system message and `instructions` are added as a list after `## Instructions`. For example:
+The system message is created using `description`, `instructions` and a number of other settings. The `description` is added to the start of the system message and `instructions` are added as a list after `Instructions`. For example:
 
 ```python instructions.py
 from agno.agent import Agent
@@ -61,30 +61,18 @@ DEBUG    **************** METRICS END ******************
 
 ## Set the system message directly
 
-You can manually set the system message using the `system_prompt` parameter.
+You can manually set the system message using the `system_message` parameter.
 
 ```python
 from agno.agent import Agent
 
-agent = Agent(system_prompt="Share a 2 sentence story about")
+agent = Agent(system_message="Share a 2 sentence story about")
 agent.print_response("Love in the year 12000.")
 ```
 
 ## User message
 
 The input `message` sent to the `Agent.run()` or `Agent.print_response()` functions is used as the user message.
-
-### User message when `enable_rag=True`
-
-If the Agent is provided `knowledge`, and the `enable_rag=True`, the user message is set to:
-
-```python
-user_prompt += f"""Use the following information from the knowledge base if it helps:"
-
-## Context
-{context}
-"""
-```
 
 ## Default system message
 

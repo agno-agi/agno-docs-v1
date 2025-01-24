@@ -4,20 +4,23 @@ title: Teams
 
 We can combine multiple Agents to form a team and tackle tasks as a cohesive unit. Here's a simple example that uses a team of agents to write an article about the top stories on hackernews.
 
-```python hn_team.py
+```python hackernews_team.py
 from agno.agent import Agent
+from agno.models.openai import OpenAIChat
 from agno.tools.hackernews import HackerNews
 from agno.tools.duckduckgo import DuckDuckGo
 from agno.tools.newspaper4k import Newspaper4k
 
 hn_researcher = Agent(
     name="HackerNews Researcher",
+    model=OpenAIChat("gpt-4o"),
     role="Gets top stories from hackernews.",
     tools=[HackerNews()],
 )
 
 web_searcher = Agent(
     name="Web Searcher",
+    model=OpenAIChat("gpt-4o"),
     role="Searches the web for information on a topic",
     tools=[DuckDuckGo()],
     add_datetime_to_instructions=True,
@@ -25,12 +28,14 @@ web_searcher = Agent(
 
 article_reader = Agent(
     name="Article Reader",
+    model=OpenAIChat("gpt-4o"),
     role="Reads articles from URLs.",
     tools=[Newspaper4k()],
 )
 
 hn_team = Agent(
     name="Hackernews Team",
+    model=OpenAIChat("gpt-4o"),
     team=[hn_researcher, web_searcher, article_reader],
     instructions=[
         "First, search hackernews for what the user is asking about.",
@@ -50,7 +55,7 @@ Run the script to see the output.
 ```bash
 pip install -U openai duckduckgo-search newspaper4k lxml_html_clean agno
 
-python hn_team.py
+python hackernews_team.py
 ```
 
 ## How to build Agent Teams
@@ -59,14 +64,7 @@ python hn_team.py
 2. Create a Team Leader that can delegate tasks to team-members.
 3. Use your Agent team just like you would use a regular Agent.
 
-<Warning>
-Open-ended Agentic teams are great to play with, but are not reliable for real-world problems that require high reliability.
 
-They need constant oversight and can get confused on very complex tasks. This drawback should improve as models get better (eagerly waiting for gpt-5o).
+## Developer Resources
 
-In our experience, Agent teams work best for simple tasks that require a small number of steps. We highly recommend using Workflows for production applications.
-</Warning>
-
-TODO: Explicitly set the model on the team leader and team members
-
-TODO: Note on workflows as an alternative
+- View [Examples](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/teams/)

@@ -1,0 +1,41 @@
+---
+title: Sleep Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/sleep_tools.py
+from agno.agent import Agent
+from agno.tools.sleep import SleepTools
+
+agent = Agent(
+    tools=[SleepTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Wait for 5 seconds before continuing")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/sleep_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/sleep_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

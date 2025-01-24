@@ -1,0 +1,54 @@
+---
+title: MongoDB Storage
+---
+
+## Code
+
+```python cookbook/agent_concepts/storage/mongodb_storage.py
+from agno.agent import Agent
+from agno.storage.agent.mongodb import MongoDbAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+# MongoDB connection settings
+db_url = "mongodb://localhost:27017"
+
+agent = Agent(
+    storage=MongoDbAgentStorage(
+        collection_name="agent_sessions", db_url=db_url, db_name="agno"
+    ),
+    tools=[DuckDuckGoTools()],
+    add_history_to_messages=True,
+)
+agent.print_response("How many people live in Canada?")
+agent.print_response("What is their national anthem called?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U openai pymongo agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/storage/mongodb_storage.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/storage/mongodb_storage.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

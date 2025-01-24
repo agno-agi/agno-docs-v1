@@ -1,0 +1,54 @@
+---
+title: Agent with Storage
+---
+
+## Code
+
+```python cookbook/models/ollama/storage.py
+from agno.agent import Agent
+from agno.models.ollama import Ollama
+from agno.storage.agent.postgres import PostgresAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+agent = Agent(
+    model=Ollama(id="llama3.1:8b"),
+    storage=PostgresAgentStorage(table_name="agent_sessions", db_url=db_url),
+    tools=[DuckDuckGoTools()],
+    add_history_to_messages=True,
+)
+agent.print_response("How many people live in Canada?")
+agent.print_response("What is their national anthem called?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install Ollama">
+    Follow the [installation guide](https://github.com/ollama/ollama?tab=readme-ov-file#macos) and run:
+    ```bash
+    ollama pull llama3.1:8b
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U ollama sqlalchemy psycopg duckduckgo-search agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/ollama/storage.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/ollama/storage.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

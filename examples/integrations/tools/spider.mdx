@@ -1,0 +1,41 @@
+---
+title: Spider Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/spider_tools.py
+from agno.agent import Agent
+from agno.tools.spider import SpiderTools
+
+agent = Agent(
+    tools=[SpiderTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Crawl https://example.com and extract all links")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U scrapy agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/spider_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/spider_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

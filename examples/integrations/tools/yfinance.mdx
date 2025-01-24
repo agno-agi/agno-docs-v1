@@ -1,0 +1,41 @@
+---
+title: YFinance Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/yfinance_tools.py
+from agno.agent import Agent
+from agno.tools.yfinance import YFinanceTools
+
+agent = Agent(
+    tools=[YFinanceTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Get the current stock price and recent history for AAPL")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U yfinance agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/yfinance_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/yfinance_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

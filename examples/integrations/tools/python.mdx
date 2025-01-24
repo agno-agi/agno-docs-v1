@@ -1,0 +1,41 @@
+---
+title: Python Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/python_tools.py
+from agno.agent import Agent
+from agno.tools.python import PythonTools
+
+agent = Agent(
+    tools=[PythonTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Calculate the factorial of 5 using Python")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/python_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/python_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

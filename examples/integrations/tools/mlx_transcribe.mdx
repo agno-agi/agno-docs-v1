@@ -1,0 +1,41 @@
+---
+title: MLX Transcribe Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/mlx_transcribe_tools.py
+from agno.agent import Agent
+from agno.tools.mlx_transcribe import MLXTranscribeTools
+
+agent = Agent(
+    tools=[MLXTranscribeTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Transcribe this audio file: path/to/audio.mp3")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U mlx-transcribe agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/mlx_transcribe_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/mlx_transcribe_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

@@ -1,0 +1,47 @@
+---
+title: SerpAPI Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/serpapi_tools.py
+from agno.agent import Agent
+from agno.tools.serpapi import SerpAPITools
+
+agent = Agent(
+    tools=[SerpAPITools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("What are the top search results for 'machine learning'?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export SERPAPI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U google-search-results agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/serpapi_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/serpapi_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

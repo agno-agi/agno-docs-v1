@@ -33,7 +33,7 @@ json_mode_agent = Agent(
 )
 # Agent that uses structured outputs
 structured_output_agent = Agent(
-    model=OpenAIChat(id="gpt-4o-2024-08-06"),
+    model=OpenAIChat(id="gpt-4o"),
     description="You write movie scripts.",
     response_model=MovieScript,
     structured_outputs=True,
@@ -80,3 +80,9 @@ MovieScript(
 │   storyline='Isabella Grant, a fearless investigative journalist, uncovers a massive conspiracy involving a powerful syndicate plotting to control New York City. Teaming up with renegade cop Alex Chen, they must race against time to expose the culprits before the city descends into chaos. Dodging danger at every turn, they fight to protect the city they love from imminent destruction.'
 )
 ```
+
+
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/async/structured_output.py)

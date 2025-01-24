@@ -1,0 +1,47 @@
+---
+title: Slack Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/slack_tools.py
+from agno.agent import Agent
+from agno.tools.slack import SlackTools
+
+agent = Agent(
+    tools=[SlackTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Send a message to #general channel saying 'Hello from Agno!'")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your Slack token">
+    ```bash
+    export SLACK_BOT_TOKEN=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U slack-sdk agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/slack_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/slack_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

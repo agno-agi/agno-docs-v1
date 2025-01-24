@@ -1,0 +1,51 @@
+---
+title: Jira Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/jira_tools.py
+from agno.agent import Agent
+from agno.tools.jira import JiraTools
+
+agent = Agent(
+    tools=[JiraTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+
+agent.print_response("List all open issues in project 'DEMO'")
+agent.print_response("Create a new task in project 'DEMO' with high priority")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your Jira credentials">
+    ```bash
+    export JIRA_API_TOKEN=xxx
+    export JIRA_SERVER_URL=xxx
+    export JIRA_EMAIL=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U jira agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/jira_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/jira_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

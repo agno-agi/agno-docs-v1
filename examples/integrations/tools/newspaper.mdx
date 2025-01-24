@@ -1,0 +1,41 @@
+---
+title: Newspaper Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/newspaper_tools.py
+from agno.agent import Agent
+from agno.tools.newspaper import NewspaperTools
+
+agent = Agent(
+    tools=[NewspaperTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Extract the main article content from https://example.com/article")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U newspaper3k agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/newspaper_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/newspaper_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

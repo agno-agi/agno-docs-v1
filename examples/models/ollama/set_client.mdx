@@ -1,0 +1,52 @@
+---
+title: Set Ollama Client
+---
+
+## Code
+
+```python cookbook/models/ollama/set_client.py
+from agno.agent import Agent, RunResponse  # noqa
+from agno.models.ollama import Ollama
+from agno.tools.yfinance import YFinanceTools
+from ollama import Client as OllamaClient
+
+agent = Agent(
+    model=Ollama(id="llama3.2", client=OllamaClient()),
+    tools=[YFinanceTools(stock_price=True)],
+    markdown=True,
+)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install Ollama">
+    Follow the [installation guide](https://github.com/ollama/ollama?tab=readme-ov-file#macos) and run:
+    ```bash
+    ollama pull llama3.2
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U ollama yfinance agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/ollama/set_client.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/ollama/set_client.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
