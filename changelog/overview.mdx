@@ -89,6 +89,21 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
     - `DeepSeekChat` → `DeepSeek`
     - `GeminiOpenAIChat` → `GeminiOpenAI`
     - `HuggingFaceChat` → `HuggingFace`
+- Embedders now all take `id` instead of `model` as a parameter. For example
+
+  ```python
+  db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+  knowledge_base = PDFUrlKnowledgeBase(
+      urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+      vector_db=PgVector(
+          table_name="recipes",
+          db_url=db_url,
+          embedder=OllamaEmbedder(id="llama3.2", dimensions=3072),
+      ),
+  )
+  knowledge_base.load(recreate=True)
+  ```
 - Agent Storage class
     - `PgAgentStorage` → `PostgresDbAgentStorage`
     - `SqlAgentStorage` → `SqliteDbAgentStorage`
