@@ -314,8 +314,8 @@
 						"examples/getting-started/agent-context",
 						"examples/getting-started/agent-session",
 						"examples/getting-started/user-memories",
-						"examples/getting-started/retry-function",
-						"examples/getting-started/human-in-loop"
+						"examples/getting-started/retry-functions",
+						"examples/getting-started/human-in-the-loop"
 					]
 				}
 			]

@@ -20,6 +20,16 @@ knowledge_base.load_text("The sky is blue")
 agent = Agent(knowledge=knowledge_base, search_knowledge=True)
 ```
 
+You can give your agent access to your knowledge base in the following ways:
+
+- You can set `search_knowledge=True` to provide a `search_knowledge_base()` tool to your agent. This is automatically added if you provide a knowledgebase.
+- You can set `add_references=True` to automatically add references from the knowledge base. Optionally pass your own `retriever` callable with the following signature:
+```
+def retriever(agent: Agent, query: str, num_documents: Optional[int], **kwargs) -> Optional[list[dict]]:
+  ...
+```
+- You can set `update_knowledge=True` to provide a `add_to_knowledge()` tool to your agent allowing it to update the knowledgebase.
+
 ## Vector Databases
 
 While any type of storage can act as a knowledge base, vector databases offer the best solution for retrieving relevant results from dense information quickly. Here's how vector databases are used with Agents:

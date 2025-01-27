@@ -32,6 +32,12 @@ Every Agent comes with built-in memory that can be used to access the historical
     </ResponseField>
 </Expandable>
 
+You can give your agent access to memory in the following ways:
+
+- You can set `add_history_to_messages=True` and `num_history_responses=5` to add the previous 5 messages automatically to every message sent to the agent.
+- You can set `read_chat_history=True` to provide a `get_chat_history()` tool to your agent allowing it to read any message in the entire chat history.
+- You can set `read_tool_call_history=True` to provide a `get_tool_call_history()` tool to your agent allowing it to read tool calls in reverse chronological order.
+
 ### Example
 
 ```python agent_memory.py
