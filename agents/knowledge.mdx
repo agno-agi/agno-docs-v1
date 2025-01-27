@@ -233,3 +233,7 @@ Set `search_knowledge=True` and `read_chat_history=True`, giving the Agent tools
 | `retriever` | `Callable[..., Optional[list[dict]]]` | `None` | Function to get context to add to the user message. This function is called when add_context is True. |
 | `context_format` | `Literal['json', 'yaml']` | `json` | Specifies the format for RAG, either "json" or "yaml". |
 | `add_context_instructions` | `bool` | `False` | If True, add instructions for using the context to the system prompt (if knowledge is also provided). For example: add an instruction to prefer information from the knowledge base over its training data. |
+
+ ## Developer Resources
+
+- View [Cookbook](https://github.com/phidatahq/agno/tree/main/cookbook/agent_concepts/knowledge)
