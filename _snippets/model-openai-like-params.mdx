@@ -1,5 +1,7 @@
-| Parameter  | Type  | Default | Description                                                |
-| ---------- | ----- | ------- | ---------------------------------------------------------- |
-| `id`       | `str` | -       | The name of the model to be used for generating responses. |
-| `api_key`  | `str` | -       | The API key for authenticating requests to the service.    |
-| `base_url` | `str` | -       | The base URL for making API requests to the service.       |
+| Parameter                | Type     | Default         | Description                                                |
+| ----------------------- | -------- | --------------- | ---------------------------------------------------------- |
+| `id`                    | `str`    | `"not-provided"`| The name of the model to be used for generating responses. |
+| `name`                  | `str`    | `"OpenAILike"`  | The name of this chat model instance.                      |
+| `api_key`               | `str`    | `"not-provided"`| The API key for authenticating requests to the service.    |
+| `override_system_role`  | `bool`   | `False`         | Whether to override the default system role.               |
+| `system_message_role`   | `str`    | `"system"`      | The role to use for system messages.                      |
