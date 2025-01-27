@@ -770,6 +770,7 @@
 			"group": "FAQs",
 			"pages": [
 				"faq/environment_variables",
+				"faq/tpm-issues",
 				"faq/cli-auth",
 				"faq/connecting-to-tableplus",
         "faq/could-not-connect-to-docker"
