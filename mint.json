@@ -739,6 +739,7 @@
             "reference/models/cohere",
             "reference/models/deepseek",
             "reference/models/gemini",
+			"reference/models/gemini_openai",
             "reference/models/groq",
             "reference/models/huggingface",
             "reference/models/mistral",
@@ -750,7 +751,11 @@
             "reference/models/azure",
             "reference/models/fireworks",
             "reference/models/openrouter",
-            "reference/models/sambanova"
+            "reference/models/sambanova",
+			"reference/models/internlm",
+			"reference/models/ollama_hermes",
+			"reference/models/ollama_tools",
+			"reference/models/openai_like"
           ]
         },
         {
