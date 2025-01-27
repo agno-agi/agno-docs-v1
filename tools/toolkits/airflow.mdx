@@ -14,7 +14,6 @@ agent = Agent(
     tools=[AirflowToolkit(dags_dir="dags", save_dag=True, read_dag=True)], show_tool_calls=True, markdown=True
 )
 
-
 dag_content = """
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -47,7 +46,6 @@ with DAG(
 """
 
 agent.run(f"Save this DAG file as 'example_dag.py': {dag_content}")
-
 
 agent.print_response("Read the contents of 'example_dag.py'")
 ```

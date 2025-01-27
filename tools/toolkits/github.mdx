@@ -32,6 +32,7 @@ agent = Agent(
     tools=[GithubTools()],
     show_tool_calls=True,
 )
+
 agent.print_response("List open pull requests", markdown=True)
 ```
 

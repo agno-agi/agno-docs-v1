@@ -11,16 +11,16 @@ Waiting for a response from browser...
 
 It means that your CLI was not able to authenticate with your Agno account on [app.agno.com](https://app.agno.com)
 
-The quickest fix for this is to export your `PHI_API_KEY` environment variable. You can do this by running the following command:
+The quickest fix for this is to export your `AGNO_API_KEY` environment variable. You can do this by running the following command:
 
 ```bash
-export PHI_API_KEY=<your_api_key>
+export AGNO_API_KEY=<your_api_key>
 ```
 
 Your API key can be found on [app.agno.com](https://app.agno.com) in the sidebar under `API Key`.
 
-![phi-api-key](/images/cli-faq.png)
+![agno-api-key](/images/cli-faq.png)
 
 Reason for CLI authentication failure:
 
-- Some browsers like Safari and Brave block connection to the localhost domain. Browsers like Chrome work great with `ag auth`.
+- Some browsers like Safari and Brave block connection to the localhost domain. Browsers like Chrome work great with `ag setup`.
