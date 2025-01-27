@@ -2,8 +2,6 @@
 title: Human in the Loop
 ---
 
-### 👥 Human-in-the-Loop Validation
-
 This example shows how to implement human validation in your agent workflows. It demonstrates:
 - Pre-execution validation
 - Post-execution review
@@ -20,73 +18,101 @@ Example scenarios:
 ## Code
 
 ```python human_in_the_loop.py
-from typing import Dict, Optional
+import json
+from textwrap import dedent
+from typing import Iterator
 
+import httpx
 from agno.agent import Agent
-from agno.exceptions import RetryAgentRun
-from agno.models.openai import OpenAIChat
+from agno.exceptions import StopAgentRun
 from agno.tools import FunctionCall, tool
-from rich.prompt import Confirm
+from rich.console import Console
+from rich.pretty import pprint
+from rich.prompt import Prompt
+
+# This is the console instance used by the print_response method
+# We can use this to stop and restart the live display and ask for user confirmation
+console = Console()
 
 
-def pre_execution_check(fc: FunctionCall):
-    """Validate function calls before execution"""
-    print(f"\n🔍 Pre-execution check for: {fc.function.name}")
-    print(f"Arguments: {fc.arguments}")
+def pre_hook(fc: FunctionCall):
+    # Get the live display instance from the console
+    live = console._live
 
-    if not Confirm.ask("Approve this action?"):
-        raise RetryAgentRun("Action not approved. Please try something else.")
+    # Stop the live display temporarily so we can ask for user confirmation
+    live.stop()  # type: ignore
+
+    # Ask for confirmation
+    console.print(f"\nAbout to run [bold blue]{fc.function.name}[/]")
+    message = (
+        Prompt.ask("Do you want to continue?", choices=["y", "n"], default="y")
+        .strip()
+        .lower()
+    )
+
+    # Restart the live display
+    live.start()  # type: ignore
+
+    # If the user does not want to continue, raise a StopExecution exception
+    if message != "y":
+        raise StopAgentRun(
+            "Tool call cancelled by user",
+            agent_message="Stopping execution as permission was not granted.",
+        )
 
 
-def post_execution_review(result: str) -> Optional[str]:
-    """Review function output after execution"""
-    print(f"\n📝 Review output: {result}")
+@tool(pre_hook=pre_hook)
+def get_top_hackernews_stories(num_stories: int) -> Iterator[str]:
+    """Fetch top stories from Hacker News after user confirmation.
 
-    if not Confirm.ask("Accept this output?"):
-        return "Output rejected. Please try again with different approach."
-    return None
+    Args:
+        num_stories (int): Number of stories to retrieve
+
+    Returns:
+        str: JSON string containing story details
+    """
+    # Fetch top story IDs
+    response = httpx.get("https://hacker-news.firebaseio.com/v0/topstories.json")
+    story_ids = response.json()
+
+    # Yield story details
+    for story_id in story_ids[:num_stories]:
+        story_response = httpx.get(
+            f"https://hacker-news.firebaseio.com/v0/item/{story_id}.json"
+        )
+        story = story_response.json()
+        if "text" in story:
+            story.pop("text", None)
+        yield json.dumps(story)
 
 
-@tool(pre_hook=pre_execution_check, post_hook=post_execution_review)
-def generate_content(topic: str, style: str) -> str:
-    """Generate content with human validation at each step."""
-    return f"Generated {style} content about {topic}"
-
-
-# Create an agent with human oversight
+# Initialize the agent with a tech-savvy personality and clear instructions
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
-    tools=[generate_content],
-    description=(
-        "You are a content creator who works closely with human reviewers. "
-        "You understand the importance of getting approval and incorporating feedback."
-    ),
-    instructions=(
-        "When generating content:\n"
-        "1. Start with a clear plan\n"
-        "2. Wait for human approval\n"
-        "3. Generate the content\n"
-        "4. Accept feedback gracefully\n"
-        "5. Revise based on feedback"
-    ),
+    description="A Tech News Assistant that fetches and summarizes Hacker News stories",
+    instructions=dedent("""\
+        You are an enthusiastic Tech Reporter
+
+        Your responsibilities:
+        - Present Hacker News stories in an engaging and informative way
+        - Provide clear summaries of the information you gather
+
+        Style guide:
+        - Use emoji to make your responses more engaging
+        - Keep your summaries concise but informative
+        - End with a friendly tech-themed sign-off\
+    """),
+    tools=[get_top_hackernews_stories],
+    show_tool_calls=True,
     markdown=True,
 )
 
-# Example usage
+# Example questions to try:
+# - "What are the top 3 HN stories right now?"
+# - "Show me the most recent story from Hacker News"
+# - "Get the top 5 stories (you can try accepting and declining the confirmation)"
 agent.print_response(
-    "Generate a technical blog post about AI safety",
-    stream=True,
+    "What are the top 2 hackernews stories?", stream=True, console=console
 )
-
-# More examples to try:
-"""
-Try these scenarios that benefit from human oversight:
-1. "Create marketing copy for a new product launch"
-2. "Write a sensitive customer communication"
-3. "Generate a press release about company changes"
-4. "Develop safety guidelines for a new process"
-5. "Create content for regulatory compliance"
-"""
 ```
 
 ## Usage

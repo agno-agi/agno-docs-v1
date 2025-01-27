@@ -4,6 +4,17 @@ title: OpenAI
 
 The GPT models are the best in class LLMs and used as the default LLM by **Agents**.
 
+OpenAI supports a variety of world-class models. See their models [here](https://platform.openai.com/docs/models).
+
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+
+- `gpt-4o` is good for most general use-cases.
+- `gpt-4o-mini` model is good for smaller tasks and faster inference.
+- `o1` models are good for complex reasoning and multi-step tasks. 
+- `o1-mini` is much faster than `o1` and still decently good at reasoning, but doesn't support tool-calling.
+
+OpenAI have tier based rate limits. See the [docs](https://platform.openai.com/docs/guides/rate-limits/usage-tiers) for more information.
+
 ## Authentication
 
 Set your `OPENAI_API_KEY` environment variable. You can get one [from OpenAI here](https://platform.openai.com/account/api-keys).

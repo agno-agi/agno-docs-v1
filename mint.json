@@ -48,7 +48,7 @@
 		"url": "https://github.com/phidatahq/phidata"
 	},
 	"primaryTab": {
-		"name": "User Guides"
+		"name": "User Guide"
 	},
 	"tabs": [
 		{
@@ -314,42 +314,37 @@
 						"examples/getting-started/agent-context",
 						"examples/getting-started/agent-session",
 						"examples/getting-started/user-memories",
-						"examples/getting-started/retry-function",
-						"examples/getting-started/human-in-loop"
+						"examples/getting-started/retry-functions",
+						"examples/getting-started/human-in-the-loop"
 					]
-				}
-			]
-		},
-		{
-			"group": "Use Cases",
-			"pages": [
-				{
-					"group": "Simple",
+				},
+        {
+					"group": "Agents",
 					"pages": [
-						"examples/use-cases/simple/finance-agent",
-						"examples/use-cases/simple/youtube-agent",
-						"examples/use-cases/simple/research-agent",
-						"examples/use-cases/simple/research-agent-exa",
-						"examples/use-cases/simple/teaching-assistant",
-						"examples/use-cases/simple/recipe-creator",
-						"examples/use-cases/simple/movie-recommender",
-						"examples/use-cases/simple/books-recommender",
-						"examples/use-cases/simple/travel-planner"
+						"examples/agents/finance-agent",
+						"examples/agents/youtube-agent",
+						"examples/agents/research-agent",
+						"examples/agents/research-agent-exa",
+						"examples/agents/teaching-assistant",
+						"examples/agents/recipe-creator",
+						"examples/agents/movie-recommender",
+						"examples/agents/books-recommender",
+						"examples/agents/travel-planner"
+					]
+				},
+        {
+					"group": "Workflows",
+					"pages": [
+						"examples/workflows/blog-post-generator",
+						"examples/workflows/investment-report-generator",
+						"examples/workflows/personalized-email-generator"
 					]
 				},
 				{
-					"group": "Advanced",
+					"group": "Applications",
 					"pages": [
-						"examples/use-cases/advanced/blog-post-generator",
-						"examples/use-cases/advanced/investment-report-generator",
-						"examples/use-cases/advanced/personalized-email-generator"
-					]
-				},
-				{
-					"group": "Agentic Applications",
-					"pages": [
-						"examples/use-cases/apps/text-to-sql",
-						"examples/use-cases/apps/game-generator"
+						"examples/apps/text-to-sql",
+						"examples/apps/game-generator"
 					]
 				}
 			]
@@ -784,9 +779,10 @@
 			"group": "FAQs",
 			"pages": [
 				"faq/environment_variables",
+				"faq/tpm-issues",
 				"faq/cli-auth",
 				"faq/connecting-to-tableplus",
-        "faq/could-not-connect-to-docker"
+        		"faq/could-not-connect-to-docker"
 			]
 		},
 		{
