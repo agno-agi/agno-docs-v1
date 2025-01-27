@@ -761,7 +761,21 @@
         {
           "group": "Knowledge",
           "pages": [
-            "reference/knowledge/base"
+            "reference/knowledge/base",
+			"reference/knowledge/arxiv",
+			"reference/knowledge/combined",
+			"reference/knowledge/csv",
+			"reference/knowledge/csv_url",
+			"reference/knowledge/docx",
+			"reference/knowledge/json",
+			"reference/knowledge/langchain",
+			"reference/knowledge/llamaindex",
+			"reference/knowledge/pdf",
+			"reference/knowledge/pdf_url",
+			"reference/knowledge/text",
+			"reference/knowledge/website",
+			"reference/knowledge/wikipedia",
+			"reference/knowledge/youtube"
           ]
         }
 			]
