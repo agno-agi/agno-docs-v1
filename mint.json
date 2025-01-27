@@ -773,7 +773,7 @@
 				"faq/tpm-issues",
 				"faq/cli-auth",
 				"faq/connecting-to-tableplus",
-        "faq/could-not-connect-to-docker"
+        		"faq/could-not-connect-to-docker"
 			]
 		},
 		{
