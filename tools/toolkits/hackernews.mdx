@@ -8,7 +8,7 @@ title: Hacker News
 
 The following agent will write an engaging summary of the users with the top 2 stories on hackernews along with the stories.
 
-```python cookbook/tools/hackernews.py
+```python cookbook/agent_concepts/tools/hackernews.py
 from agno.agent import Agent
 from agno.tools.hackernews import HackerNews
 
@@ -18,6 +18,7 @@ agent = Agent(
     show_tool_calls=True,
     markdown=True,
 )
+
 agent.print_response(
     "Write an engaging summary of the "
     "users with the top 2 stories on hackernews. "
@@ -41,5 +42,5 @@ agent.print_response(
 
 ## Developer Resources
 
-- View [Tools](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/hackernews_tools.py)
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/tools/hackernews_tools.py)
+- View [Tools](https://github.com/phidatahq/agno/blob/main/libs/agno/agno/tools/hackernews.py)
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/tools/hackernews_tools.py)

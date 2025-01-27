@@ -2,11 +2,11 @@
 title: Memory
 ---
 
-Agno provides 3 types of memories for building a great Agent experience (AX):
+Agno provides 3 types of memory for Agents:
 
-1. **Chat History:** previous messages from the conversation, we recommend sending the last 3-5 messages to the model.
-2. **User Memories:** notes and insights about the user, this helps the model personalize the response to the user.
-3. **Summaries:** a summary of the conversation, which is added to the prompt when chat history gets too long.
+1. **Chat History:** The message history of the session. Agno will store the sessions in a database for you, and retrieve them when you resume a session.
+2. **User Memories:** Notes and insights about the user, this helps the model personalize the response to the user.
+3. **Summaries:** A summary of the conversation, which is added to the prompt when chat history gets too long.
 
 Before we dive in, let's understand the terminology:
 
@@ -38,7 +38,6 @@ Every Agent comes with built-in memory that can be used to access the historical
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from rich.pretty import pprint
-
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
@@ -79,7 +78,6 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.storage.agent.sqlite import SqlAgentStorage
 
-
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     # Store agent sessions in a database
@@ -96,7 +94,6 @@ agent = Agent(
 )
 
 console = Console()
-
 
 def print_chat_history(agent):
     # -*- Print history

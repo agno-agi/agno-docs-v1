@@ -1,0 +1,58 @@
+---
+title: Email Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/email_tools.py
+from agno.agent import Agent
+from agno.tools.email import EmailTools
+
+receiver_email = "<receiver_email>"
+sender_email = "<sender_email>"
+sender_name = "<sender_name>"
+sender_passkey = "<sender_passkey>"
+
+agent = Agent(
+    tools=[
+        EmailTools(
+            receiver_email=receiver_email,
+            sender_email=sender_email,
+            sender_name=sender_name,
+            sender_passkey=sender_passkey,
+        )
+    ]
+)
+agent.print_response("Send an email to <receiver_email>.")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your email credentials">
+    ```bash
+    export SENDER_EMAIL=xxx
+    export SENDER_PASSKEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/email_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/email_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

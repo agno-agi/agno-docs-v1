@@ -1,9 +1,17 @@
 ---
 title: Introduction
-description: "**Agents are autonomous programs that achieve tasks using language models.**"
 ---
 
-Engineers use agno to build agents with memory, knowledge, tools and reasoning.
+## What are Agents?
+
+Agents are autonomous programs that use language models to achieve tasks. They solve problems by running tools, accessing knowledge and memory to improve responses.
+
+Instead of a rigid binary definition, let's think of Agents in terms of agency and autonomy.
+
+- **Level 0**: Agents with no tools (basic inference tasks).
+- **Level 1**: Agents with tools for autonomous task execution.
+- **Level 2**: Agents with knowledge, combining memory and reasoning.
+- **Level 3**: Teams of agents collaborating on complex workflows.
 
 <img
   height="200"
@@ -11,35 +19,101 @@ Engineers use agno to build agents with memory, knowledge, tools and reasoning.
   style={{ borderRadius: '8px' }}
 />
 
+If you haven't built your first agent yet, [follow this guide](/agents) and then dive into more advanced concepts.
+
 ## Example: Research Agent
 
-Let's create a research agent that can search the web, read the top links and write a report for us. We **"prompt"** the agent using `description` and `instructions`.
+Let's create a research agent that can search the web using DuckDuckGo, scrape the top links using Newspaper4k and write a research report for us. Ideally we'll use specialized tools (like Exa) but let's start with the free tools first.
+
+<Note>
+The description and instructions are converted to the system message and the input is passed as the user message. Set `debug_mode=True` to view logs behind the scenes.
+</Note>
 
 <Steps>
   <Step title="Create Research Agent">
     Create a file `research_agent.py`
 
     ```python research_agent.py
+    from textwrap import dedent
+
     from agno.agent import Agent
     from agno.models.openai import OpenAIChat
-    from agno.tools.duckduckgo import DuckDuckGo
-    from agno.tools.newspaper4k import Newspaper4k
+    from agno.tools.duckduckgo import DuckDuckGoTools
+    from agno.tools.newspaper4k import Newspaper4kTools
 
+    # Initialize the research agent with journalistic capabilities
     agent = Agent(
         model=OpenAIChat(id="gpt-4o"),
-        tools=[DuckDuckGo(), Newspaper4k()],
-        description="You are a senior NYT researcher writing an article on a topic.",
+        tools=[DuckDuckGoTools(), Newspaper4kTools()],
+        description=dedent("""\
+            You are a seasoned NYT investigative journalist with decades of experience
+            in researching and writing compelling news articles. Your expertise lies in:
+
+            - Thorough fact-checking and verification
+            - Clear and engaging narrative writing
+            - Balanced and objective reporting
+            - Making complex topics accessible to general readers
+            - Crafting headlines that capture attention while maintaining integrity\
+        """),
         instructions=[
-            "For a given topic, search for the top 5 links.",
-            "Then read each URL and extract the article text, if a URL isn't available, ignore it.",
-            "Analyse and prepare an NYT worthy article based on the information.",
+            "Begin by searching for 10 recent and reliable sources on the topic",
+            "Extract and analyze the content from each accessible URL",
+            "Cross-reference information for accuracy and consistency",
+            "Structure your article in the NYT style with a compelling headline",
+            "Include relevant quotes and statistics with proper attribution",
+            "Conclude with implications and future outlook",
         ],
+        expected_output=dedent("""\
+            # {Compelling Headline}
+
+            ## Summary
+            {A concise overview of the main story}
+
+            ## Background
+            {Context and importance of the topic}
+
+            ## Key Developments
+            {Main findings and analysis}
+            {Supporting evidence and expert opinions}
+
+            ## Impact and Implications
+            {Current and future effects on society/industry}
+            {Expert predictions and analysis}
+
+            ## Looking Ahead
+            {Future developments and trends}
+            {Potential challenges and opportunities}
+
+            ## Sources
+            - [Source 1] - Key finding/quote
+            - [Source 2] - Key finding/quote
+            - [Source 3] - Key finding/quote
+
+            ---
+            Article by AI Research Journalist
+            New York Times Style Report
+            Date: {current_date}\
+        """),
         markdown=True,
         show_tool_calls=True,
         add_datetime_to_instructions=True,
-        # debug_mode=True,
     )
-    agent.print_response("Simulation theory", stream=True)
+
+    if __name__ == "__main__":
+        # Generate a news article on a current topic
+        agent.print_response(
+            "The current state of artificial intelligence regulation", stream=True
+        )
+
+    # More example prompts to try:
+    """
+    Try these research topics:
+    1. "Analyze the growth of sustainable fashion industry"
+    2. "Report on breakthrough medical technologies"
+    3. "Investigate the impact of social media on mental health"
+    4. "Explore the rise of vertical farming"
+    5. "Study the evolution of cryptocurrency adoption"
+    """
     ```
 
   </Step>
@@ -47,7 +121,7 @@ Let's create a research agent that can search the web, read the top links and wr
     Install libraries
 
     ```shell
-    pip install agno openai duckduckgo-search newspaper4k lxml_html_clean
+    pip install openai duckduckgo-search newspaper4k lxml_html_clean agno
     ```
 
     Run the agent
@@ -58,9 +132,3 @@ Let's create a research agent that can search the web, read the top links and wr
 
   </Step>
 </Steps>
-
-<Note>
-The description and instructions are converted to the system prompt and the input (e.g. `Simulation theory`) is passed as the user prompt.
-
-Use `debug_mode=True` to view the raw logs behind the scenes.
-</Note>

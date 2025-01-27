@@ -1,0 +1,49 @@
+---
+title: YAML Storage
+---
+
+## Code
+
+```python cookbook/agent_concepts/storage/yaml_storage.py
+from agno.agent import Agent
+from agno.storage.agent.yaml import YamlAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    storage=YamlAgentStorage(dir_path="tmp/agent_sessions_yaml"),
+    tools=[DuckDuckGoTools()],
+    add_history_to_messages=True,
+)
+agent.print_response("How many people live in Canada?")
+agent.print_response("What is their national anthem called?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U duckduckgo-search pyyaml openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/storage/yaml_storage.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/storage/yaml_storage.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

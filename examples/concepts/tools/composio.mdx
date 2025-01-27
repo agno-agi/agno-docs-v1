@@ -1,0 +1,42 @@
+---
+title: Composio Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/composio_tools.py
+from agno.agent import Agent
+from composio_phidata import Action, ComposioToolSet
+
+toolset = ComposioToolSet()
+composio_tools = toolset.get_tools(
+    actions=[Action.GITHUB_STAR_A_REPOSITORY_FOR_THE_AUTHENTICATED_USER]
+)
+
+agent = Agent(tools=composio_tools, show_tool_calls=True)
+agent.print_response("Can you star phidatahq/agno repo?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U composio-phidata agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/composio_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/composio_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

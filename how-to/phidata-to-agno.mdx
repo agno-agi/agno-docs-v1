@@ -1,0 +1,154 @@
+---
+title: Migrate from Phidata to Agno
+---
+
+This guide helps you migrate your codebase to adapt to the major refactor accompanying the launch of Agno.
+
+## General Namespace Updates
+This refactor includes comprehensive updates to namespaces to improve clarity and consistency. Pay close attention to the following changes:
+
+- All `phi` namespaces are now replaced with `agno` to reflect the updated structure.
+- Submodules and classes have been renamed to better represent their functionality and context.
+
+## Interface Changes
+
+### Module and Namespace Updates
+- **Models**:
+  - `phi.model.x` ➔ `agno.models.x`
+    - All model classes now reside under the `agno.models` namespace, consolidating related functionality in a single location.
+- **Knowledge Bases**:
+  - `phi.knowledge_base.x` ➔ `agno.knowledge.x`
+    - Knowledge bases have been restructured for better organization under `agno.knowledge`.
+- **Document Readers**:
+  - `phi.document.reader.xxx` ➔ `agno.document.reader.xxx_reader`
+    - Document readers now include a `_reader` suffix for clarity and consistency.
+- **Toolkits**:
+  - All Agno toolkits now have a `Tools` suffix. For example, `DuckDuckGo` ➔ `DuckDuckGoTools`.
+    - This change standardizes the naming of tools, making their purpose more explicit.
+
+### Multi-Modal Interface Updates
+The multi-modal interface now uses specific types for different media inputs and outputs:
+
+#### Inputs
+- **Images**:
+  ```python
+  class Image(BaseModel):
+      url: Optional[str] = None  # Remote location for image
+      filepath: Optional[Union[Path, str]] = None  # Absolute local location for image
+      content: Optional[Any] = None  # Actual image bytes content
+      detail: Optional[str] = None # Low, medium, high, or auto
+      id: Optional[str] = None
+  ```
+  - Images are now represented by a dedicated `Image` class, providing additional metadata and control over image handling.
+
+- **Audio**:
+  ```python
+  class Audio(BaseModel):
+      filepath: Optional[Union[Path, str]] = None  # Absolute local location for audio
+      content: Optional[Any] = None  # Actual audio bytes content
+      format: Optional[str] = None
+  ```
+  - Audio files are handled through the `Audio` class, allowing specification of content and format.
+
+- **Video**:
+  ```python
+  class Video(BaseModel):
+      filepath: Optional[Union[Path, str]] = None  # Absolute local location for video
+      content: Optional[Any] = None  # Actual video bytes content
+  ```
+  - Videos have their own `Video` class, enabling better handling of video data.
+
+#### Outputs
+- `RunResponse` now includes updated artifact types:
+  - `RunResponse.images` is a list of type `ImageArtifact`:
+    ```python
+    class ImageArtifact(Media):
+        id: str
+        url: str  # Remote location for file
+        alt_text: Optional[str] = None
+    ```
+
+  - `RunResponse.audio` is a list of type `AudioArtifact`:
+    ```python
+    class AudioArtifact(Media):
+        id: str
+        url: Optional[str] = None  # Remote location for file
+        base64_audio: Optional[str] = None  # Base64-encoded audio data
+        length: Optional[str] = None
+        mime_type: Optional[str] = None
+    ```
+
+  - `RunResponse.videos` is a list of type `VideoArtifact`:
+    ```python
+    class VideoArtifact(Media):
+        id: str
+        url: str  # Remote location for file
+        eta: Optional[str] = None
+        length: Optional[str] = None
+    ```
+
+  - `RunResponse.response_audio` is of type `AudioOutput`:
+    ```python
+    class AudioOutput(BaseModel):
+        id: str
+        content: str  # Base64 encoded
+        expires_at: int
+        transcript: str
+    ```
+    - This response audio corresponds to the model's response in audio format.
+
+### Model Name Changes
+- `Hermes` ➔ `OllamaHermes`
+- `AzureOpenAIChat` ➔ `AzureOpenAI`
+- `CohereChat` ➔ `Cohere`
+- `DeepSeekChat` ➔ `DeepSeek`
+- `GeminiOpenAIChat` ➔ `GeminiOpenAI`
+- `HuggingFaceChat` ➔ `HuggingFace`
+
+For example:
+```python
+from agno.agent import Agent
+from agno.models.ollama.hermes import OllamaHermes
+
+agent = Agent(
+    model=OllamaHermes(id="hermes3"),
+    description="Share 15 minute healthy recipes.",
+    markdown=True,
+)
+agent.print_response("Share a breakfast recipe.")
+```
+
+
+### Storage Class Updates
+- **Agent Storage**:
+  - `PgAgentStorage` ➔ `PostgresDbAgentStorage`
+  - `SqlAgentStorage` ➔ `SqliteDbAgentStorage`
+  - `MongoAgentStorage` ➔ `MongoDbAgentStorage`
+  - `S2AgentStorage` ➔ `SingleStoreDbAgentStorage`
+- **Workflow Storage**:
+  - `SqlWorkflowStorage` ➔ `SqliteDbWorkflowStorage`
+  - `PgWorkflowStorage` ➔ `PostgresDbWorkflowStorage`
+  - `MongoWorkflowStorage` ➔ `MongoDbWorkflowStorage`
+
+### Knowledge Base Updates
+- `phi.knowledge.pdf.PDFUrlKnowledgeBase` ➔ `agno.knowledge.pdf_url.PDFUrlKnowledgeBase`
+- `phi.knowledge.csv.CSVUrlKnowledgeBase` ➔ `agno.knowledge.csv_url.CSVUrlKnowledgeBase`
+
+### Embedders updates
+Embedders now all take id instead of model as a parameter. For example:
+- `OllamaEmbedder(model="llama3.2")` -> `OllamaEmbedder(id="llama3.2")`
+
+### Reader Updates
+- `phi.document.reader.arxiv` ➔ `agno.document.reader.arxiv_reader`
+- `phi.document.reader.docx` ➔ `agno.document.reader.docx_reader`
+- `phi.document.reader.json` ➔ `agno.document.reader.json_reader`
+- `phi.document.reader.pdf` ➔ `agno.document.reader.pdf_reader`
+- `phi.document.reader.s3.pdf` ➔ `agno.document.reader.s3.pdf_reader`
+- `phi.document.reader.s3.text` ➔ `agno.document.reader.s3.text_reader`
+- `phi.document.reader.text` ➔ `agno.document.reader.text_reader`
+- `phi.document.reader.website` ➔ `agno.document.reader.website_reader`
+
+---
+
+Follow the steps above to ensure your codebase is compatible with the latest version of Agno AI. If you encounter any issues, don't hesitate to contact us on [Discourse](https://community.phidata.com/) or [Discord](https://discord.gg/4MtYHHrgA8).
+

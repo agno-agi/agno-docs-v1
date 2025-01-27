@@ -8,7 +8,7 @@ Workflows are deterministic, stateful, multi-agent programs that are built for p
 - **Pure python**: Control the agent process using standard python. Having built 100s of AI products, no framework will give you the flexibility of pure-python.
 - **Built-in state management and caching**: Store state and cache intermediate results in a database, enabling your agents to re-use results from previous executions.
 
-How to build a workflow:
+### How to build a workflow:
 1. Define your workflow as a class by inheriting from the `Workflow` class.
 2. Add one or more agents to the workflow.
 3. Implement your logic in the `run()` method.
@@ -28,7 +28,6 @@ from agno.workflow import Workflow
 
 class BlogPostGenerator(Workflow):
     pass
-
 ```
 
 2. Add one or more agents to the workflow.
@@ -79,16 +78,13 @@ from agno.workflow import Workflow
 from agno.tools.duckduckgo import DuckDuckGo
 from agno.utils.log import logger
 
-
 class NewsArticle(BaseModel):
     title: str = Field(..., description="Title of the article.")
     url: str = Field(..., description="Link to the article.")
     summary: Optional[str] = Field(..., description="Summary of the article if available.")
 
-
 class SearchResults(BaseModel):
     articles: list[NewsArticle]
-
 
 class BlogPostGenerator(Workflow):
     # Define an Agent that will search the web for a topic
@@ -167,7 +163,6 @@ class BlogPostGenerator(Workflow):
         writer_input = {"topic": topic, "articles": [v.model_dump() for v in search_results.articles]}
         # Run the writer and yield the response
         yield from self.writer.run(json.dumps(writer_input, indent=4), stream=True)
-
 ```
 
 4. Add [caching](/workflows/session_state) to the workflow where needed.
@@ -184,16 +179,13 @@ from agno.workflow import Workflow
 from agno.tools.duckduckgo import DuckDuckGo
 from agno.utils.log import logger
 
-
 class NewsArticle(BaseModel):
     title: str = Field(..., description="Title of the article.")
     url: str = Field(..., description="Link to the article.")
     summary: Optional[str] = Field(..., description="Summary of the article if available.")
 
-
 class SearchResults(BaseModel):
     articles: list[NewsArticle]
-
 
 class BlogPostGenerator(Workflow):
     # Define an Agent that will search the web for a topic
@@ -312,16 +304,13 @@ from agno.tools.duckduckgo import DuckDuckGo
 from agno.utils.pprint import pprint_run_response
 from agno.utils.log import logger
 
-
 class NewsArticle(BaseModel):
     title: str = Field(..., description="Title of the article.")
     url: str = Field(..., description="Link to the article.")
     summary: Optional[str] = Field(..., description="Summary of the article if available.")
 
-
 class SearchResults(BaseModel):
     articles: list[NewsArticle]
-
 
 class BlogPostGenerator(Workflow):
     # Define an Agent that will search the web for a topic
@@ -481,6 +470,5 @@ python blog_post_generator.py
   src="/images/BlogPostGenerator.gif"
   style={{ borderRadius: '8px' }}
 />
-
 
 Checkout more examples in the [examples](/examples/use-cases/advanced) section.

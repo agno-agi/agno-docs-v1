@@ -1,0 +1,52 @@
+---
+title: Calculator
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/calculator_tools.py
+from agno.agent import Agent
+from agno.tools.calculator import CalculatorTools
+
+agent = Agent(
+    tools=[
+        CalculatorTools(
+            add=True,
+            subtract=True,
+            multiply=True,
+            divide=True,
+            exponentiate=True,
+            factorial=True,
+            is_prime=True,
+            square_root=True,
+        )
+    ],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("What is 10*5 then to the power of 2, do it step by step")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/calculator_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/calculator_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

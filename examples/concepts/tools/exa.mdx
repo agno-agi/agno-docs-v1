@@ -1,0 +1,46 @@
+---
+title: Exa Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/exa_tools.py
+from agno.agent import Agent
+from agno.tools.exa import ExaTools
+
+agent = Agent(
+    tools=[ExaTools(include_domains=["cnbc.com", "reuters.com", "bloomberg.com"])],
+    show_tool_calls=True,
+)
+agent.print_response("Search for AAPL news", markdown=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export EXA_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U exa-py agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/exa_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/exa_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

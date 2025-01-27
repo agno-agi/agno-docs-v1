@@ -1,0 +1,49 @@
+---
+title: Zendesk Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/zendesk_tools.py
+from agno.agent import Agent
+from agno.tools.zendesk import ZendeskTools
+
+agent = Agent(
+    tools=[ZendeskTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Show me all open tickets")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your Zendesk credentials">
+    ```bash
+    export ZENDESK_EMAIL=xxx
+    export ZENDESK_TOKEN=xxx
+    export ZENDESK_SUBDOMAIN=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U zenpy agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/zendesk_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/zendesk_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

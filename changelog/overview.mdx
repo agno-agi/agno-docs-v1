@@ -2,225 +2,143 @@
 title: "Product updates"
 mode: "wide"
 ---
-<Update label="2024-12-30" description="v2.7.6">
-## Extending Vector database support
-This update adds new vector database integrations, improvements to DuckDuckGo tool and Gemini model and new cookbooks.
-
-
-### New Features:
-- **Cassandra Integration as a Vector Database**: Introduced support for Apache Cassandra as a Vector Database, leveraging CassIO for vector storage and retrieval.
-- **ClickHouse as a Vector Database**: Added support for ClickHouse as a Vector Database.
-
-### Improvements
-- **DuckDuckGo Modifier**: Added a `modifier` parameter to the DuckDuckGo tool, allowing users to refine searches with site-specific queries, file type filters, and safe search toggles.
-- **Enhanced Error Handling for python-docx**: Improved error messaging for scenarios where the `python-docx` library is not installed, providing clearer guidance and smoother debugging.
-
-### Bug Fixes
-- **Qdrant Default Embedder**: Removed OpenAI as the default embedder for Qdrant, enabling user-configurable embeddings.
-- **Gemini Import Fix**: Fixed an issue where missing OpenAI library dependencies caused errors when using Gemini.
-</Update>
-
-<Update label="2024-12-20" description="v2.7.5">
-## Confluence Tool & Fixes
-This update introduces the Confluence tool for collaboration, improves tool compatibility, and resolves deep copy issues for Ollama chat agents.
-
-
-### New Features
-- **Confluence Tool**: Added a new tool using the Atlassian Confluence SDK, enabling operations such as listing pages in a space, creating and updating pages, retrieving page content by title, and getting space details.
-
-### Improvements
-- **Tool Compatibility**: Enhanced older custom functions with manually specified descriptions and parameters to align with the updated tool-building system.
-
-### Bug Fixes
-- **Deep Copy for Ollama Chat Agents**: Addressed an issue where manually set clients caused errors during agent model copying, ensuring all properties are properly handled.
-
-</Update>
-
-<Update label="2024-12-18" description="v2.7.4">
-## Audio Support and Enhancements
-This release enhances multimodal capabilities with audio support, improves session page performance, and fixes various bugs for better stability and usability.
-
-<img height="200" src="/images/changelogs/release-2-7-4.png" />
-
-### New Features
-
-- **Audio Response Support**: Added support for audio responses, enhancing multimodal interaction capabilities.
-- **Audio Generation Tools**: Integrated Eleven Labs for Audio Generation.
-- **Cohere Embedder**: Introduced a new Cohere Embedder class with a corresponding cookbook example to demonstrate its usage.
-- **File Agent Storage Support**: Added JSON and YAML as storage options for agent session data.
-
-### Improvements
-
-- **Version Checker for OpenAI**: Added a warning for users with OpenAI versions below 1.52.0 to ensure compatibility with features like `audio` in `ChatCompletionMessage`.
-- **Agent Response Handling**: Enhanced processing of agent responses to support lists, improving handling of multi-item outputs.
-
-### Bug Fixes
-
-- **AWS Bedrock Tool Descriptions**: Fixed an issue where the transfer tool description was missing, causing incompatibility with AWS Bedrock Claude.
-- **Response Content Handling**: Resolved crashes on the session page caused by non-string response content.
-- **Deep Copy Agent Memory**: Addressed deep copy errors when using agent memory on the playground.
-- **Session Page Enhancements**: Fixed the refresh button.
-- **Fix Tool Parsing for Ollama**: Fixed JSON schema tool parsing by transforming `['string', 'null']` parameters to `'string'` for compatibility.
-- **Response Parsing for Gemini Tool**: Improved response parsing to handle unserializable objects in `tool_calls` for Gemini on the playground.
-- **Memory Handling for Google Provider**: Fixed an issue in `monitoring_data` where memory was removed for all providers, causing blank titles on app.agno.com; now only modifies memory for Google provider.
-- **RecursiveChunking ID Conflict**: Resolved an issue in RecursiveChunking where processing large files with multiple chunks caused duplicate chunk record IDs, leading to `psycopg.errors.UniqueViolation`.
-
-</Update>
-
-<Update label="2024-12-16" description="v2.7.3">
-## Multi-Modal Tools
-This update introduces new multimodal tools, enhances the multimodal capabilities of existing models, and includes several quality-of-life improvements.
-
-## New Features
-
-- **Giphy Tool**: Added Giphy integration to enhance creative collaboration.
-- **Native image upload support for Claude**: Added native support for uploading images natively to the Anthropic API.
-- **Youtube Knowledge base**: Added support for new YouTube knowledge base, allowing it to be loaded directly using YouTube video links.
-
-## Improvements
-
-- **API key validation**: Added API key validation for model classes.
-- **Gemini audio**: Improved native audio upload support for Gemini Model.
-- **YoutubeTools**: A new Youtube tool which allows generation of timestamps
-- **Workspace Configuration Flexibility**: Refactored type-checking logic using `isinstance()` to enhance flexibility and maintainability.
-- **Web Crawler Stability**: Switched to crawl4ai async to resolve issues and improve performance.
-- **Memory Optimization**: Improved memory usage in large-scale workflows for better efficiency.
-- **User Interface**: Refined the UI for better tracking of team activities.
-
-## Bug Fixes
-
-- **Role-Based Access Control Bugs**: Resolved issues affecting access permissions.
-- **Gemini Functions**: Fixed errors when functions had no specified parameters.
-
-</Update>
-
-<Update label="2024-12-12" description="v2.7.2">
-## Gemini Improvements
-
-### Improvements
-
-- Improvements to Gemini Multimodality.
-
-</Update>
-
-<Update label="2024-12-12" description="v2.7.1">
-## Gemini 2 Update
-
-<img height="200" src="/images/changelogs/release-2-7-1.png" />
-
-### New Features
-
-- **Gemini Multimodal Support**: Added support for multimodal (image, video, text) input processing with Gemini.
-- **Mem0 Integration Example**: Introduced a cookbook example demonstrating Mem0 integration for Agent memory.
-- **CSV URL Knowledgebase**: Added functionality to create and manage knowledgebases from CSV URLs.
-
-### Improvements
-
-- **Vertex AI Gemini 2 Update**: The Vertex AI class has been updated to support the Gemini 2 model.
-
-### Bug Fixes
-
-- **Structured Output Fix**: Resolved issues with Ollama structured output to ensure consistent data formatting.
-
-</Update>
-
-<Update label="2024-12-12" description="v2.7.0">
-## From Text to Media: A Multi-Modal Leap
-This update introduces image and video multi-modal support for the agent playground and adds image and video generation tools like FAL, replicate, and ModelLabs.
-
-<img height="200" src="/images/changelogs/release-2-7.png" />
-
-### Highlights
-
-- **Support for video**: Agents now natively support video.
-- **Multi-Modal rendering on Agent Playground**: Agent Playground can now render images and videos.
-
-### New Features
-
-- **New Tools**: Added Replicate, FAL, and ModelLabs tools to generate video and images.
-
-### Improvements
-
-- Various cookbook examples were added to cover real-world agent use cases.
-
-</Update>
-
-<Update label="2024-12-06" description="v2.6.0">
-## Enhanced Agent Visibility, RAG Improvements, and Workflow Tools
-This update introduces exciting new features, performance enhancements, and crucial fixes to ensure better usability and functionality.
-
-### Highlights
-
-- **Multimodal Agents**: Agents now natively support image and audio with video coming soon.
-- **Agentic Workflows are now generally available**: Build deterministic multi-agent pipelines using Workflows.
-- **Agent can share state between tool calls**: New session_state variable allows Agents to maintain and share state across function calls.
-- **Agents in teams can respond directly to the user**: now responses of team members do not need to go through the team leader.
-- **Context Injection**: Agents can be provided context that is resolved in real-time during execution.
-- **Human-in-the-loop**: Tool calls can now be confirmed (or approved) before being executed.
-- **Advanced chunking**: Support for Semantic and Agentic chunking (and more).
-
-### New Features
-
-- **Show Reasoning in the Playground**: Provides users with insights into the agent's thought process and decision-making, offering a behind-the-scenes look at how the agent operates within the Playground.
-- **Show Tool Call in the Playground**: Display tool call results and metrics on hover within the Playground.
-- **Sessions Page Enhancements**: Added context, reasoning, and tools integration to the Sessions page.
-- **Delete Custom Endpoint for Playground**: Introduced the ability to delete endpoints directly within the Playground.
-- **Show References in the Playground**: You can now view the sources used for RAG.
-- **Chunking Strategies in RAG**: Introduced five levels of chunking strategies in RAG: Semantic Chunking, Fixed Chunking, Agentic Chunking, Document Chunking, and Recursive Chunking.
-- **Unified Reranker for Vector Databases**: Implemented a unified reranking feature across various vector databases, including LanceDB, with support for CohereReranker.
-- **Milvus Vector Database Integration**: Added support for Milvus as a vector database option.
-- **Support for Multi-Modalities**: Added support for processing audio, video, and image data to enhance agent capabilities.
-- **Context Injection**: Improved context handling to enhance agent responses and usability.
-- **Pre-hook and post-hook for function calls**: enabling users to validate arguments, add human-in-the-loop flows and validate results of tool calls.
-
-### Improvements
-
-- **Duplicate Endpoint Prevention**: Enhanced endpoint creation logic to prevent duplicates.
-- **Workflow Session Logging**: Improved logging mechanisms for workflow sessions.
-- **Ollama Tool Call Streaming**: Updated the Ollama tool to improve call streaming capabilities.
-- **Logging Updates for Gemini**: Enhanced logging functionality for Gemini models.
-- **Ollama LLM Class Updates**: Resolved issues in tool calling to improve usage reliability.
-- **Product Manager Agent Workflow Example**: Added a new example to demonstrate the practical use and capabilities of workflow.
-- **Dynamic Prompt**: System prompt, user prompt and instructions can now be passed as functions resolved during run-time.
-
-### Bug Fixes
-
-- **Session Read-All Fix**: Fixed an issue where titles were not created when users provided a list of messages instead of a single message.
-- **Ollama Tool Response Issue**: Addressed inconsistencies where Ollama tools always returned empty responses.
-
-### Breaking Changes
-
-- **`Agent.add_context` is now `Agent.add_references`** as the context terminology is now used for context injection. Similarly, `context_format` is now `references_format`.
-
-</Update>
-
-<Update label="2024-12-03" description="v2.5.34">
-
-## New Integrations
-
-This update is packed with new integrations, significant improvements to existing tools, and crucial fixes to enhance functionality and user experience.
-
-### New Features
-
-- **InternLM Support**: Added feature request integration for InternLM25.
-- **Google Vertex AI Integration**: Expanded compatibility with Google Model Vertex AI.
-- **Discord Integration Tool**: Seamlessly connect and collaborate within Discord.
-- **Baidu Search Tool**: Introducing Baidu Search integration for enhanced search capabilities in Agno workflows.
-
-### Improvements
-
-- **Agent Monitoring Sync**: Optimized synchronization between Reasoning Agent and Main Agent
-- **Knowledge Cookbooks**: Improved usability with enhanced S3, embedder, and document cookbooks; added an example using LanceDB as a vector database.
-- **License Clarifications**: Updated license for better transparency and understanding.
-- **Default Model Adjustments**: Refined the default model example for OpenAI; new guidance to avoid errors when changing models.
-- **Qwen2.5 Coding Agent**: Performance enhancements and stability improvements.
-- **Installation Improvements**: Added support for "psycopg[binary]" in installation commands
-
-### Bug Fixes
-
-- **Agno Tool Templates**: Integrated new templates and added a comprehensive cookbook.
-- **Knowledge Base Cookbooks**: Addressed inconsistencies for a seamless experience.
-- **Context Creation**: Fixed an issue where empty contexts couldn't be created without a knowledge base.
-- **Ollama Knowledge Example**: Resolved errors for improved functionality and reliability.
+<Update label="2025-01-29" description="v3.0.0">
+This is the major refactor from `phidata` to `agno`, released with the official launch of Agno AI.
+
+See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
+
+## Interface Changes:
+
+- `phi.model.x` → `agno.models.x`
+- `phi.knowledge_base.x` → `agno.knowledge.x` (applies to all knowledge bases)
+- `phi.document.reader.xxx` → `agno.document.reader.xxx_reader` (applies to all document readers)
+- All Agno toolkits are now suffixed with `Tools`. E.g. `DuckDuckGo` → `DuckDuckGoTools`
+- Multi-modal interface updates:
+    - `agent.run(images=[])` and `agent.print_response(images=[])` is now of type `Image`
+
+        ```python
+        class Image(BaseModel):
+            url: Optional[str] = None  # Remote location for image
+            filepath: Optional[Union[Path, str]] = None  # Absolute local location for image
+            content: Optional[Any] = None  # Actual image bytes content
+            detail: Optional[str] = None # low, medium, high or auto (per OpenAI spec https://platform.openai.com/docs/guides/vision?lang=node#low-or-high-fidelity-image-understanding)
+            id: Optional[str] = None
+        ```
+
+    - `agent.run(audio=[])` and `agent.print_response(audio=[])` is now of type `Audio`
+
+        ```python
+        class Audio(BaseModel):
+            filepath: Optional[Union[Path, str]] = None  # Absolute local location for audio
+            content: Optional[Any] = None  # Actual audio bytes content
+            format: Optional[str] = None
+        ```
+
+    - `agent.run(video=[])` and `agent.print_response(video=[])` is now of type `Video`
+
+        ```python
+        class Video(BaseModel):
+            filepath: Optional[Union[Path, str]] = None  # Absolute local location for video
+            content: Optional[Any] = None  # Actual video bytes content
+        ```
+
+    - `RunResponse.images` is now a list of type `ImageArtifact`
+
+        ```python
+        class ImageArtifact(Media):
+            id: str
+            url: str  # Remote location for file
+            alt_text: Optional[str] = None
+        ```
+
+    - `RunResponse.audio` is now a list of type `AudioArtifact`
+
+        ```python
+        class AudioArtifact(Media):
+            id: str
+            url: Optional[str] = None  # Remote location for file
+            base64_audio: Optional[str] = None  # Base64-encoded audio data
+            length: Optional[str] = None
+            mime_type: Optional[str] = None
+        ```
+
+    - `RunResponse.videos` is now a list of type `VideoArtifact`
+
+        ```python
+        class VideoArtifact(Media):
+            id: str
+            url: str  # Remote location for file
+            eta: Optional[str] = None
+            length: Optional[str] = None
+        ```
+
+    - `RunResponse.response_audio` is now of type `AudioOutput`
+
+        ```python
+        class AudioOutput(BaseModel):
+            id: str
+            content: str  # Base64 encoded
+            expires_at: int
+            transcript: str
+        ```
+
+- Models:
+    - `Hermes` → `OllamaHermes`
+    - `AzureOpenAIChat` → `AzureOpenAI`
+    - `CohereChat` → `Cohere`
+    - `DeepSeekChat` → `DeepSeek`
+    - `GeminiOpenAIChat` → `GeminiOpenAI`
+    - `HuggingFaceChat` → `HuggingFace`
+- Embedders now all take `id` instead of `model` as a parameter. For example
+
+  ```python
+  db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+  knowledge_base = PDFUrlKnowledgeBase(
+      urls=["https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+      vector_db=PgVector(
+          table_name="recipes",
+          db_url=db_url,
+          embedder=OllamaEmbedder(id="llama3.2", dimensions=3072),
+      ),
+  )
+  knowledge_base.load(recreate=True)
+  ```
+- Agent Storage class
+    - `PgAgentStorage` → `PostgresDbAgentStorage`
+    - `SqlAgentStorage` → `SqliteDbAgentStorage`
+    - `MongoAgentStorage` → `MongoDbAgentStorage`
+    - `S2AgentStorage` → `SingleStoreDbAgentStorage`
+- Workflow Storage class
+    - `SqlWorkflowStorage` → `SqliteDbWorkflowStorage`
+    - `PgWorkflowStorage` → `PostgresDbWorkflowStorage`
+    - `MongoWorkflowStorage` → `MongoDbWorkflowStorage`
+- Knowledge Base
+    - `phi.knowledge.pdf.PDFUrlKnowledgeBase` → `agno.knowledge.pdf_url.PDFUrlKnowledgeBase`
+    - `phi.knowledge.csv.CSVUrlKnowledgeBase` → `agno.knowledge.csv_url.CSVUrlKnowledgeBase`
+- Readers
+    - `phi.document.reader.arxiv` → `agno.document.reader.arxiv_reader`
+    - `phi.document.reader.docx` → `agno.document.reader.docx_reader`
+    - `phi.document.reader.json` → `agno.document.reader.json_reader`
+    - `phi.document.reader.pdf` → `agno.document.reader.pdf_reader`
+    - `phi.document.reader.s3.pdf` → `agno.document.reader.s3.pdf_reader`
+    - `phi.document.reader.s3.text` → `agno.document.reader.s3.text_reader`
+    - `phi.document.reader.text` → `agno.document.reader.text_reader`
+    - `phi.document.reader.website` → `agno.document.reader.website_reader`
+
+## Improvements:
+
+- **Dataclasses** - Changed various instances of Pydantic models to dataclasses to improve the speed.
+- Moved `Embedder` class from pydantic to data class
+
+## Removals
+
+- Removed all references to `Assistant`
+- Removed all references to `llm`
+- Removed the `PhiTools` tool
+
+## Bug Fixes:
+
+- Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param
 
 </Update>

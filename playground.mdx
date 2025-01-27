@@ -33,10 +33,7 @@ web_agent = Agent(
     name="Web Agent",
     model=OpenAIChat(id="gpt-4o"),
     tools=[DuckDuckGoTools()],
-    instructions=[
-        "Break down the users request into 2-3 different searches.",
-        "Always include sources",
-    ],
+    instructions=["Always include sources"],
     # Store the agent sessions in a sqlite database
     storage=SqliteAgentStorage(table_name="web_agent", db_file=agent_storage),
     # Adds the current date and time to the instructions
@@ -69,15 +66,19 @@ if __name__ == "__main__":
 
 <Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
 
-## Authenticate with agno
+## Authenticate with Agno
 
 Authenticate with agno.com so your local application can let agno know that you are running a playground application. Run:
+
+<Note>
+No data is sent to agno.com, only that you're running a playground application at port 7777.
+</Note>
 
 ```shell
 ag setup
 ```
 
-or export your `AGNO_API_KEY` from [app.agno.com](https://www.app.agno.com)
+[or] export your `AGNO_API_KEY` from [app.agno.com](https://www.app.agno.com)
 
 <CodeGroup>
 ```bash Mac

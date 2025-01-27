@@ -1,0 +1,49 @@
+---
+title: Agent with Tools
+---
+
+## Code
+
+```python cookbook/models/google/gemini/tool_use.py
+from agno.agent import Agent
+from agno.models.google import Gemini
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    model=Gemini(id="gemini-2.0-flash-exp"),
+    tools=[DuckDuckGoTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Whats happening in France?", stream=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export GOOGLE_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U google-generativeai duckduckgo-search agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/google/gemini/tool_use.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/google/gemini/tool_use.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

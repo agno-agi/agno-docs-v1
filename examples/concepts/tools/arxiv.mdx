@@ -1,0 +1,37 @@
+---
+title: ArXiv Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/arxiv_tools.py
+from agno.agent import Agent
+from agno.tools.arxiv_toolkit import ArxivTools
+
+agent = Agent(tools=[ArxivTools()], show_tool_calls=True)
+agent.print_response("Search arxiv for 'language models'", markdown=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U arxiv agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/arxiv_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/arxiv_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

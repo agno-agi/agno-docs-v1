@@ -1,0 +1,41 @@
+---
+title: File Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/file_tools.py
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.tools.file import FileTools
+
+agent = Agent(tools=[FileTools(Path("tmp/file"))], show_tool_calls=True)
+agent.print_response(
+    "What is the most advanced LLM currently? Save the answer to a file.", markdown=True
+)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/file_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/file_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

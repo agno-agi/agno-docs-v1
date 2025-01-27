@@ -5,10 +5,9 @@ sidebarTitle: Postgres
 
 Agno supports using PostgreSQL as a storage backend for Workflows using the `PostgresWorkflowStorage` class.
 
-
 ## Usage
 
-## Run PgVector
+### Run PgVector
 
 Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) and run **PgVector** on port **5532** using:
 
@@ -36,7 +35,6 @@ from agno.storage.workflow.postgres import PostgresWorkflowStorage
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
-
 
 class HackerNewsReporter(Workflow):
     description: str = (
@@ -104,7 +102,6 @@ class HackerNewsReporter(Workflow):
 
         logger.info("Reading each story and writing a report.")
         yield from self.writer.run(top_stories.content, stream=True)
-
 
 # Run workflow
 report: Iterator[RunResponse] = HackerNewsReporter(

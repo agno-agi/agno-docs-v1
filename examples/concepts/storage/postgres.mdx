@@ -1,0 +1,51 @@
+---
+title: PostgreSQL Storage
+---
+
+## Code
+
+```python cookbook/agent_concepts/storage/postgres_storage.py
+from agno.agent import Agent
+from agno.storage.agent.postgres import PostgresAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+agent = Agent(
+    storage=PostgresAgentStorage(table_name="agent_sessions", db_url=db_url),
+    tools=[DuckDuckGoTools()],
+    add_history_to_messages=True,
+)
+agent.print_response("How many people live in Canada?")
+agent.print_response("What is their national anthem called?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U duckduckgo-search sqlalchemy psycopg openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/storage/postgres_storage.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/storage/postgres_storage.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

@@ -1,0 +1,57 @@
+---
+title: Basic Agent
+---
+
+## Code
+
+```python cookbook/models/mistral/basic.py
+from agno.agent import Agent, RunResponse  # noqa
+from agno.models.mistral import MistralChat
+
+mistral_api_key = os.getenv("MISTRAL_API_KEY")
+
+agent = Agent(
+    model=MistralChat(
+        id="mistral-large-latest",
+        api_key=mistral_api_key,
+    ),
+    markdown=True,
+)
+
+# Get the response in a variable
+# run: RunResponse = agent.run("Share a 2 sentence horror story")
+# print(run.content)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export MISTRAL_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U mistralai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/mistral/basic.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/mistral/basic.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

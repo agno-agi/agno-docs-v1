@@ -1,0 +1,41 @@
+---
+title: Hacker News Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/hackernews_tools.py
+from agno.agent import Agent
+from agno.tools.hackernews import HackerNewsTools
+
+agent = Agent(
+    tools=[HackerNewsTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("What are the top stories on Hacker News right now?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U requests agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/hackernews_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/hackernews_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

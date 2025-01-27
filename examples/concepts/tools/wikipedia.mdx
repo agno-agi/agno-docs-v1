@@ -1,0 +1,41 @@
+---
+title: Wikipedia Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/wikipedia_tools.py
+from agno.agent import Agent
+from agno.tools.wikipedia import WikipediaTools
+
+agent = Agent(
+    tools=[WikipediaTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Search Wikipedia for information about artificial intelligence")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U wikipedia agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/wikipedia_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/wikipedia_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

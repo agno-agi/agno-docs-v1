@@ -13,9 +13,9 @@ Now your Toolkit is ready to use with an Agent. For example:
 ```python shell_toolkit.py
 from typing import List
 
+from agno.agent import Agent
 from agno.tools import Toolkit
 from agno.utils.log import logger
-
 
 class ShellTools(Toolkit):
     def __init__(self):
@@ -46,4 +46,7 @@ class ShellTools(Toolkit):
         except Exception as e:
             logger.warning(f"Failed to run shell command: {e}")
             return f"Error: {e}"
+
+agent = Agent(tools=[ShellTools()], show_tool_calls=True, markdown=True)
+agent.print_response("List all the files in my home directory.")
 ```

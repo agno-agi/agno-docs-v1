@@ -1,0 +1,49 @@
+---
+title: JSON Storage
+---
+
+## Code
+
+```python cookbook/agent_concepts/storage/json_storage.py
+from agno.agent import Agent
+from agno.storage.agent.json import JsonAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    storage=JsonAgentStorage(dir_path="tmp/agent_sessions_json"),
+    tools=[DuckDuckGoTools()],
+    add_history_to_messages=True,
+)
+agent.print_response("How many people live in Canada?")
+agent.print_response("What is their national anthem called?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U duckduckgo-search openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/storage/json_storage.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/storage/json_storage.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

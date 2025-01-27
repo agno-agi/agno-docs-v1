@@ -1,0 +1,47 @@
+---
+title: Resend Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/resend_tools.py
+from agno.agent import Agent
+from agno.tools.resend import ResendTools
+
+agent = Agent(
+    tools=[ResendTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Send an email to test@example.com with the subject 'Test Email'")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export RESEND_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U resend agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/resend_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/resend_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

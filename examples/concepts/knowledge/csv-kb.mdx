@@ -1,0 +1,73 @@
+---
+title: CSV Knowledge Base
+---
+
+## Code
+
+```python
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.knowledge.csv import CSVKnowledgeBase
+from agno.vectordb.pgvector import PgVector
+
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+knowledge_base = CSVKnowledgeBase(
+    path=Path("data/csvs"),
+    vector_db=PgVector(
+        table_name="csv_documents",
+        db_url=db_url,
+    ),
+    num_documents=5,  # Number of documents to return on search
+)
+# Load the knowledge base
+knowledge_base.load(recreate=False)
+
+# Initialize the Agent with the knowledge_base
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+)
+
+# Use the agent
+agent.print_response("Ask me about something from the knowledge base", markdown=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U sqlalchemy 'psycopg[binary]' pgvector agno
+    ```
+  </Step>
+
+  <Step title="Run PgVector">
+    ```bash
+    docker run -d \
+      -e POSTGRES_DB=ai \
+      -e POSTGRES_USER=ai \
+      -e POSTGRES_PASSWORD=ai \
+      -e PGDATA=/var/lib/postgresql/data/pgdata \
+      -v pgvolume:/var/lib/postgresql/data \
+      -p 5532:5432 \
+      --name pgvector \
+      agnohq/pgvector:16
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/knowledge/csv_kb.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/knowledge/csv_kb.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
