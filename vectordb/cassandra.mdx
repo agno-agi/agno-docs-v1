@@ -4,10 +4,13 @@ sidebarTitle: CassandraDb
 ---
 
 ## Setup
+
 Install cassandra packages
+
 ```shell
 pip install cassandra-driver
 ```
+
 Run cassandra
 
 ```shell
@@ -17,13 +20,12 @@ docker run -d \
 cassandra:latest
 ```
 
-
 ## Example
+
 ```python agent_with_knowledge.py
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.cassandra.cassandra import CassandraDb
-import os
 
 from agno.embedder.mistral import MistralEmbedder
 from agno.models.mistral import MistralChat
@@ -59,3 +61,7 @@ agent.print_response(
 )
 
 ```
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/cassandra_db.py)

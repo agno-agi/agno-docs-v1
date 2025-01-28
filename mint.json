@@ -40,12 +40,12 @@
 		},
 		{
 			"name": "Community",
-			"url": "https://community.phidata.com/"
+			"url": "https://community.agno.com/"
 		}
 	],
 	"topbarCtaButton": {
 		"type": "github",
-		"url": "https://github.com/phidatahq/phidata"
+		"url": "https://github.com/agno-agi/agno"
 	},
 	"primaryTab": {
 		"name": "User Guide"
@@ -536,34 +536,6 @@
 			"group": "Models",
 			"pages": [
 				{
-					"group": "OpenAI",
-					"pages": [
-						"examples/models/openai/basic",
-						"examples/models/openai/basic_stream",
-						"examples/models/openai/tool_use",
-						"examples/models/openai/structured_output",
-						"examples/models/openai/storage",
-						"examples/models/openai/knowledge",
-						"examples/models/openai/image_agent",
-						"examples/models/openai/audio_input_agent",
-						"examples/models/openai/audio_output_agent",
-						"examples/models/openai/generate_images"
-					]
-				},
-				{
-					"group": "Ollama",
-					"pages": [
-						"examples/models/ollama/basic",
-						"examples/models/ollama/basic_stream",
-						"examples/models/ollama/tool_use",
-						"examples/models/ollama/structured_output",
-						"examples/models/ollama/storage",
-						"examples/models/ollama/knowledge",
-						"examples/models/ollama/image_agent",
-						"examples/models/ollama/set_client"
-					]
-				},
-				{
 					"group": "Anthropic",
 					"pages": [
 						"examples/models/anthropic/basic",
@@ -573,6 +545,28 @@
 						"examples/models/anthropic/storage",
 						"examples/models/anthropic/knowledge",
 						"examples/models/anthropic/image_agent"
+					]
+				},
+				{
+					"group": "AWS Bedrock Claude",
+					"pages": [
+						"examples/models/aws/bedrock-claude/basic",
+						"examples/models/aws/bedrock-claude/basic_stream",
+						"examples/models/aws/bedrock-claude/tool_use",
+						"examples/models/aws/bedrock-claude/structured_output",
+						"examples/models/aws/bedrock-claude/storage",
+						"examples/models/aws/bedrock-claude/knowledge"
+					]
+				},
+				{
+					"group": "Azure OpenAI",
+					"pages": [
+						"examples/models/azure/openai/basic",
+						"examples/models/azure/openai/basic_stream",
+						"examples/models/azure/openai/knowledge",
+						"examples/models/azure/openai/storage",
+						"examples/models/azure/openai/structured_output",
+						"examples/models/azure/openai/tool_use"
 					]
 				},
 				{
@@ -593,6 +587,15 @@
 						"examples/models/deepseek/basic_stream",
 						"examples/models/deepseek/tool_use",
 						"examples/models/deepseek/structured_output"
+					]
+				},
+				{
+					"group": "Fireworks",
+					"pages": [
+						"examples/models/fireworks/basic",
+						"examples/models/fireworks/basic_stream",
+						"examples/models/fireworks/tool_use",
+						"examples/models/fireworks/structured_output"
 					]
 				},
 				{
@@ -623,6 +626,14 @@
 					]
 				},
 				{
+					"group": "Hugging Face",
+					"pages": [
+						"examples/models/huggingface/basic",
+						"examples/models/huggingface/basic_stream",
+						"examples/models/huggingface/llama_essay_writer"
+					]
+				},
+				{
 					"group": "Mistral",
 					"pages": [
 						"examples/models/mistral/basic",
@@ -632,28 +643,39 @@
 					]
 				},
 				{
-					"group": "Fireworks",
-					"pages": [
-						"examples/models/fireworks/basic",
-						"examples/models/fireworks/basic_stream",
-						"examples/models/fireworks/tool_use",
-						"examples/models/fireworks/structured_output"
-					]
-				},
-				{
-					"group": "Hugging Face",
-					"pages": [
-						"examples/models/huggingface/basic",
-						"examples/models/huggingface/basic_stream",
-						"examples/models/huggingface/llama_essay_writer"
-					]
-				},
-				{
 					"group": "NVIDIA",
 					"pages": [
 						"examples/models/nvidia/basic",
 						"examples/models/nvidia/basic_stream",
 						"examples/models/nvidia/tool_use"
+					]
+				},
+				{
+					"group": "Ollama",
+					"pages": [
+						"examples/models/ollama/basic",
+						"examples/models/ollama/basic_stream",
+						"examples/models/ollama/tool_use",
+						"examples/models/ollama/structured_output",
+						"examples/models/ollama/storage",
+						"examples/models/ollama/knowledge",
+						"examples/models/ollama/image_agent",
+						"examples/models/ollama/set_client"
+					]
+				},
+				{
+					"group": "OpenAI",
+					"pages": [
+						"examples/models/openai/basic",
+						"examples/models/openai/basic_stream",
+						"examples/models/openai/tool_use",
+						"examples/models/openai/structured_output",
+						"examples/models/openai/storage",
+						"examples/models/openai/knowledge",
+						"examples/models/openai/image_agent",
+						"examples/models/openai/audio_input_agent",
+						"examples/models/openai/audio_output_agent",
+						"examples/models/openai/generate_images"
 					]
 				},
 				{
@@ -682,28 +704,6 @@
 						"examples/models/xai/basic",
 						"examples/models/xai/basic_stream",
 						"examples/models/xai/tool_use"
-					]
-				},
-				{
-					"group": "AWS Bedrock Claude",
-					"pages": [
-						"examples/models/aws/bedrock-claude/basic",
-						"examples/models/aws/bedrock-claude/basic_stream",
-						"examples/models/aws/bedrock-claude/tool_use",
-						"examples/models/aws/bedrock-claude/structured_output",
-						"examples/models/aws/bedrock-claude/storage",
-						"examples/models/aws/bedrock-claude/knowledge"
-					]
-				},
-				{
-					"group": "Azure OpenAI",
-					"pages": [
-						"examples/models/azure/openai/basic",
-						"examples/models/azure/openai/basic_stream",
-						"examples/models/azure/openai/knowledge",
-						"examples/models/azure/openai/storage",
-						"examples/models/azure/openai/structured_output",
-						"examples/models/azure/openai/tool_use"
 					]
 				}
 			]
@@ -794,10 +794,10 @@
 		}
 	],
 	"footerSocials": {
-		"x": "https://x.com/phidatahq",
-		"github": "https://github.com/phidatahq/agno",
+		"x": "https://x.com/AgnoAgi",
+		"github": "https://github.com/agno-agi/agno",
 		"discord": "https://phidata.link/discord",
 		"youtube": "https://phidata.link/youtube",
-		"website": "https://phidata.com"
+		"website": "https://agno.com"
 	}
 }
