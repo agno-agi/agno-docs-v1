@@ -8,19 +8,23 @@ Here's how vector databases are used with Agents:
 
 <Steps>
   <Step title="Chunk the information">
-    Break down the knowledge into smaller chunks to ensure our search query returns only relevant results.
+    Break down the knowledge into smaller chunks to ensure our search query
+    returns only relevant results.
   </Step>
   <Step title="Load the knowledge base">
-    Convert the chunks into embedding vectors and store them in a vector database.
+    Convert the chunks into embedding vectors and store them in a vector
+    database.
   </Step>
   <Step title="Search the knowledge base">
-    When the user sends a message, we convert the input message into an embedding and "search" for nearest neighbors in the vector database.
+    When the user sends a message, we convert the input message into an
+    embedding and "search" for nearest neighbors in the vector database.
   </Step>
 </Steps>
 
 Many vector databases also support hybrid search, which combines the power of vector similarity search with traditional keyword-based search. This approach can significantly improve the relevance and accuracy of search results, especially for complex queries or when dealing with diverse types of data.
 
 Hybrid search typically works by:
+
 1. Performing a vector similarity search to find semantically similar content.
 2. Conducting a keyword-based search to identify exact or close matches.
 3. Combining the results using a weighted approach to provide the most relevant information.
@@ -29,11 +33,17 @@ This capability allows for more flexible and powerful querying, often yielding b
 
 The following VectorDb are currently supported:
 
-- [PgVector](/vectordb/pgvector)*
-- [LanceDb](/vectordb/lancedb)*
-- [Pinecone](/vectordb/pinecone)*
+- [PgVector](/vectordb/pgvector)\*
+- [LanceDb](/vectordb/lancedb)\*
+- [Pinecone](/vectordb/pinecone)\*
 - [Qdrant](/vectordb/qdrant)
+- [MongoDB](/vectordb/mongodb)
+- [Cassandra](/vectordb/cassandra)
+- [ChromaDb](/vectordb/chroma)
+- [ClickhouseDb](/vectordb/clickhouse)
+- [Milvus](/vectordb/milvus)
+- [Singlestore](/vectordb/singlestore)
 
-*hybrid search supported
+\*hybrid search supported
 
 Each of these databases has its own strengths and features, including varying levels of support for hybrid search. Be sure to check the specific documentation for each to understand how to best leverage their capabilities in your projects.

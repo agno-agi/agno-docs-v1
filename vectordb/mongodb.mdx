@@ -14,6 +14,7 @@ pip install pymongo
 ```
 
 ## Example
+
 ```python agent_with_knowledge.py
 from phi.agent import Agent
 from phi.knowledge.pdf import PDFUrlKnowledgeBase
@@ -30,9 +31,9 @@ mdb_connection_string = ""
 knowledge_base = PDFUrlKnowledgeBase(
     urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
     vector_db=MongoDBVector(
-        collection_name="recipes", 
-        db_url=mdb_connection_string, 
-        wait_until_index_ready=60, 
+        collection_name="recipes",
+        db_url=mdb_connection_string,
+        wait_until_index_ready=60,
         wait_after_insert=300
     ),
 )  # adjust wait_after_insert and wait_until_index_ready to your needs
@@ -41,3 +42,8 @@ knowledge_base = PDFUrlKnowledgeBase(
 
 agent = Agent(knowledge_base=knowledge_base, show_tool_calls=True)
 agent.print_response("How to make Thai curry?", markdown=True)
+```
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/mongodb.py)
