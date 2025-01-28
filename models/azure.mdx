@@ -43,9 +43,9 @@ import os
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.models.azure import AzureOpenAIChat
+from agno.models.azure import AzureOpenAI
 
-azure_model = AzureOpenAIChat(
+azure_model = AzureOpenAI(
     id=os.getenv("AZURE_OPENAI_MODEL_NAME"),
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
