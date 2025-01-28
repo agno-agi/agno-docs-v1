@@ -44,12 +44,13 @@ agent.print_response("Ask me about something from the knowledge base")
 
 ## Params
 
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `path` | `Union[str, Path]` | - | Path to the CSV file |
-| `reader` | `CSVReader` | `CSVReader()` | A `CSVReader` that reads the CSV file and converts it into `Documents` for the vector database |
+| Parameter | Type               | Default       | Description                                                                                    |
+| --------- | ------------------ | ------------- | ---------------------------------------------------------------------------------------------- |
+| `path`    | `Union[str, Path]` | -             | Path to the CSV file                                                                           |
+| `reader`  | `CSVReader`        | `CSVReader()` | A `CSVReader` that reads the CSV file and converts it into `Documents` for the vector database |
 
-`CSVKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge_base) class and has access to the same params.
+`CSVKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
 
 ## Developer Resources
+
 - View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/csv_kb.py)
