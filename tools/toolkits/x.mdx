@@ -1,0 +1,91 @@
+---
+title: X (Twitter)
+---
+
+## Prerequisites
+
+The following example requires the `tweepy` library.
+
+```shell
+pip install tweepy
+```
+
+Get a X API key and secret from [here](https://developer.x.com/en/docs/authentication/oauth-1-0a/api-key-and-secret).
+
+```shell
+export X_CONSUMER_KEY=***
+export X_CONSUMER_SECRET=***
+export X_ACCESS_TOKEN=***
+export X_ACCESS_TOKEN_SECRET=***
+export X_BEARER_TOKEN=***
+```
+
+## Example
+
+The following agent will use X to get information about a user, send a message to a user, and create a new tweet.
+
+```python cookbook/agent_concepts/tools/x_tools.py
+from agno.agent import Agent
+from agno.tools.x import XTools
+
+# Initialize the X toolkit
+x_tools = XTools()
+
+# Create an agent with the X toolkit
+agent = Agent(
+    instructions=[
+        "Use your tools to interact with X as the authorized user @AgnoAgi",
+        "When asked to create a tweet, generate appropriate content based on the request",
+        "Do not actually post tweets unless explicitly instructed to do so",
+        "Provide informative responses about the user's timeline and tweets",
+        "Respect X's usage policies and rate limits",
+    ],
+    tools=[x_tools],
+    show_tool_calls=True,
+)
+agent.print_response("Can you retrieve information about this user https://x.com/AgnoAgi ", markdown=True)
+
+# Example usage: Reply To a Tweet
+agent.print_response(
+    "Can you reply to this post as a general message as to how great this project is:https://x.com/AgnoAgi/status/1836101177500479547",
+    markdown=True,
+)
+# Example usage: Get your details
+agent.print_response("Can you return my X profile?", markdown=True)
+
+# Example usage: Send a direct message
+agent.print_response(
+    "Can a send direct message to the user: https://x.com/AgnoAgi assking you want learn more about them and a link to their community?",
+    markdown=True,
+)
+# Example usage: Create a new tweet
+agent.print_response("Create & post a tweet about the importance of AI ethics", markdown=True)
+
+# Example usage: Get home timeline
+agent.print_response("Get my timeline", markdown=True)
+```
+
+## Toolkit Params
+
+| Parameter             | Type  | Default | Description                                            |
+| --------------------- | ----- | ------- | ------------------------------------------------------ |
+| `bearer_token`        | `str` | `None`  | The bearer token for X API authentication        |
+| `consumer_key`        | `str` | `None`  | The consumer key for X API authentication        |
+| `consumer_secret`     | `str` | `None`  | The consumer secret for X API authentication     |
+| `access_token`        | `str` | `None`  | The access token for X API authentication        |
+| `access_token_secret` | `str` | `None`  | The access token secret for X API authentication |
+
+## Toolkit Functions
+
+| Function            | Description                                 |
+| ------------------- | ------------------------------------------- |
+| `create_post`      | Creates and posts a new post               |
+| `reply_to_post`    | Replies to an existing post                |
+| `send_dm`           | Sends a direct message to a X user    |
+| `get_user_info`     | Retrieves information about a X user  |
+| `get_home_timeline` | Gets the authenticated user's home timeline |
+
+## Developer Resources
+
+- View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/x.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tools/x_tools.py)

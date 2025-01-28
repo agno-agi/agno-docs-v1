@@ -1,0 +1,50 @@
+---
+title: X (Twitter) Tools
+---
+
+## Code
+
+```python cookbook/agent_concepts/tools/x_tools.py
+from agno.agent import Agent
+from agno.tools.x import XTools
+
+agent = Agent(
+    tools=[XTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Make a post saying 'Hello World from Agno!'")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your X credentials">
+    ```bash
+    export X_API_KEY=xxx
+    export X_API_SECRET=xxx
+    export X_ACCESS_TOKEN=xxx
+    export X_ACCESS_TOKEN_SECRET=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U tweepy agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/tools/x_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/tools/x_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
