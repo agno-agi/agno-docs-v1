@@ -32,7 +32,7 @@ agent.print_response("Search tavily for 'language models'", markdown=True)
 
 | Parameter            | Type                           | Default      | Description                                                                                  |
 | -------------------- | ------------------------------ | ------------ | -------------------------------------------------------------------------------------------- |
-| `api_key`            | `str`                          | -            | API key for authentication. If not provided, will check TAVILY_API_KEY environment variable. |
+| `api_key`            | `str`                          | `None`            | API key for authentication. If not provided, will check TAVILY_API_KEY environment variable. |
 | `search`             | `bool`                         | `True`       | Enables search functionality.                                                                |
 | `max_tokens`         | `int`                          | `6000`       | Maximum number of tokens to use in search results.                                           |
 | `include_answer`     | `bool`                         | `True`       | Whether to include an AI-generated answer summary in the response.                           |

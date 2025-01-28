@@ -42,14 +42,14 @@ agent.cli_app(stream=False)
 
 | Parameter           | Type                     | Default | Description                                                            |
 | ------------------- | ------------------------ | ------- | ---------------------------------------------------------------------- |
-| `csvs`              | `List[Union[str, Path]]` | -       | A list of CSV files or paths to be processed or read.                  |
-| `row_limit`         | `int`                    | -       | The maximum number of rows to process from each CSV file.              |
+| `csvs`              | `List[Union[str, Path]]` | `None`       | A list of CSV files or paths to be processed or read.                  |
+| `row_limit`         | `int`                    | `None`       | The maximum number of rows to process from each CSV file.              |
 | `read_csvs`         | `bool`                   | `True`  | Enables the functionality to read data from specified CSV files.       |
 | `list_csvs`         | `bool`                   | `True`  | Enables the functionality to list all available CSV files.             |
 | `query_csvs`        | `bool`                   | `True`  | Enables the functionality to execute queries on data within CSV files. |
 | `read_column_names` | `bool`                   | `True`  | Enables the functionality to read the column names from the CSV files. |
-| `duckdb_connection` | `Any`                    | -       | Specifies a connection instance for DuckDB database operations.        |
-| `duckdb_kwargs`     | `Dict[str, Any]`         | -       | A dictionary of keyword arguments for configuring DuckDB operations.   |
+| `duckdb_connection` | `Any`                    | `None`       | Specifies a connection instance for DuckDB database operations.        |
+| `duckdb_kwargs`     | `Dict[str, Any]`         | `None`       | A dictionary of keyword arguments for configuring DuckDB operations.   |
 
 ## Toolkit Functions
 
