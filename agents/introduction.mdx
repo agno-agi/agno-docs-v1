@@ -42,11 +42,6 @@ The description and instructions are converted to the system message and the inp
     from agno.models.openai import OpenAIChat
     from agno.tools.exa import ExaTools
 
-    cwd = Path(__file__).parent.resolve()
-    tmp = cwd.joinpath("tmp")
-    if not tmp.exists():
-        tmp.mkdir(exist_ok=True, parents=True)
-
     today = datetime.now().strftime("%Y-%m-%d")
 
     agent = Agent(
@@ -109,7 +104,6 @@ The description and instructions are converted to the system message and the inp
         markdown=True,
         show_tool_calls=True,
         add_datetime_to_instructions=True,
-        save_response_to_file=str(tmp.joinpath("{message}.md")),
     )
 
     # Example usage
