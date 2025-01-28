@@ -49,9 +49,13 @@ agent.print_response("Ask me about something from the knowledge base")
 
 ## Params
 
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `path` | `Union[str, Path]` | - | Path to `PDF` files. Can point to a single PDF file or a directory of PDF files. |
-| `reader` | `Union[PDFReader, PDFImageReader]` | `PDFReader()` | A `PDFReader` or `PDFImageReader` that converts the `PDFs` into `Documents` for the vector database. |
+| Parameter | Type                               | Default       | Description                                                                                          |
+| --------- | ---------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------- |
+| `path`    | `Union[str, Path]`                 | -             | Path to `PDF` files. Can point to a single PDF file or a directory of PDF files.                     |
+| `reader`  | `Union[PDFReader, PDFImageReader]` | `PDFReader()` | A `PDFReader` or `PDFImageReader` that converts the `PDFs` into `Documents` for the vector database. |
 
-`PDFKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge_base) class and has access to the same params.
+`PDFKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_kb.py)

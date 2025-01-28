@@ -37,7 +37,6 @@ knowledge_base = PDFUrlKnowledgeBase(
 # Comment out after first run
 knowledge_base.load(recreate=True)
 
-
 def lancedb_agent(user: str = "user"):
     run_id: Optional[str] = None
 
@@ -61,7 +60,6 @@ def lancedb_agent(user: str = "user"):
             break
         agent.print_response(message)
 
-
 if __name__ == "__main__":
     typer.run(lancedb_agent)
 ```
@@ -69,3 +67,7 @@ if __name__ == "__main__":
 ## LanceDb Params
 
 <Snippet file="vectordb_lancedb_params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/lance_db.py)

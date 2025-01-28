@@ -134,6 +134,10 @@ agent.print_response("Share a breakfast recipe.")
 - `phi.knowledge.pdf.PDFUrlKnowledgeBase` ➔ `agno.knowledge.pdf_url.PDFUrlKnowledgeBase`
 - `phi.knowledge.csv.CSVUrlKnowledgeBase` ➔ `agno.knowledge.csv_url.CSVUrlKnowledgeBase`
 
+### Embedders updates
+Embedders now all take id instead of model as a parameter. For example:
+- `OllamaEmbedder(model="llama3.2")` -> `OllamaEmbedder(id="llama3.2")`
+
 ### Reader Updates
 - `phi.document.reader.arxiv` ➔ `agno.document.reader.arxiv_reader`
 - `phi.document.reader.docx` ➔ `agno.document.reader.docx_reader`

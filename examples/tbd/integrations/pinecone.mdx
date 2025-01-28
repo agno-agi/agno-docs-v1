@@ -1,0 +1,103 @@
+---
+title: Pinecone Integration
+sidebarTitle: Pinecone
+---
+
+## Example
+
+```python
+import os
+import typer
+from typing import Optional
+from rich.prompt import Prompt
+
+from agno.agent import Agent
+from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.vectordb.pineconedb import PineconeDB
+
+api_key = os.getenv("PINECONE_API_KEY")
+index_name = "thai-recipe-hybrid-search"
+
+vector_db = PineconeDB(
+    name=index_name,
+    dimension=1536,
+    metric="cosine",
+    spec={"serverless": {"cloud": "aws", "region": "us-east-1"}},
+    api_key=api_key,
+    use_hybrid_search=True,
+    hybrid_alpha=0.5,
+)
+
+knowledge_base = PDFUrlKnowledgeBase(
+    urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+    vector_db=vector_db,
+)
+
+# Comment out after first run
+knowledge_base.load(recreate=True, upsert=True)
+
+
+def pinecone_agent(user: str = "user"):
+    run_id: Optional[str] = None
+
+    agent = Agent(
+        run_id=run_id,
+        user_id=user,
+        knowledge=knowledge_base,
+        show_tool_calls=True,
+        debug_mode=True,
+    )
+
+    if run_id is None:
+        run_id = agent.run_id
+        print(f"Started Run: {run_id}\n")
+    else:
+        print(f"Continuing Run: {run_id}\n")
+
+    while True:
+        message = Prompt.ask(f"[bold] :sunglasses: {user} [/bold]")
+        if message in ("exit", "bye"):
+            break
+        agent.print_response(message)
+
+
+if __name__ == "__main__":
+    typer.run(pinecone_agent)
+
+
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+
+    ```bash
+    pip install -U pinecone pypdf openai agno
+    ```
+
+  </Step>
+
+  <Step title="Run Pinecone Agent">
+
+    <CodeGroup>
+
+    ```bash Mac
+    python cookbook/integrations/pinecone/agent.py
+    ```
+
+    ```bash Windows
+    python cookbook/integrations/pinecone/agent.py
+    ```
+
+    </CodeGroup>
+
+  </Step>
+
+</Steps>
+
+## Information
+
+- View on [Github](https://github.com/agno-agi/agno/tree/main/cookbook/integrations/pinecone/agent.py)

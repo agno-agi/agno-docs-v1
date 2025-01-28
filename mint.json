@@ -40,15 +40,15 @@
 		},
 		{
 			"name": "Community",
-			"url": "https://community.phidata.com/"
+			"url": "https://community.agno.com/"
 		}
 	],
 	"topbarCtaButton": {
 		"type": "github",
-		"url": "https://github.com/phidatahq/phidata"
+		"url": "https://github.com/agno-agi/agno"
 	},
 	"primaryTab": {
-		"name": "User Guides"
+		"name": "User Guide"
 	},
 	"tabs": [
 		{
@@ -56,8 +56,8 @@
 			"url": "examples"
 		},
 		{
-			"name": "Workspaces",
-			"url": "workspaces"
+			"name": "Reference",
+			"url": "reference"
 		},
 		{
 			"name": "Changelog",
@@ -73,10 +73,10 @@
 			"group": "Get Started",
 			"pages": [
 				"introduction",
-				"agents",
-				"playground",
-				"monitoring",
-				"community"
+				"get-started/agents",
+				"get-started/playground",
+				"get-started/monitoring",
+				"get-started/community"
 			]
 		},
 		{
@@ -115,7 +115,6 @@
 						"models/vertexai",
 						"models/groq",
 						"models/huggingface",
-						"models/internlm",
 						"models/mistral",
 						"models/nvidia",
 						"models/ollama",
@@ -293,54 +292,59 @@
 		{
 			"group": "Examples",
 			"pages": [
-				"examples/introduction"
-			]
-		},
-		{
-			"group": "Use Cases",
-			"pages": [
+				"examples/introduction",
 				{
-					"group": "Simple",
+					"group": "Getting Started",
 					"pages": [
-						"examples/use-cases/simple/books-recommendation-agent",
-						"examples/use-cases/simple/movie-recommendation-agent",
-						"examples/use-cases/simple/youtube-timestamp-agent",
-						"examples/use-cases/simple/travel-agent",
-						"examples/use-cases/simple/legal-advisor",
-						"examples/use-cases/simple/recipe-creator-agent",
-						"examples/use-cases/simple/shopping-partner-agent",
-						"examples/use-cases/simple/study-scout-agent",
-						"examples/use-cases/simple/timeout-agent",
-						"examples/use-cases/simple/calcom-agent",
-						"examples/use-cases/simple/slack-agent",
-						"examples/use-cases/simple/discord-agent",
-						"examples/use-cases/simple/data-analyst",
-						"examples/use-cases/simple/finance-agent",
-						"examples/use-cases/simple/research-agent",
-						"examples/use-cases/simple/github-agent",
-						"examples/use-cases/simple/baidu-search-agent"
+						"examples/getting-started/introduction",
+						"examples/getting-started/basic-agent",
+						"examples/getting-started/agent-with-tools",
+						"examples/getting-started/agent-with-knowledge",
+						"examples/getting-started/agent-with-storage",
+						"examples/getting-started/agent-team",
+						"examples/getting-started/structured-output",
+						"examples/getting-started/custom-tools",
+						"examples/getting-started/research-agent",
+						"examples/getting-started/research-workflow",
+						"examples/getting-started/image-agent",
+						"examples/getting-started/image-generation",
+						"examples/getting-started/video-generation",
+						"examples/getting-started/audio-agent",
+						"examples/getting-started/agent-state",
+						"examples/getting-started/agent-context",
+						"examples/getting-started/agent-session",
+						"examples/getting-started/user-memories",
+						"examples/getting-started/retry-functions",
+						"examples/getting-started/human-in-the-loop"
+					]
+				},
+        {
+					"group": "Agents",
+					"pages": [
+						"examples/agents/finance-agent",
+						"examples/agents/youtube-agent",
+						"examples/agents/research-agent",
+						"examples/agents/research-agent-exa",
+						"examples/agents/teaching-assistant",
+						"examples/agents/recipe-creator",
+						"examples/agents/movie-recommender",
+						"examples/agents/books-recommender",
+						"examples/agents/travel-planner"
+					]
+				},
+        {
+					"group": "Workflows",
+					"pages": [
+						"examples/workflows/blog-post-generator",
+						"examples/workflows/investment-report-generator",
+						"examples/workflows/personalized-email-generator"
 					]
 				},
 				{
-					"group": "Advanced",
+					"group": "Applications",
 					"pages": [
-						"examples/use-cases/advanced/blog-post-generator",
-						"examples/use-cases/advanced/coding-agent",
-						"examples/use-cases/advanced/reddit-post-generator",
-						"examples/use-cases/advanced/employee-recruiter",
-						"examples/use-cases/advanced/game-generator",
-						"examples/use-cases/advanced/investment-report-generator",
-						"examples/use-cases/advanced/news-report-generator",
-						"examples/use-cases/advanced/personalized-outreach-email-generator",
-						"examples/use-cases/advanced/self-evaluation-workflow",
-						"examples/use-cases/advanced/product-manager",
-						"examples/use-cases/advanced/content-creator"
-					]
-				},
-				{
-					"group": "Agentic Applications",
-					"pages": [
-						"examples/use-cases/apps/coming-soon"
+						"examples/apps/text-to-sql",
+						"examples/apps/game-generator"
 					]
 				}
 			]
@@ -358,7 +362,6 @@
 						"examples/concepts/multimodal/generate-video-replicate",
 						"examples/concepts/multimodal/image-to-audio",
 						"examples/concepts/multimodal/image-to-image",
-						"examples/concepts/multimodal/image-to-text",
 						"examples/concepts/multimodal/video-caption",
 						"examples/concepts/multimodal/video-to-shorts"
 					]
@@ -383,21 +386,20 @@
 						"examples/concepts/knowledge/csv-kb",
 						"examples/concepts/knowledge/csv-url-kb",
 						"examples/concepts/knowledge/doc-kb",
-						"examples/concepts/knowledge/docx-kb",
-						{
-							"group": "Embedders",
-							"pages": [
-								"examples/concepts/knowledge/embedders/azure-embedder",
-								"examples/concepts/knowledge/embedders/cohere-embedder",
-								"examples/concepts/knowledge/embedders/fireworks-embedder",
-								"examples/concepts/knowledge/embedders/gemini-embedder",
-								"examples/concepts/knowledge/embedders/huggingface-embedder",
-								"examples/concepts/knowledge/embedders/mistral-embedder",
-								"examples/concepts/knowledge/embedders/ollama-embedder",
-								"examples/concepts/knowledge/embedders/openai-embedder",
-								"examples/concepts/knowledge/embedders/qdrant-fastembed"
-							]
-						}
+						"examples/concepts/knowledge/docx-kb"
+					]
+				},
+				{
+					"group": "Memory",
+					"pages": [
+						"examples/concepts/memory/builtin-memory",
+						"examples/concepts/memory/persistent-memory",
+						"examples/concepts/memory/memories-and-summaries",
+						"examples/concepts/memory/persistent-memory-postgres",
+						"examples/concepts/memory/memories-and-summaries-postgres",
+						"examples/concepts/memory/memories-and-summaries-sqlite-async",
+						"examples/concepts/memory/persistent-memory-mongodb",
+						"examples/concepts/memory/mem0-memory"
 					]
 				},
 				{
@@ -426,144 +428,112 @@
 					]
 				},
 				{
-					"group": "Memory",
+					"group": "Storage",
 					"pages": [
-						"examples/concepts/memory/builtin-memory",
-						"examples/concepts/memory/persistent-memory",
-						"examples/concepts/memory/memories-and-summaries",
-						"examples/concepts/memory/persistent-memory-postgres",
-						"examples/concepts/memory/memories-and-summaries-postgres",
-						"examples/concepts/memory/memories-and-summaries-sqlite-async",
-						"examples/concepts/memory/persistent-memory-mongodb",
-						"examples/concepts/memory/mem0-memory"
+						"examples/concepts/storage/dynamodb",
+						"examples/concepts/storage/json",
+						"examples/concepts/storage/mongodb",
+						"examples/concepts/storage/postgres",
+						"examples/concepts/storage/singlestore",
+						"examples/concepts/storage/sqlite",
+						"examples/concepts/storage/yaml"
 					]
-				}
-			]
-		},
-		{
-			"group": "Integrations",
-			"pages": [
+				},
 				{
 					"group": "Tools",
 					"pages": [
-						"examples/integrations/tools/duckduckgo",
-						"examples/integrations/tools/calculator",
-						"examples/integrations/tools/airflow",
-						"examples/integrations/tools/apify",
-						"examples/integrations/tools/arxiv",
-						"examples/integrations/tools/aws_lambda",
-						"examples/integrations/tools/baidusearch",
-						"examples/integrations/tools/calcom",
-						"examples/integrations/tools/composio",
-						"examples/integrations/tools/confluence",
-						"examples/integrations/tools/crawl4ai",
-						"examples/integrations/tools/csv",
-						"examples/integrations/tools/dalle",
-						"examples/integrations/tools/desi_vocal",
-						"examples/integrations/tools/discord",
-						"examples/integrations/tools/duckdb",
-						"examples/integrations/tools/email",
-						"examples/integrations/tools/exa",
-						"examples/integrations/tools/fal",
-						"examples/integrations/tools/file",
-						"examples/integrations/tools/firecrawl",
-						"examples/integrations/tools/giphy",
-						"examples/integrations/tools/github",
-						"examples/integrations/tools/google_calendar",
-						"examples/integrations/tools/google_search",
-						"examples/integrations/tools/hackernews",
-						"examples/integrations/tools/jina_reader",
-						"examples/integrations/tools/jira",
-						"examples/integrations/tools/linear",
-						"examples/integrations/tools/lumalabs",
-						"examples/integrations/tools/mlx_transcribe",
-						"examples/integrations/tools/models_labs",
-						"examples/integrations/tools/newspaper",
-						"examples/integrations/tools/newspaper4k",
-						"examples/integrations/tools/openbb",
-						"examples/integrations/tools/pandas",
-						"examples/integrations/tools/postgres",
-						"examples/integrations/tools/pubmed",
-						"examples/integrations/tools/python",
-						"examples/integrations/tools/replicate",
-						"examples/integrations/tools/resend",
-						"examples/integrations/tools/searxng",
-						"examples/integrations/tools/serpapi",
-						"examples/integrations/tools/shell",
-						"examples/integrations/tools/slack",
-						"examples/integrations/tools/sleep",
-						"examples/integrations/tools/spider",
-						"examples/integrations/tools/sql",
-						"examples/integrations/tools/tavily",
-						"examples/integrations/tools/twilio",
-						"examples/integrations/tools/twitter",
-						"examples/integrations/tools/website",
-						"examples/integrations/tools/wikipedia",
-						"examples/integrations/tools/yfinance",
-						"examples/integrations/tools/youtube",
-						"examples/integrations/tools/zendesk"
+						"examples/concepts/tools/duckduckgo",
+						"examples/concepts/tools/calculator",
+						"examples/concepts/tools/airflow",
+						"examples/concepts/tools/apify",
+						"examples/concepts/tools/arxiv",
+						"examples/concepts/tools/aws_lambda",
+						"examples/concepts/tools/baidusearch",
+						"examples/concepts/tools/calcom",
+						"examples/concepts/tools/composio",
+						"examples/concepts/tools/confluence",
+						"examples/concepts/tools/crawl4ai",
+						"examples/concepts/tools/csv",
+						"examples/concepts/tools/dalle",
+						"examples/concepts/tools/desi_vocal",
+						"examples/concepts/tools/discord",
+						"examples/concepts/tools/duckdb",
+						"examples/concepts/tools/email",
+						"examples/concepts/tools/exa",
+						"examples/concepts/tools/fal",
+						"examples/concepts/tools/file",
+						"examples/concepts/tools/firecrawl",
+						"examples/concepts/tools/giphy",
+						"examples/concepts/tools/github",
+						"examples/concepts/tools/google_calendar",
+						"examples/concepts/tools/google_search",
+						"examples/concepts/tools/hackernews",
+						"examples/concepts/tools/jina_reader",
+						"examples/concepts/tools/jira",
+						"examples/concepts/tools/linear",
+						"examples/concepts/tools/lumalabs",
+						"examples/concepts/tools/mlx_transcribe",
+						"examples/concepts/tools/models_labs",
+						"examples/concepts/tools/newspaper",
+						"examples/concepts/tools/newspaper4k",
+						"examples/concepts/tools/openbb",
+						"examples/concepts/tools/pandas",
+						"examples/concepts/tools/postgres",
+						"examples/concepts/tools/pubmed",
+						"examples/concepts/tools/python",
+						"examples/concepts/tools/replicate",
+						"examples/concepts/tools/resend",
+						"examples/concepts/tools/searxng",
+						"examples/concepts/tools/serpapi",
+						"examples/concepts/tools/shell",
+						"examples/concepts/tools/slack",
+						"examples/concepts/tools/sleep",
+						"examples/concepts/tools/spider",
+						"examples/concepts/tools/sql",
+						"examples/concepts/tools/tavily",
+						"examples/concepts/tools/twilio",
+						"examples/concepts/tools/twitter",
+						"examples/concepts/tools/website",
+						"examples/concepts/tools/wikipedia",
+						"examples/concepts/tools/yfinance",
+						"examples/concepts/tools/youtube",
+						"examples/concepts/tools/zendesk"
 					]
 				},
-				{
-					"group": "Vector Databases",
-					"pages": [
-						"examples/integrations/vectordb/cassandra",
-						"examples/integrations/vectordb/chromadb",
-						"examples/integrations/vectordb/clickhouse",
-						"examples/integrations/vectordb/lancedb",
-						"examples/integrations/vectordb/milvus",
-						"examples/integrations/vectordb/mongodb",
-						"examples/integrations/vectordb/pgvector",
-						"examples/integrations/vectordb/pinecone",
-						"examples/integrations/vectordb/qdrant",
-						"examples/integrations/vectordb/singlestore"
-					]
-				},
-				{
-					"group": "Storage",
-					"pages": [
-						"examples/integrations/storage/dynamodb",
-						"examples/integrations/storage/json",
-						"examples/integrations/storage/mongodb",
-						"examples/integrations/storage/postgres",
-						"examples/integrations/storage/singlestore",
-						"examples/integrations/storage/sqlite",
-						"examples/integrations/storage/yaml"
-					]
-				}
-			]
+        {
+          "group": "Vector Databases",
+          "pages": [
+            "examples/concepts/vectordb/cassandra",
+            "examples/concepts/vectordb/chromadb",
+            "examples/concepts/vectordb/clickhouse",
+            "examples/concepts/vectordb/lancedb",
+            "examples/concepts/vectordb/milvus",
+            "examples/concepts/vectordb/mongodb",
+            "examples/concepts/vectordb/pgvector",
+            "examples/concepts/vectordb/pinecone",
+            "examples/concepts/vectordb/qdrant",
+            "examples/concepts/vectordb/singlestore"
+          ]
+        },
+        {
+          "group": "Embedders",
+          "pages": [
+            "examples/concepts/embedders/azure-embedder",
+            "examples/concepts/embedders/cohere-embedder",
+            "examples/concepts/embedders/fireworks-embedder",
+            "examples/concepts/embedders/gemini-embedder",
+            "examples/concepts/embedders/huggingface-embedder",
+            "examples/concepts/embedders/mistral-embedder",
+            "examples/concepts/embedders/ollama-embedder",
+            "examples/concepts/embedders/openai-embedder",
+            "examples/concepts/embedders/qdrant-fastembed"
+          ]
+        }
+      ]
 		},
 		{
 			"group": "Models",
 			"pages": [
-				{
-					"group": "OpenAI",
-					"pages": [
-						"examples/models/openai/basic",
-						"examples/models/openai/basic_stream",
-						"examples/models/openai/tool_use",
-						"examples/models/openai/structured_output",
-						"examples/models/openai/storage",
-						"examples/models/openai/knowledge",
-						"examples/models/openai/image_agent",
-						"examples/models/openai/audio_input_agent",
-						"examples/models/openai/audio_output_agent",
-						"examples/models/openai/generate_images"
-					]
-				},
-				{
-					"group": "Ollama",
-					"pages": [
-						"examples/models/ollama/basic",
-						"examples/models/ollama/basic_stream",
-						"examples/models/ollama/tool_use",
-						"examples/models/ollama/structured_output",
-						"examples/models/ollama/storage",
-						"examples/models/ollama/knowledge",
-						"examples/models/ollama/image_agent",
-						"examples/models/ollama/set_client"
-					]
-				},
 				{
 					"group": "Anthropic",
 					"pages": [
@@ -574,6 +544,28 @@
 						"examples/models/anthropic/storage",
 						"examples/models/anthropic/knowledge",
 						"examples/models/anthropic/image_agent"
+					]
+				},
+				{
+					"group": "AWS Bedrock Claude",
+					"pages": [
+						"examples/models/aws/bedrock-claude/basic",
+						"examples/models/aws/bedrock-claude/basic_stream",
+						"examples/models/aws/bedrock-claude/tool_use",
+						"examples/models/aws/bedrock-claude/structured_output",
+						"examples/models/aws/bedrock-claude/storage",
+						"examples/models/aws/bedrock-claude/knowledge"
+					]
+				},
+				{
+					"group": "Azure OpenAI",
+					"pages": [
+						"examples/models/azure/openai/basic",
+						"examples/models/azure/openai/basic_stream",
+						"examples/models/azure/openai/knowledge",
+						"examples/models/azure/openai/storage",
+						"examples/models/azure/openai/structured_output",
+						"examples/models/azure/openai/tool_use"
 					]
 				},
 				{
@@ -594,6 +586,15 @@
 						"examples/models/deepseek/basic_stream",
 						"examples/models/deepseek/tool_use",
 						"examples/models/deepseek/structured_output"
+					]
+				},
+				{
+					"group": "Fireworks",
+					"pages": [
+						"examples/models/fireworks/basic",
+						"examples/models/fireworks/basic_stream",
+						"examples/models/fireworks/tool_use",
+						"examples/models/fireworks/structured_output"
 					]
 				},
 				{
@@ -624,6 +625,14 @@
 					]
 				},
 				{
+					"group": "Hugging Face",
+					"pages": [
+						"examples/models/huggingface/basic",
+						"examples/models/huggingface/basic_stream",
+						"examples/models/huggingface/llama_essay_writer"
+					]
+				},
+				{
 					"group": "Mistral",
 					"pages": [
 						"examples/models/mistral/basic",
@@ -633,28 +642,39 @@
 					]
 				},
 				{
-					"group": "Fireworks",
-					"pages": [
-						"examples/models/fireworks/basic",
-						"examples/models/fireworks/basic_stream",
-						"examples/models/fireworks/tool_use",
-						"examples/models/fireworks/structured_output"
-					]
-				},
-				{
-					"group": "Hugging Face",
-					"pages": [
-						"examples/models/huggingface/basic",
-						"examples/models/huggingface/basic_stream",
-						"examples/models/huggingface/llama_essay_writer"
-					]
-				},
-				{
 					"group": "NVIDIA",
 					"pages": [
 						"examples/models/nvidia/basic",
 						"examples/models/nvidia/basic_stream",
 						"examples/models/nvidia/tool_use"
+					]
+				},
+				{
+					"group": "Ollama",
+					"pages": [
+						"examples/models/ollama/basic",
+						"examples/models/ollama/basic_stream",
+						"examples/models/ollama/tool_use",
+						"examples/models/ollama/structured_output",
+						"examples/models/ollama/storage",
+						"examples/models/ollama/knowledge",
+						"examples/models/ollama/image_agent",
+						"examples/models/ollama/set_client"
+					]
+				},
+				{
+					"group": "OpenAI",
+					"pages": [
+						"examples/models/openai/basic",
+						"examples/models/openai/basic_stream",
+						"examples/models/openai/tool_use",
+						"examples/models/openai/structured_output",
+						"examples/models/openai/storage",
+						"examples/models/openai/knowledge",
+						"examples/models/openai/image_agent",
+						"examples/models/openai/audio_input_agent",
+						"examples/models/openai/audio_output_agent",
+						"examples/models/openai/generate_images"
 					]
 				},
 				{
@@ -684,145 +704,6 @@
 						"examples/models/xai/basic_stream",
 						"examples/models/xai/tool_use"
 					]
-				},
-				{
-					"group": "AWS Bedrock Claude",
-					"pages": [
-						"examples/models/aws/bedrock-claude/basic",
-						"examples/models/aws/bedrock-claude/basic_stream",
-						"examples/models/aws/bedrock-claude/tool_use",
-						"examples/models/aws/bedrock-claude/structured_output",
-						"examples/models/aws/bedrock-claude/storage",
-						"examples/models/aws/bedrock-claude/knowledge"
-					]
-				},
-				{
-					"group": "Azure OpenAI",
-					"pages": [
-						"examples/models/azure/openai/basic",
-						"examples/models/azure/openai/basic_stream",
-						"examples/models/azure/openai/knowledge",
-						"examples/models/azure/openai/storage",
-						"examples/models/azure/openai/structured_output",
-						"examples/models/azure/openai/tool_use"
-					]
-				}
-			]
-		},
-		{
-			"group": "Workspaces",
-			"pages": [
-				"workspaces/introduction",
-				{
-					"group": "Agent App",
-					"pages": [
-						"workspaces/agent-app/run-local",
-						"workspaces/agent-app/run-aws"
-					]
-				},
-				{
-					"group": "Agent API",
-					"pages": [
-						"workspaces/agent-api/run-local",
-						"workspaces/agent-api/run-aws"
-					]
-				}
-			]
-		},
-		{
-			"group": "How to",
-			"pages": [
-				{
-					"group": "Manage Application",
-					"pages": [
-						"workspaces/how-to/development-app",
-						"workspaces/how-to/production-app",
-						"workspaces/how-to/install",
-						"workspaces/how-to/secrets",
-						"workspaces/how-to/env-vars",
-						"workspaces/how-to/database-tables",
-						"workspaces/how-to/ci-cd",
-						"workspaces/how-to/domain-https",
-						"workspaces/how-to/ssh-access"
-					]
-				},
-				{
-					"group": "Manage Workspace",
-					"pages": [
-						"workspaces/how-to/workspace-settings",
-						"workspaces/how-to/git-repo",
-						"workspaces/how-to/new-users",
-						"workspaces/how-to/format-and-validate"
-					]
-				}
-			]
-		},
-		{
-			"group": "TBD-Workspace",
-			"pages": [
-				"workspaces/workspace/introduction",
-				"workspaces/workspace/settings",
-				"workspaces/workspace/resources"
-			]
-		},
-		{
-			"group": "TBD-Apps",
-			"pages": [
-				"workspaces/apps/introduction",
-				"workspaces/apps/examples",
-				"workspaces/apps/features"
-			]
-		},
-		{
-			"group": "Command Line",
-			"pages": [
-				{
-					"group": "ag",
-					"pages": [
-						"workspaces/cli/ag/init",
-						"workspaces/cli/ag/auth",
-						"workspaces/cli/ag/start",
-						"workspaces/cli/ag/stop",
-						"workspaces/cli/ag/patch",
-						"workspaces/cli/ag/restart",
-						"workspaces/cli/ag/config",
-						"workspaces/cli/ag/set",
-						"workspaces/cli/ag/reset"
-					]
-				},
-				{
-					"group": "ag ws",
-					"pages": [
-						"workspaces/cli/ws/create",
-						"workspaces/cli/ws/up",
-						"workspaces/cli/ws/down",
-						"workspaces/cli/ws/patch",
-						"workspaces/cli/ws/restart",
-						"workspaces/cli/ws/config",
-						"workspaces/cli/ws/delete",
-						"workspaces/cli/ws/setup"
-					]
-				}
-			]
-		},
-		{
-			"group": "Resources",
-			"pages": [
-				"workspaces/resources/introduction",
-				{
-					"group": "Docker",
-					"pages": [
-						"workspaces/resources/docker/introduction",
-						"workspaces/resources/docker/container"
-					]
-				},
-				{
-					"group": "AWS",
-					"pages": [
-						"workspaces/resources/aws/introduction",
-						"workspaces/resources/aws/ecs",
-						"workspaces/resources/aws/rds"
-					]
 				}
 			]
 		},
@@ -836,18 +717,72 @@
 		{
 			"group": "Reference",
 			"pages": [
-				"reference/agent",
-				"reference/model",
-				"reference/knowledge_base"
+        {
+          "group": "Agents",
+          "pages": [
+            "reference/agents/agent",
+            "reference/agents/session"
+          ]
+        },
+        {
+          "group": "Models",
+          "pages": [
+            "reference/models/model",
+            "reference/models/openai",
+            "reference/models/ollama",
+            "reference/models/anthropic",
+            "reference/models/cohere",
+            "reference/models/deepseek",
+            "reference/models/gemini",
+			"reference/models/gemini_openai",
+            "reference/models/groq",
+            "reference/models/huggingface",
+            "reference/models/mistral",
+            "reference/models/nvidia",
+            "reference/models/together",
+            "reference/models/vertex",
+            "reference/models/xai",
+            "reference/models/bedrock",
+            "reference/models/azure",
+            "reference/models/fireworks",
+            "reference/models/openrouter",
+            "reference/models/sambanova",
+			"reference/models/internlm",
+			"reference/models/ollama_hermes",
+			"reference/models/ollama_tools",
+			"reference/models/openai_like"
+          ]
+        },
+        {
+          "group": "Knowledge",
+          "pages": [
+            "reference/knowledge/base",
+			"reference/knowledge/arxiv",
+			"reference/knowledge/combined",
+			"reference/knowledge/csv",
+			"reference/knowledge/csv_url",
+			"reference/knowledge/docx",
+			"reference/knowledge/json",
+			"reference/knowledge/langchain",
+			"reference/knowledge/llamaindex",
+			"reference/knowledge/pdf",
+			"reference/knowledge/pdf_url",
+			"reference/knowledge/text",
+			"reference/knowledge/website",
+			"reference/knowledge/wikipedia",
+			"reference/knowledge/youtube"
+          ]
+        }
 			]
 		},
 		{
 			"group": "FAQs",
 			"pages": [
-				"faq/could-not-connect-to-docker",
 				"faq/environment_variables",
-				"faq/phi-auth",
-				"faq/connecting-to-tableplus"
+				"faq/tpm-issues",
+				"faq/cli-auth",
+				"faq/connecting-to-tableplus",
+        		"faq/could-not-connect-to-docker"
 			]
 		},
 		{
@@ -858,10 +793,10 @@
 		}
 	],
 	"footerSocials": {
-		"x": "https://x.com/phidatahq",
-		"github": "https://github.com/phidatahq/agno",
+		"x": "https://x.com/AgnoAgi",
+		"github": "https://github.com/agno-agi/agno",
 		"discord": "https://phidata.link/discord",
 		"youtube": "https://phidata.link/youtube",
-		"website": "https://phidata.com"
+		"website": "https://agno.com"
 	}
 }
