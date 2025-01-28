@@ -76,6 +76,7 @@
 				"get-started/agents",
 				"get-started/playground",
 				"get-started/monitoring",
+				"get-started/local-docker-guide",
 				"get-started/community"
 			]
 		},
