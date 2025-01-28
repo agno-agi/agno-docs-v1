@@ -40,12 +40,12 @@
 		},
 		{
 			"name": "Community",
-			"url": "https://community.phidata.com/"
+			"url": "https://community.agno.com/"
 		}
 	],
 	"topbarCtaButton": {
 		"type": "github",
-		"url": "https://github.com/phidatahq/phidata"
+		"url": "https://github.com/agno-agi/agno"
 	},
 	"primaryTab": {
 		"name": "User Guide"
@@ -793,8 +793,8 @@
 		}
 	],
 	"footerSocials": {
-		"x": "https://x.com/phidatahq",
-		"github": "https://github.com/phidatahq/agno",
+		"x": "https://x.com/AgnoAgi",
+		"github": "https://github.com/agno-agi/agno",
 		"discord": "https://phidata.link/discord",
 		"youtube": "https://phidata.link/youtube",
 		"website": "https://phidata.com"

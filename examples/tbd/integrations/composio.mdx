@@ -9,7 +9,7 @@ title: Composio
 The following agent will use Github Tool from Composio Toolkit to star a repo.
 
 ```bash Run the following commands to setup the agent
-pip install composio-phidata
+pip install composio-agno
 composio add github # Launches GitHub login in browser
 ```
 
@@ -25,7 +25,7 @@ composio_tools = toolset.get_tools(
 
 agent = Agent(tools=composio_tools, show_tool_calls=True)
 
-agent.print_response("Can you star phidatahq/phidata repo?")
+agent.print_response("Can you star agno-agi/agno repo?")
 ```
 
 ## Toolkit Params
