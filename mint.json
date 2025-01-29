@@ -77,7 +77,8 @@
 				"get-started/playground",
 				"get-started/monitoring",
 				"get-started/local-docker-guide",
-				"get-started/community"
+				"get-started/community",
+				"get-started/contribution_guidelines"
 			]
 		},
 		{
