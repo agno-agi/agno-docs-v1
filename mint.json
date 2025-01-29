@@ -230,7 +230,7 @@
 					"group": "VectorDbs",
 					"pages": [
 						"vectordb/introduction",
-						"vectordb/casandra",
+						"vectordb/cassandra",
 						"vectordb/chroma",
 						"vectordb/clickhouse",
 						"vectordb/lancedb",
@@ -713,6 +713,7 @@
 			"group": "How to",
 			"pages": [
 				"how-to/install",
+				"how-to/contribution_guidelines",
 				"how-to/phidata-to-agno"
 			]
 		},
