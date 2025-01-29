@@ -330,6 +330,7 @@
 						"examples/agents/recipe-creator",
 						"examples/agents/movie-recommender",
 						"examples/agents/books-recommender",
+						"examples/agents/media-trend-analyst",
 						"examples/agents/travel-planner"
 					]
 				},
