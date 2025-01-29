@@ -5,11 +5,9 @@ sidebarTitle: OpenAI Key Request While Using Other Models
 
 If you see a request for an OpenAI API key but haven't explicitly configured OpenAI, it's because Agno uses OpenAI models by default in several places, including:
 
-- **Agent execution**
-- **Memory summaries and retrieval**
-- **Embedders and rerankers**
+- The default model when unspecified in `Agent`
+- The default embedder is OpenAIEmbedder with VectorDBs, unless specified
 
-Since OpenAI is the default model provider, any function requiring an LLM, embedding model, or reranker will attempt to use OpenAI unless explicitly configured otherwise.
 
 ## Quick fix: Configure a Different Model
 
