@@ -14,7 +14,7 @@ We are using a local PgVector database for this example. [Make sure it's running
 </Note>
 
 ```python knowledge_base.py
-from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector
 
 knowledge_base = CSVUrlKnowledgeBase(
@@ -44,9 +44,13 @@ agent.print_response("Ask me about something from the knowledge base")
 
 ## Params
 
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `urls`              | `List[str]`                              | -                 | URLs for `PDF` files.                                                               |
-| `reader` | `CSVUrlReader` | `CSVUrlReader()` | A `CSVUrlReader` that reads the CSV file from the URL and converts it into `Documents` for the vector database |
+| Parameter | Type           | Default          | Description                                                                                                    |
+| --------- | -------------- | ---------------- | -------------------------------------------------------------------------------------------------------------- |
+| `urls`    | `List[str]`    | -                | URLs for `PDF` files.                                                                                          |
+| `reader`  | `CSVUrlReader` | `CSVUrlReader()` | A `CSVUrlReader` that reads the CSV file from the URL and converts it into `Documents` for the vector database |
 
-`CSVUrlKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge_base) class and has access to the same params.
+`CSVUrlKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_url_kb.py)

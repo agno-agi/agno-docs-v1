@@ -2,6 +2,13 @@
 title: HuggingFace
 ---
 
+Hugging Face provides a wide range of state-of-the-art language models tailored to diverse NLP tasks,
+including text generation, summarization, translation, and question answering.
+These models are available through the Hugging Face Transformers library and are widely
+adopted due to their ease of use, flexibility, and comprehensive documentation.
+
+Explore HuggingFace’s language models [here](https://huggingface.co/docs/text-generation-inference/en/supported_models).
+
 ## Authentication
 
 Set your `HF_TOKEN` environment. You can get one [from HuggingFace here](https://huggingface.co/settings/tokens).
@@ -42,8 +49,10 @@ agent.print_response("Share a 2 sentence horror story.")
 
 </CodeGroup>
 
+<Note> View more examples [here](../examples/models/huggingface). </Note>
+
 ## Params
 
 <Snippet file="model-hf-params.mdx" />
 
-`HuggingFaceChat` is a subclass of the [Model](/reference/model) class and has access to the same params.
+`HuggingFaceChat` is a subclass of the [Model](/reference/models/model) class and has access to the same params.

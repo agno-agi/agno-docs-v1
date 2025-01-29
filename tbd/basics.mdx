@@ -163,7 +163,7 @@ Let's build a **PDF Agent** that helps us with food recipes using RAG.
 
     ```python rag_agent.py
     from agno.agent import Agent
-    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
     from agno.vectordb.pgvector import PgVector
 
     knowledge_base = PDFUrlKnowledgeBase(
@@ -244,7 +244,7 @@ Make the `Agent` Autonomous by setting the `search_knowledge` and `read_chat_his
 
     ```python auto_agent.py
     from agno.agent import Agent
-    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
     from agno.vectordb.pgvector import PgVector
 
     knowledge_base = PDFUrlKnowledgeBase(
@@ -305,7 +305,7 @@ from rich.prompt import Prompt
 from typing import Optional, List
 from agno.agent import Agent
 from agno.storage.agent.postgres import PgAgentStorage
-from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"

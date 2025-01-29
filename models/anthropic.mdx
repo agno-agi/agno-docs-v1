@@ -3,9 +3,16 @@ title: Anthropic Claude
 ---
 
 Claude is a family of foundational AI models by Anthropic that can be used in a variety of applications.
+See their model comparisons [here](https://docs.anthropic.com/en/docs/about-claude/models#model-comparison-table).
+
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+
+- `claude-3-5-sonnet-20241022` model is good for most use-cases and supports image input.
+- `claude-3-5-haiku-20241022` model is their fastest model.
+
+Anthropic has rate limits on their APIs. See the [docs](https://docs.anthropic.com/en/api/rate-limits#response-headers) for more information.
 
 ## Authentication
-
 
 Set your `ANTHROPIC_API_KEY` environment. You can get one [from Anthropic here](https://console.anthropic.com/settings/keys).
 
@@ -42,8 +49,10 @@ agent.print_response("Share a 2 sentence horror story.")
 
 </CodeGroup>
 
+<Note> View more examples [here](../examples/models/anthropic). </Note>
+
 ## Params
 
 <Snippet file="model-claude-params.mdx" />
 
-`Claude` is a subclass of the [Model](/reference/model) class and has access to the same params.
+`Claude` is a subclass of the [Model](/reference/models/model) class and has access to the same params.

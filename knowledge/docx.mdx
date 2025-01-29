@@ -48,10 +48,14 @@ agent.print_response("Ask me about something from the knowledge base")
 
 ## Params
 
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `path` | `Union[str, Path]` | - | Path to text files. Can point to a single docx file or a directory of docx files. |
-| `formats` | `List[str]` | `[".doc", ".docx"]` | Formats accepted by this knowledge base. |
-| `reader` | `DocxReader` | `DocxReader()` | A `DocxReader` that converts the docx files into `Documents` for the vector database. |
+| Parameter | Type               | Default             | Description                                                                           |
+| --------- | ------------------ | ------------------- | ------------------------------------------------------------------------------------- |
+| `path`    | `Union[str, Path]` | -                   | Path to text files. Can point to a single docx file or a directory of docx files.     |
+| `formats` | `List[str]`        | `[".doc", ".docx"]` | Formats accepted by this knowledge base.                                              |
+| `reader`  | `DocxReader`       | `DocxReader()`      | A `DocxReader` that converts the docx files into `Documents` for the vector database. |
 
-`DocxKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge_base) class and has access to the same params.
+`DocxKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/docx_kb.py)

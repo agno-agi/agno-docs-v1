@@ -5,7 +5,6 @@ sidebarTitle: SQLite
 
 Agno supports using SQLite as a storage backend for Workflows using the `SqliteWorkflowStorage` class.
 
-
 ## Usage
 
 ```python storage.py
@@ -20,7 +19,6 @@ from agno.storage.workflow.sqlite import SqliteWorkflowStorage
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
-
 
 class HackerNewsReporter(Workflow):
     description: str = (
@@ -88,7 +86,6 @@ class HackerNewsReporter(Workflow):
 
         logger.info("Reading each story and writing a report.")
         yield from self.writer.run(top_stories.content, stream=True)
-
 
 # Run workflow
 report: Iterator[RunResponse] = HackerNewsReporter(

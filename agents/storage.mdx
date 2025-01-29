@@ -12,11 +12,11 @@ The general syntax for adding storage to an Agent looks like:
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGo
-from agno.storage.agent.postgres import PgAgentStorage
+from agno.storage.agent.postgres import PostgresAgentStorage
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    storage=PgAgentStorage(table_name="agent_sessions", db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"),
+    storage=PostgresAgentStorage(table_name="agent_sessions", db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"),
     tools=[DuckDuckGo()],
     show_tool_calls=True,
     add_history_to_messages=True,
@@ -53,8 +53,8 @@ agent.print_response("Which country are we speaking about?")
     import typer
     from typing import Optional, List
     from agno.agent import Agent
-    from agno.storage.agent.postgres import PgAgentStorage
-    from agno.knowledge.pdf import PDFUrlKnowledgeBase
+    from agno.storage.agent.postgres import PostgresAgentStorage
+    from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
     from agno.vectordb.pgvector import PgVector, SearchType
 
     db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
@@ -64,7 +64,7 @@ agent.print_response("Which country are we speaking about?")
     )
     # Load the knowledge base: Comment after first run
     knowledge_base.load(upsert=True)
-    storage = PgAgentStorage(table_name="pdf_agent", db_url=db_url)
+    storage = PostgresAgentStorage(table_name="pdf_agent", db_url=db_url)
 
     def pdf_agent(new: bool = False, user: str = "user"):
         session_id: Optional[str] = None
@@ -154,3 +154,7 @@ agent.print_response("Which country are we speaking about?")
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `storage` | `Optional[AgentStorage]` | `None` | Storage mechanism for the agent, if applicable. |
+
+ ## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/storage)

@@ -4,6 +4,18 @@ title: Cohere
 
 Leverage Cohere's powerful command models and more.
 
+[Cohere](https://cohere.com) has a wide range of models and is really good for fine-tuning. See their library of models [here](https://docs.cohere.com/v2/docs/models).
+
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+
+- `command` model is good for most basic use-cases.
+- `command-light` model is good for smaller tasks and faster inference.
+- `command-r7b-12-2024` model is good with RAG tasks, complex reasoning and multi-step tasks.
+
+Cohere also supports fine-tuning models. Here is a [guide](https://docs.cohere.com/v2/docs/fine-tuning) on how to do it.
+
+Cohere has tier-based rate limits. See the [docs](https://docs.cohere.com/v2/docs/rate-limits) for more information.
+
 ## Authentication
 
 Set your `CO_API_KEY` environment variable. Get your key from [here](https://dashboard.cohere.com/api-keys).
@@ -42,8 +54,10 @@ agent.print_response("Share a 2 sentence horror story.")
 
 </CodeGroup>
 
+<Note> View more examples [here](../examples/models/cohere). </Note>
+
 ## Params
 
 <Snippet file="model-cohere-params.mdx" />
 
-`CohereChat` is a subclass of the [Model](/reference/model) class and has access to the same params.
+`CohereChat` is a subclass of the [Model](/reference/models/model) class and has access to the same params.

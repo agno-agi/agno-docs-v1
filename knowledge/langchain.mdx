@@ -48,11 +48,15 @@ conv.print_response("What did the president say about technology?")
 
 ## Params
 
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `loader` | `Optional[Callable]` | `None` | LangChain loader. |
-| `vectorstore` | `Optional[Any]` | `None` | LangChain vector store used to create a retriever. |
-| `search_kwargs` | `Optional[dict]` | `None` | Search kwargs when creating a retriever using the langchain vector store. |
-| `retriever` | `Optional[Any]` | `None` | LangChain retriever. |
+| Parameter       | Type                 | Default | Description                                                               |
+| --------------- | -------------------- | ------- | ------------------------------------------------------------------------- |
+| `loader`        | `Optional[Callable]` | `None`  | LangChain loader.                                                         |
+| `vectorstore`   | `Optional[Any]`      | `None`  | LangChain vector store used to create a retriever.                        |
+| `search_kwargs` | `Optional[dict]`     | `None`  | Search kwargs when creating a retriever using the langchain vector store. |
+| `retriever`     | `Optional[Any]`      | `None`  | LangChain retriever.                                                      |
 
-`LangChainKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge_base) class and has access to the same params.
+`LangChainKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/langchain_kb.py)

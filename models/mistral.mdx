@@ -3,6 +3,15 @@ title: Mistral
 ---
 
 Mistral is a platform for providing endpoints for Large Language models.
+See their library of models [here](https://docs.mistral.ai/getting-started/models/models_overview/).
+
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+
+- `codestral` model is good for code generation and editing.
+- `mistral-large-latest` model is good for most use-cases.
+- `open-mistral-nemo` is a free model that is good for most use-cases.
+
+Mistral has tier-based rate limits. See the [docs](https://docs.mistral.ai/deployment/laplateforme/tier/) for more information.
 
 ## Authentication
 
@@ -49,8 +58,10 @@ agent.print_response("Share a 2 sentence horror story.")
 
 </CodeGroup>
 
+<Note> View more examples [here](../examples/models/mistral). </Note>
+
 ## Params
 
 <Snippet file="model-mistral-params.mdx" />
 
-`MistralChat` is a subclass of the [Model](/reference/model) class and has access to the same params.
+`MistralChat` is a subclass of the [Model](/reference/models/model) class and has access to the same params.

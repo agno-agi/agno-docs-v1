@@ -32,6 +32,12 @@ Every Agent comes with built-in memory that can be used to access the historical
     </ResponseField>
 </Expandable>
 
+You can give your agent access to memory in the following ways:
+
+- You can set `add_history_to_messages=True` and `num_history_responses=5` to add the previous 5 messages automatically to every message sent to the agent.
+- You can set `read_chat_history=True` to provide a `get_chat_history()` tool to your agent allowing it to read any message in the entire chat history.
+- You can set `read_tool_call_history=True` to provide a `get_tool_call_history()` tool to your agent allowing it to read tool calls in reverse chronological order.
+
 ### Example
 
 ```python agent_memory.py
@@ -76,12 +82,12 @@ from rich.json import JSON
 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.storage.agent.sqlite import SqlAgentStorage
+from agno.storage.agent.sqlite import SqliteAgentStorage
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     # Store agent sessions in a database
-    storage=SqlAgentStorage(table_name="agent_sessions", db_file="tmp/agent_storage.db"),
+    storage=SqliteAgentStorage(table_name="agent_sessions", db_file="tmp/agent_storage.db"),
     # Set add_history_to_messages=true to add the previous chat history to the messages sent to the Model.
     add_history_to_messages=True,
     # Number of historical responses to add to the messages.
@@ -153,7 +159,7 @@ from rich.pretty import pprint
 from agno.agent import Agent, AgentMemory
 from agno.models.openai import OpenAIChat
 from agno.memory.db.postgres import PgMemoryDb
-from agno.storage.agent.postgres import PgAgentStorage
+from agno.storage.agent.postgres import PostgresAgentStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 agent = Agent(
@@ -163,7 +169,7 @@ agent = Agent(
         db=PgMemoryDb(table_name="agent_memory", db_url=db_url), create_user_memories=True, create_session_summary=True
     ),
     # Store agent sessions in a database
-    storage=PgAgentStorage(table_name="personalized_agent_sessions", db_url=db_url),
+    storage=PostgresAgentStorage(table_name="personalized_agent_sessions", db_url=db_url),
     # Show debug logs so you can see the memory being created
     # debug_mode=True,
 )
@@ -204,3 +210,7 @@ agent.print_response("What have we been talking about, do you know my name?", st
 | `update_user_memories_after_run`   | `bool`        | `True`          | If true, update memories for the user after each run.                                                           |
 | `create_session_summary`           | `bool`        | `False`         | If true, create and store session summaries.                                                                    |
 | `update_session_summary_after_run` | `bool`        | `True`          | If true, update session summaries after each run.                                                               |
+
+ ## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/memory)

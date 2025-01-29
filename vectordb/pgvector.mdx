@@ -22,7 +22,7 @@ docker run -d \
 ```python agent_with_knowledge.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector, SearchType
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
@@ -44,9 +44,12 @@ agent = Agent(
 )
 agent.print_response("How do I make chicken and galangal in coconut milk soup", stream=True)
 agent.print_response("What was my last question?", stream=True)
-
 ```
 
 ## PgVector Params
 
 <Snippet file="vectordb_pgvector_params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pg_vector.py)

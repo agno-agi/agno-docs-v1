@@ -16,7 +16,7 @@ from typing import Optional
 from rich.prompt import Prompt
 
 from agno.agent import Agent
-from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.qdrant import Qdrant
 
 api_key = os.getenv("QDRANT_API_KEY")
@@ -36,7 +36,6 @@ knowledge_base = PDFUrlKnowledgeBase(
 
 # Comment out after first run
 knowledge_base.load(recreate=True, upsert=True)
-
 
 def qdrant_agent(user: str = "user"):
     run_id: Optional[str] = None
@@ -63,12 +62,12 @@ def qdrant_agent(user: str = "user"):
             break
         agent.print_response(message)
 
-
 if __name__ == "__main__":
     typer.run(qdrant_agent)
-
 ```
 
 ## Qdrant Params
 
 <Snippet file="vectordb_qdrant_params.mdx" />
+
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/qdrant_db.py)

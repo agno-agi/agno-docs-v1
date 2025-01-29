@@ -7,7 +7,7 @@ Recursive chunking is a method of splitting documents into smaller chunks by rec
 ```python
 from agno.agent import Agent
 from agno.document.chunking.recursive import RecursiveChunking
-from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
@@ -27,7 +27,6 @@ agent = Agent(
 agent.print_response("How to make Thai curry?", markdown=True)
 
 ```
-
 
 ## Params
 

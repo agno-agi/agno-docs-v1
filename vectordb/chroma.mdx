@@ -17,9 +17,8 @@ from rich.prompt import Prompt
 from typing import Optional
 
 from agno.agent import Agent
-from agno.knowledge.pdf import PDFUrlKnowledgeBase
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.chroma import ChromaDb
-
 
 knowledge_base = PDFUrlKnowledgeBase(
     urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
@@ -28,7 +27,6 @@ knowledge_base = PDFUrlKnowledgeBase(
 
 # Comment out after first run
 knowledge_base.load(recreate=False)
-
 
 def pdf_agent(user: str = "user"):
     run_id: Optional[str] = None
@@ -53,12 +51,14 @@ def pdf_agent(user: str = "user"):
             break
         agent.print_response(message)
 
-
 if __name__ == "__main__":
     typer.run(pdf_agent)
-
 ```
 
 ## ChromaDb Params
 
 <Snippet file="vectordb_chromadb_params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/chroma_db.py)
