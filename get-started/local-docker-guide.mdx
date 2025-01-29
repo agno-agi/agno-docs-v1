@@ -25,6 +25,11 @@ my-project/
 fastapi
 agno
 openai
+pgvector
+pypdf
+psycopg[binary]
+sqlalchemy
+uvicorn
 ```
   </Step>
 </Steps>
@@ -56,7 +61,14 @@ async def ask(query: str):
   <Step title="Install the required dependencies by running:">
 
 ```bash
-pip install fastapi agno openai
+pip install -r requirements.txt
+```
+
+  </Step>
+  <Step title="Set the `OPENAI_API_KEY` environment variable:">
+
+```bash
+export OPENAI_API_KEY=your_api_key
 ```
 
   </Step>
@@ -97,7 +109,7 @@ docker build -t my-agent-app .
   <Step title="Run the Docker container with:">
 
 ```bash
-docker run -p 8000:8000 my-agent-app
+docker run -p 8000:8000 -e OPENAI_API_KEY=your_api_key my-agent-app
 ```
 
   </Step>
@@ -115,19 +127,19 @@ You can now access the FastAPI app at `http://localhost:8000`.
 from fastapi import FastAPI
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.knowledge.pdf import PDFKnowledgeBase
-from agno.vectordb.pgvector import PgVector, SearchType
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
+from agno.vectordb.pgvector import PgVector
 from agno.storage.agent.postgres import PostgresAgentStorage
 
 app = FastAPI()
 
 db_url = "postgresql+psycopg://agno:agno@db/agno"
 
-knowledge_base = PDFKnowledgeBase(
+knowledge_base = PDFUrlKnowledgeBase(
     urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
-    vector_db=PgVector(table_name="recipes", db_url=db_url, search_type=SearchType.hybrid),
+    vector_db=PgVector(table_name="recipes", db_url=db_url),
 )
-knowledge_base.load(upsert=True)
+knowledge_base.load(recreate=True)
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
@@ -136,10 +148,6 @@ agent = Agent(
     storage=PostgresAgentStorage(table_name="agent_sessions", db_url=db_url),
     markdown=True,
 )
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
 
 @app.get("/ask")
 async def ask(query: str):
@@ -151,15 +159,16 @@ async def ask(query: str):
   <Step title="Create a `docker-compose.yml` file in the same directory with the following content:">
 
 ```yaml
-version: '3'
-
 services:
   app:
     build: .
     ports:
       - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: agnohq/pgvector:16
@@ -169,26 +178,18 @@ services:
       POSTGRES_PASSWORD: agno
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agno"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  pgdata:
+  pgdata: 
 ```
 
   </Step>
-  <Step title="Install the additional dependencies:">
 
-```bash
-pip install pgvector pypdf "psycopg[binary]" sqlalchemy
-```
-
-  </Step>
-  <Step title="Update the `requirements.txt` file with the new dependencies.">
-
-```bash
-pip install pgvector pypdf "psycopg[binary]" sqlalchemy
-```
-
-  </Step>
   <Step title="Run the Docker Compose setup with:">
 
 ```bash
@@ -198,6 +199,8 @@ docker-compose up --build
 This will start the FastAPI app and the PostgreSQL database, allowing your agent to use knowledge and memory storage.
 
 You can now access the FastAPI app at `http://localhost:8000` and interact with your agent that has knowledge and memory capabilities.
+
+You can test the agent by running `curl http://localhost:8000/ask?query="What is the recipe for pad thai?"`.
 
 </Step>
 </Steps>
