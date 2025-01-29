@@ -66,19 +66,19 @@ agent.print_response("Summarize the reid hoffman ted talk, split into sections",
 | `base_dir`                        | `Path`                         | `Path.cwd()`                             | Base directory for audio files              |
 | `read_files_in_base_dir`          | `bool`                         | `True`                                   | Whether to register the read_files function |
 | `path_or_hf_repo`                 | `str`                          | `"mlx-community/whisper-large-v3-turbo"` | Path or HuggingFace repo for the model      |
-| `verbose`                         | `bool`                         | `None`                                   | Enable verbose output                       |
-| `temperature`                     | `float` or `Tuple[float, ...]` | `None`                                   | Temperature for sampling                    |
-| `compression_ratio_threshold`     | `float`                        | `None`                                   | Compression ratio threshold                 |
-| `logprob_threshold`               | `float`                        | `None`                                   | Log probability threshold                   |
-| `no_speech_threshold`             | `float`                        | `None`                                   | No speech threshold                         |
-| `condition_on_previous_text`      | `bool`                         | `None`                                   | Whether to condition on previous text       |
-| `initial_prompt`                  | `str`                          | `None`                                   | Initial prompt for transcription            |
-| `word_timestamps`                 | `bool`                         | `None`                                   | Enable word-level timestamps                |
-| `prepend_punctuations`            | `str`                          | `None`                                   | Punctuations to prepend                     |
-| `append_punctuations`             | `str`                          | `None`                                   | Punctuations to append                      |
-| `clip_timestamps`                 | `str` or `List[float]`         | `None`                                   | Clip timestamps                             |
-| `hallucination_silence_threshold` | `float`                        | `None`                                   | Hallucination silence threshold             |
-| `decode_options`                  | `dict`                         | `None`                                   | Additional decoding options                 |
+| `verbose`                         | `bool`                         | -                                   | Enable verbose output                       |
+| `temperature`                     | `float` or `Tuple[float, ...]` | -                                   | Temperature for sampling                    |
+| `compression_ratio_threshold`     | `float`                        | -                                   | Compression ratio threshold                 |
+| `logprob_threshold`               | `float`                        | -                                   | Log probability threshold                   |
+| `no_speech_threshold`             | `float`                        | -                                   | No speech threshold                         |
+| `condition_on_previous_text`      | `bool`                         | -                                   | Whether to condition on previous text       |
+| `initial_prompt`                  | `str`                          | -                                   | Initial prompt for transcription            |
+| `word_timestamps`                 | `bool`                         | -                                   | Enable word-level timestamps                |
+| `prepend_punctuations`            | `str`                          | -                                   | Punctuations to prepend                     |
+| `append_punctuations`             | `str`                          | -                                   | Punctuations to append                      |
+| `clip_timestamps`                 | `str` or `List[float]`         | -                                   | Clip timestamps                             |
+| `hallucination_silence_threshold` | `float`                        | -                                   | Hallucination silence threshold             |
+| `decode_options`                  | `dict`                         | -                                   | Additional decoding options                 |
 
 ## Toolkit Functions
 

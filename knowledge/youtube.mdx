@@ -51,7 +51,7 @@ agent.print_response("Ask me about something from the knowledge base")
 | Parameter | Type                      | Default | Description                                                                                                                    |
 | --------- | ------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `urls`    | `List[str]`               | `[]`    | URLs of the videos to read                                                                                                     |
-| `reader`  | `Optional[YouTubeReader]` | `None`  | A `YouTubeReader` that reads transcripts of the videos at the urls and converts them into `Documents` for the vector database. |
+| `reader`  | `Optional[YouTubeReader]` | -  | A `YouTubeReader` that reads transcripts of the videos at the urls and converts them into `Documents` for the vector database. |
 
 `YouTubeKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
 

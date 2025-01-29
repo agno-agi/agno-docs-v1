@@ -45,8 +45,8 @@ agent.print_response("How to make Thai curry?")
 
 | Parameter     | Type          | Default         | Description                                                                        |
 | ------------- | ------------- | --------------- | ---------------------------------------------------------------------------------- |
-| `bucket_name` | `str`         | `None`          | The name of the S3 Bucket where the PDFs are.                                      |
-| `key`         | `str`         | `None`          | The key of the PDF file in the bucket.                                             |
+| `bucket_name` | `str`         | -          | The name of the S3 Bucket where the PDFs are.                                      |
+| `key`         | `str`         | -          | The key of the PDF file in the bucket.                                             |
 | `reader`      | `S3PDFReader` | `S3PDFReader()` | A `S3PDFReader` that converts the `PDFs` into `Documents` for the vector database. |
 
 `S3PDFKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.

@@ -53,7 +53,7 @@ agent.print_response("Ask me about something from the knowledge base")
 | Parameter   | Type                      | Default | Description                                                                                       |
 | ----------- | ------------------------- | ------- | ------------------------------------------------------------------------------------------------- |
 | `urls`      | `List[str]`               | `[]`    | URLs to read                                                                                      |
-| `reader`    | `Optional[WebsiteReader]` | `None`  | A `WebsiteReader` that reads the urls and converts them into `Documents` for the vector database. |
+| `reader`    | `Optional[WebsiteReader]` | -  | A `WebsiteReader` that reads the urls and converts them into `Documents` for the vector database. |
 | `max_depth` | `int`                     | `3`     | Maximum depth to crawl.                                                                           |
 | `max_links` | `int`                     | `10`    | Number of links to crawl.                                                                         |
 

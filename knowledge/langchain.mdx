@@ -50,10 +50,10 @@ conv.print_response("What did the president say about technology?")
 
 | Parameter       | Type                 | Default | Description                                                               |
 | --------------- | -------------------- | ------- | ------------------------------------------------------------------------- |
-| `loader`        | `Optional[Callable]` | `None`  | LangChain loader.                                                         |
-| `vectorstore`   | `Optional[Any]`      | `None`  | LangChain vector store used to create a retriever.                        |
-| `search_kwargs` | `Optional[dict]`     | `None`  | Search kwargs when creating a retriever using the langchain vector store. |
-| `retriever`     | `Optional[Any]`      | `None`  | LangChain retriever.                                                      |
+| `loader`        | `Optional[Callable]` | -  | LangChain loader.                                                         |
+| `vectorstore`   | `Optional[Any]`      | -  | LangChain vector store used to create a retriever.                        |
+| `search_kwargs` | `Optional[dict]`     | -  | Search kwargs when creating a retriever using the langchain vector store. |
+| `retriever`     | `Optional[Any]`      | -  | LangChain retriever.                                                      |
 
 `LangChainKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
 
