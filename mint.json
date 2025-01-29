@@ -346,7 +346,8 @@
 					"group": "Applications",
 					"pages": [
 						"examples/apps/text-to-sql",
-						"examples/apps/game-generator"
+						"examples/apps/game-generator",
+						"examples/apps/geobuddy"
 					]
 				}
 			]
