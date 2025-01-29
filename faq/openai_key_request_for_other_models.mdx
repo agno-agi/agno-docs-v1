@@ -1,0 +1,32 @@
+---
+title: OpenAI Key Request for Other Models
+sidebarTitle: OpenAI Key Request for Other Models
+---
+
+If you see a request for an OpenAI API key but haven't explicitly configured OpenAI, it's because Agno uses OpenAI models by default in several places, including:
+
+- **Agent execution**
+- **Memory summaries and retrieval**
+- **Embedders and rerankers**
+
+Since OpenAI is the default model provider, any function requiring an LLM, embedding model, or reranker will attempt to use OpenAI unless explicitly configured otherwise.
+
+## Quick fix: Configure a Different Model
+
+If you want to use a different provider, update your agent or model configuration.
+
+For example, to use Anthropic instead of OpenAI:
+
+```python
+from agno.agent import Agent
+from agno.models.anthropic import Claude
+
+agent = Agent(
+    model=Claude(id="claude-3-5-sonnet-20241022"),
+    description="Your are an intelligent research assistant that analyzes research trends",
+    markdown=True
+)
+agent.print_response("Tell me about AI research trends.", stream=True)
+```
+
+For more details on configuring different model providers, check our [models documentation](../models/)
