@@ -39,7 +39,9 @@ It is an experiment fueled by curiosity, combining COT and tool use. Set your ex
 
 Agno Agents can leverage **specialized reasoning models** alongside the primary Agent model. These models are dedicated to reasoning rather than handling the main Agent tasks. Their responses are appended as messages to the Agent, integrating into the message history sent to the primary Agent model.
 
-Currently, Groq and DeepSeek models are supported for external reasoning. Let's create an `Agent` that uses a `Groq` model for reasoning but uses the `OpenAI` model for the main `Agent`.
+This is especially useful if you use a "cheaper" model for reasoning to improve the accuracy of your more expensive model.
+
+Currently, Groq and DeepSeek models are supported for external reasoning. Below is an example `Agent` that uses a `Groq` model for reasoning but uses the `OpenAI` model for the main `Agent`.
 
 ```python groq_reasoning.py
 from agno.agent import Agent
