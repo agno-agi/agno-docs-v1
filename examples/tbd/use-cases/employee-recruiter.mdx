@@ -13,7 +13,7 @@ from typing import List
 
 import requests
 from agno.run.response import RunResponse
-from agno.tools.zoom import ZoomTool
+from agno.tools.zoom import ZoomTools
 
 try:
     from pypdf import PdfReader
@@ -23,7 +23,7 @@ except ImportError:
     )
 from agno.agent.agent import Agent
 from agno.models.openai.chat import OpenAIChat
-from agno.tools.resend_tools import ResendTools
+from agno.tools.resend import ResendTools
 from agno.utils.log import logger
 from agno.workflow.workflow import Workflow
 from pydantic import BaseModel, Field
@@ -76,7 +76,7 @@ class EmployeeRecruitmentWorkflow(Workflow):
             "You are in IST timezone and the current time is {current_time}. So schedule the call in future time with reference to current time.",
         ],
         tools=[
-            ZoomTool(
+            ZoomTools(
                 account_id=os.getenv("ZOOM_ACCOUNT_ID"),
                 client_id=os.getenv("ZOOM_CLIENT_ID"),
                 client_secret=os.getenv("ZOOM_CLIENT_SECRET"),

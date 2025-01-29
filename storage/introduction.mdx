@@ -11,13 +11,13 @@ The general syntax for adding storage to an Agent looks like:
 ```python storage.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.duckduckgo import DuckDuckGo
+from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.storage.agent.postgres import PgAgentStorage
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     storage=PgAgentStorage(table_name="agent_sessions", db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"),
-    tools=[DuckDuckGo()],
+    tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     add_history_to_messages=True,
 )

@@ -34,7 +34,7 @@ agent = Agent(
         "Always confirm important details before making bookings or changes.",
     ],
     model=OpenAIChat(id="gpt-4"),
-    tools=[CalCom(user_timezone="America/New_York")],
+    tools=[CalComTools(user_timezone="America/New_York")],
     show_tool_calls=True,
     markdown=True,
 )

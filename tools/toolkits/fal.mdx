@@ -23,7 +23,7 @@ The following agent will use FAL to generate any video requested by the user.
 ```python cookbook/agent_concepts/tools/fal_tools.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.fal_tools import FalTools
+from agno.tools.fal import FalTools
 
 fal_agent = Agent(
     name="Fal Video Generator Agent",

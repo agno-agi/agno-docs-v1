@@ -18,7 +18,7 @@ The following agent will summarize the wikipedia article on language models.
 
 ```python cookbook/agent_concepts/tools/newspaper_tools.py
 from agno.agent import Agent
-from agno.tools.newspaper_tools import NewspaperTools
+from agno.tools.newspaper import NewspaperTools
 
 agent = Agent(tools=[NewspaperTools()])
 agent.print_response("Please summarize https://en.wikipedia.org/wiki/Language_model")
