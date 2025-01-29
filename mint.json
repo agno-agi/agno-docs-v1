@@ -338,7 +338,8 @@
 					"pages": [
 						"examples/workflows/blog-post-generator",
 						"examples/workflows/investment-report-generator",
-						"examples/workflows/personalized-email-generator"
+						"examples/workflows/personalized-email-generator",
+						"examples/workflows/startup-idea-validator"
 					]
 				},
 				{
