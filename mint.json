@@ -728,6 +728,12 @@
             "reference/agents/session"
           ]
         },
+		{
+			"group": "Workflows",
+			"pages": [
+				"reference/workflows/workflow"
+			]
+		},
         {
           "group": "Models",
           "pages": [
