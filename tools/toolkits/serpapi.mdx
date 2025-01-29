@@ -22,7 +22,7 @@ The following agent will search Google for the query: "Whats happening in the US
 
 ```python cookbook/agent_concepts/tools/serpapi_tools.py
 from agno.agent import Agent
-from agno.tools.serpapi_tools import SerpApiTools
+from agno.tools.serpapi import SerpApiTools
 
 agent = Agent(tools=[SerpApiTools()])
 agent.print_response("Whats happening in the USA?", markdown=True)

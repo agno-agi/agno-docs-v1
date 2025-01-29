@@ -16,11 +16,11 @@ The following agent will use Linear API to search for issues in a project for a 
 
 ```python cookbook/agent_concepts/tools/linear_tools.py
 from agno.agent import Agent
-from agno.tools.linear_tools import LinearTool
+from agno.tools.linear import LinearTools
 
 agent = Agent(
     name="Linear Tool Agent",
-    tools=[LinearTool()],
+    tools=[LinearTools()],
     show_tool_calls=True,
     markdown=True,
 )

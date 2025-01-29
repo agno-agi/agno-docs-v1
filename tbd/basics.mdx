@@ -64,11 +64,11 @@ Let's create an Agent that prepares a research report by searching the web.
 
     ```python research.py
     from agno.agent import Agent
-    from agno.tools.duckduckgo import DuckDuckGo
-    from agno.tools.newspaper4k import Newspaper4k
+    from agno.tools.duckduckgo import DuckDuckGoTools
+    from agno.tools.newspaper4k import Newspaper4kTools
 
     agent = Agent(
-        tools=[DuckDuckGo(), Newspaper4k()],
+        tools=[DuckDuckGoTools(), Newspaper4kTools()],
         show_tool_calls=True,
         description="You are a senior NYT researcher writing an article on a topic.",
         instructions=[
@@ -304,7 +304,7 @@ import typer
 from rich.prompt import Prompt
 from typing import Optional, List
 from agno.agent import Agent
-from agno.storage.agent.postgres import PgAgentStorage
+from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector
 
@@ -317,7 +317,7 @@ knowledge_base = PDFUrlKnowledgeBase(
 # Comment out after first run
 knowledge_base.load()
 
-storage = PgAgentStorage(table_name="pdf_agent", db_url=db_url)
+storage = PostgresAgentStorage(table_name="pdf_agent", db_url=db_url)
 
 
 def pdf_agent(new: bool = False, user: str = "user"):

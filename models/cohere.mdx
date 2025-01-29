@@ -34,16 +34,16 @@ setx CO_API_KEY ***
 
 ## Example
 
-Use `CohereChat` with your `Agent`:
+Use `Cohere` with your `Agent`:
 
 <CodeGroup>
 
 ```python agent.py
 from agno.agent import Agent, RunResponse
-from agno.models.cohere import CohereChat
+from agno.models.cohere import Cohere
 
 agent = Agent(
-    model=CohereChat(id="command-r-08-2024"),
+    model=Cohere(id="command-r-08-2024"),
     markdown=True
 )
 
@@ -60,4 +60,4 @@ agent.print_response("Share a 2 sentence horror story.")
 
 <Snippet file="model-cohere-params.mdx" />
 
-`CohereChat` is a subclass of the [Model](/reference/models/model) class and has access to the same params.
+`Cohere` is a subclass of the [Model](/reference/models/model) class and has access to the same params.
