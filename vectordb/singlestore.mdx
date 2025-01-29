@@ -16,7 +16,7 @@ from os import getenv
 
 from sqlalchemy.engine import create_engine
 
-from agno.assistant import Assistant
+from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.singlestore import S2VectorDb
 
@@ -48,7 +48,7 @@ knowledge_base.load(recreate=False)
 def pdf_assistant(user: str = "user"):
     run_id: Optional[str] = None
 
-    assistant = Assistant(
+    agent = Agent(
         run_id=run_id,
         user_id=user,
         knowledge_base=knowledge_base,
@@ -58,13 +58,13 @@ def pdf_assistant(user: str = "user"):
         # add_references_to_prompt=True,
     )
     if run_id is None:
-        run_id = assistant.run_id
+        run_id = agent.run_id
         print(f"Started Run: {run_id}\n")
     else:
         print(f"Continuing Run: {run_id}\n")
 
     while True:
-        assistant.cli_app(markdown=True)
+        agent.cli_app(markdown=True)
 
 if __name__ == "__main__":
     typer.run(pdf_assistant)

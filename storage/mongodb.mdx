@@ -3,19 +3,19 @@ title: Mongo Agent Storage
 sidebarTitle: MongoDB
 ---
 
-Agno supports using MongoDB as a storage backend for Agents using the `MongoAgentStorage` class.
+Agno supports using MongoDB as a storage backend for Agents using the `MongoDbAgentStorage` class.
 
 ## Usage
 
 You need to provide either `db_url` or `client`. The following example uses `db_url`.
 
 ```python storage.py
-from agno.storage.agent.mongodb import MongoAgentStorage
+from agno.storage.agent.mongodb import MongoDbAgentStorage
 
 db_url = "mongodb://ai:ai@localhost:27017/agno"
 
 # Create a storage backend using the Mongo database
-storage = MongoAgentStorage(
+storage = MongoDbAgentStorage(
     # store sessions in the agent_sessions collection
     collection_name="agent_sessions",
     db_url=db_url,

@@ -3,17 +3,17 @@ title: Sqlite Agent Storage
 sidebarTitle: Sqlite
 ---
 
-Agno supports using Sqlite as a storage backend for Agents using the `SqlAgentStorage` class.
+Agno supports using Sqlite as a storage backend for Agents using the `SqliteAgentStorage` class.
 
 ## Usage
 
 You need to provide either `db_url`, `db_file` or `db_engine`. The following example uses `db_file`.
 
 ```python storage.py
-from agno.storage.agent.sqlite import SqlAgentStorage
+from agno.storage.agent.sqlite import SqliteAgentStorage
 
 # Create a storage backend using the Sqlite database
-storage = SqlAgentStorage(
+storage = SqliteAgentStorage(
     # store sessions in the ai.sessions table
     table_name="agent_sessions",
     # db_file: Sqlite database file
