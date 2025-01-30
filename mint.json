@@ -45,7 +45,7 @@
 	],
 	"topbarCtaButton": {
 		"type": "github",
-		"url": "https://github.com/agno-agi/agno"
+		"url": "https://github.com/AgnoAgi/agno"
 	},
 	"primaryTab": {
 		"name": "User Guide"
@@ -807,7 +807,7 @@
 	],
 	"footerSocials": {
 		"x": "https://x.com/AgnoAgi",
-		"github": "https://github.com/agno-agi/agno",
+		"github": "https://github.com/AgnoAgi/agno",
 		"discord": "https://phidata.link/discord",
 		"youtube": "https://phidata.link/youtube",
 		"website": "https://agno.com"

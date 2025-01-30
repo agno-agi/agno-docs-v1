@@ -14,14 +14,14 @@ pip install -U crawl4ai
 
 ## Example
 
-The following agent will scrape the content from the https://github.com/agno-agi/agno webpage:
+The following agent will scrape the content from the https://github.com/AgnoAgi/agno webpage:
 
 ```python cookbook/agent_concepts/tools/crawl4ai_tools.py
 from agno.agent import Agent
 from agno.tools.crawl4ai import Crawl4aiTools
 
 agent = Agent(tools=[Crawl4aiTools(max_length=None)], show_tool_calls=True)
-agent.print_response("Tell me about https://github.com/agno-agi/agno.")
+agent.print_response("Tell me about https://github.com/AgnoAgi/agno.")
 ```
 
 ## Toolkit Params
@@ -38,5 +38,5 @@ agent.print_response("Tell me about https://github.com/agno-agi/agno.")
 
 ## Developer Resources
 
-- View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/crawl4ai.py)
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tools/crawl4ai_tools.py)
+- View [Tools](https://github.com/AgnoAgi/agno/blob/main/libs/agno/agno/tools/crawl4ai.py)
+- View [Cookbook](https://github.com/AgnoAgi/agno/blob/main/cookbook/agent_concepts/tools/crawl4ai_tools.py)
