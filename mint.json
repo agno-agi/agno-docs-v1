@@ -76,7 +76,6 @@
 				"get-started/agents",
 				"get-started/playground",
 				"get-started/monitoring",
-				"get-started/local-docker-guide",
 				"get-started/community"
 			]
 		},
@@ -715,7 +714,8 @@
 			"group": "How to",
 			"pages": [
 				"how-to/install",
-				"how-to/contribution_guidelines",
+				"how-to/local-docker-guide",
+				"how-to/contribute",
 				"how-to/phidata-to-agno"
 			]
 		},
@@ -729,6 +729,12 @@
             "reference/agents/session"
           ]
         },
+		{
+			"group": "Workflows",
+			"pages": [
+				"reference/workflows/workflow"
+			]
+		},
         {
           "group": "Models",
           "pages": [

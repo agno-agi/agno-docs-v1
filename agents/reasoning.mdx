@@ -29,36 +29,57 @@ export OPENAI_API_KEY=***
 python reasoning_agent.py
 ```
 
-<Warning>
+Agno Agents can leverage **specialized reasoning models** alongside the primary Agent model. These models are dedicated to reasoning rather than handling the main Agent tasks. Their responses are appended as messages to the Agent, integrating into the message history sent to the primary Agent model.
 
-Reasoning is currently limited to OpenAI models and will break about 20% of the time. **It is not a replacement for o1.**
+Currently, Groq and DeepSeek models are supported for external reasoning. Below is an example `Agent` that uses a `Groq` model for reasoning but uses the `OpenAI` model for the main `Agent`.
 
-It is an experiment fueled by curiosity, combining COT and tool use. Set your expectations very low for this initial release. For example: It will not be able to count ‘r’s in ‘strawberry’.
-</Warning>
+```python groq_reasoning.py
+from agno.agent import Agent
+from agno.models.groq import Groq
+from agno.models.openai import OpenAIChat
+
+reasoning_agent = Agent(model=OpenAIChat(id="gpt-4o"), reasoning_model=Groq(id="deepseek-r1-distill-llama-70b"))
+reasoning_agent.print_response(task, stream=True)
+```
+
+Run the Reasoning Agent:
+
+```bash
+pip install -U agno openai groq
+
+export OPENAI_API_KEY=***
+export GROQ_API_KEY=***
+
+python groq_reasoning.py
+```
 
 ## How to use reasoning
 
-To add reasoning, set `reasoning=True`. When using reasoning with tools, do not use `structured_outputs=True` as gpt-4o cannot use tools with structured outputs.
+To add reasoning, set `reasoning=True` or set `reasoning_model` to a supported reasoning model. If you do not set `reasoning_model`, the primary `Agent` model will be used for reasoning.
 
-```python
+```python deepseek_reasoning.py
+from agno.models.openai import OpenAIChat
+from agno.models.deepseek import DeepSeek
+
 reasoning_agent = Agent(
     model=OpenAIChat(id="gpt-4o-2024-08-06"),
-    reasoning=True,
-    markdown=True,
-    structured_outputs=True,
+    reasoning_model=DeepSeek(id="deepseek-reasoner"),
 )
-reasoning_agent.print_response("How many 'r' are in the word 'supercalifragilisticexpialidocious'?", stream=True, show_full_reasoning=True)
+reasoning_agent.print_response("How many 'r' are in the word 'supercalifragilisticexpialidocious'?", stream=True)
+```
+
+```bash
+pip install -U agno openai deepseek
+
+export OPENAI_API_KEY=***
+export DEEPSEEK_API_KEY=***
+
+python deepseek_reasoning.py
 ```
 
 ## Reasoning with tools
 
-You can also use tools with a reasoning agent, but do not use `structured_outputs=True` as gpt-4o cannot use tools with structured outputs. Lets create a finance agent that can reason.
-
-<Warning>
-
-Reasoning with tools is currently limited to OpenAI models and will break about 20% of the time.
-
-</Warning>
+You can also use tools with a reasoning agent. Lets create a finance agent that can reason.
 
 ```python finance_reasoning.py
 from agno.agent import Agent
@@ -200,7 +221,6 @@ python ethical_dilemma.py
 
 ### Planning an itinerary
 
-
 ```python planning_itinerary.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
@@ -245,6 +265,6 @@ export OPENAI_API_KEY=***
 python creative_writing.py
 ```
 
- ## Developer Resources
+## Developer Resources
 
 - View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/reasoning)
