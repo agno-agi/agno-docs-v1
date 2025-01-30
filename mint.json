@@ -76,7 +76,6 @@
 				"get-started/agents",
 				"get-started/playground",
 				"get-started/monitoring",
-				"get-started/local-docker-guide",
 				"get-started/community"
 			]
 		},
@@ -230,7 +229,7 @@
 					"group": "VectorDbs",
 					"pages": [
 						"vectordb/introduction",
-						"vectordb/casandra",
+						"vectordb/cassandra",
 						"vectordb/chroma",
 						"vectordb/clickhouse",
 						"vectordb/lancedb",
@@ -339,14 +338,17 @@
 					"pages": [
 						"examples/workflows/blog-post-generator",
 						"examples/workflows/investment-report-generator",
-						"examples/workflows/personalized-email-generator"
+						"examples/workflows/personalized-email-generator",
+						"examples/workflows/startup-idea-validator"
 					]
 				},
 				{
 					"group": "Applications",
 					"pages": [
+						"examples/apps/agentic-rag",
 						"examples/apps/text-to-sql",
-						"examples/apps/game-generator"
+						"examples/apps/geobuddy",
+						"examples/apps/chess-team"
 					]
 				}
 			]
@@ -713,6 +715,8 @@
 			"group": "How to",
 			"pages": [
 				"how-to/install",
+				"how-to/local-docker-guide",
+				"how-to/contribute",
 				"how-to/phidata-to-agno"
 			]
 		},
@@ -726,6 +730,12 @@
             "reference/agents/session"
           ]
         },
+		{
+			"group": "Workflows",
+			"pages": [
+				"reference/workflows/workflow"
+			]
+		},
         {
           "group": "Models",
           "pages": [
@@ -784,7 +794,8 @@
 				"faq/tpm-issues",
 				"faq/cli-auth",
 				"faq/connecting-to-tableplus",
-        		"faq/could-not-connect-to-docker"
+        		"faq/could-not-connect-to-docker",
+				"faq/openai_key_request_for_other_models"
 			]
 		},
 		{

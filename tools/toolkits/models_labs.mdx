@@ -22,10 +22,10 @@ The following agent will use ModelsLabs to generate a video based on a text prom
 
 ```python cookbook/agent_concepts/tools/models_labs_tools.py
 from agno.agent import Agent
-from agno.tools.models_labs import ModelsLabs
+from agno.tools.models_labs import ModelsLabsTools
 
 # Create an Agent with the ModelsLabs tool
-agent = Agent(tools=[ModelsLabs()], name="ModelsLabs Agent")
+agent = Agent(tools=[ModelsLabsTools()], name="ModelsLabs Agent")
 
 agent.print_response("Generate a video of a beautiful sunset over the ocean", markdown=True)
 ```

@@ -105,7 +105,7 @@ class HackerNewsReporter(Workflow):
 
 # Run workflow
 report: Iterator[RunResponse] = HackerNewsReporter(
-        storage=PgWorkflowStorage(
+        storage=PostgresWorkflowStorage(
             table_name="hacker_news_report",
             db_url="postgresql+psycopg://ai:ai@localhost:5532/ai",
         )).run(num_stories=5)

@@ -74,12 +74,12 @@ Let's build a simple agent that can search the web, create a file `web_search.py
     ```python web_search.py
     from agno.agent import Agent
     from agno.models.openai import OpenAIChat
-    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.duckduckgo import DuckDuckGoTools
 
     web_agent = Agent(
         name="Web Agent",
         model=OpenAIChat(id="gpt-4o"),
-        tools=[DuckDuckGo()],
+        tools=[DuckDuckGoTools()],
         instructions=["Always include sources"],
         show_tool_calls=True,
         markdown=True,
@@ -156,14 +156,14 @@ A team of agents can work together to solve complex problems, create a file `age
     ```python agent_team.py
     from agno.agent import Agent
     from agno.models.openai import OpenAIChat
-    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.duckduckgo import DuckDuckGoTools
     from agno.tools.yfinance import YFinanceTools
 
     web_agent = Agent(
         name="Web Agent",
         role="Search the web for information",
         model=OpenAIChat(id="gpt-4o"),
-        tools=[DuckDuckGo()],
+        tools=[DuckDuckGoTools()],
         instructions=["Always include sources"],
         show_tool_calls=True,
         markdown=True,
@@ -266,7 +266,7 @@ This saves tokens and improves response quality. Create a file `rag_agent.py`
             table_name="recipes",
             uri="tmp/lancedb",
             search_type=SearchType.vector,
-            embedder=OpenAIEmbedder(model="text-embedding-3-small"),
+            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
         ),
     )
     # Comment out after first run as the knowledge base is loaded

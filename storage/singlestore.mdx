@@ -3,7 +3,7 @@ title: Singlestore Agent Storage
 sidebarTitle: Singlestore
 ---
 
-Agno supports using Singlestore as a storage backend for Agents using the `S2AgentStorage` class.
+Agno supports using Singlestore as a storage backend for Agents using the `SingleStoreAgentStorage` class.
 
 ## Usage
 
@@ -15,7 +15,7 @@ from os import getenv
 from sqlalchemy.engine import create_engine
 
 from agno.agent import Agent
-from agno.storage.agent.singlestore import S2AgentStorage
+from agno.storage.agent.singlestore import SingleStoreAgentStorage
 
 # SingleStore Configuration
 USERNAME = getenv("SINGLESTORE_USERNAME")
@@ -34,7 +34,7 @@ if SSL_CERT:
 db_engine = create_engine(db_url)
 
 # Create a storage backend using the Singlestore database
-storage = S2AgentStorage(
+storage = SingleStoreAgentStorage(
     # store sessions in the ai.sessions table
     table_name="agent_sessions",
     # db_engine: Singlestore database engine

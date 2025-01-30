@@ -15,7 +15,7 @@ from agno.vectordb.pgvector import PgVector
 from agno.embedder.ollama import OllamaEmbedder
 
 # Embed sentence in database
-embeddings = OllamaEmbedder(model="openhermes").get_embedding("The quick brown fox jumps over the lazy dog.")
+embeddings = OllamaEmbedder(id="openhermes").get_embedding("The quick brown fox jumps over the lazy dog.")
 
 # Print the embeddings and their dimensions
 print(f"Embeddings: {embeddings[:5]}")

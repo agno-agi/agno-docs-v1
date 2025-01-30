@@ -8,10 +8,10 @@ title: HuggingFace
 
 ```python agent.py
 from agno.agent import Agent, RunResponse
-from agno.models.huggingface import HuggingFaceChat
+from agno.models.huggingface import HuggingFace
 
 agent = Agent(
-    model=HuggingFaceChat(
+    model=HuggingFace(
         id="meta-llama/Meta-Llama-3-8B-Instruct",
         max_tokens=4096,
     ),

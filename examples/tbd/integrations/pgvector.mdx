@@ -6,14 +6,14 @@ The PgVector Agent uses PgVector as Knowledge Base and Storage for the Agent.
 
 ```python
 from agno.agent import Agent
-from agno.storage.agent.postgres import PgAgentStorage
+from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 agent = Agent(
-    storage=PgAgentStorage(table_name="recipe_agent", db_url=db_url),
+    storage=PostgresAgentStorage(table_name="recipe_agent", db_url=db_url),
     knowledge_base=PDFUrlKnowledgeBase(
         urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
         vector_db=PgVector(table_name="recipe_documents", db_url=db_url),

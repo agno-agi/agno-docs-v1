@@ -128,7 +128,7 @@ Now you should see a much more relevant result.
 
 ## Agent with knowledge
 
-Agents can store knowledge in a vector database which can be used for RAG or dynamic few-shot learning.
+Agents can store knowledge in a vector database and use it for RAG or dynamic few-shot learning.
 
 **Agno agents use Agentic RAG** by default, which means they will search their knowledge base for the specific information they need to achieve their task.
 
@@ -154,7 +154,7 @@ agent = Agent(
             uri="tmp/lancedb",
             table_name="recipes",
             search_type=SearchType.hybrid,
-            embedder=OpenAIEmbedder(model="text-embedding-3-small"),
+            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
         ),
     ),
     tools=[DuckDuckGoTools()],

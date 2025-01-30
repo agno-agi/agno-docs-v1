@@ -10,11 +10,11 @@ The following agent will calculate the result of `10*5` and then raise it to the
 
 ```python cookbook/agent_concepts/tools/calculator_tools.py
 from agno.agent import Agent
-from agno.tools.calculator import Calculator
+from agno.tools.calculator import CalculatorTools
 
 agent = Agent(
     tools=[
-        Calculator(
+        CalculatorTools(
             add=True,
             subtract=True,
             multiply=True,

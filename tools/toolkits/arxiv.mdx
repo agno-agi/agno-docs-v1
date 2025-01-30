@@ -18,9 +18,9 @@ The following agent will run seach arXiv for "language models" and print the res
 
 ```python cookbook/agent_concepts/tools/arxiv_tools.py
 from agno.agent import Agent
-from agno.tools.arxiv_toolkit import ArxivToolkit
+from agno.tools.arxiv import ArxivTools
 
-agent = Agent(tools=[ArxivToolkit()], show_tool_calls=True)
+agent = Agent(tools=[ArxivTools()], show_tool_calls=True)
 agent.print_response("Search arxiv for 'language models'", markdown=True)
 ```
 

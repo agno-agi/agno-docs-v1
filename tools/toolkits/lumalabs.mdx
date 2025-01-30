@@ -22,12 +22,12 @@ The following agent will use Lumalabs to generate any video requested by the use
 
 ```python cookbook/agent_concepts/tools/lumalabs_tool.py
 from agno.agent import Agent
-from agno.llm.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from agno.tools.lumalab import LumaLabTools
 
 luma_agent = Agent(
     name="Luma Video Agent",
-    llm=OpenAIChat(model="gpt-4o"),
+    model=OpenAIChat(id="gpt-4o"),
     tools=[LumaLabTools()],  # Using the LumaLab tool we created
     markdown=True,
     debug_mode=True,
