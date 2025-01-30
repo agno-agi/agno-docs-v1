@@ -345,10 +345,10 @@
 				{
 					"group": "Applications",
 					"pages": [
+						"examples/apps/agentic-rag",
 						"examples/apps/text-to-sql",
 						"examples/apps/game-generator",
-						"examples/apps/geobuddy",
-						"examples/apps/agentic-rag"
+						"examples/apps/geobuddy"
 					]
 				}
 			]
