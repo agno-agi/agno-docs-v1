@@ -36,7 +36,7 @@
 	"topbarLinks": [
 		{
 			"name": "Discord",
-			"url": "https://phidata.link/discord"
+			"url": "https://agno.link/discord"
 		},
 		{
 			"name": "Community",
@@ -807,8 +807,8 @@
 	"footerSocials": {
 		"x": "https://x.com/AgnoAgi",
 		"github": "https://github.com/agno-agi/agno",
-		"discord": "https://phidata.link/discord",
-		"youtube": "https://phidata.link/youtube",
+		"discord": "https://agno.link/discord",
+		"youtube": "https://agno.link/youtube",
 		"website": "https://agno.com"
 	}
 }
