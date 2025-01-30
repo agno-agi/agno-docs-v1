@@ -76,7 +76,6 @@
 				"get-started/agents",
 				"get-started/playground",
 				"get-started/monitoring",
-				"get-started/local-docker-guide",
 				"get-started/community"
 			]
 		},
@@ -346,7 +345,8 @@
 					"group": "Applications",
 					"pages": [
 						"examples/apps/text-to-sql",
-						"examples/apps/game-generator"
+						"examples/apps/game-generator",
+						"examples/apps/geobuddy"
 					]
 				}
 			]
@@ -713,7 +713,8 @@
 			"group": "How to",
 			"pages": [
 				"how-to/install",
-				"how-to/contribution_guidelines",
+				"how-to/local-docker-guide",
+				"how-to/contribute",
 				"how-to/phidata-to-agno"
 			]
 		},
@@ -727,6 +728,12 @@
             "reference/agents/session"
           ]
         },
+		{
+			"group": "Workflows",
+			"pages": [
+				"reference/workflows/workflow"
+			]
+		},
         {
           "group": "Models",
           "pages": [
@@ -785,7 +792,8 @@
 				"faq/tpm-issues",
 				"faq/cli-auth",
 				"faq/connecting-to-tableplus",
-        		"faq/could-not-connect-to-docker"
+        		"faq/could-not-connect-to-docker",
+				"faq/openai_key_request_for_other_models"
 			]
 		},
 		{

@@ -1,27 +1,39 @@
 ---
-title: Local Agno Agent API
+title: Run Local Agent API
 ---
 
-This guide will walk you through the process of creating a minimal FastAPI app with an Agno agent, containerizing it with Docker, and running it locally along with a PostgreSQL database for knowledge and memory storage.
+This guide will walk you through:
+
+- Creating a minimal FastAPI app with an Agno agent
+- Containerizing it with Docker
+- Running it locally along with a PostgreSQL database for knowledge and memory
 
 ## Setup
 
 <Steps>
-  <Step title="Create a new directory for your project and navigate to it.">
+  <Step title="Create a new directory for your project">
 
     Create a new directory for your project and navigate to it. After following this guide, your project structure will should look like this:
 
-```
-my-project/
-├── Dockerfile
-├── requirements.txt
-├── main.py
-```
+    ```shell
+    mkdir my-project
+    cd my-project
+    ```
+
+    After following this guide, your project structure will should look like this:
+
+    ```shell
+    my-project/
+    ├── main.py
+    ├── Dockerfile
+    ├── requirements.txt
+    ├── docker-compose.yml
+    ```
 
   </Step>
   <Step title="Create a `requirements.txt` file and add the required dependencies:">
 
-```
+```txt requirements.txt
 fastapi
 agno
 openai
@@ -31,14 +43,16 @@ psycopg[binary]
 sqlalchemy
 uvicorn
 ```
+
   </Step>
 </Steps>
 
 ## Step 1: Create a FastAPI App with an Agno Agent
+
 <Steps>
   <Step title="Create a new Python file, e.g., `main.py`, and add the following code to create a minimal FastAPI app with an Agno agent:">
 
-```python
+```python main.py
 from fastapi import FastAPI
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
@@ -58,6 +72,14 @@ async def ask(query: str):
 ```
 
   </Step>
+  <Step title="Create and activate a virtual environment:">
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+  </Step>
   <Step title="Install the required dependencies by running:">
 
 ```bash
@@ -65,7 +87,7 @@ pip install -r requirements.txt
 ```
 
   </Step>
-  <Step title="Set the `OPENAI_API_KEY` environment variable:">
+  <Step title="Set your OPENAI_API_KEY environment variable:">
 
 ```bash
 export OPENAI_API_KEY=your_api_key
@@ -77,6 +99,7 @@ export OPENAI_API_KEY=your_api_key
 ```bash
 uvicorn main:app --reload
 ```
+
 </Step>
 </Steps>
 
@@ -85,7 +108,7 @@ uvicorn main:app --reload
 <Steps>
   <Step title="In the same directory, create a new file named `Dockerfile` with the following content:">
 
-```dockerfile
+```dockerfile Dockerfile
 FROM agnohq/python:3.12
 
 WORKDIR /app
@@ -113,9 +136,11 @@ docker run -p 8000:8000 -e OPENAI_API_KEY=your_api_key my-agent-app
 ```
 
   </Step>
+  <Step title="Access your app">
 
 You can now access the FastAPI app at `http://localhost:8000`.
 
+  </Step>
 </Steps>
 
 ## Step 3: Add Knowledge and Memory with PostgreSQL
@@ -123,7 +148,7 @@ You can now access the FastAPI app at `http://localhost:8000`.
 <Steps>
   <Step title="Update your `main.py` file to include knowledge and memory storage using PostgreSQL:">
 
-```python
+```python main.py
 from fastapi import FastAPI
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
@@ -158,7 +183,7 @@ async def ask(query: str):
   </Step>
   <Step title="Create a `docker-compose.yml` file in the same directory with the following content:">
 
-```yaml
+```yaml docker-compose.yml
 services:
   app:
     build: .
@@ -185,7 +210,7 @@ services:
       retries: 5
 
 volumes:
-  pgdata: 
+  pgdata:
 ```
 
   </Step>
