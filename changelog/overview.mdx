@@ -3,6 +3,20 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-01-31" description="v1.0.2">
+## Improvements and Fixes
+
+## Improvements:
+
+- **Model Client Caching:** Made all models cache the client instantiation, improving Agno agent instantiation time
+- **XTools:** Renamed `TwitterTools` to `XTools` and updated capabilities to be compatible with Twitter API v2.
+
+## Bug Fixes:
+
+- Removed `slots=true` from the agent dataclass decorator which was not compatible with Python < 3.10 .
+- Fixed issue with AzureOpenAIEmbedder not being correctly made a dataclass.
+</Update>
+
 <Update label="2025-01-31" description="v1.0.1">
 ## Mistral Model Update
 
