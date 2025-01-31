@@ -784,7 +784,22 @@
 			"reference/knowledge/wikipedia",
 			"reference/knowledge/youtube"
           ]
-        }
+        },
+		{
+			"group": "Vector Databases",
+			"pages": [
+				"reference/vector_db/cassandra",
+				"reference/vector_db/chromadb",
+				"reference/vector_db/clickhouse",
+				"reference/vector_db/lancedb",
+				"reference/vector_db/milvus",
+				"reference/vector_db/mongodb",
+				"reference/vector_db/pgvector",
+				"reference/vector_db/pinecone",
+				"reference/vector_db/qdrant",
+				"reference/vector_db/singlestore"
+			]
+		}
 			]
 		},
 		{
