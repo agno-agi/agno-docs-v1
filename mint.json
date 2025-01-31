@@ -1,4 +1,5 @@
 {
+
 	"$schema": "https://mintlify.com/schema.json",
 	"name": "Agno",
 	"logo": {
@@ -180,7 +181,7 @@
 								"tools/toolkits/sql",
 								"tools/toolkits/tavily",
 								"tools/toolkits/twilio",
-								"tools/toolkits/twitter",
+								"tools/toolkits/x",
 								"tools/toolkits/website",
 								"tools/toolkits/wikipedia",
 								"tools/toolkits/yfinance",
@@ -319,19 +320,21 @@
 					]
 				},
         {
-					"group": "Agents",
-					"pages": [
-						"examples/agents/finance-agent",
-						"examples/agents/youtube-agent",
-						"examples/agents/research-agent",
-						"examples/agents/research-agent-exa",
-						"examples/agents/teaching-assistant",
-						"examples/agents/recipe-creator",
-						"examples/agents/movie-recommender",
-						"examples/agents/books-recommender",
-						"examples/agents/travel-planner"
-					]
-				},
+          "group": "Agents",
+          "pages": [
+            "agents/introduction",
+            "agents/run",
+            "agents/structured-output",
+            "agents/multimodal",
+            "agents/prompts",
+            "agents/tools",
+            "agents/knowledge",
+            "agents/memory",
+            "agents/storage",
+            "agents/reasoning",
+            "agents/teams"
+          ]
+        },
         {
 					"group": "Workflows",
 					"pages": [
@@ -496,7 +499,7 @@
 						"examples/concepts/tools/sql",
 						"examples/concepts/tools/tavily",
 						"examples/concepts/tools/twilio",
-						"examples/concepts/tools/twitter",
+						"examples/concepts/tools/x",
 						"examples/concepts/tools/website",
 						"examples/concepts/tools/wikipedia",
 						"examples/concepts/tools/yfinance",
@@ -725,10 +728,7 @@
 			"pages": [
         {
           "group": "Agents",
-          "pages": [
-            "reference/agents/agent",
-            "reference/agents/session"
-          ]
+          "pages": ["reference/agents/agent", "reference/agents/session"]
         },
 		{
 			"group": "Workflows",
@@ -746,7 +746,7 @@
             "reference/models/cohere",
             "reference/models/deepseek",
             "reference/models/gemini",
-			"reference/models/gemini_openai",
+            "reference/models/gemini_openai",
             "reference/models/groq",
             "reference/models/huggingface",
             "reference/models/mistral",
@@ -759,30 +759,30 @@
             "reference/models/fireworks",
             "reference/models/openrouter",
             "reference/models/sambanova",
-			"reference/models/internlm",
-			"reference/models/ollama_hermes",
-			"reference/models/ollama_tools",
-			"reference/models/openai_like"
+            "reference/models/internlm",
+            "reference/models/ollama_hermes",
+            "reference/models/ollama_tools",
+            "reference/models/openai_like"
           ]
         },
         {
           "group": "Knowledge",
           "pages": [
             "reference/knowledge/base",
-			"reference/knowledge/arxiv",
-			"reference/knowledge/combined",
-			"reference/knowledge/csv",
-			"reference/knowledge/csv_url",
-			"reference/knowledge/docx",
-			"reference/knowledge/json",
-			"reference/knowledge/langchain",
-			"reference/knowledge/llamaindex",
-			"reference/knowledge/pdf",
-			"reference/knowledge/pdf_url",
-			"reference/knowledge/text",
-			"reference/knowledge/website",
-			"reference/knowledge/wikipedia",
-			"reference/knowledge/youtube"
+            "reference/knowledge/arxiv",
+            "reference/knowledge/combined",
+            "reference/knowledge/csv",
+            "reference/knowledge/csv_url",
+            "reference/knowledge/docx",
+            "reference/knowledge/json",
+            "reference/knowledge/langchain",
+            "reference/knowledge/llamaindex",
+            "reference/knowledge/pdf",
+            "reference/knowledge/pdf_url",
+            "reference/knowledge/text",
+            "reference/knowledge/website",
+            "reference/knowledge/wikipedia",
+            "reference/knowledge/youtube"
           ]
         }
 			]
