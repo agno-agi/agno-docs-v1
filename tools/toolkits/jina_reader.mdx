@@ -14,14 +14,14 @@ pip install -U jina
 
 ## Example
 
-The following agent will use Jina API to summarize the content of https://github.com/agno-agi
+The following agent will use Jina API to summarize the content of https://github.com/AgnoAgi
 
 ```python cookbook/agent_concepts/tools/jinareader.py
 from agno.agent import Agent
-from agno.tools.jina_tools import JinaReaderTools
+from agno.tools.jina import JinaReaderTools
 
 agent = Agent(tools=[JinaReaderTools()])
-agent.print_response("Summarize: https://github.com/agno-agi")
+agent.print_response("Summarize: https://github.com/AgnoAgi")
 ```
 
 ## Toolkit Params

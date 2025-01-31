@@ -5,13 +5,13 @@ description: "**Use the `session_state` to cache intermediate results in a datab
 
 All Workflows come with a `session_state` dictionary that you can use to cache intermediate results. Provide your workflows with `storage` and a `session_id` to enable caching.
 
-For example, you can use the `SqlWorkflowStorage` to cache results in a Sqlite database.
+For example, you can use the `SqliteWorkflowStorage` to cache results in a Sqlite database.
 
 ```python
 # Create the workflow
 generate_blog_post = BlogPostGenerator(
     session_id="my-session-id",
-    storage=SqlWorkflowStorage(
+    storage=SqliteWorkflowStorage(
         table_name="generate_blog_post_workflows",
         db_file="tmp/workflows.db",
     ),

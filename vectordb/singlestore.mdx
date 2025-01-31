@@ -16,9 +16,9 @@ from os import getenv
 
 from sqlalchemy.engine import create_engine
 
-from agno.assistant import Assistant
+from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.vectordb.singlestore import S2VectorDb
+from agno.vectordb.singlestore import SingleStore
 
 USERNAME = getenv("SINGLESTORE_USERNAME")
 PASSWORD = getenv("SINGLESTORE_PASSWORD")
@@ -35,7 +35,7 @@ db_engine = create_engine(db_url)
 
 knowledge_base = PDFUrlKnowledgeBase(
     urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
-    vector_db=S2VectorDb(
+    vector_db=SingleStore(
         collection="recipes",
         db_engine=db_engine,
         schema=DATABASE,
@@ -48,7 +48,7 @@ knowledge_base.load(recreate=False)
 def pdf_assistant(user: str = "user"):
     run_id: Optional[str] = None
 
-    assistant = Assistant(
+    agent = Agent(
         run_id=run_id,
         user_id=user,
         knowledge_base=knowledge_base,
@@ -58,13 +58,13 @@ def pdf_assistant(user: str = "user"):
         # add_references_to_prompt=True,
     )
     if run_id is None:
-        run_id = assistant.run_id
+        run_id = agent.run_id
         print(f"Started Run: {run_id}\n")
     else:
         print(f"Continuing Run: {run_id}\n")
 
     while True:
-        assistant.cli_app(markdown=True)
+        agent.cli_app(markdown=True)
 
 if __name__ == "__main__":
     typer.run(pdf_assistant)
@@ -76,4 +76,4 @@ if __name__ == "__main__":
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/singlestore_db.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/singlestore_db.py)

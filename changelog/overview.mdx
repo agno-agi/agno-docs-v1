@@ -2,7 +2,17 @@
 title: "Product updates"
 mode: "wide"
 ---
-<Update label="2025-01-29" description="v3.0.0">
+
+<Update label="2025-01-31" description="v1.0.1">
+## Mistral Model Update
+
+## Improvement:
+
+- Enabled caching for Mistral models.
+
+</Update>
+
+<Update label="2025-01-30" description="v1.0.0">
 This is the major refactor from `phidata` to `agno`, released with the official launch of Agno AI.
 
 See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
@@ -14,81 +24,82 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
 - `phi.document.reader.xxx` → `agno.document.reader.xxx_reader` (applies to all document readers)
 - All Agno toolkits are now suffixed with `Tools`. E.g. `DuckDuckGo` → `DuckDuckGoTools`
 - Multi-modal interface updates:
-    - `agent.run(images=[])` and `agent.print_response(images=[])` is now of type `Image`
 
-        ```python
-        class Image(BaseModel):
-            url: Optional[str] = None  # Remote location for image
-            filepath: Optional[Union[Path, str]] = None  # Absolute local location for image
-            content: Optional[Any] = None  # Actual image bytes content
-            detail: Optional[str] = None # low, medium, high or auto (per OpenAI spec https://platform.openai.com/docs/guides/vision?lang=node#low-or-high-fidelity-image-understanding)
-            id: Optional[str] = None
-        ```
+  - `agent.run(images=[])` and `agent.print_response(images=[])` is now of type `Image`
 
-    - `agent.run(audio=[])` and `agent.print_response(audio=[])` is now of type `Audio`
+    ```python
+    class Image(BaseModel):
+        url: Optional[str] = None  # Remote location for image
+        filepath: Optional[Union[Path, str]] = None  # Absolute local location for image
+        content: Optional[Any] = None  # Actual image bytes content
+        detail: Optional[str] = None # low, medium, high or auto (per OpenAI spec https://platform.openai.com/docs/guides/vision?lang=node#low-or-high-fidelity-image-understanding)
+        id: Optional[str] = None
+    ```
 
-        ```python
-        class Audio(BaseModel):
-            filepath: Optional[Union[Path, str]] = None  # Absolute local location for audio
-            content: Optional[Any] = None  # Actual audio bytes content
-            format: Optional[str] = None
-        ```
+  - `agent.run(audio=[])` and `agent.print_response(audio=[])` is now of type `Audio`
 
-    - `agent.run(video=[])` and `agent.print_response(video=[])` is now of type `Video`
+    ```python
+    class Audio(BaseModel):
+        filepath: Optional[Union[Path, str]] = None  # Absolute local location for audio
+        content: Optional[Any] = None  # Actual audio bytes content
+        format: Optional[str] = None
+    ```
 
-        ```python
-        class Video(BaseModel):
-            filepath: Optional[Union[Path, str]] = None  # Absolute local location for video
-            content: Optional[Any] = None  # Actual video bytes content
-        ```
+  - `agent.run(video=[])` and `agent.print_response(video=[])` is now of type `Video`
 
-    - `RunResponse.images` is now a list of type `ImageArtifact`
+    ```python
+    class Video(BaseModel):
+        filepath: Optional[Union[Path, str]] = None  # Absolute local location for video
+        content: Optional[Any] = None  # Actual video bytes content
+    ```
 
-        ```python
-        class ImageArtifact(Media):
-            id: str
-            url: str  # Remote location for file
-            alt_text: Optional[str] = None
-        ```
+  - `RunResponse.images` is now a list of type `ImageArtifact`
 
-    - `RunResponse.audio` is now a list of type `AudioArtifact`
+    ```python
+    class ImageArtifact(Media):
+        id: str
+        url: str  # Remote location for file
+        alt_text: Optional[str] = None
+    ```
 
-        ```python
-        class AudioArtifact(Media):
-            id: str
-            url: Optional[str] = None  # Remote location for file
-            base64_audio: Optional[str] = None  # Base64-encoded audio data
-            length: Optional[str] = None
-            mime_type: Optional[str] = None
-        ```
+  - `RunResponse.audio` is now a list of type `AudioArtifact`
 
-    - `RunResponse.videos` is now a list of type `VideoArtifact`
+    ```python
+    class AudioArtifact(Media):
+        id: str
+        url: Optional[str] = None  # Remote location for file
+        base64_audio: Optional[str] = None  # Base64-encoded audio data
+        length: Optional[str] = None
+        mime_type: Optional[str] = None
+    ```
 
-        ```python
-        class VideoArtifact(Media):
-            id: str
-            url: str  # Remote location for file
-            eta: Optional[str] = None
-            length: Optional[str] = None
-        ```
+  - `RunResponse.videos` is now a list of type `VideoArtifact`
 
-    - `RunResponse.response_audio` is now of type `AudioOutput`
+    ```python
+    class VideoArtifact(Media):
+        id: str
+        url: str  # Remote location for file
+        eta: Optional[str] = None
+        length: Optional[str] = None
+    ```
 
-        ```python
-        class AudioOutput(BaseModel):
-            id: str
-            content: str  # Base64 encoded
-            expires_at: int
-            transcript: str
-        ```
+  - `RunResponse.response_audio` is now of type `AudioOutput`
+
+    ```python
+    class AudioOutput(BaseModel):
+        id: str
+        content: str  # Base64 encoded
+        expires_at: int
+        transcript: str
+    ```
 
 - Models:
-    - `Hermes` → `OllamaHermes`
-    - `AzureOpenAIChat` → `AzureOpenAI`
-    - `CohereChat` → `Cohere`
-    - `DeepSeekChat` → `DeepSeek`
-    - `GeminiOpenAIChat` → `GeminiOpenAI`
-    - `HuggingFaceChat` → `HuggingFace`
+  - `Hermes` → `OllamaHermes`
+  - `AzureOpenAIChat` → `AzureOpenAI`
+  - `CohereChat` → `Cohere`
+  - `DeepSeekChat` → `DeepSeek`
+  - `GeminiOpenAIChat` → `GeminiOpenAI`
+  - `HuggingFaceChat` → `HuggingFace`
 - Embedders now all take `id` instead of `model` as a parameter. For example
 
   ```python
@@ -104,31 +115,32 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
   )
   knowledge_base.load(recreate=True)
   ```
+
 - Agent Storage class
-    - `PgAgentStorage` → `PostgresDbAgentStorage`
-    - `SqlAgentStorage` → `SqliteDbAgentStorage`
-    - `MongoAgentStorage` → `MongoDbAgentStorage`
-    - `S2AgentStorage` → `SingleStoreDbAgentStorage`
+  - `PgAgentStorage` → `PostgresDbAgentStorage`
+  - `SqlAgentStorage` → `SqliteDbAgentStorage`
+  - `MongoAgentStorage` → `MongoDbAgentStorage`
+  - `S2AgentStorage` → `SingleStoreDbAgentStorage`
 - Workflow Storage class
-    - `SqlWorkflowStorage` → `SqliteDbWorkflowStorage`
-    - `PgWorkflowStorage` → `PostgresDbWorkflowStorage`
-    - `MongoWorkflowStorage` → `MongoDbWorkflowStorage`
+  - `SqlWorkflowStorage` → `SqliteDbWorkflowStorage`
+  - `PgWorkflowStorage` → `PostgresDbWorkflowStorage`
+  - `MongoWorkflowStorage` → `MongoDbWorkflowStorage`
 - Knowledge Base
-    - `phi.knowledge.pdf.PDFUrlKnowledgeBase` → `agno.knowledge.pdf_url.PDFUrlKnowledgeBase`
-    - `phi.knowledge.csv.CSVUrlKnowledgeBase` → `agno.knowledge.csv_url.CSVUrlKnowledgeBase`
+  - `phi.knowledge.pdf.PDFUrlKnowledgeBase` → `agno.knowledge.pdf_url.PDFUrlKnowledgeBase`
+  - `phi.knowledge.csv.CSVUrlKnowledgeBase` → `agno.knowledge.csv_url.CSVUrlKnowledgeBase`
 - Readers
-    - `phi.document.reader.arxiv` → `agno.document.reader.arxiv_reader`
-    - `phi.document.reader.docx` → `agno.document.reader.docx_reader`
-    - `phi.document.reader.json` → `agno.document.reader.json_reader`
-    - `phi.document.reader.pdf` → `agno.document.reader.pdf_reader`
-    - `phi.document.reader.s3.pdf` → `agno.document.reader.s3.pdf_reader`
-    - `phi.document.reader.s3.text` → `agno.document.reader.s3.text_reader`
-    - `phi.document.reader.text` → `agno.document.reader.text_reader`
-    - `phi.document.reader.website` → `agno.document.reader.website_reader`
+  - `phi.document.reader.arxiv` → `agno.document.reader.arxiv_reader`
+  - `phi.document.reader.docx` → `agno.document.reader.docx_reader`
+  - `phi.document.reader.json` → `agno.document.reader.json_reader`
+  - `phi.document.reader.pdf` → `agno.document.reader.pdf_reader`
+  - `phi.document.reader.s3.pdf` → `agno.document.reader.s3.pdf_reader`
+  - `phi.document.reader.s3.text` → `agno.document.reader.s3.text_reader`
+  - `phi.document.reader.text` → `agno.document.reader.text_reader`
+  - `phi.document.reader.website` → `agno.document.reader.website_reader`
 
 ## Improvements:
 
-- **Dataclasses** - Changed various instances of Pydantic models to dataclasses to improve the speed.
+- **Dataclasses:** Changed various instances of Pydantic models to dataclasses to improve the speed.
 - Moved `Embedder` class from pydantic to data class
 
 ## Removals
@@ -140,5 +152,9 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
 ## Bug Fixes:
 
 - Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param
+
+## New Features:
+
+- **Evals:** Introducing Evals to measure the performance, accuracy, and reliability of your Agents
 
 </Update>

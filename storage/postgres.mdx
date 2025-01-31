@@ -3,7 +3,7 @@ title: Postgres Agent Storage
 sidebarTitle: Postgres
 ---
 
-Agno supports using PostgreSQL as a storage backend for Agents using the `PgAgentStorage` class.
+Agno supports using PostgreSQL as a storage backend for Agents using the `PostgresAgentStorage` class.
 
 ## Usage
 
@@ -24,12 +24,12 @@ docker run -d \
 ```
 
 ```python storage.py
-from agno.storage.agent.postgres import PgAgentStorage
+from agno.storage.agent.postgres import PostgresAgentStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 # Create a storage backend using the Postgres database
-storage = PgAgentStorage(
+storage = PostgresAgentStorage(
     # store sessions in the ai.sessions table
     table_name="agent_sessions",
     # db_url: Postgres database URL

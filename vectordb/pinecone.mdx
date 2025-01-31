@@ -17,12 +17,12 @@ from rich.prompt import Prompt
 
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.vectordb.pineconedb import PineconeDB
+from agno.vectordb.pineconedb import PineconeDb
 
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = "thai-recipe-hybrid-search"
 
-vector_db = PineconeDB(
+vector_db = PineconeDb(
     name=index_name,
     dimension=1536,
     metric="cosine",
@@ -67,10 +67,10 @@ if __name__ == "__main__":
     typer.run(pinecone_agent)
 ```
 
-## PineconeDB Params
+## PineconeDb Params
 
 <Snippet file="vectordb_pineconedb_params.mdx" />
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pinecone_db.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pinecone_db.py)

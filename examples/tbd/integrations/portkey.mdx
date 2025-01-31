@@ -31,10 +31,10 @@ pip install agno portkey-ai
 2. **Configure Agno with Portkey:**
 
 ```python
-from agno.llm.openai import OpenAIChat
+from agno.models.openai import OpenAIChat
 from portkey_ai import PORTKEY_GATEWAY_URL, createHeaders
 
-llm = OpenAIChat(
+model = OpenAIChat(
      base_url=PORTKEY_GATEWAY_URL,
      api_key="OPENAI_API_KEY", #Replace with Your OpenAI Key
      default_headers=createHeaders(
@@ -54,7 +54,7 @@ And, that's it! With just this, you can start logging all of your Agno requests 
 from agno.agent import Agent
 
 agent = Agent(
-    llm=llm,
+    model=model,
     description="You help people with their health and fitness goals.",
     instructions=["Recipes should be under 5 ingredients"],
 )

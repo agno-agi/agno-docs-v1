@@ -17,12 +17,12 @@ The following agent will use AWS Lambda to list all Lambda functions in our AWS 
 ```python cookbook/agent_concepts/tools/aws_lambda_tools.py
 
 from agno.agent import Agent
-from agno.tools.aws_lambda import AWSLambdaTool
+from agno.tools.aws_lambda import AWSLambdaTools
 
 
 # Create an Agent with the AWSLambdaTool
 agent = Agent(
-    tools=[AWSLambdaTool(region_name="us-east-1")],
+    tools=[AWSLambdaTools(region_name="us-east-1")],
     name="AWS Lambda Agent",
     show_tool_calls=True,
 )

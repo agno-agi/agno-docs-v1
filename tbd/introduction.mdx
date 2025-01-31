@@ -83,9 +83,9 @@ Memory & knowledge make agents **smarter** while tools make them **autonomous**.
 
     ```python agent.py
     from agno.agent import Agent
-    from agno.tools.duckduckgo import DuckDuckGo
+    from agno.tools.duckduckgo import DuckDuckGoTools
 
-    agent = Agent(tools=[DuckDuckGo()], show_tool_calls=True, markdown=True)
+    agent = Agent(tools=[DuckDuckGoTools()], show_tool_calls=True, markdown=True)
     agent.print_response("Whats happening in France?", stream=True)
     ```
 
@@ -130,11 +130,11 @@ Memory & knowledge make agents **smarter** while tools make them **autonomous**.
 
     ```python finance_agent.py
     from agno.agent import Agent
-    from agno.llm.openai import OpenAIChat
+    from agno.models.openai import OpenAIChat
     from agno.tools.yfinance import YFinanceTools
 
     agent = Agent(
-        llm=OpenAIChat(model="gpt-4o"),
+        model=OpenAIChat(id="gpt-4o"),
         tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
         show_tool_calls=True,
         markdown=True,
@@ -183,4 +183,4 @@ We've helped many companies build AI products, the general workflow is:
 2. **Connect your product** to the Agent via an API.
 3. **Monitor and Improve** your AI product.
 
-We also provide dedicated support and development, [book a call](https://cal.com/phidata/intro) to get started.
+We also provide dedicated support and development, [book a call](https://agno.link/book-a-call) to get started.
