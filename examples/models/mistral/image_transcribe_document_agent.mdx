@@ -1,0 +1,56 @@
+---
+title: Image Transcribe Document Agent
+description: Example of transcribing text from document images using Mistral's vision model
+---
+
+## Overview
+This example shows how to use Mistral's vision capabilities to transcribe text from images of documents, particularly useful for processing handwritten or old documents.
+
+## Code
+
+```python cookbook/models/mistral/image_transcribe_document_agent
+"""
+This agent transcribes an old written document from an image.
+"""
+
+from agno.agent import Agent
+from agno.media import Image
+from agno.models.mistral.mistral import MistralChat
+
+agent = Agent(
+    model=MistralChat(id="pixtral-12b-2409"),
+    markdown=True,
+)
+
+# Process and transcribe the document image
+agent.print_response(
+    "Transcribe this document.",
+    images=[
+        Image(url="https://ciir.cs.umass.edu/irdemo/hw-demo/page_example.jpg"),
+    ],
+)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U mistralai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/mistral/image_transcribe_document_agent
+    ```
+
+    ```bash Windows
+    python cookbook/models/mistral/image_transcribe_document_agent
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 
