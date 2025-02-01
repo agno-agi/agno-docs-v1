@@ -43,7 +43,7 @@ How to use:
   calls at once.
 </Note>
 
-In this example, `gpt-4o` makes two simultaneous tool calls to `DuckDuckGoTools`. Typically, these calls would execute sequentially, causing delays. However, with Agno's `aprint_response` function, they run concurrently, significantly improving execution time.
+In this example, `gpt-4o` makes two simultaneous tool calls to `DuckDuckGoTools`. Normally these tool calls would execute sequentially, causing delays. However, using the `aprint_response` function, they run concurrently, improving execution time.
 
 <img
   height="200"
