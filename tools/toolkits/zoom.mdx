@@ -1,127 +1,72 @@
 ---
 title: Zoom
+sidebarTitle: Zoom
 ---
+
+**Zoom** enables an Agent to interact with Zoom, allowing it to schedule meetings, manage recordings, and handle various meeting-related operations through the Zoom API.
+
+## Prerequisites
+
+The Zoom toolkit requires the `requests` library and proper authentication setup. Install the required dependencies:
+
+```shell
+pip install requests
+```
+
+You'll need to set up a Server-to-Server OAuth app in the Zoom Marketplace:
+
+1. Go to [Zoom Marketplace](https://marketplace.zoom.us/)
+2. Create a Server-to-Server OAuth app
+3. Enable the necessary Zoom API scopes
+4. Set up environment variables:
+
+```shell
+export ZOOM_ACCOUNT_ID=your_account_id
+export ZOOM_CLIENT_ID=your_client_id
+export ZOOM_CLIENT_SECRET=your_client_secret
+```
 
 ## Example
 
-The following agent will use Zoom to schedule a new meeting.
-
 ```python cookbook/agent_concepts/tools/zoom_tools.py
-import os
-import time
-import requests
-from typing import Optional
-
-from agno.utils.log import logger
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
 from agno.tools.zoom import ZoomTools
 
-# Get environment variables
-ACCOUNT_ID = os.getenv("ZOOM_ACCOUNT_ID")
-CLIENT_ID = os.getenv("ZOOM_CLIENT_ID")
-CLIENT_SECRET = os.getenv("ZOOM_CLIENT_SECRET")
-
-class CustomZoomTool(ZoomTools):
-    def __init__(
-        self,
-        account_id: Optional[str] = None,
-        client_id: Optional[str] = None,
-        client_secret: Optional[str] = None,
-        name: str = "zoom_tool",
-    ):
-        super().__init__(account_id=account_id, client_id=client_id, client_secret=client_secret, name=name)
-        self.token_url = "https://zoom.us/oauth/token"
-        self.access_token = None
-        self.token_expires_at = 0
-
-    def get_access_token(self) -> str:
-        """
-        Obtain or refresh the access token for Zoom API.
-        Returns:
-            A string containing the access token or an empty string if token retrieval fails.
-        """
-        if self.access_token and time.time() < self.token_expires_at:
-            return str(self.access_token)
-
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        data = {"grant_type": "account_credentials", "account_id": self.account_id}
-
-        try:
-            response = requests.post(
-                self.token_url, headers=headers, data=data, auth=(self.client_id, self.client_secret)
-            )
-            response.raise_for_status()
-
-            token_info = response.json()
-            self.access_token = token_info["access_token"]
-            expires_in = token_info["expires_in"]
-            self.token_expires_at = time.time() + expires_in - 60
-
-            self._set_parent_token(str(self.access_token))
-            return str(self.access_token)
-        except requests.RequestException as e:
-            logger.error(f"Error fetching access token: {e}")
-            return ""
-
-    def _set_parent_token(self, token: str) -> None:
-        """Helper method to set the token in the parent ZoomTool class"""
-        if token:
-            self._ZoomTool__access_token = token
-
-zoom_tools = CustomZoomTool(account_id=ACCOUNT_ID, client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
-
-agent = Agent(
-    name="Zoom Meeting Manager",
-    agent_id="zoom-meeting-manager",
-    model=OpenAIChat(model="gpt-4"),
-    tools=[zoom_tools],
-    markdown=True,
-    debug_mode=True,
-    show_tool_calls=True,
-    instructions=[
-        "You are an expert at managing Zoom meetings using the Zoom API.",
-        "You can:",
-        "1. Schedule new meetings (schedule_meeting)",
-        "2. Get meeting details (get_meeting)",
-        "3. List all meetings (list_meetings)",
-        "4. Get upcoming meetings (get_upcoming_meetings)",
-        "5. Delete meetings (delete_meeting)",
-        "6. Get meeting recordings (get_meeting_recordings)",
-        "",
-        "For recordings, you can:",
-        "- Retrieve recordings for any past meeting using the meeting ID",
-        "- Include download tokens if needed",
-        "- Get recording details like duration, size, download link and file types",
-        "",
-        "Guidelines:",
-        "- Use ISO 8601 format for dates (e.g., '2024-12-28T10:00:00Z')",
-        "- Ensure meeting times are in the future",
-        "- Provide meeting details after scheduling (ID, URL, time)",
-        "- Handle errors gracefully",
-        "- Confirm successful operations",
-    ],
+# Initialize Zoom tools with credentials
+zoom_tools = ZoomTools(
+    account_id="your_account_id",
+    client_id="your_client_id",
+    client_secret="your_client_secret"
 )
 
-agent.print_response("Schedule a meeting titled 'Team Sync' 8th december at 2 PM UTC for 45 minutes")
-agent.print_response("delete a meeting titled 'Team Sync' which scheduled tomorrow at 2 PM UTC for 45 minutes")
-agent.print_response("List all my scheduled meetings")
+agent = Agent(tools=[zoom_tools], show_tool_calls=True)
+agent.print_response("Schedule a team meeting for tomorrow at 2 PM UTC for 45 minutes", markdown=True)
 ```
 
 ## Toolkit Params
 
-| Parameter       | Type  | Default       | Description                            |
-| --------------- | ----- | ------------- | -------------------------------------- |
-| `account_id`    | `str` | `None`        | The Zoom account ID for authentication |
-| `client_id`     | `str` | `None`        | The client ID for authentication       |
-| `client_secret` | `str` | `None`        | The client secret for authentication   |
-| `name`          | `str` | `"zoom_tool"` | The name of the tool                   |
+| Parameter           | Type   | Default      | Description                                    |
+| ------------------ | ------ | ------------ | ---------------------------------------------- |
+| `account_id`       | `str`  | `None`       | Zoom account ID for authentication             |
+| `client_id`        | `str`  | `None`       | Client ID for authentication                   |
+| `client_secret`    | `str`  | `None`       | Client secret for authentication               |
+| `name`             | `str`  | `zoom_tool`  | Name of the tool instance                      |
 
 ## Toolkit Functions
 
-| Function           | Description                  |
-| ------------------ | ---------------------------- |
-| `schedule_meeting` | Schedules a new Zoom meeting |
+| Function                | Description                                                |
+| ---------------------- | ---------------------------------------------------------- |
+| `schedule_meeting`     | Schedule a new Zoom meeting                                |
+| `get_upcoming_meetings`| Get a list of upcoming meetings                            |
+| `list_meetings`        | List all meetings based on type                            |
+| `get_meeting_recordings`| Get recordings for a specific meeting                      |
+| `delete_meeting`       | Delete a scheduled meeting                                 |
+| `get_meeting`          | Get detailed information about a specific meeting          |
+
+
+## Rate Limits
+
+The Zoom API has rate limits that vary by endpoint and account type. Refer to the [Zoom API documentation](https://developers.zoom.us/docs/api/) for specific limits.
 
 ## Developer Resources
 
