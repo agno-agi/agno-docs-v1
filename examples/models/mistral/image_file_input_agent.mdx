@@ -18,7 +18,7 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=MistralChat(id="pixtral-12b-2409"),
-    tools=[DuckDuckGoTools()],  # pixtral-12b-2409 is not so great at tool calls, but it might work.
+    tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     markdown=True,
 )
@@ -40,6 +40,12 @@ agent.print_response(
 
 <Steps>
   <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export MISTRAL_API_KEY=xxx
+    ```
+  </Step>
 
   <Step title="Install libraries">
     ```bash
