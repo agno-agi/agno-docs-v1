@@ -784,6 +784,12 @@
             "reference/knowledge/wikipedia",
             "reference/knowledge/youtube"
           ]
+        },
+        {
+          "group": "Rerankers",
+          "pages": [
+            "reference/reranker/cohere"
+          ]
         }
 			]
 		},
