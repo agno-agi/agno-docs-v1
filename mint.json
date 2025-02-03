@@ -683,7 +683,8 @@
 						"examples/models/openai/image_agent",
 						"examples/models/openai/audio_input_agent",
 						"examples/models/openai/audio_output_agent",
-						"examples/models/openai/generate_images"
+						"examples/models/openai/generate_images",
+						"examples/models/openai/reasoning_effort"
 					]
 				},
 				{
