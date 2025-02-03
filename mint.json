@@ -789,12 +789,6 @@
           ]
         },
         {
-          "group": "Rerankers",
-          "pages": [
-            "reference/reranker/cohere"
-          ]
-        },
-        {
           "group": "Vector Databases",
           "pages": [
             "reference/vector_db/cassandra",
@@ -808,7 +802,23 @@
             "reference/vector_db/qdrant",
             "reference/vector_db/singlestore"
           ]
-        }
+        },
+		{
+			"group": "Rerankers",
+			"pages": [
+			  "reference/reranker/cohere"
+			]
+		},
+		{
+			"group": "Chunking",
+			"pages":[
+				"reference/chunking/fixed-size",
+				"reference/chunking/agentic",
+				"reference/chunking/semantic",
+				"reference/chunking/recursive",
+				"reference/chunking/document"
+			]
+		}
 			]
 		},
 		{
