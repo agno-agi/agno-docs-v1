@@ -152,6 +152,7 @@
 								"tools/toolkits/exa",
 								"tools/toolkits/fal",
 								"tools/toolkits/firecrawl",
+								"tools/toolkits/gmail",
 								"tools/toolkits/giphy",
 								"tools/toolkits/github",
 								"tools/toolkits/googlecalendar",
@@ -186,7 +187,8 @@
 								"tools/toolkits/wikipedia",
 								"tools/toolkits/yfinance",
 								"tools/toolkits/youtube",
-								"tools/toolkits/zendesk"
+								"tools/toolkits/zendesk",
+								"tools/toolkits/zoom"
 							]
 						},
 						"tools/custom-toolkits",
@@ -681,7 +683,8 @@
 						"examples/models/openai/image_agent",
 						"examples/models/openai/audio_input_agent",
 						"examples/models/openai/audio_output_agent",
-						"examples/models/openai/generate_images"
+						"examples/models/openai/generate_images",
+						"examples/models/openai/reasoning_effort"
 					]
 				},
 				{
@@ -785,21 +788,27 @@
             "reference/knowledge/youtube"
           ]
         },
-		{
-			"group": "Vector Databases",
-			"pages": [
-				"reference/vector_db/cassandra",
-				"reference/vector_db/chromadb",
-				"reference/vector_db/clickhouse",
-				"reference/vector_db/lancedb",
-				"reference/vector_db/milvus",
-				"reference/vector_db/mongodb",
-				"reference/vector_db/pgvector",
-				"reference/vector_db/pinecone",
-				"reference/vector_db/qdrant",
-				"reference/vector_db/singlestore"
-			]
-		}
+        {
+          "group": "Rerankers",
+          "pages": [
+            "reference/reranker/cohere"
+          ]
+        },
+        {
+          "group": "Vector Databases",
+          "pages": [
+            "reference/vector_db/cassandra",
+            "reference/vector_db/chromadb",
+            "reference/vector_db/clickhouse",
+            "reference/vector_db/lancedb",
+            "reference/vector_db/milvus",
+            "reference/vector_db/mongodb",
+            "reference/vector_db/pgvector",
+            "reference/vector_db/pinecone",
+            "reference/vector_db/qdrant",
+            "reference/vector_db/singlestore"
+          ]
+        }
 			]
 		},
 		{

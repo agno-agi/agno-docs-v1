@@ -1,0 +1,6 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| model | str | "rerank-multilingual-v3.0" | The Cohere model to use for reranking. |
+| api_key | Optional[str] | None | The Cohere API key. If not provided, will attempt to use environment variables. |
+| cohere_client | Optional[CohereClient] | None | An optional pre-configured Cohere client instance. |
+| top_n | Optional[int] | None | The maximum number of documents to return after reranking. If None, returns all documents. |
