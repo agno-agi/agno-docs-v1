@@ -801,6 +801,25 @@
 				"reference/vector_db/qdrant",
 				"reference/vector_db/singlestore"
 			]
+		},
+		{
+			"group": "Document Reader",
+			"pages": [
+				"reference/document_reader/arxiv",
+				"reference/document_reader/base",
+				"reference/document_reader/csv",
+				"reference/document_reader/csv_url",
+				"reference/document_reader/docx",
+				"reference/document_reader/json",
+				"reference/document_reader/pdf_image_url",
+				"reference/document_reader/pdf_image",
+				"reference/document_reader/pdf_url",
+				"reference/document_reader/pdf",
+				"reference/document_reader/text",
+				"reference/document_reader/website",
+				"reference/document_reader/youtube",
+				"reference/document_reader/firecrawl"
+			]
 		}
 			]
 		},
