@@ -3,32 +3,37 @@ title: Zoom
 sidebarTitle: Zoom
 ---
 
-**Zoom** enables an Agent to interact with Zoom, allowing it to schedule meetings, manage recordings, and handle various meeting-related operations through the Zoom API.
+**Zoom** enables an Agent to interact with Zoom, allowing it to schedule meetings, manage recordings, and handle various meeting-related operations through the Zoom API. The toolkit uses Zoom's Server-to-Server OAuth authentication for secure API access.
 
 ## Prerequisites
 
-The Zoom toolkit requires the `requests` library and proper authentication setup. Install the required dependencies:
+The Zoom toolkit requires the following setup:
 
+1. Install required dependencies:
 ```shell
 pip install requests
 ```
 
-You'll need to set up a Server-to-Server OAuth app in the Zoom Marketplace:
+2. Set up Server-to-Server OAuth app in Zoom Marketplace:
+   - Go to [Zoom Marketplace](https://marketplace.zoom.us/)
+   - Click "Develop" → "Build App"
+   - Choose "Server-to-Server OAuth" app type
+   - Configure the app with required scopes:
+     - `/meeting:write:admin`
+     - `/meeting:read:admin`
+     - `/recording:read:admin`
+   - Note your Account ID, Client ID, and Client Secret
 
-1. Go to [Zoom Marketplace](https://marketplace.zoom.us/)
-2. Create a Server-to-Server OAuth app
-3. Enable the necessary Zoom API scopes
-4. Set up environment variables:
-
+3. Set up environment variables:
 ```shell
 export ZOOM_ACCOUNT_ID=your_account_id
 export ZOOM_CLIENT_ID=your_client_id
 export ZOOM_CLIENT_SECRET=your_client_secret
 ```
 
-## Example
+## Example Usage
 
-```python cookbook/agent_concepts/tools/zoom_tools.py
+```python
 from agno.agent import Agent
 from agno.tools.zoom import ZoomTools
 
@@ -39,18 +44,26 @@ zoom_tools = ZoomTools(
     client_secret="your_client_secret"
 )
 
+# Create an agent with Zoom capabilities
 agent = Agent(tools=[zoom_tools], show_tool_calls=True)
-agent.print_response("Schedule a team meeting for tomorrow at 2 PM UTC for 45 minutes", markdown=True)
+
+# Schedule a meeting
+response = agent.print_response("""
+Schedule a team meeting with the following details:
+- Topic: Weekly Team Sync
+- Time: Tomorrow at 2 PM UTC
+- Duration: 45 minutes
+""", markdown=True)
 ```
 
-## Toolkit Params
+## Toolkit Parameters
 
-| Parameter           | Type   | Default      | Description                                    |
-| ------------------ | ------ | ------------ | ---------------------------------------------- |
-| `account_id`       | `str`  | `None`       | Zoom account ID for authentication             |
-| `client_id`        | `str`  | `None`       | Client ID for authentication                   |
-| `client_secret`    | `str`  | `None`       | Client secret for authentication               |
-| `name`             | `str`  | `zoom_tool`  | Name of the tool instance                      |
+| Parameter           | Type     | Default      | Description                                                |
+| ------------------ | -------- | ------------ | ---------------------------------------------------------- |
+| `account_id`       | `str`    | `None`       | Zoom account ID (from Server-to-Server OAuth app)          |
+| `client_id`        | `str`    | `None`       | Client ID (from Server-to-Server OAuth app)                |
+| `client_secret`    | `str`    | `None`       | Client secret (from Server-to-Server OAuth app)            |
+
 
 ## Toolkit Functions
 
@@ -66,7 +79,12 @@ agent.print_response("Schedule a team meeting for tomorrow at 2 PM UTC for 45 mi
 
 ## Rate Limits
 
-The Zoom API has rate limits that vary by endpoint and account type. Refer to the [Zoom API documentation](https://developers.zoom.us/docs/api/) for specific limits.
+The Zoom API has rate limits that vary by endpoint and account type:
+- Server-to-Server OAuth apps: 100 requests/second
+- Meeting endpoints: Specific limits apply based on account type
+- Recording endpoints: Lower rate limits, check Zoom documentation
+
+For detailed rate limits, refer to [Zoom API Rate Limits](https://developers.zoom.us/docs/api/#rate-limits).
 
 ## Developer Resources
 
