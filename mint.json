@@ -152,6 +152,7 @@
 								"tools/toolkits/exa",
 								"tools/toolkits/fal",
 								"tools/toolkits/firecrawl",
+								"tools/toolkits/gmail",
 								"tools/toolkits/giphy",
 								"tools/toolkits/github",
 								"tools/toolkits/google_maps",
@@ -187,7 +188,8 @@
 								"tools/toolkits/wikipedia",
 								"tools/toolkits/yfinance",
 								"tools/toolkits/youtube",
-								"tools/toolkits/zendesk"
+								"tools/toolkits/zendesk",
+								"tools/toolkits/zoom"
 							]
 						},
 						"tools/custom-toolkits",
