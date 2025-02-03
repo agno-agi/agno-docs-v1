@@ -683,7 +683,8 @@
 						"examples/models/openai/image_agent",
 						"examples/models/openai/audio_input_agent",
 						"examples/models/openai/audio_output_agent",
-						"examples/models/openai/generate_images"
+						"examples/models/openai/generate_images",
+						"examples/models/openai/reasoning_effort"
 					]
 				},
 				{
@@ -787,19 +788,35 @@
             "reference/knowledge/youtube"
           ]
         },
+        {
+          "group": "Vector Databases",
+          "pages": [
+            "reference/vector_db/cassandra",
+            "reference/vector_db/chromadb",
+            "reference/vector_db/clickhouse",
+            "reference/vector_db/lancedb",
+            "reference/vector_db/milvus",
+            "reference/vector_db/mongodb",
+            "reference/vector_db/pgvector",
+            "reference/vector_db/pinecone",
+            "reference/vector_db/qdrant",
+            "reference/vector_db/singlestore"
+          ]
+        },
 		{
-			"group": "Vector Databases",
+			"group": "Rerankers",
 			"pages": [
-				"reference/vector_db/cassandra",
-				"reference/vector_db/chromadb",
-				"reference/vector_db/clickhouse",
-				"reference/vector_db/lancedb",
-				"reference/vector_db/milvus",
-				"reference/vector_db/mongodb",
-				"reference/vector_db/pgvector",
-				"reference/vector_db/pinecone",
-				"reference/vector_db/qdrant",
-				"reference/vector_db/singlestore"
+			  "reference/reranker/cohere"
+			]
+		},
+		{
+			"group": "Chunking",
+			"pages":[
+				"reference/chunking/fixed-size",
+				"reference/chunking/agentic",
+				"reference/chunking/semantic",
+				"reference/chunking/recursive",
+				"reference/chunking/document"
 			]
 		},
 		{
