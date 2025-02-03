@@ -152,6 +152,7 @@
 								"tools/toolkits/exa",
 								"tools/toolkits/fal",
 								"tools/toolkits/firecrawl",
+								"tools/toolkits/gmail",
 								"tools/toolkits/giphy",
 								"tools/toolkits/github",
 								"tools/toolkits/googlecalendar",
@@ -186,7 +187,8 @@
 								"tools/toolkits/wikipedia",
 								"tools/toolkits/yfinance",
 								"tools/toolkits/youtube",
-								"tools/toolkits/zendesk"
+								"tools/toolkits/zendesk",
+								"tools/toolkits/zoom"
 							]
 						},
 						"tools/custom-toolkits",
@@ -681,7 +683,8 @@
 						"examples/models/openai/image_agent",
 						"examples/models/openai/audio_input_agent",
 						"examples/models/openai/audio_output_agent",
-						"examples/models/openai/generate_images"
+						"examples/models/openai/generate_images",
+						"examples/models/openai/reasoning_effort"
 					]
 				},
 				{

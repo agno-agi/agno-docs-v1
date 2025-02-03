@@ -1,0 +1,67 @@
+---
+title: Image File Input Agent
+description: Example of analyzing local image files and retrieving related news using DuckDuckGo
+---
+
+## Overview
+This example shows how to process local image files using Mistral's vision model and combine it with DuckDuckGo search to provide additional context about the image content.
+
+## Code
+
+```python cookbook/models/mistral/image_file_input_agent.py
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.media import Image
+from agno.models.mistral.mistral import MistralChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    model=MistralChat(id="pixtral-12b-2409"),
+    tools=[DuckDuckGoTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+
+# Load image from local file system
+image_path = Path(__file__).parent.joinpath("sample.jpeg")
+
+# Analyze the image and search for related news
+agent.print_response(
+    "Tell me about this image and give me the latest news about it from duckduckgo.",
+    images=[
+        Image(filepath=image_path),
+    ],
+    stream=True,
+)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export MISTRAL_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U mistralai duckduckgo-search agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/mistral/image_file_input_agent.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/mistral/image_file_input_agent.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 
