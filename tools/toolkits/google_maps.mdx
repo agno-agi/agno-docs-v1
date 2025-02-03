@@ -28,15 +28,17 @@ You'll need to enable the following APIs in your Google Cloud Console:
 
 ## Example
 
-The following example demonstrates various Google Maps API functionalities including business search, directions, geocoding, and more:
+Basic usage of the Google Maps toolkit:
 
 ```python
 from agno.agent import Agent
 from agno.tools.google_maps import GoogleMapTools
 
-agent = Agent(tools=[GoogleMapTools()], show_tool_calls=True, markdown=True)
+agent = Agent(tools=[GoogleMapTools()], show_tool_calls=True)
 agent.print_response("Find coffee shops in San Francisco")
 ```
+
+For more examples, see the [Google Maps Tools Examples](/examples/concepts/tools/google_maps).
 
 ## Toolkit Params
 
