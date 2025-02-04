@@ -321,23 +321,7 @@
 						"examples/getting-started/human-in-the-loop"
 					]
 				},
-        {
-          "group": "Agents",
-          "pages": [
-            "agents/introduction",
-            "agents/run",
-            "agents/structured-output",
-            "agents/multimodal",
-            "agents/prompts",
-            "agents/tools",
-            "agents/knowledge",
-            "agents/memory",
-            "agents/storage",
-            "agents/reasoning",
-            "agents/teams"
-          ]
-        },
-        {
+        		{
 					"group": "Workflows",
 					"pages": [
 						"examples/workflows/blog-post-generator",
