@@ -24,10 +24,12 @@ You can give your agent access to your knowledge base in the following ways:
 
 - You can set `search_knowledge=True` to provide a `search_knowledge_base()` tool to your agent. This is automatically added if you provide a knowledgebase.
 - You can set `add_references=True` to automatically add references from the knowledge base. Optionally pass your own `retriever` callable with the following signature:
+
 ```
 def retriever(agent: Agent, query: str, num_documents: Optional[int], **kwargs) -> Optional[list[dict]]:
   ...
 ```
+
 - You can set `update_knowledge=True` to provide a `add_to_knowledge()` tool to your agent allowing it to update the knowledgebase.
 
 ## Vector Databases
@@ -235,15 +237,15 @@ Set `search_knowledge=True` and `read_chat_history=True`, giving the Agent tools
 
 ## Attributes
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `knowledge` | `AgentKnowledge` | `None` | Provides the knowledge base used by the agent. |
-| `search_knowledge` | `bool` | `True` | Adds a tool that allows the Model to search the knowledge base (aka Agentic RAG). Enabled by default when `knowledge` is provided. |
-| `add_references` | `bool` | `False` | Enable RAG by adding references from AgentKnowledge to the user prompt. |
-| `retriever` | `Callable[..., Optional[list[dict]]]` | `None` | Function to get context to add to the user message. This function is called when add_references is True. |
-| `context_format` | `Literal['json', 'yaml']` | `json` | Specifies the format for RAG, either "json" or "yaml". |
-| `add_context_instructions` | `bool` | `False` | If True, add instructions for using the context to the system prompt (if knowledge is also provided). For example: add an instruction to prefer information from the knowledge base over its training data. |
+| Parameter                  | Type                                  | Default | Description                                                                                                                                                                                                 |
+| -------------------------- | ------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `knowledge`                | `AgentKnowledge`                      | `None`  | Provides the knowledge base used by the agent.                                                                                                                                                              |
+| `search_knowledge`         | `bool`                                | `True`  | Adds a tool that allows the Model to search the knowledge base (aka Agentic RAG). Enabled by default when `knowledge` is provided.                                                                          |
+| `add_references`           | `bool`                                | `False` | Enable RAG by adding references from AgentKnowledge to the user prompt.                                                                                                                                     |
+| `retriever`                | `Callable[..., Optional[list[dict]]]` | `None`  | Function to get context to add to the user message. This function is called when add_references is True.                                                                                                    |
+| `context_format`           | `Literal['json', 'yaml']`             | `json`  | Specifies the format for RAG, either "json" or "yaml".                                                                                                                                                      |
+| `add_context_instructions` | `bool`                                | `False` | If True, add instructions for using the context to the system prompt (if knowledge is also provided). For example: add an instruction to prefer information from the knowledge base over its training data. |
 
- ## Developer Resources
+## Developer Resources
 
 - View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/knowledge)

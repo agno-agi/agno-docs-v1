@@ -33,23 +33,19 @@ agent.print_response("What are my bookings for tomorrow?")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install requests pytz
-    ```
-  </Step>
+{" "}
 
-  <Step title="Set environment variables">
-    ```bash
-    export CALCOM_API_KEY="your_api_key"
-    export CALCOM_EVENT_TYPE_ID="your_event_type_id"
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install requests pytz ```</Step>
 
-  <Step title="Run the agent">
-    ```bash
-    python calcom_agent.py
-    ```
-  </Step>
+{" "}
+
+<Step title="Set environment variables">
+  ```bash export CALCOM_API_KEY="your_api_key" export
+  CALCOM_EVENT_TYPE_ID="your_event_type_id" ```
+</Step>
+
+{" "}
+
+<Step title="Run the agent">```bash python calcom_agent.py ```</Step>
 
 </Steps>

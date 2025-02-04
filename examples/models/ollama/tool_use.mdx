@@ -23,18 +23,19 @@ agent.print_response("Whats happening in France?", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install Ollama">
-    Follow the [installation guide](https://github.com/ollama/ollama?tab=readme-ov-file#macos) and run:
-    ```bash
-    ollama pull llama3.1:8b
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U ollama duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Install Ollama">
+  Follow the [installation
+  guide](https://github.com/ollama/ollama?tab=readme-ov-file#macos) and run:
+  ```bash ollama pull llama3.1:8b ```
+</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U ollama duckduckgo-search agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -46,5 +47,6 @@ agent.print_response("Whats happening in France?", stream=True)
     python cookbook/models/ollama/tool_use.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

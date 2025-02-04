@@ -1,6 +1,7 @@
 ---
 title: Content Creator
 ---
+
 **ContentCreator** streamlines the process of planning, creating, and distributing engaging content across LinkedIn and Twitter.
 
 Create a file `config.py` with the following code:
@@ -24,6 +25,7 @@ class PostType(Enum):
     TWITTER = "Twitter"
     LINKEDIN = "LinkedIn"
 ```
+
 Add prompts in `prompts.py`
 
 ```python prompts.py
@@ -263,6 +265,7 @@ def schedule(
         logger.error(f"Error: {str(e)}")
         return None
 ```
+
 Define workflow in `workflow.py`:
 
 ```python workflow.py
@@ -469,21 +472,21 @@ if __name__ == "__main__":
     )  # PostType.LINKEDIN for LinkedIn post
     logger.info(post_response.content)
 ```
+
 ## Usage
 
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install agno firecrawl-py openai packaging requests python-dotenv
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the agent">
-    ```bash
-    python workflow.py
-    ```
-  </Step>
+<Step title="Install libraries">
+  ```bash pip install agno firecrawl-py openai packaging requests python-dotenv
+  ```
+</Step>
+
+{" "}
+
+<Step title="Run the agent">```bash python workflow.py ```</Step>
 
 </Steps>

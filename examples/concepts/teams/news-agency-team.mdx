@@ -73,17 +73,16 @@ editor.print_response("Write an article about latest developments in AI.")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai duckduckgo-search newspaper4k lxml_html_clean agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U openai duckduckgo-search newspaper4k lxml_html_clean
+  agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -95,5 +94,6 @@ editor.print_response("Write an article about latest developments in AI.")
     python cookbook/agent_concepts/teams/news_agency_team.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

@@ -17,11 +17,9 @@ agent.print_response("Search arxiv for 'language models'", markdown=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U arxiv agno
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">```bash pip install -U arxiv agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -33,5 +31,6 @@ agent.print_response("Search arxiv for 'language models'", markdown=True)
     python cookbook/agent_concepts/tools/arxiv_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

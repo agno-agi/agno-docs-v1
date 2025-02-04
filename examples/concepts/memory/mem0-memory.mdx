@@ -39,17 +39,15 @@ client.add(messages, user_id=user_id)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai mem0 agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U openai mem0 agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -61,5 +59,6 @@ client.add(messages, user_id=user_id)
     python cookbook/agent_concepts/memory/08_mem0_memory.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

@@ -1,6 +1,7 @@
 ---
 title: Product Manager
 ---
+
 **ProductManager** generates tasks from meeting notes, creates corresponding issues in Linear, and sends Slack notifications with task details to the team.
 
 Create a file `product_manager.py` with the following code:
@@ -226,16 +227,14 @@ Meeting ended at 9:45 AM
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install "psycopg[binary]" slack-sdk
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the agent">
-    ```bash
-    python product_manager.py
-    ```
-  </Step>
+<Step title="Install libraries">
+  ```bash pip install "psycopg[binary]" slack-sdk ```
+</Step>
+
+{" "}
+
+<Step title="Run the agent">```bash python product_manager.py ```</Step>
 
 </Steps>

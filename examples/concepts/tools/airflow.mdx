@@ -58,11 +58,11 @@ agent.print_response("Read the contents of 'example_dag.py'")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U apache-airflow agno
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U apache-airflow agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -74,5 +74,6 @@ agent.print_response("Read the contents of 'example_dag.py'")
     python cookbook/agent_concepts/tools/airflow_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

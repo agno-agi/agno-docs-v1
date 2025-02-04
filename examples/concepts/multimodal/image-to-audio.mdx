@@ -48,17 +48,15 @@ if audio_story.response_audio is not None:
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai rich agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U openai rich agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -70,5 +68,6 @@ if audio_story.response_audio is not None:
     python cookbook/agent_concepts/multimodal/image_to_audio.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

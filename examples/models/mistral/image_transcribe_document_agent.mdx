@@ -4,6 +4,7 @@ description: Example of transcribing text from document images using Mistral's v
 ---
 
 ## Overview
+
 This example shows how to use Mistral's vision capabilities to transcribe text from images of documents, particularly useful for processing handwritten or old documents.
 
 ## Code
@@ -36,17 +37,13 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export MISTRAL_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U mistralai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export MISTRAL_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">```bash pip install -U mistralai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -58,5 +55,6 @@ agent.print_response(
     python cookbook/models/mistral/image_transcribe_document_agent
     ```
     </CodeGroup>
+
   </Step>
-</Steps> 
+</Steps>

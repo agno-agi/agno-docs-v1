@@ -44,17 +44,13 @@ if response.images:
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">```bash pip install -U openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -66,5 +62,6 @@ if response.images:
     python cookbook/agent_concepts/tools/dalle_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

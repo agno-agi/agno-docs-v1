@@ -21,11 +21,9 @@ agent.print_response("Crawl https://example.com and extract all links")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U scrapy agno
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">```bash pip install -U scrapy agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -37,5 +35,6 @@ agent.print_response("Crawl https://example.com and extract all links")
     python cookbook/agent_concepts/tools/spider_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

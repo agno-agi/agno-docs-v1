@@ -21,17 +21,13 @@ agent.print_response("Generate an image of a sunset over mountains")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export MODELS_LABS_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export MODELS_LABS_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">```bash pip install -U agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -43,5 +39,6 @@ agent.print_response("Generate an image of a sunset over mountains")
     python cookbook/agent_concepts/tools/models_labs_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

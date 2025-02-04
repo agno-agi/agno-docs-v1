@@ -32,11 +32,9 @@ agent.print_response("What is 10*5 then to the power of 2, do it step by step")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U agno
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">```bash pip install -U agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -48,5 +46,6 @@ agent.print_response("What is 10*5 then to the power of 2, do it step by step")
     python cookbook/agent_concepts/tools/calculator_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

@@ -21,21 +21,17 @@ agent.print_response("Make a post saying 'Hello World from Agno!'")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your X credentials">
-    ```bash
-    export X_CONSUMER_KEY=xxx
-    export X_CONSUMER_SECRET=xxx
-    export X_ACCESS_TOKEN=xxx
-    export X_ACCESS_TOKEN_SECRET=xxx
-    export X_BEARER_TOKEN=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U tweepy agno
-    ```
-  </Step>
+<Step title="Set your X credentials">
+  ```bash export X_CONSUMER_KEY=xxx export X_CONSUMER_SECRET=xxx export
+  X_ACCESS_TOKEN=xxx export X_ACCESS_TOKEN_SECRET=xxx export X_BEARER_TOKEN=xxx
+  ```
+</Step>
+
+{" "}
+
+<Step title="Install libraries">```bash pip install -U tweepy agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -47,6 +43,6 @@ agent.print_response("Make a post saying 'Hello World from Agno!'")
     python cookbook/agent_concepts/tools/x_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>
-

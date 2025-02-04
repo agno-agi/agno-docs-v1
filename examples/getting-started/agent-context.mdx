@@ -5,6 +5,7 @@ title: Agent Context
 This example shows how to inject external dependencies into an agent. The context is evaluated when the agent is run, acting like dependency injection for Agents.
 
 Example prompts to try:
+
 - "Summarize the top stories on HackerNews"
 - "What are the trending tech discussions right now?"
 - "Analyze the current top stories and identify trends"
@@ -77,16 +78,12 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai httpx agno
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the agent">
-    ```bash
-    python agent_context.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai httpx agno ```</Step>
+
+{" "}
+
+<Step title="Run the agent">```bash python agent_context.py ```</Step>
 
 </Steps>

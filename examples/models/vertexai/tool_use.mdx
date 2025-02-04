@@ -23,15 +23,18 @@ agent.print_response("Whats happening in France?", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Authenticate with Google Cloud">
-    Follow the [Google Cloud Authentication Guide](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal)
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U google-cloud-aiplatform duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Authenticate with Google Cloud">
+  Follow the [Google Cloud Authentication
+  Guide](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal)
+</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U google-cloud-aiplatform duckduckgo-search agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -43,5 +46,6 @@ agent.print_response("Whats happening in France?", stream=True)
     python cookbook/models/vertexai/tool_use.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

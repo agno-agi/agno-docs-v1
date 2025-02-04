@@ -4,6 +4,7 @@ description: Example of analyzing local image files and retrieving related news 
 ---
 
 ## Overview
+
 This example shows how to process local image files using Mistral's vision model and combine it with DuckDuckGo search to provide additional context about the image content.
 
 ## Code
@@ -41,17 +42,15 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export MISTRAL_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U mistralai duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export MISTRAL_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U mistralai duckduckgo-search agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -63,5 +62,6 @@ agent.print_response(
     python cookbook/models/mistral/image_file_input_agent.py
     ```
     </CodeGroup>
+
   </Step>
-</Steps> 
+</Steps>

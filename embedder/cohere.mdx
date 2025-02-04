@@ -33,15 +33,16 @@ knowledge_base = AgentKnowledge(
 
 ## Params
 
-| Parameter        | Type                       | Default           | Description                                                                |
-| ---------------- | -------------------------- | ----------------- | -------------------------------------------------------------------------- |
-| `model`          | `str`                      | `"embed-english-v3.0"` | The name of the model used for generating embeddings.                 |
-| `input_type`     | `str`                      | `search_query`    | The type of input to embed. You can find more details [here](https://docs.cohere.com/docs/embeddings#the-input_type-parameter) |
-| `embedding_types`| `Optional[List[str]]`      | -                 | The type of embeddings to generate. Optional.                              |
-| `api_key`        | `str`                      | -                 | The Cohere API key used for authenticating requests.                              |
-| `request_params` | `Optional[Dict[str, Any]]` | -                 | Additional parameters to include in the API request. Optional.             |
-| `client_params`  | `Optional[Dict[str, Any]]` | -                 | Additional parameters for configuring the API client. Optional.            |
-| `cohere_client`  | `Optional[CohereClient]`   | -                 | An instance of the CohereClient to use for making API requests. Optional.  |
+| Parameter         | Type                       | Default                | Description                                                                                                                    |
+| ----------------- | -------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `model`           | `str`                      | `"embed-english-v3.0"` | The name of the model used for generating embeddings.                                                                          |
+| `input_type`      | `str`                      | `search_query`         | The type of input to embed. You can find more details [here](https://docs.cohere.com/docs/embeddings#the-input_type-parameter) |
+| `embedding_types` | `Optional[List[str]]`      | -                      | The type of embeddings to generate. Optional.                                                                                  |
+| `api_key`         | `str`                      | -                      | The Cohere API key used for authenticating requests.                                                                           |
+| `request_params`  | `Optional[Dict[str, Any]]` | -                      | Additional parameters to include in the API request. Optional.                                                                 |
+| `client_params`   | `Optional[Dict[str, Any]]` | -                      | Additional parameters for configuring the API client. Optional.                                                                |
+| `cohere_client`   | `Optional[CohereClient]`   | -                      | An instance of the CohereClient to use for making API requests. Optional.                                                      |
 
 ## Developer Resources
+
 - View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/embedders/cohere_embedder.py)

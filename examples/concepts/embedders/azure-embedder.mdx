@@ -33,33 +33,27 @@ knowledge_base = AgentKnowledge(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export AZURE_EMBEDDER_OPENAI_API_KEY=xxx
-    export AZURE_EMBEDDER_OPENAI_ENDPOINT=xxx
-    export AZURE_EMBEDDER_DEPLOYMENT=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U sqlalchemy 'psycopg[binary]' pgvector openai agno
-    ```
-  </Step>
+<Step title="Set your API key">
+  ```bash export AZURE_EMBEDDER_OPENAI_API_KEY=xxx export
+  AZURE_EMBEDDER_OPENAI_ENDPOINT=xxx export AZURE_EMBEDDER_DEPLOYMENT=xxx ```
+</Step>
 
-  <Step title="Run PgVector">
-    ```bash
-    docker run -d \
-      -e POSTGRES_DB=ai \
-      -e POSTGRES_USER=ai \
-      -e POSTGRES_PASSWORD=ai \
-      -e PGDATA=/var/lib/postgresql/data/pgdata \
-      -v pgvolume:/var/lib/postgresql/data \
-      -p 5532:5432 \
-      --name pgvector \
-      agnohq/pgvector:16
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U sqlalchemy 'psycopg[binary]' pgvector openai agno ```
+</Step>
+
+{" "}
+
+<Step title="Run PgVector">
+  ```bash docker run -d \ -e POSTGRES_DB=ai \ -e POSTGRES_USER=ai \ -e
+  POSTGRES_PASSWORD=ai \ -e PGDATA=/var/lib/postgresql/data/pgdata \ -v
+  pgvolume:/var/lib/postgresql/data \ -p 5532:5432 \ --name pgvector \
+  agnohq/pgvector:16 ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -71,5 +65,6 @@ knowledge_base = AgentKnowledge(
     python cookbook/agent_concepts/knowledge/embedders/azure_embedder.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

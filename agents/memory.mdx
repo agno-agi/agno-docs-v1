@@ -15,7 +15,7 @@ Before we dive in, let's understand the terminology:
 - **Messages:** are the individual messages sent to and received from the model. They have a `role` (`system`, `user` or `assistant`) and `content`.
 
 <Tip>
-**Sessions** are equivalent to **threads** in the OpenAI Assistant API.
+  **Sessions** are equivalent to **threads** in the OpenAI Assistant API.
 </Tip>
 
 ## Built-in Memory
@@ -30,6 +30,7 @@ Every Agent comes with built-in memory that can be used to access the historical
     <ResponseField name="messages" type="list[Message]">
         The full list of messages sent to the model, including system prompt, tool calls etc.
     </ResponseField>
+
 </Expandable>
 
 You can give your agent access to memory in the following ways:
@@ -211,6 +212,6 @@ agent.print_response("What have we been talking about, do you know my name?", st
 | `create_session_summary`           | `bool`        | `False`         | If true, create and store session summaries.                                                                    |
 | `update_session_summary_after_run` | `bool`        | `True`          | If true, update session summaries after each run.                                                               |
 
- ## Developer Resources
+## Developer Resources
 
 - View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/memory)

@@ -9,10 +9,12 @@ This example shows how to build a sophisticated research workflow that combines:
 💾 Smart caching for improved performance
 
 We've used the following tools as they're available for free:
+
 - DuckDuckGoTools: Searches the web for relevant articles
 - Newspaper4kTools: Scrapes and processes article content
 
 Example research topics to try:
+
 - "What are the latest developments in quantum computing?"
 - "Research the current state of artificial consciousness"
 - "Analyze recent breakthroughs in fusion energy"
@@ -433,16 +435,15 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    openai duckduckgo-search newspaper4k lxml_html_clean sqlalchemy agno
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the workflow">
-    ```bash
-    python research_workflow.py
-    ```
-  </Step>
+<Step title="Install libraries">
+  ```bash openai duckduckgo-search newspaper4k lxml_html_clean sqlalchemy agno
+  ```
+</Step>
+
+{" "}
+
+<Step title="Run the workflow">```bash python research_workflow.py ```</Step>
 
 </Steps>

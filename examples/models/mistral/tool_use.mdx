@@ -26,17 +26,15 @@ agent.print_response("Whats happening in France?", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export MISTRAL_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U mistralai duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export MISTRAL_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U mistralai duckduckgo-search agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -48,5 +46,6 @@ agent.print_response("Whats happening in France?", stream=True)
     python cookbook/models/mistral/tool_use.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

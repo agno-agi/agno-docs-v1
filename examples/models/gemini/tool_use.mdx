@@ -23,17 +23,15 @@ agent.print_response("Whats happening in France?", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export GOOGLE_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U google-generativeai duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export GOOGLE_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U google-generativeai duckduckgo-search agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -45,5 +43,6 @@ agent.print_response("Whats happening in France?", stream=True)
     python cookbook/models/google/gemini/tool_use.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

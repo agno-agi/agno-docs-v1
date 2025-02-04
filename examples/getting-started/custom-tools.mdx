@@ -6,6 +6,7 @@ This example shows how to create and use your own custom tool with Agno.
 You can replace the Hacker News functionality with any API or service you want!
 
 Some ideas for your own tools:
+
 - Weather data fetcher
 - Stock price analyzer
 - Personal calendar integration
@@ -83,16 +84,12 @@ agent.print_response("Summarize the top 5 stories on hackernews?", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai httpx agno
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the agent">
-    ```bash
-    python custom_tools.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai httpx agno ```</Step>
+
+{" "}
+
+<Step title="Run the agent">```bash python custom_tools.py ```</Step>
 
 </Steps>

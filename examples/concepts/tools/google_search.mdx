@@ -21,18 +21,17 @@ agent.print_response("What are the latest developments in AI?")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API credentials">
-    ```bash
-    export GOOGLE_CSE_ID=xxx
-    export GOOGLE_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U google-api-python-client agno
-    ```
-  </Step>
+<Step title="Set your API credentials">
+  ```bash export GOOGLE_CSE_ID=xxx export GOOGLE_API_KEY=xxx ```
+</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U google-api-python-client agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -44,5 +43,6 @@ agent.print_response("What are the latest developments in AI?")
     python cookbook/agent_concepts/tools/googlesearch_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

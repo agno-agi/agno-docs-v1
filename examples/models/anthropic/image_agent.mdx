@@ -32,17 +32,15 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export ANTHROPIC_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U anthropic duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export ANTHROPIC_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U anthropic duckduckgo-search agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -54,5 +52,6 @@ agent.print_response(
     python cookbook/models/anthropic/image_agent.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

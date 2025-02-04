@@ -21,17 +21,17 @@ agent.print_response("Show me all tables in the database")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your database URL">
-    ```bash
-    export DATABASE_URL=postgresql://user:pass@localhost:5432/db
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U psycopg2-binary sqlalchemy agno
-    ```
-  </Step>
+<Step title="Set your database URL">
+  ```bash export DATABASE_URL=postgresql://user:pass@localhost:5432/db ```
+</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U psycopg2-binary sqlalchemy agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -43,5 +43,6 @@ agent.print_response("Show me all tables in the database")
     python cookbook/agent_concepts/tools/postgres_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

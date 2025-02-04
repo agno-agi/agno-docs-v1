@@ -69,23 +69,19 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai sqlalchemy pgvector "psycopg[binary]" agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
 
-  <Step title="Run PgVector">
-    ```bash
-    ./cookbook/scripts/run_pgvector.sh
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U openai sqlalchemy pgvector "psycopg[binary]" agno ```
+</Step>
+
+{" "}
+
+<Step title="Run PgVector">```bash ./cookbook/scripts/run_pgvector.sh ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -97,5 +93,6 @@ if __name__ == "__main__":
     python cookbook/agent_concepts/memory/04_persistent_memory_postgres.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

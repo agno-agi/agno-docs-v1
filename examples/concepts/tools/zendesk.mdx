@@ -21,19 +21,16 @@ agent.print_response("Show me all open tickets")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your Zendesk credentials">
-    ```bash
-    export ZENDESK_EMAIL=xxx
-    export ZENDESK_TOKEN=xxx
-    export ZENDESK_SUBDOMAIN=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U zenpy agno
-    ```
-  </Step>
+<Step title="Set your Zendesk credentials">
+  ```bash export ZENDESK_EMAIL=xxx export ZENDESK_TOKEN=xxx export
+  ZENDESK_SUBDOMAIN=xxx ```
+</Step>
+
+{" "}
+
+<Step title="Install libraries">```bash pip install -U zenpy agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -45,5 +42,6 @@ agent.print_response("Show me all open tickets")
     python cookbook/agent_concepts/tools/zendesk_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

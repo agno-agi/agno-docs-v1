@@ -21,11 +21,11 @@ agent.print_response("Show me all tables in the database and their schemas")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U sqlalchemy agno
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U sqlalchemy agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -37,5 +37,6 @@ agent.print_response("Show me all tables in the database and their schemas")
     python cookbook/agent_concepts/tools/sql_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

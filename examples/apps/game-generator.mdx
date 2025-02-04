@@ -1,6 +1,7 @@
 ---
 title: Game Generator
 ---
+
 **GameGenerator** generates HTML5 games based on user descriptions.
 
 Create a file `game_generator.py` with the following code:
@@ -148,21 +149,18 @@ if __name__ == "__main__":
     if game_output_path.exists():
         open_html_file(game_output_path)
 ```
+
 ## Usage
 
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai agno
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the agent">
-    ```bash
-    python game_generator.py.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai agno ```</Step>
+
+{" "}
+
+<Step title="Run the agent">```bash python game_generator.py.py ```</Step>
 
 </Steps>

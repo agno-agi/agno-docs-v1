@@ -40,17 +40,15 @@ for chunk in run_stream:
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai rich agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U openai rich agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -62,5 +60,6 @@ for chunk in run_stream:
     python cookbook/agent_concepts/multimodal/generate_image_with_intermediate_steps.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

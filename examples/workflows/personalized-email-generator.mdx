@@ -3,28 +3,32 @@ title: Personalized Email Generator
 ---
 
 This workflow helps sales professionals craft highly personalized cold emails by:
+
 1. Researching target companies through their websites
 2. Analyzing their business model, tech stack, and unique attributes
 3. Generating personalized email drafts
 4. Sending test emails to yourself for review before actual outreach
 
 Why is this helpful?
+
 - You always have an extra review step—emails are sent to you first.
   This ensures you can fine-tune messaging before reaching your actual prospect.
 - Ideal for iterating on tone, style, and personalization en masse.
 
 Who should use this?
+
 - SDRs, Account Executives, Business Development Managers
 - Founders, Marketing Professionals, B2B Sales Representatives
 - Anyone building relationships or conducting outreach at scale
 
 Example use cases:
+
 - SaaS sales outreach
 - Consulting service proposals
 - Partnership opportunities
 - Investor relations
 - Recruitment outreach
-• Event invitations
+  • Event invitations
 
 The script will send draft emails to your email if `DEMO_MODE=False`. If `DEMO_MODE=True`, it prints the email to the console for review.
 
@@ -453,16 +457,16 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai exa_py agno
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the agent">
-    ```bash
-    python personalized_email_generator.py
-    ```
-  </Step>
+<Step title="Install libraries">
+  ```bash pip install openai exa_py agno ```
+</Step>
+
+{" "}
+
+<Step title="Run the agent">
+  ```bash python personalized_email_generator.py ```
+</Step>
 
 </Steps>

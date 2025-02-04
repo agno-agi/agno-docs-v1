@@ -1,6 +1,7 @@
 ---
 title: Self Evaluation Workflow
 ---
+
 **SelfEvaluationWorkflow** generates and refines content through iterative feedback between a content creator agent and a content reviewer agent
 
 Create a file `self_evaluation_workflow.py` with the following code:
@@ -72,21 +73,20 @@ if __name__ == "__main__":
     )
     print(response.content)
 ```
+
 ## Usage
 
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai agno
-    ```
-  </Step>
+{" "}
 
-  <Step title="Run the agent">
-    ```bash
-    python self_evaluation_workflow.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai agno ```</Step>
+
+{" "}
+
+<Step title="Run the agent">
+  ```bash python self_evaluation_workflow.py ```
+</Step>
 
 </Steps>

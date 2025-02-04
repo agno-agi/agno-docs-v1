@@ -21,11 +21,9 @@ agent.print_response("Wait for 5 seconds before continuing")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U agno
-    ```
-  </Step>
+{" "}
+
+<Step title="Install libraries">```bash pip install -U agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -37,5 +35,6 @@ agent.print_response("Wait for 5 seconds before continuing")
     python cookbook/agent_concepts/tools/sleep_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

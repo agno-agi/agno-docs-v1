@@ -37,18 +37,17 @@ agent.print_response("What are my bookings for tomorrow?")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API keys">
-    ```bash
-    export CALCOM_API_KEY=xxx
-    export CALCOM_EVENT_TYPE_ID=xxx
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U requests pytz agno
-    ```
-  </Step>
+<Step title="Set your API keys">
+  ```bash export CALCOM_API_KEY=xxx export CALCOM_EVENT_TYPE_ID=xxx ```
+</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U requests pytz agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -60,5 +59,6 @@ agent.print_response("What are my bookings for tomorrow?")
     python cookbook/agent_concepts/tools/calcom_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

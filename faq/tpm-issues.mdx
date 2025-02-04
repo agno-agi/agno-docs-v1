@@ -8,6 +8,7 @@ sidebarTitle: TPM rate limiting
 If you face any problems with proprietary models (like OpenAI models) where you are rate limited, we provide the option to set `exponential_backoff=True` and to change `delay_between_retries` to a value in seconds (defaults to 1 second).
 
 For example:
+
 ```python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat

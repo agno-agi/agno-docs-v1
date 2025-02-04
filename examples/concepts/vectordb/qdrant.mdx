@@ -29,19 +29,18 @@ agent.print_response("List down the ingredients to make Massaman Gai", markdown=
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Start Qdrant">
-    ```bash
-    docker run -p 6333:6333 -p 6334:6334 \
-      -v $(pwd)/qdrant_storage:/qdrant/storage:z \
-      qdrant/qdrant
-    ```
-  </Step>
+{" "}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U qdrant-client pypdf openai agno
-    ```
-  </Step>
+<Step title="Start Qdrant">
+  ```bash docker run -p 6333:6333 -p 6334:6334 \ -v
+  $(pwd)/qdrant_storage:/qdrant/storage:z \ qdrant/qdrant ```
+</Step>
+
+{" "}
+
+<Step title="Install libraries">
+  ```bash pip install -U qdrant-client pypdf openai agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -53,5 +52,6 @@ agent.print_response("List down the ingredients to make Massaman Gai", markdown=
     python cookbook/agent_concepts/vector_dbs/qdrant_db.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>
