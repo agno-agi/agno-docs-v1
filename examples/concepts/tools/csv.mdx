@@ -36,9 +36,15 @@ agent.cli_app(stream=False)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
   <Step title="Install libraries">
     ```bash
-    pip install -U httpx agno
+    pip install -U httpx openai agno
     ```
   </Step>
 

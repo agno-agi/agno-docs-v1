@@ -21,9 +21,15 @@ agent.print_response("Wait for 5 seconds before continuing")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
   <Step title="Install libraries">
     ```bash
-    pip install -U agno
+    pip install -U openai agno
     ```
   </Step>
 

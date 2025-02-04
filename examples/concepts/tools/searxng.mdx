@@ -21,9 +21,15 @@ agent.print_response("Search for recent news about artificial intelligence")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step> 
+
   <Step title="Install libraries">
     ```bash
-    pip install -U searxng-client agno
+    pip install -U searxng-client openai agno
     ```
   </Step>
 

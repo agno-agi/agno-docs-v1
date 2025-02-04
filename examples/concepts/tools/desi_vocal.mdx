@@ -35,9 +35,16 @@ audio_agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export DESI_VOCAL_API_KEY=xxx
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
   <Step title="Install libraries">
     ```bash
-    pip install -U requests agno
+    pip install -U requests openai agno
     ```
   </Step>
 

@@ -20,10 +20,15 @@ agent.print_response("What are the top stories on Hacker News right now?")
 
 <Steps>
   <Snippet file="create-venv-step.mdx" />
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U requests agno
+    pip install -U requests openai agno
     ```
   </Step>
 
