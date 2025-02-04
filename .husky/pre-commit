@@ -1,0 +1,20 @@
+#!/bin/sh
+# Pre-commit hook to check code formatting with Prettier
+
+echo "Running format check with Prettier..."
+
+if command -v npx > /dev/null 2>&1; then
+    npx prettier --check .
+    RESULT=$?
+    if [ $RESULT -ne 0 ]; then
+        echo "Error: Code formatting issues detected. Please run 'npm run format:fix' to reformat your code."
+        exit 1
+    else
+        echo "Formatting OK!"
+    fi
+else
+    echo "Error: npx is required but not installed. Aborting commit."
+    exit 1
+fi
+
+exit 0
