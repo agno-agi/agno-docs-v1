@@ -322,23 +322,7 @@
 						"examples/getting-started/human-in-the-loop"
 					]
 				},
-        {
-          "group": "Agents",
-          "pages": [
-            "agents/introduction",
-            "agents/run",
-            "agents/structured-output",
-            "agents/multimodal",
-            "agents/prompts",
-            "agents/tools",
-            "agents/knowledge",
-            "agents/memory",
-            "agents/storage",
-            "agents/reasoning",
-            "agents/teams"
-          ]
-        },
-        {
+        		{
 					"group": "Workflows",
 					"pages": [
 						"examples/workflows/blog-post-generator",
@@ -685,7 +669,8 @@
 						"examples/models/openai/image_agent",
 						"examples/models/openai/audio_input_agent",
 						"examples/models/openai/audio_output_agent",
-						"examples/models/openai/generate_images"
+						"examples/models/openai/generate_images",
+						"examples/models/openai/reasoning_effort"
 					]
 				},
 				{
@@ -789,19 +774,54 @@
             "reference/knowledge/youtube"
           ]
         },
+        {
+          "group": "Vector Databases",
+          "pages": [
+            "reference/vector_db/cassandra",
+            "reference/vector_db/chromadb",
+            "reference/vector_db/clickhouse",
+            "reference/vector_db/lancedb",
+            "reference/vector_db/milvus",
+            "reference/vector_db/mongodb",
+            "reference/vector_db/pgvector",
+            "reference/vector_db/pinecone",
+            "reference/vector_db/qdrant",
+            "reference/vector_db/singlestore"
+          ]
+        },
 		{
-			"group": "Vector Databases",
+			"group": "Rerankers",
 			"pages": [
-				"reference/vector_db/cassandra",
-				"reference/vector_db/chromadb",
-				"reference/vector_db/clickhouse",
-				"reference/vector_db/lancedb",
-				"reference/vector_db/milvus",
-				"reference/vector_db/mongodb",
-				"reference/vector_db/pgvector",
-				"reference/vector_db/pinecone",
-				"reference/vector_db/qdrant",
-				"reference/vector_db/singlestore"
+			  "reference/reranker/cohere"
+			]
+		},
+		{
+			"group": "Chunking",
+			"pages":[
+				"reference/chunking/fixed-size",
+				"reference/chunking/agentic",
+				"reference/chunking/semantic",
+				"reference/chunking/recursive",
+				"reference/chunking/document"
+			]
+		},
+		{
+			"group": "Document Reader",
+			"pages": [
+				"reference/document_reader/arxiv",
+				"reference/document_reader/base",
+				"reference/document_reader/csv",
+				"reference/document_reader/csv_url",
+				"reference/document_reader/docx",
+				"reference/document_reader/json",
+				"reference/document_reader/pdf_image_url",
+				"reference/document_reader/pdf_image",
+				"reference/document_reader/pdf_url",
+				"reference/document_reader/pdf",
+				"reference/document_reader/text",
+				"reference/document_reader/website",
+				"reference/document_reader/youtube",
+				"reference/document_reader/firecrawl"
 			]
 		}
 			]
