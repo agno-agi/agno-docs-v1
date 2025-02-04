@@ -3,4 +3,4 @@
 
 echo "Running format check with Prettier..."
 
-npm run format 
+npm run format:check 
