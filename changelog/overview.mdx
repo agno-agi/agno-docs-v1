@@ -60,7 +60,7 @@ mode: "wide"
 ## Bug Fixes:
 
 - **Agent Dataclass Compatibility:** Removed `slots=True` from the agent dataclass decorator, which was not compatible with Python < 3.10.
-- **AzureOpenAIEmbedder:** Fixed issue where `AzureOpenAIEmbedder` was not correctly made a dataclass.
+- **AzureOpenAIEmbedder:** Made `AzureOpenAIEmbedder` a dataclass to match other embedders.
 </Update>
 
 <Update label="2025-01-31" description="v1.0.1">
