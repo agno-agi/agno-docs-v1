@@ -3,6 +3,38 @@ title: 'Product updates'
 mode: 'wide'
 ---
 
+<Update label="2025-02-05" description="v1.0.7">
+## 1.0.7
+
+## New Features:
+
+- **Google Sheets Toolkit**: Added a basic toolkit for reading, creating and updating Google sheets.
+- **Weviate Vector Store**: Added support for Weviate as a vector store.
+
+## Improvements:
+
+- **Mistral Async**: Mistral now supports async execution via `agent.arun()` and `agent.aprint_response()`.
+- **Cohere Async**: Cohere now supports async execution via `agent.arun()` and `agent.aprint_response()`.
+
+## Bug Fixes:
+
+- **Retriever as knowledge source**: Added small fix and examples for using the custom `retriever` parameter with an agent.
+  </Update>
+
+<Update label="2025-02-05" description="v1.0.6">
+## 1.0.6
+
+## New Features:
+
+- **Google Maps Toolkit**: Added a rich toolkit for Google Maps that includes business discovery, directions, navigation, geocode locations, nearby places, etc.
+- **URL reader and knowledge base**: Added reader and knowledge base that can process any URL and store the text contents in the document store.
+
+## Bug Fixes:
+
+- **Zoom tools fix:** Zoom tools updated to include the auth step and other misc fixes.
+- **Github search_repositories pagination**: Pagination did not work correctly and this was fixed.
+  </Update>
+
 <Update label="2025-02-03" description="v1.0.5">
 ## 1.0.5
 
@@ -22,7 +54,7 @@ mode: 'wide'
 
 ## Bug Fixes:
 
-- Claude not working with tools that have no params.
+- **Claude Tool Invocation:** Fixed issue where Claude was not working with tools that have no parameters.
 
 </Update>
 
@@ -45,6 +77,9 @@ mode: 'wide'
 
 ## Bug Fixes:
 
+- **Agent Dataclass Compatibility:** Removed `slots=True` from the agent dataclass decorator, which was not compatible with Python < 3.10.
+- **AzureOpenAIEmbedder:** Made `AzureOpenAIEmbedder` a dataclass to match other embedders.
+  </Update>
 - Removed `slots=true` from the agent dataclass decorator which was not compatible with Python < 3.10 .
 - Fixed issue with AzureOpenAIEmbedder not being correctly made a dataclass.
   </Update>
@@ -198,10 +233,10 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
 
 ## Bug Fixes:
 
-- Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param
+- **Semantic Chunking:** Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param.
 
 ## New Features:
 
-- **Evals for Agents:** Introducing Evals to measure the performance, accuracy, and reliability of your Agents
+- **Evals for Agents:** Introducing Evals to measure the performance, accuracy, and reliability of your Agents.
 
 </Update>
