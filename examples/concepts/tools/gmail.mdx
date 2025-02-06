@@ -36,27 +36,28 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set up Google Cloud Project">
-    1. Go to [Google Cloud Console](https://console.cloud.google.com)
-    2. Create a new project or select an existing one
-    3. Enable the Gmail API for your project
-    4. Create OAuth 2.0 credentials and download the client configuration file
-  </Step>
+{' '}
 
-  <Step title="Set your API keys">
-    ```bash
-    export GOOGLE_CLIENT_ID=xxx
-    export GOOGLE_CLIENT_SECRET=xxx
-    export GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/credentials.json
-    export GOOGLE_API_KEY=xxx  # Required for Gemini model
-    ```
-  </Step>
+<Step title="Set up Google Cloud Project">
+  1. Go to [Google Cloud Console](https://console.cloud.google.com) 2. Create a new project or
+  select an existing one 3. Enable the Gmail API for your project 4. Create OAuth 2.0 credentials
+  and download the client configuration file
+</Step>
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U google-api-python-client google-auth-httplib2 google-auth-oauthlib google-generativeai agno
-    ```
-  </Step>
+{' '}
+
+<Step title="Set your API keys">
+  ```bash export GOOGLE_CLIENT_ID=xxx export GOOGLE_CLIENT_SECRET=xxx export
+  GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/credentials.json export GOOGLE_API_KEY=xxx # Required
+  for Gemini model ```
+</Step>
+
+{' '}
+
+<Step title="Install libraries">
+  ```bash pip install -U google-api-python-client google-auth-httplib2 google-auth-oauthlib
+  google-generativeai agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -68,5 +69,6 @@ agent.print_response(
     python cookbook/agent_concepts/tools/gmail_tools.py
     ```
     </CodeGroup>
+
   </Step>
-</Steps> 
+</Steps>

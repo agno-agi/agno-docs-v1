@@ -3,6 +3,7 @@ title: SQL Agent
 ---
 
 This example shows how to build a text-to-SQL system that:
+
 1. Uses Agentic RAG to search for table metadata, sample queries and rules for writing better SQL queries.
 2. Uses dynamic few-shot examples and rules to improve query construction.
 3. Provides an interactive Streamlit UI for users to query the database.
@@ -10,20 +11,16 @@ This example shows how to build a text-to-SQL system that:
 We'll use the F1 dataset as an example, but you can easily extend it to other datasets.
 
 ### Key capabilities
+
 - Natural language to SQL conversion
 - Retrieve table metadata, sample queries and rules using Agentic RAG
 - Better query construction with the help of dynamic few-shot examples and rules
 - Interactive Streamlit UI
 
-<video
-  autoPlay
-  muted
-  controls
-  className="w-full aspect-video"
-  src="/videos/sql_agent.mp4"
-></video>
+<video autoPlay muted controls className="aspect-video w-full" src="/videos/sql_agent.mp4"></video>
 
 ### Simple queries to try
+
 - "Who are the top 5 drivers with the most race wins?"
 - "Compare Mercedes vs Ferrari performance in constructors championships"
 - "Show me the progression of fastest lap times at Monza"
@@ -32,6 +29,7 @@ We'll use the F1 dataset as an example, but you can easily extend it to other da
 - "Show me Lewis Hamilton's win percentage by season"
 
 ### Advanced queries with table joins
+
 - "How many races did the championship winners win each year?"
 - "Compare the number of race wins vs championship positions for constructors in 2019"
 - "Show me Lewis Hamilton's race wins and championship positions by year"
@@ -52,18 +50,17 @@ The complete code is available in the [Agno repository](https://github.com/agno-
     ```
   </Step>
 
-  <Step title="Create virtual environment">
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install dependencies">
-    ```bash
-    pip install -r cookbook/examples/apps/sql_agent/requirements.txt
-    ```
-  </Step>
+<Step title="Create virtual environment">
+  ```bash python3 -m venv .venv source .venv/bin/activate ```
+</Step>
+
+{' '}
+
+<Step title="Install dependencies">
+  ```bash pip install -r cookbook/examples/apps/sql_agent/requirements.txt ```
+</Step>
 
   <Step title="Run PgVector">
     First, install [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/).
@@ -85,13 +82,14 @@ The complete code is available in the [Agno repository](https://github.com/agno-
       --name pgvector \
       agnohq/pgvector:16
     ```
+
   </Step>
 
-  <Step title="Load F1 data">
-    ```bash
-    python cookbook/examples/apps/sql_agent/load_f1_data.py
-    ```
-  </Step>
+{' '}
+
+<Step title="Load F1 data">
+  ```bash python cookbook/examples/apps/sql_agent/load_f1_data.py ```
+</Step>
 
   <Step title="Load knowledge base">
     The knowledge base contains table metadata, rules and sample queries that help the Agent generate better responses.
@@ -103,6 +101,7 @@ The complete code is available in the [Agno repository](https://github.com/agno-
     Pro tips for enhancing the knowledge base:
     - Add `table_rules` and `column_rules` to guide the Agent on query formats
     - Add sample queries to `cookbook/examples/apps/sql_agent/knowledge_base/sample_queries.sql`
+
   </Step>
 
   <Step title="Set up API keys">
@@ -116,6 +115,7 @@ The complete code is available in the [Agno repository](https://github.com/agno-
     export GROQ_API_KEY=***
     ```
     We recommend using gpt-4o for optimal performance.
+
   </Step>
 
   <Step title="Launch the app">

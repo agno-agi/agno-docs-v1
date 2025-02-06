@@ -4,8 +4,8 @@ title: Agentic RAG
 
 This example application shows how to build a sophisticated RAG (Retrieval Augmented Generation) system that leverages search of a knowledge base with LLMs to provide deep insights into the data.
 
-
 ## The agent can:
+
 - Process and understand documents from multiple sources (PDFs, websites, text files)
 - Build a searchable knowledge base using vector embeddings
 - Maintain conversation context and memory across sessions
@@ -14,6 +14,7 @@ This example application shows how to build a sophisticated RAG (Retrieval Augme
 - Answer follow-up questions and clarifications
 
 ## The agent uses:
+
 - Vector similarity search for relevant document retrieval
 - Conversation memory for contextual responses
 - Citation tracking for source attribution
@@ -23,11 +24,12 @@ This example application shows how to build a sophisticated RAG (Retrieval Augme
   autoPlay
   muted
   controls
-  className="w-full aspect-video"
+  className="aspect-video w-full"
   src="/videos/agentic_rag.mp4"
 ></video>
 
 ## Example queries to try:
+
 - "What are the key points from this document?"
 - "Can you summarize the main arguments and supporting evidence?"
 - "What are the important statistics and findings?"
@@ -50,18 +52,17 @@ The complete code is available in the [Agno repository](https://github.com/agno-
     ```
   </Step>
 
-  <Step title="Create virtual environment">
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install dependencies">
-    ```bash
-    pip install -r cookbook/examples/apps/agentic_rag/requirements.txt
-    ```
-  </Step>
+<Step title="Create virtual environment">
+  ```bash python3 -m venv .venv source .venv/bin/activate ```
+</Step>
+
+{' '}
+
+<Step title="Install dependencies">
+  ```bash pip install -r cookbook/examples/apps/agentic_rag/requirements.txt ```
+</Step>
 
   <Step title="Run PgVector">
     First, install [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/).
@@ -83,8 +84,8 @@ The complete code is available in the [Agno repository](https://github.com/agno-
       --name pgvector \
       agnohq/pgvector:16
     ```
-  </Step>
 
+  </Step>
 
   <Step title="Set up API keys">
     ```bash
@@ -96,6 +97,7 @@ The complete code is available in the [Agno repository](https://github.com/agno-
 
     ```
     We recommend using gpt-4o for optimal performance.
+
   </Step>
 
   <Step title="Launch the app">

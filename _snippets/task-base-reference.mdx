@@ -5,26 +5,21 @@
   Task name
 </ResponseField>
 
-<ResponseField name="agent_name" type="str">
-</ResponseField>
-<ResponseField name="agent_memory" type="AgentMemory">
-</ResponseField>
+<ResponseField name="agent_name" type="str"></ResponseField>
+<ResponseField name="agent_memory" type="AgentMemory"></ResponseField>
 
-<ResponseField name="run_id" type="str">
-</ResponseField>
-<ResponseField name="run_message" type="Union[List, Dict, str]">
-</ResponseField>
-<ResponseField name="run_task_data" type="List[Dict[str, Any]]">
-</ResponseField>
+<ResponseField name="run_id" type="str"></ResponseField>
+<ResponseField name="run_message" type="Union[List, Dict, str]"></ResponseField>
+<ResponseField name="run_task_data" type="List[Dict[str, Any]]"></ResponseField>
 
 <ResponseField name="output_model" type="Union[str, List, Type[BaseModel]]">
- Provide an output model for the responses
+  Provide an output model for the responses
 </ResponseField>
 <ResponseField name="parse_output" type="bool" default="True">
   If True, the output is converted into the output_model (pydantic model or json dict)
 </ResponseField>
 <ResponseField name="output" type="Any">
- Final output of this Task
+  Final output of this Task
 </ResponseField>
 <ResponseField name="show_output" type="bool" default="True">
   If True, shows the output of the task in the agent.run()

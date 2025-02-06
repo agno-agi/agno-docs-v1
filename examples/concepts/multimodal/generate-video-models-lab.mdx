@@ -31,18 +31,15 @@ video_agent.print_response("Generate a video of a cat playing with a ball")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    export MODELS_LAB_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai agno
-    ```
-  </Step>
+<Step title="Set your API key">
+  ```bash export OPENAI_API_KEY=xxx export MODELS_LAB_API_KEY=xxx ```
+</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -54,5 +51,6 @@ video_agent.print_response("Generate a video of a cat playing with a ball")
     python cookbook/agent_concepts/multimodal/generate_video_using_models_lab.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

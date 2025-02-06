@@ -21,17 +21,13 @@ agent.print_response("List all files in the current directory")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step> 
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>{' '}
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -43,5 +39,6 @@ agent.print_response("List all files in the current directory")
     python cookbook/agent_concepts/tools/shell_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

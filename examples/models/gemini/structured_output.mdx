@@ -46,17 +46,13 @@ movie_agent.print_response("New York")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export GOOGLE_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U google-generativeai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export GOOGLE_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U google-generativeai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -68,5 +64,6 @@ movie_agent.print_response("New York")
     python cookbook/models/google/gemini/structured_output.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

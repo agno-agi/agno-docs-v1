@@ -188,7 +188,7 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - '8000:8000'
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
@@ -204,7 +204,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U agno"]
+      test: ['CMD-SHELL', 'pg_isready -U agno']
       interval: 2s
       timeout: 5s
       retries: 5

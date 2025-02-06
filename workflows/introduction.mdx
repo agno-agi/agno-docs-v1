@@ -9,6 +9,7 @@ Workflows are deterministic, stateful, multi-agent programs that are built for p
 - **Built-in state management and caching**: Store state and cache intermediate results in a database, enabling your agents to re-use results from previous executions.
 
 ### How to build a workflow:
+
 1. Define your workflow as a class by inheriting from the `Workflow` class.
 2. Add one or more agents to the workflow.
 3. Implement your logic in the `run()` method.
@@ -465,10 +466,6 @@ Now the results are cached in the database and can be re-used for future runs. R
 python blog_post_generator.py
 ```
 
-<img
-  height="200"
-  src="/images/BlogPostGenerator.gif"
-  style={{ borderRadius: '8px' }}
-/>
+<img height="200" src="/images/BlogPostGenerator.gif" style={{ borderRadius: '8px' }} />
 
 Checkout more examples in the [examples](/examples/use-cases/advanced) section.

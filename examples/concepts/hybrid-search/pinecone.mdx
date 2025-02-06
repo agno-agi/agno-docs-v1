@@ -64,18 +64,17 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API keys">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    export PINECONE_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U pinecone pinecone-text pypdf openai agno
-    ```
-  </Step>
+<Step title="Set your API keys">
+  ```bash export OPENAI_API_KEY=xxx export PINECONE_API_KEY=xxx ```
+</Step>
+
+{' '}
+
+<Step title="Install libraries">
+  ```bash pip install -U pinecone pinecone-text pypdf openai agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -87,5 +86,6 @@ if __name__ == "__main__":
     python cookbook/agent_concepts/hybrid_search/pinecone/agent.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

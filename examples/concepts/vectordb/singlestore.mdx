@@ -53,22 +53,19 @@ agent.print_response("How do I make pad thai?", markdown=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set environment variables">
-    ```bash
-    export SINGLESTORE_HOST="localhost"
-    export SINGLESTORE_PORT="3306"
-    export SINGLESTORE_USERNAME="root"
-    export SINGLESTORE_PASSWORD="admin"
-    export SINGLESTORE_DATABASE="AGNO"
-    export SINGLESTORE_SSL_CA=".certs/singlestore_bundle.pem"
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U sqlalchemy pymysql pypdf openai agno
-    ```
-  </Step>
+<Step title="Set environment variables">
+  ```bash export SINGLESTORE_HOST="localhost" export SINGLESTORE_PORT="3306" export
+  SINGLESTORE_USERNAME="root" export SINGLESTORE_PASSWORD="admin" export SINGLESTORE_DATABASE="AGNO"
+  export SINGLESTORE_SSL_CA=".certs/singlestore_bundle.pem" ```
+</Step>
+
+{' '}
+
+<Step title="Install libraries">
+  ```bash pip install -U sqlalchemy pymysql pypdf openai agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -80,5 +77,6 @@ agent.print_response("How do I make pad thai?", markdown=True)
     python cookbook/agent_concepts/vector_dbs/singlestore.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

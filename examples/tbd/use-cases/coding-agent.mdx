@@ -1,6 +1,7 @@
 ---
 title: Coding Agent
 ---
+
 **CodingAgent** generates and validates accurate, executable code solutions using LangChain Expression Language.
 
 Create a file `workflow.py` with the following code:
@@ -219,6 +220,7 @@ if __name__ == "__main__":
     result = evaluate_response(question, final_content.content)
     logger.info(result)
 ```
+
 And some accompanying utilities in `utils.py`
 
 ```python utils.py
@@ -339,17 +341,12 @@ def evaluate_response(question, final_response):
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install agno openai bs4
-    ```
-  </Step>
+{' '}
 
-  <Step title="Run the agent">
-    ```bash
-    python workflow.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install agno openai bs4 ```</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python workflow.py ```</Step>
 
 </Steps>
-

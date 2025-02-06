@@ -50,15 +50,16 @@ movie_agent.print_response("New York")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Authenticate with Google Cloud">
-    Follow the [Google Cloud Authentication Guide](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal)
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U google-cloud-aiplatform agno
-    ```
-  </Step>
+<Step title="Authenticate with Google Cloud">
+  Follow the [Google Cloud Authentication
+  Guide](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal)
+</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U google-cloud-aiplatform agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -70,5 +71,6 @@ movie_agent.print_response("New York")
     python cookbook/models/vertexai/structured_output.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

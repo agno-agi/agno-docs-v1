@@ -21,17 +21,13 @@ agent.print_response("Calculate the factorial of 5 using Python")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -43,5 +39,6 @@ agent.print_response("Calculate the factorial of 5 using Python")
     python cookbook/agent_concepts/tools/python_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

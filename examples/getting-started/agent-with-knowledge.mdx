@@ -5,6 +5,7 @@ title: Agent with Knowledge
 This example shows how to create an AI cooking assistant that combines knowledge from a curated recipe database with web searching capabilities. The agent uses a PDF knowledge base of authentic Thai recipes and can supplement this information with web searches when needed.
 
 Example prompts to try:
+
 - "How do I make authentic Pad Thai?"
 - "What's the difference between red and green curry?"
 - "Can you explain what galangal is and possible substitutes?"
@@ -102,16 +103,14 @@ agent.print_response("What ingredients do I need for Pad Thai?", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai lancedb tantivy pypdf duckduckgo-search agno
-    ```
-  </Step>
+{' '}
 
-  <Step title="Run the agent">
-    ```bash
-    python agent_with_knowledge.py
-    ```
-  </Step>
+<Step title="Install libraries">
+  ```bash pip install openai lancedb tantivy pypdf duckduckgo-search agno ```
+</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python agent_with_knowledge.py ```</Step>
 
 </Steps>

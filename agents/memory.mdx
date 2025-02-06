@@ -14,9 +14,7 @@ Before we dive in, let's understand the terminology:
 - **Run:** Every interaction (i.e. chat) within a session is called a **run**. Runs are identified by a `run_id`.
 - **Messages:** are the individual messages sent to and received from the model. They have a `role` (`system`, `user` or `assistant`) and `content`.
 
-<Tip>
-**Sessions** are equivalent to **threads** in the OpenAI Assistant API.
-</Tip>
+<Tip>**Sessions** are equivalent to **threads** in the OpenAI Assistant API.</Tip>
 
 ## Built-in Memory
 
@@ -30,6 +28,7 @@ Every Agent comes with built-in memory that can be used to access the historical
     <ResponseField name="messages" type="list[Message]">
         The full list of messages sent to the model, including system prompt, tool calls etc.
     </ResponseField>
+
 </Expandable>
 
 You can give your agent access to memory in the following ways:
@@ -146,9 +145,8 @@ To do this, add a `db` to `AgentMemory` and set `create_user_memories=True` and 
 User memories are stored in the `AgentMemory` whereas session summaries are stored in the `AgentStorage` table with the rest of the session information.
 
 <Note>
-  User preferences and conversation summaries are currently only compatible with
-  `OpenAI` and `OpenAILike` models. While Persistent Memory is compatible with
-  all model providers.
+  User preferences and conversation summaries are currently only compatible with `OpenAI` and
+  `OpenAILike` models. While Persistent Memory is compatible with all model providers.
 </Note>
 
 ## Example
@@ -211,6 +209,6 @@ agent.print_response("What have we been talking about, do you know my name?", st
 | `create_session_summary`           | `bool`        | `False`         | If true, create and store session summaries.                                                                    |
 | `update_session_summary_after_run` | `bool`        | `True`          | If true, update session summaries after each run.                                                               |
 
- ## Developer Resources
+## Developer Resources
 
 - View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/memory)

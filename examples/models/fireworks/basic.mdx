@@ -26,17 +26,13 @@ agent.print_response("Share a 2 sentence horror story")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export FIREWORKS_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export FIREWORKS_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -48,5 +44,6 @@ agent.print_response("Share a 2 sentence horror story")
     python cookbook/models/fireworks/basic.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

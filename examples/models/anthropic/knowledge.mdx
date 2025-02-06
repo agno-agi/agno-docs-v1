@@ -37,18 +37,17 @@ agent.print_response("How to make Thai curry?", markdown=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API keys">
-    ```bash
-    export ANTHROPIC_API_KEY=xxx
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U anthropic sqlalchemy pgvector pypdf openai agno
-    ```
-  </Step>
+<Step title="Set your API keys">
+  ```bash export ANTHROPIC_API_KEY=xxx export OPENAI_API_KEY=xxx ```
+</Step>
+
+{' '}
+
+<Step title="Install libraries">
+  ```bash pip install -U anthropic sqlalchemy pgvector pypdf openai agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -60,5 +59,6 @@ agent.print_response("How to make Thai curry?", markdown=True)
     python cookbook/models/anthropic/knowledge.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

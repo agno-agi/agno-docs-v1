@@ -36,17 +36,13 @@ agent.cli_app(stream=False)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U httpx openai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U httpx openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -58,5 +54,6 @@ agent.cli_app(stream=False)
     python cookbook/agent_concepts/tools/csv_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

@@ -60,17 +60,13 @@ json_mode_agent.print_response("Find a cool movie idea about London and write it
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export MISTRAL_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U mistralai duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export MISTRAL_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U mistralai duckduckgo-search agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -82,5 +78,6 @@ json_mode_agent.print_response("Find a cool movie idea about London and write it
     python cookbook/models/mistral/structured_output.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

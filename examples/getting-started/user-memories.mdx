@@ -3,11 +3,13 @@ title: User Memories
 ---
 
 This example shows how to create an agent with persistent memory that stores:
+
 1. Personalized user memories - facts and preferences learned about specific users
 2. Session summaries - key points and context from conversations
 3. Chat history - stored in SQLite for persistence
 
 Key features:
+
 - Stores user-specific memories in SQLite database
 - Maintains session summaries for context
 - Continues conversations across sessions with memory
@@ -15,10 +17,10 @@ Key features:
 
 Examples:
 User: "My name is John and I live in NYC"
-Agent: *Creates memory about John's location*
+Agent: _Creates memory about John's location_
 
 User: "What do you remember about me?"
-Agent: *Recalls previous memories about John*
+Agent: _Recalls previous memories about John_
 
 ## Code
 
@@ -165,16 +167,12 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai sqlalchemy agno
-    ```
-  </Step>
+{' '}
 
-  <Step title="Run the agent">
-    ```bash
-    python user_memories.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai sqlalchemy agno ```</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python user_memories.py ```</Step>
 
 </Steps>

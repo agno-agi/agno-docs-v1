@@ -21,23 +21,17 @@ agent.print_response("Send a message to #general channel saying 'Hello from Agno
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Set your Slack token">
-    ```bash
-    export SLACK_BOT_TOKEN=xxx
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U slack-sdk openai agno
-    ```
-  </Step>
+{' '}
+
+<Step title="Set your Slack token">```bash export SLACK_BOT_TOKEN=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U slack-sdk openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -49,5 +43,6 @@ agent.print_response("Send a message to #general channel saying 'Hello from Agno
     python cookbook/agent_concepts/tools/slack_tools.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

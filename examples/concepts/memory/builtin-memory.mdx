@@ -34,17 +34,13 @@ pprint([m.model_dump(include={"role", "content"}) for m in agent.memory.messages
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai sqlalchemy agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai sqlalchemy agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -56,5 +52,6 @@ pprint([m.model_dump(include={"role", "content"}) for m in agent.memory.messages
     python cookbook/agent_concepts/memory/01_builtin_memory.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

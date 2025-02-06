@@ -1,6 +1,7 @@
 ---
 title: Baidu Search Agent
 ---
+
 **BaiduSearch** enables an Agent to perform web searches using the Baidu search engine and retrieve structured results.
 
 Create a file `baidusearch_agent.py` with the following code:
@@ -20,21 +21,18 @@ agent = Agent(
 )
 agent.print_response("What are the latest advancements in AI?", markdown=True)
 ```
+
 ## Usage
 
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai baidusearch pycountry
-    ```
-  </Step>
+{' '}
 
-  <Step title="Run the agent">
-    ```bash
-    python baidusearch_agent.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai baidusearch pycountry ```</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python baidusearch_agent.py ```</Step>
 
 </Steps>

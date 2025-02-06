@@ -32,17 +32,13 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai duckduckgo-search agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai duckduckgo-search agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -54,5 +50,6 @@ agent.print_response(
     python cookbook/models/openai/image_agent.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

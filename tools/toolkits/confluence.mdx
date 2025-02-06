@@ -21,6 +21,7 @@ export CONFLUENCE_API_KEY="your-api-key"
 ```
 
 ## Example
+
 The following agent will retrieve the number of spaces and their names.
 
 ```python
@@ -39,23 +40,23 @@ agent.print_response("How many spaces are there and what are their names?")
 
 ## Toolkit Functions
 
-| Parameter | Type     | Default | Description                                                                                                                    |
-| --------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `username`| `str`    | -  | Confluence username. Can also be set via environment variable CONFLUENCE_USERNAME.                                           |
-| `password`| `str`    | -  | Confluence password or API key. Can also be set via environment variables CONFLUENCE_API_KEY or CONFLUENCE_PASSWORD.       |
-| `url`     | `str`    | -  | Confluence instance URL. Can also be set via environment variable CONFLUENCE_URL.                                            |
-| `api_key` | `str`    | -  | Confluence API key (alternative to password).                                                                                 |
+| Parameter  | Type  | Default | Description                                                                                                          |
+| ---------- | ----- | ------- | -------------------------------------------------------------------------------------------------------------------- |
+| `username` | `str` | -       | Confluence username. Can also be set via environment variable CONFLUENCE_USERNAME.                                   |
+| `password` | `str` | -       | Confluence password or API key. Can also be set via environment variables CONFLUENCE_API_KEY or CONFLUENCE_PASSWORD. |
+| `url`      | `str` | -       | Confluence instance URL. Can also be set via environment variable CONFLUENCE_URL.                                    |
+| `api_key`  | `str` | -       | Confluence API key (alternative to password).                                                                        |
 
 ## Toolkit Functions
 
-| Function                                                         | Description                                                                                                                                         |
-| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `get_page_content` | Gets the content of a specific page.                                |
-| `get_all_space_detail`                                         | Gets details about all Confluence spaces.                                                     |
-| `get_space_key`                                 | Gets the Confluence key for the specified space.                                                        |
-| `get_all_page_from_space`                       | Gets details of all pages from the specified space.                                                     |
-| `create_page` | Creates a new Confluence page with the provided title and body.       |
-| `update_page`               | Updates an existing Confluence page.                                    |
+| Function                  | Description                                                     |
+| ------------------------- | --------------------------------------------------------------- |
+| `get_page_content`        | Gets the content of a specific page.                            |
+| `get_all_space_detail`    | Gets details about all Confluence spaces.                       |
+| `get_space_key`           | Gets the Confluence key for the specified space.                |
+| `get_all_page_from_space` | Gets details of all pages from the specified space.             |
+| `create_page`             | Creates a new Confluence page with the provided title and body. |
+| `update_page`             | Updates an existing Confluence page.                            |
 
 ## Developer Resources
 

@@ -64,17 +64,15 @@ agent_team.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai duckduckgo-search yfinance agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">
+  ```bash pip install -U openai duckduckgo-search yfinance agno ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -86,5 +84,6 @@ agent_team.print_response(
     python cookbook/agent_concepts/teams/respond_directly.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

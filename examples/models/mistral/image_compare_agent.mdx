@@ -4,7 +4,8 @@ description: Example of using Mistral's vision model to compare two images and i
 ---
 
 ## Overview
-This example demonstrates how to use the Mistral vision model to analyze and compare two different images. 
+
+This example demonstrates how to use the Mistral vision model to analyze and compare two different images.
 The agent will identify and describe the differences between the images, making it useful for visual comparison tasks.
 
 ## Code
@@ -35,17 +36,13 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export MISTRAL_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U mistralai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export MISTRAL_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U mistralai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -57,5 +54,6 @@ agent.print_response(
     python cookbook/models/mistral/image_compare_agent.py
     ```
     </CodeGroup>
+
   </Step>
-</Steps> 
+</Steps>

@@ -5,6 +5,7 @@ title: Agent Session
 This example shows how to create an agent with persistent memory stored in a SQLite database. We set the session_id on the agent when resuming the conversation, this way the previous chat history is preserved.
 
 Key features:
+
 - Stores conversation history in a SQLite database
 - Continues conversations across multiple sessions
 - References previous context in responses
@@ -110,16 +111,12 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai sqlalchemy agno
-    ```
-  </Step>
+{' '}
 
-  <Step title="Run the agent">
-    ```bash
-    python agent_session.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai sqlalchemy agno ```</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python agent_session.py ```</Step>
 
 </Steps>

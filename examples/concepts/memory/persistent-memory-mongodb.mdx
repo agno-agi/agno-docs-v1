@@ -82,21 +82,17 @@ print_chat_history(agent)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai pymongo agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
 
-  <Step title="Run MongoDB">
-    Make sure you have MongoDB running locally on port 27017
-  </Step>
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai pymongo agno ```</Step>
+
+{' '}
+
+<Step title="Run MongoDB">Make sure you have MongoDB running locally on port 27017</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -108,5 +104,6 @@ print_chat_history(agent)
     python cookbook/agent_concepts/memory/07_persistent_memory_mongodb.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

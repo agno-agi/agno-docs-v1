@@ -3,6 +3,7 @@ title: Retry Functions
 ---
 
 This example shows how to retry a function call if it fails or you do not like the output. This is useful for:
+
 - Handling temporary failures
 - Improving output quality through retries
 - Implementing human-in-the-loop validation
@@ -46,16 +47,12 @@ agent.print_response("Print something interesting", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai agno
-    ```
-  </Step>
+{' '}
 
-  <Step title="Run the agent">
-    ```bash
-    python retry_functions.py
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai agno ```</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python retry_functions.py ```</Step>
 
 </Steps>

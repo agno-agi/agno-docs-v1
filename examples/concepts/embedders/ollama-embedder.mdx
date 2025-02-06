@@ -33,29 +33,25 @@ knowledge_base = AgentKnowledge(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install Ollama">
-    Follow the installation instructions at [Ollama's website](https://ollama.ai)
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U sqlalchemy 'psycopg[binary]' pgvector agno
-    ```
-  </Step>
+<Step title="Install Ollama">
+  Follow the installation instructions at [Ollama's website](https://ollama.ai)
+</Step>
 
-  <Step title="Run PgVector">
-    ```bash
-    docker run -d \
-      -e POSTGRES_DB=ai \
-      -e POSTGRES_USER=ai \
-      -e POSTGRES_PASSWORD=ai \
-      -e PGDATA=/var/lib/postgresql/data/pgdata \
-      -v pgvolume:/var/lib/postgresql/data \
-      -p 5532:5432 \
-      --name pgvector \
-      agnohq/pgvector:16
-    ```
-  </Step>
+{' '}
+
+<Step title="Install libraries">
+  ```bash pip install -U sqlalchemy 'psycopg[binary]' pgvector agno ```
+</Step>
+
+{' '}
+
+<Step title="Run PgVector">
+  ```bash docker run -d \ -e POSTGRES_DB=ai \ -e POSTGRES_USER=ai \ -e POSTGRES_PASSWORD=ai \ -e
+  PGDATA=/var/lib/postgresql/data/pgdata \ -v pgvolume:/var/lib/postgresql/data \ -p 5532:5432 \
+  --name pgvector \ agnohq/pgvector:16 ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -67,5 +63,6 @@ knowledge_base = AgentKnowledge(
     python cookbook/agent_concepts/knowledge/embedders/ollama_embedder.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

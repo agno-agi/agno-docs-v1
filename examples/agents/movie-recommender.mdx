@@ -7,6 +7,7 @@ comprehensive film suggestions based on your preferences. The agent combines mov
 ratings, reviews, and upcoming releases to deliver personalized movie recommendations.
 
 Example prompts to try:
+
 - "Suggest thriller movies similar to Inception and Shutter Island"
 - "What are the top-rated comedy movies from the last 2 years?"
 - "Find me Korean movies similar to Parasite and Oldboy"
@@ -122,28 +123,24 @@ Upcoming Releases:
 4. "List upcoming book-to-movie adaptations"
 """
 ```
+
 ## Usage
 
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai exa_py agno
-    ```
-  </Step>
+{' '}
 
-  <Step title="Set environment variables">
-    ```bash
-    export OPENAI_API_KEY=****
-    export EXA_API_KEY=****
-    ```
-  </Step>
+<Step title="Install libraries">```bash pip install openai exa_py agno ```</Step>
 
-  <Step title="Run the agent">
-    ```bash
-    python movie_recommender.py
-    ```
-  </Step>
+{' '}
+
+<Step title="Set environment variables">
+  ```bash export OPENAI_API_KEY=**** export EXA_API_KEY=**** ```
+</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python movie_recommender.py ```</Step>
 
 </Steps>

@@ -117,17 +117,13 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai sqlalchemy agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export OPENAI_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai sqlalchemy agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -139,5 +135,6 @@ if __name__ == "__main__":
     python cookbook/agent_concepts/memory/06_memories_and_summaries_sqlite_async.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

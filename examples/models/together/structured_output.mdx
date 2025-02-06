@@ -51,17 +51,13 @@ json_mode_agent.print_response("New York")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export TOGETHER_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U together openai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export TOGETHER_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U together openai agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -73,5 +69,6 @@ json_mode_agent.print_response("New York")
     python cookbook/models/together/structured_output.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

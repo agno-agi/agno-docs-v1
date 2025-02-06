@@ -5,6 +5,7 @@ title: Agent with Storage
 This example shows how to create an AI cooking assistant that combines knowledge from a curated recipe database with web searching capabilities and persistent storage. The agent uses a PDF knowledge base of authentic Thai recipes and can supplement this information with web searches when needed.
 
 Example prompts to try:
+
 - "How do I make authentic Pad Thai?"
 - "What's the difference between red and green curry?"
 - "Can you explain what galangal is and possible substitutes?"
@@ -145,16 +146,14 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai lancedb tantivy pypdf duckduckgo-search sqlalchemy agno
-    ```
-  </Step>
+{' '}
 
-  <Step title="Run the agent">
-    ```bash
-    python agent_with_storage.py
-    ```
-  </Step>
+<Step title="Install libraries">
+  ```bash pip install openai lancedb tantivy pypdf duckduckgo-search sqlalchemy agno ```
+</Step>
+
+{' '}
+
+<Step title="Run the agent">```bash python agent_with_storage.py ```</Step>
 
 </Steps>

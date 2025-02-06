@@ -23,17 +23,13 @@ agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export HF_TOKEN=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U huggingface_hub agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export HF_TOKEN=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U huggingface_hub agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -45,5 +41,6 @@ agent.print_response(
     python cookbook/models/huggingface/basic.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

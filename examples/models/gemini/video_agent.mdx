@@ -28,23 +28,19 @@ agent.print_response("Tell me about this video", videos=[Video(filepath=video_pa
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export GOOGLE_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U google-generativeai agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export GOOGLE_API_KEY=xxx ```</Step>
 
-  <Step title="Download sample video">
-    ```bash
-    wget https://storage.googleapis.com/generativeai-downloads/images/GreatRedSpot.mp4
-    ```
-  </Step>
+{' '}
+
+<Step title="Install libraries">```bash pip install -U google-generativeai agno ```</Step>
+
+{' '}
+
+<Step title="Download sample video">
+  ```bash wget https://storage.googleapis.com/generativeai-downloads/images/GreatRedSpot.mp4 ```
+</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -56,5 +52,6 @@ agent.print_response("Tell me about this video", videos=[Video(filepath=video_pa
     python cookbook/models/google/gemini/video_agent.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

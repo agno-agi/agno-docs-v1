@@ -36,18 +36,15 @@ video_agent.print_response("Generate a video of a horse in the dessert.")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export OPENAI_API_KEY=xxx
-    export REPLICATE_API_TOKEN=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U openai replicate agno
-    ```
-  </Step>
+<Step title="Set your API key">
+  ```bash export OPENAI_API_KEY=xxx export REPLICATE_API_TOKEN=xxx ```
+</Step>
+
+{' '}
+
+<Step title="Install libraries">```bash pip install -U openai replicate agno ```</Step>
 
   <Step title="Run Agent">
     <CodeGroup>
@@ -59,5 +56,6 @@ video_agent.print_response("Generate a video of a horse in the dessert.")
     python cookbook/agent_concepts/multimodal/generate_video_using_replicate.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>

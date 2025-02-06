@@ -145,17 +145,15 @@ for short in shorts:
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export GOOGLE_API_KEY=xxx
-    ```
-  </Step>
+{' '}
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U opencv-python google-generativeai sqlalchemy ffmpeg-python agno
-    ```
-  </Step>
+<Step title="Set your API key">```bash export GOOGLE_API_KEY=xxx ```</Step>
+
+{' '}
+
+<Step title="Install libraries">
+  ```bash pip install -U opencv-python google-generativeai sqlalchemy ffmpeg-python agno ```
+</Step>
 
   <Step title="Install ffmpeg">
     <CodeGroup>
@@ -168,6 +166,7 @@ for short in shorts:
     choco install ffmpeg
     ```
     </CodeGroup>
+
   </Step>
 
   <Step title="Run Agent">
@@ -180,5 +179,6 @@ for short in shorts:
     python cookbook/agent_concepts/multimodal/video_to_shorts.py
     ```
     </CodeGroup>
+
   </Step>
 </Steps>
