@@ -6,7 +6,7 @@ title: Composio Tools
 
 ```python cookbook/tools/composio_tools.py
 from agno.agent import Agent
-from composio_phidata import Action, ComposioToolSet
+from composio_agno import Action, ComposioToolSet
 
 toolset = ComposioToolSet()
 composio_tools = toolset.get_tools(
@@ -31,7 +31,7 @@ agent.print_response("Can you star agno-agi/agno repo?")
 
   <Step title="Install libraries">
     ```bash
-    pip install -U composio-phidata openai agno
+    pip install -U composio-agno openai agno
     ```
   </Step>
 
