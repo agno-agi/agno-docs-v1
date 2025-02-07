@@ -12,7 +12,7 @@ The following agent will download the IMDB csv file and allow the user to query 
 import httpx
 from pathlib import Path
 from agno.agent import Agent
-from agno.tools.csv import CsvTools
+from agno.tools.csv_toolkit import CsvTools
 
 url = "https://agno-public.s3.amazonaws.com/demo_data/IMDB-Movie-Data.csv"
 response = httpx.get(url)
