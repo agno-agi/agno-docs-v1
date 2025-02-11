@@ -557,14 +557,25 @@
           ]
         },
         {
+          "group": "AWS Bedrock",
+          "pages": [
+            "examples/models/aws/bedrock/basic",
+            "examples/models/aws/bedrock/basic_stream",
+            "examples/models/aws/bedrock/tool_use",
+            "examples/models/aws/bedrock/structured_output",
+            "examples/models/aws/bedrock/storage",
+            "examples/models/aws/bedrock/knowledge"
+          ]
+        },
+        {
           "group": "AWS Bedrock Claude",
           "pages": [
-            "examples/models/aws/bedrock-claude/basic",
-            "examples/models/aws/bedrock-claude/basic_stream",
-            "examples/models/aws/bedrock-claude/tool_use",
-            "examples/models/aws/bedrock-claude/structured_output",
-            "examples/models/aws/bedrock-claude/storage",
-            "examples/models/aws/bedrock-claude/knowledge"
+            "examples/models/aws/claude/basic",
+            "examples/models/aws/claude/basic_stream",
+            "examples/models/aws/claude/tool_use",
+            "examples/models/aws/claude/structured_output",
+            "examples/models/aws/claude/storage",
+            "examples/models/aws/claude/knowledge"
           ]
         },
         {

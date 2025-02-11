@@ -4,7 +4,7 @@ title: Agent with Structured Outputs
 
 ## Code
 
-```python cookbook/models/aws/bedrock_claude/structured_output.py
+```python cookbook/models/aws/claude/structured_output.py
 from typing import List
 
 from agno.agent import Agent, RunResponse  # noqa
@@ -54,7 +54,7 @@ movie_agent.print_response("New York")
     ```bash
     export AWS_ACCESS_KEY_ID=***
     export AWS_SECRET_ACCESS_KEY=***
-    export AWS_DEFAULT_REGION=***
+    export AWS_REGION=***
     ```
   </Step>
 
@@ -67,11 +67,11 @@ movie_agent.print_response("New York")
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/models/aws/bedrock_claude/structured_output.py
+    python cookbook/models/aws/claude/structured_output.py
     ```
 
     ```bash Windows
-    python cookbook/models/aws/bedrock_claude/structured_output.py
+    python cookbook/models/aws/claude/structured_output.py
     ```
     </CodeGroup>
   </Step>
