@@ -6,7 +6,16 @@ title: Agent Observability
 
 Want to monitor and track your Agents?
 
-Agno comes with built-in monitoring that will log session and performance metrics to [app.agno.com](https://app.agno.com). Set `monitoring=True` on any agent or set `AGNO_MONITOR=true` in your environment.
+Agno provides built-in monitoring capabilities that track session and performance metrics through [app.agno.com](https://app.agno.com). To enable monitoring:
+
+1. **Authenticate** (one of these methods):
+
+   - Run `agno setup` in your terminal
+   - Export `AGNO_API_KEY=***` in your environment
+
+2. **Enable monitoring** (one of these methods):
+   - Set `monitoring=True` when creating an Agent
+   - Set `AGNO_MONITOR=true` in your environment
 
 Create a file `monitoring.py` with the following code:
 
@@ -17,10 +26,12 @@ agent = Agent(markdown=True, monitoring=True)
 agent.print_response("Share a 2 sentence horror story")
 ```
 
-Run the agent locally and view the session on [app.agno.com/sessions](https://app.agno.com/sessions)
+Run the agent locally and view your sessions at [app.agno.com/sessions](https://app.agno.com/sessions)
 
 <img
   height="200"
   src="/images/monitoring.png"
   style={{ borderRadius: "8px" }}
 />
+
+<Info>Facing issues? Check out our [troubleshooting guide](/faq/cli-auth)</Info>

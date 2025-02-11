@@ -4,7 +4,7 @@ title: Crawl4ai Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/crawl4ai_tools.py
+```python cookbook/tools/crawl4ai_tools.py
 from agno.agent import Agent
 from agno.tools.crawl4ai import Crawl4aiTools
 
@@ -17,20 +17,26 @@ agent.print_response("Tell me about https://github.com/agno-agi/agno.")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
   <Step title="Install libraries">
     ```bash
-    pip install -U crawl4ai agno
+    pip install -U crawl4ai openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/crawl4ai_tools.py
+    python cookbook/tools/crawl4ai_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/crawl4ai_tools.py
+    python cookbook/tools/crawl4ai_tools.py
     ```
     </CodeGroup>
   </Step>

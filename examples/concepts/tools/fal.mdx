@@ -4,7 +4,7 @@ title: Fal Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/fal_tools.py
+```python cookbook/tools/fal_tools.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.fal import FalTools
@@ -32,26 +32,27 @@ fal_agent.print_response("Generate video of balloon in the ocean")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
+  <Step title="Set your API keys">
     ```bash
     export FAL_KEY=xxx
+    export OPENAI_API_KEY=xxx
     ```
   </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U fal agno
+    pip install -U fal openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/fal_tools.py
+    python cookbook/tools/fal_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/fal_tools.py
+    python cookbook/tools/fal_tools.py
     ```
     </CodeGroup>
   </Step>

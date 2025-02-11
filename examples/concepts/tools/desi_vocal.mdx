@@ -4,7 +4,7 @@ title: Desi Vocal Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/desi_vocal_tools.py
+```python cookbook/tools/desi_vocal_tools.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.desi_vocal import DesiVocalTools
@@ -35,20 +35,27 @@ audio_agent.print_response(
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export DESI_VOCAL_API_KEY=xxx
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
   <Step title="Install libraries">
     ```bash
-    pip install -U requests agno
+    pip install -U requests openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/desi_vocal_tools.py
+    python cookbook/tools/desi_vocal_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/desi_vocal_tools.py
+    python cookbook/tools/desi_vocal_tools.py
     ```
     </CodeGroup>
   </Step>

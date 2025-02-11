@@ -4,7 +4,7 @@ title: Confluence Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/confluence_tools.py
+```python cookbook/tools/confluence_tools.py
 from agno.agent import Agent
 from agno.tools.confluence import ConfluenceTools
 
@@ -33,23 +33,24 @@ agent.print_response("Can you create a new page named 'TESTING' in 'LLM' space")
     export CONFLUENCE_API_TOKEN=xxx
     export CONFLUENCE_SITE_URL=xxx
     export CONFLUENCE_USERNAME=xxx
+    export OPENAI_API_KEY=xxx
     ```
   </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U atlassian-python-api agno
+    pip install -U atlassian-python-api openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/confluence_tools.py
+    python cookbook/tools/confluence_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/confluence_tools.py
+    python cookbook/tools/confluence_tools.py
     ```
     </CodeGroup>
   </Step>
