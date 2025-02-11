@@ -130,6 +130,7 @@
             "models/nvidia",
             "models/ollama",
             "models/openrouter",
+            "models/perplexity",
             "models/sambanova",
             "models/together",
             "models/xai"
@@ -723,6 +724,13 @@
           ]
         },
         {
+          "group": "Perplexity",
+          "pages": [
+            "examples/models/perplexity/basic",
+            "examples/models/perplexity/basic_stream"
+          ]
+        },
+        {
           "group": "Together",
           "pages": [
             "examples/models/together/basic",
@@ -775,6 +783,7 @@
             "reference/models/huggingface",
             "reference/models/mistral",
             "reference/models/nvidia",
+            "reference/models/perplexity",
             "reference/models/together",
             "reference/models/xai",
             "reference/models/bedrock",
