@@ -106,13 +106,24 @@
             "models/openai",
             "models/openai-like",
             "models/anthropic",
-            "models/aws-bedrock",
-            "models/azure",
+            {
+              "group": "AWS",
+              "pages": [
+                "models/aws-bedrock",
+                "models/aws-claude"
+              ]
+            },
+            {
+              "group": "Azure",
+              "pages": [
+                "models/azure-ai-foundry",
+                "models/azure-openai"
+              ]
+            },
             "models/cohere",
             "models/deepseek",
             "models/fireworks",
             "models/google",
-            "models/vertexai",
             "models/groq",
             "models/huggingface",
             "models/mistral",
@@ -564,7 +575,8 @@
             "examples/models/aws/bedrock/tool_use",
             "examples/models/aws/bedrock/structured_output",
             "examples/models/aws/bedrock/storage",
-            "examples/models/aws/bedrock/knowledge"
+            "examples/models/aws/bedrock/knowledge",
+            "examples/models/aws/bedrock/image_agent"
           ]
         },
         {
@@ -576,6 +588,17 @@
             "examples/models/aws/claude/structured_output",
             "examples/models/aws/claude/storage",
             "examples/models/aws/claude/knowledge"
+          ]
+        },
+        {
+          "group": "Azure AI Foundry",
+          "pages": [
+            "examples/models/azure/ai_foundry/basic",
+            "examples/models/azure/ai_foundry/basic_stream",
+            "examples/models/azure/ai_foundry/knowledge",
+            "examples/models/azure/ai_foundry/storage",
+            "examples/models/azure/ai_foundry/structured_output",
+            "examples/models/azure/ai_foundry/tool_use"
           ]
         },
         {
@@ -709,17 +732,6 @@
           ]
         },
         {
-          "group": "Vertex AI",
-          "pages": [
-            "examples/models/vertexai/basic",
-            "examples/models/vertexai/basic_stream",
-            "examples/models/vertexai/tool_use",
-            "examples/models/vertexai/structured_output",
-            "examples/models/vertexai/storage",
-            "examples/models/vertexai/knowledge"
-          ]
-        },
-        {
           "group": "xAI",
           "pages": [
             "examples/models/xai/basic",
@@ -765,7 +777,6 @@
             "reference/models/mistral",
             "reference/models/nvidia",
             "reference/models/together",
-            "reference/models/vertex",
             "reference/models/xai",
             "reference/models/bedrock",
             "reference/models/azure",

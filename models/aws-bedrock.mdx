@@ -1,16 +1,16 @@
 ---
-title: AWS Bedrock Claude
+title: AWS Bedrock
 ---
 
-Use the AWS Bedrock class to access the models on AWS. Manage your access to models [here](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/model-catalog).
+Use AWS Bedrock to access various foundation models on AWS. Manage your access to models [on the portal](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/model-catalog).
 
-See all the AWS Bedrock foundational models [here](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html).
+See all the [AWS Bedrock foundational models](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html). Not all Bedrock models support all features. See the [supported features for each model](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html).
 
-Not all Bedrock models support all features. See this documentation for more information: https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
 
-- For an Anthropic Claude model with generally good performance, look at `anthropic.claude-3-5-sonnet-20241022-v2:0`.
 - For a Mistral model with generally good performance, look at `mistral.mistral-large-2402-v1:0`.
 - You can play with Amazon Nova models. Use `amazon.nova-pro-v1:0` for general purpose tasks.
+- For Claude models, see our [Claude integration](/models/aws-claude).
 
 ## Authentication
 
@@ -41,11 +41,11 @@ Use `AwsBedrock` with your `Agent`:
 <CodeGroup>
 
 ```python agent.py
-from agno.agent import Agent, RunResponse
-from agno.models.aws.claude import Claude
+from agno.agent import Agent
+from agno.models.aws import AwsBedrock
 
 agent = Agent(
-    model=Claude(id="anthropic.claude-3-5-sonnet-20240620-v1:0"),
+    model=AwsBedrock(id="mistral.mistral-large-2402-v1:0"),
     markdown=True
 )
 
@@ -55,33 +55,10 @@ agent.print_response("Share a 2 sentence horror story.")
 
 </CodeGroup>
 
-or, for a Claude native integration, use `Claude`:
+<Note> View more examples [here](/examples/models/aws/bedrock). </Note>
 
-
-<CodeGroup>
-
-```python agent.py
-from agno.agent import Agent, RunResponse
-from agno.models.aws.claude import Claude
-
-agent = Agent(
-    model=AwsBedrock(id="mistral.mistral-small-2402-v1:0"),
-    markdown=True
-)
-
-# Print the response on the terminal
-agent.print_response("Share a 2 sentence horror story.")
-```
-
-</CodeGroup>
-
-
-<Note> View more Bedrock examples [here](../examples/models/aws/bedrock) and Claude examples [here](../examples/models/aws/claude). </Note>
-
-## Params
+## Parameters
 
 <Snippet file="model-aws-params.mdx" />
 
 `AwsBedrock` is a subclass of the [Model](/reference/models/model) class and has access to the same params.
-
-`Claude` is a subclass of [`AnthropicClaude`](/models/anthropic) and has access to the same params.

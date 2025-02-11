@@ -4,11 +4,11 @@ title: Agent with Structured Outputs
 
 ## Code
 
-```python cookbook/models/vertexai/structured_output.py
+```python cookbook/models/azure/ai_foundry/structured_output.py
 from typing import List
 
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.vertexai import Gemini
+from agno.models.azure import AzureAIFoundry
 from pydantic import BaseModel, Field
 from rich.pretty import pprint  # noqa
 
@@ -32,17 +32,18 @@ class MovieScript(BaseModel):
     )
 
 
-movie_agent = Agent(
-    model=Gemini(id="gemini-2.0-flash-exp"),
+agent = Agent(
+    model=AzureAIFoundry(id="Phi-4"),
     description="You help people write movie scripts.",
     response_model=MovieScript,
+    # debug_mode=True,
 )
 
 # Get the response in a variable
-# run: RunResponse = movie_agent.run("New York")
+# run: RunResponse = agent.run("New York")
 # pprint(run.content)
 
-movie_agent.print_response("New York")
+agent.print_response("New York")
 ```
 
 ## Usage
@@ -50,24 +51,27 @@ movie_agent.print_response("New York")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Authenticate with Google Cloud">
-    Follow the [Google Cloud Authentication Guide](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal)
+  <Step title="Set your API key">
+    ```bash
+    export AZURE_API_KEY=xxx
+    export AZURE_ENDPOINT=xxx
+    ```
   </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U google-cloud-aiplatform agno
+    pip install -U openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/models/vertexai/structured_output.py
+    python cookbook/models/azure/ai_foundry/structured_output.py
     ```
 
     ```bash Windows
-    python cookbook/models/vertexai/structured_output.py
+    python cookbook/models/azure/ai_foundry/structured_output.py
     ```
     </CodeGroup>
   </Step>

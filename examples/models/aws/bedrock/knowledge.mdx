@@ -7,7 +7,7 @@ title: Agent with Knowledge
 ```python cookbook/models/aws/bedrock/knowledge.py
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.models.aws.bedrock import AwsBedrock
+from agno.models.aws import AwsBedrock
 from agno.vectordb.pgvector import PgVector
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"

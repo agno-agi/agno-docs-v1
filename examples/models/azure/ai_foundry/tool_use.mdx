@@ -4,17 +4,18 @@ title: Agent with Tools
 
 ## Code
 
-```python cookbook/models/vertexai/tool_use.py
+```python cookbook/models/azure/ai_foundry/tool_use.py
 from agno.agent import Agent
-from agno.models.vertexai import Gemini
+from agno.models.azure import AzureAIFoundry
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
-    model=Gemini(id="gemini-2.0-flash-exp"),
+    model=AzureAIFoundry(id="Cohere-command-r-08-2024"),
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     markdown=True,
 )
+
 agent.print_response("Whats happening in France?", stream=True)
 ```
 
@@ -23,24 +24,27 @@ agent.print_response("Whats happening in France?", stream=True)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Authenticate with Google Cloud">
-    Follow the [Google Cloud Authentication Guide](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal)
+  <Step title="Set your API key">
+    ```bash
+    export AZURE_API_KEY=xxx
+    export AZURE_ENDPOINT=xxx
+    ```
   </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U google-cloud-aiplatform duckduckgo-search agno
+    pip install -U openai agno duckduckgo-search
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/models/vertexai/tool_use.py
+    python cookbook/models/azure/ai_foundry/tool_use.py
     ```
 
     ```bash Windows
-    python cookbook/models/vertexai/tool_use.py
+    python cookbook/models/azure/ai_foundry/tool_use.py
     ```
     </CodeGroup>
   </Step>
