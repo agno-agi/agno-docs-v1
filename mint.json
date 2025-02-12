@@ -767,8 +767,13 @@
         },
         {
           "group": "Workflows",
-          "pages": ["reference/workflows/workflow"]
-        },
+          "pages": [
+            "reference/workflows/workflow",
+            "reference/workflows/storage/mongodb",
+            "reference/workflows/storage/postgres",
+            "reference/workflows/storage/sqlite"
+          ]
+		    },
         {
           "group": "Models",
           "pages": [
