@@ -3,6 +3,35 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-02-12" description="v1.1.0">
+## 1.1.0 - Models Refactor and Cloud Support
+
+## Model Improvements:
+
+- **Models Refactor**: A complete overhaul of our models implementation to improve on performance and to have better feature parity across models.
+    - This improves metrics and visibility on the Agent UI as well.
+    - All models now support async-await, with the exception of `AwsBedrock`.
+- **Azure AI Foundry**: We now support all models on Azure AI Foundry. Learn more [here](https://learn.microsoft.com/azure/ai-services/models)..
+- **AWS Bedrock Support**: Our redone AWS Bedrock implementation now supports all Bedrock models. It is important to note [which models support which features](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html).
+- **Gemini via Google SDK**: With the 1.0.0 release of [Google's genai SDK](https://github.com/googleapis/python-genai) we could improve our previous implementation of `Gemini`. This will allow for easier integration of Gemini features in future.
+- **Model Failure Retries:** We added better error handling of third-party errors (e.g. Rate-Limit errors) and the agent will now optionally retry with exponential backoff if `exponential_backoff` is set to `True`.
+
+## Other Improvements
+
+- **Exa Answers Support**: Added support for the [Exa answers](https://docs.exa.ai/reference/answer) capability.
+- **GoogleSearchTools**: Updated the name of `GoogleSearch` to `GoogleSearchTools` for consistency.
+
+## Deprecation
+
+- Our `Gemini` implementation directly on the Vertex API has been replaced by the Google SDK implementation of `Gemini`.
+- Our `Gemini` implementation via the OpenAI client has been replaced by the Google SDK implementation of `Gemini`.
+- Our `OllamaHermes` has been removed as the implementation of `Ollama` was improved.
+
+## Bug Fixes
+
+- **Team Members Names**: Fixed a bug where teams where team members have non-aphanumeric characters in their names would cause exceptions.
+
+</Update>
 <Update label="2025-02-07" description="v1.0.8">
 ## 1.0.8
 
