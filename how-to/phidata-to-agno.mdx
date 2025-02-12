@@ -172,7 +172,7 @@ agent = Agent(
 ## CLI and Infrastructure Updates
 
 ### Command Line Interface Changes
-The CLI has been completely revamped from `phi` to `ag`. Here are the key changes:
+The Agno CLI has been refactored from `phi` to `ag`. Here are the key changes:
 
 ```bash
 # General commands
@@ -205,14 +205,14 @@ phi ws delete -> ag ws delete
 ### Infrastructure Path Changes
 The infrastructure-related code has been reorganized for better clarity:
 
-- **Docker Infrastructure**: This has been moved to a separate package in `/libs/infra/agno_docker` and has a separate [PyPi package `agno-docker`](https://pypi.org/project/agno-docker/).
-- **AWS Infrastructure**: This has been moved to a separate package in `/libs/infra/agno_aws` and has a separate [PyPi package `agno-aws`](https://pypi.org/project/agno-aws/).
+- **Docker Infrastructure**: This has been moved to a separate package in `/libs/infra/agno_docker` and has a separate PyPi package [`agno-docker`](https://pypi.org/project/agno-docker/).
+- **AWS Infrastructure**: This has been moved to a separate package in `/libs/infra/agno_aws` and has a separate PyPi package [`agno-aws`](https://pypi.org/project/agno-aws/).
 
 We recommend installing these packages in applications that you intend to deploy to AWS using Agno, or if you are migrating from a Phidata application.
 
 The specific path changes are:
-- `phi.aws.resource.xxx` ➔ `agno.aws.resource.xxx`
-- `phi.docker.xxx` ➔ `agno.docker.xxx`
+- `import phi.aws.resource.xxx` ➔ `import agno.aws.resource.xxx`
+- `import phi.docker.xxx` ➔ `import agno.docker.xxx`
 
 
 ---
