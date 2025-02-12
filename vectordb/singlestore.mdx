@@ -5,7 +5,30 @@ sidebarTitle: SingleStore
 
 ## Setup
 
-Follow the instructions in the [SingleStore Setup Guide](https://docs.singlestore.com/cloud/connect-to-singlestore/connect-with-mysql/connect-with-mysql-client/connect-to-singlestore-helios-using-tls-ssl/) to install SingleStore locally.
+```shell
+docker run -d --name singlestoredb \
+  -p 3306:3306 \
+  -p 8080:8080 \
+  -e ROOT_PASSWORD=admin \
+  -e SINGLESTORE_DB=AGNO \
+  -e SINGLESTORE_USER=root \
+  -e SINGLESTORE_PASSWORD=password \
+  singlestore/cluster-in-a-box
+
+docker start singlestoredb
+```
+
+After running the container, set the environment variables:
+
+```shell
+export SINGLESTORE_HOST="localhost"
+export SINGLESTORE_PORT="3306"
+export SINGLESTORE_USERNAME="root"
+export SINGLESTORE_PASSWORD="admin"
+export SINGLESTORE_DATABASE="AGNO"
+```
+
+SingleStore supports both cloud-based and local deployments. For step-by-step guidance on setting up your cloud deployment, please refer to the [SingleStore Setup Guide](https://docs.singlestore.com/cloud/connect-to-singlestore/connect-with-mysql/connect-with-mysql-client/connect-to-singlestore-helios-using-tls-ssl/).
 
 ## Example
 
