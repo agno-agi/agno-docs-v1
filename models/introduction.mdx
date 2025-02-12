@@ -4,7 +4,7 @@ title: Introduction
 
 Language Models are machine-learning programs that are trained to understand natural language and code. They provide reasoning and planning capabilities to Agents.
 
-Use any `model` with an Agent like:
+Use any `model` with an `Agent` like:
 
 ```python
 from agno.agent import Agent
@@ -18,22 +18,38 @@ agent = Agent(
 agent.print_response("Share a breakfast recipe.", stream=True)
 ```
 
+## Error handling
+
+You can set `exponential_backoff` to `True` on the `Agent` to automatically retry requests that fail due to third-party model provider errors.
+
+```python
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    exponential_backoff=True,
+)
+```
+
 ## Supported Models
 Agno supports the following model providers:
 
 - [OpenAI](/models/openai)
+- [OpenAI Like](/models/openai-like)
 - [Anthropic](/models/anthropic)
 - [AWS Bedrock](/models/aws-bedrock)
-- [Azure](/models/azure)
+- [Claude via AWS Bedrock](/models/aws-claude)
+- [Azure AI Foundry](/models/azure-ai-foundry)
+- [OpenAI via Azure](/models/azure-openai)
 - [Cohere](/models/cohere)
 - [DeepSeek](/models/deepseek)
 - [Fireworks](/models/fireworks)
-- [Google](/models/google)
+- [Google Gemini](/models/google)
 - [Groq](/models/groq)
+- [Hugging Face](/models/huggingface)
 - [Mistral](/models/mistral)
+- [NVIDIA](/models/nvidia)
 - [Ollama](/models/ollama)
-- [OpenAI Like](/models/openai-like)
 - [OpenRouter](/models/openrouter)
+- [Perplexity](/models/perplexity)
 - [Sambanova](/models/sambanova)
 - [Together](/models/together)
 - [VertexAI](/models/vertexai)
