@@ -26,6 +26,8 @@ You can set `exponential_backoff` to `True` on the `Agent` to automatically retr
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     exponential_backoff=True,
+    retries=2,
+    retry_delay=1,
 )
 ```
 
