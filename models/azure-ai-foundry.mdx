@@ -1,0 +1,60 @@
+---
+title: Azure AI Foundry
+---
+
+Use various open source models hosted on Azure's infrastructure. Learn more [here](https://learn.microsoft.com/azure/ai-services/models).
+
+Azure AI Foundry provides access to models like `Phi`, `Llama`, `Mistral`, `Cohere` and more.
+
+## Authentication
+
+Navigate to Azure AI Foundry on the [Azure Portal](https://portal.azure.com/) and create a service. Then set your environment variables:
+
+<CodeGroup>
+
+```bash Mac
+export AZURE_API_KEY=***
+export AZURE_ENDPOINT=***  # Of the form https://<your-host-name>.<your-azure-region>.models.ai.azure.com/models
+# Optional:
+# export AZURE_API_VERSION=***
+```
+
+```bash Windows
+setx AZURE_API_KEY ***  # Of the form https://<your-host-name>.<your-azure-region>.models.ai.azure.com/models
+setx AZURE_ENDPOINT ***
+# Optional:
+# setx AZURE_API_VERSION ***
+```
+
+</CodeGroup>
+
+## Example
+
+Use `AzureAIFoundry` with your `Agent`:
+
+<CodeGroup>
+
+```python agent.py
+from agno.agent import Agent
+from agno.models.azure import AzureAIFoundry
+
+agent = Agent(
+    model=AzureAIFoundry(id="Phi-4"),
+    markdown=True
+)
+
+# Print the response on the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
+
+</CodeGroup>
+
+## Advanced Examples
+
+View more examples [here](../examples/models/azure/ai_foundry).
+
+## Parameters
+
+<Snippet file="model-azure-ai-foundry-params.mdx" />
+
+`AzureAIFoundry` is a subclass of the [Model](/reference/models/model) class and has access to the same params. 

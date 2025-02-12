@@ -1,0 +1,50 @@
+---
+title: Perplexity
+---
+
+Perplexity offers powerful language models with built-in web search capabilities, enabling advanced research and Q&A functionality. 
+
+Explore Perplexity’s models [here](https://docs.perplexity.ai/guides/model-cards).
+
+## Authentication
+
+Set your `PERPLEXITY_API_KEY` environment variable. Get your key [from Perplexity here](https://www.perplexity.ai/settings/api).
+
+<CodeGroup>
+
+```bash Mac
+export PERPLEXITY_API_KEY=***
+```
+
+```bash Windows
+setx PERPLEXITY_API_KEY ***
+```
+
+</CodeGroup>
+
+## Example
+
+Use `Perplexity` with your `Agent`:
+
+<CodeGroup>
+
+```python agent.py
+from agno.agent import Agent, RunResponse
+from agno.models.perplexity import Perplexity
+
+agent = Agent(model=Perplexity(id="sonar-pro"), markdown=True)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story")
+
+```
+
+</CodeGroup>
+
+<Note> View more examples [here](../examples/models/perplexity). </Note>
+
+## Params
+
+<Snippet file="model-perplexity-params.mdx" />
+
+`Perplexity` also supports the params of [OpenAI](/reference/models/openai).
