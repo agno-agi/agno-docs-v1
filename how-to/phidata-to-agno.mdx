@@ -183,18 +183,22 @@ phi stop -> ag stop
 phi restart -> ag restart
 phi patch -> ag patch
 phi config -> ag config
-phi set -> ag set
 phi reset -> ag reset
 
 # Workspace Management
 phi ws create -> ag ws create
-phi ws up -> ag ws up
+phi ws up dev -> ag ws up dev
+phi ws up prod -> ag ws up prod
 phi ws down -> ag ws down
 phi ws patch -> ag ws patch
 phi ws restart -> ag ws restart
 phi ws config -> ag ws config
 phi ws delete -> ag ws delete
 ```
+
+<Note>
+The commands `ag ws up dev` and `ag ws up prod` have to be used instead of `ag ws up` to start the workspace in development and production mode respectively.
+</Note>
 
 ### New Commands
 - `ag ping` -> Check if you are authenticated
