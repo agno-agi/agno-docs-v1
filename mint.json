@@ -361,6 +361,7 @@
           "group": "Applications",
           "pages": [
             "examples/apps/agentic-rag",
+            "examples/apps/answer-engine",
             "examples/apps/text-to-sql",
             "examples/apps/game-generator",
             "examples/apps/geobuddy",
