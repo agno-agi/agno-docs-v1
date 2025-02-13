@@ -71,7 +71,7 @@ agent.print_response("Love in the year 12000.")
 ```
 
 <Tip>
-Some models, like `llama-3.2-11b-vision-preview`, require that there be no system message. In such cases, you can set `create_default_system_message=False` and `system_message=None` to disable system messages.
+Some models, like `llama-3.2-11b-vision-preview`, require no system message. To disable it, set `create_default_system_message=False` and `system_message=None`. Additionally, if `markdown=True` is set, it will add a system message, so either remove it or explicitly disable the system message.
 </Tip>
 
 ## User message
