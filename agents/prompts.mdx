@@ -70,6 +70,10 @@ agent = Agent(system_message="Share a 2 sentence story about")
 agent.print_response("Love in the year 12000.")
 ```
 
+<Tip>
+Some models, like `llama-3.2-11b-vision-preview`, require that there be no system message. In such cases, you can set `create_default_system_message=False` and `system_message=None` to disable system messages.
+</Tip>
+
 ## User message
 
 The input `message` sent to the `Agent.run()` or `Agent.print_response()` functions is used as the user message.
