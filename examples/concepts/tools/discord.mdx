@@ -4,7 +4,7 @@ title: Discord Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/discord_tools.py
+```python cookbook/tools/discord_tools.py
 from agno.agent import Agent
 from agno.tools.discord import DiscordTools
 
@@ -51,23 +51,24 @@ discord_agent.print_response(
   <Step title="Set your Discord token">
     ```bash
     export DISCORD_BOT_TOKEN=xxx
+    export OPENAI_API_KEY=xxx
     ```
   </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U discord.py agno
+    pip install -U discord.py openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/discord_tools.py
+    python cookbook/tools/discord_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/discord_tools.py
+    python cookbook/tools/discord_tools.py
     ```
     </CodeGroup>
   </Step>

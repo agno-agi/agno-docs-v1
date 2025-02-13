@@ -1,8 +1,8 @@
 ---
-title: Gemini - AI Studio
+title: Gemini
 ---
 
-Gemini is a platform for providing endpoints for Large Language models. See more information [here](https://ai.google.dev/aistudio).
+Use Google's Gemini models through Google AI Studio - a platform providing access to large language models. Learn more [here](https://ai.google.dev/aistudio).
 
 We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
 
@@ -11,6 +11,10 @@ We recommend experimenting to find the best-suited model for your use-case. Here
 - `gemini-2.0-flash-exp` is their strongest multi-modal model.
 
 ## Authentication
+
+You can use Gemini models through either Google AI Studio or Google Cloud's Vertex AI:
+
+### Google AI Studio
 
 Set your `GOOGLE_API_KEY` environment variable. You can get one [from Google here](https://ai.google.dev/aistudio).
 
@@ -26,6 +30,20 @@ setx GOOGLE_API_KEY ***
 
 </CodeGroup>
 
+### Vertex AI
+
+To use Vertex AI:
+
+1. Install Google Cloud CLI and authenticate:
+```bash
+gcloud auth application-default login
+```
+
+2. Set your project ID (optional if `GOOGLE_CLOUD_PROJECT` is set):
+```bash
+export GOOGLE_CLOUD_PROJECT=your-project-id
+```
+
 ## Example
 
 Use `Gemini` with your `Agent`:
@@ -33,12 +51,23 @@ Use `Gemini` with your `Agent`:
 <CodeGroup>
 
 ```python agent.py
-
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
 from agno.models.google import Gemini
 
+# Using Google AI Studio
 agent = Agent(
     model=Gemini(id="gemini-1.5-flash"),
+    markdown=True,
+)
+
+# Or using Vertex AI
+agent = Agent(
+    model=Gemini(
+        id="gemini-1.5-flash",
+        vertexai=True,
+        project_id="your-project-id",  # Optional if GOOGLE_CLOUD_PROJECT is set
+        location="us-central1",  # Optional
+    ),
     markdown=True,
 )
 
@@ -50,7 +79,7 @@ agent.print_response("Share a 2 sentence horror story.")
 
 <Note> View more examples [here](../examples/models/gemini). </Note>
 
-## Params
+## Parameters
 
 <Snippet file="model-google-params.mdx" />
 

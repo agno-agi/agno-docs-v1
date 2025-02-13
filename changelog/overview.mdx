@@ -3,6 +3,86 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-02-12" description="v1.1.0">
+## 1.1.0 - Models Refactor and Cloud Support
+
+## Model Improvements:
+
+- **Models Refactor**: A complete overhaul of our models implementation to improve on performance and to have better feature parity across models.
+    - This improves metrics and visibility on the Agent UI as well.
+    - All models now support async-await, with the exception of `AwsBedrock`.
+- **Azure AI Foundry**: We now support all models on Azure AI Foundry. Learn more [here](https://learn.microsoft.com/azure/ai-services/models)..
+- **AWS Bedrock Support**: Our redone AWS Bedrock implementation now supports all Bedrock models. It is important to note [which models support which features](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html).
+- **Gemini via Google SDK**: With the 1.0.0 release of [Google's genai SDK](https://github.com/googleapis/python-genai) we could improve our previous implementation of `Gemini`. This will allow for easier integration of Gemini features in future.
+- **Model Failure Retries:** We added better error handling of third-party errors (e.g. Rate-Limit errors) and the agent will now optionally retry with exponential backoff if `exponential_backoff` is set to `True`.
+
+## Other Improvements
+
+- **Exa Answers Support**: Added support for the [Exa answers](https://docs.exa.ai/reference/answer) capability.
+- **GoogleSearchTools**: Updated the name of `GoogleSearch` to `GoogleSearchTools` for consistency.
+
+## Deprecation
+
+- Our `Gemini` implementation directly on the Vertex API has been replaced by the Google SDK implementation of `Gemini`.
+- Our `Gemini` implementation via the OpenAI client has been replaced by the Google SDK implementation of `Gemini`.
+- Our `OllamaHermes` has been removed as the implementation of `Ollama` was improved.
+
+## Bug Fixes
+
+- **Team Members Names**: Fixed a bug where teams where team members have non-aphanumeric characters in their names would cause exceptions.
+
+</Update>
+<Update label="2025-02-07" description="v1.0.8">
+## 1.0.8
+
+## New Features:
+
+- **Perplexity Model**: We now support [Perplexity](https://www.perplexity.ai/) as a model provider.
+- **Todoist Toolkit:** Added a toolkit for managing tasks on Todoist.
+- **JSON Reader**: Added a JSON file reader for use in knowledge bases.
+
+## Improvements:
+
+- **LanceDb**: Implemented `name_exists` function for LanceDb.
+
+## Bug Fixes:
+
+- **Storage growth bug:** Fixed a bug with duplication of `run_messages.messages` for every run in storage.
+
+</Update>
+
+<Update label="2025-02-05" description="v1.0.7">
+## 1.0.7
+
+## New Features:
+
+- **Google Sheets Toolkit**: Added a basic toolkit for reading, creating and updating Google sheets.
+- **Weviate Vector Store**: Added support for Weviate as a vector store.
+
+## Improvements:
+
+- **Mistral Async**: Mistral now supports async execution via `agent.arun()` and `agent.aprint_response()`.
+- **Cohere Async**: Cohere now supports async execution via `agent.arun()` and `agent.aprint_response()`.
+
+## Bug Fixes:
+
+- **Retriever as knowledge source**: Added small fix and examples for using the custom `retriever` parameter with an agent.
+</Update>
+
+<Update label="2025-02-05" description="v1.0.6">
+## 1.0.6
+
+## New Features:
+
+- **Google Maps Toolkit**: Added a rich toolkit for Google Maps that includes business discovery, directions, navigation, geocode locations, nearby places, etc.
+- **URL reader and knowledge base**: Added reader and knowledge base that can process any URL and store the text contents in the document store.
+
+## Bug Fixes:
+
+- **Zoom tools fix:** Zoom tools updated to include the auth step and other misc fixes.
+- **Github search_repositories pagination**: Pagination did not work correctly and this was fixed.
+</Update>
+
 <Update label="2025-02-03" description="v1.0.5">
 ## 1.0.5
 
@@ -22,7 +102,7 @@ mode: "wide"
 
 ## Bug Fixes:
 
-- Claude not working with tools that have no params.
+- **Claude Tool Invocation:** Fixed issue where Claude was not working with tools that have no parameters.
 
 </Update>
 
@@ -45,8 +125,8 @@ mode: "wide"
 
 ## Bug Fixes:
 
-- Removed `slots=true` from the agent dataclass decorator which was not compatible with Python < 3.10 .
-- Fixed issue with AzureOpenAIEmbedder not being correctly made a dataclass.
+- **Agent Dataclass Compatibility:** Removed `slots=True` from the agent dataclass decorator, which was not compatible with Python < 3.10.
+- **AzureOpenAIEmbedder:** Made `AzureOpenAIEmbedder` a dataclass to match other embedders.
 </Update>
 
 <Update label="2025-01-31" description="v1.0.1">
@@ -195,13 +275,14 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
 - Removed all references to `Assistant`
 - Removed all references to `llm`
 - Removed the `PhiTools` tool
+- On the `Agent` class, `guidelines`, `prevent_hallucinations`, `prevent_prompt_leakage`, `limit_tool_access`, and `task` has been removed. They can be incorporated into the `instructions` parameter as you see fit.
 
 ## Bug Fixes:
 
-- Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param
+- **Semantic Chunking:** Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param.
 
 ## New Features:
 
-- **Evals for Agents:** Introducing Evals to measure the performance, accuracy, and reliability of your Agents
+- **Evals for Agents:** Introducing Evals to measure the performance, accuracy, and reliability of your Agents.
 
 </Update>

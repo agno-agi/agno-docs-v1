@@ -4,7 +4,7 @@ title: Shell Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/shell_tools.py
+```python cookbook/tools/shell_tools.py
 from agno.agent import Agent
 from agno.tools.shell import ShellTools
 
@@ -21,20 +21,26 @@ agent.print_response("List all files in the current directory")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step> 
+
   <Step title="Install libraries">
     ```bash
-    pip install -U agno
+    pip install -U openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/shell_tools.py
+    python cookbook/tools/shell_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/shell_tools.py
+    python cookbook/tools/shell_tools.py
     ```
     </CodeGroup>
   </Step>

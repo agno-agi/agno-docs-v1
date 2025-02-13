@@ -1,0 +1,72 @@
+---
+title: Gmail Tools
+---
+
+## Code
+
+```python cookbook/tools/gmail_tools.py
+from agno.agent import Agent
+from agno.models.google import Gemini
+from agno.tools.gmail import GmailTools
+
+agent = Agent(
+    name="Gmail Agent",
+    model=Gemini(id="gemini-2.0-flash-exp"),
+    tools=[GmailTools()],
+    description="You are an expert Gmail Agent that can read, draft and send emails using the Gmail.",
+    instructions=[
+        "Based on user query, you can read, draft and send emails using Gmail.",
+        "While showing email contents, you can summarize the email contents, extract key details and dates.",
+        "Show the email contents in a structured markdown format.",
+    ],
+    markdown=True,
+    show_tool_calls=False,
+    debug_mode=True,
+)
+
+agent.print_response(
+    "summarize my last 5 emails with dates and key details, regarding ai agents",
+    markdown=True,
+    stream=True,
+)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set up Google Cloud Project">
+    1. Go to [Google Cloud Console](https://console.cloud.google.com)
+    2. Create a new project or select an existing one
+    3. Enable the Gmail API for your project
+    4. Create OAuth 2.0 credentials and download the client configuration file
+  </Step>
+
+  <Step title="Set your API keys">
+    ```bash
+    export GOOGLE_CLIENT_ID=xxx
+    export GOOGLE_CLIENT_SECRET=xxx
+    export GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/credentials.json
+    export GOOGLE_API_KEY=xxx  # Required for Gemini model
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U google-api-python-client google-auth-httplib2 google-auth-oauthlib google-generativeai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/tools/gmail_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/tools/gmail_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 
