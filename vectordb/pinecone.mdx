@@ -37,9 +37,6 @@ knowledge_base = PDFUrlKnowledgeBase(
     vector_db=vector_db,
 )
 
-# Comment out after first run
-knowledge_base.load(recreate=True, upsert=True)
-
 def pinecone_agent(user: str = "user"):
     run_id: Optional[str] = None
 
@@ -64,6 +61,9 @@ def pinecone_agent(user: str = "user"):
         agent.print_response(message)
 
 if __name__ == "__main__":
+    # Comment out after first run
+    knowledge_base.load(recreate=True, upsert=True)
+
     typer.run(pinecone_agent)
 ```
 
