@@ -377,8 +377,12 @@
           "group": "Multimodal",
           "pages": [
             "examples/concepts/multimodal/audio-input-output",
+            "examples/concepts/multimodal/audio-to-text",
+            "examples/concepts/multimodal/audio-sentiment-analysis",
+            "examples/concepts/multimodal/blog-to-podcast",
             "examples/concepts/multimodal/audio-multi-turn",
             "examples/concepts/multimodal/generate-image",
+            "examples/concepts/multimodal/generate-music-agent",
             "examples/concepts/multimodal/generate-video-models-lab",
             "examples/concepts/multimodal/generate-video-replicate",
             "examples/concepts/multimodal/image-to-audio",
