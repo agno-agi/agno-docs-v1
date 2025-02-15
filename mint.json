@@ -910,6 +910,7 @@
             "hackathon/examples/image-to-structured-output",
             "hackathon/examples/image-generate-audio",
             "hackathon/examples/image-input-output",
+            "hackathon/examples/image-transcribe",
             "hackathon/examples/audio-input",
             "hackathon/examples/audio-input-output",
             "hackathon/examples/audio-sentiment",
@@ -918,7 +919,8 @@
             "hackathon/examples/video-input",
             "hackathon/examples/video-modelslab",
             "hackathon/examples/video-replicate",
-            "hackathon/examples/video-captions"
+            "hackathon/examples/video-captions",
+            "hackathon/examples/video-to-shorts"
           ]
         },
         {

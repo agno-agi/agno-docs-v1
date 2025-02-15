@@ -132,6 +132,14 @@ Here you'll find setup guides, examples, and resources to bring your multimodal 
   >
     Agent that takes an image input and outputs an image
   </Card>
+  <Card
+    title="Image Transcription"
+    icon="image"
+    iconType="duotone"
+    href="/hackathon/examples/image-transcribe"
+  >
+    Agent that transcribes images using Mistral
+  </Card>
 </CardGroup>
 
 ## Audio Processing
@@ -214,6 +222,14 @@ Here you'll find setup guides, examples, and resources to bring your multimodal 
   >
     Agent that generates captions for videos
   </Card>
+  <Card
+    title="Video to Shorts"
+    icon="video"
+    iconType="duotone"
+    href="/hackathon/examples/video-to-shorts"
+  >
+    Agent that converts videos to shorts
+  </Card>
 </CardGroup>
 
 ## Streamlit Applications
@@ -227,7 +243,50 @@ A list of streamlit applications built with Agno that you can use as a starting 
     iconType="duotone"
     href="https://github.com/agno-agi/agno/tree/main/cookbook/examples/apps/answer_engine"
   >
-    A powerful answer engine that combines web search and exa search to answer questions
+    A powerful answer engine that combines web search and exa search to answer
+    questions
+  </Card>
+  <Card
+    title="Chess Game"
+    icon="laptop-code"
+    iconType="duotone"
+    href="https://github.com/agno-agi/agno/tree/main/cookbook/examples/apps/chess_team"
+  >
+    A simple chess game built with Agno
+  </Card>
+  <Card
+    title="Geobuddy"
+    icon="map"
+    iconType="duotone"
+    href="https://github.com/agno-agi/agno/tree/main/cookbook/examples/apps/geobuddy"
+  >
+    Geeography agent that analyzes images to predict locations based on visible
+    cues like landmarks, architecture, and cultural symbols.
+  </Card>
+  <Card
+    title="Medical Imaging"
+    icon="hospital"
+    iconType="duotone"
+    href="https://github.com/agno-agi/agno/tree/main/cookbook/examples/apps/medical_imaging"
+  >
+    Medical imaging analysis agent that analyzes medical images and provides
+    detailed findings by utilizing models and external tools.
+  </Card>
+  <Card
+    title="Game Generator"
+    icon="gamepad"
+    iconType="duotone"
+    href="https://github.com/agno-agi/agno/tree/main/cookbook/examples/apps/game_generator"
+  >
+    Game generator agent that generates games based on user input
+  </Card>
+  <Card
+    title="SQL Agent"
+    icon="database"
+    iconType="duotone"
+    href="https://github.com/agno-agi/agno/tree/main/cookbook/examples/apps/sql_agent"
+  >
+    SQL agent that can query a database and return the results
   </Card>
 </CardGroup>
 
@@ -290,13 +349,13 @@ Choose the right model for your project. Each has unique capabilities and streng
 
 Here's a quick comparison of multimodal support across models:
 
-| Model | Image | Audio | Video | Text |
-|-------|--------|--------|--------|-------|
-| Gemini | ✅ | ✅ | ✅ | ✅ |
-| OpenAI | ✅ | ✅ | ❌ | ✅ |
-| Anthropic | ✅ | ❌ | ❌ | ✅ |
-| Groq | ✅ | ❌ | ❌ | ✅ |
-| Mistral | ✅ | ❌ | ❌ | ✅ |
+| Model     | Image | Audio | Video | Text |
+| --------- | ----- | ----- | ----- | ---- |
+| Gemini    | ✅    | ✅    | ✅    | ✅   |
+| OpenAI    | ✅    | ✅    | ❌    | ✅   |
+| Anthropic | ✅    | ❌    | ❌    | ✅   |
+| Groq      | ✅    | ❌    | ❌    | ✅   |
+| Mistral   | ✅    | ❌    | ❌    | ✅   |
 
 For more details, see our [compatibility matrix](https://docs.agno.com/models/compatibility#multimodal-support).
 
