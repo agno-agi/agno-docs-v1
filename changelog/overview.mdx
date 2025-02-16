@@ -2,6 +2,42 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-02-16" description="v1.1.3">
+## 1.1.3
+
+## Bug Fixes:
+
+- **Gemini Tool-Call History**: Fixed an issue where Gemini rejected tool-calls from historic messages.
+</Update>
+
+<Update label="2025-02-15" description="v1.1.2">
+## 1.1.2
+
+## Improvements:
+
+- **Reasoning with o3 Models**: Reasoning support added for OpenAI’s o3 models.
+- **Gemini embedder update:** Updated the `GeminiEmbedder` to use the new [Google’s genai SDK](https://github.com/googleapis/python-genai). This update introduces a slight change in the interface:
+    
+    ```python
+    # Before
+    embeddings = GeminiEmbedder("models/text-embedding-004").get_embedding(
+        "The quick brown fox jumps over the lazy dog."
+    )
+    
+    # After
+    embeddings = GeminiEmbedder("text-embedding-004").get_embedding(
+        "The quick brown fox jumps over the lazy dog."
+    )
+    ```
+    
+
+## Bug Fixes:
+
+- **Singlestore Fix:** Fixed issue where when querying singlestore the embeddings column was returning in binary format.
+- **MongoDB Vectorstore Fix:** MongoDB had multiple issues like creating and dropping the collections twice while initialising. All known issues were fixed.
+- **LanceDB Fix:** Fixed various errors on LanceDB and added `on_bad_vectors` as parameters.
+</Update>
+
 <Update label="2025-02-14" description="v1.1.1">
 ## 1.1.1 
 
