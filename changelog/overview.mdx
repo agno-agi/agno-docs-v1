@@ -46,21 +46,7 @@ mode: "wide"
 - **File / Image Uploads on Agent UI:** Agent UI now supports file and image uploads with prompts.
     - Supported file formats: `.pdf` `.csv` `.txt` `.docx` `.json`
     - Supported image formats: `.png` `.jpeg` `.jpg` `.webp`
-- **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.
-- **Gemini embedder update:** Updated the `GeminiEmbedder` to use the new [Google’s genai SDK](https://github.com/googleapis/python-genai). This update introduces a slight change in the interface:
-    
-    ```python
-    # Before
-    embeddings = GeminiEmbedder("models/text-embedding-004").get_embedding(
-        "The quick brown fox jumps over the lazy dog."
-    )
-    
-    # After
-    embeddings = GeminiEmbedder("text-embedding-004").get_embedding(
-        "The quick brown fox jumps over the lazy dog."
-    )
-    ```
-    
+- **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.   
 - **Updated `ModelsLabTools` Toolkit Constructor**: The constructor in `/libs/agno/tools/models_labs.py` has been updated to accommodate audio generation API calls. This is a breaking change, as the parameters for the `ModelsLabTools` class have changed. The `url` and `fetch_url` parameters have been removed, and API URLs are now decided based on the `file_type` provided by the user.
     
     ```python
