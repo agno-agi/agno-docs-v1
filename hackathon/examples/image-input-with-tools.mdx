@@ -1,0 +1,72 @@
+---
+title: Image Input + Tools
+---
+
+This agent can take image inputs and make tool calls to search the web for more information.
+
+```python image_input_with_tools.py
+from agno.agent import Agent
+from agno.media import Image
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[DuckDuckGoTools()],
+    markdown=True,
+)
+
+agent.print_response(
+    "Tell me about this image and search the web for more information.",
+    images=[
+        Image(
+            url="https://upload.wikimedia.org/wikipedia/commons/0/0c/GoldenGateBridge-001.jpg"
+        )
+    ],
+    stream=True,
+)
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install libraries">
+    <CodeGroup>
+
+    ```shell standard python
+    pip install -U agno openai duckduckgo-search
+    ```
+
+    ```shell using uv
+    uv pip install -U agno openai duckduckgo-search
+    ```
+
+    </CodeGroup>
+
+  </Step>
+
+  <Step title="Run the agent">
+
+    ```shell
+    python image_input_with_tools.py
+    ```
+
+  </Step>
+
+  <Step title="Export API keys">
+
+    ```shell
+    export OPENAI_API_KEY=***
+    ```
+
+  </Step>
+
+  <Step title="Run the agent">
+
+    ```shell
+    python image_input_with_tools.py
+    ```
+
+  </Step>
+
+</Steps>

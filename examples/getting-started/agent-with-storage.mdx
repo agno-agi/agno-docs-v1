@@ -37,9 +37,6 @@ agent_knowledge = PDFUrlKnowledgeBase(
         embedder=OpenAIEmbedder(id="text-embedding-3-small"),
     ),
 )
-# Comment out after the knowledge base is loaded
-# if agent_knowledge is not None:
-#     agent_knowledge.load()
 
 agent_storage = SqliteAgentStorage(table_name="recipe_agent", db_file="tmp/agents.db")
 
@@ -137,6 +134,10 @@ def recipe_agent(user: str = "user"):
 
 
 if __name__ == "__main__":
+    # Comment out after the knowledge base is loaded
+    if agent_knowledge is not None:
+        agent_knowledge.load()
+
     typer.run(recipe_agent)
 ```
 

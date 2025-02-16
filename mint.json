@@ -66,6 +66,10 @@
     {
       "name": "FAQs",
       "url": "faq"
+    },
+    {
+      "name": "Hackathon Resources",
+      "url": "hackathon"
     }
   ],
   "navigation": [
@@ -108,17 +112,11 @@
             "models/anthropic",
             {
               "group": "AWS",
-              "pages": [
-                "models/aws-bedrock",
-                "models/aws-claude"
-              ]
+              "pages": ["models/aws-bedrock", "models/aws-claude"]
             },
             {
               "group": "Azure",
-              "pages": [
-                "models/azure-ai-foundry",
-                "models/azure-openai"
-              ]
+              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
             },
             "models/cohere",
             "models/deepseek",
@@ -363,6 +361,7 @@
           "group": "Applications",
           "pages": [
             "examples/apps/agentic-rag",
+            "examples/apps/answer-engine",
             "examples/apps/text-to-sql",
             "examples/apps/game-generator",
             "examples/apps/geobuddy",
@@ -378,8 +377,12 @@
           "group": "Multimodal",
           "pages": [
             "examples/concepts/multimodal/audio-input-output",
+            "examples/concepts/multimodal/audio-to-text",
+            "examples/concepts/multimodal/audio-sentiment-analysis",
+            "examples/concepts/multimodal/blog-to-podcast",
             "examples/concepts/multimodal/audio-multi-turn",
             "examples/concepts/multimodal/generate-image",
+            "examples/concepts/multimodal/generate-music-agent",
             "examples/concepts/multimodal/generate-video-models-lab",
             "examples/concepts/multimodal/generate-video-replicate",
             "examples/concepts/multimodal/image-to-audio",
@@ -783,7 +786,7 @@
             "reference/workflows/storage/postgres",
             "reference/workflows/storage/sqlite"
           ]
-		    },
+        },
         {
           "group": "Models",
           "pages": [
@@ -898,6 +901,55 @@
     {
       "group": "Changelog",
       "pages": ["changelog/overview"]
+    },
+    {
+      "group": "Hackathon Resources",
+      "pages": [
+        "hackathon/introduction",
+        "hackathon/setup",
+        {
+          "group": "Examples",
+          "pages": [
+            "hackathon/examples/simple-text-agent",
+            "hackathon/examples/agent-with-tools",
+            "hackathon/examples/agent-with-knowledge",
+            "hackathon/examples/structured-outputs",
+            "hackathon/examples/research-agent",
+            "hackathon/examples/youtube-agent",
+            "hackathon/examples/image-input-with-tools",
+            "hackathon/examples/image-generate",
+            "hackathon/examples/image-to-structured-output",
+            "hackathon/examples/image-generate-audio",
+            "hackathon/examples/image-input-output",
+            "hackathon/examples/image-transcribe",
+            "hackathon/examples/image-gif-seach",
+            "hackathon/examples/audio-input",
+            "hackathon/examples/audio-input-output",
+            "hackathon/examples/audio-sentiment",
+            "hackathon/examples/audio-transcript",
+            "hackathon/examples/audio-multi-turn",
+            "hackathon/examples/audio-generate-podcast",
+            "hackathon/examples/video-input",
+            "hackathon/examples/video-modelslab",
+            "hackathon/examples/video-replicate",
+            "hackathon/examples/video-captions",
+            "hackathon/examples/video-to-shorts"
+          ]
+        },
+        {
+          "group": "Models",
+          "pages": [
+            "hackathon/models/openai",
+            "hackathon/models/gemini",
+            "hackathon/models/anthropic",
+            "hackathon/models/groq",
+            "hackathon/models/mistral",
+            "hackathon/models/ollama"
+          ]
+        },
+        "hackathon/replit",
+        "hackathon/prizes"
+      ]
     }
   ],
   "footerSocials": {

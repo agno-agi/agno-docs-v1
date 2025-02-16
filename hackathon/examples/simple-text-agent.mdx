@@ -1,0 +1,50 @@
+---
+title: Simple Text Agent
+---
+
+This agent takes a text input and responds with a text output, it will obviously hallucinate the output.
+
+```python simple_agent.py
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    description="You are an enthusiastic news reporter with a flair for storytelling!",
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    agent.print_response("1 sentence news story from New York", stream=True)
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install libraries">
+    <CodeGroup>
+
+    ```shell standard python
+    pip install -U agno openai
+    ```
+
+    ```shell using uv
+    uv pip install -U agno openai
+    ```
+
+    </CodeGroup>
+  </Step>
+
+  <Step title="Export API keys">
+    ```shell
+    export OPENAI_API_KEY=***
+    ```
+  </Step>
+
+  <Step title="Run the agent">
+    ```shell
+    python simple_agent.py
+    ```
+  </Step>
+
+</Steps>

@@ -7,6 +7,16 @@ sidebarTitle: Pinecone
 
 Follow the instructions in the [Pinecone Setup Guide](https://docs.pinecone.io/guides/get-started/quickstart) to get started quickly with Pinecone.
 
+```shell
+pip install pinecone
+```
+
+<Info>
+  We do not yet support Pinecone v6.x.x. We are actively working to achieve
+  compatibility. In the meantime, we recommend using **Pinecone v5.4.2** for the
+  best experience.
+</Info>
+
 ## Example
 
 ```python agent_with_knowledge.py
@@ -37,9 +47,6 @@ knowledge_base = PDFUrlKnowledgeBase(
     vector_db=vector_db,
 )
 
-# Comment out after first run
-knowledge_base.load(recreate=True, upsert=True)
-
 def pinecone_agent(user: str = "user"):
     run_id: Optional[str] = None
 
@@ -64,6 +71,9 @@ def pinecone_agent(user: str = "user"):
         agent.print_response(message)
 
 if __name__ == "__main__":
+    # Comment out after first run
+    knowledge_base.load(recreate=True, upsert=True)
+
     typer.run(pinecone_agent)
 ```
 
