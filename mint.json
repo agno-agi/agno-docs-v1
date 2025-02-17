@@ -766,7 +766,7 @@
       "pages": [
         {
           "group": "Agents",
-          "pages": ["reference/agents/agent", "reference/agents/session"]
+          "pages": ["reference/agents/agent", "reference/agents/session", "reference/agents/memory"]
         },
         {
           "group": "Workflows",
@@ -839,6 +839,42 @@
             "reference/vector_db/pinecone",
             "reference/vector_db/qdrant",
             "reference/vector_db/singlestore"
+          ]
+        },
+        {
+          "group": "Embedders",
+          "pages": [
+            "reference/embedder/azure_openai",
+            "reference/embedder/cohere",
+            "reference/embedder/fireworks",
+            "reference/embedder/gemini",
+            "reference/embedder/huggingface",
+            "reference/embedder/mistral",
+            "reference/embedder/ollama",
+            "reference/embedder/openai",
+            "reference/embedder/sentence-transformer",
+            "reference/embedder/together",
+            "reference/embedder/voyageai"
+          ]
+        },
+        {
+          "group": "Memory",
+          "pages": [
+            "reference/memory/mongo",
+            "reference/memory/postgres",
+            "reference/memory/sqlite"
+          ]
+        },
+        {
+          "group": "Storage",
+          "pages": [
+            "reference/storage/yaml",
+            "reference/storage/json",
+            "reference/storage/mongodb",
+            "reference/storage/postgres",
+            "reference/storage/sqlite",
+            "reference/storage/dynamodb",
+            "reference/storage/singlestore" 
           ]
         },
         {
