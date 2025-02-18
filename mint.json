@@ -846,6 +846,7 @@
           "pages": [
             "reference/embedder/azure_openai",
             "reference/embedder/cohere",
+            "reference/embedder/fastembed",
             "reference/embedder/fireworks",
             "reference/embedder/gemini",
             "reference/embedder/huggingface",
