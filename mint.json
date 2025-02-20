@@ -385,6 +385,7 @@
             "examples/concepts/multimodal/generate-video-replicate",
             "examples/concepts/multimodal/image-to-audio",
             "examples/concepts/multimodal/image-to-image",
+            "examples/concepts/multimodal/image-to-text",
             "examples/concepts/multimodal/video-caption",
             "examples/concepts/multimodal/video-to-shorts"
           ]
