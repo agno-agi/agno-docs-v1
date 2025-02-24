@@ -3,6 +3,103 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-02-17" description="v1.1.4">
+## 1.1.4
+
+## Improvements:
+
+- **Gmail Tools**: Added `get_emails_by_thread` and `send_email_reply` methods to `GmailTools`.
+
+## Bug Fixes:
+
+- **Gemini List Parameters**: Fixed issue with functions with list-type parameters in Gemini.
+- **Gemini Safety Parameters**: Fixed issue with passing safety parameters in Gemini.
+- **ChromaDB Multiple Docs:** Fixed issue with loading multiple documents into ChromaDB.
+- **Agentic Chunking:** Fixed an issue where `openai` would be required for chunking even if a model was passed.
+</Update>
+
+<Update label="2025-02-16" description="v1.1.3">
+## 1.1.3
+
+## Bug Fixes:
+
+- **Gemini Tool-Call History**: Fixed an issue where Gemini rejected tool-calls from historic messages.
+</Update>
+
+<Update label="2025-02-15" description="v1.1.2">
+## 1.1.2
+
+## Improvements:
+
+- **Reasoning with o3 Models**: Reasoning support added for OpenAI’s o3 models.
+- **Gemini embedder update:** Updated the `GeminiEmbedder` to use the new [Google’s genai SDK](https://github.com/googleapis/python-genai). This update introduces a slight change in the interface:
+    
+    ```python
+    # Before
+    embeddings = GeminiEmbedder("models/text-embedding-004").get_embedding(
+        "The quick brown fox jumps over the lazy dog."
+    )
+    
+    # After
+    embeddings = GeminiEmbedder("text-embedding-004").get_embedding(
+        "The quick brown fox jumps over the lazy dog."
+    )
+    ```
+    
+
+## Bug Fixes:
+
+- **Singlestore Fix:** Fixed issue where when querying singlestore the embeddings column was returning in binary format.
+- **MongoDB Vectorstore Fix:** MongoDB had multiple issues like creating and dropping the collections twice while initialising. All known issues were fixed.
+- **LanceDB Fix:** Fixed various errors on LanceDB and added `on_bad_vectors` as parameters.
+</Update>
+
+<Update label="2025-02-14" description="v1.1.1">
+## 1.1.1 
+
+## Improvements:
+
+- **File / Image Uploads on Agent UI:** Agent UI now supports file and image uploads with prompts.
+    - Supported file formats: `.pdf` `.csv` `.txt` `.docx` `.json`
+    - Supported image formats: `.png` `.jpeg` `.jpg` `.webp`
+- **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.   
+- **Updated `ModelsLabTools` Toolkit Constructor**: The constructor in `/libs/agno/tools/models_labs.py` has been updated to accommodate audio generation API calls. This is a breaking change, as the parameters for the `ModelsLabTools` class have changed. The `url` and `fetch_url` parameters have been removed, and API URLs are now decided based on the `file_type` provided by the user.
+    
+    ```python
+    MODELS_LAB_URLS = {
+        "MP4": "https://modelslab.com/api/v6/video/text2video",
+        "MP3": "https://modelslab.com/api/v6/voice/music_gen",
+        "GIF": "https://modelslab.com/api/v6/video/text2video",
+    }
+    
+    MODELS_LAB_FETCH_URLS = {
+        "MP4": "https://modelslab.com/api/v6/video/fetch",
+        "MP3": "https://modelslab.com/api/v6/voice/fetch",
+        "GIF": "https://modelslab.com/api/v6/video/fetch",
+    }
+    ```
+    
+    The `FileType` enum now includes `MP3` type:
+    
+    ```jsx
+    class FileType(str, Enum):
+        MP4 = "mp4"
+        GIF = "gif"
+        MP3 = "mp3"
+    ```
+    
+
+## Bug Fixes:
+
+- **Gemini functions with no parameters:** Addressed an issue where Gemini would reject function declarations with empty properties.
+- **Fix exponential memory growth**: Fixed certain cases where the agent memory would grow exponentially.
+- **Chroma DB:** Fixed various issues related to metadata on insertion and search.
+- **Gemini Structured Output**: Fixed a bug where Gemini would not generate structured output correctly.
+- **MistralEmbedder:** Fixed issue with instantiation of `MistralEmbedder`.
+- **Reasoning**: Fixed an issue with setting reasoning models.
+- **Audio Response:** Fixed an issue with streaming audio artefacts to the playground.
+</Update>
+
 <Update label="2025-02-12" description="v1.1.0">
 ## 1.1.0 - Models Refactor and Cloud Support
 

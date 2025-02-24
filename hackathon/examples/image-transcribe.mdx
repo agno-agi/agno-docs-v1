@@ -1,0 +1,59 @@
+---
+title: Image Transcription
+---
+
+This agent can transcribe images using Mistral.
+
+```python transcribe_image.py
+from agno.agent import Agent
+from agno.media import Image
+from agno.models.mistral.mistral import MistralChat
+
+agent = Agent(
+    model=MistralChat(id="pixtral-12b-2409"),
+    markdown=True,
+)
+
+agent.print_response(
+    "Transcribe this document.",
+    images=[
+        Image(url="https://ciir.cs.umass.edu/irdemo/hw-demo/page_example.jpg"),
+    ],
+)
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install libraries">
+    <CodeGroup>
+
+    ```shell standard python
+    pip install -U agno mistral
+    ```
+
+    ```shell using uv
+    uv pip install -U agno mistral
+    ```
+
+    </CodeGroup>
+
+  </Step>
+
+  <Step title="Export API keys">
+
+    ```shell
+    export MISTRAL_API_KEY=***
+    ```
+
+  </Step>
+
+  <Step title="Run the agent">
+
+    ```shell
+    python transcribe_image.py
+    ```
+
+  </Step>
+
+</Steps>

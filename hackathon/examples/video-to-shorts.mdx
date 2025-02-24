@@ -1,0 +1,76 @@
+---
+title: Video to Shorts
+---
+
+## Video to Shorts
+
+This agent takes a video input and converts it into short vertical videos.
+
+```python video_to_shorts.py
+import subprocess
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.media import Video
+from agno.models.google import Gemini
+from agno.utils.log import logger
+
+# Get sample videos from https://www.pexels.com/search/videos/sample/
+video_path = Path(__file__).parent.joinpath("sample_video.mp4")
+output_dir = Path("tmp/shorts")
+
+agent = Agent(
+    name="Video2Shorts",
+    description="Process videos and generate engaging shorts.",
+    model=Gemini(id="gemini-2.0-flash-exp"),
+    markdown=True,
+    debug_mode=True,
+    structured_outputs=True,
+    instructions=[
+        "Analyze the provided video directly—do NOT reference or analyze any external sources or YouTube videos.",
+        "Identify engaging moments that meet the specified criteria for short-form content.",
+        """Provide your analysis in a **table format** with these columns:
+        - Start Time | End Time | Description | Importance Score""",
+        "Ensure all timestamps use MM:SS format and importance scores range from 1-10. ",
+        "Focus only on segments between 15 and 60 seconds long.",
+        "Base your analysis solely on the provided video content.",
+        "Deliver actionable insights to improve the identified segments for short-form optimization.",
+    ],
+)
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install libraries">
+    <CodeGroup>
+
+    ```shell standard python
+    pip install -U agno google-genai
+    ```
+
+    ```shell using uv
+    uv pip install -U agno google-genai
+    ```
+
+    </CodeGroup>
+
+  </Step>
+
+  <Step title="Export API keys">
+  
+    ```shell
+    export GOOGLE_API_KEY=***
+    ```
+
+  </Step>
+
+  <Step title="Run the agent">
+
+    ```shell
+    python video_to_shorts.py
+    ```
+
+  </Step>
+
+</Steps>

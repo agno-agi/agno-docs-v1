@@ -62,8 +62,6 @@ agent.print_response("Which country are we speaking about?")
         urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
         vector_db=PgVector(table_name="recipes", db_url=db_url, search_type=SearchType.hybrid),
     )
-    # Load the knowledge base: Comment after first run
-    knowledge_base.load(upsert=True)
     storage = PostgresAgentStorage(table_name="pdf_agent", db_url=db_url)
 
     def pdf_agent(new: bool = False, user: str = "user"):
@@ -101,6 +99,9 @@ agent.print_response("Which country are we speaking about?")
 
 
     if __name__ == "__main__":
+        # Load the knowledge base: Comment after first run
+        knowledge_base.load(upsert=True)
+
         typer.run(pdf_agent)
     ```
 
