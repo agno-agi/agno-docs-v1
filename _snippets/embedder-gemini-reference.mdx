@@ -1,0 +1,12 @@
+### Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `id` | `str` | The model ID to use for embeddings | `"models/text-embedding-004"` |
+| `task_type` | `str` | Type of task for embedding generation | `"RETRIEVAL_QUERY"` |
+| `title` | `Optional[str]` | Optional title for the content being embedded | `None` |
+| `dimensions` | `Optional[int]` | Output dimensions of the embedding | `768` |
+| `api_key` | `Optional[str]` | Google API key | Environment variable `GOOGLE_API_KEY` |
+| `request_params` | `Optional[Dict[str, Any]]` | Additional parameters for embedding requests | `None` |
+| `client_params` | `Optional[Dict[str, Any]]` | Additional parameters for client initialization | `None` |
+| `gemini_client` | `Optional[ModuleType]` | Pre-configured Gemini client | `None` |

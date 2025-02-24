@@ -1,0 +1,74 @@
+---
+title: Ollama
+---
+
+**Ollama models support text and images as input.**
+
+<Steps>
+  <Step title="Setup your virtual environment">
+
+    <CodeGroup>
+    ```bash Mac
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+
+    ```bash Windows
+    python3 -m venv aienv
+    aienv/scripts/activate
+    ```
+    </CodeGroup>
+
+  </Step>
+  <Step title="Install dependencies">
+
+    <CodeGroup>
+    ```bash Mac
+    pip install -U ollama agno
+    ```
+
+    ```bash Windows
+    pip install -U ollama agno
+    ```
+    </CodeGroup>
+
+  </Step>
+  <Step title="Pull the model   ">
+
+    ```shell
+    ollama pull llama3.2-vision
+    ```
+
+  </Step>
+  <Step title="Run the agent">
+
+    ```shell
+    python agent.py
+    ```
+
+  </Step>
+</Steps>
+
+## Example: Image Agent
+
+```python
+from agno.agent import Agent
+from agno.media import Image
+from agno.models.ollama import Ollama
+
+agent = Agent(
+    model=Ollama(id="llama3.2-vision"),
+    markdown=True,
+)
+
+agent.print_response(
+    "Tell me about this image",
+    images=[
+        Image(
+            url="https://upload.wikimedia.org/wikipedia/commons/b/bf/Krakow_-_Kosciol_Mariacki.jpg"
+        )
+    ],
+)
+```
+
+### [View More Examples](/examples/models/ollama)

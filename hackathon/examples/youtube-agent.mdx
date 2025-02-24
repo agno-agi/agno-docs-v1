@@ -1,0 +1,54 @@
+---
+title: YouTube Agent
+---
+
+This agent analyzes YouTube videos and provides detailed summaries, timestamps, and key points.
+
+```python youtube_agent.py
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.youtube import YouTubeTools
+
+youtube_agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[YouTubeTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    youtube_agent.print_response(
+        "Analyze this video: https://www.youtube.com/watch?v=zjkBMFhNj_g", stream=True
+    )
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install libraries">
+    <CodeGroup>
+
+    ```shell standard python
+    pip install -U agno openai youtube_transcript_api
+    ```
+
+    ```shell using uv
+    uv pip install -U agno openai youtube_transcript_api
+    ```
+
+    </CodeGroup>
+  </Step>
+
+  <Step title="Export API keys">
+    ```shell
+    export OPENAI_API_KEY=***
+    ```
+  </Step>
+
+  <Step title="Run the agent">
+    ```shell
+    python youtube_agent.py
+    ```
+  </Step>
+
+</Steps>
