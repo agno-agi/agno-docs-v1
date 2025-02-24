@@ -3,6 +3,55 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-02-24" description="v1.1.5">
+## 1.1.5
+
+## New Features:
+
+- **Audio Responses:** Agents can now deliver audio responses (both with streaming and non-streaming).
+    - The audio is in the `agent.run_response.response_audio`.
+    - This only works with `OpenAIChat` with the `gpt-4o-audio-preview` model. See [their docs](https://platform.openai.com/docs/guides/audio) for more on how it works. For example
+        
+        ```python
+        from agno.agent import Agent
+        from agno.models.openai import OpenAIChat
+        from agno.utils.audio import write_audio_to_file
+        
+        agent = Agent(
+            model=OpenAIChat(
+                id="gpt-4o-audio-preview",
+                modalities=["text", "audio"],  # Both text and audio responses are provided.
+                audio={"voice": "alloy", "format": "wav"},
+            ),
+        )
+        agent.print_response(
+            "Tell me a 5 second story"
+        )
+        if agent.run_response.response_audio is not None:
+            write_audio_to_file(
+                audio=agent.run_response.response_audio.base64_audio, filename=str(filename)
+            )
+        ```
+        
+    - See the [audio_conversation_agent cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/playground/audio_conversation_agent.py) to test it out on the Agent Playground.
+- **Image understanding support for [Together.ai](http://Together.ai) and XAi**: You can now give images to agents using models from XAi and Together.ai.
+
+## Improvements:
+
+- **Automated Tests:** Added integration tests for all models. Most of these will be run on each pull request, with a suite of integration tests run before a new release is published.
+- **Grounding and Search with Gemini:** [Grounding and Search](https://ai.google.dev/gemini-api/docs/grounding?lang=python) can be used to improve the accuracy and recency of responses from the Gemini models.
+
+## Bug Fixes:
+
+- **Structured output updates**: Fixed various cases where native structured output was not used on models.
+- **Ollama tool parsing**: Fixed cases for Ollama with tools with optional parameters.
+- **Gemini Memory Summariser**: Fixed cases where Gemini models were used as the memory summariser.
+- **Gemini auto tool calling**: Added auto tool calling when tools are provided, similar to how other models work.
+- **FixedSizeChunking issue with overlap:** Fixed issue where chunking would fail if overlap was set.
+- **Claude tools with multiple types**: Fixed issue where Claude tools would break for a union of types in the parameters.
+- **JSON response parsing**: Fixed cases with JSON model responses where the model provides quoted strings in the dictionary’s values.
+</Update>
+
 <Update label="2025-02-17" description="v1.1.4">
 ## 1.1.4
 
