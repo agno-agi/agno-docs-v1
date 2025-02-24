@@ -98,9 +98,9 @@ mode: "wide"
 
 ## Bug Fixes:
 
-- **Singlestore Fix:** Fixed issue where when querying singlestore the embeddings column was returning in binary format.
-- **MongoDB Vectorstore Fix:** MongoDB had multiple issues like creating and dropping the collections twice while initialising. All known issues were fixed.
-- **LanceDB Fix:** Fixed various errors on LanceDB and added `on_bad_vectors` as parameters.
+- **Singlestore Fix:** Fixed an issue where querying SingleStore caused the embeddings column to return in binary format.
+- **MongoDB Vectorstore Fix:** Fixed multiple issues in MongoDB, including duplicate creation and deletion of collections during initialization. All known issues have been resolved.
+- **LanceDB Fix:** Fixed various errors in LanceDB and added on_bad_vectors as a parameter.
 </Update>
 
 <Update label="2025-02-14" description="v1.1.1">
@@ -109,8 +109,8 @@ mode: "wide"
 ## Improvements:
 
 - **File / Image Uploads on Agent UI:** Agent UI now supports file and image uploads with prompts.
-    - Supported file formats: `.pdf` `.csv` `.txt` `.docx` `.json`
-    - Supported image formats: `.png` `.jpeg` `.jpg` `.webp`
+    - Supported file formats: `.pdf` , `.csv` , `.txt` , `.docx` , `.json`
+    - Supported image formats: `.png` , `.jpeg` , `.jpg` , `.webp`
 - **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.   
 - **Updated `ModelsLabTools` Toolkit Constructor**: The constructor in `/libs/agno/tools/models_labs.py` has been updated to accommodate audio generation API calls. This is a breaking change, as the parameters for the `ModelsLabTools` class have changed. The `url` and `fetch_url` parameters have been removed, and API URLs are now decided based on the `file_type` provided by the user.
     
