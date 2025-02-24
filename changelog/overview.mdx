@@ -46,10 +46,10 @@ mode: "wide"
 - **Structured output updates**: Fixed various cases where native structured output was not used on models.
 - **Ollama tool parsing**: Fixed cases for Ollama with tools with optional parameters.
 - **Gemini Memory Summariser**: Fixed cases where Gemini models were used as the memory summariser.
-- **Gemini auto tool calling**: Added auto tool calling when tools are provided, similar to how other models work.
+- **Gemini auto tool calling**: Enabled automatic tool calling when tools are provided, aligning behavior with other models.
 - **FixedSizeChunking issue with overlap:** Fixed issue where chunking would fail if overlap was set.
-- **Claude tools with multiple types**: Fixed issue where Claude tools would break for a union of types in the parameters.
-- **JSON response parsing**: Fixed cases with JSON model responses where the model provides quoted strings in the dictionary’s values.
+- **Claude tools with multiple types**: Fixed an issue where Claude tools would break when handling a union of types in parameters.
+- **JSON response parsing**: Fixed cases where JSON model responses returned quoted strings within dictionary values.
 </Update>
 
 <Update label="2025-02-17" description="v1.1.4">
