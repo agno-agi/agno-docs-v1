@@ -7,6 +7,9 @@
 | `generation_config`       | `Optional[Any]`                       | `None`                   | Configuration for text generation.                     |
 | `safety_settings`         | `Optional[Any]`                       | `None`                   | Safety settings for the model.                         |
 | `generative_model_kwargs` | `Optional[Dict[str, Any]]`           | `None`                   | Additional keyword arguments for the generative model. |
+| `grounding`               | `bool`                                | `False`                  | Whether to use grounding. |
+| `search`                  | `bool`                                | `False`                  | Whether to use search. |
+| `grounding_dynamic_threshold` | `Optional[float]`                       | `None`                   | The dynamic threshold for grounding. |
 | `api_key`                 | `Optional[str]`                       | `None`                   | API key for authentication.                            |
 | `vertexai`               | `bool`                                | `False`                  | Whether to use Vertex AI instead of Google AI Studio. |
 | `project_id`             | `Optional[str]`                       | `None`                   | Google Cloud project ID for Vertex AI. |

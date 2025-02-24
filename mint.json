@@ -377,6 +377,7 @@
           "pages": [
             "examples/concepts/multimodal/audio-input-output",
             "examples/concepts/multimodal/audio-multi-turn",
+            "examples/concepts/multimodal/audio-streaming",
             "examples/concepts/multimodal/generate-image",
             "examples/concepts/multimodal/generate-video-models-lab",
             "examples/concepts/multimodal/generate-video-replicate",
