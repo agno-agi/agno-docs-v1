@@ -2,6 +2,94 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-02-26" description="v1.1.7">
+## 1.1.7
+
+## New Features:
+
+- **Audio File Upload on Playground**: You can now upload audio files and have a model interpret the audio, do sentiment analysis, provide an audio transcription, etc.
+
+## Bug Fixes:
+
+- **Claude Thinking Streaming**: Fix Claude thinking when streaming is active, as well as for async runs.
+
+</Update>
+<Update label="2025-02-24" description="v1.1.6">
+## 1.1.6
+
+## New Features:
+
+-**Claude 3.7 Support:** Added support for the latest Claude 3.7 Sonnet model
+
+## Bug Fixes:
+
+-**Claude Tool Use**: Fixed an issue where tools and content could not be used in the same block when interacting with Claude models.
+</Update>
+
+<Update label="2025-02-24" description="v1.1.5">
+## 1.1.5
+
+## New Features:
+
+- **Audio Responses:** Agents can now deliver audio responses (both with streaming and non-streaming).
+    - The audio is in the `agent.run_response.response_audio`.
+    - This only works with `OpenAIChat` with the `gpt-4o-audio-preview` model. See [their docs](https://platform.openai.com/docs/guides/audio) for more on how it works. For example
+        
+        ```python
+        from agno.agent import Agent
+        from agno.models.openai import OpenAIChat
+        from agno.utils.audio import write_audio_to_file
+        
+        agent = Agent(
+            model=OpenAIChat(
+                id="gpt-4o-audio-preview",
+                modalities=["text", "audio"],  # Both text and audio responses are provided.
+                audio={"voice": "alloy", "format": "wav"},
+            ),
+        )
+        agent.print_response(
+            "Tell me a 5 second story"
+        )
+        if agent.run_response.response_audio is not None:
+            write_audio_to_file(
+                audio=agent.run_response.response_audio.base64_audio, filename=str(filename)
+            )
+        ```
+        
+    - See the [audio_conversation_agent cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/playground/audio_conversation_agent.py) to test it out on the Agent Playground.
+- **Image understanding support for [Together.ai](http://Together.ai) and XAi**: You can now give images to agents using models from XAi and Together.ai.
+
+## Improvements:
+
+- **Automated Tests:** Added integration tests for all models. Most of these will be run on each pull request, with a suite of integration tests run before a new release is published.
+- **Grounding and Search with Gemini:** [Grounding and Search](https://ai.google.dev/gemini-api/docs/grounding?lang=python) can be used to improve the accuracy and recency of responses from the Gemini models.
+
+## Bug Fixes:
+
+- **Structured output updates**: Fixed various cases where native structured output was not used on models.
+- **Ollama tool parsing**: Fixed cases for Ollama with tools with optional parameters.
+- **Gemini Memory Summariser**: Fixed cases where Gemini models were used as the memory summariser.
+- **Gemini auto tool calling**: Enabled automatic tool calling when tools are provided, aligning behavior with other models.
+- **FixedSizeChunking issue with overlap:** Fixed issue where chunking would fail if overlap was set.
+- **Claude tools with multiple types**: Fixed an issue where Claude tools would break when handling a union of types in parameters.
+- **JSON response parsing**: Fixed cases where JSON model responses returned quoted strings within dictionary values.
+</Update>
+
+<Update label="2025-02-17" description="v1.1.4">
+## 1.1.4
+
+## Improvements:
+
+- **Gmail Tools**: Added `get_emails_by_thread` and `send_email_reply` methods to `GmailTools`.
+
+## Bug Fixes:
+
+- **Gemini List Parameters**: Fixed an issue with functions using list-type parameters in Gemini.
+- **Gemini Safety Parameters**: Fixed an issue with passing safety parameters in Gemini.
+- **ChromaDB Multiple Docs:** Fixed an issue with loading multiple documents into ChromaDB.
+- **Agentic Chunking:** Fixed an issue where OpenAI was required for chunking even when a model was provided.
+</Update>
+
 <Update label="2025-02-16" description="v1.1.3">
 ## 1.1.3
 
@@ -33,9 +121,9 @@ mode: "wide"
 
 ## Bug Fixes:
 
-- **Singlestore Fix:** Fixed issue where when querying singlestore the embeddings column was returning in binary format.
-- **MongoDB Vectorstore Fix:** MongoDB had multiple issues like creating and dropping the collections twice while initialising. All known issues were fixed.
-- **LanceDB Fix:** Fixed various errors on LanceDB and added `on_bad_vectors` as parameters.
+- **Singlestore Fix:** Fixed an issue where querying SingleStore caused the embeddings column to return in binary format.
+- **MongoDB Vectorstore Fix:** Fixed multiple issues in MongoDB, including duplicate creation and deletion of collections during initialization. All known issues have been resolved.
+- **LanceDB Fix:** Fixed various errors in LanceDB and added on_bad_vectors as a parameter.
 </Update>
 
 <Update label="2025-02-14" description="v1.1.1">
@@ -44,8 +132,8 @@ mode: "wide"
 ## Improvements:
 
 - **File / Image Uploads on Agent UI:** Agent UI now supports file and image uploads with prompts.
-    - Supported file formats: `.pdf` `.csv` `.txt` `.docx` `.json`
-    - Supported image formats: `.png` `.jpeg` `.jpg` `.webp`
+    - Supported file formats: `.pdf` , `.csv` , `.txt` , `.docx` , `.json`
+    - Supported image formats: `.png` , `.jpeg` , `.jpg` , `.webp`
 - **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.   
 - **Updated `ModelsLabTools` Toolkit Constructor**: The constructor in `/libs/agno/tools/models_labs.py` has been updated to accommodate audio generation API calls. This is a breaking change, as the parameters for the `ModelsLabTools` class have changed. The `url` and `fetch_url` parameters have been removed, and API URLs are now decided based on the `file_type` provided by the user.
     

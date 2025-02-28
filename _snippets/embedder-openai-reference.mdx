@@ -1,0 +1,14 @@
+### Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `id` | `str` | The model ID to use for embeddings | `"text-embedding-3-small"` |
+| `dimensions` | `int` | Output dimensions of the embedding (for text-embedding-3 models) | `1536` |
+| `encoding_format` | `Literal["float", "base64"]` | Format of the embedding output | `"float"` |
+| `user` | `Optional[str]` | A unique identifier representing your end-user | `None` |
+| `api_key` | `Optional[str]` | OpenAI API key | Environment variable `OPENAI_API_KEY` |
+| `organization` | `Optional[str]` | Organization ID for API requests | `None` |
+| `base_url` | `Optional[str]` | Base URL for API requests | `None` |
+| `request_params` | `Optional[Dict[str, Any]]` | Additional parameters for embedding requests | `None` |
+| `client_params` | `Optional[Dict[str, Any]]` | Additional parameters for client initialization | `None` |
+| `openai_client` | `Optional[OpenAIClient]` | Pre-configured OpenAI client | `None` |

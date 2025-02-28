@@ -194,6 +194,7 @@
                 "tools/toolkits/tavily",
                 "tools/toolkits/todoist",
                 "tools/toolkits/twilio",
+                "tools/toolkits/webex",
                 "tools/toolkits/x",
                 "tools/toolkits/website",
                 "tools/toolkits/wikipedia",
@@ -380,12 +381,14 @@
             "examples/concepts/multimodal/audio-sentiment-analysis",
             "examples/concepts/multimodal/blog-to-podcast",
             "examples/concepts/multimodal/audio-multi-turn",
+            "examples/concepts/multimodal/audio-streaming",
             "examples/concepts/multimodal/generate-image",
             "examples/concepts/multimodal/generate-music-agent",
             "examples/concepts/multimodal/generate-video-models-lab",
             "examples/concepts/multimodal/generate-video-replicate",
             "examples/concepts/multimodal/image-to-audio",
             "examples/concepts/multimodal/image-to-image",
+            "examples/concepts/multimodal/image-to-text",
             "examples/concepts/multimodal/video-caption",
             "examples/concepts/multimodal/video-to-shorts"
           ]
@@ -518,9 +521,10 @@
             "examples/concepts/tools/tavily",
             "examples/concepts/tools/todoist",
             "examples/concepts/tools/twilio",
-            "examples/concepts/tools/x",
+            "examples/concepts/tools/webex",
             "examples/concepts/tools/website",
             "examples/concepts/tools/wikipedia",
+            "examples/concepts/tools/x",
             "examples/concepts/tools/yfinance",
             "examples/concepts/tools/youtube",
             "examples/concepts/tools/zendesk"
@@ -782,7 +786,7 @@
       "pages": [
         {
           "group": "Agents",
-          "pages": ["reference/agents/agent", "reference/agents/session"]
+          "pages": ["reference/agents/agent", "reference/agents/session", "reference/agents/memory"]
         },
         {
           "group": "Workflows",
@@ -856,6 +860,43 @@
             "reference/vector_db/pinecone",
             "reference/vector_db/qdrant",
             "reference/vector_db/singlestore"
+          ]
+        },
+        {
+          "group": "Embedders",
+          "pages": [
+            "reference/embedder/azure_openai",
+            "reference/embedder/cohere",
+            "reference/embedder/fastembed",
+            "reference/embedder/fireworks",
+            "reference/embedder/gemini",
+            "reference/embedder/huggingface",
+            "reference/embedder/mistral",
+            "reference/embedder/ollama",
+            "reference/embedder/openai",
+            "reference/embedder/sentence-transformer",
+            "reference/embedder/together",
+            "reference/embedder/voyageai"
+          ]
+        },
+        {
+          "group": "Memory",
+          "pages": [
+            "reference/memory/mongo",
+            "reference/memory/postgres",
+            "reference/memory/sqlite"
+          ]
+        },
+        {
+          "group": "Storage",
+          "pages": [
+            "reference/storage/yaml",
+            "reference/storage/json",
+            "reference/storage/mongodb",
+            "reference/storage/postgres",
+            "reference/storage/sqlite",
+            "reference/storage/dynamodb",
+            "reference/storage/singlestore" 
           ]
         },
         {
