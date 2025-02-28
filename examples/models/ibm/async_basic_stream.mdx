@@ -8,7 +8,7 @@ title: Async Streaming Agent
 import asyncio
 
 from agno.agent import Agent, RunResponse
-from agno.models.ibm.watsonx import WatsonX
+from agno.models.ibm import WatsonX
 
 agent = Agent(
     model=WatsonX(id="ibm/granite-20b-code-instruct"), debug_mode=True, markdown=True
