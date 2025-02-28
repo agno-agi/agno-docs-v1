@@ -1,0 +1,62 @@
+---
+title: Agent with Storage
+---
+
+## Code
+
+```python cookbook/models/ibm/watsonx/storage.py
+from agno.agent import Agent
+from agno.models.ibm.watsonx import WatsonX
+from agno.storage.agent.postgres import PostgresAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+agent = Agent(
+    model=WatsonX(id="ibm/granite-20b-code-instruct"),
+    storage=PostgresAgentStorage(table_name="agent_sessions", db_url=db_url),
+    tools=[DuckDuckGoTools()],
+    add_history_to_messages=True,
+)
+agent.print_response("How many people live in Canada?")
+agent.print_response("What is their national anthem called?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export IBM_WATSONX_API_KEY=xxx
+    export IBM_WATSONX_PROJECT_ID=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U ibm-watsonx-ai sqlalchemy psycopg duckduckgo-search agno
+    ```
+  </Step>
+
+  <Step title="Set up PostgreSQL">
+    Make sure you have a PostgreSQL database running. You can adjust the `db_url` in the code to match your database configuration.
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/ibm/watsonx/storage.py
+    ```
+
+    ```bash Windows
+    python cookbook\models\ibm\watsonx\storage.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
+
+This example shows how to use PostgreSQL storage with IBM WatsonX to maintain conversation state across multiple interactions. It creates an agent with a PostgreSQL storage backend and sends multiple messages, with the conversation history being preserved between them.
+
+Note: You need to install the `sqlalchemy` package and have a PostgreSQL database available. 

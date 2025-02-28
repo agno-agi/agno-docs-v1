@@ -131,7 +131,8 @@
             "models/perplexity",
             "models/sambanova",
             "models/together",
-            "models/xai"
+            "models/xai",
+            "models/ibm-watsonx"
           ]
         },
         {
@@ -749,6 +750,21 @@
             "examples/models/xai/basic_stream",
             "examples/models/xai/tool_use"
           ]
+        },
+        {
+          "group": "IBM",
+          "pages": [
+            "examples/models/ibm/basic",
+            "examples/models/ibm/basic_stream",
+            "examples/models/ibm/async_basic_stream",
+            "examples/models/ibm/async_basic",
+            "examples/models/ibm/tool_use",
+            "examples/models/ibm/async_tool_use",
+            "examples/models/ibm/structured_output",
+            "examples/models/ibm/storage",
+            "examples/models/ibm/knowledge",
+            "examples/models/ibm/image_agent_bytes"
+          ]
         }
       ]
     },
@@ -803,7 +819,8 @@
             "reference/models/sambanova",
             "reference/models/internlm",
             "reference/models/ollama_tools",
-            "reference/models/openai_like"
+            "reference/models/openai_like",
+            "reference/models/ibm-watsonx"
           ]
         },
         {
