@@ -2,36 +2,56 @@
 title: Agent Observability
 ---
 
-## Monitoring
+## Monitoring Your Agents
 
-Want to monitor and track your Agents?
+Monitoring helps you track your agents' performance and session activity, ensuring everything runs smoothly. Agno provides built-in monitoring tools that allow you to view session data through [app.agno.com](https://app.agno.com).
 
-Agno provides built-in monitoring capabilities that track session and performance metrics through [app.agno.com](https://app.agno.com). To enable monitoring:
+## Setup Process
 
-1. **Authenticate** (one of these methods):
+### Step 1: Authenticate
 
-   - Run `agno setup` in your terminal
-   - Export `AGNO_API_KEY=***` in your environment
+Before enabling monitoring, you need to authenticate using one of these methods:
 
-2. **Enable monitoring** (one of these methods):
-   - Set `monitoring=True` when creating an Agent
-   - Set `AGNO_MONITOR=true` in your environment
-
-Create a file `monitoring.py` with the following code:
-
-```python monitoring.py
-from agno.agent import Agent
-
-agent = Agent(markdown=True, monitoring=True)
-agent.print_response("Share a 2 sentence horror story")
+**Method A: Quick Setup**
+```bash
+agno setup
 ```
 
-Run the agent locally and view your sessions at [app.agno.com/sessions](https://app.agno.com/sessions)
+**Method B: Manual API Key Configuration**
+```bash
+export AGNO_API_KEY=your_api_key_here
+```
 
-<img
-  height="200"
-  src="/images/monitoring.png"
-  style={{ borderRadius: "8px" }}
-/>
+### Step 2: Enable Monitoring
+
+After authentication, enable monitoring using one of these approaches:
+
+**Method A: For a Specific Agent**
+```python
+agent = Agent(markdown=True, monitoring=True)
+```
+
+**Method B: Globally via Environment Variable**
+```bash
+export AGNO_MONITOR=true
+```
+
+### Step 3: Track Your Agent Sessions
+
+Once monitoring is enabled, you can run your agent and view its session data:
+
+1. Create a file `monitoring.py` with this sample code:
+   ```python
+   from agno.agent import Agent
+
+   agent = Agent(markdown=True, monitoring=True)
+   agent.print_response("Share a 2 sentence horror story")
+   ```
+
+2. Run your code locally
+3. View your sessions at [app.agno.com/sessions](https://app.agno.com/sessions)
+
+<img height="200" src="/images/monitoring.png" style={{ borderRadius: "8px" }} />
 
 <Info>Facing issues? Check out our [troubleshooting guide](/faq/cli-auth)</Info>
+
