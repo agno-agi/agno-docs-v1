@@ -8,11 +8,13 @@
 | Azure AI Foundry      |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |        ✅         |
 | Azure OpenAI          |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |        ✅         |
 | Cohere                |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |        ✅          |
+| DeepInfra             |      ✅      |       ✅        |    ✅     |       ✅          |       ✅        |        ✅         |
 | DeepSeek              |      ✅      |       ✅        |    ✅     |       ✅          |       ✅        |        ✅         |
 | Fireworks             |      ✅      |       ✅        |    ✅      |       ✅          |       ✅        |        ✅         |
 | Gemini                |      ✅      |       ✅        |    ✅     |        ✅         |        ✅       |        ✅         |
 | Groq                  |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |        ✅         |
-| HuggingFace           |              |                 |           |                   |       ✅        |                   |
+| HuggingFace           |       ✅      |       ✅       |   ✅        |       ✅            |       ✅        |        ✅         |
+| IBM WatsonX           |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |        ✅         |
 | Mistral               |      ✅      |       ✅         |   ✅      |       ✅           |      ✅         |       ✅           |
 | Nvidia                |      ✅      |       ✅         |   ✅      |       ✅           |      ✅         |       ✅           |
 | Ollama                |      ✅      |       ✅         |   ✅      |       ✅           |      ✅         |       ✅           |
@@ -23,6 +25,8 @@
 | Sambanova             |      ✅      |       ✅        |    ✅      |       ✅          |       ✅        |        ✅         |
 | Together              |      ✅      |       ✅        |    ✅     |       ✅          |       ✅        |        ✅         |
 | XAI                   |      ✅      |       ✅        |    ✅     |       ✅          |       ✅        |        ✅         |
+
+<Note> HuggingFace supports tool calling through the Agno framework, but not for streaming responses. </Note>
 
 <Note> Perplexity supports tool calling through the Agno framework, but their models don't natively support tool calls in a straightforward way. This means tool usage may be less reliable compared to other providers. </Note>
 
@@ -37,11 +41,13 @@
 | Azure AI Foundry      |     ✅       |             |                 |             |
 | Azure OpenAI          |     ✅       |             |                 |             |
 | Cohere                |             |             |                 |             |
+| DeepInfra             |             |             |                 |             |
 | DeepSeek              |             |             |                 |             |
 | Fireworks             |             |             |                 |             |
 | Gemini                |     ✅      |     ✅      |                 |     ✅      |
 | Groq                  |     ✅      |             |                 |             |
 | HuggingFace           |             |             |                 |             |
+| IBM WatsonX           |     ✅       |             |                 |             |
 | Mistral               |     ✅      |             |                 |             |
 | Nvidia                |             |             |                 |             |
 | Ollama                |     ✅      |             |                 |             |

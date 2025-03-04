@@ -1,0 +1,61 @@
+---
+title: DeepInfra
+---
+
+Leverage DeepInfra's powerful command models and more.
+
+[DeepInfra](https://deepinfra.com) supports a wide range of models. See their library of models [here](https://deepinfra.com/models).
+
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+
+- `deepseek-ai/DeepSeek-R1-Distill-Llama-70B` model is good for reasoning.
+- `meta-llama/Llama-2-70b-chat-hf` model is good for basic use-cases.
+- `meta-llama/Llama-3.3-70B-Instruct` model is good for multi-step tasks.
+
+DeepInfra has rate limits. See the [docs](https://deepinfra.com/docs/advanced/rate-limits) for more information.
+
+## Authentication
+
+Set your `DEEPINFRA_API_KEY` environment variable. Get your key from [here](https://deepinfra.com/dash/api_keys).
+
+<CodeGroup>
+
+```bash Mac
+export DEEPINFRA_API_KEY=***
+```
+
+```bash Windows
+setx DEEPINFRA_API_KEY ***
+```
+
+</CodeGroup>
+
+## Example
+
+Use `DeepInfra` with your `Agent`:
+
+<CodeGroup>
+
+```python agent.py
+from agno.agent import Agent, RunResponse
+from agno.models.deepinfra import DeepInfra
+
+agent = Agent(
+    model=DeepInfra(id="meta-llama/Llama-2-70b-chat-hf"),
+    markdown=True
+)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story.")
+
+```
+
+</CodeGroup>
+
+<Note> View more examples [here](../examples/models/deepinfra). </Note>
+
+## Params
+
+<Snippet file="model-deepinfra-params.mdx" />
+
+`DeepInfra` is a subclass of the [Model](/reference/models/model) class and has access to the same params.

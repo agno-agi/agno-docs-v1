@@ -119,11 +119,13 @@
               "pages": ["models/azure-ai-foundry", "models/azure-openai"]
             },
             "models/cohere",
+            "models/deepinfra",
             "models/deepseek",
             "models/fireworks",
             "models/google",
             "models/groq",
             "models/huggingface",
+            "models/ibm-watsonx",
             "models/mistral",
             "models/nvidia",
             "models/ollama",
@@ -131,8 +133,7 @@
             "models/perplexity",
             "models/sambanova",
             "models/together",
-            "models/xai",
-            "models/ibm-watsonx"
+            "models/xai"
           ]
         },
         {
@@ -633,6 +634,15 @@
           ]
         },
         {
+          "group": "DeepInfra",
+          "pages": [
+            "examples/models/deepinfra/basic",
+            "examples/models/deepinfra/basic_stream",
+            "examples/models/deepinfra/tool_use",
+            "examples/models/deepinfra/structured_output"
+          ]
+        },
+        {
           "group": "DeepSeek",
           "pages": [
             "examples/models/deepseek/basic",
@@ -805,6 +815,7 @@
             "reference/models/ollama",
             "reference/models/anthropic",
             "reference/models/cohere",
+            "reference/models/deepinfra",
             "reference/models/deepseek",
             "reference/models/gemini",
             "reference/models/groq",
