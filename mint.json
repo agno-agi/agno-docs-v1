@@ -202,7 +202,8 @@
                 "tools/toolkits/yfinance",
                 "tools/toolkits/youtube",
                 "tools/toolkits/zendesk",
-                "tools/toolkits/zoom"
+                "tools/toolkits/zoom",
+                "tools/toolkits/telegram"
               ]
             },
             "tools/mcp",
