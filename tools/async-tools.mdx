@@ -2,7 +2,7 @@
 title: Async Tools
 ---
 
-Agno Agents can run multiple tools concurrently, allowing you to provide the model with multiple tool call results efficiently, especially when they involve time-consuming operations. This improves responsiveness and reduces overall execution time.
+Agno Agents can execute multiple tools concurrently, allowing you to process function calls that the model makes efficiently. This is especially valuable when the functions involve time-consuming operations. It improves responsiveness and reduces overall execution time.
 
 Here is an example:
 
@@ -36,14 +36,14 @@ python async_tools.py
 How to use:
 
 1. Provide your Agent with a list of tools, preferably asynchronous for optimal performance. However, standard functions can also be used since they will execute concurrently on a separate thread.
-2. Run the Agent using either the `arun` or `aprint_response` function, enabling efficient execution of tool calls.
+2. Run the Agent using either the `arun` or `aprint_response` function, enabling concurrent execution of tool calls.
 
 <Note>
-  Concurrent execution of tools depends on the model requesting multiple tool
+  Concurrent execution of tools requires a model that is able to request multiple tool
   calls at once.
 </Note>
 
-In this example, `gpt-4o` makes two simultaneous tool calls to `DuckDuckGoTools`. Typically, these calls would execute sequentially, causing delays. However, with Agno's `aprint_response` function, they run concurrently, significantly improving execution time.
+In this example, `gpt-4o` makes two simultaneous tool calls to `DuckDuckGoTools`. Normally these tool calls would execute sequentially, causing delays. However, using the `aprint_response` function, they run concurrently, improving execution time.
 
 <img
   height="200"
