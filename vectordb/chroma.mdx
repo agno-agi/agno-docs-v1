@@ -25,9 +25,6 @@ knowledge_base = PDFUrlKnowledgeBase(
     vector_db=ChromaDb(collection="recipes"),
 )
 
-# Comment out after first run
-knowledge_base.load(recreate=False)
-
 def pdf_agent(user: str = "user"):
     run_id: Optional[str] = None
 
@@ -52,6 +49,9 @@ def pdf_agent(user: str = "user"):
         agent.print_response(message)
 
 if __name__ == "__main__":
+    # Comment out after first run
+    knowledge_base.load(recreate=False)
+
     typer.run(pdf_agent)
 ```
 
@@ -61,4 +61,4 @@ if __name__ == "__main__":
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/chroma_db.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/chroma_db.py)

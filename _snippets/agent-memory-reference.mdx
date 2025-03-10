@@ -1,0 +1,81 @@
+### Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `runs` | `List[AgentRun]` | List of conversation runs between user and agent | `[]` |
+| `messages` | `List[Message]` | List of messages sent to the model | `[]` |
+| `update_system_message_on_change` | `bool` | Whether to update system message when changed | `False` |
+| `summary` | `Optional[SessionSummary]` | Current session summary | `None` |
+| `create_session_summary` | `bool` | Whether to create session summaries | `False` |
+| `update_session_summary_after_run` | `bool` | Whether to update summary after each run | `True` |
+| `summarizer` | `Optional[MemorySummarizer]` | Summarizer for generating session summaries | `None` |
+| `create_user_memories` | `bool` | Whether to create personalized memories | `False` |
+| `update_user_memories_after_run` | `bool` | Whether to update memories after each run | `True` |
+| `db` | `Optional[MemoryDb]` | Database for storing personalized memories | `None` |
+| `user_id` | `Optional[str]` | User identifier for personalized memories | `None` |
+| `retrieval` | `MemoryRetrieval` | Memory retrieval strategy | `MemoryRetrieval.last_n` |
+| `memories` | `Optional[List[Memory]]` | List of retrieved memories | `None` |
+| `num_memories` | `Optional[int]` | Number of memories to retrieve | `None` |
+| `classifier` | `Optional[MemoryClassifier]` | Classifier for memory importance | `None` |
+| `manager` | `Optional[MemoryManager]` | Manager for memory operations | `None` |
+
+### Agent Run
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `message` | `Optional[Message]` | Single message associated with the run | `None` |
+| `messages` | `Optional[List[Message]]` | List of messages associated with the run | `None` |
+| `response` | `Optional[RunResponse]` | Response generated during the run | `None` |
+
+
+### Session Summary
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `summary` | `str` | Concise summary of the session focusing on important information | Required |
+| `topics` | `Optional[List[str]]` | List of topics discussed in the session | `None` |
+
+### Memory Summarizer
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for generating summaries | `None` |
+| `use_structured_outputs` | `bool` | Whether to use structured outputs from the model | `False` |
+
+
+
+### Memory Retrieval
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `last_n` | `str` | Retrieve the last N memories from history |
+| `first_n` | `str` | Retrieve the first N memories from history |
+| `semantic` | `str` | Retrieve memories based on semantic similarity |
+
+
+### Memory
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `memory` | `str` | The actual memory content | Required |
+| `id` | `Optional[str]` | Unique identifier for the memory | `None` |
+| `topic` | `Optional[str]` | Topic or category of the memory | `None` |
+| `input` | `Optional[str]` | Original input that generated the memory | `None` |
+
+### Memory Classifier
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for classifying memories | `None` |
+| `system_prompt` | `Optional[str]` | Custom system prompt for the classifier | `None` |
+| `existing_memories` | `Optional[List[Memory]]` | List of existing memories to check against | `None` |
+
+### Memory Manager
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for managing memories | `None` |
+| `user_id` | `Optional[str]` | Unique identifier for the user | `None` |
+| `system_prompt` | `Optional[str]` | Custom system prompt for the memory manager | `None` |
+| `db` | `Optional[MemoryDb]` | Database for storing memories | `None` |
+| `input_message` | `Optional[str]` | Current input message being processed | `None` |

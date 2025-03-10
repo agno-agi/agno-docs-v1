@@ -7,6 +7,16 @@ sidebarTitle: Pinecone
 
 Follow the instructions in the [Pinecone Setup Guide](https://docs.pinecone.io/guides/get-started/quickstart) to get started quickly with Pinecone.
 
+```shell
+pip install pinecone
+```
+
+<Info>
+  We do not yet support Pinecone v6.x.x. We are actively working to achieve
+  compatibility. In the meantime, we recommend using **Pinecone v5.4.2** for the
+  best experience.
+</Info>
+
 ## Example
 
 ```python agent_with_knowledge.py
@@ -17,12 +27,12 @@ from rich.prompt import Prompt
 
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.vectordb.pineconedb import PineconeDB
+from agno.vectordb.pineconedb import PineconeDb
 
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = "thai-recipe-hybrid-search"
 
-vector_db = PineconeDB(
+vector_db = PineconeDb(
     name=index_name,
     dimension=1536,
     metric="cosine",
@@ -36,9 +46,6 @@ knowledge_base = PDFUrlKnowledgeBase(
     urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
     vector_db=vector_db,
 )
-
-# Comment out after first run
-knowledge_base.load(recreate=True, upsert=True)
 
 def pinecone_agent(user: str = "user"):
     run_id: Optional[str] = None
@@ -64,13 +71,16 @@ def pinecone_agent(user: str = "user"):
         agent.print_response(message)
 
 if __name__ == "__main__":
+    # Comment out after first run
+    knowledge_base.load(recreate=True, upsert=True)
+
     typer.run(pinecone_agent)
 ```
 
-## PineconeDB Params
+## PineconeDb Params
 
 <Snippet file="vectordb_pineconedb_params.mdx" />
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pinecone_db.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pinecone_db.py)

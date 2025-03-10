@@ -8,11 +8,11 @@ title: CSV
 
 The following agent will download the IMDB csv file and allow the user to query it using a CLI app.
 
-```python cookbook/agent_concepts/tools/csv_tools.py
+```python cookbook/tools/csv_tools.py
 import httpx
 from pathlib import Path
 from agno.agent import Agent
-from agno.tools.csv import CsvTools
+from agno.tools.csv_toolkit import CsvTools
 
 url = "https://agno-public.s3.amazonaws.com/demo_data/IMDB-Movie-Data.csv"
 response = httpx.get(url)
@@ -63,4 +63,4 @@ agent.cli_app(stream=False)
 ## Developer Resources
 
 - View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/csv.py)
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tools/csv_tools.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/csv_tools.py)

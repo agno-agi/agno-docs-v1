@@ -1,6 +1,6 @@
 ---
-title: ClickhouseDB Agent Knowledge
-sidebarTitle: ClickhouseDB
+title: Clickhouse Agent Knowledge
+sidebarTitle: Clickhouse
 ---
 
 ## Setup
@@ -27,13 +27,13 @@ docker run -d \
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.storage.agent.sqlite import SqliteAgentStorage
-from agno.vectordb.clickhouse import ClickhouseDb
+from agno.vectordb.clickhouse import Clickhouse
 
 agent = Agent(
     storage=SqliteAgentStorage(table_name="recipe_agent"),
     knowledge=PDFUrlKnowledgeBase(
         urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
-        vector_db=ClickhouseDb(
+        vector_db=Clickhouse(
             table_name="recipe_documents",
             host="localhost",
             port=8123,
@@ -57,4 +57,4 @@ agent.print_response("What was my last question?", stream=True)
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/clickhouse.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/clickhouse.py)

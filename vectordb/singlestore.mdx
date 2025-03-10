@@ -5,7 +5,30 @@ sidebarTitle: SingleStore
 
 ## Setup
 
-Follow the instructions in the [SingleStore Setup Guide](https://docs.singlestore.com/cloud/connect-to-singlestore/connect-with-mysql/connect-with-mysql-client/connect-to-singlestore-helios-using-tls-ssl/) to install SingleStore locally.
+```shell
+docker run -d --name singlestoredb \
+  -p 3306:3306 \
+  -p 8080:8080 \
+  -e ROOT_PASSWORD=admin \
+  -e SINGLESTORE_DB=AGNO \
+  -e SINGLESTORE_USER=root \
+  -e SINGLESTORE_PASSWORD=password \
+  singlestore/cluster-in-a-box
+
+docker start singlestoredb
+```
+
+After running the container, set the environment variables:
+
+```shell
+export SINGLESTORE_HOST="localhost"
+export SINGLESTORE_PORT="3306"
+export SINGLESTORE_USERNAME="root"
+export SINGLESTORE_PASSWORD="admin"
+export SINGLESTORE_DATABASE="AGNO"
+```
+
+SingleStore supports both cloud-based and local deployments. For step-by-step guidance on setting up your cloud deployment, please refer to the [SingleStore Setup Guide](https://docs.singlestore.com/cloud/connect-to-singlestore/connect-with-mysql/connect-with-mysql-client/connect-to-singlestore-helios-using-tls-ssl/).
 
 ## Example
 
@@ -18,7 +41,7 @@ from sqlalchemy.engine import create_engine
 
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.vectordb.singlestore import S2VectorDb
+from agno.vectordb.singlestore import SingleStore
 
 USERNAME = getenv("SINGLESTORE_USERNAME")
 PASSWORD = getenv("SINGLESTORE_PASSWORD")
@@ -35,15 +58,12 @@ db_engine = create_engine(db_url)
 
 knowledge_base = PDFUrlKnowledgeBase(
     urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
-    vector_db=S2VectorDb(
+    vector_db=SingleStore(
         collection="recipes",
         db_engine=db_engine,
         schema=DATABASE,
     ),
 )
-
-# Comment out after first run
-knowledge_base.load(recreate=False)
 
 def pdf_assistant(user: str = "user"):
     run_id: Optional[str] = None
@@ -67,6 +87,9 @@ def pdf_assistant(user: str = "user"):
         agent.cli_app(markdown=True)
 
 if __name__ == "__main__":
+    # Comment out after first run
+    knowledge_base.load(recreate=False)
+
     typer.run(pdf_assistant)
 ```
 
@@ -76,4 +99,4 @@ if __name__ == "__main__":
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/singlestore_db.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/singlestore_db.py)

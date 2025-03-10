@@ -34,9 +34,6 @@ knowledge_base = PDFUrlKnowledgeBase(
     vector_db=vector_db,
 )
 
-# Comment out after first run
-knowledge_base.load(recreate=True, upsert=True)
-
 def qdrant_agent(user: str = "user"):
     run_id: Optional[str] = None
 
@@ -63,6 +60,9 @@ def qdrant_agent(user: str = "user"):
         agent.print_response(message)
 
 if __name__ == "__main__":
+    # Comment out after first run
+    knowledge_base.load(recreate=True, upsert=True)
+
     typer.run(qdrant_agent)
 ```
 
@@ -70,4 +70,4 @@ if __name__ == "__main__":
 
 <Snippet file="vectordb_qdrant_params.mdx" />
 
-- View [Cookbook](https://github.com/phidatahq/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/qdrant_db.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/qdrant_db.py)

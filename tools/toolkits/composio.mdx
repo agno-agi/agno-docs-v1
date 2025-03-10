@@ -6,10 +6,10 @@ title: Composio
 
 ## Prerequisites
 
-The following example requires the `composio-phidata` library.
+The following example requires the `composio-agno` library.
 
 ```shell
-pip install composio-phidata
+pip install composio-agno
 composio add github # Login into Github
 ```
 
@@ -17,9 +17,9 @@ composio add github # Login into Github
 
 The following agent will use Github Tool from Composio Toolkit to star a repo.
 
-```python cookbook/agent_concepts/tools/composio_tools.py
+```python cookbook/tools/composio_tools.py
 from agno.agent import Agent
-from composio_phidata import Action, ComposioToolSet
+from composio_agno import Action, ComposioToolSet
 
 
 toolset = ComposioToolSet()

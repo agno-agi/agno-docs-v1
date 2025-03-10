@@ -2,25 +2,58 @@
 title: Agent Observability
 ---
 
-## Monitoring
+## Monitor Your Agents
 
-Want to monitor and track your Agents?
+You can monitor your agents' performance and session activity to ensure smooth operation. Agno offers built-in monitoring capabilities, allowing you to track session and performance metrics through [app.agno.com](https://app.agno.com).
 
-Agno comes with built-in monitoring that will log session and performance metrics to [app.agno.com](https://app.agno.com). Set `monitoring=True` on any agent or set `AGNO_MONITOR=true` in your environment.
+## Setup Process
 
-Create a file `monitoring.py` with the following code:
+### Step 1: Authenticate
 
-```python monitoring.py
-from agno.agent import Agent
+Before enabling monitoring, you need to authenticate using one of these methods:
 
-agent = Agent(markdown=True, monitoring=True)
-agent.print_response("Share a 2 sentence horror story")
+**Method A: Quick Setup**
+```bash
+ag setup
 ```
 
-Run the agent locally and view the session on [app.agno.com/sessions](https://app.agno.com/sessions)
+**Method B: API Key Configuration**
 
-<img
-  height="200"
-  src="/images/monitoring.png"
-  style={{ borderRadius: "8px" }}
-/>
+You can get API key from [Agno App](https://app.agno.com/).
+```bash
+export AGNO_API_KEY=your_api_key_here
+```
+
+### Step 2: Enable Monitoring
+
+After authentication, enable monitoring using one of these approaches:
+
+**Method A: For a Specific Agent**
+```python
+agent = Agent(markdown=True, monitoring=True)
+```
+
+**Method B: Globally via Environment Variable**
+```bash
+export AGNO_MONITOR=true
+```
+
+### Step 3: Track Your Agent Sessions
+
+Once monitoring is enabled, you can run your agent and view its session data:
+
+1. Create a file `monitoring.py` with this sample code:
+   ```python
+   from agno.agent import Agent
+
+   agent = Agent(markdown=True, monitoring=True)
+   agent.print_response("Share a 2 sentence horror story")
+   ```
+
+2. Run your code locally
+3. View your sessions at [app.agno.com/sessions](https://app.agno.com/sessions)
+
+<img height="200" src="/images/monitoring.png" style={{ borderRadius: "8px" }} />
+
+<Info>Facing issues? Check out our [troubleshooting guide](/faq/cli-auth)</Info>
+

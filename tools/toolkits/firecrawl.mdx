@@ -20,7 +20,7 @@ export FIRECRAWL_API_KEY=***
 
 The following agent will scrape the content from https://finance.yahoo.com/ and return a summary of the content:
 
-```python cookbook/agent_concepts/tools/firecrawl_tools.py
+```python cookbook/tools/firecrawl_tools.py
 from agno.agent import Agent
 from agno.tools.firecrawl import FirecrawlTools
 
@@ -37,6 +37,7 @@ agent.print_response("Summarize this https://finance.yahoo.com/")
 | `limit`   | `int`       | `10`    | Maximum number of items to retrieve. The default value is 10. |
 | `scrape`  | `bool`      | `True`  | Enables the scraping functionality. Default is True.          |
 | `crawl`   | `bool`      | `False` | Enables the crawling functionality. Default is False.         |
+| `api_url` | `str`       | `"https://api.firecrawl.dev"` | Base URL for the Firecrawl API |
 
 ## Toolkit Functions
 
@@ -48,4 +49,4 @@ agent.print_response("Summarize this https://finance.yahoo.com/")
 ## Developer Resources
 
 - View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/firecrawl.py)
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tools/firecrawl_tools.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/firecrawl_tools.py)

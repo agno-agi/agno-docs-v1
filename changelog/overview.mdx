@@ -2,7 +2,341 @@
 title: "Product updates"
 mode: "wide"
 ---
-<Update label="2025-01-29" description="v3.0.0">
+<Update label="2025-03-06" description="v1.1.9">
+## 1.1.9
+
+## New Features:
+
+- **IBM Watson X:** Added support for IBM Watson X as a model provider. Find the docs [here](https://docs.agno.com/models/ibm-watsonx).
+- **DeepInfra**: Added support for [DeepInfra](https://deepinfra.com). Find the docs [here](https://docs.agno.com/models/deepinfra).
+- **Support for MCP**: Introducing `MCPTools` along with examples for using MCP with Agno agents.
+
+## Bug Fixes:
+
+- **Mistral with reasoning**: Fixed cases where Mistral would fail when reasoning models from other providers generated reasoning content.
+
+</Update>
+<Update label="2025-03-03" description="v1.1.8">
+## 1.1.8
+
+## New Features:
+
+- **Video File Upload on Playground**: You can now upload video files and have a model interpret the video. This feature is supported only by select `Gemini` models with video processing capabilities.
+
+## Bug Fixes:
+
+- **Huggingface**: Fixed multiple issues with the `Huggingface` model integration. Tool calling is now fully supported in non-streaming cases.
+- **Gemini**: Resolved an issue with manually setting the assistant role and tool call result metrics.
+- **OllamaEmbedder**: Fixed issue where no embeddings were returned.
+
+</Update>
+<Update label="2025-02-26" description="v1.1.7">
+## 1.1.7
+
+## New Features:
+
+- **Audio File Upload on Playground**: You can now upload audio files and have a model interpret the audio, do sentiment analysis, provide an audio transcription, etc.
+
+## Bug Fixes:
+
+- **Claude Thinking Streaming**: Fix Claude thinking when streaming is active, as well as for async runs.
+
+</Update>
+<Update label="2025-02-24" description="v1.1.6">
+## 1.1.6
+
+## New Features:
+
+-**Claude 3.7 Support:** Added support for the latest Claude 3.7 Sonnet model
+
+## Bug Fixes:
+
+-**Claude Tool Use**: Fixed an issue where tools and content could not be used in the same block when interacting with Claude models.
+</Update>
+
+<Update label="2025-02-24" description="v1.1.5">
+## 1.1.5
+
+## New Features:
+
+- **Audio Responses:** Agents can now deliver audio responses (both with streaming and non-streaming).
+    - The audio is in the `agent.run_response.response_audio`.
+    - This only works with `OpenAIChat` with the `gpt-4o-audio-preview` model. See [their docs](https://platform.openai.com/docs/guides/audio) for more on how it works. For example
+        
+        ```python
+        from agno.agent import Agent
+        from agno.models.openai import OpenAIChat
+        from agno.utils.audio import write_audio_to_file
+        
+        agent = Agent(
+            model=OpenAIChat(
+                id="gpt-4o-audio-preview",
+                modalities=["text", "audio"],  # Both text and audio responses are provided.
+                audio={"voice": "alloy", "format": "wav"},
+            ),
+        )
+        agent.print_response(
+            "Tell me a 5 second story"
+        )
+        if agent.run_response.response_audio is not None:
+            write_audio_to_file(
+                audio=agent.run_response.response_audio.base64_audio, filename=str(filename)
+            )
+        ```
+        
+    - See the [audio_conversation_agent cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/playground/audio_conversation_agent.py) to test it out on the Agent Playground.
+- **Image understanding support for [Together.ai](http://Together.ai) and XAi**: You can now give images to agents using models from XAi and Together.ai.
+
+## Improvements:
+
+- **Automated Tests:** Added integration tests for all models. Most of these will be run on each pull request, with a suite of integration tests run before a new release is published.
+- **Grounding and Search with Gemini:** [Grounding and Search](https://ai.google.dev/gemini-api/docs/grounding?lang=python) can be used to improve the accuracy and recency of responses from the Gemini models.
+
+## Bug Fixes:
+
+- **Structured output updates**: Fixed various cases where native structured output was not used on models.
+- **Ollama tool parsing**: Fixed cases for Ollama with tools with optional parameters.
+- **Gemini Memory Summariser**: Fixed cases where Gemini models were used as the memory summariser.
+- **Gemini auto tool calling**: Enabled automatic tool calling when tools are provided, aligning behavior with other models.
+- **FixedSizeChunking issue with overlap:** Fixed issue where chunking would fail if overlap was set.
+- **Claude tools with multiple types**: Fixed an issue where Claude tools would break when handling a union of types in parameters.
+- **JSON response parsing**: Fixed cases where JSON model responses returned quoted strings within dictionary values.
+</Update>
+
+<Update label="2025-02-17" description="v1.1.4">
+## 1.1.4
+
+## Improvements:
+
+- **Gmail Tools**: Added `get_emails_by_thread` and `send_email_reply` methods to `GmailTools`.
+
+## Bug Fixes:
+
+- **Gemini List Parameters**: Fixed an issue with functions using list-type parameters in Gemini.
+- **Gemini Safety Parameters**: Fixed an issue with passing safety parameters in Gemini.
+- **ChromaDB Multiple Docs:** Fixed an issue with loading multiple documents into ChromaDB.
+- **Agentic Chunking:** Fixed an issue where OpenAI was required for chunking even when a model was provided.
+</Update>
+
+<Update label="2025-02-16" description="v1.1.3">
+## 1.1.3
+
+## Bug Fixes:
+
+- **Gemini Tool-Call History**: Fixed an issue where Gemini rejected tool-calls from historic messages.
+</Update>
+
+<Update label="2025-02-15" description="v1.1.2">
+## 1.1.2
+
+## Improvements:
+
+- **Reasoning with o3 Models**: Reasoning support added for OpenAI’s o3 models.
+- **Gemini embedder update:** Updated the `GeminiEmbedder` to use the new [Google’s genai SDK](https://github.com/googleapis/python-genai). This update introduces a slight change in the interface:
+    
+    ```python
+    # Before
+    embeddings = GeminiEmbedder("models/text-embedding-004").get_embedding(
+        "The quick brown fox jumps over the lazy dog."
+    )
+    
+    # After
+    embeddings = GeminiEmbedder("text-embedding-004").get_embedding(
+        "The quick brown fox jumps over the lazy dog."
+    )
+    ```
+    
+
+## Bug Fixes:
+
+- **Singlestore Fix:** Fixed an issue where querying SingleStore caused the embeddings column to return in binary format.
+- **MongoDB Vectorstore Fix:** Fixed multiple issues in MongoDB, including duplicate creation and deletion of collections during initialization. All known issues have been resolved.
+- **LanceDB Fix:** Fixed various errors in LanceDB and added on_bad_vectors as a parameter.
+</Update>
+
+<Update label="2025-02-14" description="v1.1.1">
+## 1.1.1 
+
+## Improvements:
+
+- **File / Image Uploads on Agent UI:** Agent UI now supports file and image uploads with prompts.
+    - Supported file formats: `.pdf` , `.csv` , `.txt` , `.docx` , `.json`
+    - Supported image formats: `.png` , `.jpeg` , `.jpg` , `.webp`
+- **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.   
+- **Updated `ModelsLabTools` Toolkit Constructor**: The constructor in `/libs/agno/tools/models_labs.py` has been updated to accommodate audio generation API calls. This is a breaking change, as the parameters for the `ModelsLabTools` class have changed. The `url` and `fetch_url` parameters have been removed, and API URLs are now decided based on the `file_type` provided by the user.
+    
+    ```python
+    MODELS_LAB_URLS = {
+        "MP4": "https://modelslab.com/api/v6/video/text2video",
+        "MP3": "https://modelslab.com/api/v6/voice/music_gen",
+        "GIF": "https://modelslab.com/api/v6/video/text2video",
+    }
+    
+    MODELS_LAB_FETCH_URLS = {
+        "MP4": "https://modelslab.com/api/v6/video/fetch",
+        "MP3": "https://modelslab.com/api/v6/voice/fetch",
+        "GIF": "https://modelslab.com/api/v6/video/fetch",
+    }
+    ```
+    
+    The `FileType` enum now includes `MP3` type:
+    
+    ```jsx
+    class FileType(str, Enum):
+        MP4 = "mp4"
+        GIF = "gif"
+        MP3 = "mp3"
+    ```
+    
+
+## Bug Fixes:
+
+- **Gemini functions with no parameters:** Addressed an issue where Gemini would reject function declarations with empty properties.
+- **Fix exponential memory growth**: Fixed certain cases where the agent memory would grow exponentially.
+- **Chroma DB:** Fixed various issues related to metadata on insertion and search.
+- **Gemini Structured Output**: Fixed a bug where Gemini would not generate structured output correctly.
+- **MistralEmbedder:** Fixed issue with instantiation of `MistralEmbedder`.
+- **Reasoning**: Fixed an issue with setting reasoning models.
+- **Audio Response:** Fixed an issue with streaming audio artefacts to the playground.
+</Update>
+
+<Update label="2025-02-12" description="v1.1.0">
+## 1.1.0 - Models Refactor and Cloud Support
+
+## Model Improvements:
+
+- **Models Refactor**: A complete overhaul of our models implementation to improve on performance and to have better feature parity across models.
+    - This improves metrics and visibility on the Agent UI as well.
+    - All models now support async-await, with the exception of `AwsBedrock`.
+- **Azure AI Foundry**: We now support all models on Azure AI Foundry. Learn more [here](https://learn.microsoft.com/azure/ai-services/models)..
+- **AWS Bedrock Support**: Our redone AWS Bedrock implementation now supports all Bedrock models. It is important to note [which models support which features](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html).
+- **Gemini via Google SDK**: With the 1.0.0 release of [Google's genai SDK](https://github.com/googleapis/python-genai) we could improve our previous implementation of `Gemini`. This will allow for easier integration of Gemini features in future.
+- **Model Failure Retries:** We added better error handling of third-party errors (e.g. Rate-Limit errors) and the agent will now optionally retry with exponential backoff if `exponential_backoff` is set to `True`.
+
+## Other Improvements
+
+- **Exa Answers Support**: Added support for the [Exa answers](https://docs.exa.ai/reference/answer) capability.
+- **GoogleSearchTools**: Updated the name of `GoogleSearch` to `GoogleSearchTools` for consistency.
+
+## Deprecation
+
+- Our `Gemini` implementation directly on the Vertex API has been replaced by the Google SDK implementation of `Gemini`.
+- Our `Gemini` implementation via the OpenAI client has been replaced by the Google SDK implementation of `Gemini`.
+- Our `OllamaHermes` has been removed as the implementation of `Ollama` was improved.
+
+## Bug Fixes
+
+- **Team Members Names**: Fixed a bug where teams where team members have non-aphanumeric characters in their names would cause exceptions.
+
+</Update>
+<Update label="2025-02-07" description="v1.0.8">
+## 1.0.8
+
+## New Features:
+
+- **Perplexity Model**: We now support [Perplexity](https://www.perplexity.ai/) as a model provider.
+- **Todoist Toolkit:** Added a toolkit for managing tasks on Todoist.
+- **JSON Reader**: Added a JSON file reader for use in knowledge bases.
+
+## Improvements:
+
+- **LanceDb**: Implemented `name_exists` function for LanceDb.
+
+## Bug Fixes:
+
+- **Storage growth bug:** Fixed a bug with duplication of `run_messages.messages` for every run in storage.
+
+</Update>
+
+<Update label="2025-02-05" description="v1.0.7">
+## 1.0.7
+
+## New Features:
+
+- **Google Sheets Toolkit**: Added a basic toolkit for reading, creating and updating Google sheets.
+- **Weviate Vector Store**: Added support for Weviate as a vector store.
+
+## Improvements:
+
+- **Mistral Async**: Mistral now supports async execution via `agent.arun()` and `agent.aprint_response()`.
+- **Cohere Async**: Cohere now supports async execution via `agent.arun()` and `agent.aprint_response()`.
+
+## Bug Fixes:
+
+- **Retriever as knowledge source**: Added small fix and examples for using the custom `retriever` parameter with an agent.
+</Update>
+
+<Update label="2025-02-05" description="v1.0.6">
+## 1.0.6
+
+## New Features:
+
+- **Google Maps Toolkit**: Added a rich toolkit for Google Maps that includes business discovery, directions, navigation, geocode locations, nearby places, etc.
+- **URL reader and knowledge base**: Added reader and knowledge base that can process any URL and store the text contents in the document store.
+
+## Bug Fixes:
+
+- **Zoom tools fix:** Zoom tools updated to include the auth step and other misc fixes.
+- **Github search_repositories pagination**: Pagination did not work correctly and this was fixed.
+</Update>
+
+<Update label="2025-02-03" description="v1.0.5">
+## 1.0.5
+
+## New Features:
+
+- **Gmail Tools:** Add tools for Gmail, including mail search, sending mails, etc.
+
+## Improvements:
+
+- **Exa Toolkit Upgrade:** Added `find_similar` to `ExaTools`
+- **Claude Async:** Claude models can now be used with `await agent.aprint_response()` and `await agent.arun()`.
+- **Mistral Vision:** Mistral vision models are now supported. Various examples were added to illustrate [example](https://github.com/agno-agi/agno/blob/main/cookbook/models/mistral/image_file_input_agent.py).
+</Update>
+
+<Update label="2025-02-02" description="v1.0.4">
+## 1.0.4
+
+## Bug Fixes:
+
+- **Claude Tool Invocation:** Fixed issue where Claude was not working with tools that have no parameters.
+
+</Update>
+
+<Update label="2025-01-31" description="v1.0.3">
+## 1.0.3
+
+## Improvements:
+
+- **OpenAI Reasoning Parameter:** Added a reasoning parameter to OpenAI models.
+
+</Update>
+
+<Update label="2025-01-31" description="v1.0.2">
+## 1.0.2
+
+## Improvements:
+
+- **Model Client Caching:** Made all models cache the client instantiation, improving Agno agent instantiation time
+- **XTools:** Renamed `TwitterTools` to `XTools` and updated capabilities to be compatible with Twitter API v2.
+
+## Bug Fixes:
+
+- **Agent Dataclass Compatibility:** Removed `slots=True` from the agent dataclass decorator, which was not compatible with Python < 3.10.
+- **AzureOpenAIEmbedder:** Made `AzureOpenAIEmbedder` a dataclass to match other embedders.
+</Update>
+
+<Update label="2025-01-31" description="v1.0.1">
+## 1.0.1
+
+## Improvement:
+
+- **Mistral Model Caching:** Enabled caching for Mistral models.
+</Update>
+
+<Update label="2025-01-30" description="v1.0.0">
+## 1.0.0 - Agno
+
 This is the major refactor from `phidata` to `agno`, released with the official launch of Agno AI.
 
 See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
@@ -14,81 +348,82 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
 - `phi.document.reader.xxx` → `agno.document.reader.xxx_reader` (applies to all document readers)
 - All Agno toolkits are now suffixed with `Tools`. E.g. `DuckDuckGo` → `DuckDuckGoTools`
 - Multi-modal interface updates:
-    - `agent.run(images=[])` and `agent.print_response(images=[])` is now of type `Image`
 
-        ```python
-        class Image(BaseModel):
-            url: Optional[str] = None  # Remote location for image
-            filepath: Optional[Union[Path, str]] = None  # Absolute local location for image
-            content: Optional[Any] = None  # Actual image bytes content
-            detail: Optional[str] = None # low, medium, high or auto (per OpenAI spec https://platform.openai.com/docs/guides/vision?lang=node#low-or-high-fidelity-image-understanding)
-            id: Optional[str] = None
-        ```
+  - `agent.run(images=[])` and `agent.print_response(images=[])` is now of type `Image`
 
-    - `agent.run(audio=[])` and `agent.print_response(audio=[])` is now of type `Audio`
+    ```python
+    class Image(BaseModel):
+        url: Optional[str] = None  # Remote location for image
+        filepath: Optional[Union[Path, str]] = None  # Absolute local location for image
+        content: Optional[Any] = None  # Actual image bytes content
+        detail: Optional[str] = None # low, medium, high or auto (per OpenAI spec https://platform.openai.com/docs/guides/vision?lang=node#low-or-high-fidelity-image-understanding)
+        id: Optional[str] = None
+    ```
 
-        ```python
-        class Audio(BaseModel):
-            filepath: Optional[Union[Path, str]] = None  # Absolute local location for audio
-            content: Optional[Any] = None  # Actual audio bytes content
-            format: Optional[str] = None
-        ```
+  - `agent.run(audio=[])` and `agent.print_response(audio=[])` is now of type `Audio`
 
-    - `agent.run(video=[])` and `agent.print_response(video=[])` is now of type `Video`
+    ```python
+    class Audio(BaseModel):
+        filepath: Optional[Union[Path, str]] = None  # Absolute local location for audio
+        content: Optional[Any] = None  # Actual audio bytes content
+        format: Optional[str] = None
+    ```
 
-        ```python
-        class Video(BaseModel):
-            filepath: Optional[Union[Path, str]] = None  # Absolute local location for video
-            content: Optional[Any] = None  # Actual video bytes content
-        ```
+  - `agent.run(video=[])` and `agent.print_response(video=[])` is now of type `Video`
 
-    - `RunResponse.images` is now a list of type `ImageArtifact`
+    ```python
+    class Video(BaseModel):
+        filepath: Optional[Union[Path, str]] = None  # Absolute local location for video
+        content: Optional[Any] = None  # Actual video bytes content
+    ```
 
-        ```python
-        class ImageArtifact(Media):
-            id: str
-            url: str  # Remote location for file
-            alt_text: Optional[str] = None
-        ```
+  - `RunResponse.images` is now a list of type `ImageArtifact`
 
-    - `RunResponse.audio` is now a list of type `AudioArtifact`
+    ```python
+    class ImageArtifact(Media):
+        id: str
+        url: str  # Remote location for file
+        alt_text: Optional[str] = None
+    ```
 
-        ```python
-        class AudioArtifact(Media):
-            id: str
-            url: Optional[str] = None  # Remote location for file
-            base64_audio: Optional[str] = None  # Base64-encoded audio data
-            length: Optional[str] = None
-            mime_type: Optional[str] = None
-        ```
+  - `RunResponse.audio` is now a list of type `AudioArtifact`
 
-    - `RunResponse.videos` is now a list of type `VideoArtifact`
+    ```python
+    class AudioArtifact(Media):
+        id: str
+        url: Optional[str] = None  # Remote location for file
+        base64_audio: Optional[str] = None  # Base64-encoded audio data
+        length: Optional[str] = None
+        mime_type: Optional[str] = None
+    ```
 
-        ```python
-        class VideoArtifact(Media):
-            id: str
-            url: str  # Remote location for file
-            eta: Optional[str] = None
-            length: Optional[str] = None
-        ```
+  - `RunResponse.videos` is now a list of type `VideoArtifact`
 
-    - `RunResponse.response_audio` is now of type `AudioOutput`
+    ```python
+    class VideoArtifact(Media):
+        id: str
+        url: str  # Remote location for file
+        eta: Optional[str] = None
+        length: Optional[str] = None
+    ```
 
-        ```python
-        class AudioOutput(BaseModel):
-            id: str
-            content: str  # Base64 encoded
-            expires_at: int
-            transcript: str
-        ```
+  - `RunResponse.response_audio` is now of type `AudioOutput`
+
+    ```python
+    class AudioOutput(BaseModel):
+        id: str
+        content: str  # Base64 encoded
+        expires_at: int
+        transcript: str
+    ```
 
 - Models:
-    - `Hermes` → `OllamaHermes`
-    - `AzureOpenAIChat` → `AzureOpenAI`
-    - `CohereChat` → `Cohere`
-    - `DeepSeekChat` → `DeepSeek`
-    - `GeminiOpenAIChat` → `GeminiOpenAI`
-    - `HuggingFaceChat` → `HuggingFace`
+  - `Hermes` → `OllamaHermes`
+  - `AzureOpenAIChat` → `AzureOpenAI`
+  - `CohereChat` → `Cohere`
+  - `DeepSeekChat` → `DeepSeek`
+  - `GeminiOpenAIChat` → `GeminiOpenAI`
+  - `HuggingFaceChat` → `HuggingFace`
 - Embedders now all take `id` instead of `model` as a parameter. For example
 
   ```python
@@ -104,31 +439,32 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
   )
   knowledge_base.load(recreate=True)
   ```
+
 - Agent Storage class
-    - `PgAgentStorage` → `PostgresDbAgentStorage`
-    - `SqlAgentStorage` → `SqliteDbAgentStorage`
-    - `MongoAgentStorage` → `MongoDbAgentStorage`
-    - `S2AgentStorage` → `SingleStoreDbAgentStorage`
+  - `PgAgentStorage` → `PostgresDbAgentStorage`
+  - `SqlAgentStorage` → `SqliteDbAgentStorage`
+  - `MongoAgentStorage` → `MongoDbAgentStorage`
+  - `S2AgentStorage` → `SingleStoreDbAgentStorage`
 - Workflow Storage class
-    - `SqlWorkflowStorage` → `SqliteDbWorkflowStorage`
-    - `PgWorkflowStorage` → `PostgresDbWorkflowStorage`
-    - `MongoWorkflowStorage` → `MongoDbWorkflowStorage`
+  - `SqlWorkflowStorage` → `SqliteDbWorkflowStorage`
+  - `PgWorkflowStorage` → `PostgresDbWorkflowStorage`
+  - `MongoWorkflowStorage` → `MongoDbWorkflowStorage`
 - Knowledge Base
-    - `phi.knowledge.pdf.PDFUrlKnowledgeBase` → `agno.knowledge.pdf_url.PDFUrlKnowledgeBase`
-    - `phi.knowledge.csv.CSVUrlKnowledgeBase` → `agno.knowledge.csv_url.CSVUrlKnowledgeBase`
+  - `phi.knowledge.pdf.PDFUrlKnowledgeBase` → `agno.knowledge.pdf_url.PDFUrlKnowledgeBase`
+  - `phi.knowledge.csv.CSVUrlKnowledgeBase` → `agno.knowledge.csv_url.CSVUrlKnowledgeBase`
 - Readers
-    - `phi.document.reader.arxiv` → `agno.document.reader.arxiv_reader`
-    - `phi.document.reader.docx` → `agno.document.reader.docx_reader`
-    - `phi.document.reader.json` → `agno.document.reader.json_reader`
-    - `phi.document.reader.pdf` → `agno.document.reader.pdf_reader`
-    - `phi.document.reader.s3.pdf` → `agno.document.reader.s3.pdf_reader`
-    - `phi.document.reader.s3.text` → `agno.document.reader.s3.text_reader`
-    - `phi.document.reader.text` → `agno.document.reader.text_reader`
-    - `phi.document.reader.website` → `agno.document.reader.website_reader`
+  - `phi.document.reader.arxiv` → `agno.document.reader.arxiv_reader`
+  - `phi.document.reader.docx` → `agno.document.reader.docx_reader`
+  - `phi.document.reader.json` → `agno.document.reader.json_reader`
+  - `phi.document.reader.pdf` → `agno.document.reader.pdf_reader`
+  - `phi.document.reader.s3.pdf` → `agno.document.reader.s3.pdf_reader`
+  - `phi.document.reader.s3.text` → `agno.document.reader.s3.text_reader`
+  - `phi.document.reader.text` → `agno.document.reader.text_reader`
+  - `phi.document.reader.website` → `agno.document.reader.website_reader`
 
 ## Improvements:
 
-- **Dataclasses** - Changed various instances of Pydantic models to dataclasses to improve the speed.
+- **Dataclasses:** Changed various instances of Pydantic models to dataclasses to improve the speed.
 - Moved `Embedder` class from pydantic to data class
 
 ## Removals
@@ -136,9 +472,14 @@ See the [migration guide](../how-to/phidata-to-agno) for additional guidance.
 - Removed all references to `Assistant`
 - Removed all references to `llm`
 - Removed the `PhiTools` tool
+- On the `Agent` class, `guidelines`, `prevent_hallucinations`, `prevent_prompt_leakage`, `limit_tool_access`, and `task` has been removed. They can be incorporated into the `instructions` parameter as you see fit.
 
 ## Bug Fixes:
 
-- Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param
+- **Semantic Chunking:** Fixed semantic chunking by replacing `similarity_threshold` param with `threshold` param.
+
+## New Features:
+
+- **Evals for Agents:** Introducing Evals to measure the performance, accuracy, and reliability of your Agents.
 
 </Update>

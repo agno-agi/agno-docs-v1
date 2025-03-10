@@ -4,9 +4,9 @@ title: Composio Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/composio_tools.py
+```python cookbook/tools/composio_tools.py
 from agno.agent import Agent
-from composio_phidata import Action, ComposioToolSet
+from composio_agno import Action, ComposioToolSet
 
 toolset = ComposioToolSet()
 composio_tools = toolset.get_tools(
@@ -22,20 +22,27 @@ agent.print_response("Can you star agno-agi/agno repo?")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export COMPOSIO_API_KEY=xxx
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
   <Step title="Install libraries">
     ```bash
-    pip install -U composio-phidata agno
+    pip install -U composio-agno openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/composio_tools.py
+    python cookbook/tools/composio_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/composio_tools.py
+    python cookbook/tools/composio_tools.py
     ```
     </CodeGroup>
   </Step>

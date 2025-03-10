@@ -4,7 +4,7 @@ title: Replicate Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/replicate_tools.py
+```python cookbook/tools/replicate_tools.py
 from agno.agent import Agent
 from agno.tools.replicate import ReplicateTools
 
@@ -24,23 +24,24 @@ agent.print_response("Generate an image of a cyberpunk city")
   <Step title="Set your API token">
     ```bash
     export REPLICATE_API_TOKEN=xxx
+    export OPENAI_API_KEY=xxx
     ```
   </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U replicate agno
+    pip install -U replicate openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/replicate_tools.py
+    python cookbook/tools/replicate_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/replicate_tools.py
+    python cookbook/tools/replicate_tools.py
     ```
     </CodeGroup>
   </Step>

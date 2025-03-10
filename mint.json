@@ -36,7 +36,7 @@
   "topbarLinks": [
     {
       "name": "Discord",
-      "url": "https://phidata.link/discord"
+      "url": "https://agno.link/discord"
     },
     {
       "name": "Community",
@@ -66,11 +66,15 @@
     {
       "name": "FAQs",
       "url": "faq"
+    },
+    {
+      "name": "Hackathon Resources",
+      "url": "hackathon"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
         "introduction",
         "get-started/agents",
@@ -106,19 +110,27 @@
             "models/openai",
             "models/openai-like",
             "models/anthropic",
-            "models/aws-bedrock",
-            "models/azure",
+            {
+              "group": "AWS",
+              "pages": ["models/aws-bedrock", "models/aws-claude"]
+            },
+            {
+              "group": "Azure",
+              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
+            },
             "models/cohere",
+            "models/deepinfra",
             "models/deepseek",
             "models/fireworks",
             "models/google",
-            "models/vertexai",
             "models/groq",
             "models/huggingface",
+            "models/ibm-watsonx",
             "models/mistral",
             "models/nvidia",
             "models/ollama",
             "models/openrouter",
+            "models/perplexity",
             "models/sambanova",
             "models/together",
             "models/xai"
@@ -151,8 +163,10 @@
                 "tools/toolkits/exa",
                 "tools/toolkits/fal",
                 "tools/toolkits/firecrawl",
+                "tools/toolkits/gmail",
                 "tools/toolkits/giphy",
                 "tools/toolkits/github",
+                "tools/toolkits/google_maps",
                 "tools/toolkits/googlecalendar",
                 "tools/toolkits/googlesearch",
                 "tools/toolkits/hackernews",
@@ -179,18 +193,22 @@
                 "tools/toolkits/spider",
                 "tools/toolkits/sql",
                 "tools/toolkits/tavily",
+                "tools/toolkits/todoist",
                 "tools/toolkits/twilio",
-                "tools/toolkits/twitter",
+                "tools/toolkits/webex",
+                "tools/toolkits/x",
                 "tools/toolkits/website",
                 "tools/toolkits/wikipedia",
                 "tools/toolkits/yfinance",
                 "tools/toolkits/youtube",
-                "tools/toolkits/zendesk"
+                "tools/toolkits/zendesk",
+                "tools/toolkits/zoom",
+                "tools/toolkits/telegram"
               ]
             },
-            "tools/custom-toolkits",
+            "tools/mcp",
             "tools/functions",
-            "tools/async-tools"
+            "tools/custom-toolkits"
           ]
         },
         {
@@ -345,9 +363,12 @@
         {
           "group": "Applications",
           "pages": [
+            "examples/apps/agentic-rag",
+            "examples/apps/answer-engine",
             "examples/apps/text-to-sql",
             "examples/apps/game-generator",
-            "examples/apps/geobuddy"
+            "examples/apps/geobuddy",
+            "examples/apps/chess-team"
           ]
         }
       ]
@@ -359,12 +380,18 @@
           "group": "Multimodal",
           "pages": [
             "examples/concepts/multimodal/audio-input-output",
+            "examples/concepts/multimodal/audio-to-text",
+            "examples/concepts/multimodal/audio-sentiment-analysis",
+            "examples/concepts/multimodal/blog-to-podcast",
             "examples/concepts/multimodal/audio-multi-turn",
+            "examples/concepts/multimodal/audio-streaming",
             "examples/concepts/multimodal/generate-image",
+            "examples/concepts/multimodal/generate-music-agent",
             "examples/concepts/multimodal/generate-video-models-lab",
             "examples/concepts/multimodal/generate-video-replicate",
             "examples/concepts/multimodal/image-to-audio",
             "examples/concepts/multimodal/image-to-image",
+            "examples/concepts/multimodal/image-to-text",
             "examples/concepts/multimodal/video-caption",
             "examples/concepts/multimodal/video-to-shorts"
           ]
@@ -469,6 +496,7 @@
             "examples/concepts/tools/giphy",
             "examples/concepts/tools/github",
             "examples/concepts/tools/google_calendar",
+            "examples/concepts/tools/google_maps",
             "examples/concepts/tools/google_search",
             "examples/concepts/tools/hackernews",
             "examples/concepts/tools/jina_reader",
@@ -494,10 +522,12 @@
             "examples/concepts/tools/spider",
             "examples/concepts/tools/sql",
             "examples/concepts/tools/tavily",
+            "examples/concepts/tools/todoist",
             "examples/concepts/tools/twilio",
-            "examples/concepts/tools/twitter",
+            "examples/concepts/tools/webex",
             "examples/concepts/tools/website",
             "examples/concepts/tools/wikipedia",
+            "examples/concepts/tools/x",
             "examples/concepts/tools/yfinance",
             "examples/concepts/tools/youtube",
             "examples/concepts/tools/zendesk"
@@ -550,14 +580,37 @@
           ]
         },
         {
+          "group": "AWS Bedrock",
+          "pages": [
+            "examples/models/aws/bedrock/basic",
+            "examples/models/aws/bedrock/basic_stream",
+            "examples/models/aws/bedrock/tool_use",
+            "examples/models/aws/bedrock/structured_output",
+            "examples/models/aws/bedrock/storage",
+            "examples/models/aws/bedrock/knowledge",
+            "examples/models/aws/bedrock/image_agent"
+          ]
+        },
+        {
           "group": "AWS Bedrock Claude",
           "pages": [
-            "examples/models/aws/bedrock-claude/basic",
-            "examples/models/aws/bedrock-claude/basic_stream",
-            "examples/models/aws/bedrock-claude/tool_use",
-            "examples/models/aws/bedrock-claude/structured_output",
-            "examples/models/aws/bedrock-claude/storage",
-            "examples/models/aws/bedrock-claude/knowledge"
+            "examples/models/aws/claude/basic",
+            "examples/models/aws/claude/basic_stream",
+            "examples/models/aws/claude/tool_use",
+            "examples/models/aws/claude/structured_output",
+            "examples/models/aws/claude/storage",
+            "examples/models/aws/claude/knowledge"
+          ]
+        },
+        {
+          "group": "Azure AI Foundry",
+          "pages": [
+            "examples/models/azure/ai_foundry/basic",
+            "examples/models/azure/ai_foundry/basic_stream",
+            "examples/models/azure/ai_foundry/knowledge",
+            "examples/models/azure/ai_foundry/storage",
+            "examples/models/azure/ai_foundry/structured_output",
+            "examples/models/azure/ai_foundry/tool_use"
           ]
         },
         {
@@ -580,6 +633,15 @@
             "examples/models/cohere/structured_output",
             "examples/models/cohere/storage",
             "examples/models/cohere/knowledge"
+          ]
+        },
+        {
+          "group": "DeepInfra",
+          "pages": [
+            "examples/models/deepinfra/basic",
+            "examples/models/deepinfra/basic_stream",
+            "examples/models/deepinfra/tool_use",
+            "examples/models/deepinfra/structured_output"
           ]
         },
         {
@@ -677,7 +739,15 @@
             "examples/models/openai/image_agent",
             "examples/models/openai/audio_input_agent",
             "examples/models/openai/audio_output_agent",
-            "examples/models/openai/generate_images"
+            "examples/models/openai/generate_images",
+            "examples/models/openai/reasoning_effort"
+          ]
+        },
+        {
+          "group": "Perplexity",
+          "pages": [
+            "examples/models/perplexity/basic",
+            "examples/models/perplexity/basic_stream"
           ]
         },
         {
@@ -690,22 +760,26 @@
           ]
         },
         {
-          "group": "Vertex AI",
-          "pages": [
-            "examples/models/vertexai/basic",
-            "examples/models/vertexai/basic_stream",
-            "examples/models/vertexai/tool_use",
-            "examples/models/vertexai/structured_output",
-            "examples/models/vertexai/storage",
-            "examples/models/vertexai/knowledge"
-          ]
-        },
-        {
           "group": "xAI",
           "pages": [
             "examples/models/xai/basic",
             "examples/models/xai/basic_stream",
             "examples/models/xai/tool_use"
+          ]
+        },
+        {
+          "group": "IBM",
+          "pages": [
+            "examples/models/ibm/basic",
+            "examples/models/ibm/basic_stream",
+            "examples/models/ibm/async_basic_stream",
+            "examples/models/ibm/async_basic",
+            "examples/models/ibm/tool_use",
+            "examples/models/ibm/async_tool_use",
+            "examples/models/ibm/structured_output",
+            "examples/models/ibm/storage",
+            "examples/models/ibm/knowledge",
+            "examples/models/ibm/image_agent_bytes"
           ]
         }
       ]
@@ -724,11 +798,16 @@
       "pages": [
         {
           "group": "Agents",
-          "pages": ["reference/agents/agent", "reference/agents/session"]
+          "pages": ["reference/agents/agent", "reference/agents/session", "reference/agents/memory"]
         },
         {
           "group": "Workflows",
-          "pages": ["reference/workflows/workflow"]
+          "pages": [
+            "reference/workflows/workflow",
+            "reference/workflows/storage/mongodb",
+            "reference/workflows/storage/postgres",
+            "reference/workflows/storage/sqlite"
+          ]
         },
         {
           "group": "Models",
@@ -738,25 +817,31 @@
             "reference/models/ollama",
             "reference/models/anthropic",
             "reference/models/cohere",
+            "reference/models/deepinfra",
             "reference/models/deepseek",
             "reference/models/gemini",
+<<<<<<< HEAD
             "reference/models/gemini_openai",
+=======
+>>>>>>> 24bd89a257ce60bdcf48d88cd7b8c8029f0f28b9
             "reference/models/groq",
             "reference/models/huggingface",
             "reference/models/mistral",
             "reference/models/nvidia",
+            "reference/models/perplexity",
             "reference/models/together",
-            "reference/models/vertex",
             "reference/models/xai",
             "reference/models/bedrock",
+            "reference/models/bedrock_claude",
             "reference/models/azure",
+            "reference/models/azure_open_ai",
             "reference/models/fireworks",
             "reference/models/openrouter",
             "reference/models/sambanova",
             "reference/models/internlm",
-            "reference/models/ollama_hermes",
             "reference/models/ollama_tools",
-            "reference/models/openai_like"
+            "reference/models/openai_like",
+            "reference/models/ibm-watsonx"
           ]
         },
         {
@@ -778,6 +863,91 @@
             "reference/knowledge/wikipedia",
             "reference/knowledge/youtube"
           ]
+        },
+        {
+          "group": "Vector Databases",
+          "pages": [
+            "reference/vector_db/cassandra",
+            "reference/vector_db/chromadb",
+            "reference/vector_db/clickhouse",
+            "reference/vector_db/lancedb",
+            "reference/vector_db/milvus",
+            "reference/vector_db/mongodb",
+            "reference/vector_db/pgvector",
+            "reference/vector_db/pinecone",
+            "reference/vector_db/qdrant",
+            "reference/vector_db/singlestore"
+          ]
+        },
+        {
+          "group": "Embedders",
+          "pages": [
+            "reference/embedder/azure_openai",
+            "reference/embedder/cohere",
+            "reference/embedder/fastembed",
+            "reference/embedder/fireworks",
+            "reference/embedder/gemini",
+            "reference/embedder/huggingface",
+            "reference/embedder/mistral",
+            "reference/embedder/ollama",
+            "reference/embedder/openai",
+            "reference/embedder/sentence-transformer",
+            "reference/embedder/together",
+            "reference/embedder/voyageai"
+          ]
+        },
+        {
+          "group": "Memory",
+          "pages": [
+            "reference/memory/mongo",
+            "reference/memory/postgres",
+            "reference/memory/sqlite"
+          ]
+        },
+        {
+          "group": "Storage",
+          "pages": [
+            "reference/storage/yaml",
+            "reference/storage/json",
+            "reference/storage/mongodb",
+            "reference/storage/postgres",
+            "reference/storage/sqlite",
+            "reference/storage/dynamodb",
+            "reference/storage/singlestore"
+          ]
+        },
+        {
+          "group": "Rerankers",
+          "pages": ["reference/reranker/cohere"]
+        },
+        {
+          "group": "Chunking",
+          "pages": [
+            "reference/chunking/fixed-size",
+            "reference/chunking/agentic",
+            "reference/chunking/semantic",
+            "reference/chunking/recursive",
+            "reference/chunking/document"
+          ]
+        },
+        {
+          "group": "Document Reader",
+          "pages": [
+            "reference/document_reader/arxiv",
+            "reference/document_reader/base",
+            "reference/document_reader/csv",
+            "reference/document_reader/csv_url",
+            "reference/document_reader/docx",
+            "reference/document_reader/json",
+            "reference/document_reader/pdf_image_url",
+            "reference/document_reader/pdf_image",
+            "reference/document_reader/pdf_url",
+            "reference/document_reader/pdf",
+            "reference/document_reader/text",
+            "reference/document_reader/website",
+            "reference/document_reader/youtube",
+            "reference/document_reader/firecrawl"
+          ]
         }
       ]
     },
@@ -795,13 +965,62 @@
     {
       "group": "Changelog",
       "pages": ["changelog/overview"]
+    },
+    {
+      "group": "Hackathon Resources",
+      "pages": [
+        "hackathon/introduction",
+        "hackathon/setup",
+        {
+          "group": "Examples",
+          "pages": [
+            "hackathon/examples/simple-text-agent",
+            "hackathon/examples/agent-with-tools",
+            "hackathon/examples/agent-with-knowledge",
+            "hackathon/examples/structured-outputs",
+            "hackathon/examples/research-agent",
+            "hackathon/examples/youtube-agent",
+            "hackathon/examples/image-input-with-tools",
+            "hackathon/examples/image-generate",
+            "hackathon/examples/image-to-structured-output",
+            "hackathon/examples/image-generate-audio",
+            "hackathon/examples/image-input-output",
+            "hackathon/examples/image-transcribe",
+            "hackathon/examples/image-gif-seach",
+            "hackathon/examples/audio-input",
+            "hackathon/examples/audio-input-output",
+            "hackathon/examples/audio-sentiment",
+            "hackathon/examples/audio-transcript",
+            "hackathon/examples/audio-multi-turn",
+            "hackathon/examples/audio-generate-podcast",
+            "hackathon/examples/video-input",
+            "hackathon/examples/video-modelslab",
+            "hackathon/examples/video-replicate",
+            "hackathon/examples/video-captions",
+            "hackathon/examples/video-to-shorts"
+          ]
+        },
+        {
+          "group": "Models",
+          "pages": [
+            "hackathon/models/openai",
+            "hackathon/models/gemini",
+            "hackathon/models/anthropic",
+            "hackathon/models/groq",
+            "hackathon/models/mistral",
+            "hackathon/models/ollama"
+          ]
+        },
+        "hackathon/replit",
+        "hackathon/prizes"
+      ]
     }
   ],
   "footerSocials": {
     "x": "https://x.com/AgnoAgi",
     "github": "https://github.com/agno-agi/agno",
-    "discord": "https://phidata.link/discord",
-    "youtube": "https://phidata.link/youtube",
+    "discord": "https://agno.link/discord",
+    "youtube": "https://agno.link/youtube",
     "website": "https://agno.com"
   }
 }

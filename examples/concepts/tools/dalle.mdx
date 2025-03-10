@@ -4,7 +4,7 @@ title: DALL-E Tools
 
 ## Code
 
-```python cookbook/agent_concepts/tools/dalle_tools.py
+```python cookbook/tools/dalle_tools.py
 from pathlib import Path
 
 from agno.agent import Agent
@@ -46,7 +46,7 @@ if response.images:
 
   <Step title="Set your API key">
     ```bash
-    export OPENAI_API_KEY=xxx
+    export OPENAI_API_KEY=xxx  # Required for DALL-E image generation
     ```
   </Step>
 
@@ -59,11 +59,11 @@ if response.images:
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/tools/dalle_tools.py
+    python cookbook/tools/dalle_tools.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/tools/dalle_tools.py
+    python cookbook/tools/dalle_tools.py
     ```
     </CodeGroup>
   </Step>

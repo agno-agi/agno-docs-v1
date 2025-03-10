@@ -1,0 +1,14 @@
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `table_name` | `str` | `None` | Name of the table to store vectors and metadata in Clickhouse |
+| `host` | `str` | `None` | Hostname of the Clickhouse server |
+| `username` | `Optional[str]` | `None` | Username for Clickhouse authentication |
+| `password` | `str` | `""` | Password for Clickhouse authentication |
+| `port` | `int` | `0` | Port number for Clickhouse connection |
+| `database_name` | `str` | `"ai"` | Name of the database to use in Clickhouse |
+| `dsn` | `Optional[str]` | `None` | DSN string for Clickhouse connection |
+| `compress` | `str` | `"lz4"` | Compression algorithm to use |
+| `client` | `Optional[Client]` | `None` | Optional pre-configured Clickhouse client |
+| `embedder` | `Optional[Embedder]` | `OpenAIEmbedder()` | Embedder instance to generate embeddings |
+| `distance` | `Distance` | `Distance.cosine` | Distance metric to use for similarity search |
+| `index` | `Optional[HNSW]` | `HNSW()` | HNSW index configuration for vector similarity search |
