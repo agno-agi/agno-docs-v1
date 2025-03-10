@@ -208,7 +208,8 @@
             },
             "tools/mcp",
             "tools/functions",
-            "tools/custom-toolkits"
+            "tools/custom-toolkits",
+            "tools/async-tools"
           ]
         },
         {
@@ -798,7 +799,11 @@
       "pages": [
         {
           "group": "Agents",
-          "pages": ["reference/agents/agent", "reference/agents/session", "reference/agents/memory"]
+          "pages": [
+            "reference/agents/agent",
+            "reference/agents/session",
+            "reference/agents/memory"
+          ]
         },
         {
           "group": "Workflows",
@@ -820,10 +825,6 @@
             "reference/models/deepinfra",
             "reference/models/deepseek",
             "reference/models/gemini",
-<<<<<<< HEAD
-            "reference/models/gemini_openai",
-=======
->>>>>>> 24bd89a257ce60bdcf48d88cd7b8c8029f0f28b9
             "reference/models/groq",
             "reference/models/huggingface",
             "reference/models/mistral",
