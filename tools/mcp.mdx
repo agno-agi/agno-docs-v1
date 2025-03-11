@@ -1,0 +1,101 @@
+---
+title: Model Context Protocol
+sidebarTitle: MCP
+---
+
+The Model Context Protocol (MCP) enables Agents to interact with external systems through a standardized interface. With Agno's MCP integration, you can connect any MCP-compatible service to your Agents.
+
+## Example: Filesystem Agent
+
+Here's a filesystem agent that uses the Filesystem MCP server to explore and analyze files:
+
+```python filesystem_agent.py
+import asyncio
+from pathlib import Path
+from textwrap import dedent
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.mcp import MCPTools
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+
+async def create_filesystem_agent(session):
+    """Create and configure a filesystem agent with MCP tools."""
+    # Initialize the MCP toolkit
+    mcp_tools = MCPTools(session=session)
+    await mcp_tools.initialize()
+
+    # Create an agent with the MCP toolkit
+    return Agent(
+        model=OpenAIChat(id="gpt-4o"),
+        tools=[mcp_tools],
+        instructions=dedent("""\
+            You are a filesystem assistant. Help users explore files and directories.
+
+            - Navigate the filesystem to answer questions
+            - Use the list_allowed_directories tool to find directories that you can access
+            - Provide clear context about files you examine
+            - Use headings to organize your responses
+            - Be concise and focus on relevant information\
+        """),
+        markdown=True,
+        show_tool_calls=True,
+    )
+
+
+async def run_agent(message: str) -> None:
+    """Run the filesystem agent with the given message."""
+    # Initialize the MCP server
+    server_params = StdioServerParameters(
+        command="npx",
+        args=[
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            str(Path(__file__).parent.parent.parent.parent),
+        ],
+    )
+
+    # Create a client session to connect to the MCP server
+    async with stdio_client(server_params) as (read, write):
+        async with ClientSession(read, write) as session:
+            agent = await create_filesystem_agent(session)
+
+            # Run the agent
+            await agent.aprint_response(message, stream=True)
+
+
+# Example usage
+if __name__ == "__main__":
+    # Basic example - exploring project license
+    asyncio.run(run_agent("What is the license for this project?"))
+```
+
+## Best Practices
+
+1. **Error Handling**: Always include proper error handling for MCP server connections and operations.
+
+2. **Resource Cleanup**: Use async context managers to ensure proper cleanup of resources:
+```python
+async with stdio_client(server_params) as (read, write):
+    async with ClientSession(read, write) as session:
+        # Your agent code here
+```
+
+3. **Clear Instructions**: Provide clear and specific instructions to your agent:
+
+```python
+instructions = """
+You are a filesystem assistant. Help users explore files and directories.
+- Navigate the filesystem to answer questions
+- Use the list_allowed_directories tool to find accessible directories
+- Provide clear context about files you examine
+- Be concise and focus on relevant information
+"""
+```
+
+## More Information
+
+- Read the [MCP documentation](https://modelcontextprotocol.io/introduction) to learn more about the Model Context Protocol.
+- Checkout the Agno [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/tools/mcp) for more examples of Agents that use MCP.

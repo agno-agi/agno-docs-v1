@@ -203,11 +203,13 @@
                 "tools/toolkits/yfinance",
                 "tools/toolkits/youtube",
                 "tools/toolkits/zendesk",
-                "tools/toolkits/zoom"
+                "tools/toolkits/zoom",
+                "tools/toolkits/telegram"
               ]
             },
-            "tools/custom-toolkits",
-            "tools/functions"
+            "tools/mcp",
+            "tools/functions",
+            "tools/custom-toolkits"
           ]
         },
         {
