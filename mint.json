@@ -145,6 +145,7 @@
               "group": "Toolkits",
               "pages": [
                 "tools/toolkits/toolkits",
+                "tools/toolkits/agentql",
                 "tools/toolkits/airflow",
                 "tools/toolkits/apify",
                 "tools/toolkits/arxiv",
