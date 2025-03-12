@@ -2,6 +2,27 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-03-12" description="v1.1.10">
+## 1.1.10
+
+## New Features:
+
+- **File Prompts**: Introduced a new `File` type that can be added to prompts and will be sent to the model providers. Only Gemini and Anthropic Claude supported for now.
+- **LMStudio:** Added support for [LMStudio](https://lmstudio.ai/) as a model provider. See the [docs](https://docs.agno.com/models/lmstudio).
+- **AgentQL Tools**: Added tools to support [AgentQL](https://www.agentql.com/) for connecting agents to websites for scraping, etc. See the [docs](https://docs.agno.com/tools/toolkits/agentql).
+- **Browserbase Tool:** Added [Browserbase](https://www.browserbase.com/) tool.
+
+## Improvements:
+
+- **Cohere Vision**: Added support for image understanding with Cohere models. See [this cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/models/cohere/image_agent.py) to try it out.
+- **Embedder defaults logging**: Improved logging when using the default OpenAI embedder.
+
+## Bug Fixes:
+
+- **Ollama Embedder**: Fix for getting embeddings from Ollama across different versions.
+
+</Update>
+
 <Update label="2025-03-06" description="v1.1.9">
 ## 1.1.9
 
