@@ -1,0 +1,58 @@
+---
+title: WhatsApp Tools
+---
+
+## Code
+
+```python cookbook/tools/whatsapp_tools.py
+from agno.agent import Agent
+from agno.tools.whatsapp import WhatsAppTools
+
+agent = Agent(
+    tools=[WhatsAppTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Send a message saying 'Hello from Agno!' to John")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set up WhatsApp Business API">
+    1. Go to [Meta Developer Portal](https://developers.facebook.com/)
+    2. Create a WhatsApp Business Account
+    3. Set up your WhatsApp Business API
+    4. Get your credentials from the Meta Developer Portal
+  </Step>
+
+  <Step title="Set your API keys">
+    ```bash
+    export WHATSAPP_PHONE_NUMBER_ID=xxx
+    export WHATSAPP_ACCESS_TOKEN=xxx
+    export WHATSAPP_RECIPIENT_WAID=xxx # Optional: Recipient WhatsApp Number (e.g. 1234567890)
+    export WHATSAPP_VERSION=xxx # Optional: API version (default: v22.0)
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/tools/whatsapp_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/tools/whatsapp_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
