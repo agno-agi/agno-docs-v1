@@ -3,7 +3,7 @@ title: MongoDB Workflow Storage
 sidebarTitle: MongoDB
 ---
 
-Agno supports using MongoDB as a storage backend for Workflows using the `MongoDbWorkflowStorage` class.
+Agno supports using MongoDB as a storage backend for Workflows using the `MongoDbStorage` class.
 
 ## Usage
 
@@ -15,18 +15,21 @@ Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) a
 docker run --name mongodb -d -p 27017:27017 mongodb/mongodb-community-server:latest
 ```
 
-```python storage.py
+```python mongodb_storage_for_workflow.py
 
 import json
 from typing import Iterator
 
 import httpx
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
+from agno.run.response import RunResponse
+from agno.storage.mongodb import MongoDbStorage
 from agno.tools.newspaper4k import Newspaper4kTools
-from agno.storage.workflow.mongodb import MongoDbWorkflowStorage
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
+
+db_url = "mongodb://localhost:27017"
 
 class HackerNewsReporter(Workflow):
     description: str = (
@@ -95,17 +98,24 @@ class HackerNewsReporter(Workflow):
         logger.info("Reading each story and writing a report.")
         yield from self.writer.run(top_stories.content, stream=True)
 
-# Run workflow
-report: Iterator[RunResponse] = HackerNewsReporter(
-        storage=MongoDbWorkflowStorage(
-            collection_name="hacker_news_report",
-            db_url="mongodb://localhost:27017",
-        )).run(num_stories=5)
 
-# Print the report
-pprint_run_response(report, markdown=True, show_time=True)
+if __name__ == "__main__":
+    # Run workflow
+    storage = MongoDbStorage(
+        collection_name="agent_sessions", db_url=db_url, db_name="agno"
+    )
+    storage.drop()
+    report: Iterator[RunResponse] = HackerNewsReporter(
+        storage=storage, debug_mode=False
+    ).run(num_stories=5)
+    # Print the report
+    pprint_run_response(report, markdown=True, show_time=True)
 ```
 
 ## Params
 
 <Snippet file="workflow-storage-mongodb-params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/mongodb_storage/mongodb_storage_for_workflow.py)

@@ -3,22 +3,24 @@ title: SQLite Workflow Storage
 sidebarTitle: SQLite
 ---
 
-Agno supports using SQLite as a storage backend for Workflows using the `SqliteWorkflowStorage` class.
+Agno supports using SQLite as a storage backend for Workflows using the `SqliteStorage` class.
 
 ## Usage
 
-```python storage.py
+```python sqlite_storage_for_workflow
 
 import json
 from typing import Iterator
 
 import httpx
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
+from agno.run.response import RunResponse
+from agno.storage.sqlite import SqliteStorage
 from agno.tools.newspaper4k import Newspaper4kTools
-from agno.storage.workflow.sqlite import SqliteWorkflowStorage
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
+
 
 class HackerNewsReporter(Workflow):
     description: str = (
@@ -87,17 +89,21 @@ class HackerNewsReporter(Workflow):
         logger.info("Reading each story and writing a report.")
         yield from self.writer.run(top_stories.content, stream=True)
 
-# Run workflow
-report: Iterator[RunResponse] = HackerNewsReporter(
-        storage=SqliteWorkflowStorage(
-            table_name="hacker_news_report",
-            db_file="tmp/workflows.db",
-        )).run(num_stories=5)
 
-# Print the report
-pprint_run_response(report, markdown=True, show_time=True)
+if __name__ == "__main__":
+    # Run workflow
+    storage = SqliteStorage(table_name="workflow_sessions", db_file="tmp/data.db")
+    report: Iterator[RunResponse] = HackerNewsReporter(
+        storage=storage, debug_mode=False
+    ).run(num_stories=5)
+    # Print the report
+    pprint_run_response(report, markdown=True, show_time=True)
 ```
 
 ## Params
 
 <Snippet file="workflow-storage-sqlite-params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/sqllite_storage/sqlite_storage_for_workflow.py)

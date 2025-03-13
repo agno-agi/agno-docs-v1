@@ -3,17 +3,17 @@ title: YAML Agent Storage
 sidebarTitle: YAML
 ---
 
-Agno supports using local YAML files as a storage backend for Agents using the `YamlFileAgentStorage` class.
+Agno supports using local YAML files as a storage backend for Agents using the `YamlStorage` class.
 
 ## Usage
 
-```python storage.py
+```python yaml_storage_for_agent.py
 from agno.agent import Agent
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.storage.agent.yaml import YamlFileAgentStorage
+from agno.storage.yaml import YamlStorage
 
 agent = Agent(
-    storage=YamlFileAgentStorage(path="tmp/agent_sessions_yaml"),
+    storage=YamlStorage(path="tmp/agent_sessions_yaml"),
     tools=[DuckDuckGoTools()],
     add_history_to_messages=True,
 )
@@ -28,4 +28,4 @@ agent.print_response("What is their national anthem called?")
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/storage/yaml_storage.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/yaml_storage/yaml_storage_for_agent.py)

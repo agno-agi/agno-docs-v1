@@ -306,7 +306,10 @@
               "pages": [
                 "workflows/storage/postgres",
                 "workflows/storage/sqlite",
-                "workflows/storage/mongodb"
+                "workflows/storage/mongodb",
+                "workflows/storage/singlestore",
+                "workflows/storage/json",
+                "workflows/storage/yaml"
               ]
             },
             "workflows/advanced"

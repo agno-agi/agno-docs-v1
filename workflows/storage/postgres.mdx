@@ -3,7 +3,7 @@ title: Postgres Workflow Storage
 sidebarTitle: Postgres
 ---
 
-Agno supports using PostgreSQL as a storage backend for Workflows using the `PostgresWorkflowStorage` class.
+Agno supports using PostgreSQL as a storage backend for Workflows using the `PostgresStorage` class.
 
 ## Usage
 
@@ -23,18 +23,22 @@ docker run -d \
   agno/pgvector:16
 ```
 
-```python storage.py
+```python postgres_storage_for_workflow.py
 
 import json
 from typing import Iterator
 
 import httpx
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
+from agno.run.response import RunResponse
+from agno.storage.postgres import PostgresStorage
 from agno.tools.newspaper4k import Newspaper4kTools
-from agno.storage.workflow.postgres import PostgresWorkflowStorage
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
+
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
 
 class HackerNewsReporter(Workflow):
     description: str = (
@@ -103,15 +107,16 @@ class HackerNewsReporter(Workflow):
         logger.info("Reading each story and writing a report.")
         yield from self.writer.run(top_stories.content, stream=True)
 
-# Run workflow
-report: Iterator[RunResponse] = HackerNewsReporter(
-        storage=PostgresWorkflowStorage(
-            table_name="hacker_news_report",
-            db_url="postgresql+psycopg://ai:ai@localhost:5532/ai",
-        )).run(num_stories=5)
 
-# Print the report
-pprint_run_response(report, markdown=True, show_time=True)
+if __name__ == "__main__":
+    # Run workflow
+    storage = PostgresStorage(table_name="agent_sessions", db_url=db_url)
+    storage.drop()
+    report: Iterator[RunResponse] = HackerNewsReporter(
+        storage=storage, debug_mode=False
+    ).run(num_stories=5)
+    # Print the report
+    pprint_run_response(report, markdown=True, show_time=True)
 ```
 
 ## Params
