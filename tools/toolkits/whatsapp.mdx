@@ -1,0 +1,73 @@
+---
+title: WhatsApp
+---
+
+**WhatsAppTools** enables an Agent to interact with [WhatsApp Business API](https://developers.facebook.com/docs/whatsapp).
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+1. A [Meta developer account](https://developers.facebook.com/).
+2. A Meta business app, You can [learn to create one here](https://developers.facebook.com/docs/development/create-an-app/). Select **Other** > **Next** > **Business**
+
+### Setting Up Your Phone Number
+
+1. You can start with the test number provided by Meta to send messages to up to 5 numbers
+2. For production use, you'll need to:
+   - Add your own business phone number through the [WhatsApp Manager](https://business.facebook.com/wa/manage/home/)
+   - Note: If migrating an existing WhatsApp number, you'll lose access to the regular WhatsApp app on that number
+3. Add the recipient's phone number to your Meta business app.
+
+### API Credentials
+
+Once you have a Meta business app, you can obtain the following environment variables:
+
+```shell
+export WHATSAPP_ACCESS_TOKEN=***
+export WHATSAPP_PHONE_NUMBER_ID=***
+export WHATSAPP_RECIPIENT_WAID=*** # Optional: Recipient WhatsApp Number (e.g. 1234567890)
+export WHATSAPP_VERSION=*** # Optional: API version (default: v22.0)
+```
+
+> **Note**: The `WHATSAPP_RECIPIENT_WAID` is required for testing template messages.
+
+## Example
+
+```python cookbook/tools/whatsapp.py
+from agno.agent import Agent
+from agno.tools.whatsapp import WhatsAppTools
+
+agent = Agent(
+    name="whatsapp",
+    tools=[WhatsAppTools()],
+)
+
+agent.print_response(
+    "Send a template message using the 'hello_world' template in English"
+)
+```
+
+## Toolkit Params
+
+| Parameter           | Type    | Default  | Description                                                |
+| ------------------ | ------- | -------- | ---------------------------------------------------------- |
+| `access_token`     | `str`   | `None`   | WhatsApp Business API access token                        |
+| `phone_number_id`  | `str`   | `None`   | WhatsApp Business Account phone number ID                 |
+| `version`          | `str`   | `v22.0`  | API version to use                                        |
+| `recipient_waid`   | `str`   | `None`   | Default recipient WhatsApp ID (optional)                  |
+| `async_mode`       | `bool`  | `False`  | Whether to use async methods                              |
+
+## Toolkit Functions
+
+| Function | Description |
+| -------- | ----------- |
+| `send_text_message_sync` | Sends a text message synchronously |
+| `send_text_message_async` | Sends a text message asynchronously |
+| `send_template_message_sync` | Sends a template message synchronously |
+| `send_template_message_async` | Sends a template message asynchronously |
+
+## Developer Resources
+
+* View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/whatsapp.py)
+* View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/whatsapp_tool.py)

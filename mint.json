@@ -195,17 +195,18 @@
                 "tools/toolkits/spider",
                 "tools/toolkits/sql",
                 "tools/toolkits/tavily",
+                "tools/toolkits/telegram",
                 "tools/toolkits/todoist",
                 "tools/toolkits/twilio",
-                "tools/toolkits/webex",
                 "tools/toolkits/x",
+                "tools/toolkits/webex",
+                "tools/toolkits/whatsapp",
                 "tools/toolkits/website",
                 "tools/toolkits/wikipedia",
                 "tools/toolkits/yfinance",
                 "tools/toolkits/youtube",
                 "tools/toolkits/zendesk",
-                "tools/toolkits/zoom",
-                "tools/toolkits/telegram"
+                "tools/toolkits/zoom"
               ]
             },
             "tools/mcp",
