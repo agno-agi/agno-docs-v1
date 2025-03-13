@@ -1,0 +1,66 @@
+---
+title: Weaviate Agent Knowledge
+sidebarTitle: Weaviate
+---
+
+Follow steps mentioned in [Weaviate setup guide](https://weaviate.io/developers/weaviate/quickstart) to setup Weaviate.
+
+## Setup
+
+Install weaviate packages
+
+```shell
+pip install weaviate-client
+```
+
+Run weaviate
+
+```shell
+docker run -d \
+-p 8080:8080 \
+-p 50051:50051 \
+--name weaviate \
+cr.weaviate.io/semitechnologies/weaviate:1.28.4 
+```
+
+or 
+
+```shell
+./cookbook/scripts/run_weaviate.sh
+```
+
+## Example
+
+```python agent_with_knowledge.py
+from agno.agent import Agent
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
+from agno.vectordb.search import SearchType
+from agno.vectordb.weaviate import Distance, VectorIndex, Weaviate
+
+vector_db = Weaviate(
+    collection="recipes",
+    search_type=SearchType.hybrid,
+    vector_index=VectorIndex.HNSW,
+    distance=Distance.COSINE,
+    local=True,  # Set to False if using Weaviate Cloud and True if using local instance
+)
+# Create knowledge base
+knowledge_base = PDFUrlKnowledgeBase(
+    urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+    vector_db=vector_db,
+)
+knowledge_base.load(recreate=False)  # Comment out after first run
+
+# Create and use the agent
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+    show_tool_calls=True,
+)
+agent.print_response("How to make Thai curry?", markdown=True)
+
+```
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/weaviate_db.py)

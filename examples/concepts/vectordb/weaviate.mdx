@@ -1,0 +1,59 @@
+---
+title: Weaviate Integration
+---
+
+## Code
+
+```python cookbook/agent_concepts/vector_dbs/weaviate_db.py
+from agno.agent import Agent
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
+from agno.vectordb.search import SearchType
+from agno.vectordb.weaviate import Distance, VectorIndex, Weaviate
+
+vector_db = Weaviate(
+    collection="recipes",
+    search_type=SearchType.hybrid,
+    vector_index=VectorIndex.HNSW,
+    distance=Distance.COSINE,
+    local=True,  # Set to False if using Weaviate Cloud and True if using local instance
+)
+# Create knowledge base
+knowledge_base = PDFUrlKnowledgeBase(
+    urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+    vector_db=vector_db,
+)
+knowledge_base.load(recreate=False)  # Comment out after first run
+
+# Create and use the agent
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+    show_tool_calls=True,
+)
+agent.print_response("How to make Thai curry?", markdown=True)
+
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U weaviate-client pypdf openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/vector_dbs/weaviate_db.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/vector_dbs/weaviate_db.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

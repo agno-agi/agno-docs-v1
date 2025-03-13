@@ -260,7 +260,8 @@
             "vectordb/pinecone",
             "vectordb/qdrant",
             "vectordb/singlestore",
-            "vectordb/mongodb"
+            "vectordb/mongodb",
+            "vectordb/weaviate"
           ]
         },
         {
@@ -548,7 +549,8 @@
             "examples/concepts/vectordb/pgvector",
             "examples/concepts/vectordb/pinecone",
             "examples/concepts/vectordb/qdrant",
-            "examples/concepts/vectordb/singlestore"
+            "examples/concepts/vectordb/singlestore",
+            "examples/concepts/vectordb/weaviate"
           ]
         },
         {
@@ -892,7 +894,8 @@
             "reference/vector_db/pgvector",
             "reference/vector_db/pinecone",
             "reference/vector_db/qdrant",
-            "reference/vector_db/singlestore"
+            "reference/vector_db/singlestore",
+            "reference/vector_db/weaviate"
           ]
         },
         {
