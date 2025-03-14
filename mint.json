@@ -56,6 +56,10 @@
       "url": "examples"
     },
     {
+      "name": "Workspaces",
+      "url": "workspaces"
+    },
+    {
       "name": "Reference",
       "url": "reference"
     },
@@ -307,6 +311,91 @@
               ]
             },
             "workflows/advanced"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Workspaces",
+      "pages": [
+        "workspaces/introduction",
+        {
+          "group": "Agent App",
+          "pages": [
+            "workspaces/agent-app/run-local",
+            "workspaces/agent-app/run-aws"
+          ]
+        },
+        {
+          "group": "Agent API",
+          "pages": [
+            "workspaces/agent-api/run-local",
+            "workspaces/agent-api/run-aws"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "How to",
+      "pages": [
+        {
+          "group": "Manage Application",
+          "pages": [
+            "workspaces/how-to/development-app",
+            "workspaces/how-to/production-app",
+            "workspaces/how-to/install",
+            "workspaces/how-to/secrets",
+            "workspaces/how-to/env-vars",
+            "workspaces/how-to/database-tables",
+            "workspaces/how-to/ci-cd",
+            "workspaces/how-to/domain-https",
+            "workspaces/how-to/ssh-access"
+          ]
+        },
+        {
+          "group": "Manage Workspace",
+          "pages": [
+            "workspaces/how-to/workspace-settings",
+            "workspaces/how-to/git-repo",
+            "workspaces/how-to/new-users",
+            "workspaces/how-to/format-and-validate"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Workspace",
+      "pages": [
+        "workspaces/workspace/introduction",
+        "workspaces/workspace/settings",
+        "workspaces/workspace/resources"
+      ]
+    },
+    {
+      "group": "Apps",
+      "pages": [
+        "workspaces/apps/introduction",
+        "workspaces/apps/examples",
+        "workspaces/apps/features"
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": [
+        "workspaces/resources/introduction",
+        {
+          "group": "Docker",
+          "pages": [
+            "workspaces/resources/docker/introduction",
+            "workspaces/resources/docker/container"
+          ]
+        },
+        {
+          "group": "AWS",
+          "pages": [
+            "workspaces/resources/aws/introduction",
+            "workspaces/resources/aws/ecs",
+            "workspaces/resources/aws/rds"
           ]
         }
       ]

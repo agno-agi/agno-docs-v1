@@ -17,12 +17,12 @@ ag ws up dev:docker:api
 </CodeGroup>
 
 - Open [localhost:8000/docs](http://localhost:8000/docs) to view the API Endpoints.
-- Test the `/v1/playground/agent/run` endpoint with
+- Test the `/v1/agents/{agent_id}/run` endpoint with
 
 ```json
 {
   "message": "howdy",
-  "agent_id": "example-agent",
+  "agent_id": "sage",
   "stream": true
 }
 ```
