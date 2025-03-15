@@ -2,11 +2,13 @@
 title: Introduction
 ---
 
-A agno template creates a **Workspace**, which is just an umbrella term for your codebase.
+**Agno Workspaces** are standardized codebases for running Agentic Systems locally using Docker and in production on AWS. They help us manage our Agentic System as code.
 
-## Create new workspace
+![workspace](/images/workspace.png)
 
-Run `ag ws create` to create a new workspace using an Agno template
+## Create a new workspace
+
+Run `ag ws create` to create a new workspace, the command will ask your for a starter template and workspace name.
 
 <CodeGroup>
 
@@ -14,47 +16,19 @@ Run `ag ws create` to create a new workspace using an Agno template
 ag ws create
 ```
 
-```bash Create AI App
-ag ws create -t ai-app -n ai-app
+```bash Create Agent App
+ag ws create -t agent-app-aws -n agent-app
 ```
 
-```bash Create AI Api
-ag ws create -t api-app -n api-app
-```
-
-```bash Create Django App
-ag ws create -t django-app -n web-app
+```bash Create Agent API
+ag ws create -t agent-api-aws -n agent-api
 ```
 
 </CodeGroup>
 
-<br />
+## Start workspace resources
 
-<Note>
-
-`ag` will ask for a workspace template and name if not provided.
-
-</Note>
-
-## Setup existing workspace
-
-Run `ag ws setup` to setup an existing directory as an Agno workspace
-
-<CodeGroup>
-
-```bash terminal
-ag ws setup
-```
-
-```bash with debug logs
-ag ws setup -d
-```
-
-</CodeGroup>
-
-## Start workspace
-
-Run `ag ws up` to create workspace resources
+Run `ag ws up` to start i.e. create workspace resources
 
 <CodeGroup>
 
@@ -76,9 +50,9 @@ ag ws up -e dev -i docker
 
 </CodeGroup>
 
-## Stop workspace
+## Stop workspace resources
 
-Run `ag ws down` to delete workspace resources
+Run `ag ws down` to stop i.e. delete workspace resources
 
 <CodeGroup>
 
@@ -100,9 +74,9 @@ ag ws down -e dev -i docker
 
 </CodeGroup>
 
-## Patch workspace
+## Patch workspace resources
 
-Run `ag ws patch` to update workspace resources
+Run `ag ws patch` to patch i.e. update workspace resources
 
 <CodeGroup>
 
@@ -152,6 +126,22 @@ ag ws restart --env dev --infra docker
 
 ```bash short options
 ag ws restart -e dev -i docker
+```
+
+</CodeGroup>
+
+## Setup existing workspace
+
+If you clone the codebase directly (eg: if your coworker created it) - run `ag ws setup` to set it up locally
+
+<CodeGroup>
+
+```bash terminal
+ag ws setup
+```
+
+```bash with debug logs
+ag ws setup -d
 ```
 
 </CodeGroup>

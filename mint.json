@@ -332,22 +332,18 @@
       ]
     },
     {
-      "group": "Application Management",
-      "pages": [
-          "workspaces/application-management/development-app",
-          "workspaces/application-management/production-app",
-          "workspaces/application-management/install",
-          "workspaces/application-management/secrets",
-          "workspaces/application-management/env-vars",
-          "workspaces/application-management/database-tables",
-          "workspaces/application-management/ci-cd",
-          "workspaces/application-management/domain-https",
-          "workspaces/application-management/ssh-access"
-      ]
-    },
-    {
       "group": "Workspace Management",
       "pages": [
+        "workspaces/workspace-management/introduction",
+        "workspaces/workspace-management/development-app",
+        "workspaces/workspace-management/production-app",
+        "workspaces/workspace-management/install",
+        "workspaces/workspace-management/secrets",
+        "workspaces/workspace-management/env-vars",
+        "workspaces/workspace-management/database-tables",
+        "workspaces/workspace-management/ci-cd",
+        "workspaces/workspace-management/domain-https",
+        "workspaces/workspace-management/ssh-access",
         "workspaces/workspace-management/workspace-settings",
         "workspaces/workspace-management/git-repo",
         "workspaces/workspace-management/new-users",
