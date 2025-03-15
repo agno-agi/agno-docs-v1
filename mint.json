@@ -60,7 +60,7 @@
       "url": "workspaces"
     },
     {
-      "name": "Reference",
+      "name": "API reference",
       "url": "reference"
     },
     {
@@ -70,10 +70,6 @@
     {
       "name": "FAQs",
       "url": "faq"
-    },
-    {
-      "name": "Hackathon Resources",
-      "url": "hackathon"
     }
   ],
   "navigation": [
@@ -322,82 +318,40 @@
         {
           "group": "Agent App",
           "pages": [
-            "workspaces/agent-app/run-local",
-            "workspaces/agent-app/run-aws"
+            "workspaces/agent-app/local",
+            "workspaces/agent-app/aws"
           ]
         },
         {
           "group": "Agent API",
           "pages": [
-            "workspaces/agent-api/run-local",
-            "workspaces/agent-api/run-aws"
+            "workspaces/agent-api/local",
+            "workspaces/agent-api/aws"
           ]
         }
       ]
     },
     {
-      "group": "How to",
+      "group": "Application Management",
       "pages": [
-        {
-          "group": "Manage Application",
-          "pages": [
-            "workspaces/how-to/development-app",
-            "workspaces/how-to/production-app",
-            "workspaces/how-to/install",
-            "workspaces/how-to/secrets",
-            "workspaces/how-to/env-vars",
-            "workspaces/how-to/database-tables",
-            "workspaces/how-to/ci-cd",
-            "workspaces/how-to/domain-https",
-            "workspaces/how-to/ssh-access"
-          ]
-        },
-        {
-          "group": "Manage Workspace",
-          "pages": [
-            "workspaces/how-to/workspace-settings",
-            "workspaces/how-to/git-repo",
-            "workspaces/how-to/new-users",
-            "workspaces/how-to/format-and-validate"
-          ]
-        }
+          "workspaces/application-management/development-app",
+          "workspaces/application-management/production-app",
+          "workspaces/application-management/install",
+          "workspaces/application-management/secrets",
+          "workspaces/application-management/env-vars",
+          "workspaces/application-management/database-tables",
+          "workspaces/application-management/ci-cd",
+          "workspaces/application-management/domain-https",
+          "workspaces/application-management/ssh-access"
       ]
     },
     {
-      "group": "Workspace",
+      "group": "Workspace Management",
       "pages": [
-        "workspaces/workspace/introduction",
-        "workspaces/workspace/settings",
-        "workspaces/workspace/resources"
-      ]
-    },
-    {
-      "group": "Apps",
-      "pages": [
-        "workspaces/apps/introduction",
-        "workspaces/apps/examples",
-        "workspaces/apps/features"
-      ]
-    },
-    {
-      "group": "Resources",
-      "pages": [
-        "workspaces/resources/introduction",
-        {
-          "group": "Docker",
-          "pages": [
-            "workspaces/resources/docker/introduction",
-            "workspaces/resources/docker/container"
-          ]
-        },
-        {
-          "group": "AWS",
-          "pages": [
-            "workspaces/resources/aws/introduction",
-            "workspaces/resources/aws/ecs",
-            "workspaces/resources/aws/rds"
-          ]
-        }
+        "workspaces/workspace-management/workspace-settings",
+        "workspaces/workspace-management/git-repo",
+        "workspaces/workspace-management/new-users",
+        "workspaces/workspace-management/format-and-validate"
       ]
     },
     {
@@ -1070,55 +1024,6 @@
     {
       "group": "Changelog",
       "pages": ["changelog/overview"]
-    },
-    {
-      "group": "Hackathon Resources",
-      "pages": [
-        "hackathon/introduction",
-        "hackathon/setup",
-        {
-          "group": "Examples",
-          "pages": [
-            "hackathon/examples/simple-text-agent",
-            "hackathon/examples/agent-with-tools",
-            "hackathon/examples/agent-with-knowledge",
-            "hackathon/examples/structured-outputs",
-            "hackathon/examples/research-agent",
-            "hackathon/examples/youtube-agent",
-            "hackathon/examples/image-input-with-tools",
-            "hackathon/examples/image-generate",
-            "hackathon/examples/image-to-structured-output",
-            "hackathon/examples/image-generate-audio",
-            "hackathon/examples/image-input-output",
-            "hackathon/examples/image-transcribe",
-            "hackathon/examples/image-gif-seach",
-            "hackathon/examples/audio-input",
-            "hackathon/examples/audio-input-output",
-            "hackathon/examples/audio-sentiment",
-            "hackathon/examples/audio-transcript",
-            "hackathon/examples/audio-multi-turn",
-            "hackathon/examples/audio-generate-podcast",
-            "hackathon/examples/video-input",
-            "hackathon/examples/video-modelslab",
-            "hackathon/examples/video-replicate",
-            "hackathon/examples/video-captions",
-            "hackathon/examples/video-to-shorts"
-          ]
-        },
-        {
-          "group": "Models",
-          "pages": [
-            "hackathon/models/openai",
-            "hackathon/models/gemini",
-            "hackathon/models/anthropic",
-            "hackathon/models/groq",
-            "hackathon/models/mistral",
-            "hackathon/models/ollama"
-          ]
-        },
-        "hackathon/replit",
-        "hackathon/prizes"
-      ]
     }
   ],
   "footerSocials": {

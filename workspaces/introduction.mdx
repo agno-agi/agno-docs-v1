@@ -1,45 +1,50 @@
 ---
-title: Introduction
+title: What are Workspaces?
+sidebarTitle: Introduction
 ---
 
-An AI project has the following components:
+Workspaces are standardized codebases for Agentic Systems. They contain:
 
-- Agents
-- APIs
-- Databases
-- Deployment configurations
+- A RestAPI (FastAPI) to serving Agents, Teams and Workflows.
+- A streamlit application for debugging and testing. This streamlit app is very versatile and is used as an admin interface for the agentic system.
+- A postgres database for session and vector storage.
 
-**Agno Workspaces** are a container for all the components of your AI project.
+The codebases are setup to run locally using docker and can be deployed to AWS with 1 command. They're a fantastic starting point and exactly what we ourselves use for our customers. Years of learning available for free for the open-source community.
 
-To run agents in production, we need to:
+## Here's how they work:
 
-1. Serve them using an application like **FastAPI**, **Django** or **Streamlit**.
-2. Manage their sessions, memory and knowlege in a database.
-3. Monitor, evaluate and improve their performance.
+- Create your codebase using: `ag ws create`
+- Run locally using docker: `ag ws up`
+- Run in production on AWS: `ag ws up prd:aws`
 
-Agno not only makes building Agents easy but also provides templates that can be deployed to AWS with 1 command. Here's how they work:
-
-- Create your codebase using a template: `ag ws create`
-- Run your application locally: `ag ws up`
-- Run your application on AWS: `ag ws up prd:aws`
-
-<Note>
-We strongly believe that data used by AI applications should be stored securely inside your VPC.
-
-We fully support BYOC (Bring Your Own Cloud) and encourage you to use your own AWS account.
-
-</Note>
-
-## Templates
-
-We recommend starting with the `agent-app` template and adding your own agents.
+We recommend starting with the `agent-app` template and taking it from there.
 
 <CardGroup cols={2}>
-  <Card title="Agent App" icon="books" href="/templates/agent-app/run-local">
-    Run agents using FastAPI, Streamlit and store memory and knowlege in
-    Postgres
+  <Card title="Agent App" icon="books" href="/workspaces/agent-app/local">
+    An Agentic System built with FastAPI, Streamlit and a Postgres database.
   </Card>
-  <Card title="Agent Api" icon="bolt" href="/templates/agent-api/run-local">
-    Run agents using FastAPI and store memory and knowlege in Postgres
+  <Card title="Agent Api" icon="bolt" href="/workspaces/agent-api/local">
+    An Agent API built with FastAPI and Postgres.
   </Card>
 </CardGroup>
+
+# How we build Agentic Systems
+
+When building Agents, we start locally and iterate till we achieve 6/10 quality.
+This helps us see quick results and get a rough idea of how our solution should look like in production.
+
+Then, we start moving to a production environment and iterate from there. Here's how __*we*__ build production systems:
+- Serve Agents, Teams and Workflows via a RestAPI (FastAPI).
+- Use a streamlit application for debugging and testing. This streamlit app is generally used as an admin interface for the agentic system and shows all sorts of data.llll
+- Monitor, evaluate and improve till we reach 9/10 quality.
+- In parallel, we start integrating our front-end with the Rest API above.
+
+Having built 100s of such systems, we have a standard set of codebases we use and we call them **Workspaces**.
+Think of **Workspaces** as an umbrella for your AI project, which helps you manage your Agentic Infrastructure as a monorepo.
+
+![workspace](/images/workspace.png)
+
+<Note>
+We strongly believe that your AI applications should run securely inside your VPC.
+We fully support BYOC (Bring Your Own Cloud) and encourage you to use your own cloud account.
+</Note>
