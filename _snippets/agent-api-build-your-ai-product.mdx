@@ -4,5 +4,5 @@ The `agent-app` comes with common endpoints that you can use to build your AI pr
 
 The general workflow is:
 
-- Your front-end/product will call the `/v1/agents/{agent_id}/run` to run Agents.
+- Your front-end/product will call the `POST /v1/agents/{agent_id}/runs` to run Agents.
 - Using the `session_id` returned, your product can continue and serve chats to its users.
