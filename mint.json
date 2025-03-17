@@ -80,7 +80,8 @@
         "get-started/agents",
         "get-started/playground",
         "get-started/monitoring",
-        "get-started/community"
+        "get-started/community",
+        "get-started/agent-ui"
       ]
     },
     {

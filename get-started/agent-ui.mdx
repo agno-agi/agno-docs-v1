@@ -1,0 +1,67 @@
+---
+title: Agent UI
+---
+
+
+A modern chat interface for AI agents built with Next.js, Tailwind CSS, and TypeScript. This template provides a ready-to-use UI for interacting with Agno agents.
+
+<img height="800" src="/images/agentui.png" alt="agent-ui" style={{ borderRadius: "10px" }} />
+
+## Features
+
+- 💬 **Modern Chat Interface**: Clean, responsive design with message streaming support
+- 🔍 **Agent Selection**: Switch between different AI agents
+- 🔄 **Real-time Streaming**: Stream AI responses as they're generated
+- 🧩 **Tool Calls Support**: Visualize agent tool calls and their results
+- 🧠 **Reasoning Steps**: Display agent reasoning process (when available)
+- 📚 **References Support**: Show sources used by the agent
+- 🖼️ **Multi-modality Support**: Handle various content types including images, video, and audio
+- 🎨 **Customizable UI**: Built with Tailwind CSS for easy styling
+- 🧰 **Built with Modern Stack**: Next.js, TypeScript, shadcn/ui, Framer Motion, and more
+
+## Getting Started
+
+### Prerequisites
+
+Before setting up this UI, you may want to have an Agno agent backend running. If you haven't set up the Agno Playground yet, follow the [official guide](https://docs.agno.com/get-started/playground#running-playground-locally) to run the Playground locally.
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/agno-agi/agent-ui.git
+cd agent-ui
+```
+
+<Tip>Make sure you have Node.js and pnpm installed on your system before proceeding.</Tip>
+
+2. Install the dependencies:
+
+```bash
+pnpm install
+```
+
+3. Start the development server:
+
+```bash
+pnpm dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Connecting to an Agent Backend
+
+<Note>
+By default, Agent UI connects to `http://localhost:7777`, which works with the standard Agno Playground setup.
+</Note>
+
+You can change the endpoint by:
+1. Hovering over the endpoint URL in the UI
+2. Clicking the edit option
+3. Entering your new endpoint URL
+
+
+
+The default endpoint works with the standard Agno Playground setup described in the [official documentation](https://docs.agno.com/get-started/playground#running-playground-locally).
+
