@@ -2,6 +2,39 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-03-14" description="v1.1.13">
+## 1.1.13
+
+## Improvements:
+
+- **OpenAIResponses File Search**: Added support for the built-in [“File Search”](https://platform.openai.com/docs/guides/tools-file-search) function from OpenAI. This automatically uploads `File` objects attached to the agent prompt.
+- **OpenAIReponses web citations**: Added support to extract URL citations after usage of the built-in “Web Search” tool from OpenAI.
+- **Anthropic document citations**: Added support to extract document citations from Claude responses when `File` objects are attached to agent prompts.
+- **Cohere Command A**: Support and examples added for Coheres new flagship model
+
+## Bug Fixes:
+
+- **Ollama tools**: Fixed issues with tools where parameters are not typed.
+- **Anthropic Structured Output**: Fixed issue affecting Anthropic and Anthropic via Azure where structured output wouldn’t work in some cases. This should make the experience of using structured output for models that don’t natively support it better overall. Also now works with enums as types in the Pydantic model.
+- **Google Maps Places**: Support from Google for Places API has been changed and this brings it up to date so we can continue to support “search places”.
+
+</Update>
+<Update label="2025-03-13" description="v1.1.12">
+## 1.1.12
+
+## New Features:
+
+- **Citations**: Improved support for capturing, displaying, and storing citations from models, with integration for Gemini and Perplexity.
+
+## Improvements:
+
+- **CalComTools**: Improvement to tool Initialization.
+
+## Bug Fixes:
+
+- **MemoryManager**:  Limit parameter was added fixing a KeyError in MongoMemoryDb.
+
+</Update>
 <Update label="2025-03-13" description="v1.1.11">
 ## 1.1.11
 
