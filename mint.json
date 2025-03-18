@@ -98,8 +98,16 @@
             "agents/knowledge",
             "agents/memory",
             "agents/storage",
-            "agents/reasoning",
-            "agents/teams"
+            "agents/reasoning"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            "teams/introduction",
+            "teams/coordinate",
+            "teams/route",
+            "teams/collaborate"
           ]
         },
         {
@@ -355,6 +363,32 @@
           ]
         },
         {
+          "group": "Teams",
+          "pages": [
+            {
+              "group": "Collaborate",
+              "pages": [
+                "examples/teams/collaborate/discussion_team"
+              ]
+            },
+            {
+              "group": "Coordinate",
+              "pages": [
+                "examples/teams/coordinate/autonomous_startup_team",
+                "examples/teams/coordinate/hackernews_team",
+                "examples/teams/coordinate/news_agency_team"
+              ]
+            },
+            {
+              "group": "Route",
+              "pages": [
+                "examples/teams/route/ai_support_team",
+                "examples/teams/route/multi_language_team"
+              ]
+            }
+          ]
+        },
+        {
           "group": "Workflows",
           "pages": [
             "examples/workflows/blog-post-generator",
@@ -433,13 +467,6 @@
             "examples/concepts/memory/memories-and-summaries-sqlite-async",
             "examples/concepts/memory/persistent-memory-mongodb",
             "examples/concepts/memory/mem0-memory"
-          ]
-        },
-        {
-          "group": "Teams",
-          "pages": [
-            "examples/concepts/teams/news-agency-team",
-            "examples/concepts/teams/respond-directly"
           ]
         },
         {
