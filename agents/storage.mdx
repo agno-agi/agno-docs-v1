@@ -4,19 +4,28 @@ title: Storage
 
 **Agents use storage to persist sessions by storing them in a database.**
 
-Agents come with built-in memory, but it only lasts while the session is active. To continue conversations across sessions, we store agent sessions in a database like Sqllite or PostgreSQL.
+Agents come with built-in memory but it only lasts while the session is active. To continue conversations across sessions, we store Agent sessions in a database like PostgreSQL.
+
+Storage is a necessary component when building user facing AI products as any production application will require users to be able to "continue" their conversation with the Agent.
+
+<Note>
+Storage works with both agents and workflows.
+The storage system in Agno is versatile and can be used with both individual agents and complex workflows. This allows for persistent conversations and cached results across sessions.
+
+Learn more about using storage with [workflows](/workflows/) to build powerful multi-agent systems with state management.
+</Note>
 
 The general syntax for adding storage to an Agent looks like:
 
-```python
+```python storage.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.storage.agent.postgres import PostgresAgentStorage
+from agno.storage.postgres import PostgresStorage
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    storage=PostgresAgentStorage(table_name="agent_sessions", db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"),
+    storage=PostgresStorage(table_name="agent_sessions", db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"),
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     add_history_to_messages=True,
@@ -158,4 +167,4 @@ agent.print_response("Which country are we speaking about?")
 
  ## Developer Resources
 
-- View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/storage)
+- View [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/storage)

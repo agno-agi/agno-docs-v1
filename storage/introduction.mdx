@@ -2,18 +2,13 @@
 title: Introduction
 ---
 
-Agents come with built-in memory but it only lasts while the session is active. To continue conversations across sessions, we store Agent sessions in a database like PostgreSQL.
+Storage is a necessary component when building user-facing AI products. While agents come with built-in memory, it only lasts during the active session. For persistent conversations across sessions, Agno provides storage options that work with both individual agents and complex workflows.
 
-Storage is a necessary component when building user facing AI products as any production application will require users to be able to "continue" their conversation with the Agent.
+## Agent Storage
 
-<Note>
-Storage works with both agents and workflows.
-The storage system in Agno is versatile and can be used with both individual agents and complex workflows. This allows for persistent conversations and cached results across sessions.
+When working with agents, storage allows users to continue conversations where they left off. Every message, along with the agent's responses, is saved to your database of choice.
 
-Learn more about using storage with [workflows](/workflows/) to build powerful multi-agent systems with state management.
-</Note>
-
-The general syntax for adding storage to an Agent looks like:
+Here's a simple example of adding storage to an agent:
 
 ```python storage.py
 from agno.agent import Agent
@@ -23,20 +18,31 @@ from agno.storage.postgres import PostgresStorage
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    storage=PostgresStorage(table_name="agent_sessions", db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"),
+    storage=PostgresStorage(
+        table_name="agent_sessions", 
+        db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"
+    ),
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     add_history_to_messages=True,
 )
+
+# These messages will persist across sessions
 agent.print_response("How many people live in Canada?")
 agent.print_response("What is their national anthem called?")
 agent.print_response("Which country are we speaking about?")
 ```
 
-The following databases are supported as a storage backend:
+## Workflow Storage
 
-- [PostgreSQL](/storage/postgres)
-- [Sqlite](/storage/sqlite)
-- [SingleStore](/storage/singlestore)
-- [DynamoDB](/storage/dynamodb)
-- [MongoDB](/storage/mongodb)
+The storage system in Agno also works with workflows, enabling more complex multi-agent systems with state management. This allows for persistent conversations and cached results across workflow sessions.
+
+<Note>
+Learn more about using storage with [workflows](/workflows/) to build powerful multi-agent systems with state management.
+</Note>
+
+## Supported Storage Backends
+
+Agno supports the following databases as storage backends: PostgreSQL, Sqlite, SingleStore, DynamoDB, and MongoDB.
+
+Check detailed [examples](/examples/concepts/storage) for each storage 
