@@ -1,0 +1,53 @@
+---
+title: Agent with Tools
+---
+
+## Code
+
+```python cookbook/models/litellm/tool_use.py
+from agno.agent import Agent
+from agno.models.litellm import LiteLLM
+from agno.tools.yfinance import YFinanceTools
+
+openai_agent = Agent(
+    model=LiteLLM(
+        id="gpt-4o",
+        name="LiteLLM",
+    ),
+    markdown=True,
+    tools=[YFinanceTools()],
+)
+
+# Ask a question that would likely trigger tool use
+openai_agent.print_response("How is TSLA stock doing right now?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export LITELLM_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U litellm agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/litellm/tool_use.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/litellm/tool_use.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

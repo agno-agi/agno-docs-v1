@@ -105,36 +105,40 @@
         {
           "group": "Models",
           "pages": [
-            "models/introduction",
-            "models/compatibility",
-            "models/openai",
-            "models/openai-like",
-            "models/anthropic",
-            {
-              "group": "AWS",
-              "pages": ["models/aws-bedrock", "models/aws-claude"]
-            },
-            {
-              "group": "Azure",
-              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
-            },
-            "models/cohere",
-            "models/deepinfra",
-            "models/deepseek",
-            "models/fireworks",
-            "models/google",
-            "models/groq",
-            "models/huggingface",
-            "models/ibm-watsonx",
-            "models/lmstudio",
-            "models/mistral",
-            "models/nvidia",
-            "models/ollama",
-            "models/openrouter",
-            "models/perplexity",
-            "models/sambanova",
-            "models/together",
-            "models/xai"
+              "models/introduction",
+              "models/compatibility",
+              "models/openai",
+              "models/openai-like",
+              "models/anthropic",
+              {
+                  "group": "AWS",
+                  "pages": ["models/aws-bedrock", "models/aws-claude"]
+              },
+              {
+                  "group": "Azure",
+                  "pages": ["models/azure-ai-foundry", "models/azure-openai"]
+              },
+              "models/cohere",
+              "models/deepinfra",
+              "models/deepseek",
+              "models/fireworks",
+              "models/google",
+              "models/groq",
+              "models/huggingface",
+              "models/ibm-watsonx",
+              {
+                  "group": "LiteLLM",
+                  "pages": ["models/litellm", "models/litellm_openai"]
+              },
+              "models/lmstudio",
+              "models/mistral",
+              "models/nvidia",
+              "models/ollama",
+              "models/openrouter",
+              "models/perplexity",
+              "models/sambanova",
+              "models/together",
+              "models/xai"
           ]
         },
         {
@@ -803,6 +807,25 @@
             "examples/models/lmstudio/knowledge",
             "examples/models/lmstudio/image_agent"
           ]
+        },
+        {
+            "group": "LiteLLM",
+            "pages": [
+                "examples/models/litellm/basic",
+                "examples/models/litellm/basic_stream",
+                "examples/models/litellm/tool_use",
+                "examples/models/litellm/structured_output",
+                "examples/models/litellm/storage",
+                "examples/models/litellm/knowledge"
+            ]
+        },
+        {
+            "group": "LiteLLM OpenAI",
+            "pages": [
+                "examples/models/litellm_openai/basic",
+                "examples/models/litellm_openai/basic_stream",
+                "examples/models/litellm_openai/tool_use"
+            ]
         }
       ]
     },
