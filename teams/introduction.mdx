@@ -53,25 +53,19 @@ Agno Teams can operate in three different modes, each providing a different appr
 
 ## Team Context
 
-Teams in Agno maintain a shared context that can be updated by the coordinator and can be sent to team members. This allows for effective information sharing and collaboration between agents.
+Teams in Agno maintain a shared context that can be updated agentically (i.e. by the team leader agent) and can be sent to team members. Team member tasks and responses are automatically added to the team context.
+This allows for effective information sharing and collaboration between agents.
 
-### Team Context Updates
+### Enable Agentic Context
 
-The team context can be updated during a run, allowing agents to store and share information:
+The team context can be updated during a run, allowing the team leader agent to store and share information with team members:
 
 ```python
 team = Team(
     members=[agent1, agent2, agent3],
-    update_team_context=True,  # Enable team context updates by the coordinator
-    send_team_context_to_members=True,  # Share context with members
+    enable_agentic_context=True,  # Enable team context updates by the team leader agent
 )
-
 ```
-
-<Tip>
-Context is automatically updated after team members respond
-</Tip>
-
 
 ### Team Member Interactions
 
@@ -80,7 +74,7 @@ Teams can be configured to share interactions between members, allowing agents t
 ```python
 team = Team(
     members=[agent1, agent2, agent3],
-    send_team_member_interactions_to_members=True,  # Share interactions
+    share_member_interactions=True,  # Share interactions
 )
 ```
 <Tip>
