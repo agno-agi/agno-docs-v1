@@ -46,7 +46,6 @@ class BlogPostGenerator(Workflow):
         tools=[DuckDuckGoTools()],
         instructions=["Given a topic, search for the top 5 articles."],
         response_model=SearchResults,
-        structured_outputs=True,
     )
 
     # Define an Agent that will write the blog post
@@ -93,7 +92,6 @@ class BlogPostGenerator(Workflow):
         tools=[DuckDuckGoTools()],
         instructions=["Given a topic, search for the top 5 articles."],
         response_model=SearchResults,
-        structured_outputs=True,
     )
 
     # Define an Agent that will write the blog post
@@ -194,7 +192,6 @@ class BlogPostGenerator(Workflow):
         tools=[DuckDuckGoTools()],
         instructions=["Given a topic, search for the top 5 articles."],
         response_model=SearchResults,
-        structured_outputs=True,
     )
 
     # Define an Agent that will write the blog post
@@ -319,7 +316,6 @@ class BlogPostGenerator(Workflow):
         tools=[DuckDuckGoTools()],
         instructions=["Given a topic, search for the top 5 articles."],
         response_model=SearchResults,
-        structured_outputs=True,
     )
 
     # Define an Agent that will write the blog post
