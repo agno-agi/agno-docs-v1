@@ -848,6 +848,14 @@
           ]
         },
         {
+          "group": "Teams",
+          "pages": [
+            "reference/teams/team",
+            "reference/teams/session",
+            "reference/teams/memory"
+          ]
+        },
+        {
           "group": "Workflows",
           "pages": [
             "reference/workflows/workflow",
