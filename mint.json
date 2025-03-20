@@ -273,7 +273,14 @@
         {
           "group": "Storage",
           "pages": [
-            "storage/introduction"
+            "storage/introduction",
+            "storage/dynamodb",
+            "storage/json",
+            "storage/mongodb",
+            "storage/postgres",
+            "storage/sqlite",
+            "storage/yaml",
+            "storage/singlestore"
           ]
         },
         {
