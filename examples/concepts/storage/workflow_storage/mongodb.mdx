@@ -16,7 +16,6 @@ docker run --name mongodb -d -p 27017:27017 mongodb/mongodb-community-server:lat
 ```
 
 ```python mongodb_storage_for_workflow.py
-
 import json
 from typing import Iterator
 
@@ -30,6 +29,7 @@ from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
 
 db_url = "mongodb://localhost:27017"
+
 
 class HackerNewsReporter(Workflow):
     description: str = (
