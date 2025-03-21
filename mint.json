@@ -470,13 +470,6 @@
               ]
           },
           {
-              "group": "Teams",
-              "pages": [
-                  "examples/concepts/teams/news-agency-team",
-                  "examples/concepts/teams/respond-directly"
-              ]
-          },
-          {
               "group": "Async",
               "pages": [
                   "examples/concepts/async/basic",
