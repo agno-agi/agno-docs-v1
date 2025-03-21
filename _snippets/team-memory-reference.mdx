@@ -1,0 +1,75 @@
+### Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|-------------|---------|
+| `runs` | `List[TeamRun]` | `[]` | List of team conversation runs |
+| `messages` | `List[Message]` | `[]` | List of messages sent to the model |
+| `update_system_message_on_change` | `bool` | `True` | Whether to update system message when it changes |
+| `team_context` | `Optional[TeamContext]` | `None` | Context shared among team members |
+| `create_user_memories` | `bool` | `False` | Whether to create personalized memories for users |
+| `update_user_memories_after_run` | `bool` | `True` | Whether to update memories after each run |
+| `db` | `Optional[MemoryDb]` | `None` | Database for storing personalized memories |
+| `user_id` | `Optional[str]` | `None` | User identifier for personalized memories |
+| `retrieval` | `MemoryRetrieval` | `MemoryRetrieval.last_n` | Memory retrieval strategy |
+| `memories` | `Optional[List[Memory]]` | `None` | List of retrieved memories |
+| `classifier` | `Optional[MemoryClassifier]` | `None` | Classifier for memory importance |
+| `manager` | `Optional[MemoryManager]` | `None` | Manager for memory operations |
+| `num_memories` | `Optional[int]` | `None` | Number of memories to retrieve |
+
+### TeamRun
+
+| Parameter | Type | Default | Description |
+|-----------|------|-------------|---------|
+| `message` | `Optional[Message]` | `None` | Message associated with the team run |
+| `member_runs` | `Optional[List[AgentRun]]` | `None` | List of member agent runs |
+| `response` | `Optional[TeamRunResponse]` | `None` | Response generated during the team run |
+
+### TeamContext
+
+| Parameter | Type | Default | Description |
+|-----------|------|-------------|---------|
+| `member_interactions` | `List[TeamMemberInteraction]` | `[]` | List of interactions between team members |
+| `text` | `Optional[str]` | `None` | Shared text context for the team |
+
+### TeamMemberInteraction
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `member_name` | `str` | Name of the team member |
+| `task` | `str` | Task assigned to the team member |
+| `response` | `RunResponse` | Response from the team member |
+
+### Memory Retrieval
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `last_n` | `str` | Retrieve the last N memories from history |
+| `first_n` | `str` | Retrieve the first N memories from history |
+| `semantic` | `str` | Retrieve memories based on semantic similarity |
+
+### Memory
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `memory` | `str` | The actual memory content | Required |
+| `id` | `Optional[str]` | Unique identifier for the memory | `None` |
+| `topic` | `Optional[str]` | Topic or category of the memory | `None` |
+| `input` | `Optional[str]` | Original input that generated the memory | `None` |
+
+### Memory Classifier
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for classifying memories | `None` |
+| `system_prompt` | `Optional[str]` | Custom system prompt for the classifier | `None` |
+| `existing_memories` | `Optional[List[Memory]]` | List of existing memories to check against | `None` |
+
+### Memory Manager
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for managing memories | `None` |
+| `user_id` | `Optional[str]` | Unique identifier for the user | `None` |
+| `system_prompt` | `Optional[str]` | Custom system prompt for the memory manager | `None` |
+| `db` | `Optional[MemoryDb]` | Database for storing memories | `None` |
+| `input_message` | `Optional[str]` | Current input message being processed | `None` |

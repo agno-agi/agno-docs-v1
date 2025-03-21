@@ -98,8 +98,16 @@
             "agents/knowledge",
             "agents/memory",
             "agents/storage",
-            "agents/reasoning",
-            "agents/teams"
+            "agents/reasoning"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            "teams/introduction",
+            "teams/coordinate",
+            "teams/route",
+            "teams/collaborate"
           ]
         },
         {
@@ -352,6 +360,32 @@
             "examples/agents/movie-recommender",
             "examples/agents/books-recommender",
             "examples/agents/travel-planner"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            {
+              "group": "Collaborate",
+              "pages": [
+                "examples/teams/collaborate/discussion_team"
+              ]
+            },
+            {
+              "group": "Coordinate",
+              "pages": [
+                "examples/teams/coordinate/autonomous_startup_team",
+                "examples/teams/coordinate/hackernews_team",
+                "examples/teams/coordinate/news_agency_team"
+              ]
+            },
+            {
+              "group": "Route",
+              "pages": [
+                "examples/teams/route/ai_support_team",
+                "examples/teams/route/multi_language_team"
+              ]
+            }
           ]
         },
         {
@@ -853,6 +887,14 @@
             "reference/agents/agent",
             "reference/agents/session",
             "reference/agents/memory"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            "reference/teams/team",
+            "reference/teams/session",
+            "reference/teams/memory"
           ]
         },
         {

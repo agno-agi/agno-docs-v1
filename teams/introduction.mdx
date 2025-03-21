@@ -1,0 +1,219 @@
+---
+title: 'Introduction'
+description: 'Build sophisticated multi-agent systems with Agno Teams'
+---
+
+# Introduction to Teams
+
+Teams in Agno allow you to create multi-agent systems where agents work together to solve complex problems. By combining specialized agents into a team, you can tackle sophisticated tasks through collaboration, coordination, and routing.
+
+## What are Teams?
+
+A team is a collection of agents (or other sub-teams) that work together to accomplish tasks. Teams provide a framework for creating complex systems where multiple agents can interact and collaborate effectively.
+
+```python
+from agno.agent import Agent
+from agno.team import Team
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+# Create individual specialized agents
+researcher = Agent(
+    name="Researcher",
+    role="Expert at finding information",
+    tools=[DuckDuckGoTools()],
+    model=OpenAIChat("gpt-4o"),
+)
+
+writer = Agent(
+    name="Writer",
+    role="Expert at writing clear, engaging content",
+    model=OpenAIChat("gpt-4o"),
+)
+
+# Create a team with these agents
+content_team = Team(
+    members=[researcher, writer],
+    name="Content Team",
+    instructions="You are a team of researchers and writers that work together to create high-quality content.",
+    model=OpenAIChat("gpt-4o"),
+)
+
+# Run the team with a task
+content_team.print_response("Create a short article about quantum computing")
+```
+
+## Team Modes
+
+Agno Teams can operate in three different modes, each providing a different approach to collaboration:
+
+- [**Route Mode**](/teams/route): Routes the user's request to the most appropriate team member based on the content of the request.
+- [**Coordinate Mode**](/teams/coordinate): A team coordinator agent delegates tasks to team members and synthesizes their outputs into a cohesive response.
+- [**Collaborate Mode**](/teams/collaborate): All team members are given the same task and the team coordinator synthesizes their outputs into a cohesive response.
+
+## Team Context
+
+Teams in Agno maintain a shared context that can be updated agentically (i.e. by the team leader agent) and can be sent to team members. Team member tasks and responses are automatically added to the team context.
+This allows for effective information sharing and collaboration between agents.
+
+### Enable Agentic Context
+
+The team context can be updated during a run, allowing the team leader agent to store and share information with team members:
+
+```python
+team = Team(
+    members=[agent1, agent2, agent3],
+    enable_agentic_context=True,  # Enable team context updates by the team leader agent
+)
+```
+
+### Team Member Interactions
+
+Teams can be configured to share interactions between members, allowing agents to learn from each other's outputs:
+
+```python
+team = Team(
+    members=[agent1, agent2, agent3],
+    share_member_interactions=True,  # Share interactions
+)
+```
+<Tip>
+Member interactions are automatically added to the team context after communication with members
+</Tip>
+
+## Team Memory and History
+
+Teams can maintain memory of previous interactions, enabling contextual awareness:
+
+```python
+from agno.team import Team
+
+team_with_memory = Team(
+    name="Team with Memory",
+    members=[agent1, agent2],
+    enable_team_history=True,
+    num_of_interactions_from_history=5,
+)
+
+# The team will remember previous interactions
+team_with_memory.print_response("What are the key challenges in quantum computing?")
+team_with_memory.print_response("Elaborate on the second challenge you mentioned")
+```
+
+## Running Teams
+
+Teams support both synchronous and asynchronous execution, with optional streaming:
+
+```python
+# Synchronous execution
+result = team.run("Create an analysis of recent AI developments")
+
+# Asynchronous execution
+result = await team.arun("Create an analysis of recent AI developments")
+
+# Streaming responses
+for chunk in team.run("Create an analysis of recent AI developments", stream=True):
+    print(chunk.content, end="", flush=True)
+
+# Asynchronous streaming
+async for chunk in await team.arun("Create an analysis of recent AI developments", stream=True):
+    print(chunk.content, end="", flush=True)
+```
+
+## Full Example: Research Team
+
+Here's a complete example of a research team that combines multiple specialized agents:
+
+<Steps>
+  <Step title="Create HackerNews Team">
+    Create a file `hackernews_team.py`
+
+    ```python hackernews_team.py 
+    from typing import List
+
+    from agno.agent import Agent
+    from agno.models.openai import OpenAIChat
+    from agno.team import Team
+    from agno.tools.duckduckgo import DuckDuckGoTools
+    from agno.tools.hackernews import HackerNewsTools
+    from agno.tools.newspaper4k import Newspaper4kTools
+    from pydantic import BaseModel
+
+    class Article(BaseModel):
+        title: str
+        summary: str
+        reference_links: List[str]
+
+
+    hn_researcher = Agent(
+        name="HackerNews Researcher",
+        model=OpenAIChat("gpt-4o"),
+        role="Gets top stories from hackernews.",
+        tools=[HackerNewsTools()],
+    )
+
+    web_searcher = Agent(
+        name="Web Searcher",
+        model=OpenAIChat("gpt-4o"),
+        role="Searches the web for information on a topic",
+        tools=[DuckDuckGoTools()],
+        add_datetime_to_instructions=True,
+    )
+
+    article_reader = Agent(
+        name="Article Reader",
+        role="Reads articles from URLs.",
+        tools=[Newspaper4kTools()],
+    )
+
+    hackernews_team = Team(
+        name="HackerNews Team",
+        mode="coordinate",
+        model=OpenAIChat("gpt-4o"),
+        members=[hn_researcher, web_searcher, article_reader],
+        instructions=[
+            "First, search hackernews for what the user is asking about.",
+            "Then, ask the article reader to read the links for the stories to get more information.",
+            "Important: you must provide the article reader with the links to read.",
+            "Then, ask the web searcher to search for each story to get more information.",
+            "Finally, provide a thoughtful and engaging summary.",
+        ],
+        response_model=Article,
+        show_tool_calls=True,
+        markdown=True,
+        debug_mode=True,
+        show_members_responses=True,
+    )
+
+    # Run the team
+    report = hackernews_team.run(
+        "What are the top stories on hackernews?"
+    ).content
+
+    print(f"Title: {report.title}")
+    print(f"Summary: {report.summary}")
+    print(f"Reference Links: {report.reference_links}")
+    ```
+
+  </Step>
+  <Step title="Run the team">
+    Install libraries
+
+    ```shell
+    pip install openai duckduckgo-search newspaper4k lxml_html_clean agno
+    ```
+
+    Run the team
+
+    ```shell
+    python hackernews_team.py
+    ```
+
+  </Step>
+</Steps>
+
+
+## Developer Resources
+
+- View [Examples](https://github.com/agno-agi/agno/blob/main/cookbook/teams/)
+- View [Source Code](https://github.com/agno-agi/agno/blob/main/agno/team/team.py)
