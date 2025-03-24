@@ -172,6 +172,7 @@
                 "tools/toolkits/custom_api",
                 "tools/toolkits/dalle",
                 "tools/toolkits/discord",
+                "tools/toolkits/docker",
                 "tools/toolkits/duckdb",
                 "tools/toolkits/duckduckgo",
                 "tools/toolkits/email",
@@ -556,9 +557,22 @@
                           "examples/concepts/storage/workflow_storage/postgres",
                           "examples/concepts/storage/workflow_storage/sqlite",
                           "examples/concepts/storage/workflow_storage/singlestore",
+                          "examples/concepts/storage/workflow_storage/dynamodb",
                           "examples/concepts/storage/workflow_storage/mongodb",
                           "examples/concepts/storage/workflow_storage/json",
                           "examples/concepts/storage/workflow_storage/yaml"
+                      ]
+                  },
+                  {
+                      "group": "Team Storage",
+                      "pages": [
+                          "examples/concepts/storage/team_storage/postgres",
+                          "examples/concepts/storage/team_storage/sqlite",
+                          "examples/concepts/storage/team_storage/singlestore",
+                          "examples/concepts/storage/team_storage/dynamodb",
+                          "examples/concepts/storage/team_storage/mongodb",
+                          "examples/concepts/storage/team_storage/json",
+                          "examples/concepts/storage/team_storage/yaml"
                       ]
                   }
               ]
@@ -581,6 +595,7 @@
                   "examples/concepts/tools/dalle",
                   "examples/concepts/tools/desi_vocal",
                   "examples/concepts/tools/discord",
+                  "examples/concepts/tools/docker",
                   "examples/concepts/tools/duckdb",
                   "examples/concepts/tools/email",
                   "examples/concepts/tools/exa",
