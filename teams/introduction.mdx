@@ -1,75 +1,102 @@
 ---
 title: 'Introduction'
-description: 'Build sophisticated multi-agent systems with Agno Teams'
+description: '**Build autonomous multi-agent systems with Agent Teams**'
 ---
 
-# Introduction to Teams
+Reliability is one of the biggest challenges in building agentic systems, for this reason, we recommend that Agents have a narrow scope and a small number of tools.
 
-Teams in Agno allow you to create multi-agent systems where agents work together to solve complex problems. By combining specialized agents into a team, you can tackle sophisticated tasks through collaboration, coordination, and routing.
+However, real-world problems often span multiple domains and require diverse skill sets, meaning that a single agent is not able to solve the problem reliably.
 
-## What are Teams?
+**Agent Teams combine multiple specialized agents, each focused on a different aspect of the problem, to solve complex problems in an autonomous manner.**
 
-A team is a collection of agents (or other sub-teams) that work together to accomplish tasks. Teams provide a framework for creating complex systems where multiple agents can interact and collaborate effectively.
+## What are Agent Teams?
 
-```python
-from agno.agent import Agent
-from agno.team import Team
-from agno.models.openai import OpenAIChat
-from agno.tools.duckduckgo import DuckDuckGoTools
+Agent Teams are a collection of Agents (or other sub-teams) that work together to accomplish tasks. Agent Teams can either **"coordinate"**, **"collaborate"** or **"route"** to solve a task.
 
-# Create individual specialized agents
-researcher = Agent(
-    name="Researcher",
-    role="Expert at finding information",
-    tools=[DuckDuckGoTools()],
-    model=OpenAIChat("gpt-4o"),
-)
-
-writer = Agent(
-    name="Writer",
-    role="Expert at writing clear, engaging content",
-    model=OpenAIChat("gpt-4o"),
-)
-
-# Create a team with these agents
-content_team = Team(
-    members=[researcher, writer],
-    name="Content Team",
-    instructions="You are a team of researchers and writers that work together to create high-quality content.",
-    model=OpenAIChat("gpt-4o"),
-)
-
-# Run the team with a task
-content_team.print_response("Create a short article about quantum computing")
-```
-
-## Team Modes
-
-Agno Teams can operate in three different modes, each providing a different approach to collaboration:
-
-- [**Route Mode**](/teams/route): Routes the user's request to the most appropriate team member based on the content of the request.
-- [**Coordinate Mode**](/teams/coordinate): A team coordinator agent delegates tasks to team members and synthesizes their outputs into a cohesive response.
+- [**Route Mode**](/teams/route): The Team Leader routes the user's request to the most appropriate team member based on the content of the request.
+- [**Coordinate Mode**](/teams/coordinate): The Team Leader delegates tasks to team members and synthesizes their outputs into a cohesive response.
 - [**Collaborate Mode**](/teams/collaborate): All team members are given the same task and the team coordinator synthesizes their outputs into a cohesive response.
+
+## Example
+
+Let's walk through a simple example where we use different models to answer questions in different languages. The team consists of three specialized agents and the team leader routes the user's question to the appropriate language agent.
+
+```python multilanguage_team.py
+from agno.agent import Agent
+from agno.models.deepseek import DeepSeek
+from agno.models.mistral.mistral import MistralChat
+from agno.models.openai import OpenAIChat
+from agno.team.team import Team
+
+english_agent = Agent(
+    name="English Agent",
+    role="You only answer in English",
+    model=OpenAIChat(id="gpt-4o"),
+)
+chinese_agent = Agent(
+    name="Chinese Agent",
+    role="You only answer in Chinese",
+    model=DeepSeek(id="deepseek-chat"),
+)
+french_agent = Agent(
+    name="French Agent",
+    role="You can only answer in French",
+    model=MistralChat(id="mistral-large-latest"),
+)
+
+multi_language_team = Team(
+    name="Multi Language Team",
+    mode="route",
+    model=OpenAIChat("gpt-4o"),
+    members=[english_agent, chinese_agent, french_agent],
+    show_tool_calls=True,
+    markdown=True,
+    description="You are a language router that directs questions to the appropriate language agent.",
+    instructions=[
+        "Identify the language of the user's question and direct it to the appropriate language agent.",
+        "If the user asks in a language whose agent is not a team member, respond in English with:",
+        "'I can only answer in the following languages: English, Chinese, French. Please ask your question in one of these languages.'",
+        "Always check the language of the user's input before routing to an agent.",
+        "For unsupported languages like Italian, respond in English with the above message.",
+    ],
+    show_members_responses=True,
+)
+
+
+if __name__ == "__main__":
+    # Ask "How are you?" in all supported languages
+    multi_language_team.print_response("Comment allez-vous?", stream=True)  # French
+    multi_language_team.print_response("How are you?", stream=True)  # English
+    multi_language_team.print_response("你好吗？", stream=True)  # Chinese
+    multi_language_team.print_response("Come stai?", stream=True)  # Italian
+```
 
 ## Team Context
 
-Teams in Agno maintain a shared context that can be updated agentically (i.e. by the team leader agent) and can be sent to team members. Team member tasks and responses are automatically added to the team context.
-This allows for effective information sharing and collaboration between agents.
+Agent Teams maintain a shared context that is updated agentically (i.e. by the team leader) and is sent to team members if needed.
 
-### Enable Agentic Context
+**Agentic Context is critical for effective information sharing and collaboration between agents and the quality of the team's responses depends on how well the team leader manages the shared context.** This means we should use better models for the team leader to ensure the quality of the team's responses.
 
-The team context can be updated during a run, allowing the team leader agent to store and share information with team members:
+<Note>
+The tasks and responses of team members are automatically added to the team context, but Agentic Context needs to be enabled by the developer.
+</Note>
+
+## Enable Agentic Context
+
+To enable the Team leader to maintain Agentic Context, set `enable_agentic_context=True`.
+
+This will allow the team leader to maintain and update the team context during the run.
 
 ```python
 team = Team(
     members=[agent1, agent2, agent3],
-    enable_agentic_context=True,  # Enable team context updates by the team leader agent
+    enable_agentic_context=True,  # Enable Team Leader to maintain Agentic Context
 )
 ```
 
-### Team Member Interactions
+## Team Member Interactions
 
-Teams can be configured to share interactions between members, allowing agents to learn from each other's outputs:
+Agent Teams can share interactions between members, allowing agents to learn from each other's outputs:
 
 ```python
 team = Team(
@@ -77,6 +104,7 @@ team = Team(
     share_member_interactions=True,  # Share interactions
 )
 ```
+
 <Tip>
 Member interactions are automatically added to the team context after communication with members
 </Tip>
@@ -120,15 +148,55 @@ async for chunk in await team.arun("Create an analysis of recent AI developments
     print(chunk.content, end="", flush=True)
 ```
 
-## Full Example: Research Team
+## Examples
 
-Here's a complete example of a research team that combines multiple specialized agents:
+### Content Team
+
+Let's walk through another example where we use two specialized agents to write a blog post. The team leader coordinates the agents to write a blog post.
+
+```python content_team.py
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.team import Team
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+# Create individual specialized agents
+researcher = Agent(
+    name="Researcher",
+    role="Expert at finding information",
+    tools=[DuckDuckGoTools()],
+    model=OpenAIChat("gpt-4o"),
+)
+
+writer = Agent(
+    name="Writer",
+    role="Expert at writing clear, engaging content",
+    model=OpenAIChat("gpt-4o"),
+)
+
+# Create a team with these agents
+content_team = Team(
+    name="Content Team",
+    mode="coordinate",
+    members=[researcher, writer],
+    instructions="You are a team of researchers and writers that work together to create high-quality content.",
+    model=OpenAIChat("gpt-4o"),
+    markdown=True,
+)
+
+# Run the team with a task
+content_team.print_response("Create a short article about quantum computing")
+```
+
+### Research Team
+
+Here's an example of a research team that combines multiple specialized agents:
 
 <Steps>
   <Step title="Create HackerNews Team">
     Create a file `hackernews_team.py`
 
-    ```python hackernews_team.py 
+    ```python hackernews_team.py
     from typing import List
 
     from agno.agent import Agent

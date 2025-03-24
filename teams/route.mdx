@@ -1,19 +1,17 @@
 ---
-title: 'Route Mode'
-description: 'Direct user requests to the most appropriate team member'
+title: Route
 ---
 
-# Route Mode
+In **Route Mode**, the Team Leader directs user queries to the most appropriate team member based on the content of the request.
 
-Route mode is a team collaboration approach where user queries are directed to the most appropriate team member based on the content of the request. 
-The team acts as a smart router, analyzing the query and selecting the best-suited agent to handle it. The member's response is then returned directlyto the user.
+The Team Leader acts as a smart router, analyzing the query and selecting the best-suited agent to handle it. The member's response is then returned directly to the user.
 
 ## How Route Mode Works
 
 In "route" mode:
 
 1. The team receives a user query
-2. A routing agent analyzes the query to determine which team member has the right expertise
+2. A Team Leader analyzes the query to determine which team member has the right expertise
 3. The query is forwarded to the selected team member
 4. The response from the team member is returned directly to the user
 
@@ -145,7 +143,7 @@ This mode is particularly useful when you have specialized agents with distinct 
 
 ## Structured Output with Route Mode
 
-One powerful feature of route mode is its ability to maintain structured output from member agents. 
+One powerful feature of route mode is its ability to maintain structured output from member agents.
 When using a Pydantic model for the response, the response from the selected team member will be automatically parsed into the specified structure.
 
 ### Defining Structured Output Models

@@ -104,8 +104,8 @@
           "group": "Teams",
           "pages": [
             "teams/introduction",
-            "teams/coordinate",
             "teams/route",
+            "teams/coordinate",
             "teams/collaborate"
           ]
         },

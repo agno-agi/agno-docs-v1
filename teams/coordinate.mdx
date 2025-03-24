@@ -1,21 +1,18 @@
 ---
-title: 'Coordinate Mode'
-description: 'A team with a coordinator that delegates tasks to team members'
+title: Coordinate
 ---
 
-# Coordinate Mode
-
-Coordinate mode is the default team collaboration approach in Agno, where a team coordinator agent orchestrates the work by delegating tasks to team members and synthesizing their outputs into a cohesive response.
+In **Coordinate Mode**, the Team Leader delegates tasks to team members and synthesizes their outputs into a cohesive response.
 
 ## How Coordinate Mode Works
 
 In "coordinate" mode:
 
 1. The team receives a user query
-2. A coordinator agent (team leader) analyzes the query and decides how to break it down into subtasks
-3. The coordinator delegates specific tasks to appropriate team members
+2. A Team Leader analyzes the query and decides how to break it down into subtasks
+3. The Team Leader delegates specific tasks to appropriate team members
 4. Team members complete their assigned tasks and return their results
-5. The coordinator synthesizes all outputs into a final, cohesive response
+5. The Team Leader synthesizes all outputs into a final, cohesive response
 
 This mode is ideal for complex tasks that require multiple specialized skills, coordination, and synthesis of different outputs.
 
@@ -24,7 +21,7 @@ This mode is ideal for complex tasks that require multiple specialized skills, c
     Create a file `content_team.py`
 
     ```python content_team.py
-    
+
     searcher = Agent(
         name="Searcher",
         role="Searches the top URLs for a topic",
@@ -73,8 +70,8 @@ This mode is ideal for complex tasks that require multiple specialized skills, c
         ],
         add_datetime_to_instructions=True,
         send_team_context_to_members=True,
-        markdown=True,
         show_members_responses=True,
+        markdown=True,
     )
     editor.print_response("Write an article about latest developments in AI.")
     ```
