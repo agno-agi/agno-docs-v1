@@ -177,6 +177,7 @@
                 "tools/toolkits/email",
                 "tools/toolkits/exa",
                 "tools/toolkits/fal",
+                "tools/toolkits/financial_datasets",
                 "tools/toolkits/firecrawl",
                 "tools/toolkits/gmail",
                 "tools/toolkits/giphy",
@@ -225,7 +226,8 @@
             "tools/mcp",
             "tools/functions",
             "tools/custom-toolkits",
-            "tools/async-tools"
+            "tools/async-tools",
+            "tools/caching"
           ]
         },
         {
@@ -584,6 +586,7 @@
                   "examples/concepts/tools/exa",
                   "examples/concepts/tools/fal",
                   "examples/concepts/tools/file",
+                  "examples/concepts/tools/financial_datasets",
                   "examples/concepts/tools/firecrawl",
                   "examples/concepts/tools/giphy",
                   "examples/concepts/tools/github",
