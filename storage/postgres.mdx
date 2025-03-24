@@ -1,5 +1,5 @@
 ---
-title: Postgres Agent Storage
+title: Postgres Storage
 sidebarTitle: Postgres
 ---
 
@@ -23,13 +23,13 @@ docker run -d \
   agno/pgvector:16
 ```
 
-```python storage.py
-from agno.storage.agent.postgres import PostgresAgentStorage
+```python postgres_storage_for_agent.py
+from agno.storage.postgres import PostgresStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 # Create a storage backend using the Postgres database
-storage = PostgresAgentStorage(
+storage = PostgresStorage(
     # store sessions in the ai.sessions table
     table_name="agent_sessions",
     # db_url: Postgres database URL
@@ -46,4 +46,4 @@ agent = Agent(storage=storage)
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/storage/postgres_storage.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/postgres_storage/postgres_storage_for_agent.py)

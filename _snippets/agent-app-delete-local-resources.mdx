@@ -1,4 +1,4 @@
-## Delete local resources
+## Stop local Agent App
 
 Play around and stop the workspace using:
 
@@ -8,30 +8,12 @@ Play around and stop the workspace using:
 ag ws down
 ```
 
-```bash full options
-ag ws down --env dev --infra docker
-```
-
 ```bash shorthand
 ag ws down dev:docker
 ```
 
-</CodeGroup>
-
-or stop individual Apps using:
-
-<CodeGroup>
-
-```bash app
-ag ws down --group app
-```
-
-```bash api
-ag ws down --group api
-```
-
-```bash database
-ag ws down --group db
+```bash full options
+ag ws down --env dev --infra docker
 ```
 
 </CodeGroup>

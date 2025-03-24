@@ -25,16 +25,18 @@ Example companies to analyze:
 - "PFE, JNJ, MRNA" (Healthcare Focus)
 - "XOM, CVX, BP" (Energy Sector)
 
-## Code
+Run `pip install openai yfinance agno` to install dependencies.
+"""
+
 
 ```python investment_report_generator.py
 from pathlib import Path
 from shutil import rmtree
-from typing import Iterator
 from textwrap import dedent
+from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.storage.workflow.sqlite import SqliteWorkflowStorage
+from agno.storage.sqlite import SqliteStorage
 from agno.tools.yfinance import YFinanceTools
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
@@ -61,6 +63,7 @@ class InvestmentReportGenerator(Workflow):
     """)
 
     stock_analyst: Agent = Agent(
+        name="Stock Analyst",
         tools=[
             YFinanceTools(
                 company_info=True, analyst_recommendations=True, company_news=True
@@ -130,7 +133,6 @@ class InvestmentReportGenerator(Workflow):
         save_response_to_file=research_analyst_report,
     )
 
-
     investment_lead: Agent = Agent(
         name="Investment Lead",
         description=dedent("""\
@@ -162,7 +164,6 @@ class InvestmentReportGenerator(Workflow):
         save_response_to_file=investment_report,
     )
 
-
     def run(self, companies: str) -> Iterator[RunResponse]:
         logger.info(f"Getting investment reports for companies: {companies}")
         initial_report: RunResponse = self.stock_analyst.run(companies)
@@ -189,21 +190,21 @@ class InvestmentReportGenerator(Workflow):
         yield from self.investment_lead.run(ranked_companies.content, stream=True)
 
 
-
 # Run the workflow if the script is executed directly
 if __name__ == "__main__":
     import random
+
     from rich.prompt import Prompt
 
     # Example investment scenarios to showcase the analyzer's capabilities
     example_scenarios = [
         "AAPL, MSFT, GOOGL",  # Tech Giants
-        "NVDA, AMD, INTC",    # Semiconductor Leaders
-        "TSLA, F, GM",        # Automotive Innovation
-        "JPM, BAC, GS",       # Banking Sector
-        "AMZN, WMT, TGT",     # Retail Competition
-        "PFE, JNJ, MRNA",     # Healthcare Focus
-        "XOM, CVX, BP",       # Energy Sector
+        "NVDA, AMD, INTC",  # Semiconductor Leaders
+        "TSLA, F, GM",  # Automotive Innovation
+        "JPM, BAC, GS",  # Banking Sector
+        "AMZN, WMT, TGT",  # Retail Competition
+        "PFE, JNJ, MRNA",  # Healthcare Focus
+        "XOM, CVX, BP",  # Energy Sector
     ]
 
     # Get companies from user with example suggestion
@@ -219,9 +220,9 @@ if __name__ == "__main__":
     # Initialize the investment analyst workflow
     investment_report_generator = InvestmentReportGenerator(
         session_id=f"investment-report-{url_safe_companies}",
-        storage=SqliteWorkflowStorage(
+        storage=SqliteStorage(
             table_name="investment_report_workflows",
-            db_file="tmp/workflows.db",
+            db_file="tmp/agno_workflows.db",
         ),
     )
 

@@ -1,7 +1,101 @@
----
+
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-03-24" description="v1.2.1">
+## 1.2.1
+
+## Bug Fixes:
+
+- **Teams Markdown**: Fixed issue with markdown in teams responses.
+</Update>
+
+<Update label="2025-03-24" description="v1.2.0">
+## 1.2.0
+
+## New Features:
+
+- **Financial Datasets Tools**: Added tools for https://www.financialdatasets.ai/.
+- **Docker Tools**: Added tools to manage local docker environments.
+
+## Improvements:
+
+- **Teams Improvements:** Reasoning enabled for the team.
+- **MCP Simplification:** Simplified creation of `MCPTools` for connections to external MCP servers. See the updated [docs](https://docs.agno.com/tools/mcp#example%3A-filesystem-agent).
+
+## Bug Fixes:
+
+- **Azure AI Factory:** Fix for a broken import in Azure AI Factory.
+</Update>
+
+<Update label="2025-03-23" description="v1.1.17">
+## 1.1.17
+
+## Improvements:
+
+- **Better Debug Logs**: Enhanced debug logs for better readability and clarity.
+</Update>
+
+<Update label="2025-03-22" description="v1.1.16">
+## 1.1.16
+
+## New Features:
+
+- **Async Qdrant VectorDB:** Implemented async support for Qdrant VectorDB, improving performance and efficiency.
+- **Claude Think Tool:** Introduced the Claude **Think tool**, following the specified implementation [guide.](https://www.anthropic.com/engineering/claude-think-tool)
+
+</Update>
+
+<Update label="2025-03-21" description="v1.1.15">
+## 1.1.15
+
+## Improvements:
+
+- **Tool Result Caching:** Added caching of selected searchers and scrapers. This is only intended for testing and should greatly improve iteration speed, prevent rate limits and reduce costs (where applicable) when testing agents. Applies to:
+    - DuckDuckGoTools
+    - ExaTools
+    - FirecrawlTools
+    - GoogleSearchtools
+    - HackernewsTools
+    - NewspaperTools
+    - Newspaper4kTools
+    - Websitetools
+    - YFinanceTools
+- **Show tool calls**: Improved how tool calls are displayed when `print_response` and `aprint_response` is used. They are now displayed in a separate panel different from response panel. It can also be used in conjunction in `response_model`.
+</Update>
+
+<Update label="2025-03-20" description="v1.1.14">
+## 1.1.14 - Teams Revamp
+
+## New Features:
+
+- **Teams Revamp**: Announcing a new iteration of Agent teams with the following features:
+    - Create a `Team` in one of 3 modes: “Collaborate”, “Coordinate” or “Route”.
+    - Various improvements have been made that was broken with the previous teams implementation. Including returning structured output from member agents (for “route” mode), passing images, audio and video to member agents, etc.
+    - It has added features like “agentic shared context” between team members and sharing of individual team member responses with other team members.
+    - This also comes with a revamp of Agent and Team debug logs. Use `debug_mode=True` and `team.print_response(...)` to see it in action.
+    - Find the docs [here](https://docs.agno.com/teams/introduction). Please look at the example implementations [here](https://github.com/agno-agi/agno/blob/c8e47d1643065a0a6ee795c6b063f8576a7a2ef6/cookbook/examples/teams).
+    - This is the first release. Please give us feedback. Updates and improvements will follow.
+    - Support for `Agent(team=[])` is still there, but deprecated (see below).
+- **LiteLLM:** Added [LiteLLM](https://www.litellm.ai/) support, both as a native implementation and via the `OpenAILike` interface.
+
+## Improvements:
+
+- **Change structured_output to response_format:** Added `use_json_mode: bool = False` as a parameter of `Agent` and `Team`, which in conjunction with `response_model=YourModel`, is used to indicate whether the agent/team model should be forced to respond in json instead of (now default) structured output. Previous behaviour defaulted to “json-mode”, but since most models now support native structured output, we are now defaulting to native structured output.  It is now also much simpler to work with response models, since now only `response_model` needs to be set. It is not necessary anymore to set `structured_output=True` to specifically get structured output from the model.
+- **Website Tools + Combined Knowledgebase:** Added functionality for `WebsiteTools` to also update combined knowledgebases.
+
+## Bug Fixes:
+
+- **AgentMemory**: Fixed `get_message_pairs()` fetching incorrect messages.
+- **UnionType in Functions**: Fixed issue with function parsing where pipe-style unions were used in function parameters.
+- **Gemini Array Function Parsing**: Fixed issue preventing gemini function parsing to work in some MCP cases.
+
+## Deprecations:
+
+- **Structured Output:** `Agent.structured_output` has been replaced by `Agent.use_json_mode`. This will be removed in a future major version release.
+- **Agent Team:** `Agent.team` is deprecated with the release of our new Teams implementation [here](https://docs.agno.com/teams/introduction). This will be removed in a future major version release.
+
+</Update>
 <Update label="2025-03-14" description="v1.1.13">
 ## 1.1.13
 

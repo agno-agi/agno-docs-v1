@@ -1,22 +1,22 @@
 ---
-title: DynamoDB Agent Storage
+title: DynamoDB Storage
 sidebarTitle: DynamoDB
 ---
 
-Agno supports using DynamoDB as a storage backend for Agents using the `DynamoDbAgentStorage` class.
+Agno supports using DynamoDB as a storage backend for Agents, Teams and Workflows using the `DynamoDbStorage` class.
 
 ## Usage
 
-You need to provide `aws_access_key_id` and `aws_secret_access_key` parameters to the `DynamoDbAgentStorage` class.
+You need to provide `aws_access_key_id` and `aws_secret_access_key` parameters to the `DynamoDbStorage` class.
 
-```python storage.py
-from agno.storage.agent.dynamodb import DynamoDbAgentStorage
+```python dynamodb_storage_for_agent.py
+from agno.storage.dynamodb import DynamoDbStorage
 
 # AWS Credentials
 AWS_ACCESS_KEY_ID = getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = getenv("AWS_SECRET_ACCESS_KEY")
 
-storage = DynamoDbAgentStorage(
+storage = DynamoDbStorage(
     # store sessions in the ai.sessions table
     table_name="agent_sessions",
     # region_name: DynamoDB region name
@@ -37,4 +37,4 @@ agent = Agent(storage=storage)
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/storage/dynamodb_storage.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/dynamodb_storage/dynamodb_storage_for_agent.py)

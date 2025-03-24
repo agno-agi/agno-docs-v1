@@ -56,7 +56,7 @@
 | `exponential_backoff` | `bool` | `False` | If True, the delay between retries is doubled each time |
 | `response_model` | `Optional[Type[BaseModel]]` | `None` | Provide a response model to get the response as a Pydantic model |
 | `parse_response` | `bool` | `True` | If True, the response is converted into the response_model |
-| `structured_outputs` | `bool` | `False` | Use model enforced structured_outputs if supported |
+| `use_json_mode` | `bool` | `False` | If `response_model` is set, sets the response "mode" of the model, i.e. if the model should explicitly respond with a JSON object instead of a Pydantic model |
 | `save_response_to_file` | `Optional[str]` | `None` | Save the response to a file |
 | `stream` | `Optional[bool]` | `None` | Stream the response from the Agent |
 | `stream_intermediate_steps` | `bool` | `False` | Stream the intermediate steps from the Agent |

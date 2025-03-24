@@ -56,31 +56,31 @@
       "url": "examples"
     },
     {
-      "name": "Reference",
-      "url": "reference"
-    },
-    {
-      "name": "Changelog",
-      "url": "changelog"
+      "name": "Workspaces",
+      "url": "workspaces"
     },
     {
       "name": "FAQs",
       "url": "faq"
     },
     {
-      "name": "Hackathon Resources",
-      "url": "hackathon"
+      "name": "API reference",
+      "url": "reference"
+    },
+    {
+      "name": "Changelog",
+      "url": "changelog"
     }
   ],
   "navigation": [
     {
-      "group": "Getting Started",
+      "group": "Introduction",
       "pages": [
         "introduction",
-        "get-started/agents",
-        "get-started/playground",
-        "get-started/monitoring",
-        "get-started/community"
+        "introduction/agents",
+        "introduction/playground",
+        "introduction/monitoring",
+        "introduction/community"
       ]
     },
     {
@@ -97,9 +97,16 @@
             "agents/tools",
             "agents/knowledge",
             "agents/memory",
-            "agents/storage",
-            "agents/reasoning",
-            "agents/teams"
+            "agents/storage"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            "teams/introduction",
+            "teams/route",
+            "teams/coordinate",
+            "teams/collaborate"
           ]
         },
         {
@@ -126,6 +133,10 @@
             "models/groq",
             "models/huggingface",
             "models/ibm-watsonx",
+            {
+              "group": "LiteLLM",
+              "pages": ["models/litellm", "models/litellm_openai"]
+            },
             "models/lmstudio",
             "models/mistral",
             "models/nvidia",
@@ -151,19 +162,23 @@
                 "tools/toolkits/arxiv",
                 "tools/toolkits/aws_lambda",
                 "tools/toolkits/baidusearch",
+                "tools/toolkits/browserbase",
                 "tools/toolkits/calculator",
                 "tools/toolkits/calcom",
                 "tools/toolkits/composio",
                 "tools/toolkits/confluence",
                 "tools/toolkits/crawl4ai",
                 "tools/toolkits/csv",
+                "tools/toolkits/custom_api",
                 "tools/toolkits/dalle",
                 "tools/toolkits/discord",
+                "tools/toolkits/docker",
                 "tools/toolkits/duckdb",
                 "tools/toolkits/duckduckgo",
                 "tools/toolkits/email",
                 "tools/toolkits/exa",
                 "tools/toolkits/fal",
+                "tools/toolkits/financial_datasets",
                 "tools/toolkits/firecrawl",
                 "tools/toolkits/gmail",
                 "tools/toolkits/giphy",
@@ -181,6 +196,7 @@
                 "tools/toolkits/newspaper",
                 "tools/toolkits/newspaper4k",
                 "tools/toolkits/openbb",
+                "tools/toolkits/openweather",
                 "tools/toolkits/pandas",
                 "tools/toolkits/postgres",
                 "tools/toolkits/pubmed",
@@ -211,7 +227,17 @@
             "tools/mcp",
             "tools/functions",
             "tools/custom-toolkits",
-            "tools/async-tools"
+            "tools/async-tools",
+            "tools/caching"
+          ]
+        },
+        {
+          "group": "Reasoning",
+          "pages": [
+            "reasoning/introduction",
+            "reasoning/reasoning-models",
+            "reasoning/reasoning-tools",
+            "reasoning/reasoning-agents"
           ]
         },
         {
@@ -268,12 +294,13 @@
           "group": "Storage",
           "pages": [
             "storage/introduction",
-            "storage/postgres",
-            "storage/sqlite",
-            "storage/singlestore",
             "storage/dynamodb",
             "storage/json",
-            "storage/yaml"
+            "storage/mongodb",
+            "storage/postgres",
+            "storage/sqlite",
+            "storage/yaml",
+            "storage/singlestore"
           ]
         },
         {
@@ -299,17 +326,42 @@
           "pages": [
             "workflows/introduction",
             "workflows/session_state",
-            {
-              "group": "Storage",
-              "pages": [
-                "workflows/storage/postgres",
-                "workflows/storage/sqlite",
-                "workflows/storage/mongodb"
-              ]
-            },
             "workflows/advanced"
           ]
         }
+      ]
+    },
+    {
+      "group": "Workspaces",
+      "pages": [
+        "workspaces/introduction",
+        {
+          "group": "Agent App",
+          "pages": ["workspaces/agent-app/local", "workspaces/agent-app/aws"]
+        },
+        {
+          "group": "Agent API",
+          "pages": ["workspaces/agent-api/local", "workspaces/agent-api/aws"]
+        }
+      ]
+    },
+    {
+      "group": "Workspace Management",
+      "pages": [
+        "workspaces/workspace-management/introduction",
+        "workspaces/workspace-management/development-app",
+        "workspaces/workspace-management/production-app",
+        "workspaces/workspace-management/install",
+        "workspaces/workspace-management/secrets",
+        "workspaces/workspace-management/env-vars",
+        "workspaces/workspace-management/database-tables",
+        "workspaces/workspace-management/ci-cd",
+        "workspaces/workspace-management/domain-https",
+        "workspaces/workspace-management/ssh-access",
+        "workspaces/workspace-management/workspace-settings",
+        "workspaces/workspace-management/git-repo",
+        "workspaces/workspace-management/new-users",
+        "workspaces/workspace-management/format-and-validate"
       ]
     },
     {
@@ -353,6 +405,30 @@
             "examples/agents/movie-recommender",
             "examples/agents/books-recommender",
             "examples/agents/travel-planner"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            {
+              "group": "Collaborate",
+              "pages": ["examples/teams/collaborate/discussion_team"]
+            },
+            {
+              "group": "Coordinate",
+              "pages": [
+                "examples/teams/coordinate/autonomous_startup_team",
+                "examples/teams/coordinate/hackernews_team",
+                "examples/teams/coordinate/news_agency_team"
+              ]
+            },
+            {
+              "group": "Route",
+              "pages": [
+                "examples/teams/route/ai_support_team",
+                "examples/teams/route/multi_language_team"
+              ]
+            }
           ]
         },
         {
@@ -437,13 +513,6 @@
           ]
         },
         {
-          "group": "Teams",
-          "pages": [
-            "examples/concepts/teams/news-agency-team",
-            "examples/concepts/teams/respond-directly"
-          ]
-        },
-        {
           "group": "Async",
           "pages": [
             "examples/concepts/async/basic",
@@ -464,13 +533,42 @@
         {
           "group": "Storage",
           "pages": [
-            "examples/concepts/storage/dynamodb",
-            "examples/concepts/storage/json",
-            "examples/concepts/storage/mongodb",
-            "examples/concepts/storage/postgres",
-            "examples/concepts/storage/singlestore",
-            "examples/concepts/storage/sqlite",
-            "examples/concepts/storage/yaml"
+            {
+              "group": "Agent Storage",
+              "pages": [
+                "examples/concepts/storage/agent_storage/postgres",
+                "examples/concepts/storage/agent_storage/sqlite",
+                "examples/concepts/storage/agent_storage/singlestore",
+                "examples/concepts/storage/agent_storage/dynamodb",
+                "examples/concepts/storage/agent_storage/mongodb",
+                "examples/concepts/storage/agent_storage/json",
+                "examples/concepts/storage/agent_storage/yaml"
+              ]
+            },
+            {
+              "group": "Workflow Storage",
+              "pages": [
+                "examples/concepts/storage/workflow_storage/postgres",
+                "examples/concepts/storage/workflow_storage/sqlite",
+                "examples/concepts/storage/workflow_storage/singlestore",
+                "examples/concepts/storage/workflow_storage/dynamodb",
+                "examples/concepts/storage/workflow_storage/mongodb",
+                "examples/concepts/storage/workflow_storage/json",
+                "examples/concepts/storage/workflow_storage/yaml"
+              ]
+            },
+            {
+              "group": "Team Storage",
+              "pages": [
+                "examples/concepts/storage/team_storage/postgres",
+                "examples/concepts/storage/team_storage/sqlite",
+                "examples/concepts/storage/team_storage/singlestore",
+                "examples/concepts/storage/team_storage/dynamodb",
+                "examples/concepts/storage/team_storage/mongodb",
+                "examples/concepts/storage/team_storage/json",
+                "examples/concepts/storage/team_storage/yaml"
+              ]
+            }
           ]
         },
         {
@@ -491,11 +589,13 @@
             "examples/concepts/tools/dalle",
             "examples/concepts/tools/desi_vocal",
             "examples/concepts/tools/discord",
+            "examples/concepts/tools/docker",
             "examples/concepts/tools/duckdb",
             "examples/concepts/tools/email",
             "examples/concepts/tools/exa",
             "examples/concepts/tools/fal",
             "examples/concepts/tools/file",
+            "examples/concepts/tools/financial_datasets",
             "examples/concepts/tools/firecrawl",
             "examples/concepts/tools/giphy",
             "examples/concepts/tools/github",
@@ -799,6 +899,25 @@
             "examples/models/lmstudio/knowledge",
             "examples/models/lmstudio/image_agent"
           ]
+        },
+        {
+          "group": "LiteLLM",
+          "pages": [
+            "examples/models/litellm/basic",
+            "examples/models/litellm/basic_stream",
+            "examples/models/litellm/tool_use",
+            "examples/models/litellm/structured_output",
+            "examples/models/litellm/storage",
+            "examples/models/litellm/knowledge"
+          ]
+        },
+        {
+          "group": "LiteLLM OpenAI",
+          "pages": [
+            "examples/models/litellm_openai/basic",
+            "examples/models/litellm_openai/basic_stream",
+            "examples/models/litellm_openai/tool_use"
+          ]
         }
       ]
     },
@@ -820,6 +939,14 @@
             "reference/agents/agent",
             "reference/agents/session",
             "reference/agents/memory"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            "reference/teams/team",
+            "reference/teams/session",
+            "reference/teams/memory"
           ]
         },
         {
@@ -984,55 +1111,6 @@
     {
       "group": "Changelog",
       "pages": ["changelog/overview"]
-    },
-    {
-      "group": "Hackathon Resources",
-      "pages": [
-        "hackathon/introduction",
-        "hackathon/setup",
-        {
-          "group": "Examples",
-          "pages": [
-            "hackathon/examples/simple-text-agent",
-            "hackathon/examples/agent-with-tools",
-            "hackathon/examples/agent-with-knowledge",
-            "hackathon/examples/structured-outputs",
-            "hackathon/examples/research-agent",
-            "hackathon/examples/youtube-agent",
-            "hackathon/examples/image-input-with-tools",
-            "hackathon/examples/image-generate",
-            "hackathon/examples/image-to-structured-output",
-            "hackathon/examples/image-generate-audio",
-            "hackathon/examples/image-input-output",
-            "hackathon/examples/image-transcribe",
-            "hackathon/examples/image-gif-seach",
-            "hackathon/examples/audio-input",
-            "hackathon/examples/audio-input-output",
-            "hackathon/examples/audio-sentiment",
-            "hackathon/examples/audio-transcript",
-            "hackathon/examples/audio-multi-turn",
-            "hackathon/examples/audio-generate-podcast",
-            "hackathon/examples/video-input",
-            "hackathon/examples/video-modelslab",
-            "hackathon/examples/video-replicate",
-            "hackathon/examples/video-captions",
-            "hackathon/examples/video-to-shorts"
-          ]
-        },
-        {
-          "group": "Models",
-          "pages": [
-            "hackathon/models/openai",
-            "hackathon/models/gemini",
-            "hackathon/models/anthropic",
-            "hackathon/models/groq",
-            "hackathon/models/mistral",
-            "hackathon/models/ollama"
-          ]
-        },
-        "hackathon/replit",
-        "hackathon/prizes"
-      ]
     }
   ],
   "footerSocials": {

@@ -2,6 +2,7 @@
 title: Personalized Email Generator
 ---
 
+
 This workflow helps sales professionals craft highly personalized cold emails by:
 1. Researching target companies through their websites
 2. Analyzing their business model, tech stack, and unique attributes
@@ -9,24 +10,43 @@ This workflow helps sales professionals craft highly personalized cold emails by
 4. Sending test emails to yourself for review before actual outreach
 
 Why is this helpful?
-- You always have an extra review step—emails are sent to you first.
+--------------------------------------------------------------------------------
+• You always have an extra review step—emails are sent to you first.
   This ensures you can fine-tune messaging before reaching your actual prospect.
-- Ideal for iterating on tone, style, and personalization en masse.
+• Ideal for iterating on tone, style, and personalization en masse.
 
 Who should use this?
-- SDRs, Account Executives, Business Development Managers
-- Founders, Marketing Professionals, B2B Sales Representatives
-- Anyone building relationships or conducting outreach at scale
+--------------------------------------------------------------------------------
+• SDRs, Account Executives, Business Development Managers
+• Founders, Marketing Professionals, B2B Sales Representatives
+• Anyone building relationships or conducting outreach at scale
 
 Example use cases:
-- SaaS sales outreach
-- Consulting service proposals
-- Partnership opportunities
-- Investor relations
-- Recruitment outreach
+--------------------------------------------------------------------------------
+• SaaS sales outreach
+• Consulting service proposals
+• Partnership opportunities
+• Investor relations
+• Recruitment outreach
 • Event invitations
 
-The script will send draft emails to your email if `DEMO_MODE=False`. If `DEMO_MODE=True`, it prints the email to the console for review.
+Quick Start:
+--------------------------------------------------------------------------------
+1. Install dependencies:
+   pip install openai agno
+
+2. Set environment variables:
+   - export OPENAI_API_KEY="xxxx"
+
+3. Update sender_details_dict with YOUR info.
+
+4. Add target companies to "leads" dictionary.
+
+5. Run:
+   python personalized_email_generator.py
+
+The script will send draft emails to your email first if DEMO_MODE=False.
+If DEMO_MODE=True, it prints the email to the console for review.
 
 Then you can confidently send the refined emails to your prospects!
 
@@ -40,7 +60,7 @@ from typing import Dict, Iterator, List, Optional
 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.storage.workflow.sqlite import SqliteWorkflowStorage
+from agno.storage.sqlite import SqliteStorage
 from agno.tools.exa import ExaTools
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
@@ -257,7 +277,6 @@ class PersonalisedEmailGenerator(Workflow):
             Remember: Quality over quantity. Focus on insights that could lead to meaningful business conversations.\
         """),
         response_model=CompanyInfo,
-        structured_outputs=True,
     )
 
     email_creator: Agent = Agent(
@@ -423,9 +442,9 @@ def main():
         # Create workflow with SQLite storage
         workflow = PersonalisedEmailGenerator(
             session_id="personalized-email-generator",
-            storage=SqliteWorkflowStorage(
+            storage=SqliteStorage(
                 table_name="personalized_email_workflows",
-                db_file="tmp/workflows.db",
+                db_file="tmp/agno_workflows.db",
             ),
         )
 
