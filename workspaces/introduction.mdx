@@ -5,11 +5,11 @@ sidebarTitle: Introduction
 
 **Workspaces** are standardized codebases for running Agentic Systems locally using Docker and in production on AWS. They contain:
 
-- A RestAPI (FastAPI) to serving Agents, Teams and Workflows.
+- A REST API (FastAPI) to serving Agents, Teams and Workflows.
 - A streamlit application for debugging and testing. This streamlit app is very versatile and is used as an admin interface for the agentic system.
 - A postgres database for session and vector storage.
 
-The codebases are setup to run locally using docker and can be deployed to AWS with 1 command. They're a fantastic starting point and exactly what we ourselves use for our customers. Years of learning available for free for the open-source community.
+The codebases are set up to run locally using Docker and can be deployed to AWS with a single command. They’re a fantastic starting point and exactly what we use for our customers. Years of learning, available for free to the open-source community.
 
 ## Here's how they work:
 
@@ -34,10 +34,10 @@ When building Agents, we start locally and iterate till we achieve 6/10 quality.
 This helps us see quick results and get a rough idea of how our solution should look like in production.
 
 Then, we start moving to a production environment and iterate from there. Here's how __*we*__ build production systems:
-- Serve Agents, Teams and Workflows via a RestAPI (FastAPI).
-- Use a streamlit application for debugging and testing. This streamlit app is generally used as an admin interface for the agentic system and shows all sorts of data.llll
-- Monitor, evaluate and improve till we reach 9/10 quality.
-- In parallel, we start integrating our front-end with the Rest API above.
+- Serve Agents, Teams and Workflows via a REST API (FastAPI).
+- Use a streamlit application for debugging and testing. This streamlit app is generally used as an admin interface for the agentic system and shows all sorts of data.
+- Monitor, evaluate and improve the implementation until we reach 9/10 quality.
+- In parallel, we start integrating our front-end with the REST API above.
 
 Having built 100s of such systems, we have a standard set of codebases we use and we call them **Workspaces**. They help us manage our Agentic System as code.
 
