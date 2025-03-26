@@ -2,48 +2,258 @@
 title: Apify
 ---
 
-**ApifyTools** enable an Agent to access the Apify API and run actors.
+This guide demonstrates how to integrate and use [Apify](https://apify.com/actors) Actors within the Agno framework to enhance your AI agents with very powerful data collection capabilities.
+
+## What is Apify?
+
+[Apify](https://apify.com/) is a platform that provides:
+
+- Data collection services for AI Agents
+- A marketplace of ready-to-use Actors (specialized tools) for various data tasks
+- Infrastructure to run and monetize our own AI Agents
 
 ## Prerequisites
 
-The following example requires the `apify-client` library and an API token which can be obtained from [Apify](https://apify.com/).
+1. Sign up for an Apify account
+2. Obtain your Apify API token (can be obtained from [Apify](https://docs.apify.com/platform/integrations/api))
+3. Install the required packages:
 
-```shell
-pip install -U apify-client
+
+```bash
+pip install agno apify-client
 ```
 
-```shell
-export MY_APIFY_TOKEN=***
-```
+## Basic Usage
 
-## Example
+The Agno framework makes it easy to integrate Apify Actors into your agents. Here's a simple example:
 
-The following agent will use Apify to crawl the webpage: https://docs.agno.com/introduction and summarize it.
-
-```python cookbook/tools/apify_tools.py
+```python
 from agno.agent import Agent
 from agno.tools.apify import ApifyTools
 
-agent = Agent(tools=[ApifyTools()], show_tool_calls=True)
-agent.print_response("Tell me about https://docs.agno.com/introduction", markdown=True)
+# Create an agent with ApifyTools
+agent = Agent(
+    tools=[
+        ApifyTools(
+            api_key="your_apify_api_key"  # Or set the APIFY_TOKEN environment variable 
+        )
+    ],
+    show_tool_calls=True,
+    markdown=True
+)
+
+# Use the agent to get website content
+agent.print_response("What information can you find on https://docs.agno.com/introduction ?", markdown=True)
+```
+
+## Available Apify Tools
+
+You can easily integrate any Apify Actor as a tool, but we prepared some examples for you:
+
+### 1. RAG Web Browser
+
+The RAG Web Browser actor is specifically designed for AI and LLM applications. It searches the web for a query or processes a URL, then cleans and formats the content for your agent. This tool is enabled by default.
+
+```python
+from agno.agent import Agent
+from agno.tools.apify import ApifyTools
+
+agent = Agent(
+    tools=[
+        ApifyTools()  # RAG web search is enabled by default
+    ],
+    show_tool_calls=True,
+    markdown=True
+)
+
+# Search for information and process the results
+agent.print_response("What are the latest developments in large language models?", markdown=True)
+```
+
+### 2. Website Content Crawler
+
+This tool uses Apify's Website Content Crawler actor to extract text content from websites, making it perfect for RAG applications.
+
+```python
+from agno.agent import Agent
+from agno.tools.apify import ApifyTools
+
+agent = Agent(
+    tools=[
+        ApifyTools(
+            use_website_content_crawler=True  # Disabled by default
+        )
+    ],
+    markdown=True
+)
+
+# Ask the agent to process web content
+agent.print_response("Summarize the content from https://docs.agno.com/introduction", markdown=True)
+```
+
+### 3. Web Scraper
+
+The Web Scraper tool uses Apify's Web Scraper actor to extract structured data from websites.
+
+```python
+from agno.agent import Agent
+from agno.tools.apify import ApifyTools
+
+agent = Agent(
+    tools=[
+        ApifyTools(
+            use_web_scraper=True  # Disabled by default
+        )
+    ],
+    show_tool_calls=True
+)
+
+# Extract specific elements from a webpage
+agent.print_response("Extract the main heading and first paragraph from https://www.example.com", markdown=True)
+```
+
+### 4. Instagram Scraper
+
+The Instagram Scraper tool allows your agent to extract information from Instagram profiles, hashtags, or places.
+
+```python
+from agno.agent import Agent
+from agno.tools.apify import ApifyTools
+
+agent = Agent(
+    tools=[
+        ApifyTools(
+            use_instagram_scraper=True  # Enabled by default
+        )
+    ],
+    show_tool_calls=True
+)
+
+# Extract information from Instagram
+agent.print_response("Find trending posts for the hashtag #AI", markdown=True)
+agent.print_response("Get information about the Instagram user 'Instagram'", markdown=True)
+```
+
+### 5. Google Places Crawler
+
+This tool extracts data about businesses from Google Maps and Google Places.
+
+```python
+from agno.agent import Agent
+from agno.tools.apify import ApifyTools
+
+agent = Agent(
+    tools=[
+        ApifyTools(
+            use_google_places_crawler=True  # Enabled by default
+        )
+    ],
+    show_tool_calls=True
+)
+
+# Find business information in a specific location
+agent.print_response("What are the top-rated restaurants in San Francisco?", markdown=True)
+agent.print_response("Find coffee shops in Prague", markdown=True)
+```
+
+## Example Scenarios
+
+### RAG Web Browser + Google Places Crawler
+This example combines web search with local business data to provide comprehensive information about a topic:
+
+```python
+from agno.agent import Agent
+from agno.tools.apify import ApifyTools
+
+agent = Agent(
+    tools=[
+        ApifyTools(
+            use_rag_web_search=True,
+            use_google_places_crawler=True
+        )
+    ],
+    show_tool_calls=True
+)
+
+# Get general information and local businesses
+agent.print_response(
+    """
+    I'm traveling to Tokyo next month.
+    1. Research the best time to visit and major attractions
+    2. Find highly-rated sushi restaurants near Shinjuku
+    Compile a comprehensive travel guide with this information.
+    """,
+    markdown=True
+)
+```
+
+## Implementation Details
+
+Below is a simplified implementation reference for the ApifyTools class. You can find the complete implementation in the source code.
+
+```python
+from agno.tools import Toolkit
+from apify_client import ApifyClient
+
+class ApifyTools(Toolkit):
+    def __init__(
+        self,
+        api_key=None,
+        max_results=4,
+        use_rag_web_search=True,
+        use_website_content_crawler=False,
+        use_web_scraper=False,
+        use_instagram_scraper=True,
+        use_google_places_crawler=True
+    ):
+        # Setup code...
+        
+    def rag_web_search(self, query, timeout=45):
+        # Implementation...
+        
+    def website_content_crawler(self, urls, timeout=60):
+        # Implementation...
+        
+    def web_scraper(self, urls, timeout=60):
+        # Implementation...
+        
+    def instagram_scraper(self, search, search_type="user", search_limit=10, timeout=180):
+        # Implementation...
+        
+    def google_places_crawler(self, location_query, search_terms=None, max_crawled_places=30, timeout=45):
+        # Implementation...
 ```
 
 ## Toolkit Params
 
-| Parameter                 | Type   | Default | Description                                                                       |
-| ------------------------- | ------ | ------- | --------------------------------------------------------------------------------- |
-| `api_key`                 | `str`  | -       | API key for authentication purposes.                                              |
-| `website_content_crawler` | `bool` | `True`  | Enables the functionality to crawl a website using website-content-crawler actor. |
-| `web_scraper`             | `bool` | `False` | Enables the functionality to crawl a website using web_scraper actor.             |
+| Parameter                    | Type    | Default | Description                                                      |
+| ---------------------------- | ------- | ------- | ---------------------------------------------------------------- |
+| `api_key`                    | `str`   | `None`  | Apify API key (or set via APIFY_TOKEN environment variable)      |
+| `max_results`                | `int`   | `4`     | Maximum number of results for web searches                       |
+| `use_rag_web_search`         | `bool`  | `True`  | Enable RAG web search tool                                       |
+| `use_website_content_crawler`| `bool`  | `False` | Enable website content crawler tool                              |
+| `use_web_scraper`            | `bool`  | `False` | Enable general web scraper tool                                  |
+| `use_instagram_scraper`      | `bool`  | `True`  | Enable Instagram scraper tool                                    |
+| `use_google_places_crawler`  | `bool`  | `True`  | Enable Google Places crawler tool                                |
 
 ## Toolkit Functions
 
-| Function                  | Description                                                   |
-| ------------------------- | ------------------------------------------------------------- |
-| `website_content_crawler` | Crawls a website using Apify's website-content-crawler actor. |
-| `web_scrapper`            | Scrapes a website using Apify's web-scraper actor.            |
+| Function                   | Description                                                      |
+| -------------------------- | ---------------------------------------------------------------- |
+| `rag_web_search`           | Searches the web for information using the RAG Web Browser actor |
+| `website_content_crawler`  | Crawls websites using Apify's website-content-crawler actor      |
+| `web_scraper`              | Scrapes websites using Apify's web-scraper actor                 |
+| `instagram_scraper`        | Scrapes Instagram profiles, hashtags, or places                  |
+| `google_places_crawler`    | Crawls Google Places for business information                    |
 
 ## Developer Resources
 
 - View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/apify.py)
 - View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/apify_tools.py)
+
+## Resources
+
+- [Apify Platform Documentation](https://docs.apify.com)
+- [Apify Actor Documentation](https://docs.apify.com/Actors)
+- [Apify Store - Browse available Actors](https://apify.com/store)
+- [Agno Framework Documentation](https://docs.agno.com)
