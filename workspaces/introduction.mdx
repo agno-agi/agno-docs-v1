@@ -1,21 +1,27 @@
 ---
-title: What are Workspaces?
+title: Standardized Codebases for Agentic Systems
 sidebarTitle: Introduction
 ---
 
-**Workspaces** are standardized codebases for running Agentic Systems locally using Docker and in production on AWS. They contain:
+When building an Agentic System, you'll need an API to serve your Agents, a database to store session and vector data and an admin interface for testing and evaluation. You'll also need cron jobs, alerting and data pipelines for ingestion and cleaning. This system would generally take a few months to build, we're open-sourcing it for the community for free.
 
-- A RestAPI (FastAPI) to serving Agents, Teams and Workflows.
-- A streamlit application for debugging and testing. This streamlit app is very versatile and is used as an admin interface for the agentic system.
+# What are Workspaces?
+
+**Workspaces are standardized codebases for production Agentic Systems.** They contain:
+
+- A RestAPI (FastAPI) for serving Agents, Teams and Workflows.
+- A streamlit application for testing -- think of this as an admin interface.
 - A postgres database for session and vector storage.
 
-The codebases are setup to run locally using docker and can be deployed to AWS with 1 command. They're a fantastic starting point and exactly what we ourselves use for our customers. Years of learning available for free for the open-source community.
+Workspaces are setup to run locally using docker and be easily deployed to AWS. They're a fantastic starting point and exactly what we use for our customers. You'll definitely need to customize them to fit your specific needs, but they'll get you started much faster.
 
-## Here's how they work:
+They contain years of learnings, available for free for the open-source community.
+
+# Here's how they work
 
 - Create your codebase using: `ag ws create`
 - Run locally using docker: `ag ws up`
-- Run in production on AWS: `ag ws up prd:aws`
+- Run on AWS: `ag ws up prd:aws`
 
 We recommend starting with the `agent-app` template and taking it from there.
 
@@ -30,12 +36,15 @@ We recommend starting with the `agent-app` template and taking it from there.
 
 # How we build Agentic Systems
 
-When building Agents, we start locally and iterate till we achieve 6/10 quality.
+When building Agents, we experiment locally till we achieve 6/10 quality.
 This helps us see quick results and get a rough idea of how our solution should look like in production.
 
-Then, we start moving to a production environment and iterate from there. Here's how __*we*__ build production systems:
+Then, we start moving to a production environment and iterate from there. We create a new workspace and start connecting different parts of the system. This gives us a working solution that we can test and evaluate.
+
+Here's how we like to build agentic systems:
+
 - Serve Agents, Teams and Workflows via a RestAPI (FastAPI).
-- Use a streamlit application for debugging and testing. This streamlit app is generally used as an admin interface for the agentic system and shows all sorts of data.llll
+- Use a streamlit application for debugging and testing. This streamlit app is generally used as an admin interface for the agentic system and shows all sorts of data.
 - Monitor, evaluate and improve till we reach 9/10 quality.
 - In parallel, we start integrating our front-end with the Rest API above.
 

@@ -1,6 +1,12 @@
 ## Run your Agent App locally
 
-Start your Agent App using
+`cd` into the `agent-app` folder
+
+```bash
+cd agent-app
+```
+
+Start your Agent App using the following command:
 
 <CodeGroup>
 
@@ -23,7 +29,10 @@ ag ws up --env dev --infra docker
 - Open [localhost:8501](http://localhost:8501) to view the streamlit UI.
 - Open [localhost:8000/docs](http://localhost:8000/docs) to view the FastAPI routes.
 
+![agent-app-ui](/images/agent-app-ui.png)
+
 Notes:
+
 - The `Agents` are defined in the `agents` folder.
 - The streamlit apps are defined in the `ui` folder
 - The api routes are defined in the `api` folder.

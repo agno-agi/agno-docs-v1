@@ -1,7 +1,36 @@
-
+---
 title: "Product updates"
 mode: "wide"
 ---
+
+<Update label="2025-03-25" description="v1.2.4">
+## 1.2.4
+
+## Improvements:
+
+- **Tool Choice on Teams**: Made `tool_choice` configurable.
+
+## Bug Fixes:
+
+- **Sessions not created**: Made issue where sessions would not be created in existing tables without a migration be more visible. Please read the docs on [storage schema migrations](https://docs.agno.com/agents/storage).
+- **Todoist fixes**: Fixed `update_task` on `TodoistTools`.
+</Update>
+
+<Update label="2025-03-24" description="v1.2.3">
+## 1.2.3
+
+## Improvements:
+
+- **Teams Error Handling:** Improved the flow in cases where the model gets it wrong when forwarding tasks to members.
+</Update>
+<Update label="2025-03-24" description="v1.2.2">
+## 1.2.2
+
+## Bug Fixes:
+
+- **Teams Memory:** Fixed issues related to memory not persisting correctly across multiple sessions.
+</Update>
+
 <Update label="2025-03-24" description="v1.2.1">
 ## 1.2.1
 

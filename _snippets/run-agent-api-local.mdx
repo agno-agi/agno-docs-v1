@@ -1,0 +1,34 @@
+## Run your Agent Api locally
+
+`cd` into the `agent-api` folder
+
+```bash
+cd agent-api
+```
+
+Start your Agent Api using the following command:
+
+<CodeGroup>
+
+```bash terminal
+ag ws up
+```
+
+```bash shorthand
+ag ws up dev:docker
+```
+
+```bash full options
+ag ws up --env dev --infra docker
+```
+
+</CodeGroup>
+
+**Press Enter** to confirm and give a few seconds for the image to download (only the first time). Verify container status and view logs on the docker dashboard.
+
+- Open [localhost:8000/docs](http://localhost:8000/docs) to view the FastAPI routes.
+
+Notes:
+
+- The `Agents` are defined in the `agents` folder.
+- The api routes are defined in the `api` folder.

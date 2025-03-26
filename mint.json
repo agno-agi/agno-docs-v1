@@ -112,40 +112,40 @@
         {
           "group": "Models",
           "pages": [
-              "models/introduction",
-              "models/compatibility",
-              "models/openai",
-              "models/openai-like",
-              "models/anthropic",
-              {
-                  "group": "AWS",
-                  "pages": ["models/aws-bedrock", "models/aws-claude"]
-              },
-              {
-                  "group": "Azure",
-                  "pages": ["models/azure-ai-foundry", "models/azure-openai"]
-              },
-              "models/cohere",
-              "models/deepinfra",
-              "models/deepseek",
-              "models/fireworks",
-              "models/google",
-              "models/groq",
-              "models/huggingface",
-              "models/ibm-watsonx",
-              {
-                  "group": "LiteLLM",
-                  "pages": ["models/litellm", "models/litellm_openai"]
-              },
-              "models/lmstudio",
-              "models/mistral",
-              "models/nvidia",
-              "models/ollama",
-              "models/openrouter",
-              "models/perplexity",
-              "models/sambanova",
-              "models/together",
-              "models/xai"
+            "models/introduction",
+            "models/compatibility",
+            "models/openai",
+            "models/openai-like",
+            "models/anthropic",
+            {
+              "group": "AWS",
+              "pages": ["models/aws-bedrock", "models/aws-claude"]
+            },
+            {
+              "group": "Azure",
+              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
+            },
+            "models/cohere",
+            "models/deepinfra",
+            "models/deepseek",
+            "models/fireworks",
+            "models/google",
+            "models/groq",
+            "models/huggingface",
+            "models/ibm-watsonx",
+            {
+              "group": "LiteLLM",
+              "pages": ["models/litellm", "models/litellm_openai"]
+            },
+            "models/lmstudio",
+            "models/mistral",
+            "models/nvidia",
+            "models/ollama",
+            "models/openrouter",
+            "models/perplexity",
+            "models/sambanova",
+            "models/together",
+            "models/xai"
           ]
         },
         {
@@ -240,7 +240,8 @@
             "reasoning/reasoning-tools",
             "reasoning/reasoning-agents"
           ]
-        },        {
+        },
+        {
           "group": "Knowledge",
           "pages": [
             "knowledge/introduction",
@@ -277,16 +278,17 @@
           "group": "VectorDbs",
           "pages": [
             "vectordb/introduction",
+            "vectordb/pgvector",
             "vectordb/cassandra",
             "vectordb/chroma",
             "vectordb/clickhouse",
             "vectordb/lancedb",
             "vectordb/milvus",
-            "vectordb/pgvector",
             "vectordb/pinecone",
             "vectordb/qdrant",
             "vectordb/singlestore",
-            "vectordb/mongodb"
+            "vectordb/mongodb",
+            "vectordb/weaviate"
           ]
         },
         {
@@ -336,17 +338,11 @@
         "workspaces/introduction",
         {
           "group": "Agent App",
-          "pages": [
-            "workspaces/agent-app/local",
-            "workspaces/agent-app/aws"
-          ]
+          "pages": ["workspaces/agent-app/local", "workspaces/agent-app/aws"]
         },
         {
           "group": "Agent API",
-          "pages": [
-            "workspaces/agent-api/local",
-            "workspaces/agent-api/aws"
-          ]
+          "pages": ["workspaces/agent-api/local", "workspaces/agent-api/aws"]
         }
       ]
     },
@@ -417,9 +413,7 @@
           "pages": [
             {
               "group": "Collaborate",
-              "pages": [
-                "examples/teams/collaborate/discussion_team"
-              ]
+              "pages": ["examples/teams/collaborate/discussion_team"]
             },
             {
               "group": "Coordinate",
@@ -463,217 +457,218 @@
     {
       "group": "Agent Concepts",
       "pages": [
-          {
-              "group": "Multimodal",
+        {
+          "group": "Multimodal",
+          "pages": [
+            "examples/concepts/multimodal/audio-input-output",
+            "examples/concepts/multimodal/audio-to-text",
+            "examples/concepts/multimodal/audio-sentiment-analysis",
+            "examples/concepts/multimodal/blog-to-podcast",
+            "examples/concepts/multimodal/audio-multi-turn",
+            "examples/concepts/multimodal/audio-streaming",
+            "examples/concepts/multimodal/generate-image",
+            "examples/concepts/multimodal/generate-music-agent",
+            "examples/concepts/multimodal/generate-video-models-lab",
+            "examples/concepts/multimodal/generate-video-replicate",
+            "examples/concepts/multimodal/image-to-audio",
+            "examples/concepts/multimodal/image-to-image",
+            "examples/concepts/multimodal/image-to-text",
+            "examples/concepts/multimodal/video-caption",
+            "examples/concepts/multimodal/video-to-shorts"
+          ]
+        },
+        {
+          "group": "RAG",
+          "pages": [
+            "examples/concepts/rag/traditional-rag-pgvector",
+            "examples/concepts/rag/traditional-rag-lancedb",
+            "examples/concepts/rag/agentic-rag-pgvector",
+            "examples/concepts/rag/agentic-rag-lancedb",
+            "examples/concepts/rag/agentic-rag-with-reranking",
+            "examples/concepts/rag/agentic-rag-agent-ui",
+            "examples/concepts/rag/rag-with-lance-db-and-sqlite"
+          ]
+        },
+        {
+          "group": "Knowledge",
+          "pages": [
+            "examples/concepts/knowledge/arxiv-kb",
+            "examples/concepts/knowledge/combined-kb",
+            "examples/concepts/knowledge/csv-kb",
+            "examples/concepts/knowledge/csv-url-kb",
+            "examples/concepts/knowledge/doc-kb",
+            "examples/concepts/knowledge/docx-kb"
+          ]
+        },
+        {
+          "group": "Memory",
+          "pages": [
+            "examples/concepts/memory/builtin-memory",
+            "examples/concepts/memory/persistent-memory",
+            "examples/concepts/memory/memories-and-summaries",
+            "examples/concepts/memory/persistent-memory-postgres",
+            "examples/concepts/memory/memories-and-summaries-postgres",
+            "examples/concepts/memory/memories-and-summaries-sqlite-async",
+            "examples/concepts/memory/persistent-memory-mongodb",
+            "examples/concepts/memory/mem0-memory"
+          ]
+        },
+        {
+          "group": "Async",
+          "pages": [
+            "examples/concepts/async/basic",
+            "examples/concepts/async/data_analyst",
+            "examples/concepts/async/structured_output",
+            "examples/concepts/async/reasoning",
+            "examples/concepts/async/gather_agents"
+          ]
+        },
+        {
+          "group": "Hybrid Search",
+          "pages": [
+            "examples/concepts/hybrid-search/lancedb",
+            "examples/concepts/hybrid-search/pgvector",
+            "examples/concepts/hybrid-search/pinecone"
+          ]
+        },
+        {
+          "group": "Storage",
+          "pages": [
+            {
+              "group": "Agent Storage",
               "pages": [
-                  "examples/concepts/multimodal/audio-input-output",
-                  "examples/concepts/multimodal/audio-to-text",
-                  "examples/concepts/multimodal/audio-sentiment-analysis",
-                  "examples/concepts/multimodal/blog-to-podcast",
-                  "examples/concepts/multimodal/audio-multi-turn",
-                  "examples/concepts/multimodal/audio-streaming",
-                  "examples/concepts/multimodal/generate-image",
-                  "examples/concepts/multimodal/generate-music-agent",
-                  "examples/concepts/multimodal/generate-video-models-lab",
-                  "examples/concepts/multimodal/generate-video-replicate",
-                  "examples/concepts/multimodal/image-to-audio",
-                  "examples/concepts/multimodal/image-to-image",
-                  "examples/concepts/multimodal/image-to-text",
-                  "examples/concepts/multimodal/video-caption",
-                  "examples/concepts/multimodal/video-to-shorts"
+                "examples/concepts/storage/agent_storage/postgres",
+                "examples/concepts/storage/agent_storage/sqlite",
+                "examples/concepts/storage/agent_storage/singlestore",
+                "examples/concepts/storage/agent_storage/dynamodb",
+                "examples/concepts/storage/agent_storage/mongodb",
+                "examples/concepts/storage/agent_storage/json",
+                "examples/concepts/storage/agent_storage/yaml"
               ]
-          },
-          {
-              "group": "RAG",
+            },
+            {
+              "group": "Workflow Storage",
               "pages": [
-                  "examples/concepts/rag/traditional-rag-pgvector",
-                  "examples/concepts/rag/traditional-rag-lancedb",
-                  "examples/concepts/rag/agentic-rag-pgvector",
-                  "examples/concepts/rag/agentic-rag-lancedb",
-                  "examples/concepts/rag/agentic-rag-with-reranking",
-                  "examples/concepts/rag/agentic-rag-agent-ui",
-                  "examples/concepts/rag/rag-with-lance-db-and-sqlite"
+                "examples/concepts/storage/workflow_storage/postgres",
+                "examples/concepts/storage/workflow_storage/sqlite",
+                "examples/concepts/storage/workflow_storage/singlestore",
+                "examples/concepts/storage/workflow_storage/dynamodb",
+                "examples/concepts/storage/workflow_storage/mongodb",
+                "examples/concepts/storage/workflow_storage/json",
+                "examples/concepts/storage/workflow_storage/yaml"
               ]
-          },
-          {
-              "group": "Knowledge",
+            },
+            {
+              "group": "Team Storage",
               "pages": [
-                  "examples/concepts/knowledge/arxiv-kb",
-                  "examples/concepts/knowledge/combined-kb",
-                  "examples/concepts/knowledge/csv-kb",
-                  "examples/concepts/knowledge/csv-url-kb",
-                  "examples/concepts/knowledge/doc-kb",
-                  "examples/concepts/knowledge/docx-kb"
+                "examples/concepts/storage/team_storage/postgres",
+                "examples/concepts/storage/team_storage/sqlite",
+                "examples/concepts/storage/team_storage/singlestore",
+                "examples/concepts/storage/team_storage/dynamodb",
+                "examples/concepts/storage/team_storage/mongodb",
+                "examples/concepts/storage/team_storage/json",
+                "examples/concepts/storage/team_storage/yaml"
               ]
-          },
-          {
-              "group": "Memory",
-              "pages": [
-                  "examples/concepts/memory/builtin-memory",
-                  "examples/concepts/memory/persistent-memory",
-                  "examples/concepts/memory/memories-and-summaries",
-                  "examples/concepts/memory/persistent-memory-postgres",
-                  "examples/concepts/memory/memories-and-summaries-postgres",
-                  "examples/concepts/memory/memories-and-summaries-sqlite-async",
-                  "examples/concepts/memory/persistent-memory-mongodb",
-                  "examples/concepts/memory/mem0-memory"
-              ]
-          },
-          {
-              "group": "Async",
-              "pages": [
-                  "examples/concepts/async/basic",
-                  "examples/concepts/async/data_analyst",
-                  "examples/concepts/async/structured_output",
-                  "examples/concepts/async/reasoning",
-                  "examples/concepts/async/gather_agents"
-              ]
-          },
-          {
-              "group": "Hybrid Search",
-              "pages": [
-                  "examples/concepts/hybrid-search/lancedb",
-                  "examples/concepts/hybrid-search/pgvector",
-                  "examples/concepts/hybrid-search/pinecone"
-              ]
-          },
-          {
-              "group": "Storage",
-              "pages": [
-                  {
-                      "group": "Agent Storage",
-                      "pages": [
-                          "examples/concepts/storage/agent_storage/postgres",
-                          "examples/concepts/storage/agent_storage/sqlite",
-                          "examples/concepts/storage/agent_storage/singlestore",
-                          "examples/concepts/storage/agent_storage/dynamodb",
-                          "examples/concepts/storage/agent_storage/mongodb",
-                          "examples/concepts/storage/agent_storage/json",
-                          "examples/concepts/storage/agent_storage/yaml"
-                      ]
-                  },
-                  {
-                      "group": "Workflow Storage",
-                      "pages": [
-                          "examples/concepts/storage/workflow_storage/postgres",
-                          "examples/concepts/storage/workflow_storage/sqlite",
-                          "examples/concepts/storage/workflow_storage/singlestore",
-                          "examples/concepts/storage/workflow_storage/dynamodb",
-                          "examples/concepts/storage/workflow_storage/mongodb",
-                          "examples/concepts/storage/workflow_storage/json",
-                          "examples/concepts/storage/workflow_storage/yaml"
-                      ]
-                  },
-                  {
-                      "group": "Team Storage",
-                      "pages": [
-                          "examples/concepts/storage/team_storage/postgres",
-                          "examples/concepts/storage/team_storage/sqlite",
-                          "examples/concepts/storage/team_storage/singlestore",
-                          "examples/concepts/storage/team_storage/dynamodb",
-                          "examples/concepts/storage/team_storage/mongodb",
-                          "examples/concepts/storage/team_storage/json",
-                          "examples/concepts/storage/team_storage/yaml"
-                      ]
-                  }
-              ]
-          },
-          {
-              "group": "Tools",
-              "pages": [
-                  "examples/concepts/tools/duckduckgo",
-                  "examples/concepts/tools/calculator",
-                  "examples/concepts/tools/airflow",
-                  "examples/concepts/tools/apify",
-                  "examples/concepts/tools/arxiv",
-                  "examples/concepts/tools/aws_lambda",
-                  "examples/concepts/tools/baidusearch",
-                  "examples/concepts/tools/calcom",
-                  "examples/concepts/tools/composio",
-                  "examples/concepts/tools/confluence",
-                  "examples/concepts/tools/crawl4ai",
-                  "examples/concepts/tools/csv",
-                  "examples/concepts/tools/dalle",
-                  "examples/concepts/tools/desi_vocal",
-                  "examples/concepts/tools/discord",
-                  "examples/concepts/tools/docker",
-                  "examples/concepts/tools/duckdb",
-                  "examples/concepts/tools/email",
-                  "examples/concepts/tools/e2b",
-                  "examples/concepts/tools/exa",
-                  "examples/concepts/tools/fal",
-                  "examples/concepts/tools/file",
-                  "examples/concepts/tools/financial_datasets",
-                  "examples/concepts/tools/firecrawl",
-                  "examples/concepts/tools/giphy",
-                  "examples/concepts/tools/github",
-                  "examples/concepts/tools/google_calendar",
-                  "examples/concepts/tools/google_maps",
-                  "examples/concepts/tools/google_search",
-                  "examples/concepts/tools/hackernews",
-                  "examples/concepts/tools/jina_reader",
-                  "examples/concepts/tools/jira",
-                  "examples/concepts/tools/linear",
-                  "examples/concepts/tools/lumalabs",
-                  "examples/concepts/tools/mlx_transcribe",
-                  "examples/concepts/tools/models_labs",
-                  "examples/concepts/tools/newspaper",
-                  "examples/concepts/tools/newspaper4k",
-                  "examples/concepts/tools/openbb",
-                  "examples/concepts/tools/pandas",
-                  "examples/concepts/tools/postgres",
-                  "examples/concepts/tools/pubmed",
-                  "examples/concepts/tools/python",
-                  "examples/concepts/tools/replicate",
-                  "examples/concepts/tools/resend",
-                  "examples/concepts/tools/searxng",
-                  "examples/concepts/tools/serpapi",
-                  "examples/concepts/tools/shell",
-                  "examples/concepts/tools/slack",
-                  "examples/concepts/tools/sleep",
-                  "examples/concepts/tools/spider",
-                  "examples/concepts/tools/sql",
-                  "examples/concepts/tools/tavily",
-                  "examples/concepts/tools/todoist",
-                  "examples/concepts/tools/twilio",
-                  "examples/concepts/tools/webex",
-                  "examples/concepts/tools/website",
-                  "examples/concepts/tools/wikipedia",
-                  "examples/concepts/tools/x",
-                  "examples/concepts/tools/yfinance",
-                  "examples/concepts/tools/youtube",
-                  "examples/concepts/tools/zendesk"
-              ]
-          },
-          {
-              "group": "Vector Databases",
-              "pages": [
-                  "examples/concepts/vectordb/cassandra",
-                  "examples/concepts/vectordb/chromadb",
-                  "examples/concepts/vectordb/clickhouse",
-                  "examples/concepts/vectordb/lancedb",
-                  "examples/concepts/vectordb/milvus",
-                  "examples/concepts/vectordb/mongodb",
-                  "examples/concepts/vectordb/pgvector",
-                  "examples/concepts/vectordb/pinecone",
-                  "examples/concepts/vectordb/qdrant",
-                  "examples/concepts/vectordb/singlestore"
-              ]
-          },
-          {
-              "group": "Embedders",
-              "pages": [
-                  "examples/concepts/embedders/azure-embedder",
-                  "examples/concepts/embedders/cohere-embedder",
-                  "examples/concepts/embedders/fireworks-embedder",
-                  "examples/concepts/embedders/gemini-embedder",
-                  "examples/concepts/embedders/huggingface-embedder",
-                  "examples/concepts/embedders/mistral-embedder",
-                  "examples/concepts/embedders/ollama-embedder",
-                  "examples/concepts/embedders/openai-embedder",
-                  "examples/concepts/embedders/qdrant-fastembed"
-              ]
-          }
+            }
+          ]
+        },
+        {
+          "group": "Tools",
+          "pages": [
+            "examples/concepts/tools/duckduckgo",
+            "examples/concepts/tools/calculator",
+            "examples/concepts/tools/airflow",
+            "examples/concepts/tools/apify",
+            "examples/concepts/tools/arxiv",
+            "examples/concepts/tools/aws_lambda",
+            "examples/concepts/tools/baidusearch",
+            "examples/concepts/tools/calcom",
+            "examples/concepts/tools/composio",
+            "examples/concepts/tools/confluence",
+            "examples/concepts/tools/crawl4ai",
+            "examples/concepts/tools/csv",
+            "examples/concepts/tools/dalle",
+            "examples/concepts/tools/desi_vocal",
+            "examples/concepts/tools/discord",
+            "examples/concepts/tools/docker",
+            "examples/concepts/tools/duckdb",
+            "examples/concepts/tools/email",
+            "examples/concepts/tools/e2b",
+            "examples/concepts/tools/exa",
+            "examples/concepts/tools/fal",
+            "examples/concepts/tools/file",
+            "examples/concepts/tools/financial_datasets",
+            "examples/concepts/tools/firecrawl",
+            "examples/concepts/tools/giphy",
+            "examples/concepts/tools/github",
+            "examples/concepts/tools/google_calendar",
+            "examples/concepts/tools/google_maps",
+            "examples/concepts/tools/google_search",
+            "examples/concepts/tools/hackernews",
+            "examples/concepts/tools/jina_reader",
+            "examples/concepts/tools/jira",
+            "examples/concepts/tools/linear",
+            "examples/concepts/tools/lumalabs",
+            "examples/concepts/tools/mlx_transcribe",
+            "examples/concepts/tools/models_labs",
+            "examples/concepts/tools/newspaper",
+            "examples/concepts/tools/newspaper4k",
+            "examples/concepts/tools/openbb",
+            "examples/concepts/tools/pandas",
+            "examples/concepts/tools/postgres",
+            "examples/concepts/tools/pubmed",
+            "examples/concepts/tools/python",
+            "examples/concepts/tools/replicate",
+            "examples/concepts/tools/resend",
+            "examples/concepts/tools/searxng",
+            "examples/concepts/tools/serpapi",
+            "examples/concepts/tools/shell",
+            "examples/concepts/tools/slack",
+            "examples/concepts/tools/sleep",
+            "examples/concepts/tools/spider",
+            "examples/concepts/tools/sql",
+            "examples/concepts/tools/tavily",
+            "examples/concepts/tools/todoist",
+            "examples/concepts/tools/twilio",
+            "examples/concepts/tools/webex",
+            "examples/concepts/tools/website",
+            "examples/concepts/tools/wikipedia",
+            "examples/concepts/tools/x",
+            "examples/concepts/tools/yfinance",
+            "examples/concepts/tools/youtube",
+            "examples/concepts/tools/zendesk"
+          ]
+        },
+        {
+          "group": "Vector Databases",
+          "pages": [
+            "examples/concepts/vectordb/cassandra",
+            "examples/concepts/vectordb/chromadb",
+            "examples/concepts/vectordb/clickhouse",
+            "examples/concepts/vectordb/lancedb",
+            "examples/concepts/vectordb/milvus",
+            "examples/concepts/vectordb/mongodb",
+            "examples/concepts/vectordb/pgvector",
+            "examples/concepts/vectordb/pinecone",
+            "examples/concepts/vectordb/qdrant",
+            "examples/concepts/vectordb/singlestore",
+            "examples/concepts/vectordb/weaviate"
+          ]
+        },
+        {
+          "group": "Embedders",
+          "pages": [
+            "examples/concepts/embedders/azure-embedder",
+            "examples/concepts/embedders/cohere-embedder",
+            "examples/concepts/embedders/fireworks-embedder",
+            "examples/concepts/embedders/gemini-embedder",
+            "examples/concepts/embedders/huggingface-embedder",
+            "examples/concepts/embedders/mistral-embedder",
+            "examples/concepts/embedders/ollama-embedder",
+            "examples/concepts/embedders/openai-embedder",
+            "examples/concepts/embedders/qdrant-fastembed"
+          ]
+        }
       ]
     },
     {
@@ -908,23 +903,34 @@
           ]
         },
         {
-            "group": "LiteLLM",
-            "pages": [
-                "examples/models/litellm/basic",
-                "examples/models/litellm/basic_stream",
-                "examples/models/litellm/tool_use",
-                "examples/models/litellm/structured_output",
-                "examples/models/litellm/storage",
-                "examples/models/litellm/knowledge"
-            ]
+          "group": "LiteLLM",
+          "pages": [
+            "examples/models/litellm/basic",
+            "examples/models/litellm/basic_stream",
+            "examples/models/litellm/tool_use",
+            "examples/models/litellm/structured_output",
+            "examples/models/litellm/storage",
+            "examples/models/litellm/knowledge"
+          ]
         },
         {
-            "group": "LiteLLM OpenAI",
-            "pages": [
-                "examples/models/litellm_openai/basic",
-                "examples/models/litellm_openai/basic_stream",
-                "examples/models/litellm_openai/tool_use"
-            ]
+          "group": "LiteLLM OpenAI",
+          "pages": [
+            "examples/models/litellm_openai/basic",
+            "examples/models/litellm_openai/basic_stream",
+            "examples/models/litellm_openai/tool_use"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Other",
+      "pages": [
+        {
+          "group": "Agent UI",
+          "pages": [
+            "agent-ui/introduction"
+          ]
         }
       ]
     },
@@ -1028,7 +1034,8 @@
             "reference/vector_db/pgvector",
             "reference/vector_db/pinecone",
             "reference/vector_db/qdrant",
-            "reference/vector_db/singlestore"
+            "reference/vector_db/singlestore",
+            "reference/vector_db/weaviate"
           ]
         },
         {

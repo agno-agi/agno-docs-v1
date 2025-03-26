@@ -17,8 +17,7 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.mcp import MCPTools
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
+from mcp import StdioServerParameters
 
 
 async def run_agent(message: str) -> None:
@@ -30,13 +29,13 @@ async def run_agent(message: str) -> None:
         args=[
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            str(Path(__file__).parent.parent.parent.parent),
+            str(Path(__file__).parent.parent.parent.parent),  # Set this to the root of the project you want to explore
         ],
     )
 
 
     # Create a client session to connect to the MCP server
-    async with MCPTools(server_params) as mcp_tools:
+    async with MCPTools(server_params=server_params) as mcp_tools:
         agent = Agent(
             model=OpenAIChat(id="gpt-4o"),
             tools=[mcp_tools],
@@ -165,7 +164,7 @@ async def run_agent(message: str) -> None:
         args=[
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            str(Path(__file__).parent.parent.parent.parent),
+            str(Path(__file__).parent.parent.parent.parent),  # Set this to the root of the project you want to explore
         ],
     )
 
