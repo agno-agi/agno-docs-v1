@@ -3,6 +3,28 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-03-27" description="v1.2.5">
+## 1.2.5
+
+## New Features:
+
+- **E2B Tools:** Added E2B Tools to run code in E2B Sandbox
+
+## Improvements:
+
+- **Teams Tools**: Add `tools` and `tool_call_limit` to `Team`. This means the team leader itself can also have tools provided by the user, so it can act as an agent.
+- **Teams Instructions:** Improved instructions around attached images, audio, videos, and files. This should increase success when attaching artifacts to prompts meant for member agents.
+- **MCP Include/Exclude Tools**: Expanded `MCPTools` to allow you to specify tools to specifically include or exclude from all the available tools on an MCP server. This is very useful for limiting which tools the model has access to.
+- **Tool Decorator Async Support**: The `@tool()` decorator now supports async functions, including async pre and post-hooks.
+
+## Bug Fixes:
+
+- **Default Chain-of-Thought Reasoning:** Fixed issue where reasoning would not default to manual CoT if the provided reasoning model was not capable of reasoning.
+- **Teams non-markdown responses**: Fixed issue with non-markdown responses in teams.
+- **Ollama tool choice:** Removed `tool_choice` from Ollama usage as it is not supported.
+- **Worklow session retrieval from storage**: Fixed `entity_id` mappings.
+
+</Update>
 <Update label="2025-03-25" description="v1.2.4">
 ## 1.2.4
 
