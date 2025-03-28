@@ -18,9 +18,8 @@ This guide demonstrates how to integrate and use [Apify](https://apify.com/actor
 2. Obtain your Apify API token (can be obtained from [Apify](https://docs.apify.com/platform/integrations/api))
 3. Install the required packages:
 
-
 ```bash
-pip install agno apify-client
+pip install agno apify-client langchain-apify
 ```
 
 ## Basic Usage
@@ -35,7 +34,8 @@ from agno.tools.apify import ApifyTools
 agent = Agent(
     tools=[
         ApifyTools(
-            api_key="your_apify_api_key"  # Or set the APIFY_TOKEN environment variable 
+            actors=["apify/rag-web-browser"],  # Specify which Apify actors to use, use multiple ones if needed
+            apify_api_token="your_apify_api_key"  # Or set the APIFY_API_TOKEN environment variable 
         )
     ],
     show_tool_calls=True,
@@ -60,7 +60,7 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools()  # RAG web search is enabled by default
+        ApifyTools(["apify/rag-web-browser"])
     ],
     show_tool_calls=True,
     markdown=True
@@ -80,9 +80,7 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools(
-            use_website_content_crawler=True  # Disabled by default
-        )
+        ApifyTools(["apify/website-content-crawler"])
     ],
     markdown=True
 )
@@ -91,50 +89,7 @@ agent = Agent(
 agent.print_response("Summarize the content from https://docs.agno.com/introduction", markdown=True)
 ```
 
-### 3. Web Scraper
-
-The Web Scraper tool uses Apify's Web Scraper actor to extract structured data from websites.
-
-```python
-from agno.agent import Agent
-from agno.tools.apify import ApifyTools
-
-agent = Agent(
-    tools=[
-        ApifyTools(
-            use_web_scraper=True  # Disabled by default
-        )
-    ],
-    show_tool_calls=True
-)
-
-# Extract specific elements from a webpage
-agent.print_response("Extract the main heading and first paragraph from https://www.example.com", markdown=True)
-```
-
-### 4. Instagram Scraper
-
-The Instagram Scraper tool allows your agent to extract information from Instagram profiles, hashtags, or places.
-
-```python
-from agno.agent import Agent
-from agno.tools.apify import ApifyTools
-
-agent = Agent(
-    tools=[
-        ApifyTools(
-            use_instagram_scraper=True  # Enabled by default
-        )
-    ],
-    show_tool_calls=True
-)
-
-# Extract information from Instagram
-agent.print_response("Find trending posts for the hashtag #AI", markdown=True)
-agent.print_response("Get information about the Instagram user 'Instagram'", markdown=True)
-```
-
-### 5. Google Places Crawler
+### 3. Google Places Crawler
 
 This tool extracts data about businesses from Google Maps and Google Places.
 
@@ -144,9 +99,7 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools(
-            use_google_places_crawler=True  # Enabled by default
-        )
+        ApifyTools(["compass/crawler-google-places"])
     ],
     show_tool_calls=True
 )
@@ -167,10 +120,10 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools(
-            use_rag_web_search=True,
-            use_google_places_crawler=True
-        )
+        ApifyTools([
+            "apify/rag-web-browser",
+            "compass/crawler-google-places"
+        ])
     ],
     show_tool_calls=True
 )
@@ -180,7 +133,7 @@ agent.print_response(
     """
     I'm traveling to Tokyo next month.
     1. Research the best time to visit and major attractions
-    2. Find highly-rated sushi restaurants near Shinjuku
+    2. Find one good rated sushi restaurants near Shinjuku
     Compile a comprehensive travel guide with this information.
     """,
     markdown=True
@@ -194,57 +147,36 @@ Below is a simplified implementation reference for the ApifyTools class. You can
 ```python
 from agno.tools import Toolkit
 from apify_client import ApifyClient
+from langchain_apify import ApifyActorsTool
 
 class ApifyTools(Toolkit):
     def __init__(
         self,
-        api_key=None,
-        max_results=4,
-        use_rag_web_search=True,
-        use_website_content_crawler=False,
-        use_web_scraper=False,
-        use_instagram_scraper=True,
-        use_google_places_crawler=True
+        actors: Union[str, List[str]] = None,
+        apify_api_token: Optional[str] = None
     ):
-        # Setup code...
+        # Initialize toolkit with Apify API token
+        super().__init__(name="ApifyTools")
+        self.apify_api_token = apify_api_token or os.getenv('APIFY_API_TOKEN')
+        self.client = ApifyClient(self.apify_api_token)
         
-    def rag_web_search(self, query, timeout=45):
-        # Implementation...
-        
-    def website_content_crawler(self, urls, timeout=60):
-        # Implementation...
-        
-    def web_scraper(self, urls, timeout=60):
-        # Implementation...
-        
-    def instagram_scraper(self, search, search_type="user", search_limit=10, timeout=180):
-        # Implementation...
-        
-    def google_places_crawler(self, location_query, search_terms=None, max_crawled_places=30, timeout=45):
-        # Implementation...
+        # Register specific actors if provided
+        if actors:
+            actor_list = [actors] if isinstance(actors, str) else actors
+            for actor_id in actor_list:
+                self.register_actor(actor_id)
+    
+    def register_actor(self, actor_id: str) -> None:
+        # Register an Apify actor as a function in the toolkit
+        # Implementation details...
 ```
 
 ## Toolkit Params
 
-| Parameter                    | Type    | Default | Description                                                      |
-| ---------------------------- | ------- | ------- | ---------------------------------------------------------------- |
-| `api_key`                    | `str`   | `None`  | Apify API key (or set via APIFY_TOKEN environment variable)      |
-| `max_results`                | `int`   | `4`     | Maximum number of results for web searches                       |
-| `use_rag_web_search`         | `bool`  | `True`  | Enable RAG web search tool                                       |
-| `use_website_content_crawler`| `bool`  | `False` | Enable website content crawler tool                              |
-| `use_web_scraper`            | `bool`  | `False` | Enable general web scraper tool                                  |
-| `use_instagram_scraper`      | `bool`  | `True`  | Enable Instagram scraper tool                                    |
-| `use_google_places_crawler`  | `bool`  | `True`  | Enable Google Places crawler tool                                |
-
-## Toolkit Functions
-
-| Function                   | Description                                                      |
-| -------------------------- | ---------------------------------------------------------------- |
-| `rag_web_search`           | Searches the web for information using the RAG Web Browser actor |
-| `website_content_crawler`  | Crawls websites using Apify's website-content-crawler actor      |
-| `web_scraper`              | Scrapes websites using Apify's web-scraper actor                 |
-| `instagram_scraper`        | Scrapes Instagram profiles, hashtags, or places                  |
-| `google_places_crawler`    | Crawls Google Places for business information                    |
+| Parameter                    | Type                | Default | Description                                                        |
+| ---------------------------- | ------------------- | ------- | ------------------------------------------------------------------ |
+| `apify_api_token`            | `str`               | `None`  | Apify API token (or set via APIFY_API_TOKEN environment variable)  |
+| `actors`                     | `str` or `List[str]`| `None`  | Single actor ID or list of actor IDs to register                   |
 
 ## Developer Resources
 
