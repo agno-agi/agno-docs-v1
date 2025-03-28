@@ -2,13 +2,15 @@
 title: Gemini
 ---
 
-Use Google's Gemini models through Google AI Studio - a platform providing access to large language models. Learn more [here](https://ai.google.dev/aistudio).
+Use Google's Gemini models through [Google AI Studio](https://ai.google.dev/gemini-api/docs) or [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/overview) - platforms that provide access to large language models and other services.
 
-We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+We recommend experimenting to find the best-suited model for your use case. Here are some general recommendations in the Gemini `2.x` family of models:
 
-- `gemini-1.5-flash` is good for most use-cases.
-- `gemini-1.5-flash-8b` is their most cost-effective model.
-- `gemini-2.0-flash-exp` is their strongest multi-modal model.
+- `gemini-2.0-flash` is good for most use-cases.
+- `gemini-2.0-flash-lite` is the most cost-effective model.
+- `gemini-2.5-pro-exp-03-25` is the strongest multi-modal model.
+
+Refer to the [Google AI Studio documentation](https://ai.google.dev/gemini-api/docs/models) and the [Vertex AI documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) for information on available model versions.
 
 ## Authentication
 
@@ -16,7 +18,7 @@ You can use Gemini models through either Google AI Studio or Google Cloud's Vert
 
 ### Google AI Studio
 
-Set your `GOOGLE_API_KEY` environment variable. You can get one [from Google here](https://ai.google.dev/aistudio).
+Set the `GOOGLE_API_KEY` environment variable. You can get one [from Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key).
 
 <CodeGroup>
 
@@ -34,12 +36,14 @@ setx GOOGLE_API_KEY ***
 
 To use Vertex AI:
 
-1. Install Google Cloud CLI and authenticate:
+1. Refer to the [Vertex AI documentation](https://cloud.google.com/vertex-ai/docs/start/cloud-environment) to set up a project and development environment
+
+1. Install the Google Cloud CLI and authenticate:
 ```bash
 gcloud auth application-default login
 ```
 
-2. Set your project ID (optional if `GOOGLE_CLOUD_PROJECT` is set):
+2. Set the project ID environment variable (alternatively, you set `project_id` in the `Agent`):
 ```bash
 export GOOGLE_CLOUD_PROJECT=your-project-id
 ```
@@ -56,14 +60,14 @@ from agno.models.google import Gemini
 
 # Using Google AI Studio
 agent = Agent(
-    model=Gemini(id="gemini-1.5-flash"),
+    model=Gemini(id="gemini-2.0-flash"),
     markdown=True,
 )
 
 # Or using Vertex AI
 agent = Agent(
     model=Gemini(
-        id="gemini-1.5-flash",
+        id="gemini-2.0-flash",
         vertexai=True,
         project_id="your-project-id",  # Optional if GOOGLE_CLOUD_PROJECT is set
         location="us-central1",  # Optional
@@ -94,7 +98,7 @@ from agno.agent import Agent
 from agno.models.google import Gemini
 
 agent = Agent(
-    model=Gemini(id="gemini-2.0-flash-exp", grounding=True),
+    model=Gemini(id="gemini-2.0-flash", grounding=True),
     show_tool_calls=True,
     markdown=True,
 )
@@ -113,7 +117,7 @@ from agno.agent import Agent
 from agno.models.google import Gemini
 
 agent = Agent(
-    model=Gemini(id="gemini-2.0-flash-exp", search=True),
+    model=Gemini(id="gemini-2.0-flash", search=True),
     show_tool_calls=True,
     markdown=True,
 )
