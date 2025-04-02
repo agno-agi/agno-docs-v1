@@ -44,33 +44,8 @@ agent.print_response("Summarize the top 5 stories on hackernews?", stream=True)
 
 ## Using the @tool Decorator
 
-For more customisability, you can use the `@tool` decorator to quickly create agent-ready functions without creating a full Toolkit class. 
+For more flexibility, you can use the `@tool` decorator to quickly create agent-ready functions without creating a full Toolkit class. 
 This approach is more concise and ideal for single-purpose tools.
-
-```python tool_decorator.py
-from agno.agent import Agent
-from agno.tools import tool
-
-@tool
-def get_weather(city: str, country: str = "US") -> str:
-    """
-    Get the current weather for a city.
-    
-    Args:
-        city: The name of the city.
-        country: The country code (default: US).
-    
-    Returns:
-        str: The current weather information.
-    """
-    # Implement weather fetching logic here
-    return f"Weather in {city}, {country}: Sunny, 72°F"
-
-agent = Agent(tools=[get_weather], show_tool_calls=True)
-agent.print_response("What's the weather in San Francisco?")
-```
-
-### Advanced @tool Parameters
 
 The `@tool` decorator supports several parameters to customize tool behavior:
 
