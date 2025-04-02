@@ -5,6 +5,8 @@ title: Tool Result Caching
 Tool result caching is designed to avoid unnecessary recomputation by storing the results of function calls on disk. 
 This is useful during development and testing to speed up the development process, avoid rate limiting, and reduce costs.
 
+This is supported on all Agno tools.
+
 ## Example
 
 Pass `cache_results=True` to the Toolkit constructor to enable caching for that Toolkit.
@@ -30,16 +32,3 @@ asyncio.run(
     )
 )
 ```
-
-
-## Supported Toolkits
-
-- `DuckDuckGoTools`
-- `ExaTools`
-- `FirecrawlTools`
-- `GoogleSearchtools`
-- `HackernewsTools`
-- `NewspaperTools`
-- `Newspaper4kTools`
-- `Websitetools`
-- `YFinanceTools`
