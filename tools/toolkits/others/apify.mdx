@@ -34,7 +34,7 @@ from agno.tools.apify import ApifyTools
 agent = Agent(
     tools=[
         ApifyTools(
-            actors=["apify/rag-web-browser"],  # Specify which Apify actors to use, use multiple ones if needed
+            actors=["apify/rag-web-browser"],  # Specify which Apify Actors to use, use multiple ones if needed
             apify_api_token="your_apify_api_key"  # Or set the APIFY_API_TOKEN environment variable 
         )
     ],
@@ -52,7 +52,7 @@ You can easily integrate any Apify Actor as a tool, but we prepared some example
 
 ### 1. RAG Web Browser
 
-The RAG Web Browser actor is specifically designed for AI and LLM applications. It searches the web for a query or processes a URL, then cleans and formats the content for your agent. This tool is enabled by default.
+The RAG Web Browser Actor is specifically designed for AI and LLM applications. It searches the web for a query or processes a URL, then cleans and formats the content for your agent. This tool is enabled by default.
 
 ```python
 from agno.agent import Agent
@@ -72,7 +72,7 @@ agent.print_response("What are the latest developments in large language models?
 
 ### 2. Website Content Crawler
 
-This tool uses Apify's Website Content Crawler actor to extract text content from websites, making it perfect for RAG applications.
+This tool uses Apify's Website Content Crawler Actor to extract text content from websites, making it perfect for RAG applications.
 
 ```python
 from agno.agent import Agent
@@ -160,14 +160,14 @@ class ApifyTools(Toolkit):
         self.apify_api_token = apify_api_token or os.getenv('APIFY_API_TOKEN')
         self.client = ApifyClient(self.apify_api_token)
         
-        # Register specific actors if provided
+        # Register specific Actors if provided
         if actors:
             actor_list = [actors] if isinstance(actors, str) else actors
             for actor_id in actor_list:
                 self.register_actor(actor_id)
     
     def register_actor(self, actor_id: str) -> None:
-        # Register an Apify actor as a function in the toolkit
+        # Register an Apify Actor as a function in the toolkit
         # Implementation details...
 ```
 
@@ -176,7 +176,7 @@ class ApifyTools(Toolkit):
 | Parameter                    | Type                | Default | Description                                                        |
 | ---------------------------- | ------------------- | ------- | ------------------------------------------------------------------ |
 | `apify_api_token`            | `str`               | `None`  | Apify API token (or set via APIFY_API_TOKEN environment variable)  |
-| `actors`                     | `str` or `List[str]`| `None`  | Single actor ID or list of actor IDs to register                   |
+| `actors`                     | `str` or `List[str]`| `None`  | Single Actor ID or list of Actor IDs to register                   |
 
 ## Developer Resources
 
