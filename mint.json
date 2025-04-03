@@ -353,6 +353,7 @@
         "workspaces/workspace-management/development-app",
         "workspaces/workspace-management/production-app",
         "workspaces/workspace-management/install",
+        "workspaces/workspace-management/python-packages",
         "workspaces/workspace-management/secrets",
         "workspaces/workspace-management/env-vars",
         "workspaces/workspace-management/database-tables",
@@ -928,9 +929,7 @@
       "pages": [
         {
           "group": "Agent UI",
-          "pages": [
-            "agent-ui/introduction"
-          ]
+          "pages": ["agent-ui/introduction"]
         }
       ]
     },
