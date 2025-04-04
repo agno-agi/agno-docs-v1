@@ -1117,7 +1117,8 @@
         "faq/cli-auth",
         "faq/connecting-to-tableplus",
         "faq/could-not-connect-to-docker",
-        "faq/openai_key_request_for_other_models"
+        "faq/openai_key_request_for_other_models",
+        "faq/structured-outputs"
       ]
     },
     {
