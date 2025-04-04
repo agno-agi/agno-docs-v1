@@ -11,7 +11,7 @@ When working with language models, generating responses that match a specific st
 
 ### Structured Outputs (Default if supported)
 
-Structured Outputs is the **preferred** and most **reliable** way to extract well-formed, schema-compliant responses from a Model. If a model class supports it, Agno Agents **use Structured Outputs by default**.
+"Structured Outputs" is the **preferred** and most **reliable** way to extract well-formed, schema-compliant responses from a Model. If a model class supports it, Agno Agents use Structured Outputs by default.
 
 With structured outputs, we provide a schema to the model (using Pydantic or JSON Schema), and the model’s response is guaranteed to **strictly follow** that schema. This eliminates many common issues like missing fields, invalid enum values, or inconsistent formatting. Structured Outputs are ideal when you need high-confidence, well-structured responses—like entity extraction, content generation for UI rendering, and more.
 
