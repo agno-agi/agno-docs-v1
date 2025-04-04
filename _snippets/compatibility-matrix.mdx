@@ -15,12 +15,16 @@
 | Groq                  |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | HuggingFace           |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | IBM WatsonX           |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
+| InternLM              |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
+| LiteLLM               |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
+| LiteLLMOpenAI         |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | LM Studio             |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | Mistral               |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | Nvidia                |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | Ollama                |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | OllamaTools           |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
-| OpenAI                |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
+| OpenAIChat            |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
+| OpenAIResponses       |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | OpenRouter            |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | Perplexity            |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
 | Sambanova             |      ✅      |       ✅        |    ✅     |        ✅         |       ✅        |         ✅         |
@@ -44,36 +48,41 @@ be less reliable compared to other providers.
 
 ### Multimodal Support
 
-| Agno Supported Models | Image Input | Audio Input | Audio Responses | Video Input |
-| --------------------- | :---------: | :---------: | :-------------: | :---------: |
-| Anthropic Claude      |     ✅      |             |                 |             |
-| AWS Bedrock           |     ✅      |             |                 |             |
-| AWS Bedrock Claude    |     ✅      |             |                 |             |
-| Azure AI Foundry      |     ✅      |             |                 |             |
-| Azure OpenAI          |     ✅      |             |                 |             |
-| Cohere                |             |             |                 |             |
-| AWS Bedrock           |     ✅      |             |                 |             |
-| AWS Bedrock Claude    |     ✅      |             |                 |             |
-| Azure AI Foundry      |     ✅      |             |                 |             |
-| Azure OpenAI          |     ✅      |             |                 |             |
-| Cohere                |     ✅      |             |                 |             |
-| DeepInfra             |             |             |                 |             |
-| DeepSeek              |             |             |                 |             |
-| Fireworks             |             |             |                 |             |
-| Gemini                |     ✅      |     ✅      |                 |     ✅      |
-| Groq                  |     ✅      |             |                 |             |
-| HuggingFace           |             |             |                 |             |
-| LM Studio             |     ✅      |             |                 |             |
-| IBM WatsonX           |     ✅      |             |                 |             |
-| Mistral               |     ✅      |             |                 |             |
-| Nvidia                |             |             |                 |             |
-| Ollama                |     ✅      |             |                 |             |
-| OllamaTools           |             |             |                 |             |
-| OpenAI                |     ✅      |     ✅      |       ✅        |             |
-| OpenRouter            |             |             |                 |             |
-| Sambanova             |             |             |                 |             |
-| Together              |     ✅      |             |                 |             |
-| XAI                   |     ✅      |             |                 |             |
+| Agno Supported Models | Image Input | Audio Input | Audio Responses | Video Input | File Upload |
+| --------------------- | :---------: | :---------: | :-------------: | :---------: | :---------: |
+| Anthropic Claude      |     ✅      |             |                 |             |     ✅      |
+| AWS Bedrock           |     ✅      |             |                 |             |             |
+| AWS Bedrock Claude    |     ✅      |             |                 |             |             |
+| Azure AI Foundry      |     ✅      |             |                 |             |             |
+| Azure OpenAI          |     ✅      |             |                 |             |             |
+| Cohere                |             |             |                 |             |             |
+| AWS Bedrock           |     ✅      |             |                 |             |             |
+| AWS Bedrock Claude    |     ✅      |             |                 |             |             |
+| Azure AI Foundry      |     ✅      |             |                 |             |             |
+| Azure OpenAI          |     ✅      |             |                 |             |             |
+| Cohere                |     ✅      |             |                 |             |             |
+| DeepInfra             |             |             |                 |             |             |
+| DeepSeek              |             |             |                 |             |             |
+| Fireworks             |             |             |                 |             |             |
+| Gemini                |     ✅      |     ✅      |                 |     ✅      |     ✅      |
+| Groq                  |     ✅      |             |                 |             |             |
+| HuggingFace           |     ✅      |             |                 |             |             |
+| IBM WatsonX           |     ✅      |             |                 |             |             |
+| InternLM              |             |             |                 |             |             |
+| LiteLLM               |             |             |                 |             |             |
+| LiteLLMOpenAI         |             |             |                 |             |             |
+| LM Studio             |     ✅      |             |                 |             |             |
+| Mistral               |     ✅      |             |                 |             |             |
+| Nvidia                |             |             |                 |             |             |
+| Ollama                |     ✅      |             |                 |             |             |
+| OllamaTools           |             |             |                 |             |             |
+| OpenAIChat            |     ✅      |     ✅      |       ✅        |             |             |
+| OpenAIResponses       |     ✅      |     ✅      |       ✅        |             |     ✅      |
+| OpenRouter            |             |             |                 |             |             |
+| Perplexity            |             |             |                 |             |             |
+| Sambanova             |             |             |                 |             |             |
+| Together              |     ✅      |             |                 |             |             |
+| XAI                   |     ✅      |             |                 |             |             |
 
 ### Structured Outputs
 
@@ -87,22 +96,26 @@ be less reliable compared to other providers.
 | Cohere                |                    |    ✅     |
 | DeepInfra             |                    |    ✅     |
 | DeepSeek              |                    |    ✅     |
-| Fireworks             |                    |    ✅     |
+| Fireworks             |         ✅         |    ✅     |
 | Gemini                |         ✅         |    ✅     |
 | Groq                  |                    |    ✅     |
 | HuggingFace           |                    |    ✅     |
 | IBM WatsonX           |                    |    ✅     |
+| InternLM              |         ✅         |    ✅     |
+| LiteLLMOpenAI         |         ✅         |    ✅     |
+| LiteLLM               |                    |    ✅     |
 | LM Studio             |         ✅         |    ✅     |
 | Mistral               |         ✅         |    ✅     |
 | Nvidia                |                    |    ✅     |
 | Ollama                |         ✅         |    ✅     |
-| OllamaTools           |                    |    ✅     |
-| OpenAI                |         ✅         |    ✅     |
+| OllamaTools           |         ✅         |    ✅     |
+| OpenAIChat            |         ✅         |    ✅     |
+| OpenAIResponses       |         ✅         |    ✅     |
 | OpenRouter            |         ✅         |    ✅     |
 | Perplexity            |         ✅         |    ✅     |
 | Sambanova             |                    |    ✅     |
-| Together              |                    |    ✅     |
-| XAI                   |                    |    ✅     |
+| Together              |         ✅         |    ✅     |
+| XAI                   |         ✅         |    ✅     |
 
 <Note>
 
