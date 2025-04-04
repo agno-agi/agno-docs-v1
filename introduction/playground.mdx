@@ -23,7 +23,7 @@ Let's run the playground application locally so we can chat with our Agents usin
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.playground import Playground, serve_playground_app
-from agno.storage.agent.sqlite import SqliteAgentStorage
+from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
 
@@ -35,7 +35,7 @@ web_agent = Agent(
     tools=[DuckDuckGoTools()],
     instructions=["Always include sources"],
     # Store the agent sessions in a sqlite database
-    storage=SqliteAgentStorage(table_name="web_agent", db_file=agent_storage),
+    storage=SqliteStorage(table_name="web_agent", db_file=agent_storage),
     # Adds the current date and time to the instructions
     add_datetime_to_instructions=True,
     # Adds the history of the conversation to the messages
@@ -51,7 +51,7 @@ finance_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
     instructions=["Always use tables to display data"],
-    storage=SqliteAgentStorage(table_name="finance_agent", db_file=agent_storage),
+    storage=SqliteStorage(table_name="finance_agent", db_file=agent_storage),
     add_datetime_to_instructions=True,
     add_history_to_messages=True,
     num_history_responses=5,
