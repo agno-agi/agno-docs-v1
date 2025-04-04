@@ -3,6 +3,47 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-04-02" description="v1.2.7">
+## 1.2.7
+
+## New Features:
+
+- **Gemini Image Generation**: Added support for generating images straight from Gemini using the `gemini-2.0-flash-exp-image-generation` model.
+
+## Improvements:
+
+- **Vertex AI**: Improved use of Vertex AI with Gemini Model class to closely follow the official Google specification
+- **Function Result Caching Improvement:** We now have result caching on all Agno Toolkits and any custom functions using the `@tool` decorator. See the docs [here](https://docs.agno.com/tools/functions).
+- **Async Vector DB and Knowledge Base Improvements**: Various knowledge bases, readers and vector DBs now have `async-await` support, so it will be used in `agent.arun` and `agent.aprint_response`. This also means that `knowledge_base.aload()` is possible which should greatly increase loading speed in some cases. The following have been converted:
+    - Vector DBs:
+        - `LanceDb` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/lance_db/async_lance_db.py) is a cookbook to illustrate how to use it.
+        - `Milvus` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/milvus_db/async_milvus_db.py) is a cookbook to illustrate how to use it.
+        - `Weaviate` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/weaviate_db/async_weaviate_db.py) is a cookbook to illustrate how to use it.
+    - Knowledge Bases:
+        - `JSONKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/json_kb_async.py) is a cookbook to illustrate how to use it.
+        - `PDFKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_kb_async.py) is a cookbook to illustrate how to use it.
+        - `PDFUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_url_kb_async.py) is a cookbook to illustrate how to use it.
+        - `CSVKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_kb_async.py) is a cookbook to illustrate how to use it.
+        - `CSVUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_url_kb_async.py) is a cookbook to illustrate how to use it.
+        - `ArxivKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/arxiv_kb_async.py) is a cookbook to illustrate how to use it.
+        - `WebsiteKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/website_kb_async.py) is a cookbook to illustrate how to use it.
+        - `YoutubeKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/youtube_kb_async.py) is a cookbook to illustrate how to use it.
+        - `TextKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/text_kb_async.py) is a cookbook to illustrate how to use it.
+
+## Bug Fixes:
+
+- **Recursive Chunking Infinite Loop**: Fixes an issue with RecursiveChunking getting stuck in an infinite loop for large documents.
+</Update>
+
+<Update label="2025-03-28" description="v1.2.6">
+## 1.2.6
+
+## Bug Fixes:
+
+- **Gemini Function call result fix**: Fixed a bug with function call results failing formatting and added proper role mapping .
+- **Reasoning fix**: Fixed an issue with default reasoning and improved logging for reasoning models .
+
+</Update>
 <Update label="2025-03-27" description="v1.2.5">
 ## 1.2.5
 
