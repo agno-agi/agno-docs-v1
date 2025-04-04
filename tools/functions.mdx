@@ -4,6 +4,7 @@ title: Python Functions as Tools
 
 Any python function can be used as a tool by an Agent. **We highly recommend** creating functions specific to your workflow and adding them to your Agents.
 
+## Custom Python Function Example
 For example, here's how to use a `get_top_hackernews_stories` function as a tool:
 
 ```python hn_agent.py
@@ -40,3 +41,75 @@ def get_top_hackernews_stories(num_stories: int = 10) -> str:
 agent = Agent(tools=[get_top_hackernews_stories], show_tool_calls=True, markdown=True)
 agent.print_response("Summarize the top 5 stories on hackernews?", stream=True)
 ```
+
+## Using the @tool Decorator
+
+For more flexibility, you can use the `@tool` decorator to quickly create agent-ready functions without creating a full Toolkit class. 
+This approach is more concise and ideal for single-purpose tools.
+
+The `@tool` decorator supports several parameters to customize tool behavior:
+
+```python advanced_tool.py
+import httpx
+from agno.agent import Agent
+from agno.tools import tool
+
+def log_before_call(fc):
+    """Pre-hook function that runs before the tool execution"""
+    print(f"About to call function with arguments: {fc.arguments}")
+
+def log_after_call(fc):
+    """Post-hook function that runs after the tool execution"""
+    print(f"Function call completed with result: {fc.result}")
+
+@tool(
+    name="fetch_hackernews_stories",                # Custom name for the tool (otherwise the function name is used)
+    description="Get top stories from Hacker News",  # Custom description (otherwise the function docstring is used)
+    show_result=True,                               # Show result after function call
+    stop_after_tool_call=True,                      # Return the result immediately after the tool call and stop the agent
+    pre_hook=log_before_call,                       # Hook to run before execution
+    post_hook=log_after_call,                       # Hook to run after execution
+    cache_results=True,                             # Enable caching of results
+    cache_dir="/tmp/agno_cache",                    # Custom cache directory
+    cache_ttl=3600                                  # Cache TTL in seconds (1 hour)
+)
+def get_top_hackernews_stories(num_stories: int = 5) -> str:
+    """
+    Fetch the top stories from Hacker News.
+    
+    Args:
+        num_stories: Number of stories to fetch (default: 5)
+    
+    Returns:
+        str: The top stories in text format
+    """
+    # Fetch top story IDs
+    response = httpx.get("https://hacker-news.firebaseio.com/v0/topstories.json")
+    story_ids = response.json()
+
+    # Get story details
+    stories = []
+    for story_id in story_ids[:num_stories]:
+        story_response = httpx.get(f"https://hacker-news.firebaseio.com/v0/item/{story_id}.json")
+        story = story_response.json()
+        stories.append(f"{story.get('title')} - {story.get('url', 'No URL')}")
+
+    return "\n".join(stories)
+
+agent = Agent(tools=[get_top_hackernews_stories])
+agent.print_response("Show me the top news from Hacker News")
+```
+
+### @tool Parameters Reference
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `name` | `str` | Override for the function name |
+| `description` | `str` | Override for the function description |
+| `show_result` | `bool` | If True, shows the result after function call |
+| `stop_after_tool_call` | `bool` | If True, the agent will stop after the function call |
+| `pre_hook` | `callable` | Hook that runs before the function is executed |
+| `post_hook` | `callable` | Hook that runs after the function is executed |
+| `cache_results` | `bool` | If True, enable caching of function results |
+| `cache_dir` | `str` | Directory to store cache files |
+| `cache_ttl` | `int` | Time-to-live for cached results in seconds (default: 3600) |
