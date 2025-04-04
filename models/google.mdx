@@ -36,16 +36,36 @@ setx GOOGLE_API_KEY ***
 
 To use Vertex AI:
 
-1. Refer to the [Vertex AI documentation](https://cloud.google.com/vertex-ai/docs/start/cloud-environment) to set up a project and development environment
+1. Refer to the [Vertex AI documentation](https://cloud.google.com/vertex-ai/docs/start/cloud-environment) to set up a project and development environment. More details [here](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal#setup-local).
 
-1. Install the Google Cloud CLI and authenticate:
+2. Install the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install-sdk) and authenticate:
+
 ```bash
 gcloud auth application-default login
 ```
 
-2. Set the project ID environment variable (alternatively, you set `project_id` in the `Agent`):
+3. Enable Vertex AI API and set the project ID environment variable (alternatively, you set `project_id` in the `Agent`):
+
+Export the following variables:
+
+>>>>>>> main
 ```bash
-export GOOGLE_CLOUD_PROJECT=your-project-id
+export GOOGLE_GENAI_USE_VERTEXAI="true"
+export GOOGLE_CLOUD_PROJECT="your-gcloud-project-id"
+export GOOGLE_CLOUD_LOCATION="your-gcloud-location"
+```
+
+Or update your Agent configuration:
+
+```python
+agent = Agent(
+    model=Gemini(
+        id="gemini-1.5-flash",
+        vertexai=True,
+        project_id="your-gcloud-project-id",
+        location="your-gcloud-location",
+    ),
+)
 ```
 
 ## Example
@@ -85,7 +105,7 @@ agent.print_response("Share a 2 sentence horror story.")
 
 ## Grounding and Search
 
-Gemini models support grounding and search capabilities through optional parameters.  This automatically sends tools for grounding or search to Gemini.  See more details [here](https://ai.google.dev/gemini-api/docs/grounding?lang=python).
+Gemini models support grounding and search capabilities through optional parameters. This automatically sends tools for grounding or search to Gemini. See more details [here](https://ai.google.dev/gemini-api/docs/grounding?lang=python).
 
 To enable these features, set the corresponding parameter when initializing the Gemini model:
 
