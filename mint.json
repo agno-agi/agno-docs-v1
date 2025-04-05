@@ -684,7 +684,12 @@
             "examples/models/anthropic/structured_output",
             "examples/models/anthropic/storage",
             "examples/models/anthropic/knowledge",
-            "examples/models/anthropic/image_agent"
+            "examples/models/anthropic/image_agent",
+            "examples/models/anthropic/image_input_bytes",
+            "examples/models/anthropic/image_input_url",
+            "examples/models/anthropic/pdf_input_bytes",
+            "examples/models/anthropic/pdf_input_local",
+            "examples/models/anthropic/pdf_input_url"
           ]
         },
         {
@@ -783,7 +788,16 @@
             "examples/models/gemini/image_input",
             "examples/models/gemini/video_agent",
             "examples/models/gemini/audio_input",
-            "examples/models/gemini/flash_thinking"
+            "examples/models/gemini/flash_thinking",
+            "examples/models/gemini/audio_input_bytes_content",
+            "examples/models/gemini/audio_input_file_upload",
+            "examples/models/gemini/audio_input_local_file_upload",
+            "examples/models/gemini/pdf_input_bytes",
+            "examples/models/gemini/pdf_input_local",
+            "examples/models/gemini/pdf_input_url",
+            "examples/models/gemini/video_input_bytes_content",
+            "examples/models/gemini/video_input_file_upload",
+            "examples/models/gemini/video_input_local_file_upload"
           ]
         },
         {
@@ -839,17 +853,40 @@
         {
           "group": "OpenAI",
           "pages": [
-            "examples/models/openai/basic",
-            "examples/models/openai/basic_stream",
-            "examples/models/openai/tool_use",
-            "examples/models/openai/structured_output",
-            "examples/models/openai/storage",
-            "examples/models/openai/knowledge",
-            "examples/models/openai/image_agent",
-            "examples/models/openai/audio_input_agent",
-            "examples/models/openai/audio_output_agent",
-            "examples/models/openai/generate_images",
-            "examples/models/openai/reasoning_effort"
+            {
+
+              "group":"OpenAI Chat",
+              "pages":[
+                "examples/models/openai/chat/basic",
+                "examples/models/openai/chat/basic_stream",
+                "examples/models/openai/chat/tool_use",
+                "examples/models/openai/chat/structured_output",
+                "examples/models/openai/chat/storage",
+                "examples/models/openai/chat/knowledge",
+                "examples/models/openai/chat/image_agent",
+                "examples/models/openai/chat/audio_input_agent",
+                "examples/models/openai/chat/audio_output_agent",
+                "examples/models/openai/chat/generate_images",
+                "examples/models/openai/chat/reasoning_effort"
+              ]
+            },
+            {
+              "group":"OpenAI Responses",
+              "pages":[
+                "examples/models/openai/responses/basic",
+                "examples/models/openai/responses/basic_stream",
+                "examples/models/openai/responses/tool_use",
+                "examples/models/openai/responses/structured_output",
+                "examples/models/openai/responses/storage",
+                "examples/models/openai/responses/knowledge",
+                "examples/models/openai/responses/image_agent",
+                "examples/models/openai/responses/pdf_input_local",
+                "examples/models/openai/responses/pdf_input_url",
+                "examples/models/openai/responses/reasoning_effort"
+              ]
+              
+              
+            }
           ]
         },
         {

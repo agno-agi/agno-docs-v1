@@ -4,13 +4,13 @@ title: Agent with Tools
 
 ## Code
 
-```python cookbook/models/openai/tool_use.py
+```python cookbook/models/openai/responses/tool_use.py
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.openai import OpenAIResponses
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=OpenAIResponses(id="gpt-4o"),
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     markdown=True,
@@ -38,11 +38,11 @@ agent.print_response("Whats happening in France?", stream=True)
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/models/openai/tool_use.py
+    python cookbook/models/openai/responses/tool_use.py
     ```
 
     ```bash Windows
-    python cookbook/models/openai/tool_use.py
+    python cookbook/models/openai/responses/tool_use.py
     ```
     </CodeGroup>
   </Step>
