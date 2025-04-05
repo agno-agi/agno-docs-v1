@@ -684,7 +684,6 @@
             "examples/models/anthropic/structured_output",
             "examples/models/anthropic/storage",
             "examples/models/anthropic/knowledge",
-            "examples/models/anthropic/image_agent",
             "examples/models/anthropic/image_input_bytes",
             "examples/models/anthropic/image_input_url",
             "examples/models/anthropic/pdf_input_bytes",
@@ -786,8 +785,6 @@
             "examples/models/gemini/storage",
             "examples/models/gemini/knowledge",
             "examples/models/gemini/image_input",
-            "examples/models/gemini/video_agent",
-            "examples/models/gemini/audio_input",
             "examples/models/gemini/flash_thinking",
             "examples/models/gemini/audio_input_bytes_content",
             "examples/models/gemini/audio_input_file_upload",
@@ -880,9 +877,9 @@
                 "examples/models/openai/responses/storage",
                 "examples/models/openai/responses/knowledge",
                 "examples/models/openai/responses/image_agent",
+                "examples/models/openai/responses/image_agent_bytes",
                 "examples/models/openai/responses/pdf_input_local",
-                "examples/models/openai/responses/pdf_input_url",
-                "examples/models/openai/responses/reasoning_effort"
+                "examples/models/openai/responses/pdf_input_url"
               ]
               
               
