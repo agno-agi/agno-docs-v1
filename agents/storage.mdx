@@ -62,7 +62,7 @@ agent.print_response("Which country are we speaking about?")
     import typer
     from typing import Optional, List
     from agno.agent import Agent
-    from agno.storage.agent.postgres import PostgresAgentStorage
+    from agno.storage.postgres import PostgresStorage
     from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
     from agno.vectordb.pgvector import PgVector, SearchType
 
@@ -71,7 +71,7 @@ agent.print_response("Which country are we speaking about?")
         urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
         vector_db=PgVector(table_name="recipes", db_url=db_url, search_type=SearchType.hybrid),
     )
-    storage = PostgresAgentStorage(table_name="pdf_agent", db_url=db_url)
+    storage = PostgresStorage(table_name="pdf_agent", db_url=db_url)
 
     def pdf_agent(new: bool = False, user: str = "user"):
         session_id: Optional[str] = None
@@ -159,11 +159,37 @@ agent.print_response("Which country are we speaking about?")
   </Step>
 </Steps>
 
+## Schema Upgrades
+
+The relational SQL-based storage classes have fixed schemas. As new Agno features are released, the schemas might need to be updated.
+
+Upgrades can either be done manually or automatically.
+
+### Automatic Upgrades
+
+Automatic upgrades are done when the `auto_upgrade_schema` parameter is set to `True` in the storage class constructor.  
+You only need to set this once for an agent run and the schema would be upgraded.
+
+```python
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+storage = PostgresStorage(table_name="agent_sessions", db_url=db_url, auto_upgrade_schema=True)
+```
+
+### Manual Upgrades
+
+Manual schema upgrades can be done by calling the `upgrade_schema` method on the storage class.
+
+```python
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+storage = PostgresStorage(table_name="agent_sessions", db_url=db_url)  
+storage.upgrade_schema()
+```
+
 ## Params
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `storage` | `Optional[AgentStorage]` | `None` | Storage mechanism for the agent, if applicable. |
+| `storage` | `Optional[AgentStorage]` | `None` | Storage mechanism for the agent. |
 
  ## Developer Resources
 

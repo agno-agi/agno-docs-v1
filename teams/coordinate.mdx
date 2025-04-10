@@ -69,7 +69,8 @@ This mode is ideal for complex tasks that require multiple specialized skills, c
             "Remember: you are the final gatekeeper before the article is published, so make sure the article is perfect.",
         ],
         add_datetime_to_instructions=True,
-        send_team_context_to_members=True,
+        enable_agentic_context=True,  # Allow the agent to maintain a shared context and send that to members.
+        share_member_interactions=True,  # Share all member responses with subsequent member requests.
         show_members_responses=True,
         markdown=True,
     )

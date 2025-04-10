@@ -1,7 +1,164 @@
-
+---
 title: "Product updates"
 mode: "wide"
 ---
+
+<Update label="2025-04-08" description="v1.2.14">
+## Improvements:
+
+- **Improved Github Tools**: Added many more capabilities to `GithubTools`.
+- **Windows Scripts Support**: Converted all the utility scripts to be Windows compatible.
+- **MongoDB VectorDB Async Support**: MongoDB can now be used in async knowledge bases.
+
+## Bug Fixes:
+
+- **Gemini Tool Formatting**: Fixed various cases where functions would not be parsed correctly when used with Gemini.
+- **ChromaDB Version Compatibility:** Fix to ensure that ChromaDB and Agno are compatible with newer versions of ChromaDB.
+- **Team-Member Interactions**: Fixed issue where if members respond with empty content the team would halt. This is now be resolved.
+- **Claude Empty Response:** Fixed a case when the response did not include any content with tool calls resulting in an error from the Anthropic API
+</Update>
+
+<Update label="2025-04-07" description="v1.2.12">
+## New Features:
+
+- **Timezone Identifier:**  Added a new `timezone_identifier` parameter in the Agent class to include the timezone alongside the current date in the instructions.
+- **Google Cloud JSON Storage**: Added support for JSON-based session storage on Google Cloud.
+- **Reasoning Tools**: Added `ReasoningTools` for an advanced reasoning scratchpad for agents.
+
+## Improvements:
+
+- **Async Vector DB and Knowledge Base Improvements**:  More knowledge bases have been updated for `async-await` support:
+    - `URLKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/9d1b14af9709dde1e3bf36c241c80fb295c3b6d3/cookbook/agent_concepts/knowledge/url_kb_async.py).
+    - `FireCrawlKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/596898d5ba27d2fe228ea4f79edbe9068d34a1f8/cookbook/agent_concepts/knowledge/firecrawl_kb_async.py).
+    - `DocxKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/f6db19f4684f6ab74044a4466946e281586ca1cf/cookbook/agent_concepts/knowledge/docx_kb_async.py).
+</Update>
+
+<Update label="2025-04-07" description="v1.2.11">
+## Bug Fixes:
+
+- **Fix for structured outputs**: Fixed cases of structured outputs for reasoning.
+</Update>
+
+<Update label="2025-04-07" description="v1.2.10">
+## 1.2.10
+
+## New Features:
+
+- **Knowledge Tools**: Added `KnowledgeTools` for thinking, searching and analysing documents in a knowledge base.
+</Update>
+
+<Update label="2025-04-05" description="v1.2.9">
+## 1.2.9
+
+## Improvements:
+
+- **Simpler MCP Interface**: Added `MultiMCPTools` to support multiple server connections and simplified the interface to allow `command` to be passed. See [these examples](https://github.com/agno-agi/agno/blob/382667097c31fbb9f08783431dcac5eccd64b84a/cookbook/tools/mcp) of how to use it.
+</Update>
+
+<Update label="2025-04-04" description="v1.2.8">
+## 1.2.8
+
+# Changelog
+
+## New Features:
+
+- **Toolkit Instructions**: Extended `Toolkit` with `instructions` and `add_instructions` to enable you to specify additional instructions related to how a tool should be used. These instructions are then added to the model’s “system message” if `add_instructions=True` .
+
+## Bug Fixes:
+
+- **Teams transfer functions**: Some tool definitions of teams failed for certain models. This has been fixed.
+</Update>
+<Update label="2025-04-02" description="v1.2.7">
+## 1.2.7
+
+## New Features:
+
+- **Gemini Image Generation**: Added support for generating images straight from Gemini using the `gemini-2.0-flash-exp-image-generation` model.
+
+## Improvements:
+
+- **Vertex AI**: Improved use of Vertex AI with Gemini Model class to closely follow the official Google specification
+- **Function Result Caching Improvement:** We now have result caching on all Agno Toolkits and any custom functions using the `@tool` decorator. See the docs [here](https://docs.agno.com/tools/functions).
+- **Async Vector DB and Knowledge Base Improvements**: Various knowledge bases, readers and vector DBs now have `async-await` support, so it will be used in `agent.arun` and `agent.aprint_response`. This also means that `knowledge_base.aload()` is possible which should greatly increase loading speed in some cases. The following have been converted:
+    - Vector DBs:
+        - `LanceDb` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/lance_db/async_lance_db.py) is a cookbook to illustrate how to use it.
+        - `Milvus` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/milvus_db/async_milvus_db.py) is a cookbook to illustrate how to use it.
+        - `Weaviate` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/weaviate_db/async_weaviate_db.py) is a cookbook to illustrate how to use it.
+    - Knowledge Bases:
+        - `JSONKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/json_kb_async.py) is a cookbook to illustrate how to use it.
+        - `PDFKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_kb_async.py) is a cookbook to illustrate how to use it.
+        - `PDFUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_url_kb_async.py) is a cookbook to illustrate how to use it.
+        - `CSVKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_kb_async.py) is a cookbook to illustrate how to use it.
+        - `CSVUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_url_kb_async.py) is a cookbook to illustrate how to use it.
+        - `ArxivKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/arxiv_kb_async.py) is a cookbook to illustrate how to use it.
+        - `WebsiteKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/website_kb_async.py) is a cookbook to illustrate how to use it.
+        - `YoutubeKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/youtube_kb_async.py) is a cookbook to illustrate how to use it.
+        - `TextKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/text_kb_async.py) is a cookbook to illustrate how to use it.
+
+## Bug Fixes:
+
+- **Recursive Chunking Infinite Loop**: Fixes an issue with RecursiveChunking getting stuck in an infinite loop for large documents.
+</Update>
+
+<Update label="2025-03-28" description="v1.2.6">
+## 1.2.6
+
+## Bug Fixes:
+
+- **Gemini Function call result fix**: Fixed a bug with function call results failing formatting and added proper role mapping .
+- **Reasoning fix**: Fixed an issue with default reasoning and improved logging for reasoning models .
+
+</Update>
+<Update label="2025-03-27" description="v1.2.5">
+## 1.2.5
+
+## New Features:
+
+- **E2B Tools:** Added E2B Tools to run code in E2B Sandbox
+
+## Improvements:
+
+- **Teams Tools**: Add `tools` and `tool_call_limit` to `Team`. This means the team leader itself can also have tools provided by the user, so it can act as an agent.
+- **Teams Instructions:** Improved instructions around attached images, audio, videos, and files. This should increase success when attaching artifacts to prompts meant for member agents.
+- **MCP Include/Exclude Tools**: Expanded `MCPTools` to allow you to specify tools to specifically include or exclude from all the available tools on an MCP server. This is very useful for limiting which tools the model has access to.
+- **Tool Decorator Async Support**: The `@tool()` decorator now supports async functions, including async pre and post-hooks.
+
+## Bug Fixes:
+
+- **Default Chain-of-Thought Reasoning:** Fixed issue where reasoning would not default to manual CoT if the provided reasoning model was not capable of reasoning.
+- **Teams non-markdown responses**: Fixed issue with non-markdown responses in teams.
+- **Ollama tool choice:** Removed `tool_choice` from Ollama usage as it is not supported.
+- **Worklow session retrieval from storage**: Fixed `entity_id` mappings.
+
+</Update>
+<Update label="2025-03-25" description="v1.2.4">
+## 1.2.4
+
+## Improvements:
+
+- **Tool Choice on Teams**: Made `tool_choice` configurable.
+
+## Bug Fixes:
+
+- **Sessions not created**: Made issue where sessions would not be created in existing tables without a migration be more visible. Please read the docs on [storage schema migrations](https://docs.agno.com/agents/storage).
+- **Todoist fixes**: Fixed `update_task` on `TodoistTools`.
+</Update>
+
+<Update label="2025-03-24" description="v1.2.3">
+## 1.2.3
+
+## Improvements:
+
+- **Teams Error Handling:** Improved the flow in cases where the model gets it wrong when forwarding tasks to members.
+</Update>
+<Update label="2025-03-24" description="v1.2.2">
+## 1.2.2
+
+## Bug Fixes:
+
+- **Teams Memory:** Fixed issues related to memory not persisting correctly across multiple sessions.
+</Update>
+
 <Update label="2025-03-24" description="v1.2.1">
 ## 1.2.1
 

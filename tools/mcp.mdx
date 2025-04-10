@@ -17,26 +17,16 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.mcp import MCPTools
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
+from mcp import StdioServerParameters
 
 
 async def run_agent(message: str) -> None:
     """Run the filesystem agent with the given message."""
 
-    # MCP parameters for the Filesystem server accessed via `npx`
-    server_params = StdioServerParameters(
-        command="npx",
-        args=[
-            "-y",
-            "@modelcontextprotocol/server-filesystem",
-            str(Path(__file__).parent.parent.parent.parent),
-        ],
-    )
+    file_path = str(Path(__file__).parent.parent.parent.parent)
 
-
-    # Create a client session to connect to the MCP server
-    async with MCPTools(server_params) as mcp_tools:
+    # MCP server to access the filesystem (via `npx`)
+    async with MCPTools(f"npx -y @modelcontextprotocol/server-filesystem {file_path}") as mcp_tools:
         agent = Agent(
             model=OpenAIChat(id="gpt-4o"),
             tools=[mcp_tools],
@@ -65,39 +55,33 @@ if __name__ == "__main__":
 
 ## Multiple MCP Servers
 
-You can use multiple MCP servers in a single agent by passing multiple `MCPTools` instances to the `tools` parameter of the `Agent` constructor.
+You can use multiple MCP servers in a single agent by using the `MultiMCPTools` class.
 
 ```python multiple_mcp_servers.py
 import asyncio
 import os
 
 from agno.agent import Agent
-from agno.tools.mcp import MCPTools
-from mcp import StdioServerParameters
+from agno.tools.mcp import MultiMCPTools
 
 
 async def run_agent(message: str) -> None:
-    """Run the GitHub agent with the given message."""
+    """Run the Airbnb and Google Maps agent with the given message."""
 
     env = {
         **os.environ,
         "GOOGLE_MAPS_API_KEY": os.getenv("GOOGLE_MAPS_API_KEY"),
     }
 
-    # Time-zone MCP server accessed via `uvx`
-    time_server_params = StdioServerParameters(
-        command="uvx",
-        args=["mcp-server-time", "--local-timezone=Europe/London"],
-    )
-
-    # Maps MCP server accessed via `npx`
-    maps_server_params = StdioServerParameters(
-        command="npx", args=["-y", "@modelcontextprotocol/server-google-maps"], env=env
-    )
-
-    async with MCPTools(server_params=time_server_params) as time_mcp_tools, MCPTools(server_params=maps_server_params) as maps_mcp_tools:
+    async with MultiMCPTools(
+        [
+            "npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt",
+            "npx -y @modelcontextprotocol/server-google-maps",
+        ],
+        env=env,
+    ) as mcp_tools:
         agent = Agent(
-            tools=[time_mcp_tools, maps_mcp_tools],
+            tools=[mcp_tools],
             markdown=True,
             show_tool_calls=True,
         )
@@ -110,7 +94,7 @@ if __name__ == "__main__":
     # Pull request example
     asyncio.run(
         run_agent(
-            "What is the current time in Cape Town? What restaurants are open right now?"
+            "What listings are available in Cape Town for 2 people for 3 nights from 1 to 4 August 2025?"
         )
     )
 ```
@@ -165,7 +149,7 @@ async def run_agent(message: str) -> None:
         args=[
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            str(Path(__file__).parent.parent.parent.parent),
+            str(Path(__file__).parent.parent.parent.parent),  # Set this to the root of the project you want to explore
         ],
     )
 
@@ -189,9 +173,9 @@ if __name__ == "__main__":
 
 1. **Error Handling**: Always include proper error handling for MCP server connections and operations.
 
-2. **Resource Cleanup**: Use `MCPTools` as an async context manager to ensure proper cleanup of resources:
+2. **Resource Cleanup**: Use `MCPTools` or `MultiMCPTools` as an async context manager to ensure proper cleanup of resources:
 ```python
-async with MCPTools(server_params) as mcp_tools:
+async with MCPTools(command) as mcp_tools:
     # Your agent code here
 ```
 
@@ -209,12 +193,15 @@ You are a filesystem assistant. Help users explore files and directories.
 
 ## Understanding server Parameters
 
-The `server_params` parameter to `MCPTools` is used to configure the connection to the MCP server. It contains the following keys:
+The recommended way to configure `MCPTools` or `MultiMCPTools` is to use the `command` parameter.
+
+Alternatively, you can use the `server_params` parameter with `MCPTools` to configure the connection to the MCP server. 
+It contains the following keys:
 - `command`: The command to run the MCP server. 
     - Use `npx` for mcp servers that can be installed via npm (or `node` if running on Windows). 
     - Use `uvx` for mcp servers that can be installed via uvx.
 - `args`: The arguments to pass to the MCP server.
-- `env`: Optional environment variables to pass to the MCP server. Remember to include all current environment variables in the `env` dictionary.
+- `env`: Optional environment variables to pass to the MCP server. Remember to include all current environment variables in the `env` dictionary. If `env` is not provided, the current environment variables will be used.
 e.g.
 ```python
 {

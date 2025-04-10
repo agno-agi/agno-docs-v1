@@ -154,7 +154,7 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.pgvector import PgVector
-from agno.storage.agent.postgres import PostgresAgentStorage
+from agno.storage.postgres import PostgresStorage
 
 app = FastAPI()
 
@@ -170,7 +170,7 @@ agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     description="You are a Thai cuisine expert!",
     knowledge=knowledge_base,
-    storage=PostgresAgentStorage(table_name="agent_sessions", db_url=db_url),
+    storage=PostgresStorage(table_name="agent_sessions", db_url=db_url),
     markdown=True,
 )
 
