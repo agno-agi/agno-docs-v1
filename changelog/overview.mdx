@@ -3,6 +3,19 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-04-11" description="v1.2.16">
+## Improvements:
+
+- **Teams Improvements**: Multiple improvements to teams to make task forwarding to member agents more reliable and to make the team leader more conversational. Also added various examples of reasoning with teams.
+- **Knowledge on Teams**: Added `knowledge` to `Team` to better align with the functionality on `Agent`. This comes with `retriever` to set a custom retriever and `search_knowledge` to enable Agentic RAG.
+
+## Bug Fixes:
+
+- **Gemini Grounding Chunks**: Fixed error when Gemini Grounding was used in streaming.
+- **OpenAI Defaults in Structured Outputs**: OpenAI does not allow defaults in structured outputs. To make our structured outputs as compatible as possible without adverse effects, we made updates to `OpenAIResponses` and `OpenAIChat`.
+
+</Update>
+
 <Update label="2025-04-08" description="v1.2.14">
 ## Improvements:
 
