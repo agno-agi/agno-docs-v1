@@ -3,6 +3,15 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-04-12" description="v1.3.0">
+## New Features:
+
+- **Memory Revamp**: Releasing a complete revamp of Agno Memory. This includes a new `Memory` class that supports adding, updating and deleting user memories, as well as doing semantic search with a model. This also adds additional abilities to the agent to manage memories on your behalf. See the docs [here](https://docs.agno.com/memory/introduction).
+- **User ID and Session ID on Run**: You can now pass `user_id` and `session_id` on `agent.run()`. This will ensure the agent is set up for the session belonging to the `session_id` and that only the memories of the current user is accessible to the agent. This allows you to build multi-user and multi-session applications with a single agent configuration.
+- **Redis Storage**: Support added for Redis as a session storage provider.
+
+</Update>
+
 <Update label="2025-04-11" description="v1.2.16">
 ## Improvements:
 
