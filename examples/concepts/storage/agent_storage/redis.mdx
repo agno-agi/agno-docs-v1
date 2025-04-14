@@ -1,0 +1,45 @@
+---
+title: Redis Agent Storage
+sidebarTitle: Redis
+---
+
+Agno supports using Redis as a storage backend for Agents using the `RedisStorage` class.
+
+## Usage
+
+### Run Redis
+
+Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) and run **Redis** on port **6379** using:
+
+```bash
+docker run --name my-redis -p 6379:6379 -d redis
+```
+
+```python redis_storage_for_agent.py
+from agno.agent import Agent
+from agno.storage.redis import RedisStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+# Initialize Redis storage with default local connection
+storage = RedisStorage(
+    # Prefix for Redis keys to namespace the sessions
+    prefix="agno_test",
+    # Redis host address
+    host="localhost",
+    # Redis port number
+    port=6379,
+)
+
+# Create agent with Redis storage
+agent = Agent(
+    storage=storage,
+)
+```
+
+## Params
+
+<Snippet file="storage-redis-params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/redis_storage/redis_storage_for_agent.py)

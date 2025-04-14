@@ -98,7 +98,6 @@
             "agents/prompts",
             "agents/tools",
             "agents/knowledge",
-            "agents/memory",
             "agents/storage",
             "agents/teams"
           ]
@@ -318,7 +317,8 @@
             "storage/postgres",
             "storage/sqlite",
             "storage/yaml",
-            "storage/singlestore"
+            "storage/singlestore",
+            "storage/redis"
           ]
         },
         {
@@ -566,7 +566,8 @@
                 "examples/concepts/storage/agent_storage/dynamodb",
                 "examples/concepts/storage/agent_storage/mongodb",
                 "examples/concepts/storage/agent_storage/json",
-                "examples/concepts/storage/agent_storage/yaml"
+                "examples/concepts/storage/agent_storage/yaml",
+                "examples/concepts/storage/agent_storage/redis"
               ]
             },
             {
@@ -578,7 +579,8 @@
                 "examples/concepts/storage/workflow_storage/dynamodb",
                 "examples/concepts/storage/workflow_storage/mongodb",
                 "examples/concepts/storage/workflow_storage/json",
-                "examples/concepts/storage/workflow_storage/yaml"
+                "examples/concepts/storage/workflow_storage/yaml",
+                "examples/concepts/storage/workflow_storage/redis"
               ]
             },
             {
@@ -590,7 +592,8 @@
                 "examples/concepts/storage/team_storage/dynamodb",
                 "examples/concepts/storage/team_storage/mongodb",
                 "examples/concepts/storage/team_storage/json",
-                "examples/concepts/storage/team_storage/yaml"
+                "examples/concepts/storage/team_storage/yaml",
+                "examples/concepts/storage/team_storage/redis"
               ]
             }
           ]
