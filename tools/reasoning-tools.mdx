@@ -1,0 +1,58 @@
+---
+title: Reasoning Tools
+sidebarTitle: Reasoning
+---
+
+The `ReasoningTools` toolkit allows an Agent to use reasoning like any other tool, at any point during execution. Unlike traditional approaches that reason once at the start to create a fixed plan, this enables the Agent to reflect after each step, adjust its thinking, and update its actions on the fly.
+
+We have found that this approach leads to impressive results, allowing Agents to solve complex problems which it would otherwise fail to solve.
+
+The toolkit includes the following tools:
+
+- `think`: This tool is used as a scratchpad by the Agent to reason about the question and work through it step by step. It helps break down complex problems into smaller, manageable chunks and track the reasoning process.
+- `analyze`: This tool is used to analyze the results from a reasoning step and determine the next actions.
+
+## Example
+
+Here's an example of how to use the `ReasoningTools` toolkit:
+
+```python
+from agno.agent import Agent
+from agno.models.anthropic import Claude
+from agno.tools.thinking import ThinkingTools
+from agno.tools.yfinance import YFinanceTools
+
+thinking_agent = Agent(
+    model=Claude(id="claude-3-7-sonnet-latest"),
+    tools=[
+        ThinkingTools(add_instructions=True),
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+            company_info=True,
+            company_news=True,
+        ),
+    ],
+    instructions="Use tables where possible",
+    show_tool_calls=True,
+    markdown=True,
+)
+
+thinking_agent.print_response("Write a report comparing NVDA to TSLA", stream=True)
+```
+
+The toolkit comes with default instructions and few-shot examples to help the Agent use the tool effectively. Here is how you can enable it:
+
+```python
+reasoning_agent = Agent(
+    model=Claude(id="claude-3-7-sonnet-latest"),
+    tools=[
+        ReasoningTools(
+            think=True,
+            analyze=True,
+            add_instructions=True,
+            add_few_shot=True,
+        ),
+    ],
+)
+```

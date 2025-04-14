@@ -108,11 +108,7 @@
             "teams/introduction",
             {
               "group": "Team Modes",
-              "pages": [
-                "teams/route",
-                "teams/coordinate",
-                "teams/collaborate"
-              ]
+              "pages": ["teams/route", "teams/coordinate", "teams/collaborate"]
             }
           ]
         },
@@ -235,6 +231,7 @@
               ]
             },
             "tools/mcp",
+            "tools/reasoning-tools",
             "tools/functions",
             "tools/custom-toolkits",
             "tools/async-tools",
@@ -252,10 +249,7 @@
         },
         {
           "group": "Memory",
-          "pages": [
-            "memory/introduction",
-            "memory/storage"
-          ]
+          "pages": ["memory/introduction", "memory/storage"]
         },
         {
           "group": "Knowledge",
@@ -871,9 +865,8 @@
           "group": "OpenAI",
           "pages": [
             {
-
-              "group":"OpenAI Chat",
-              "pages":[
+              "group": "OpenAI Chat",
+              "pages": [
                 "examples/models/openai/chat/basic",
                 "examples/models/openai/chat/basic_stream",
                 "examples/models/openai/chat/tool_use",
@@ -888,8 +881,8 @@
               ]
             },
             {
-              "group":"OpenAI Responses",
-              "pages":[
+              "group": "OpenAI Responses",
+              "pages": [
                 "examples/models/openai/responses/basic",
                 "examples/models/openai/responses/basic_stream",
                 "examples/models/openai/responses/tool_use",
@@ -901,8 +894,6 @@
                 "examples/models/openai/responses/pdf_input_local",
                 "examples/models/openai/responses/pdf_input_url"
               ]
-
-
             }
           ]
         },
@@ -1001,17 +992,11 @@
       "pages": [
         {
           "group": "Agents",
-          "pages": [
-            "reference/agents/agent",
-            "reference/agents/session"
-          ]
+          "pages": ["reference/agents/agent", "reference/agents/session"]
         },
         {
           "group": "Teams",
-          "pages": [
-            "reference/teams/team",
-            "reference/teams/session"
-          ]
+          "pages": ["reference/teams/team", "reference/teams/session"]
         },
         {
           "group": "Workflows",
