@@ -450,7 +450,10 @@
             "examples/workflows/blog-post-generator",
             "examples/workflows/investment-report-generator",
             "examples/workflows/personalized-email-generator",
-            "examples/workflows/startup-idea-validator"
+            "examples/workflows/startup-idea-validator",          
+            "examples/workflows/content-creator",
+            "examples/workflows/product-manager",
+            "examples/workflows/team-workflow"
           ]
         },
         {
