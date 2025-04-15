@@ -530,6 +530,7 @@
             "examples/concepts/memory/10-multi-user-multi-session-chat",
             "examples/concepts/memory/mem-mongodb-memory",
             "examples/concepts/memory/mem-postgres-memory",
+            "examples/concepts/memory/mem-redis-memory",
             "examples/concepts/memory/mem0-memory"
           ]
         },
@@ -1107,7 +1108,8 @@
               "pages": [
                 "reference/memory/storage/mongo",
                 "reference/memory/storage/postgres",
-                "reference/memory/storage/sqlite"
+                "reference/memory/storage/sqlite",
+                "reference/memory/storage/redis"
               ]
             }
           ]
