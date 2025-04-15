@@ -651,70 +651,100 @@
                 {
                     "group": "Tools",
                     "pages": [
-                        "examples/concepts/tools/duckduckgo",
-                        "examples/concepts/tools/calculator",
-                        "examples/concepts/tools/airflow",
-                        "examples/concepts/tools/apify",
-                        "examples/concepts/tools/arxiv",
-                        "examples/concepts/tools/aws_lambda",
-                        "examples/concepts/tools/baidusearch",
-                        "examples/concepts/tools/calcom",
-                        "examples/concepts/tools/composio",
-                        "examples/concepts/tools/confluence",
-                        "examples/concepts/tools/crawl4ai",
-                        "examples/concepts/tools/csv",
-                        "examples/concepts/tools/dalle",
-                        "examples/concepts/tools/desi_vocal",
-                        "examples/concepts/tools/discord",
-                        "examples/concepts/tools/docker",
-                        "examples/concepts/tools/duckdb",
-                        "examples/concepts/tools/email",
-                        "examples/concepts/tools/e2b",
-                        "examples/concepts/tools/exa",
-                        "examples/concepts/tools/fal",
-                        "examples/concepts/tools/file",
-                        "examples/concepts/tools/financial_datasets",
-                        "examples/concepts/tools/firecrawl",
-                        "examples/concepts/tools/giphy",
-                        "examples/concepts/tools/github",
-                        "examples/concepts/tools/google_calendar",
-                        "examples/concepts/tools/google_maps",
-                        "examples/concepts/tools/google_search",
-                        "examples/concepts/tools/hackernews",
-                        "examples/concepts/tools/jina_reader",
-                        "examples/concepts/tools/jira",
-                        "examples/concepts/tools/linear",
-                        "examples/concepts/tools/lumalabs",
-                        "examples/concepts/tools/mlx_transcribe",
-                        "examples/concepts/tools/models_labs",
-                        "examples/concepts/tools/newspaper",
-                        "examples/concepts/tools/newspaper4k",
-                        "examples/concepts/tools/openbb",
-                        "examples/concepts/tools/pandas",
-                        "examples/concepts/tools/postgres",
-                        "examples/concepts/tools/pubmed",
-                        "examples/concepts/tools/python",
-                        "examples/concepts/tools/replicate",
-                        "examples/concepts/tools/resend",
-                        "examples/concepts/tools/searxng",
-                        "examples/concepts/tools/serpapi",
-                        "examples/concepts/tools/shell",
-                        "examples/concepts/tools/slack",
-                        "examples/concepts/tools/sleep",
-                        "examples/concepts/tools/spider",
-                        "examples/concepts/tools/sql",
-                        "examples/concepts/tools/tavily",
-                        "examples/concepts/tools/todoist",
-                        "examples/concepts/tools/twilio",
-                        "examples/concepts/tools/webex",
-                        "examples/concepts/tools/website",
-                        "examples/concepts/tools/wikipedia",
-                        "examples/concepts/tools/x",
-                        "examples/concepts/tools/yfinance",
-                        "examples/concepts/tools/youtube",
-                        "examples/concepts/tools/zendesk"
-                    ]
-                },
+                                {
+                                    "group": "Search",
+                                    "pages": [
+                                        "examples/concepts/tools/search/arxiv",
+                                        "examples/concepts/tools/search/baidusearch",
+                                        "examples/concepts/tools/search/crawl4ai",
+                                        "examples/concepts/tools/search/duckduckgo",
+                                        "examples/concepts/tools/search/exa",
+                                        "examples/concepts/tools/search/firecrawl",
+                                        "examples/concepts/tools/search/google_search",
+                                        "examples/concepts/tools/search/hackernews",
+                                        "examples/concepts/tools/search/pubmed",
+                                        "examples/concepts/tools/search/searxng",
+                                        "examples/concepts/tools/search/serpapi",
+                                        "examples/concepts/tools/search/spider",
+                                        "examples/concepts/tools/search/tavily",
+                                        "examples/concepts/tools/search/wikipedia"
+                                    ]
+                                },
+                                {
+                                    "group": "Social",
+                                    "pages": [
+                                        "examples/concepts/tools/social/discord",
+                                        "examples/concepts/tools/social/email",
+                                        "examples/concepts/tools/social/slack",
+                                        "examples/concepts/tools/social/twilio",
+                                        "examples/concepts/tools/social/webex",
+                                        "examples/concepts/tools/social/x"
+                                    ]
+                                },
+                                {
+                                    "group": "Website",
+                                    "pages": [
+                                        "examples/concepts/tools/website/jina_reader",
+                                        "examples/concepts/tools/website/newspaper",
+                                        "examples/concepts/tools/website/newspaper4k",
+                                        "examples/concepts/tools/website/website"
+                                    ]
+                                },
+                                {
+                                    "group": "Database",
+                                    "pages": [
+                                        "examples/concepts/tools/database/csv",
+                                        "examples/concepts/tools/database/duckdb",
+                                        "examples/concepts/tools/database/pandas",
+                                        "examples/concepts/tools/database/postgres",
+                                        "examples/concepts/tools/database/sql"
+                                    ]
+                                },
+                                {
+                                    "group": "Local",
+                                    "pages": [
+                                        "examples/concepts/tools/local/calculator",
+                                        "examples/concepts/tools/local/docker",
+                                        "examples/concepts/tools/local/file",
+                                        "examples/concepts/tools/local/python",
+                                        "examples/concepts/tools/local/shell",
+                                        "examples/concepts/tools/local/sleep"
+                                    ]   
+                                },
+                                {
+                                    "group": "APIs & External Services",
+                                    "pages": [
+                                        "examples/concepts/tools/others/airflow",
+                                        "examples/concepts/tools/others/apify",
+                                        "examples/concepts/tools/others/aws_lambda",
+                                        "examples/concepts/tools/others/calcom",
+                                        "examples/concepts/tools/others/composio",
+                                        "examples/concepts/tools/others/confluence",
+                                        "examples/concepts/tools/others/dalle",
+                                        "examples/concepts/tools/others/desi_vocal",
+                                        "examples/concepts/tools/others/e2b",
+                                        "examples/concepts/tools/others/fal",
+                                        "examples/concepts/tools/others/financial_datasets",
+                                        "examples/concepts/tools/others/giphy",
+                                        "examples/concepts/tools/others/github",
+                                        "examples/concepts/tools/others/google_calendar",
+                                        "examples/concepts/tools/others/google_maps",
+                                        "examples/concepts/tools/others/jira",
+                                        "examples/concepts/tools/others/linear",
+                                        "examples/concepts/tools/others/lumalabs",
+                                        "examples/concepts/tools/others/mlx_transcribe",
+                                        "examples/concepts/tools/others/models_labs",
+                                        "examples/concepts/tools/others/openbb",
+                                        "examples/concepts/tools/others/replicate",
+                                        "examples/concepts/tools/others/resend",
+                                        "examples/concepts/tools/others/todoist",
+                                        "examples/concepts/tools/others/yfinance",
+                                        "examples/concepts/tools/others/youtube",
+                                        "examples/concepts/tools/others/zendesk"
+                                    ]
+                                }
+                            ]
+                        },
                 {
                     "group": "Vector Databases",
                     "pages": [
