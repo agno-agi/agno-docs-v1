@@ -1,0 +1,13 @@
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `wcd_url` | `Optional[str]` | Weaviate Cloud URL (or use WCD_URL env var) | `None` |
+| `wcd_api_key` | `Optional[str]` | Weaviate Cloud API key (or use WCD_API_KEY env var) | `None` |
+| `client` | `Optional[weaviate.WeaviateClient]` | Pre-configured Weaviate client | `None` |
+| `local` | `bool` | Whether to use a local Weaviate instance | `False` |
+| `collection` | `str` | Name of the Weaviate collection | `"default"` |
+| `vector_index` | `VectorIndex` | Type of vector index (HNSW, FLAT, DYNAMIC) | `VectorIndex.HNSW` |
+| `distance` | `Distance` | Distance metric (COSINE, DOT, etc.) | `Distance.COSINE` |
+| `embedder` | `Optional[Embedder]` | Embedder to use for generating embeddings | `OpenAIEmbedder()` |
+| `search_type` | `SearchType` | Search type (vector, keyword, hybrid) | `SearchType.vector` |
+| `reranker` | `Optional[Reranker]` | Reranker to refine search results | `None` |
+| `hybrid_search_alpha` | `float` | Weighting factor for hybrid search | `0.5` |

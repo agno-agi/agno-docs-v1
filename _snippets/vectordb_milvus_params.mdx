@@ -1,0 +1,7 @@
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `collection` | `str` | Name of the Milvus collection | Required |
+| `embedder` | `Optional[Embedder]` | Embedder to use for embedding documents | `OpenAIEmbedder()` |
+| `distance` | `Distance` | Distance metric to use for vector similarity | `Distance.cosine` |
+| `uri` | `str` | URI of the Milvus server or path to local file | `"http://localhost:19530"` |
+| `token` | `Optional[str]` | Token for authentication with the Milvus server | `None` |
