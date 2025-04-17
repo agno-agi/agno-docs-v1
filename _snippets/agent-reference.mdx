@@ -1,3 +1,5 @@
+## Parameters
+
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `model` | `Optional[Model]` | `None` | Model to use for this Agent |
@@ -69,3 +71,18 @@
 | `debug_mode` | `bool` | `False` | Enable debug logs |
 | `monitoring` | `bool` | `False` | Log Agent information to agno.com for monitoring |
 | `telemetry` | `bool` | `True` | Log minimal telemetry for analytics |
+
+
+## Functions
+
+| Function | Description |
+|----------|-------------|
+| `print_response` | Run the agent and print the response |
+| `run` | Run the agent |
+| `aprint_response` | Run the agent and print the response asynchronously |
+| `arun` | Run the agent asynchronously |
+| `get_session_summary` | Get the session summary for the given session ID and user ID (if not provided, the current session is used) |
+| `get_user_memories` | Get the user memories for the given user ID (if not provided, the current user is used) |
+
+
+

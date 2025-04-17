@@ -3,12 +3,6 @@ title: 'Introduction'
 description: '**Build autonomous multi-agent systems with Agent Teams**'
 ---
 
-Reliability is one of the biggest challenges in building agentic systems, for this reason, we recommend that Agents have a narrow scope and a small number of tools.
-
-However, real-world problems often span multiple domains and require diverse skill sets, meaning that a single agent is not able to solve the problem reliably.
-
-**Agent Teams combine multiple specialized agents, each focused on a different aspect of the problem, to solve complex problems in an autonomous manner.**
-
 ## What are Agent Teams?
 
 Agent Teams are a collection of Agents (or other sub-teams) that work together to accomplish tasks. Agent Teams can either **"coordinate"**, **"collaborate"** or **"route"** to solve a task.
@@ -71,11 +65,11 @@ if __name__ == "__main__":
     multi_language_team.print_response("Come stai?", stream=True)  # Italian
 ```
 
-## Team Context
+## Agentic Team Context
 
-Agent Teams maintain a shared context that is updated agentically (i.e. by the team leader) and is sent to team members if needed.
+The Team Leader maintains a shared context that is updated agentically (i.e. by the team leader) and is sent to team members if needed.
 
-**Agentic Context is critical for effective information sharing and collaboration between agents and the quality of the team's responses depends on how well the team leader manages the shared context.** This means we should use better models for the team leader to ensure the quality of the team's responses.
+**Agentic Context is critical for effective information sharing and collaboration between agents and the quality of the team's responses depends on how well the team leader manages this shared agentic context.** This means we should use better models for the team leader to ensure the quality of the team's responses.
 
 <Note>
 The tasks and responses of team members are automatically added to the team context, but Agentic Context needs to be enabled by the developer.
@@ -104,10 +98,6 @@ team = Team(
     share_member_interactions=True,  # Share interactions
 )
 ```
-
-<Tip>
-Member interactions are automatically added to the team context after communication with members
-</Tip>
 
 ## Team Memory and History
 
@@ -143,7 +133,7 @@ team_with_memory = Team(
     name="Team with Memory",
     members=[agent1, agent2],
     memory=memory,
-    enable_user_memories=True,
+    enable_agentic_memory=True,
 )
 
 team_with_memory.print_response("Hi! My name is John Doe.")

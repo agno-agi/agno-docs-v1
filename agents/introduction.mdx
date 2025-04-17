@@ -4,24 +4,28 @@ title: Introduction
 
 ## What are Agents?
 
-**Agents** are intelligent programs that solve problems autonomously.
+**Agents** are AI programs that operate autonomously.
 
-Agents have memory, domain knowledge and the ability to use tools (like searching the web, querying a database, making API calls). Unlike traditional programs that follow a predefined execution path, Agents dynamically adapt their approach based on the context and tool results.
+- The **model** acts as the **brain** of the Agent - helping it reason, act, and respond to the user. Better the model, smarter the Agent.
+- **Tools** are the **body** of the Agent - enabling it to interact with the real world. "Tool-use" is what makes these systems "Agentic".
+- **Instructions** guide the **behavior** of the Agent. Better the model, better it is at following instructions.
 
-Instead of a rigid binary definition, let's think of Agents in terms of agency and autonomy.
+Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**.
 
-- **Level 0**: Agents with no tools (basic inference tasks).
-- **Level 1**: Agents with tools for autonomous task execution.
-- **Level 2**: Agents with knowledge, combining memory and reasoning.
-- **Level 3**: Teams of specialized agents collaborating on complex workflows.
+- **reasoning:** lets Agents "think" before responding and "analyze" the results of their actions (i.e. tool calls). Reasoning improves the Agents ability to solve problems that require multi-step tool use. Reasoning improves quality, but also increases latency and cost.
+- **knowledge:** is domain-specific information the Agent can **_search on demand_** to make better decisions (dynamic few-shot learning) or provide accurate responses (agentic RAG). This knowledge is stored in a vector database and this _**Agent's searching on demand**_ pattern is known as Agentic Search. **Agno (is aiming to) have first class support for the popular Agentic Search pattern, Hybrid Search + Reranking, for every major vector database.**
+- **storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations across runs using a `session_id`. This makes Agents stateful and enables multi-turn conversations.
+- **memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses. This is an evolving field and Agno is aiming to support the popular Memory patterns.
 
 <img height="200" src="/images/agent.png" style={{ borderRadius: "8px" }} />
 
-If this is your first time building agents, [follow this guide](/agents) and then dive into more advanced concepts.
+<Check>
+If this is your first time building agents, [follow these examples](/introduction/agents#basic-agent) before diving into advanced concepts.
+</Check>
 
 ## Example: Research Agent
 
-Let's create a research agent that can search the web using DuckDuckGo, scrape the top links using Newspaper4k and write a research report for us. Ideally we'll use specialized tools (like Exa) but let's start with the free tools first.
+Let's build a research agent using Exa to showcase how to guide the Agent to produce the report in a specific format. In advanced cases, we should use [Structured Outputs](/agents/structured-output) instead.
 
 <Note>
   The description and instructions are converted to the system message and the

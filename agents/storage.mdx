@@ -2,18 +2,16 @@
 title: Storage
 ---
 
-**Agents use storage to persist sessions by storing them in a database.**
+**Agents use storage to save sessions in a database.**
 
-Agents come with built-in memory but it only lasts while the session is active. To continue conversations across sessions, we store Agent sessions in a database, like PostgreSQL.
+Agents come with built-in memory but it only lasts while the session is active.
 
-Storage is a necessary component when building user facing AI products as any production application will require users to be able to "continue" their conversation with the Agent.
+To persist session history and state across runs, we can provide `AgentStorage` which saves an Agent's session to a database or file. Storage has typically been an under-discussed part of agentic infrastructure, but we see it as one of the most critical pieces of the stack.
 
-<Note>
-Storage works with both agents, teams, and workflows.
-The storage system in Agno is versatile and can be used with both individual agents and complex workflows. This allows for persistent conversations and cached results across sessions.
-
-Learn more about using storage with [agents, workflows and teams](/storage/introduction) to build powerful multi-agent systems with state management.
-</Note>
+While storage is absolutely necessary when building user facing AI products as any production application will need to be able to retrieve sessions, continue sessions, and save state between runs. There is so much more:
+- Storage saves our Agent's session data for inspection and evaluations.
+- Storage helps us extract few-shot examples from session data, which can be used to improve the Agent.
+- Storage enables us to build internal monitoring tools and dashboards.
 
 The general syntax for adding storage to an Agent looks like:
 
@@ -161,13 +159,13 @@ agent.print_response("Which country are we speaking about?")
 
 ## Schema Upgrades
 
-The relational SQL-based storage classes have fixed schemas. As new Agno features are released, the schemas might need to be updated.
+When using `AgentStorage`, the SQL-based storage classes have fixed schemas. As new Agno features are released, the schemas might need to be updated.
 
 Upgrades can either be done manually or automatically.
 
 ### Automatic Upgrades
 
-Automatic upgrades are done when the `auto_upgrade_schema` parameter is set to `True` in the storage class constructor.  
+Automatic upgrades are done when the `auto_upgrade_schema` parameter is set to `True` in the storage class constructor.
 You only need to set this once for an agent run and the schema would be upgraded.
 
 ```python
@@ -181,7 +179,7 @@ Manual schema upgrades can be done by calling the `upgrade_schema` method on the
 
 ```python
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
-storage = PostgresStorage(table_name="agent_sessions", db_url=db_url)  
+storage = PostgresStorage(table_name="agent_sessions", db_url=db_url)
 storage.upgrade_schema()
 ```
 

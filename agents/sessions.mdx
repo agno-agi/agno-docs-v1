@@ -1,15 +1,20 @@
 ---
-title: 
+title: Sessions
 ---
 
-Agents are able to maintain a conversation with one or more users. It is important to understand the following concepts:
+When we call `Agent.run()`, it creates a stateless, singular Agent run.
 
-- **Session:** Each conversation with an Agent is called a **session**. Sessions are identified by a `session_id` and should be unique for each user.
-- **Run:** Every interaction (i.e. chat) within a session is called a **run**. Runs are identified by a `run_id`.
-- **Messages:** are the individual messages sent to and received from the model. They have a `role` (`system`, `user` or `assistant`) and `content`.
+But what if we want to continue this run i.e. have a multi-turn conversation? That's where `sessions` come in. A session is collection of consecutive runs.
 
+In practice, a session is a multi-turn conversation between a user and an Agent. Using a `session_id`, we can pass the conversation history and state across multiple runs.
 
-Below is an example where a single run is created with an Agent. A `session_id` is automatically generated and added to the run. This won't be associated with any specific user.
+Let's outline some key concepts:
+
+- **Session:** A session is collection of consecutive runs like a multi-turn conversation between a user and an Agent. Sessions are identified by a `session_id` and each turn is a **run**.
+- **Run:** Every interaction (i.e. chat or turn) with an Agent is called a **run**. Runs are identified by a `run_id` and `Agent.run()` creates a new `run_id` when called.
+- **Messages:** are the individual messages sent between the model and the Agent. Messages are the communication protocol between the Agent and model.
+
+Let's start with an example where a single run is created with an Agent. A `run_id` is automatically generated, as well as a `session_id` (because we didn't provide one to continue the conversation). This run is not yet associated with a user.
 
 ```python
 from typing import Iterator
@@ -23,22 +28,31 @@ agent = Agent(model=OpenAIChat(id="gpt-4o-mini"))
 agent.print_response("Tell me a 5 second short story about a robot")
 ```
 
-## Multiple Users with Sessions
+## Multi-user, multi-session Agents
 
-Sessions are unique for each user. If you want to maintain a conversation with multiple users, you can use the `user_id` and `session_id` to identify the session.
+Each user that is interacting with an Agent gets a unique set of sessions and you can have multiple users interacting with the same Agent at the same time.
 
-This requires storage of sessions. See [storage](/agents/storage) for more information.
+Set a `user_id` to connect a user to their sessions with the Agent.
+
+In the example below, we set a `session_id` to demo how to have multi-turn conversations with multiple users at the same time. In production, the `session_id` is auto generated.
+
+<Note>
+
+Note: Multi-user, multi-session currently only works with `Memory.v2`, which will become the default memory implementation in the next release.
+
+</Note>
 
 ```python
-from typing import Iterator
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.utils.pprint import pprint_run_response
-from agno.storage.postgres import PostgresStorage
+from agno.memory.v2 import Memory
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"), 
-    storage=PostgresStorage(table_name="agent_sessions", db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"),
+    model=OpenAIChat(id="gpt-4o-mini"),
+    # Multi-user, multi-session only work with Memory.v2
+    memory=Memory(),
+    add_history_to_messages=True,
+    num_history_runs=3,
 )
 
 user_1_id = "user_101"
@@ -48,7 +62,11 @@ user_1_session_id = "session_101"
 user_2_session_id = "session_102"
 
 # Start the session with user 1
-agent.print_response("Tell me a 5 second short story about a robot.", user_id=user_1_id, session_id=user_1_session_id)
+agent.print_response(
+    "Tell me a 5 second short story about a robot.",
+    user_id=user_1_id,
+    session_id=user_1_session_id,
+)
 # Continue the session with user 1
 agent.print_response("Now tell me a joke.", user_id=user_1_id, session_id=user_1_session_id)
 
@@ -57,6 +75,10 @@ agent.print_response("Tell me about quantum physics.", user_id=user_2_id, sessio
 # Continue the session with user 2
 agent.print_response("What is the speed of light?", user_id=user_2_id, session_id=user_2_session_id)
 
-# Continue the session with user 1
-agent.print_response("What can you tell me about what AIs are capable of?", user_id=user_1_id, session_id=user_1_session_id)
+# Ask the agent to give a summary of the conversation, this will use the history from the previous messages
+agent.print_response(
+    "Give me a summary of our conversation.",
+    user_id=user_1_id,
+    session_id=user_1_session_id,
+)
 ```

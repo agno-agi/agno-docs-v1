@@ -2,7 +2,19 @@
 title: Introduction
 ---
 
-A **knowledge base** is a database of information that an agent can search to improve its responses. This information is stored in a vector database and provides agents with business context, helping them respond in a context-aware manner. The general syntax is:
+**Knowledge** is domain-specific information that the Agent can **search** at runtime to make better decisions (dynamic few-shot learning) or provide accurate responses (agentic RAG). Knowledge is stored in a vector db and this **searching on demand** pattern is known as Agentic RAG.
+
+<Accordion title="Dynamic Few-Shot Learning: Text2Sql Agent" icon="database">
+Example: If we're building a Text2Sql Agent, we'll need to give the table schemas, column names, data types, example queries, common "gotchas" to help it generate the best-possible SQL query.
+
+We're obviously not going to put this all in the system prompt, instead we store this information in a vector database and let the Agent query it at runtime.
+
+Using this information, the Agent can then generate the best-possible SQL query. This is called dynamic few-shot learning.
+</Accordion>
+
+**Agno Agents use Agentic RAG** by default, meaning if you add `knowledge` to an Agent, it will search this knowledge base, at runtime, for the specific information it needs to achieve its task.
+
+The simplest example of how to add knowledge to an Agent is:
 
 ```python
 from agno.agent import Agent, AgentKnowledge
@@ -17,6 +29,24 @@ knowledge_base.load_text("The sky is blue")
 # give it a tool to search the knowledge base as needed
 agent = Agent(knowledge=knowledge_base, search_knowledge=True)
 ```
+
+We can give our agent access to the knowledge base in the following ways:
+
+- We can set `search_knowledge=True` to add a `search_knowledge_base()` tool to the Agent. `search_knowledge` is `True` **by default** if you add `knowledge` to an Agent.
+- We can set `add_references=True` to automatically add references from the knowledge base to the Agent's prompt. This is the traditional 2023 RAG approach.
+
+<Tip>
+
+If you need complete control over the knowledge base search, you can pass your own `retriever` function with the following signature:
+
+```python
+def retriever(agent: Agent, query: str, num_documents: Optional[int], **kwargs) -> Optional[list[dict]]:
+  ...
+```
+
+This function is called during `search_knowledge_base()` and is used by the Agent to retrieve references from the knowledge base.
+
+</Tip>
 
 ## Vector Databases
 

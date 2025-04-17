@@ -2,7 +2,11 @@
 title: Agent.run()
 ---
 
-Use the `Agent.run()` function to run the agent and return the response as a `RunResponse` object or a stream of `RunResponse` objects.
+The `Agent.run()` function runs the agent and generates a response, either as a `RunResponse` object or a stream of `RunResponse` objects.
+
+Many of our examples use `agent.print_response()` which is a helper utility to print the response in the terminal. It uses `agent.run()` under the hood.
+
+Here's how to run your agent. The response is captured in the `response` and `response_stream` variables.
 
 ```python
 from typing import Iterator

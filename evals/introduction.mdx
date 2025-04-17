@@ -1,0 +1,124 @@
+---
+title: Introduction
+---
+
+## What are Evals?
+
+**Evals** are unit & integration tests for your Agents. Use them judiciously to evaluate and measure the performance of your Agents and improve it over time.
+
+We typically evaludate Agents on 3 dimensions:
+
+- **Accuracy:** How complete/correct/accurate is the Agent's response (LLM-as-a-judge)
+- **Performance:** How fast does the Agent respond and what's the memory footprint?
+- **Reliability:** Does the Agent make the expected tool calls?
+
+### Accuracy
+
+Accuracy evals use input/output pairs to evaluate the Agent's performance. They use another model to score the Agent's responses (LLM-as-a-judge).
+
+#### Example
+
+```python calculate_accuracy.py
+from typing import Optional
+
+from agno.agent import Agent
+from agno.eval.accuracy import AccuracyEval, AccuracyResult
+from agno.models.openai import OpenAIChat
+from agno.tools.calculator import CalculatorTools
+
+
+def multiply_and_exponentiate():
+    evaluation = AccuracyEval(
+        agent=Agent(
+            model=OpenAIChat(id="gpt-4o-mini"),
+            tools=[CalculatorTools(add=True, multiply=True, exponentiate=True)],
+        ),
+        question="What is 10*5 then to the power of 2? do it step by step",
+        expected_answer="2500",
+        num_iterations=1
+    )
+    result: Optional[AccuracyResult] = evaluation.run(print_results=True)
+
+    assert result is not None and result.avg_score >= 8
+
+
+if __name__ == "__main__":
+    multiply_and_exponentiate()
+```
+
+### Performance
+
+Performance evals measure the latency and memory footprint of the Agent operations.
+
+<Note>
+While latency will be dominated by the model API response time, we should still keep performance top of mind and track the agent performance with and without certain components. Eg: it would be good to know what's the average latency with and without storage, memory, with a new prompt, or with a new model.
+</Note>
+
+#### Example
+
+```python storage_performance.py
+"""Run `pip install openai agno` to install dependencies."""
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.eval.perf import PerfEval
+
+def simple_response():
+    agent = Agent(model=OpenAIChat(id='gpt-4o-mini'), system_message='Be concise, reply with one sentence.', add_history_to_messages=True)
+    response_1 = agent.run('What is the capital of France?')
+    print(response_1.content)
+    response_2 = agent.run('How many people live there?')
+    print(response_2.content)
+    return response_2.content
+
+
+simple_response_perf = PerfEval(func=simple_response, num_iterations=1, warmup_runs=0)
+
+if __name__ == "__main__":
+    simple_response_perf.run(print_results=True)
+```
+
+### Reliability
+
+What makes an Agent reliable?
+
+- Does the Agent make the expected tool calls?
+- Does the Agent handle errors gracefully?
+- Does the Agent respect the rate limits of the model API?
+
+#### Example
+
+The first check is to ensure the Agent makes the expected tool calls. Here's an example:
+
+```python reliability.py
+from typing import Optional
+
+from agno.agent import Agent
+from agno.eval.reliability import ReliabilityEval, ReliabilityResult
+from agno.tools.calculator import CalculatorTools
+from agno.models.openai import OpenAIChat
+from agno.run.response import RunResponse
+
+
+def multiply_and_exponentiate():
+
+    agent=Agent(
+        model=OpenAIChat(id="gpt-4o-mini"),
+        tools=[CalculatorTools(add=True, multiply=True, exponentiate=True)],
+    )
+    response: RunResponse = agent.run("What is 10*5 then to the power of 2? do it step by step")
+    evaluation = ReliabilityEval(
+        agent_response=response,
+        expected_tool_calls=["multiply", "exponentiate"],
+    )
+    result: Optional[ReliabilityResult] = evaluation.run(print_results=True)
+    result.assert_passed()
+
+
+if __name__ == "__main__":
+    multiply_and_exponentiate()
+```
+
+<Note>
+Reliability evals are currently in `beta`.
+</Note>

@@ -4,29 +4,30 @@ title: Agent Monitoring
 
 ## Monitor Your Agents
 
-You can monitor your agents' performance and session activity to ensure smooth operation. Agno offers built-in monitoring capabilities, allowing you to track session and performance metrics through [app.agno.com](https://app.agno.com).
+You can track your agents sessions and performance to ensure everything is working as expected. Agno provides built-in monitoring that you can access at [app.agno.com](https://app.agno.com).
 
-## Setup Process
+## Authenticate & Enable Monitoring
 
-### Step 1: Authenticate
+### Step 1: Authenticate using cli or api key
 
-Before enabling monitoring, you need to authenticate using one of these methods:
+To log agent sessions, you need to authenticate using one of these methods:
 
-**Method A: Quick Setup**
+**Method A: Log in using your command line interface**
 ```bash
 ag setup
 ```
 
-**Method B: API Key Configuration**
+**Method B: Log using an API key**
 
-You can get API key from [Agno App](https://app.agno.com/settings).
+Get your API key from [Agno App](https://app.agno.com/settings) and use it to log agent sessions to your workspace.
+
 ```bash
 export AGNO_API_KEY=your_api_key_here
 ```
 
 ### Step 2: Enable Monitoring
 
-After authentication, enable monitoring using one of these approaches:
+After authentication, enable monitoring for a particular agent or globally for all agents.
 
 **Method A: For a Specific Agent**
 ```python

@@ -1,3 +1,5 @@
+## Parameters
+
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `members` | `List[Union[Agent, Team]]` | - | List of agents or teams that make up this team |
@@ -17,6 +19,7 @@
 | `success_criteria` | `Optional[str]` | `None` | Define the success criteria for the team |
 | `markdown` | `bool` | `False` | If markdown=true, add instructions to format the output using markdown |
 | `add_datetime_to_instructions` | `bool` | `False` | If True, add the current datetime to the instructions to give the agent a sense of time |
+| `add_member_tools_to_system_message` | `bool` | `True` | If True, add the member tools to the system message |
 | `knowledge` | `Optional[AgentKnowledge]` | `None` | Add a knowledge base to the team |
 | `retriever` | `Optional[Callable[..., Optional[List[Dict]]]]` | `None` | Function to get references to add to the user_message |
 | `references_format` | `Literal["json", "yaml"]` | `"json"` | Format of the references |
@@ -40,3 +43,18 @@
 | `show_members_responses` | `bool` | `False` | Enable member logs - Sets the debug_mode for team and members |
 | `monitoring` | `bool` | `False` | Log team information to agno.com for monitoring |
 | `telemetry` | `bool` | `True` | Log minimal telemetry for analytics |
+
+
+## Functions
+
+| Function | Description |
+|----------|-------------|
+| `print_response` | Run the agent and print the response |
+| `run` | Run the agent |
+| `aprint_response` | Run the agent and print the response asynchronously |
+| `arun` | Run the agent asynchronously |
+| `get_session_summary` | Get the session summary for the given session ID and user ID (if not provided, the current session is used) |
+| `get_user_memories` | Get the user memories for the given user ID (if not provided, the current user is used) |
+
+
+
