@@ -6,18 +6,18 @@ title: Your first Agents
 
 **Agents** are AI programs that operate autonomously.
 
-**Model**, **tools** and **instructions** make up the core of an Agent:
+The core of an Agent is the **model**, **tools** and **instructions**:
 
-- **model:** is the brain of an Agent, helping it reason, act, and respond to the user.
-- **tools:** are the body of an Agent, enabling it to interact with the real world.
-- **instructions:** guide the behavior of an Agent. Better the model, better it is at following instructions.
+- **Model:** is the brain of an Agent, helping it reason, act, and respond to the user.
+- **Tools:** are the body of an Agent, enabling it to interact with the real world.
+- **Instructions:** guide the Agent's behavior. Better the model, better it is at following instructions.
 
 Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**:
 
-- **reasoning:** enables Agents to "think" before responding and "analyze" the results of their actions (i.e. tool calls), this improves the Agents' ability to solve problems that require sequential tool calls.
-- **knowledge:** is domain-specific information that the Agent can **search on demand** to make better decisions and provide accurate responses. Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG.
-- **storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off. This makes Agents stateful, enabling multi-turn conversations.
-- **memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses.
+- **Reasoning:** enables Agents to "think" before responding and "analyze" the results of their actions (i.e. tool calls), this improves the Agents' ability to solve problems that require sequential tool calls.
+- **Knowledge:** is domain-specific information that the Agent can **search on demand** to make better decisions and provide accurate responses. Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG.
+- **Storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off. This makes Agents stateful, enabling multi-turn conversations.
+- **Memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses.
 
 <Check>Let's build a few Agents to see how they work.</Check>
 
@@ -211,7 +211,7 @@ python agent_with_reasoning.py
 
 ## Agent with knowledge
 
-While models have a large amount of training data, we almost always need to give Agents a specific set of domain-specific information to help it achieve its task. This isn't just for RAG, but more importantly, its used to dynamically provide few-shot examples to the model.
+While models have a large amount of training data, we almost always need to give them domain-specific information to help them achieve their task. This knowledge isn't just used for RAG, an emerging use case is to dynamically provide few-shot examples to the model.
 
 <Accordion title="Dynamic Few-Shot Learning: Text2Sql Agent" icon="database">
 Example: You're building a Text2Sql Agent and for best results, you'll need to give the Agent table schemas, column names, data types, example queries, common "gotchas", etc.

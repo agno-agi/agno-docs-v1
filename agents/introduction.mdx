@@ -6,18 +6,18 @@ title: Introduction
 
 **Agents** are AI programs that operate autonomously.
 
-**Model**, **tools** and **instructions** make up the core of an Agent:
+The core of an Agent is the **model**, **tools** and **instructions**:
 
-- **model:** is the brain of an Agent, helping it reason, act, and respond to the user.
-- **tools:** are the body of an Agent, enabling it to interact with the real world.
-- **instructions:** guide the behavior of an Agent. Better the model, better it is at following instructions.
+- **Model:** is the brain of an Agent, helping it reason, act, and respond to the user.
+- **Tools:** are the body of an Agent, enabling it to interact with the real world.
+- **Instructions:** guide the Agent's behavior. Better the model, better it is at following instructions.
 
 Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**.
 
-- **reasoning:** lets Agents "think" before responding and "analyze" the results of their actions (i.e. tool calls). Reasoning improves the Agents ability to solve problems that require multi-step tool use. Reasoning improves quality, but also increases latency and cost.
-- **knowledge:** is domain-specific information that the Agent can **search on demand** to make better decisions (dynamic few-shot learning) and provide accurate responses (agentic RAG). Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG. **Agno (is aiming to) have first class support for the popular Agentic Search pattern, Hybrid Search + Reranking, for every major vector database.**
-- **storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations across runs using a `session_id`. This makes Agents stateful and enables multi-turn conversations.
-- **memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses. This is an evolving field and Agno is aiming to support the popular Memory patterns.
+- **Reasoning:** lets Agents "think" before responding and "analyze" the results of their actions (i.e. tool calls). Reasoning improves the Agents ability to solve problems that require multi-step tool use. Reasoning improves quality, but also increases latency and cost.
+- **Knowledge:** is domain-specific information that the Agent can **search on demand** to make better decisions (dynamic few-shot learning) and provide accurate responses (agentic RAG). Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG. **Agno (is aiming to) have first class support for the popular Agentic Search pattern, Hybrid Search + Reranking, for every major vector database.**
+- **Storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations across runs using a `session_id`. This makes Agents stateful and enables multi-turn conversations.
+- **Memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses. This is an evolving field and Agno is aiming to support the popular Memory patterns.
 
 <img height="200" src="/images/agent.png" style={{ borderRadius: "8px" }} />
 

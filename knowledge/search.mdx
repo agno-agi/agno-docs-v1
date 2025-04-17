@@ -2,8 +2,12 @@
 title: Agentic Search
 ---
 
-When we use an Agent to dynamically search for information at runtime, its called **Agentic Search**. The process of **searching, reasoning and responding** is known as Agentic RAG.
+Using an Agent to dynamically search for information at runtime is called **Agentic Search**. The process of **searching, reasoning and responding** is also known as Agentic RAG.
 
-When we add a knowledge base to an Agent, we're essentially giving the model, a tool to search for the information it needs to achieve its task. The Model understands the input message and generates a set of keywords, which are used to call the `search_knowledge_base()` tool.
+With Agno, when we add a knowledge base to an Agent, we're essentially giving the model a tool to search for the information it needs. The Model generates a set of keywords and calls the `search_knowledge_base()` tool to retrieve the relevant information or few-shot examples.
 
-Because the Agent is searching for the information it needs (at runtime), this pattern is referred to as **Agentic Search** and is becoming popular with Agent builders.
+Because the Agent is searching for the information it needs, this pattern is called **Agentic Search** and is becoming very popular with Agent builders.
+
+<Check>
+Let's build some examples to see Agentic Search in action.
+</Check>
