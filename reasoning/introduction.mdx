@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-Reasoning is the ability to **think and validate** before responding or taking action.
+**Reasoning** gives Agents the ability to "think" before responding and "analyze" the results of their actions (i.e. tool calls), greatly improving the Agents' ability to solve problems that require sequential tool calls.
 
 Reasoning Agents go through an internal chain of thought before responding, working through different ideas, validating and correcting as needed. Agno supports 3 approaches to reasoning:
 1. [Reasoning Models](#reasoning-models)
@@ -35,7 +35,7 @@ Read more about reasoning models in the [Reasoning Models Guide](/reasoning/reas
 
 ## Reasoning Model + Response Model
 
-What if we wanted to use a Reasoning Model to reason but a different model to generate the response? It is well known that reasoning models are great at solving problems but not that great at responding in a natural way (like claude sonnet or gpt-4.5).
+What if we wanted to use a Reasoning Model to reason but a different model to generate the response? It is well known that reasoning models are great at solving problems but not that great at responding in a natural way (like claude sonnet or gpt-4o).
 
 By using a separate model for reasoning and a different model for responding, we can have the best of both worlds.
 
@@ -65,37 +65,34 @@ The research was first published by Anthropic in [this blog post](https://www.an
 
 ### Example
 
-```python claude_reasoning_tools.py
-from textwrap import dedent
-
+```python claude_thinking_tools.py
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 from agno.tools.thinking import ThinkingTools
 from agno.tools.yfinance import YFinanceTools
 
-thinking_agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-20250219"),
+reasoning_agent = Agent(
+    model=Claude(id="claude-3-7-sonnet-latest"),
     tools=[
-        ThinkingTools(),
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
+        ThinkingTools(add_instructions=True),
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+            company_info=True,
+            company_news=True,
+        ),
     ],
-    instructions=dedent("""\
-    ## Using the think tool
-    Before taking any action or responding to the user after receiving tool results, use the think tool as a scratchpad to:
-    - List the specific rules that apply to the current request
-    - Check if all required information is collected
-    - Verify that the planned action complies with all policies
-    - Iterate over tool results for correctness
+    instructions="Use tables where possible",
+    markdown=True,
+)
 
-    ## Rules
-    - Its expected that you will use the think tool generously to jot down thoughts and ideas.
-    - Use tables where possible\
-    """),
-    show_tool_calls=True,
-)
-thinking_agent.print_response(
-    "Write a report comparing NVDA to TSLA", stream=True, markdown=True
-)
+if __name__ == "__main__":
+    reasoning_agent.print_response(
+        "Write a report on NVDA. Only the report, no other text.",
+        stream=True,
+        show_full_reasoning=True,
+        stream_intermediate_steps=True,
+    )
 ```
 
 Read more about reasoning tools in the [Reasoning Tools Guide](/reasoning/reasoning-tools).

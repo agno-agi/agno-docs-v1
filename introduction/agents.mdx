@@ -6,14 +6,16 @@ title: Your first Agents
 
 **Agents** are AI programs that operate autonomously.
 
-- The **brain** of an Agent is the model that it uses to reason, act, and respond to the user.
-- The **body** of an Agent is the tools it uses to interact with the real world.
-- The **behavior** of an Agent is guided by instructions; the better the model, the better it is at following instructions.
+**Model**, **tools** and **instructions** make up the core of an Agent:
+
+- **model:** is the brain of an Agent, helping it reason, act, and respond to the user.
+- **tools:** are the body of an Agent, enabling it to interact with the real world.
+- **instructions:** guide the behavior of an Agent. Better the model, better it is at following instructions.
 
 Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**:
 
 - **reasoning:** enables Agents to "think" before responding and "analyze" the results of their actions (i.e. tool calls), this improves the Agents' ability to solve problems that require sequential tool calls.
-- **knowledge:** is domain-specific information the Agent can **_search on demand_** to make better decisions and provide accurate responses. Knowledge is stored in a vector database and this **_search on demand_** pattern is known as Agentic RAG.
+- **knowledge:** is domain-specific information that the Agent can **search on demand** to make better decisions and provide accurate responses. Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG.
 - **storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off. This makes Agents stateful, enabling multi-turn conversations.
 - **memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses.
 
@@ -167,7 +169,7 @@ Set `debug_mode=True` or `export AGNO_DEBUG=true` to see the system prompt, user
 
 ## Agent with reasoning
 
-Agents can also **"think" & "reason"** to solve problems that require more than one step. The `ReasoningTools` is one of the best "hacks" to improve the Agents's response quality.
+Agents can also **"think" & "analyze"** to solve problems that require more than one step. The `ReasoningTools` is one of the best "hacks" to improve the Agents's response quality.
 
 ```python agent_with_reasoning.py
 from agno.agent import Agent
@@ -209,7 +211,7 @@ python agent_with_reasoning.py
 
 ## Agent with knowledge
 
-While models have a large corpus of training data, we almost always need to give Agents a specific set of knowledge related to our domain. This isn't just for RAG, but more importantly, its used to dynamically provide few-shot examples to the model.
+While models have a large amount of training data, we almost always need to give Agents a specific set of domain-specific information to help it achieve its task. This isn't just for RAG, but more importantly, its used to dynamically provide few-shot examples to the model.
 
 <Accordion title="Dynamic Few-Shot Learning: Text2Sql Agent" icon="database">
 Example: You're building a Text2Sql Agent and for best results, you'll need to give the Agent table schemas, column names, data types, example queries, common "gotchas", etc.
