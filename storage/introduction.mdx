@@ -2,7 +2,16 @@
 title: Introduction
 ---
 
-Storage is a necessary component when building user-facing AI products. While agents come with built-in memory, it only lasts during the active session. For persistent conversations across sessions, Agno provides storage options that work with individual agents, multi-agent teams and complex workflows.
+**Agents use storage to save sessions in a database.**
+
+Agents come with built-in memory but it only lasts while the session is active.
+
+To persist session history and state across runs, we can provide `AgentStorage` which saves an Agent's session to a database or file. Storage has typically been an under-discussed part of agentic infrastructure, but we see it as one of the most critical pieces of the stack.
+
+While storage is absolutely necessary when building user facing AI products as any production application will need to be able to retrieve sessions, continue sessions, and save state between runs. There is so much more:
+- Storage saves our Agent's session data for inspection and evaluations.
+- Storage helps us extract few-shot examples from session data, which can be used to improve the Agent.
+- Storage enables us to build internal monitoring tools and dashboards.
 
 ## Agent Storage
 
@@ -11,31 +20,28 @@ When working with agents, storage allows users to continue conversations where t
 Here's a simple example of adding storage to an agent:
 
 ```python storage.py
+"""Run `pip install duckduckgo-search sqlalchemy openai` to install dependencies."""
+
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.storage.postgres import PostgresStorage
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
-    storage=PostgresStorage(
-        table_name="agent_sessions", 
-        db_url="postgresql+psycopg://ai:ai@localhost:5532/ai"
+    storage=SqliteStorage(
+        table_name="agent_sessions", db_file="tmp/data.db", auto_upgrade_schema=True
     ),
     tools=[DuckDuckGoTools()],
-    show_tool_calls=True,
     add_history_to_messages=True,
+    add_datetime_to_instructions=True,
 )
-
-# These messages will persist across sessions
 agent.print_response("How many people live in Canada?")
-agent.print_response("What is their national anthem called?")
-agent.print_response("Which country are we speaking about?")
+agent.print_response("What is their national anthem?")
+agent.print_response("List my messages one by one")
 ```
 
 ## Team Storage
 
-The storage system in Agno also works with teams, providing persistent memory and state management for multi-agent collaborative systems. With team storage, you can maintain conversation history, shared context, and team state across multiple sessions.
+`Storage` drivers also works with teams, providing persistent memory and state management for multi-agent collaborative systems. With team storage, you can maintain conversation history, shared context, and team state across multiple sessions.
 
 <Note>
 Learn more about [teams](/teams/) and their storage capabilities to build powerful multi-agent systems with persistent state.
@@ -59,7 +65,7 @@ The following databases are supported as a storage backend:
 - [DynamoDB](/storage/dynamodb)
 - [MongoDB](/storage/mongodb)
 - [YAML](/storage/yaml)
-- [JSON](/storage/json) 
+- [JSON](/storage/json)
 - [Redis](/storage/redis)
 
-Check detailed [examples](/examples/concepts/storage) for each storage 
+Check detailed [examples](/examples/concepts/storage) for each storage

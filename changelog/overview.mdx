@@ -3,6 +3,27 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-04-16" description="v1.3.2">
+## New Features:
+
+- **Redis Memory DB**: Added Redis as a storage provider for `Memory`.  See [here](https://docs.agno.com/examples/concepts/memory/mem-redis-memory).
+
+## Improvements:
+
+- **Memory Updates**: Various performance improvements made and convenience functions added:
+    - `agent.get_session_summary()` → Use to get the previous session summary from the agent.
+    - `agent.get_user_memories()` → Use to get the current user’s memories.
+    - You can also add additional instructions to the `MemoryManager` or `SessionSummarizer`.
+- **Confluence Bypass SSL Verification**: If required, you can now skip SSL verification for Confluence connections.
+- **More Flexibility On Team Prompts**: Added `add_member_tools_to_system_message` to remove the member tool names from the system message given to the team leader, which allows flexibility to make teams transfer functions work in more cases.
+
+## Bug Fixes:
+
+- **LiteLLM Streaming Tool Calls**: Fixed issues with tool call streaming in LiteLLM.
+- **E2B Casing Issue**: Fixed issues with parsed Python code that would make some values lowercase.
+- **Team Member IDs**: Fixed edge-cases with team member IDs causing teams to break.
+</Update>
+
 <Update label="2025-04-12" description="v1.3.0">
 ## New Features:
 

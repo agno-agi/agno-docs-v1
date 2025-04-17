@@ -13,7 +13,7 @@ title: Your first Agents
 Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**:
 
 - **reasoning:** enables Agents to "think" before responding and "analyze" the results of their actions (i.e. tool calls), this improves the Agents' ability to solve problems that require sequential tool calls.
-- **knowledge:** is domain-specific information the Agent can **_search on demand_** to make better decisions and provide accurate responses. Knowledge is stored in a vector database and this **_search on demand_** pattern is known as Agentic RAG.
+- **knowledge:** is domain-specific information the Agent can **search on demand** to make better decisions and provide accurate responses. Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG.
 - **storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off. This makes Agents stateful, enabling multi-turn conversations.
 - **memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses.
 
@@ -167,7 +167,7 @@ Set `debug_mode=True` or `export AGNO_DEBUG=true` to see the system prompt, user
 
 ## Agent with reasoning
 
-Agents can also **"think" & "reason"** to solve problems that require more than one step. The `ReasoningTools` is one of the best "hacks" to improve the Agents's response quality.
+Agents can also **"think" & "analyze"** to solve problems that require more than one step. The `ReasoningTools` is one of the best "hacks" to improve the Agents's response quality.
 
 ```python agent_with_reasoning.py
 from agno.agent import Agent
