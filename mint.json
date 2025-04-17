@@ -333,7 +333,7 @@
           ]
         },
         {
-          "group": "VectorDbs",
+          "group": "Vector DBs",
           "pages": [
             "vectordb/introduction",
             "vectordb/pgvector",
