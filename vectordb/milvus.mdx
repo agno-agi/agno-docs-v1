@@ -21,7 +21,6 @@ Set the uri and token for your Milvus server.
 ## Example
 
 ```python agent_with_knowledge.py
-
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.milvus import Milvus
@@ -39,11 +38,61 @@ knowledge_base = PDFUrlKnowledgeBase(
 knowledge_base.load(recreate=False)  # Comment out after first run
 
 # Create and use the agent
-agent = Agent(knowledge_base=knowledge_base, use_tools=True, show_tool_calls=True)
+agent = Agent(knowledge=knowledge_base, use_tools=True, show_tool_calls=True)
 agent.print_response("How to make Tom Kha Gai", markdown=True)
 agent.print_response("What was my last question?", stream=True)
 ```
 
+<Card title="Async Support ⚡">
+  <div className="mt-2">
+    <p>
+      Milvus now supports asynchronous operations for improved performance in production environments.
+    </p>
+    
+    ```python async_milvus_db.py
+    # install pymilvus - `pip install pymilvus`
+    import asyncio
+
+    from agno.agent import Agent
+    from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
+    from agno.vectordb.milvus import Milvus
+
+    # Initialize Milvus with local file
+    vector_db = Milvus(
+        collection="recipes",
+        uri="tmp/milvus.db",  # For local file-based storage
+    )
+
+    # Create knowledge base
+    knowledge_base = PDFUrlKnowledgeBase(
+        urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+        vector_db=vector_db,
+    )
+
+    # Create agent with knowledge base
+    agent = Agent(knowledge=knowledge_base)
+
+    if __name__ == "__main__":
+        # Load knowledge base asynchronously
+        asyncio.run(knowledge_base.aload(recreate=False))  # Comment out after first run
+
+        # Query the agent asynchronously
+        asyncio.run(agent.aprint_response("How to make Tom Kha Gai", markdown=True))
+    ```
+    
+    <Tip className="mt-4">
+      Use <code>aload()</code> and <code>aprint_response()</code> methods with <code>asyncio.run()</code> for non-blocking operations in high-throughput applications.
+    </Tip>
+  </div>
+</Card>
+
+## Milvus Params
+
+<Snippet file="vectordb_milvus_params.mdx" />
+
+Advanced options can be passed as additional keyword arguments to the `MilvusClient` constructor.
+
 ## Developer Resources
 
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/milvus.py)
+- View [Cookbook (Sync)](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/milvus.py)
+- View [Cookbook (Async)](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/milvus_db/async_milvus_db.py)

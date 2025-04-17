@@ -31,6 +31,15 @@ Hybrid search typically works by:
 
 This capability allows for more flexible and powerful querying, often yielding better results than either method alone.
 
+<Card title="⚡ Asynchronous Operations">
+  <p>Several vector databases support asynchronous operations, offering improved performance through non-blocking operations, concurrent processing, reduced latency, and seamless integration with FastAPI and async agents.</p>
+  <Tip className="mt-4">
+    When building with Agno, use the <code>aload</code> methods for async knowledge base loading in production environments.
+  </Tip>
+</Card>
+
+## Supported Vector Databases
+
 The following VectorDb are currently supported:
 
 - [PgVector](/vectordb/pgvector)\*
@@ -47,4 +56,4 @@ The following VectorDb are currently supported:
 
 \*hybrid search supported
 
-Each of these databases has its own strengths and features, including varying levels of support for hybrid search. Be sure to check the specific documentation for each to understand how to best leverage their capabilities in your projects.
+Each of these databases has its own strengths and features, including varying levels of support for hybrid search and async operations. Be sure to check the specific documentation for each to understand how to best leverage their capabilities in your projects.
