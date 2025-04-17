@@ -180,13 +180,11 @@
                     "tools/toolkits/search/crawl4ai",
                     "tools/toolkits/search/duckduckgo",
                     "tools/toolkits/search/exa",
-                    "tools/toolkits/search/firecrawl",
                     "tools/toolkits/search/googlesearch",
                     "tools/toolkits/search/hackernews",
                     "tools/toolkits/search/pubmed",
                     "tools/toolkits/search/searxng",
                     "tools/toolkits/search/serpapi",
-                    "tools/toolkits/search/spider",
                     "tools/toolkits/search/tavily",
                     "tools/toolkits/search/wikipedia"
                   ]
@@ -206,13 +204,15 @@
                   ]
                 },
                 {
-                  "group": "Website",
+                  "group": "Web Scraping",
                   "pages": [
-                    "tools/toolkits/website/browserbase",
-                    "tools/toolkits/website/jina_reader",
-                    "tools/toolkits/website/newspaper",
-                    "tools/toolkits/website/newspaper4k",
-                    "tools/toolkits/website/website"
+                    "tools/toolkits/web_scrape/browserbase",
+                    "tools/toolkits/web_scrape/jina_reader",
+                    "tools/toolkits/web_scrape/newspaper",
+                    "tools/toolkits/web_scrape/newspaper4k",
+                    "tools/toolkits/web_scrape/website",
+                    "tools/toolkits/web_scrape/firecrawl",
+                    "tools/toolkits/web_scrape/spider"
                   ]
                 },
                 {
@@ -668,13 +668,11 @@
                 "examples/concepts/tools/search/crawl4ai",
                 "examples/concepts/tools/search/duckduckgo",
                 "examples/concepts/tools/search/exa",
-                "examples/concepts/tools/search/firecrawl",
                 "examples/concepts/tools/search/google_search",
                 "examples/concepts/tools/search/hackernews",
                 "examples/concepts/tools/search/pubmed",
                 "examples/concepts/tools/search/searxng",
                 "examples/concepts/tools/search/serpapi",
-                "examples/concepts/tools/search/spider",
                 "examples/concepts/tools/search/tavily",
                 "examples/concepts/tools/search/wikipedia"
               ]
@@ -691,12 +689,14 @@
               ]
             },
             {
-              "group": "Website",
+              "group": "Web Scraping",
               "pages": [
-                "examples/concepts/tools/website/jina_reader",
-                "examples/concepts/tools/website/newspaper",
-                "examples/concepts/tools/website/newspaper4k",
-                "examples/concepts/tools/website/website"
+                "examples/concepts/tools/web_scrape/jina_reader",
+                "examples/concepts/tools/web_scrape/newspaper",
+                "examples/concepts/tools/web_scrape/newspaper4k",
+                "examples/concepts/tools/web_scrape/website",
+                "examples/concepts/tools/web_scrape/spider",
+                "examples/concepts/tools/web_scrape/firecrawl"
               ]
             },
             {
