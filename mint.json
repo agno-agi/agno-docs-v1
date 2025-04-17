@@ -108,11 +108,7 @@
             "teams/introduction",
             {
               "group": "Team Modes",
-              "pages": [
-                "teams/route",
-                "teams/coordinate",
-                "teams/collaborate"
-              ]
+              "pages": ["teams/route", "teams/coordinate", "teams/collaborate"]
             }
           ]
         },
@@ -126,17 +122,11 @@
             "models/anthropic",
             {
               "group": "AWS",
-              "pages": [
-                "models/aws-bedrock",
-                "models/aws-claude"
-              ]
+              "pages": ["models/aws-bedrock", "models/aws-claude"]
             },
             {
               "group": "Azure",
-              "pages": [
-                "models/azure-ai-foundry",
-                "models/azure-openai"
-              ]
+              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
             },
             "models/cohere",
             "models/deepinfra",
@@ -148,10 +138,7 @@
             "models/ibm-watsonx",
             {
               "group": "LiteLLM",
-              "pages": [
-                "models/litellm",
-                "models/litellm_openai"
-              ]
+              "pages": ["models/litellm", "models/litellm_openai"]
             },
             "models/lmstudio",
             "models/mistral",
@@ -177,7 +164,6 @@
                   "pages": [
                     "tools/toolkits/search/arxiv",
                     "tools/toolkits/search/baidusearch",
-                    "tools/toolkits/search/crawl4ai",
                     "tools/toolkits/search/duckduckgo",
                     "tools/toolkits/search/exa",
                     "tools/toolkits/search/googlesearch",
@@ -206,17 +192,19 @@
                 {
                   "group": "Web Scraping",
                   "pages": [
+                    "tools/toolkits/web_scrape/agentql",
                     "tools/toolkits/web_scrape/browserbase",
+                    "tools/toolkits/web_scrape/crawl4ai",
+                    "tools/toolkits/web_scrape/firecrawl",
                     "tools/toolkits/web_scrape/jina_reader",
                     "tools/toolkits/web_scrape/newspaper",
                     "tools/toolkits/web_scrape/newspaper4k",
-                    "tools/toolkits/web_scrape/website",
-                    "tools/toolkits/web_scrape/firecrawl",
-                    "tools/toolkits/web_scrape/spider"
+                    "tools/toolkits/web_scrape/spider",
+                    "tools/toolkits/web_scrape/website"
                   ]
                 },
                 {
-                  "group": "Database",
+                  "group": "Data",
                   "pages": [
                     "tools/toolkits/database/csv",
                     "tools/toolkits/database/duckdb",
@@ -237,9 +225,8 @@
                   ]
                 },
                 {
-                  "group": "APIs & External Services",
+                  "group": "Additional Toolkits",
                   "pages": [
-                    "tools/toolkits/others/agentql",
                     "tools/toolkits/others/airflow",
                     "tools/toolkits/others/apify",
                     "tools/toolkits/others/aws_lambda",
@@ -293,10 +280,7 @@
         },
         {
           "group": "Memory",
-          "pages": [
-            "memory/introduction",
-            "memory/storage"
-          ]
+          "pages": ["memory/introduction", "memory/storage"]
         },
         {
           "group": "Knowledge",
@@ -397,17 +381,11 @@
         "workspaces/introduction",
         {
           "group": "Agent App",
-          "pages": [
-            "workspaces/agent-app/local",
-            "workspaces/agent-app/aws"
-          ]
+          "pages": ["workspaces/agent-app/local", "workspaces/agent-app/aws"]
         },
         {
           "group": "Agent API",
-          "pages": [
-            "workspaces/agent-api/local",
-            "workspaces/agent-api/aws"
-          ]
+          "pages": ["workspaces/agent-api/local", "workspaces/agent-api/aws"]
         }
       ]
     },
@@ -479,9 +457,7 @@
           "pages": [
             {
               "group": "Collaborate",
-              "pages": [
-                "examples/teams/collaborate/discussion_team"
-              ]
+              "pages": ["examples/teams/collaborate/discussion_team"]
             },
             {
               "group": "Coordinate",
@@ -1074,9 +1050,7 @@
       "pages": [
         {
           "group": "Agent UI",
-          "pages": [
-            "agent-ui/introduction"
-          ]
+          "pages": ["agent-ui/introduction"]
         }
       ]
     },
@@ -1094,17 +1068,11 @@
       "pages": [
         {
           "group": "Agents",
-          "pages": [
-            "reference/agents/agent",
-            "reference/agents/session"
-          ]
+          "pages": ["reference/agents/agent", "reference/agents/session"]
         },
         {
           "group": "Teams",
-          "pages": [
-            "reference/teams/team",
-            "reference/teams/session"
-          ]
+          "pages": ["reference/teams/team", "reference/teams/session"]
         },
         {
           "group": "Workflows",
@@ -1228,9 +1196,7 @@
         },
         {
           "group": "Rerankers",
-          "pages": [
-            "reference/reranker/cohere"
-          ]
+          "pages": ["reference/reranker/cohere"]
         },
         {
           "group": "Chunking",
@@ -1278,9 +1244,7 @@
     },
     {
       "group": "Changelog",
-      "pages": [
-        "changelog/overview"
-      ]
+      "pages": ["changelog/overview"]
     }
   ],
   "footerSocials": {
