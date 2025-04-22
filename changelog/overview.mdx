@@ -3,6 +3,39 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-04-21" description="v1.3.5">
+## Improvements:
+
+- **Further Async Vector DB Support**: Support added for:
+    - [Clickhouse](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/clickhouse_db/async_clickhouse.py)
+    - [ChromaDB](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/chroma_db/async_chroma_db.py)
+    - [Cassandra](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/cassandra_db/async_cassandra_db.py)
+    - [PineconeDB](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pinecone_db/async_pinecone_db.py)
+    - [Pgvector](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pgvector_db/async_pg_vector.py)
+- **Reasoning on Agno Platform**:
+    - Added extensive support for reasoning on the Agno Platform. Go see your favourite reasoning agents in action!
+    - Changes from SDK
+        - send proper events in different types of reasoning and populate the `reasoning_content` on `RunResponse` for `stream/non-stream`, `async/non-async`
+        - unified json structure for all types of reasoning in `Reasoning events`
+- **Google Caching Support**: Added support for caching files and sending the cached content to Gemini.
+
+## Bug Fixes
+
+- **Firecrawl Scrape**: Fixed issues with non-serializable types for during Firecrawl execution. https://github.com/agno-agi/agno/issues/2883
+</Update>
+<Update label="2025-04-17" description="v1.3.3">
+## Improvements:
+
+- **Gemini File Upload**: Enabled direct use of uploaded files with Gemini.
+- **Metrics Update**: Added audio, reasoning and cached token counts to metrics where available on models.
+- **Reasoning Updates**: We now natively support Ollama and AzureOpenAI reasoning models.
+
+## Bug Fixes:
+
+- **PPrint Util Async**: Added `apprint_run_response` to support async.
+- **Mistral Reasoning:** Fixed issues with using a Mistral model for chain-of-thought reasoning.
+</Update>
+
 <Update label="2025-04-16" description="v1.3.2">
 ## New Features:
 
