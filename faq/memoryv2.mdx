@@ -79,5 +79,5 @@ agent = Agent(
     from agno.memory.v2 import Memory
 
     memory = Memory()
-    agent = Agent(create_session_summary=True, memory=memory) or team = Team(create_session_summary=True, memory=memory)
+    agent = Agent(enable_session_summaries=True, memory=memory) or team = Team(enable_session_summaries=True, memory=memory)
     ```
