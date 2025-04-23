@@ -3,17 +3,104 @@ title: "Product updates"
 mode: "wide"
 ---
 
-<Update label="2025-04-16" description="v1.3.2">
+<Update label="2025-04-23" description="v1.4.0">
+
 ## New Features:
 
-- **Redis Memory DB**: Added Redis as a storage provider for `Memory`.  See [here](https://docs.agno.com/examples/concepts/memory/mem-redis-memory).
+- **Memory Generally Available**: We have made improvements and adjustments to how Agentic user memory management works. This is now out of beta and generally available. See these [examples](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/memory) and these [docs](https://docs.agno.com/agents/memory) for more info.
+- **OpenAI Tools**: Added `OpenAITools` to enable text-to-speech and image generation through OpenAI’s APIs.
+- **Zep Tools**: Added `ZepTools` and `AsyncZepTools` to manage memories for your Agent using `zep-cloud`
+
+## Improvements:
+
+- **Azure AI Foundry Reasoning**: Added support for reasoning models via Azure AI Foundry. E.g. Deepseek-R1.
+- **Include/Exclude Tools**: Added `include_tools` and `exclude_tools` for all toolkits. This allows for selective enabling / disabling of tools inside toolkits, which is especially useful for larger toolkits.
+
+## Bug Fixes:
+
+- **Gemini with Memory**: Fixed issue with `deepcopy` when Gemini is used with `Memory`.
+
+## Breaking Changes:
+
+- **Memory:** Agents will now by default use an improved `Memory` instead of the now deprecated `AgentMemory`. - `agent.memory.messages` → `run.messages for run in agent.memory.runs` (or `agent.get_messages_for_session()`) - `create_user_memories` → `enable_user_memories` and is now set on the Agent/Team directly. - `create_session_summary` → `enable_session_summaries` and is now set on the Agent/Team directly.
+
+</Update>
+
+<Update label="2025-04-21" description="v1.3.5">
+
+## Improvements:
+
+- **Further Async Vector DB Support**: Support added for:
+  - [Clickhouse](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/clickhouse_db/async_clickhouse.py)
+  - [ChromaDB](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/chroma_db/async_chroma_db.py)
+  - [Cassandra](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/cassandra_db/async_cassandra_db.py)
+  - [PineconeDB](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pinecone_db/async_pinecone_db.py)
+  - [Pgvector](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/pgvector_db/async_pg_vector.py)
+- **Reasoning on Agno Platform**:
+  - Added extensive support for reasoning on the Agno Platform. Go see your favourite reasoning agents in action!
+  - Changes from SDK
+    - send proper events in different types of reasoning and populate the `reasoning_content` on `RunResponse` for `stream/non-stream`, `async/non-async`
+    - unified json structure for all types of reasoning in `Reasoning events`
+- **Google Caching Support**: Added support for caching files and sending the cached content to Gemini.
+
+## Bug Fixes
+
+- **Firecrawl Scrape**: Fixed issues with non-serializable types for during Firecrawl execution. https://github.com/agno-agi/agno/issues/2883
+
+</Update>
+
+<Update label="2025-04-18" description="v1.3.4">
+
+## New Features:
+
+- **Web Browser Tool:** Introduced a `webbrowser` tool for agents to interact with the web.
+- **Proxy Support:** Added `proxy` parameter support to both URL and PDF tools for network customization.
+
+## Improvements:
+
+- **Session State:** Added examples for managing session state in agents.
+- **AzureOpenAIEmbedder:** Now considers `client_params` passed in the `client_params` argument for more flexible configuration.
+- **LiteLLM:** Now uses built-in environment validation to simplify setup.
+- **Team Class:** Added a `mode` attribute to team data serialization for enhanced team configuration.
+- **Insert/Upsert/Log Optimization:** insert/upsert/log_info operations now trigger only when documents are present in the reader.
+- **Database Preference:** Session state now prefers database-backed storage if available.
+- **Memory Management:** Internal memory system updated for better session handling and resource efficiency.
+- **Module Exports:** Init files that only import now explicitly export symbols using `__all__`.
+
+## Bug Fixes:
+
+- **DynamoDB Storage:** Fixed an issue with storage handling in DynamoDB-based setups.
+- **DeepSeek:** Fixed a bug with API key validation logic.
+
+</Update>
+
+<Update label="2025-04-17" description="v1.3.3">
+
+## Improvements:
+
+- **Gemini File Upload**: Enabled direct use of uploaded files with Gemini.
+- **Metrics Update**: Added audio, reasoning and cached token counts to metrics where available on models.
+- **Reasoning Updates**: We now natively support Ollama and AzureOpenAI reasoning models.
+
+## Bug Fixes:
+
+- **PPrint Util Async**: Added `apprint_run_response` to support async.
+- **Mistral Reasoning:** Fixed issues with using a Mistral model for chain-of-thought reasoning.
+
+</Update>
+
+<Update label="2025-04-16" description="v1.3.2">
+
+## New Features:
+
+- **Redis Memory DB**: Added Redis as a storage provider for `Memory`. See [here](https://docs.agno.com/examples/concepts/memory/mem-redis-memory).
 
 ## Improvements:
 
 - **Memory Updates**: Various performance improvements made and convenience functions added:
-    - `agent.get_session_summary()` → Use to get the previous session summary from the agent.
-    - `agent.get_user_memories()` → Use to get the current user’s memories.
-    - You can also add additional instructions to the `MemoryManager` or `SessionSummarizer`.
+  - `agent.get_session_summary()` → Use to get the previous session summary from the agent.
+  - `agent.get_user_memories()` → Use to get the current user’s memories.
+  - You can also add additional instructions to the `MemoryManager` or `SessionSummarizer`.
 - **Confluence Bypass SSL Verification**: If required, you can now skip SSL verification for Confluence connections.
 - **More Flexibility On Team Prompts**: Added `add_member_tools_to_system_message` to remove the member tool names from the system message given to the team leader, which allows flexibility to make teams transfer functions work in more cases.
 
@@ -22,6 +109,7 @@ mode: "wide"
 - **LiteLLM Streaming Tool Calls**: Fixed issues with tool call streaming in LiteLLM.
 - **E2B Casing Issue**: Fixed issues with parsed Python code that would make some values lowercase.
 - **Team Member IDs**: Fixed edge-cases with team member IDs causing teams to break.
+
 </Update>
 
 <Update label="2025-04-12" description="v1.3.0">
@@ -59,27 +147,27 @@ mode: "wide"
 - **ChromaDB Version Compatibility:** Fix to ensure that ChromaDB and Agno are compatible with newer versions of ChromaDB.
 - **Team-Member Interactions**: Fixed issue where if members respond with empty content the team would halt. This is now be resolved.
 - **Claude Empty Response:** Fixed a case when the response did not include any content with tool calls resulting in an error from the Anthropic API
+
 </Update>
 
 <Update label="2025-04-07" description="v1.2.12">
 ## New Features:
 
-- **Timezone Identifier:**  Added a new `timezone_identifier` parameter in the Agent class to include the timezone alongside the current date in the instructions.
+- **Timezone Identifier:** Added a new `timezone_identifier` parameter in the Agent class to include the timezone alongside the current date in the instructions.
 - **Google Cloud JSON Storage**: Added support for JSON-based session storage on Google Cloud.
 - **Reasoning Tools**: Added `ReasoningTools` for an advanced reasoning scratchpad for agents.
 
 ## Improvements:
 
-- **Async Vector DB and Knowledge Base Improvements**:  More knowledge bases have been updated for `async-await` support:
-    - `URLKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/9d1b14af9709dde1e3bf36c241c80fb295c3b6d3/cookbook/agent_concepts/knowledge/url_kb_async.py).
-    - `FireCrawlKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/596898d5ba27d2fe228ea4f79edbe9068d34a1f8/cookbook/agent_concepts/knowledge/firecrawl_kb_async.py).
-    - `DocxKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/f6db19f4684f6ab74044a4466946e281586ca1cf/cookbook/agent_concepts/knowledge/docx_kb_async.py).
+- **Async Vector DB and Knowledge Base Improvements**: More knowledge bases have been updated for `async-await` support: - `URLKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/9d1b14af9709dde1e3bf36c241c80fb295c3b6d3/cookbook/agent_concepts/knowledge/url_kb_async.py). - `FireCrawlKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/596898d5ba27d2fe228ea4f79edbe9068d34a1f8/cookbook/agent_concepts/knowledge/firecrawl_kb_async.py). - `DocxKnowledgeBase` → Find some examples [here](https://github.com/agno-agi/agno/blob/f6db19f4684f6ab74044a4466946e281586ca1cf/cookbook/agent_concepts/knowledge/docx_kb_async.py).
+
 </Update>
 
 <Update label="2025-04-07" description="v1.2.11">
 ## Bug Fixes:
 
 - **Fix for structured outputs**: Fixed cases of structured outputs for reasoning.
+
 </Update>
 
 <Update label="2025-04-07" description="v1.2.10">
@@ -88,6 +176,7 @@ mode: "wide"
 ## New Features:
 
 - **Knowledge Tools**: Added `KnowledgeTools` for thinking, searching and analysing documents in a knowledge base.
+
 </Update>
 
 <Update label="2025-04-05" description="v1.2.9">
@@ -96,6 +185,7 @@ mode: "wide"
 ## Improvements:
 
 - **Simpler MCP Interface**: Added `MultiMCPTools` to support multiple server connections and simplified the interface to allow `command` to be passed. See [these examples](https://github.com/agno-agi/agno/blob/382667097c31fbb9f08783431dcac5eccd64b84a/cookbook/tools/mcp) of how to use it.
+
 </Update>
 
 <Update label="2025-04-04" description="v1.2.8">
@@ -110,8 +200,11 @@ mode: "wide"
 ## Bug Fixes:
 
 - **Teams transfer functions**: Some tool definitions of teams failed for certain models. This has been fixed.
+
 </Update>
+
 <Update label="2025-04-02" description="v1.2.7">
+
 ## 1.2.7
 
 ## New Features:
@@ -123,24 +216,25 @@ mode: "wide"
 - **Vertex AI**: Improved use of Vertex AI with Gemini Model class to closely follow the official Google specification
 - **Function Result Caching Improvement:** We now have result caching on all Agno Toolkits and any custom functions using the `@tool` decorator. See the docs [here](https://docs.agno.com/tools/functions).
 - **Async Vector DB and Knowledge Base Improvements**: Various knowledge bases, readers and vector DBs now have `async-await` support, so it will be used in `agent.arun` and `agent.aprint_response`. This also means that `knowledge_base.aload()` is possible which should greatly increase loading speed in some cases. The following have been converted:
-    - Vector DBs:
-        - `LanceDb` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/lance_db/async_lance_db.py) is a cookbook to illustrate how to use it.
-        - `Milvus` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/milvus_db/async_milvus_db.py) is a cookbook to illustrate how to use it.
-        - `Weaviate` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/weaviate_db/async_weaviate_db.py) is a cookbook to illustrate how to use it.
-    - Knowledge Bases:
-        - `JSONKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/json_kb_async.py) is a cookbook to illustrate how to use it.
-        - `PDFKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_kb_async.py) is a cookbook to illustrate how to use it.
-        - `PDFUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_url_kb_async.py) is a cookbook to illustrate how to use it.
-        - `CSVKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_kb_async.py) is a cookbook to illustrate how to use it.
-        - `CSVUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_url_kb_async.py) is a cookbook to illustrate how to use it.
-        - `ArxivKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/arxiv_kb_async.py) is a cookbook to illustrate how to use it.
-        - `WebsiteKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/website_kb_async.py) is a cookbook to illustrate how to use it.
-        - `YoutubeKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/youtube_kb_async.py) is a cookbook to illustrate how to use it.
-        - `TextKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/text_kb_async.py) is a cookbook to illustrate how to use it.
+  - Vector DBs:
+    - `LanceDb` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/lance_db/async_lance_db.py) is a cookbook to illustrate how to use it.
+    - `Milvus` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/milvus_db/async_milvus_db.py) is a cookbook to illustrate how to use it.
+    - `Weaviate` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/weaviate_db/async_weaviate_db.py) is a cookbook to illustrate how to use it.
+  - Knowledge Bases:
+    - `JSONKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/json_kb_async.py) is a cookbook to illustrate how to use it.
+    - `PDFKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_kb_async.py) is a cookbook to illustrate how to use it.
+    - `PDFUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/pdf_url_kb_async.py) is a cookbook to illustrate how to use it.
+    - `CSVKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_kb_async.py) is a cookbook to illustrate how to use it.
+    - `CSVUrlKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/csv_url_kb_async.py) is a cookbook to illustrate how to use it.
+    - `ArxivKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/arxiv_kb_async.py) is a cookbook to illustrate how to use it.
+    - `WebsiteKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/website_kb_async.py) is a cookbook to illustrate how to use it.
+    - `YoutubeKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/youtube_kb_async.py) is a cookbook to illustrate how to use it.
+    - `TextKnowledgeBase` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/text_kb_async.py) is a cookbook to illustrate how to use it.
 
 ## Bug Fixes:
 
 - **Recursive Chunking Infinite Loop**: Fixes an issue with RecursiveChunking getting stuck in an infinite loop for large documents.
+
 </Update>
 
 <Update label="2025-03-28" description="v1.2.6">
@@ -152,7 +246,9 @@ mode: "wide"
 - **Reasoning fix**: Fixed an issue with default reasoning and improved logging for reasoning models .
 
 </Update>
+
 <Update label="2025-03-27" description="v1.2.5">
+
 ## 1.2.5
 
 ## New Features:
@@ -174,6 +270,7 @@ mode: "wide"
 - **Worklow session retrieval from storage**: Fixed `entity_id` mappings.
 
 </Update>
+
 <Update label="2025-03-25" description="v1.2.4">
 ## 1.2.4
 
@@ -185,6 +282,7 @@ mode: "wide"
 
 - **Sessions not created**: Made issue where sessions would not be created in existing tables without a migration be more visible. Please read the docs on [storage schema migrations](https://docs.agno.com/agents/storage).
 - **Todoist fixes**: Fixed `update_task` on `TodoistTools`.
+
 </Update>
 
 <Update label="2025-03-24" description="v1.2.3">
@@ -193,13 +291,17 @@ mode: "wide"
 ## Improvements:
 
 - **Teams Error Handling:** Improved the flow in cases where the model gets it wrong when forwarding tasks to members.
+
 </Update>
+  
 <Update label="2025-03-24" description="v1.2.2">
+
 ## 1.2.2
 
 ## Bug Fixes:
 
 - **Teams Memory:** Fixed issues related to memory not persisting correctly across multiple sessions.
+
 </Update>
 
 <Update label="2025-03-24" description="v1.2.1">
@@ -208,6 +310,7 @@ mode: "wide"
 ## Bug Fixes:
 
 - **Teams Markdown**: Fixed issue with markdown in teams responses.
+
 </Update>
 
 <Update label="2025-03-24" description="v1.2.0">
@@ -226,6 +329,7 @@ mode: "wide"
 ## Bug Fixes:
 
 - **Azure AI Factory:** Fix for a broken import in Azure AI Factory.
+
 </Update>
 
 <Update label="2025-03-23" description="v1.1.17">
@@ -234,6 +338,7 @@ mode: "wide"
 ## Improvements:
 
 - **Better Debug Logs**: Enhanced debug logs for better readability and clarity.
+
 </Update>
 
 <Update label="2025-03-22" description="v1.1.16">
@@ -252,16 +357,17 @@ mode: "wide"
 ## Improvements:
 
 - **Tool Result Caching:** Added caching of selected searchers and scrapers. This is only intended for testing and should greatly improve iteration speed, prevent rate limits and reduce costs (where applicable) when testing agents. Applies to:
-    - DuckDuckGoTools
-    - ExaTools
-    - FirecrawlTools
-    - GoogleSearchtools
-    - HackernewsTools
-    - NewspaperTools
-    - Newspaper4kTools
-    - Websitetools
-    - YFinanceTools
+  - DuckDuckGoTools
+  - ExaTools
+  - FirecrawlTools
+  - GoogleSearchtools
+  - HackernewsTools
+  - NewspaperTools
+  - Newspaper4kTools
+  - Websitetools
+  - YFinanceTools
 - **Show tool calls**: Improved how tool calls are displayed when `print_response` and `aprint_response` is used. They are now displayed in a separate panel different from response panel. It can also be used in conjunction in `response_model`.
+
 </Update>
 
 <Update label="2025-03-20" description="v1.1.14">
@@ -270,18 +376,18 @@ mode: "wide"
 ## New Features:
 
 - **Teams Revamp**: Announcing a new iteration of Agent teams with the following features:
-    - Create a `Team` in one of 3 modes: “Collaborate”, “Coordinate” or “Route”.
-    - Various improvements have been made that was broken with the previous teams implementation. Including returning structured output from member agents (for “route” mode), passing images, audio and video to member agents, etc.
-    - It has added features like “agentic shared context” between team members and sharing of individual team member responses with other team members.
-    - This also comes with a revamp of Agent and Team debug logs. Use `debug_mode=True` and `team.print_response(...)` to see it in action.
-    - Find the docs [here](https://docs.agno.com/teams/introduction). Please look at the example implementations [here](https://github.com/agno-agi/agno/blob/c8e47d1643065a0a6ee795c6b063f8576a7a2ef6/cookbook/examples/teams).
-    - This is the first release. Please give us feedback. Updates and improvements will follow.
-    - Support for `Agent(team=[])` is still there, but deprecated (see below).
+  - Create a `Team` in one of 3 modes: “Collaborate”, “Coordinate” or “Route”.
+  - Various improvements have been made that was broken with the previous teams implementation. Including returning structured output from member agents (for “route” mode), passing images, audio and video to member agents, etc.
+  - It has added features like “agentic shared context” between team members and sharing of individual team member responses with other team members.
+  - This also comes with a revamp of Agent and Team debug logs. Use `debug_mode=True` and `team.print_response(...)` to see it in action.
+  - Find the docs [here](https://docs.agno.com/teams/introduction). Please look at the example implementations [here](https://github.com/agno-agi/agno/blob/c8e47d1643065a0a6ee795c6b063f8576a7a2ef6/cookbook/examples/teams).
+  - This is the first release. Please give us feedback. Updates and improvements will follow.
+  - Support for `Agent(team=[])` is still there, but deprecated (see below).
 - **LiteLLM:** Added [LiteLLM](https://www.litellm.ai/) support, both as a native implementation and via the `OpenAILike` interface.
 
 ## Improvements:
 
-- **Change structured_output to response_format:** Added `use_json_mode: bool = False` as a parameter of `Agent` and `Team`, which in conjunction with `response_model=YourModel`, is used to indicate whether the agent/team model should be forced to respond in json instead of (now default) structured output. Previous behaviour defaulted to “json-mode”, but since most models now support native structured output, we are now defaulting to native structured output.  It is now also much simpler to work with response models, since now only `response_model` needs to be set. It is not necessary anymore to set `structured_output=True` to specifically get structured output from the model.
+- **Change structured_output to response_format:** Added `use_json_mode: bool = False` as a parameter of `Agent` and `Team`, which in conjunction with `response_model=YourModel`, is used to indicate whether the agent/team model should be forced to respond in json instead of (now default) structured output. Previous behaviour defaulted to “json-mode”, but since most models now support native structured output, we are now defaulting to native structured output. It is now also much simpler to work with response models, since now only `response_model` needs to be set. It is not necessary anymore to set `structured_output=True` to specifically get structured output from the model.
 - **Website Tools + Combined Knowledgebase:** Added functionality for `WebsiteTools` to also update combined knowledgebases.
 
 ## Bug Fixes:
@@ -296,6 +402,7 @@ mode: "wide"
 - **Agent Team:** `Agent.team` is deprecated with the release of our new Teams implementation [here](https://docs.agno.com/teams/introduction). This will be removed in a future major version release.
 
 </Update>
+
 <Update label="2025-03-14" description="v1.1.13">
 ## 1.1.13
 
@@ -313,6 +420,7 @@ mode: "wide"
 - **Google Maps Places**: Support from Google for Places API has been changed and this brings it up to date so we can continue to support “search places”.
 
 </Update>
+
 <Update label="2025-03-13" description="v1.1.12">
 ## 1.1.12
 
@@ -326,9 +434,10 @@ mode: "wide"
 
 ## Bug Fixes:
 
-- **MemoryManager**:  Limit parameter was added fixing a KeyError in MongoMemoryDb.
+- **MemoryManager**: Limit parameter was added fixing a KeyError in MongoMemoryDb.
 
 </Update>
+
 <Update label="2025-03-13" description="v1.1.11">
 ## 1.1.11
 
@@ -342,6 +451,7 @@ mode: "wide"
 - **Storage Refactor:** Merged agent and workflow storage classes to align storage better for agents, teams and workflows. This change is backwards compatible and should not result in any disruptions.
 
 </Update>
+
 <Update label="2025-03-12" description="v1.1.10">
 ## 1.1.10
 
@@ -377,6 +487,7 @@ mode: "wide"
 - **Mistral with reasoning**: Fixed cases where Mistral would fail when reasoning models from other providers generated reasoning content.
 
 </Update>
+
 <Update label="2025-03-03" description="v1.1.8">
 ## 1.1.8
 
@@ -403,6 +514,7 @@ mode: "wide"
 - **Claude Thinking Streaming**: Fix Claude thinking when streaming is active, as well as for async runs.
 
 </Update>
+
 <Update label="2025-02-24" description="v1.1.6">
 ## 1.1.6
 
@@ -413,6 +525,7 @@ mode: "wide"
 ## Bug Fixes:
 
 -**Claude Tool Use**: Fixed an issue where tools and content could not be used in the same block when interacting with Claude models.
+
 </Update>
 
 <Update label="2025-02-24" description="v1.1.5">
@@ -421,31 +534,33 @@ mode: "wide"
 ## New Features:
 
 - **Audio Responses:** Agents can now deliver audio responses (both with streaming and non-streaming).
-    - The audio is in the `agent.run_response.response_audio`.
-    - This only works with `OpenAIChat` with the `gpt-4o-audio-preview` model. See [their docs](https://platform.openai.com/docs/guides/audio) for more on how it works. For example
-        
-        ```python
-        from agno.agent import Agent
-        from agno.models.openai import OpenAIChat
-        from agno.utils.audio import write_audio_to_file
-        
-        agent = Agent(
-            model=OpenAIChat(
-                id="gpt-4o-audio-preview",
-                modalities=["text", "audio"],  # Both text and audio responses are provided.
-                audio={"voice": "alloy", "format": "wav"},
-            ),
+
+  - The audio is in the `agent.run_response.response_audio`.
+  - This only works with `OpenAIChat` with the `gpt-4o-audio-preview` model. See [their docs](https://platform.openai.com/docs/guides/audio) for more on how it works. For example
+
+    ```python
+    from agno.agent import Agent
+    from agno.models.openai import OpenAIChat
+    from agno.utils.audio import write_audio_to_file
+
+    agent = Agent(
+        model=OpenAIChat(
+            id="gpt-4o-audio-preview",
+            modalities=["text", "audio"],  # Both text and audio responses are provided.
+            audio={"voice": "alloy", "format": "wav"},
+        ),
+    )
+    agent.print_response(
+        "Tell me a 5 second story"
+    )
+    if agent.run_response.response_audio is not None:
+        write_audio_to_file(
+            audio=agent.run_response.response_audio.base64_audio, filename=str(filename)
         )
-        agent.print_response(
-            "Tell me a 5 second story"
-        )
-        if agent.run_response.response_audio is not None:
-            write_audio_to_file(
-                audio=agent.run_response.response_audio.base64_audio, filename=str(filename)
-            )
-        ```
-        
-    - See the [audio_conversation_agent cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/playground/audio_conversation_agent.py) to test it out on the Agent Playground.
+    ```
+
+  - See the [audio_conversation_agent cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/playground/audio_conversation_agent.py) to test it out on the Agent Playground.
+
 - **Image understanding support for [Together.ai](http://Together.ai) and XAi**: You can now give images to agents using models from XAi and Together.ai.
 
 ## Improvements:
@@ -462,6 +577,7 @@ mode: "wide"
 - **FixedSizeChunking issue with overlap:** Fixed issue where chunking would fail if overlap was set.
 - **Claude tools with multiple types**: Fixed an issue where Claude tools would break when handling a union of types in parameters.
 - **JSON response parsing**: Fixed cases where JSON model responses returned quoted strings within dictionary values.
+
 </Update>
 
 <Update label="2025-02-17" description="v1.1.4">
@@ -477,6 +593,7 @@ mode: "wide"
 - **Gemini Safety Parameters**: Fixed an issue with passing safety parameters in Gemini.
 - **ChromaDB Multiple Docs:** Fixed an issue with loading multiple documents into ChromaDB.
 - **Agentic Chunking:** Fixed an issue where OpenAI was required for chunking even when a model was provided.
+
 </Update>
 
 <Update label="2025-02-16" description="v1.1.3">
@@ -485,6 +602,7 @@ mode: "wide"
 ## Bug Fixes:
 
 - **Gemini Tool-Call History**: Fixed an issue where Gemini rejected tool-calls from historic messages.
+
 </Update>
 
 <Update label="2025-02-15" description="v1.1.2">
@@ -494,61 +612,60 @@ mode: "wide"
 
 - **Reasoning with o3 Models**: Reasoning support added for OpenAI’s o3 models.
 - **Gemini embedder update:** Updated the `GeminiEmbedder` to use the new [Google’s genai SDK](https://github.com/googleapis/python-genai). This update introduces a slight change in the interface:
-    
-    ```python
-    # Before
-    embeddings = GeminiEmbedder("models/text-embedding-004").get_embedding(
-        "The quick brown fox jumps over the lazy dog."
-    )
-    
-    # After
-    embeddings = GeminiEmbedder("text-embedding-004").get_embedding(
-        "The quick brown fox jumps over the lazy dog."
-    )
-    ```
-    
+
+  ```python
+  # Before
+  embeddings = GeminiEmbedder("models/text-embedding-004").get_embedding(
+      "The quick brown fox jumps over the lazy dog."
+  )
+
+  # After
+  embeddings = GeminiEmbedder("text-embedding-004").get_embedding(
+      "The quick brown fox jumps over the lazy dog."
+  )
+  ```
 
 ## Bug Fixes:
 
 - **Singlestore Fix:** Fixed an issue where querying SingleStore caused the embeddings column to return in binary format.
 - **MongoDB Vectorstore Fix:** Fixed multiple issues in MongoDB, including duplicate creation and deletion of collections during initialization. All known issues have been resolved.
 - **LanceDB Fix:** Fixed various errors in LanceDB and added on_bad_vectors as a parameter.
+
 </Update>
 
 <Update label="2025-02-14" description="v1.1.1">
-## 1.1.1 
+## 1.1.1
 
 ## Improvements:
 
 - **File / Image Uploads on Agent UI:** Agent UI now supports file and image uploads with prompts.
-    - Supported file formats: `.pdf` , `.csv` , `.txt` , `.docx` , `.json`
-    - Supported image formats: `.png` , `.jpeg` , `.jpg` , `.webp`
-- **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.   
+  - Supported file formats: `.pdf` , `.csv` , `.txt` , `.docx` , `.json`
+  - Supported image formats: `.png` , `.jpeg` , `.jpg` , `.webp`
+- **Firecrawl Custom API URL**: Allowed users to set a custom API URL for Firecrawl.
 - **Updated `ModelsLabTools` Toolkit Constructor**: The constructor in `/libs/agno/tools/models_labs.py` has been updated to accommodate audio generation API calls. This is a breaking change, as the parameters for the `ModelsLabTools` class have changed. The `url` and `fetch_url` parameters have been removed, and API URLs are now decided based on the `file_type` provided by the user.
-    
-    ```python
-    MODELS_LAB_URLS = {
-        "MP4": "https://modelslab.com/api/v6/video/text2video",
-        "MP3": "https://modelslab.com/api/v6/voice/music_gen",
-        "GIF": "https://modelslab.com/api/v6/video/text2video",
-    }
-    
-    MODELS_LAB_FETCH_URLS = {
-        "MP4": "https://modelslab.com/api/v6/video/fetch",
-        "MP3": "https://modelslab.com/api/v6/voice/fetch",
-        "GIF": "https://modelslab.com/api/v6/video/fetch",
-    }
-    ```
-    
-    The `FileType` enum now includes `MP3` type:
-    
-    ```jsx
-    class FileType(str, Enum):
-        MP4 = "mp4"
-        GIF = "gif"
-        MP3 = "mp3"
-    ```
-    
+
+  ```python
+  MODELS_LAB_URLS = {
+      "MP4": "https://modelslab.com/api/v6/video/text2video",
+      "MP3": "https://modelslab.com/api/v6/voice/music_gen",
+      "GIF": "https://modelslab.com/api/v6/video/text2video",
+  }
+
+  MODELS_LAB_FETCH_URLS = {
+      "MP4": "https://modelslab.com/api/v6/video/fetch",
+      "MP3": "https://modelslab.com/api/v6/voice/fetch",
+      "GIF": "https://modelslab.com/api/v6/video/fetch",
+  }
+  ```
+
+  The `FileType` enum now includes `MP3` type:
+
+  ```jsx
+  class FileType(str, Enum):
+      MP4 = "mp4"
+      GIF = "gif"
+      MP3 = "mp3"
+  ```
 
 ## Bug Fixes:
 
@@ -559,6 +676,7 @@ mode: "wide"
 - **MistralEmbedder:** Fixed issue with instantiation of `MistralEmbedder`.
 - **Reasoning**: Fixed an issue with setting reasoning models.
 - **Audio Response:** Fixed an issue with streaming audio artefacts to the playground.
+
 </Update>
 
 <Update label="2025-02-12" description="v1.1.0">
@@ -567,8 +685,8 @@ mode: "wide"
 ## Model Improvements:
 
 - **Models Refactor**: A complete overhaul of our models implementation to improve on performance and to have better feature parity across models.
-    - This improves metrics and visibility on the Agent UI as well.
-    - All models now support async-await, with the exception of `AwsBedrock`.
+  - This improves metrics and visibility on the Agent UI as well.
+  - All models now support async-await, with the exception of `AwsBedrock`.
 - **Azure AI Foundry**: We now support all models on Azure AI Foundry. Learn more [here](https://learn.microsoft.com/azure/ai-services/models)..
 - **AWS Bedrock Support**: Our redone AWS Bedrock implementation now supports all Bedrock models. It is important to note [which models support which features](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html).
 - **Gemini via Google SDK**: With the 1.0.0 release of [Google's genai SDK](https://github.com/googleapis/python-genai) we could improve our previous implementation of `Gemini`. This will allow for easier integration of Gemini features in future.
@@ -625,6 +743,7 @@ mode: "wide"
 ## Bug Fixes:
 
 - **Retriever as knowledge source**: Added small fix and examples for using the custom `retriever` parameter with an agent.
+
 </Update>
 
 <Update label="2025-02-05" description="v1.0.6">
@@ -639,6 +758,7 @@ mode: "wide"
 
 - **Zoom tools fix:** Zoom tools updated to include the auth step and other misc fixes.
 - **Github search_repositories pagination**: Pagination did not work correctly and this was fixed.
+
 </Update>
 
 <Update label="2025-02-03" description="v1.0.5">
@@ -653,6 +773,7 @@ mode: "wide"
 - **Exa Toolkit Upgrade:** Added `find_similar` to `ExaTools`
 - **Claude Async:** Claude models can now be used with `await agent.aprint_response()` and `await agent.arun()`.
 - **Mistral Vision:** Mistral vision models are now supported. Various examples were added to illustrate [example](https://github.com/agno-agi/agno/blob/main/cookbook/models/mistral/image_file_input_agent.py).
+
 </Update>
 
 <Update label="2025-02-02" description="v1.0.4">
@@ -685,6 +806,7 @@ mode: "wide"
 
 - **Agent Dataclass Compatibility:** Removed `slots=True` from the agent dataclass decorator, which was not compatible with Python < 3.10.
 - **AzureOpenAIEmbedder:** Made `AzureOpenAIEmbedder` a dataclass to match other embedders.
+
 </Update>
 
 <Update label="2025-01-31" description="v1.0.1">
@@ -693,6 +815,7 @@ mode: "wide"
 ## Improvement:
 
 - **Mistral Model Caching:** Enabled caching for Mistral models.
+
 </Update>
 
 <Update label="2025-01-30" description="v1.0.0">
