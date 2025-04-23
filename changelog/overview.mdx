@@ -2,7 +2,31 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-04-23" description="v1.4.0">
+# 
 
+## New Features:
+
+- **Memory Generally Available**: We have made improvements and adjustments to how Agentic user memory management works. This is now out of beta and generally available. See these [examples](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/memory) and these [docs](https://docs.agno.com/agents/memory) for more info.
+- **OpenAI Tools**: Added `OpenAITools` to enable text-to-speech and image generation through OpenAI’s APIs.
+- **Zep Tools**: Added `ZepTools` and `AsyncZepTools` to manage memories for your Agent using `zep-cloud`
+
+## Improvements:
+
+- **Azure AI Foundry Reasoning**: Added support for reasoning models via Azure AI Foundry. E.g. Deepseek-R1.
+- **Include/Exclude Tools**: Added `include_tools` and `exclude_tools` for all toolkits. This allows for selective enabling / disabling of tools inside toolkits, which is especially useful for larger toolkits.
+
+## Bug Fixes:
+
+- **Gemini with Memory**: Fixed issue with `deepcopy` when Gemini is used with `Memory`.
+
+## Breaking Changes:
+
+- **Memory:** Agents will now by default use an improved `Memory` instead of the now deprecated `AgentMemory`.
+    - `agent.memory.messages` → `run.messages for run in agent.memory.runs` (or `agent.get_messages_for_session()`)
+    - `create_user_memories`  → `enable_user_memories` and is now set on the Agent/Team directly.
+    - `create_session_summary` → `enable_session_summaries` and is now set on the Agent/Team directly.
+</Update>
 <Update label="2025-04-21" description="v1.3.5">
 ## Improvements:
 
@@ -22,6 +46,28 @@ mode: "wide"
 ## Bug Fixes
 
 - **Firecrawl Scrape**: Fixed issues with non-serializable types for during Firecrawl execution. https://github.com/agno-agi/agno/issues/2883
+</Update>
+<Update label="2025-04-18" description="v1.3.4">
+## New Features:
+
+- **Web Browser Tool:** Introduced a `webbrowser` tool for agents to interact with the web.
+- **Proxy Support:** Added `proxy` parameter support to both URL and PDF tools for network customization.
+
+## Improvements:
+
+- **Session State:** Added examples for managing session state in agents.
+- **AzureOpenAIEmbedder:** Now considers `client_params` passed in the `client_params` argument for more flexible configuration.
+- **LiteLLM:** Now uses built-in environment validation to simplify setup.
+- **Team Class:** Added a `mode` attribute to team data serialization for enhanced team configuration.
+- **Insert/Upsert/Log Optimization:** insert/upsert/log_info operations now trigger only when documents are present in the reader.
+- **Database Preference:** Session state now prefers database-backed storage if available.
+- **Memory Management:** Internal memory system updated for better session handling and resource efficiency.
+- **Module Exports:** Init files that only import now explicitly export symbols using `__all__`.
+
+## Bug Fixes:
+
+- **DynamoDB Storage:** Fixed an issue with storage handling in DynamoDB-based setups.
+- **DeepSeek:** Fixed a bug with API key validation logic.
 </Update>
 <Update label="2025-04-17" description="v1.3.3">
 ## Improvements:
