@@ -106,11 +106,11 @@ You can persist this memory in a database by adding a `storage` driver to the Ag
   <Step title="Built-in memory example">
     ```python agent_memory.py
     from agno.agent import Agent
-    from agno.models.openai import OpenAIChat
+    from agno.models.google.gemini import Gemini
     from rich.pretty import pprint
 
     agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Gemini(id="gemini-2.0-flash-exp"),
         # Set add_history_to_messages=true to add the previous chat history to the messages sent to the Model.
         add_history_to_messages=True,
         # Number of historical responses to add to the messages.
