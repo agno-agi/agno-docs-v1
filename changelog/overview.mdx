@@ -3,6 +3,28 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-04-25" description="v1.4.2">
+
+## New Features:
+
+- **MCP SSE Support**: Added support for connecting to SSE MCP Servers.
+- **Tool Hooks**: You can now have a hook that is wrapped around all tool calls. This works for `Toolkits` and custom tools. See [this example](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tool_concepts/toolkits/tool_hook.py).
+- **Team Session State:** You can now manage a single state dictionary across a team leader and team members inside tools given to the team leader/members. See [this example](https://github.com/agno-agi/agno/blob/main/cookbook/teams/team_with_shared_state.py).
+- **Cartesia Tool**: Added support for Cartesia for text-to-speech capabilities.
+- **Gemini Image Tools:** Added a tool that uses Gemini models to generate images.
+- **Groq Audio Tools**: Added a tool that uses Groq models to translate, transcribe and generate audio.
+
+## Improvements:
+
+- **PubmedTools Expanded Results**: Added expanded result sets for `PubmedTools` .
+- **Variety in Tool Results**: Custom tools can now have any return type and it would be handled before being provided to the model.
+
+## Bug Fixes:
+
+- **Teams Shared Model Bug**: Fixed issues where a single model is used across team members. This should reduce tool call failures in team execution.
+
+</Update>
+
 <Update label="2025-04-23" description="v1.4.0">
 
 ## New Features:
