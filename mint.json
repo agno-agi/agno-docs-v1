@@ -121,6 +121,7 @@
             "models/compatibility",
             "models/openai",
             "models/openai-like",
+            "models/openai-responses",
             "models/anthropic",
             {
               "group": "AWS",
