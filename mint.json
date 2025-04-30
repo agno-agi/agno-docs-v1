@@ -380,9 +380,7 @@
         },
         {
           "group": "Evals",
-          "pages": [
-            "evals/introduction"
-          ]
+          "pages": ["evals/introduction"]
         }
       ]
     },
@@ -1250,7 +1248,8 @@
         "faq/could-not-connect-to-docker",
         "faq/openai_key_request_for_other_models",
         "faq/structured-outputs",
-        "faq/When-to-use-a-Workflow-vs-a-Team-in-Agno"
+        "faq/When-to-use-a-Workflow-vs-a-Team-in-Agno",
+        "faq/memoryv2"
       ]
     },
     {
