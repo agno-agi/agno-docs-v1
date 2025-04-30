@@ -19,7 +19,7 @@ No data is sent to [agno.com](https://app.agno.com), all agent data is stored lo
 
 Let's run the playground application locally so we can chat with our Agents using the Agent UI. Create a file `playground.py`
 
-```python playground.py
+```python demo.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.playground import Playground, serve_playground_app
@@ -115,6 +115,83 @@ python playground.py
   className="w-full aspect-video"
   src="/images/AgentPlayground.mp4"
 ></video>
+
+## Running Teams on Playground
+
+You can also run multi-agent teams on the playground.
+
+```python playground.py
+
+from agno.agent import Agent
+from agno.team.team import Team
+from agno.models.openai import OpenAIChat
+from agno.playground import Playground, serve_playground_app
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.tools.yfinance import YFinanceTools
+
+
+web_agent = Agent(
+    name="Web Agent",
+    description="Search the web for information",
+    agent_id="web-agent",
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[DuckDuckGoTools()],
+    markdown=True,
+)
+
+finance_agent = Agent(
+    name="Finance Agent",
+    description="Search the web for information",
+    agent_id="finance-agent",
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[YFinanceTools()],
+)
+
+finance_reasearch_team = Team(
+    name="Finance Research Team",
+    members=[web_agent, finance_agent],
+    model=OpenAIChat(id="gpt-4o"),
+    mode="coordinate",
+    team_id="finance-research-team",
+    instructions=[
+        "You are a finance research team.",
+        "You are responsible for researching the finance industry.",
+        "You are responsible for providing a report to the user.",
+    ],
+    enable_agentic_context=True,
+    show_members_responses=True,
+    expected_output="A report on the finance industry.",
+)
+
+app = Playground(
+    teams=[finance_reasearch_team],
+).get_app()
+
+if __name__ == "__main__":
+    serve_playground_app("playground:app", reload=True)
+
+
+```
+
+#### Run the playground app
+
+```shell
+python playground.py
+```
+
+#### View the playground
+
+- Open the link provided or navigate to `http://app.agno.com/playground/teams` (login required)
+- Select the `localhost:7777` endpoint and start chatting with your teams!
+
+<video
+  autoPlay
+  muted
+  controls
+  className="w-full aspect-video"
+  src="/videos/teams_playground.mp4"
+></video>
+
 
 ## Open Source Agent UI
 
