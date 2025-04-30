@@ -237,6 +237,7 @@
                     "tools/toolkits/others/apify",
                     "tools/toolkits/others/aws_lambda",
                     "tools/toolkits/others/calcom",
+                    "tools/toolkits/others/cartesia",
                     "tools/toolkits/others/composio",
                     "tools/toolkits/others/confluence",
                     "tools/toolkits/others/custom_api",
