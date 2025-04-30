@@ -14,6 +14,19 @@ We recommend experimenting to find the best-suited model for your use-case. Here
 
 ## Authentication
 
+**For enhanced flexibility**, Agno supports multiple authentication configuration mechanisms, including:  
+- **Pre-configured boto3 client**  
+- **Custom boto3 sessions**  
+- **Hardcoded environment variables** (credentials stored in environment variables)
+
+## AwsBedrock class
+
+The `AwsBedrock` class offers a [set of parameters](#parameters) that enable you to interact with the Bedrock Converse API.
+
+### Examples
+
+#### Using Hardcoded environment variables
+
 Set your `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_REGION` environment variables.
 
 Get your keys from [here](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/home).
@@ -34,9 +47,7 @@ setx AWS_REGION ***
 
 </CodeGroup>
 
-## Example
-
-Use `AwsBedrock` with your `Agent`:
+And then Use `AwsBedrock` with your `Agent`:
 
 <CodeGroup>
 
@@ -53,6 +64,92 @@ agent = Agent(
 agent.print_response("Share a 2 sentence horror story.")
 ```
 
+</CodeGroup>
+
+#### Using a pre-configured boto3 client or session
+
+To enhance flexibility with boto3 clients, you can instantiate a custom boto3 client configured for the `bedrock-runtime` API or a boto3 session and pass it to the `AwsBedrock` class.
+
+<CodeGroup>
+```python agent_with_boto3_client.py
+from agno.agent import Agent
+from agno.models.aws import AwsBedrock
+import boto3
+from botocore.config import Config
+
+# Create the config with 4 retries (5 max_attempts = 1 initial + 4 retries)
+my_config = Config(
+    retries={
+        'max_attempts': 5,
+        'mode': 'standard'
+    }
+)
+
+boto3_client = boto3.client('bedrock-runtime', config=my_config)
+
+agent = Agent(
+    model=AwsBedrock(
+        id="anthropic.claude-3-5-sonnet-20240620-v1:0", 
+        client=boto3_client
+    ),
+    markdown=True
+)
+
+# Print the response on the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
+
+```python agent_with_boto3_session.py
+from agno.agent import Agent
+from agno.models.aws import AwsBedrock
+import boto3
+
+boto3_session = boto3.session.Session(
+    region_name='us-west-2',  # Explicit AWS region
+    profile_name='my-profile',  # Named AWS credential profile
+)
+
+agent = Agent(
+    model=AwsBedrock(
+        id="anthropic.claude-3-5-sonnet-20240620-v1:0", 
+        session=boto3_session
+    ),
+    markdown=True
+)
+
+# Print the response on the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
+</CodeGroup>
+
+#### Passing additional parameters to the Bedrock API
+
+By default, Agno allows you to configure the `inferenceConfig` parameter when using the `bedrock-runtime` API.
+
+To further customize your requests, you can include [additional parameters](https://boto3.amazonaws.com/v1/documentation/api/1.37.0/reference/services/bedrock-runtime/client/converse.html) - such as `guardrailConfig`, `performanceConfig`, and more - by passing them through the `request_params` field in the `AwsBedrock` class.
+
+<CodeGroup>
+```python agent_with_parameters.py
+from agno.agent import Agent
+from agno.models.aws import AwsBedrock
+
+request_params = {
+    "performanceConfig": {
+        "latency": "optimized"
+    }
+}
+
+agent = Agent(
+    model=AwsBedrock(
+        id="us.anthropic.claude-3-7-sonnet-20250219-v1:0", 
+        request_params=request_params
+    ),
+    markdown=True
+)
+
+# Print the response on the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
 </CodeGroup>
 
 <Note> View more examples [here](/examples/models/aws/bedrock). </Note>
