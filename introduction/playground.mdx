@@ -140,3 +140,26 @@ cd agent-ui && pnpm install && pnpm dev
 ```
 
 The UI will connect to `localhost:7777` by default, matching the Playground setup above. Visit [GitHub](https://github.com/agno-agi/agent-ui) for more details.
+
+
+## Troubleshooting
+
+We have identified that certain browsers may experience compatibility issues with the Agent Playground, potentially resulting in connection errors.
+
+#### Brave Browser
+Users may encounter difficulties connecting to localhost endpoints when using Brave, and the `ag setup` command might not work as expected. 
+To resolve this issue, please try disabling Brave Shields in your browser settings.
+
+<video
+  autoPlay
+  muted
+  controls
+  className="w-full aspect-video"
+  src="/videos/brave-shields.mp4"
+></video>
+
+
+
+#### Safari Browser
+Similar connection issues have been reported with Safari when attempting to connect to localhost endpoints and running `ag setup`.
+While we are actively working on a solution, we kindly recommend using alternative browsers such as Chrome or Edge for the best experience.
