@@ -3,11 +3,60 @@ title: Model Context Protocol
 sidebarTitle: MCP
 ---
 
-The Model Context Protocol (MCP) enables Agents to interact with external systems through a standardized interface. With Agno's MCP integration, you can connect any MCP-compatible service to your Agents.
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io) enables Agents to interact with external systems through a standardized interface.
+You can connect your Agents to any MCP server, using Agno's MCP integration.
+
+## Usage
+
+<Steps>
+    <Step title="Find the MCP server you want to use">
+    You can use any working MCP server. To see some examples, you can check [this GitHub repository](https://github.com/modelcontextprotocol/servers),
+    by the maintainers of the MCP themselves.
+    </Step>
+
+    <Step title="Initialize the MCP integration">
+    Intialize the `MCPTools` class as a context manager. The recommended way to define the MCP server, is to use the `command` parameter and pass the command you would use to start the MCP server.
+
+
+    For example, to use the "[mcp-server-git](https://github.com/modelcontextprotocol/servers/tree/main/src/git)" server, you can do the following:
+
+
+    ```python
+    from agno.tools.mcp import MCPTools
+
+    async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+        ...
+    ```
+    </Step>
+
+    <Step title="Provide the MCPTools to the Agent">
+    When initializing the Agent, pass the `MCPTools` class in the `tools` parameter.
+
+
+    The agent will now be ready to use the MCP server:
+
+
+    ```python
+    from agno.agent import Agent
+    from agno.models.openai import OpenAIChat
+    from agno.tools.mcp import MCPTools
+
+    async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+        agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
+
+        # Run the agent
+        await agent.aprint_response("What is the license for this project?", stream=True)
+    ```
+    </Step>
+
+
+</Steps>
+
+
 
 ## Example: Filesystem Agent
 
-Here's a filesystem agent that uses the Filesystem MCP server to explore and analyze files:
+Here's a filesystem agent that uses the [Filesystem MCP server](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) to explore and analyze files:
 
 ```python filesystem_agent.py
 import asyncio
@@ -142,7 +191,7 @@ async def create_filesystem_agent(session):
 
 async def run_agent(message: str) -> None:
     """Run the filesystem agent with the given message."""
-    
+
     # Initialize the MCP server
     server_params = StdioServerParameters(
         command="npx",
@@ -230,6 +279,56 @@ if __name__ == "__main__":
     asyncio.run(run_server())
 ```
 
+## Using the SSE transport
+
+By default Agno's MCP integration uses the [stdio transport](https://modelcontextprotocol.io/docs/concepts/transports#standard-input%2Foutput-stdio).
+
+But you can also connect your Agents to MCP servers using the [SSE transport](https://modelcontextprotocol.io/docs/concepts/transports#server-sent-events-sse):
+
+```python
+import asyncio
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.mcp import MCPTools, MultiMCPTools
+
+# This is the URL of the MCP server we want to use.
+server_url = "http://localhost:8000/sse"
+
+
+async def run_agent(message: str) -> None:
+    async with MCPTools(transport="sse", url=server_url) as mcp_tools:
+        agent = Agent(
+            model=OpenAIChat(id="gpt-4o"),
+            tools=[mcp_tools],
+            markdown=True,
+        )
+        await agent.aprint_response(message=message, stream=True, markdown=True)
+
+
+# Using MultiMCPTools, we can connect to multiple MCP servers at once, even if they use different transports.
+# In this example we connect to both our example server (SSE transport), and a different server (stdio transport).
+async def run_agent_with_multimcp(message: str) -> None:
+    async with MultiMCPTools(
+        commands=["npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt"],
+        urls=[server_url],
+    ) as mcp_tools:
+        agent = Agent(
+            model=OpenAIChat(id="gpt-4o"),
+            tools=[mcp_tools],
+            markdown=True,
+        )
+        await agent.aprint_response(message=message, stream=True, markdown=True)
+
+
+if __name__ == "__main__":
+    asyncio.run(run_agent("Do I have any birthdays this week?"))
+    asyncio.run(
+        run_agent_with_multimcp(
+            "Can you check when is my mom's birthday, and if there are any AirBnb listings in SF for two people for that day?"
+        )
+    )
+```
 
 ## Best Practices
 
@@ -257,10 +356,10 @@ You are a filesystem assistant. Help users explore files and directories.
 
 The recommended way to configure `MCPTools` or `MultiMCPTools` is to use the `command` parameter.
 
-Alternatively, you can use the `server_params` parameter with `MCPTools` to configure the connection to the MCP server. 
+Alternatively, you can use the `server_params` parameter with `MCPTools` to configure the connection to the MCP server.
 It contains the following keys:
-- `command`: The command to run the MCP server. 
-    - Use `npx` for mcp servers that can be installed via npm (or `node` if running on Windows). 
+- `command`: The command to run the MCP server.
+    - Use `npx` for mcp servers that can be installed via npm (or `node` if running on Windows).
     - Use `uvx` for mcp servers that can be installed via uvx.
 - `args`: The arguments to pass to the MCP server.
 - `env`: Optional environment variables to pass to the MCP server. Remember to include all current environment variables in the `env` dictionary. If `env` is not provided, the current environment variables will be used.
@@ -271,6 +370,18 @@ e.g.
     "GOOGLE_MAPS_API_KEY": os.getenv("GOOGLE_MAPS_API_KEY"),
 }
 ```
+
+## Understanding Server Parameters using SSE
+
+If the MCP server you want to connect to uses the SSE transport layer, configure `MCPTools` by using the `transport` (should be set to `"sse"`) and `url` parameters.
+
+You can also use the `server_params` parameter with servers using the SSE transport. In this case, it needs to be an instance of `SSEClientParams`. It contains the following fields:
+- `url`: The URL of the MCP server.
+- `headers`: Optional headers to pass to the MCP server.
+- `timeout`: Optional timeout for the connection to the MCP server.
+- `sse_read_timeout`: Optional timeout for the SSE connection itself.
+
+
 
 
 ## More Information
