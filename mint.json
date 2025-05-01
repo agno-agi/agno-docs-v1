@@ -231,6 +231,12 @@
                   ]
                 },
                 {
+                  "group": "Models",
+                  "pages": [
+                    "tools/toolkits/models/groq"
+                  ]
+                },
+                {
                   "group": "Additional Toolkits",
                   "pages": [
                     "tools/toolkits/others/airflow",
@@ -704,6 +710,12 @@
                 "examples/concepts/tools/local/python",
                 "examples/concepts/tools/local/shell",
                 "examples/concepts/tools/local/sleep"
+              ]
+            },
+            {
+              "group": "Native Model Toolkit",
+              "pages": [
+                "examples/concepts/tools/models/groq"
               ]
             },
             {
