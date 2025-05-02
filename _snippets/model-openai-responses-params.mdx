@@ -3,7 +3,6 @@
 | `id`                          | `str`                             | `"gpt-4o"`           | The id of the OpenAI model to use.                                                    |
 | `name`                        | `str`                             | `"OpenAIResponses"`  | The name of this response model instance.                                             |
 | `provider`                    | `str`                             | `"OpenAI"`           | The provider of the model.                                                            |
-| `supports_native_structured_outputs` | `bool`                     | `True`               | Whether the model natively supports structured outputs.                               |
 | `include`                     | `Optional[List[str]]`             | `None`               | List of response components to include in the response.                               |
 | `max_output_tokens`           | `Optional[int]`                   | `None`               | The maximum number of tokens to generate in the response output.                      |
 | `metadata`                    | `Optional[Dict[str, Any]]`        | `None`               | Additional metadata to include with the request.                                      |
@@ -26,6 +25,3 @@
 | `http_client`                 | `Optional[httpx.Client]`          | `None`               | An optional pre-configured HTTP client.                                               |
 | `client_params`               | `Optional[Dict[str, Any]]`        | `None`               | Additional parameters for client configuration.                                       |
 | `vector_store_name`           | `str`                             | `"knowledge_base"`   | The name of the vector store for file uploads and retrieval.                          |
-| `client`                      | `Optional[OpenAI]`                | `None`               | The OpenAI client instance.                                                           |
-| `async_client`                | `Optional[AsyncOpenAI]`           | `None`               | The asynchronous OpenAI client instance.                                              |
-| `structured_outputs`          | `bool`                            | `False`              | Whether to use structured outputs with this Model.                                    |
