@@ -157,7 +157,7 @@
           "group": "Tools",
           "pages": [
             "tools/introduction",
-            "tools/tools",
+            "tools/tool-decorator",
             "tools/exceptions",
             "tools/hooks",
             "tools/hitl",
@@ -270,6 +270,7 @@
             "tools/mcp",
             "tools/reasoning-tools",
             "tools/custom-toolkits",
+            "tools/selecting-tools",
             "tools/async-tools",
             "tools/caching"
           ]
