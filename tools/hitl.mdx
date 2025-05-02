@@ -4,12 +4,12 @@ title: Human in the loop
 
 Human in the loop (HITL) let's you get input from a user before or after executing a tool call.
 
-The example below shows how to use a pre-hook to get user confirmation before executing a tool call. But we can very easily do the same in a post-hook as well.
+The example below shows how to use a tool hook to get user confirmation before executing a tool call.
 
-## Example: Human in the loop using pre-hooks
+## Example: Human in the loop using tool hooks
 
 This example shows how to:
-- Add pre-hooks to tools for user confirmation
+- Add hooks to tools for user confirmation
 - Handle user input during tool execution
 - Gracefully cancel operations based on user choice
 
@@ -18,7 +18,7 @@ This example shows how to:
 
 This example shows how to implement human-in-the-loop functionality in your Agno tools.
 It shows how to:
-- Add pre-hooks to tools for user confirmation
+- Add tool hooks to tools for user confirmation
 - Handle user input during tool execution
 - Gracefully cancel operations based on user choice
 
@@ -32,7 +32,7 @@ Run `pip install openai httpx rich agno` to install dependencies.
 """
 
 import json
-from typing import Iterator
+from typing import Any, Callable, Dict, Iterator
 
 import httpx
 from agno.agent import Agent
@@ -48,7 +48,9 @@ from rich.prompt import Prompt
 console = Console()
 
 
-def pre_hook(fc: FunctionCall):
+def confirmation_hook(
+    function_name: str, function_call: Callable, arguments: Dict[str, Any]
+):
     # Get the live display instance from the console
     live = console._live
 
@@ -72,11 +74,18 @@ def pre_hook(fc: FunctionCall):
             "Tool call cancelled by user",
             agent_message="Stopping execution as permission was not granted.",
         )
+    
+    # Call the function
+    result = function_call(**arguments)
+
+    # Optionally transform the result
+
+    return result
 
 
-@tool(pre_hook=pre_hook)
+@tool(tool_hooks=[confirmation_hook])
 def get_top_hackernews_stories(num_stories: int) -> Iterator[str]:
-    """Fetch top stories from Hacker News after user confirmation.
+    """Fetch top stories from Hacker News.
 
     Args:
         num_stories (int): Number of stories to retrieve
@@ -89,6 +98,7 @@ def get_top_hackernews_stories(num_stories: int) -> Iterator[str]:
     story_ids = response.json()
 
     # Yield story details
+    final_stories = []
     for story_id in story_ids[:num_stories]:
         story_response = httpx.get(
             f"https://hacker-news.firebaseio.com/v0/item/{story_id}.json"
@@ -96,7 +106,9 @@ def get_top_hackernews_stories(num_stories: int) -> Iterator[str]:
         story = story_response.json()
         if "text" in story:
             story.pop("text", None)
-        yield json.dumps(story)
+        final_stories.append(story)
+
+    return json.dumps(final_stories)
 
 
 # Initialize the agent with a tech-savvy personality and clear instructions
