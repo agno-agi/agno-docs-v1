@@ -28,6 +28,18 @@ def logger_hook(
     return result
 ```
 
+or 
+
+```python
+def confirmation_hook(
+    function_name: str, function_call: Callable, arguments: Dict[str, Any]
+):
+    """Confirm the function call"""
+    if function_name != "get_top_hackernews_stories":
+        raise ValueError("This tool is not allowed to be called")
+    return function_call(**arguments)
+```
+
 You can assign tool hooks on agents and teams.  The tool hooks will be applied to all tools in the agent or team.
 
 For example:
@@ -59,9 +71,6 @@ def get_top_hackernews_stories(num_stories: int) -> Iterator[str]:
 
     Args:
         num_stories (int): Number of stories to retrieve
-
-    Returns:
-        str: JSON string containing story details
     """
     # Fetch top story IDs
     response = httpx.get("https://hacker-news.firebaseio.com/v0/topstories.json")
