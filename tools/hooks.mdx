@@ -2,6 +2,7 @@
 title: Tool Hooks
 ---
 
+## Tool Hooks
 You can use tool hooks to perform validation, logging, or any other logic before or after a tool is called.
 
 A tool hook is a function that takes a function name, function call, and arguments.  Inside the tool hook, you have to call the function call and return the result.
@@ -85,6 +86,63 @@ agent = Agent(
 )
 ```
 
+## Pre and Post Hooks (Deprecated)
+
+Pre and post hooks let's you modify what happens before and after a tool is called.
+
+Set the `pre_hook` in the `@tool` decorator to run a function before the tool call.
+
+Set the `post_hook` in the `@tool` decorator to run a function after the tool call.
+
+Here's a demo example of using a `pre_hook`, `post_hook` along with Agent Context.
+
+```python pre_and_post_hooks.py
+import json
+from typing import Iterator
+
+import httpx
+from agno.agent import Agent
+from agno.tools import FunctionCall, tool
 
 
+def pre_hook(fc: FunctionCall):
+    print(f"Pre-hook: {fc.function.name}")
+    print(f"Arguments: {fc.arguments}")
+    print(f"Result: {fc.result}")
 
+
+def post_hook(fc: FunctionCall):
+    print(f"Post-hook: {fc.function.name}")
+    print(f"Arguments: {fc.arguments}")
+    print(f"Result: {fc.result}")
+
+
+@tool(pre_hook=pre_hook, post_hook=post_hook)
+def get_top_hackernews_stories(agent: Agent) -> Iterator[str]:
+    num_stories = agent.context.get("num_stories", 5) if agent.context else 5
+
+    # Fetch top story IDs
+    response = httpx.get("https://hacker-news.firebaseio.com/v0/topstories.json")
+    story_ids = response.json()
+
+    # Yield story details
+    for story_id in story_ids[:num_stories]:
+        story_response = httpx.get(
+            f"https://hacker-news.firebaseio.com/v0/item/{story_id}.json"
+        )
+        story = story_response.json()
+        if "text" in story:
+            story.pop("text", None)
+        yield json.dumps(story)
+
+
+agent = Agent(
+    context={
+        "num_stories": 2,
+    },
+    tools=[get_top_hackernews_stories],
+    markdown=True,
+    show_tool_calls=True,
+)
+agent.print_response("What are the top hackernews stories?", stream=True)
+```
