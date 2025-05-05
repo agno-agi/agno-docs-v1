@@ -270,7 +270,14 @@
               ]
             },
             "tools/mcp",
-            "tools/reasoning-tools",
+            {
+              "group": "Reasoning Tools",
+              "pages": [
+                "tools/reasoning_tools/reasoning-tools",
+                "tools/reasoning_tools/thinking-tools",
+                "tools/reasoning_tools/knowledge-tools"
+              ]
+            },
             "tools/custom-toolkits",
             "tools/selecting-tools",
             "tools/async-tools",
@@ -370,7 +377,8 @@
             "embedder/qdrant_fastembed",
             "embedder/sentencetransformers",
             "embedder/together",
-            "embedder/voyageai"
+            "embedder/voyageai",
+            "embedder/aws_bedrock"
           ]
         },
         {
