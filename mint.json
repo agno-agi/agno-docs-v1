@@ -270,9 +270,14 @@
               ]
             },
             "tools/mcp",
-            "tools/reasoning-tools",
-            "tools/thinking-tools",
-            "tools/knowledge-tools",
+            {
+              "group": "Reasoning Tools",
+              "pages": [
+                "tools/reasoning_tools/reasoning-tools",
+                "tools/reasoning_tools/thinking-tools",
+                "tools/reasoning_tools/knowledge-tools"
+              ]
+            },
             "tools/custom-toolkits",
             "tools/selecting-tools",
             "tools/async-tools",
@@ -285,9 +290,7 @@
             "reasoning/introduction",
             "reasoning/reasoning-models",
             "reasoning/reasoning-tools",
-            "reasoning/reasoning-agents",
-            "reasoning/thinking-tools",
-            "reasoning/knowledge_tools"
+            "reasoning/reasoning-agents"
           ]
         },
         {

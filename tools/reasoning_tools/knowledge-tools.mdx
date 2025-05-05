@@ -1,6 +1,6 @@
 ---
 title: Knowledge Tools
-sidebarTitle: Knowledge
+sidebarTitle: Knowledge Tools
 ---
 
 The `KnowledgeTools` toolkit enables Agents to search, retrieve, and analyze information from knowledge bases. This toolkit integrates with `AgentKnowledge` and provides a structured workflow for finding and evaluating relevant information before responding to users.
@@ -76,36 +76,5 @@ knowledge_tools = KnowledgeTools(
     add_instructions=True,     # Add default instructions
     add_few_shot=True,         # Add few-shot examples
     few_shot_examples=None,    # Optional custom few-shot examples
-)
-```
-
-## Knowledge Base Types
-
-The KnowledgeTools toolkit can be used with different types of knowledge bases, such as:
-
-- `UrlKnowledge`: Create a knowledge base from web URLs
-- `FileKnowledge`: Create a knowledge base from local files
-- `SqlKnowledge`: Create a knowledge base from SQL databases
-- `CustomKnowledge`: Create a knowledge base from custom data sources
-
-Each knowledge base type can be configured with different vector databases:
-
-```python
-from agno.knowledge.file import FileKnowledge
-from agno.vectordb.chroma import ChromaDb
-
-file_knowledge = FileKnowledge(
-    files=["data/document1.pdf", "data/document2.txt"],
-    vector_db=ChromaDb(
-        collection_name="my_documents",
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
-    ),
-)
-
-knowledge_tools = KnowledgeTools(
-    knowledge=file_knowledge,
-    think=True,
-    search=True,
-    analyze=True,
 )
 ```
