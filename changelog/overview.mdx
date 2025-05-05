@@ -3,6 +3,24 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-05-03" description="v1.4.4">
+## New Features:
+
+- **OpenAI File Support:** Added support for `File` attached to prompts for agents with `OpenAIChat` models.
+
+## Improvements:
+
+- **Llama API:** Various improvements for Llama and LlamaOpenAI model classes including structured output and image input support
+- **Async Custom Retriever**: The `retriever` parameter can now be an `async` function to be used with `agent.arun` and `agent.aprint_response`.
+- **Gemini Video URL Input**: Added support for `Video(url=...)` for Gemini.
+
+## Bug Fixes:
+
+- **OpenAI Responses o3 / o4 Tools**: Fixed broken tool use for advanced reasoning models on `OpenAIResponses`.
+- **MCP on CLI Support**: Fixed support for `MCPTools` usage while calling `agent.acli_app`.
+
+</Update>
+
 <Update label="2025-04-30" description="v1.4.3">
 
 ## **New Features:**
