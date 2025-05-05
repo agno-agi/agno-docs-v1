@@ -1,0 +1,45 @@
+---
+title: Thinking Tools
+sidebarTitle: Thinking Tools
+---
+
+The `ThinkingTools` toolkit provides Agents with a dedicated space for reflection during execution. This toolkit enables an Agent to use a scratchpad for thinking through problems, listing rules, checking information, verifying compliance, and evaluating results before taking actions.
+
+When combined with domain-specific tools like `YFinanceTools`, Agents can perform complex analysis and produce well-reasoned reports by first gathering information and then thinking through their approach before delivering the final output.
+
+
+## Example
+
+Here's an example of how to use `ThinkingTools` for financial analysis:
+
+```python claude_thinking_tools.py
+from agno.agent import Agent
+from agno.models.anthropic import Claude
+from agno.tools.thinking import ThinkingTools
+from agno.tools.yfinance import YFinanceTools
+
+reasoning_agent = Agent(
+    model=Claude(id="claude-3-7-sonnet-latest"),
+    tools=[
+        ThinkingTools(add_instructions=True),
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+            company_info=True,
+            company_news=True,
+        ),
+    ],
+    instructions="Use tables where possible",
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    reasoning_agent.print_response(
+        "Write a report on NVDA. Only the report, no other text.",
+        stream=True,
+        show_full_reasoning=True,
+        stream_intermediate_steps=True,
+    )
+```
+
+For more examples and detailed documentation, refer to the main [Thinking Tools](/cookbook/reasoning/tools/claude_thinking_tools.py) section.

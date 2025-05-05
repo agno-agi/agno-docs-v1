@@ -271,6 +271,8 @@
             },
             "tools/mcp",
             "tools/reasoning-tools",
+            "tools/thinking-tools",
+            "tools/knowledge-tools",
             "tools/custom-toolkits",
             "tools/selecting-tools",
             "tools/async-tools",
@@ -283,7 +285,9 @@
             "reasoning/introduction",
             "reasoning/reasoning-models",
             "reasoning/reasoning-tools",
-            "reasoning/reasoning-agents"
+            "reasoning/reasoning-agents",
+            "reasoning/thinking-tools",
+            "reasoning/knowledge_tools"
           ]
         },
         {
