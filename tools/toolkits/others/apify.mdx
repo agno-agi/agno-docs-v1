@@ -18,7 +18,7 @@ This guide demonstrates how to integrate and use [Apify](https://apify.com/actor
 3. Install the required packages:
 
 ```bash
-pip install agno apify-client langchain-apify
+pip install agno apify-client
 ```
 
 ## Basic Usage
@@ -59,7 +59,7 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools(["apify/rag-web-browser"])
+        ApifyTools(actors=["apify/rag-web-browser"])
     ],
     show_tool_calls=True,
     markdown=True
@@ -79,7 +79,7 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools(["apify/website-content-crawler"])
+        ApifyTools(actors=["apify/website-content-crawler"])
     ],
     markdown=True
 )
@@ -98,7 +98,7 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools(["compass/crawler-google-places"])
+        ApifyTools(actors=["compass/crawler-google-places"])
     ],
     show_tool_calls=True
 )
@@ -119,7 +119,7 @@ from agno.tools.apify import ApifyTools
 
 agent = Agent(
     tools=[
-        ApifyTools([
+        ApifyTools(actors=[
             "apify/rag-web-browser",
             "compass/crawler-google-places"
         ])
