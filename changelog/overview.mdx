@@ -3,6 +3,39 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-05-06" description="v1.4.5">
+## New Features:
+
+- **Embedder Support via AWS Bedrock**: `AwsBedrockEmbedder` has been added with a default embedding model of `cohere.embed-multilingual-v3`.
+- **Gemini Video Generation Tool**: Added video generation capabilities to `GeminiTools`.
+
+## Improvements:
+
+- **Apify Revamp**: Complete revamp of `ApifyTools` to make it completely compatible with Apify actors.
+
+## Bug Fixes:
+
+- **Tools with Optional Parameters on Llama API**: Fixed edge cases with functions.
+
+</Update>
+<Update label="2025-05-03" description="v1.4.4">
+## New Features:
+
+- **OpenAI File Support:** Added support for `File` attached to prompts for agents with `OpenAIChat` models.
+
+## Improvements:
+
+- **Llama API:** Various improvements for Llama and LlamaOpenAI model classes including structured output and image input support
+- **Async Custom Retriever**: The `retriever` parameter can now be an `async` function to be used with `agent.arun` and `agent.aprint_response`.
+- **Gemini Video URL Input**: Added support for `Video(url=...)` for Gemini.
+
+## Bug Fixes:
+
+- **OpenAI Responses o3 / o4 Tools**: Fixed broken tool use for advanced reasoning models on `OpenAIResponses`.
+- **MCP on CLI Support**: Fixed support for `MCPTools` usage while calling `agent.acli_app`.
+
+</Update>
+
 <Update label="2025-04-30" description="v1.4.3">
 
 ## **New Features:**

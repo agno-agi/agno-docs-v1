@@ -121,6 +121,7 @@
             "models/compatibility",
             "models/openai",
             "models/openai-like",
+            "models/openai-responses",
             "models/anthropic",
             {
               "group": "AWS",
@@ -157,7 +158,7 @@
           "group": "Tools",
           "pages": [
             "tools/introduction",
-            "tools/tools",
+            "tools/tool-decorator",
             "tools/exceptions",
             "tools/hooks",
             "tools/hitl",
@@ -243,6 +244,7 @@
                     "tools/toolkits/others/apify",
                     "tools/toolkits/others/aws_lambda",
                     "tools/toolkits/others/calcom",
+                    "tools/toolkits/others/cartesia",
                     "tools/toolkits/others/composio",
                     "tools/toolkits/others/confluence",
                     "tools/toolkits/others/custom_api",
@@ -274,8 +276,16 @@
               ]
             },
             "tools/mcp",
-            "tools/reasoning-tools",
+            {
+              "group": "Reasoning Tools",
+              "pages": [
+                "tools/reasoning_tools/reasoning-tools",
+                "tools/reasoning_tools/thinking-tools",
+                "tools/reasoning_tools/knowledge-tools"
+              ]
+            },
             "tools/custom-toolkits",
+            "tools/selecting-tools",
             "tools/async-tools",
             "tools/caching"
           ]
@@ -373,7 +383,8 @@
             "embedder/qdrant_fastembed",
             "embedder/sentencetransformers",
             "embedder/together",
-            "embedder/voyageai"
+            "embedder/voyageai",
+            "embedder/aws_bedrock"
           ]
         },
         {

@@ -37,7 +37,7 @@
 | `search_knowledge` | `bool` | `True` | Add a tool that allows the Model to search the knowledge base |
 | `update_knowledge` | `bool` | `False` | Add a tool that allows the Model to update the knowledge base |
 | `read_tool_call_history` | `bool` | `False` | Add a tool that allows the Model to get the tool call history |
-| `system_message` | `Optional[Union[str, Callable, Message]]` | `None` | Provide the system message as a string or function |
+| `system_message` | `Optional[Union[str, Callable, Message]]` | `None` | Provide the system message as a string or function. This overrides `description`, `goal`, `instructions`, etc. and sends the provided system message as-is.|
 | `system_message_role` | `str` | `"system"` | Role for the system message |
 | `create_default_system_message` | `bool` | `True` | If True, create a default system message using agent settings |
 | `description` | `Optional[str]` | `None` | A description of the Agent that is added to the start of the system message |
