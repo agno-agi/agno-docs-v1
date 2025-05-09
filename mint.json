@@ -117,41 +117,45 @@
         {
           "group": "Models",
           "pages": [
-            "models/introduction",
-            "models/compatibility",
-            "models/openai",
-            "models/openai-like",
-            "models/openai-responses",
-            "models/anthropic",
-            {
-              "group": "AWS",
-              "pages": ["models/aws-bedrock", "models/aws-claude"]
-            },
-            {
-              "group": "Azure",
-              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
-            },
-            "models/cohere",
-            "models/deepinfra",
-            "models/deepseek",
-            "models/fireworks",
-            "models/google",
-            "models/groq",
-            "models/huggingface",
-            "models/ibm-watsonx",
-            {
-              "group": "LiteLLM",
-              "pages": ["models/litellm", "models/litellm_openai"]
-            },
-            "models/lmstudio",
-            "models/mistral",
-            "models/nvidia",
-            "models/ollama",
-            "models/openrouter",
-            "models/perplexity",
-            "models/sambanova",
-            "models/together",
-            "models/xai"
+              "models/introduction",
+              "models/compatibility",
+              {
+                  "group": "Cerebras",
+                  "pages": ["models/cerebras", "models/cerebras_openai"]
+              },
+              "models/openai",
+              "models/openai-like",
+              "models/openai-responses",
+              "models/anthropic",
+              {
+                  "group": "AWS",
+                  "pages": ["models/aws-bedrock", "models/aws-claude"]
+              },
+              {
+                  "group": "Azure",
+                  "pages": ["models/azure-ai-foundry", "models/azure-openai"]
+              },
+              "models/cohere",
+              "models/deepinfra",
+              "models/deepseek",
+              "models/fireworks",
+              "models/google",
+              "models/groq",
+              "models/huggingface",
+              "models/ibm-watsonx",
+              {
+                  "group": "LiteLLM",
+                  "pages": ["models/litellm", "models/litellm_openai"]
+              },
+              "models/lmstudio",
+              "models/mistral",
+              "models/nvidia",
+              "models/ollama",
+              "models/openrouter",
+              "models/perplexity",
+              "models/sambanova",
+              "models/together",
+              "models/xai"
           ]
         },
         {
@@ -845,6 +849,25 @@
             "examples/models/azure/openai/storage",
             "examples/models/azure/openai/structured_output",
             "examples/models/azure/openai/tool_use"
+          ]
+        },
+        {
+          "group": "Cerebras",
+          "pages": [
+            "examples/models/cerebras/basic",
+            "examples/models/cerebras/basic_stream",
+            "examples/models/cerebras/tool_use",
+            "examples/models/cerebras/structured_output",
+            "examples/models/cerebras/storage",
+            "examples/models/cerebras/knowledge"
+          ]
+        },
+        {
+          "group": "Cerebras OpenAI",
+          "pages": [
+            "examples/models/cerebras_openai/basic",
+            "examples/models/cerebras_openai/basic_stream",
+            "examples/models/cerebras_openai/tool_use"
           ]
         },
         {
