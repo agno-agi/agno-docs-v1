@@ -221,7 +221,8 @@
                     "tools/toolkits/database/duckdb",
                     "tools/toolkits/database/pandas",
                     "tools/toolkits/database/postgres",
-                    "tools/toolkits/database/sql"
+                    "tools/toolkits/database/sql",
+                    "tools/toolkits/database/zep"
                   ]
                 },
                 {
@@ -707,7 +708,9 @@
                 "examples/concepts/tools/database/duckdb",
                 "examples/concepts/tools/database/pandas",
                 "examples/concepts/tools/database/postgres",
-                "examples/concepts/tools/database/sql"
+                "examples/concepts/tools/database/sql",
+                "examples/concepts/tools/database/zep",
+                "examples/concepts/tools/database/zep_async"
               ]
             },
             {
