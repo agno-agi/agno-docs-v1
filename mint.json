@@ -119,13 +119,13 @@
           "pages": [
               "models/introduction",
               "models/compatibility",
+              "models/openai",
+              "models/openai-like",
+              "models/openai-responses",
               {
                   "group": "Cerebras",
                   "pages": ["models/cerebras", "models/cerebras_openai"]
               },
-              "models/openai",
-              "models/openai-like",
-              "models/openai-responses",
               "models/anthropic",
               {
                   "group": "AWS",
