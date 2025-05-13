@@ -148,6 +148,7 @@
                   "pages": ["models/litellm", "models/litellm_openai"]
               },
               "models/lmstudio",
+              "models/meta",
               "models/mistral",
               "models/nvidia",
               "models/ollama",
@@ -954,6 +955,21 @@
           ]
         },
         {
+          "group": "Meta",
+          "pages": [
+            "examples/models/meta/basic",
+            "examples/models/meta/basic_stream",
+            "examples/models/meta/tool_use",
+            "examples/models/meta/structured_output",
+            "examples/models/meta/image_input",
+            "examples/models/meta/async_basic",
+            "examples/models/meta/async_stream",
+            "examples/models/meta/async_tool_use",
+            "examples/models/meta/async_structured_output",
+            "examples/models/meta/async_image_input"
+          ]
+        },
+        {
           "group": "Mistral",
           "pages": [
             "examples/models/mistral/basic",
@@ -1142,6 +1158,7 @@
             "reference/models/gemini",
             "reference/models/groq",
             "reference/models/huggingface",
+            "reference/models/meta",
             "reference/models/mistral",
             "reference/models/nvidia",
             "reference/models/perplexity",
