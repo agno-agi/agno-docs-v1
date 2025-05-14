@@ -117,46 +117,46 @@
         {
           "group": "Models",
           "pages": [
-              "models/introduction",
-              "models/compatibility",
-              "models/openai",
-              "models/openai-like",
-              "models/openai-responses",
-              {
-                  "group": "Cerebras",
-                  "pages": ["models/cerebras", "models/cerebras_openai"]
-              },
-              "models/anthropic",
-              {
-                  "group": "AWS",
-                  "pages": ["models/aws-bedrock", "models/aws-claude"]
-              },
-              {
-                  "group": "Azure",
-                  "pages": ["models/azure-ai-foundry", "models/azure-openai"]
-              },
-              "models/cohere",
-              "models/deepinfra",
-              "models/deepseek",
-              "models/fireworks",
-              "models/google",
-              "models/groq",
-              "models/huggingface",
-              "models/ibm-watsonx",
-              {
-                  "group": "LiteLLM",
-                  "pages": ["models/litellm", "models/litellm_openai"]
-              },
-              "models/lmstudio",
-              "models/meta",
-              "models/mistral",
-              "models/nvidia",
-              "models/ollama",
-              "models/openrouter",
-              "models/perplexity",
-              "models/sambanova",
-              "models/together",
-              "models/xai"
+            "models/introduction",
+            "models/compatibility",
+            "models/openai",
+            "models/openai-like",
+            "models/openai-responses",
+            {
+              "group": "Cerebras",
+              "pages": ["models/cerebras", "models/cerebras_openai"]
+            },
+            "models/anthropic",
+            {
+              "group": "AWS",
+              "pages": ["models/aws-bedrock", "models/aws-claude"]
+            },
+            {
+              "group": "Azure",
+              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
+            },
+            "models/cohere",
+            "models/deepinfra",
+            "models/deepseek",
+            "models/fireworks",
+            "models/google",
+            "models/groq",
+            "models/huggingface",
+            "models/ibm-watsonx",
+            {
+              "group": "LiteLLM",
+              "pages": ["models/litellm", "models/litellm_openai"]
+            },
+            "models/lmstudio",
+            "models/meta",
+            "models/mistral",
+            "models/nvidia",
+            "models/ollama",
+            "models/openrouter",
+            "models/perplexity",
+            "models/sambanova",
+            "models/together",
+            "models/xai"
           ]
         },
         {
@@ -787,6 +787,16 @@
             "examples/concepts/embedders/ollama-embedder",
             "examples/concepts/embedders/openai-embedder",
             "examples/concepts/embedders/qdrant-fastembed"
+          ]
+        },
+        {
+          "group": "Agent State",
+          "pages": [
+            "examples/concepts/state/session-state",
+            "examples/concepts/state/session-state-storage",
+            "examples/concepts/state/shopping-list",
+            "examples/concepts/state/session-state-user-id",
+            "examples/concepts/state/state-in-prompt"
           ]
         }
       ]
