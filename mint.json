@@ -792,11 +792,12 @@
         {
           "group": "Agent State",
           "pages": [
-            "examples/concepts/state/session-state",
-            "examples/concepts/state/session-state-storage",
-            "examples/concepts/state/shopping-list",
-            "examples/concepts/state/session-state-user-id",
-            "examples/concepts/state/state-in-prompt"
+            "examples/concepts/state/01-session-state",
+            "examples/concepts/state/02-state-in-prompt",
+            "examples/concepts/state/03-session-state-storage",
+            "examples/concepts/state/04-session-state-user-id",
+            "examples/concepts/state/05-session-state-full-example",
+            "examples/concepts/state/06-team-session-state"
           ]
         }
       ]
