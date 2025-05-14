@@ -41,9 +41,8 @@ You can connect your Agents to any MCP server, using Agno's MCP integration.
     from agno.tools.mcp import MCPTools
 
     async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+        # Setup and run the agent
         agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
-
-        # Run the agent
         await agent.aprint_response("What is the license for this project?", stream=True)
     ```
     </Step>
@@ -51,7 +50,7 @@ You can connect your Agents to any MCP server, using Agno's MCP integration.
 </Steps>
 
 
-### Example: Filesystem Agent
+### Basic example: Filesystem Agent
 
 Here's a filesystem agent that uses the [Filesystem MCP server](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) to explore and analyze files:
 
@@ -101,13 +100,17 @@ if __name__ == "__main__":
 
 
 
-## StdIO vs SSE Transport
+## MCP Transports: Stdio, SSE and Streamable HTTP
 
-By default Agno's MCP integration uses the [stdio transport](https://modelcontextprotocol.io/docs/concepts/transports#standard-input%2Foutput-stdio).
+Transports in the Model Context Protocol (MCP) define how messages are sent and received. The Agno integration supports the three existing types:
+[stdio](https://modelcontextprotocol.io/docs/concepts/transports#standard-input%2Foutput-stdio),
+[SSE](https://modelcontextprotocol.io/docs/concepts/transports#server-sent-events-sse) and
+[Streamable HTTP](https://modelcontextprotocol.io/docs/concepts/transports#streamable-http).
 
-But you can also connect your Agents to MCP servers using the [SSE transport](https://modelcontextprotocol.io/docs/concepts/transports#server-sent-events-sse):
+By default Agno's MCP integration uses the stdio transport. But you can also connect your Agents to MCP servers using the SSE or Streamable HTTP transports:
 
-For example, here we set up a simple local server and connect to it using the SSE transport:
+### SSE Transport example
+Let's set up a simple local server and connect to it using the SSE transport:
 
 <Steps>
     <Step title="Setup the server">
@@ -192,13 +195,99 @@ For example, here we set up a simple local server and connect to it using the SS
     </Step>
 </Steps>
 
+### Streamable HTTP Transport example
+Now let's set up the same server and agent, but using the Streamable HTTP transport:
+
+<Steps>
+    <Step title="Setup the server">
+        ```python streamable_http_server.py
+        from mcp.server.fastmcp import FastMCP
+
+        mcp = FastMCP("calendar_assistant")
+
+
+        @mcp.tool()
+        def get_events(day: str) -> str:
+            return f"There are no events scheduled for {day}."
+
+
+        @mcp.tool()
+        def get_birthdays_this_week() -> str:
+            return "It is your mom's birthday tomorrow"
+
+
+        if __name__ == "__main__":
+            mcp.run(transport="streamable-http")
+        ```
+    </Step>
+
+    <Step title="Setup the client">
+        ```python streamable_http_client.py
+        import asyncio
+
+        from agno.agent import Agent
+        from agno.models.openai import OpenAIChat
+        from agno.tools.mcp import MCPTools, MultiMCPTools
+
+        # This is the URL of the MCP server we want to use.
+        server_url = "http://localhost:8000/mcp"
+
+
+        async def run_agent(message: str) -> None:
+            async with MCPTools(transport="streamable-http", url=server_url) as mcp_tools:
+                agent = Agent(
+                    model=OpenAIChat(id="gpt-4o"),
+                    tools=[mcp_tools],
+                    markdown=True,
+                )
+                await agent.aprint_response(message=message, stream=True, markdown=True)
+
+
+        # Using MultiMCPTools, we can connect to multiple MCP servers at once, even if they use different transports.
+        # In this example we connect to both our example server (Streamable HTTP transport), and a different server (stdio transport).
+        async def run_agent_with_multimcp(message: str) -> None:
+            async with MultiMCPTools(
+                commands=["npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt"],
+                urls=[server_url],
+            ) as mcp_tools:
+                agent = Agent(
+                    model=OpenAIChat(id="gpt-4o"),
+                    tools=[mcp_tools],
+                    markdown=True,
+                )
+                await agent.aprint_response(message=message, stream=True, markdown=True)
+
+
+        if __name__ == "__main__":
+            asyncio.run(run_agent("Do I have any birthdays this week?"))
+            asyncio.run(
+                run_agent_with_multimcp(
+                    "Can you check when is my mom's birthday, and if there are any AirBnb listings in SF for two people for that day?"
+                )
+            )
+        ```
+    </Step>
+
+    <Step title="Run the server">
+        ```bash
+        python streamable_http_server.py
+        ```
+    </Step>
+
+    <Step title="Run the client">
+        ```bash
+        python sse_client.py
+        ```
+    </Step>
+</Steps>
+
 ### Understanding Server Parameters
 
 The recommended way to configure `MCPTools` or `MultiMCPTools` is to use the `command` or `url` parameters.
 
 Alternatively, you can use the `server_params` parameter with `MCPTools` to configure the connection to the MCP server.
 
-In the case of the StdIO transport, the `server_params` parameter should be an instance of `StdioServerParameters`. It contains the following keys:
+When using the **stdio** transport, the `server_params` parameter should be an instance of `StdioServerParameters`. It contains the following keys:
 - `command`: The command to run the MCP server.
     - Use `npx` for mcp servers that can be installed via npm (or `node` if running on Windows).
     - Use `uvx` for mcp servers that can be installed via uvx.
@@ -212,11 +301,18 @@ e.g.
 }
 ```
 
-In the case of the SSE transport, the `server_params` parameter should be an instance of `SSEClientParams`. It contains the following fields:
+When using the **SSE** transport, the `server_params` parameter should be an instance of `SSEClientParams`. It contains the following fields:
 - `url`: The URL of the MCP server.
 - `headers`: Headers to pass to the MCP server (optional).
 - `timeout`: Timeout for the connection to the MCP server (optional).
 - `sse_read_timeout`: Timeout for the SSE connection itself (optional).
+
+When using the **Streamable HTTP** transport, the `server_params` parameter should be an instance of `StreamableHTTPClientParams`. It contains the following fields:
+- `url`: The URL of the MCP server.
+- `headers`: Headers to pass to the MCP server (optional).
+- `timeout`: Timeout for the connection to the MCP server (optional).
+- `sse_read_timeout`: how long (in seconds) the client will wait for a new event before disconnecting. All other HTTP operations are controlled by `timeout` (optional).
+- `terminate_on_close`: Whether to terminate the connection when the client is closed (optional).
 
 
 
