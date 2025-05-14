@@ -122,6 +122,10 @@
             "models/openai",
             "models/openai-like",
             "models/openai-responses",
+            {
+              "group": "Cerebras",
+              "pages": ["models/cerebras", "models/cerebras_openai"]
+            },
             "models/anthropic",
             {
               "group": "AWS",
@@ -144,6 +148,7 @@
               "pages": ["models/litellm", "models/litellm_openai"]
             },
             "models/lmstudio",
+            "models/meta",
             "models/mistral",
             "models/nvidia",
             "models/ollama",
@@ -217,7 +222,8 @@
                     "tools/toolkits/database/duckdb",
                     "tools/toolkits/database/pandas",
                     "tools/toolkits/database/postgres",
-                    "tools/toolkits/database/sql"
+                    "tools/toolkits/database/sql",
+                    "tools/toolkits/database/zep"
                   ]
                 },
                 {
@@ -275,7 +281,21 @@
                 }
               ]
             },
-            "tools/mcp",
+            {
+              "group": "MCP",
+              "pages": [
+                "tools/mcp/mcp",
+                {
+                  "group": "Transports",
+                  "pages": [
+                    "tools/mcp/transports/stdio",
+                    "tools/mcp/transports/sse",
+                    "tools/mcp/transports/streamable_http"
+                  ]
+                },
+                "tools/mcp/advanced_usage"
+              ]
+            },
             {
               "group": "Reasoning Tools",
               "pages": [
@@ -576,17 +596,24 @@
         {
           "group": "Memory",
           "pages": [
-            "examples/concepts/memory/01-basic-memory",
+            "examples/concepts/memory/00-built-in-memory",
+            "examples/concepts/memory/01-standalone-memory",
             "examples/concepts/memory/02-persistent-memory",
-            "examples/concepts/memory/03-agentic-memory",
+            "examples/concepts/memory/03-custom-memory-creation",
             "examples/concepts/memory/04-memory-search",
-            "examples/concepts/memory/05-memory-search-semantic",
-            "examples/concepts/memory/06-agent-creates-memories",
-            "examples/concepts/memory/07-agent-manages-memories",
-            "examples/concepts/memory/08-agent-with-summaries",
-            "examples/concepts/memory/09-multiple-agents-share-memory",
+            "examples/concepts/memory/05-agent-with-memory",
+            "examples/concepts/memory/06-agentic-memory",
+
+            "examples/concepts/memory/07-agent-with-summaries",
+            "examples/concepts/memory/08-agents-share-memory",
+
+            "examples/concepts/memory/09-custom-memory",
             "examples/concepts/memory/10-multi-user-multi-session-chat",
+            "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
             "examples/concepts/memory/mem0-memory",
+
+
+
             {
               "group": "DB",
               "pages": [
@@ -709,7 +736,9 @@
                 "examples/concepts/tools/database/duckdb",
                 "examples/concepts/tools/database/pandas",
                 "examples/concepts/tools/database/postgres",
-                "examples/concepts/tools/database/sql"
+                "examples/concepts/tools/database/sql",
+                "examples/concepts/tools/database/zep",
+                "examples/concepts/tools/database/zep_async"
               ]
             },
             {
@@ -760,6 +789,16 @@
                 "examples/concepts/tools/others/youtube",
                 "examples/concepts/tools/others/zendesk"
               ]
+            },
+            {
+              "group": "MCP",
+              "pages": [
+                "examples/concepts/tools/mcp/airbnb",
+                "examples/concepts/tools/mcp/github",
+                "examples/concepts/tools/mcp/notion",
+                "examples/concepts/tools/mcp/stripe",
+                "examples/concepts/tools/mcp/supabase"
+              ]
             }
           ]
         },
@@ -780,6 +819,14 @@
           ]
         },
         {
+          "group": "Context",
+          "pages": [
+            "examples/concepts/context/01-add_context",
+            "examples/concepts/context/02-agent_context",
+            "examples/concepts/context/03-context_in_instructions"
+          ]
+        },
+        {
           "group": "Embedders",
           "pages": [
             "examples/concepts/embedders/azure-embedder",
@@ -791,6 +838,17 @@
             "examples/concepts/embedders/ollama-embedder",
             "examples/concepts/embedders/openai-embedder",
             "examples/concepts/embedders/qdrant-fastembed"
+          ]
+        },
+        {
+          "group": "Agent State",
+          "pages": [
+            "examples/concepts/state/01-session-state",
+            "examples/concepts/state/02-state-in-prompt",
+            "examples/concepts/state/03-session-state-storage",
+            "examples/concepts/state/04-session-state-user-id",
+            "examples/concepts/state/05-session-state-full-example",
+            "examples/concepts/state/06-team-session-state"
           ]
         }
       ]
@@ -857,6 +915,25 @@
             "examples/models/azure/openai/storage",
             "examples/models/azure/openai/structured_output",
             "examples/models/azure/openai/tool_use"
+          ]
+        },
+        {
+          "group": "Cerebras",
+          "pages": [
+            "examples/models/cerebras/basic",
+            "examples/models/cerebras/basic_stream",
+            "examples/models/cerebras/tool_use",
+            "examples/models/cerebras/structured_output",
+            "examples/models/cerebras/storage",
+            "examples/models/cerebras/knowledge"
+          ]
+        },
+        {
+          "group": "Cerebras OpenAI",
+          "pages": [
+            "examples/models/cerebras_openai/basic",
+            "examples/models/cerebras_openai/basic_stream",
+            "examples/models/cerebras_openai/tool_use"
           ]
         },
         {
@@ -937,6 +1014,21 @@
             "examples/models/huggingface/basic",
             "examples/models/huggingface/basic_stream",
             "examples/models/huggingface/llama_essay_writer"
+          ]
+        },
+        {
+          "group": "Meta",
+          "pages": [
+            "examples/models/meta/basic",
+            "examples/models/meta/basic_stream",
+            "examples/models/meta/tool_use",
+            "examples/models/meta/structured_output",
+            "examples/models/meta/image_input",
+            "examples/models/meta/async_basic",
+            "examples/models/meta/async_stream",
+            "examples/models/meta/async_tool_use",
+            "examples/models/meta/async_structured_output",
+            "examples/models/meta/async_image_input"
           ]
         },
         {
@@ -1128,6 +1220,7 @@
             "reference/models/gemini",
             "reference/models/groq",
             "reference/models/huggingface",
+            "reference/models/meta",
             "reference/models/mistral",
             "reference/models/nvidia",
             "reference/models/perplexity",
