@@ -2,15 +2,13 @@
 title: Persistent Memory with SQLite
 ---
 
-## Code
-
-```python cookbook/agent_concepts/memory/03_persistent_memory.py
-"""
 This example shows how to use the Memory class to create a persistent memory.
 
 Every time you run this, the `Memory` object will be re-initialized from the DB.
-"""
 
+## Code
+
+```python cookbook/agent_concepts/memory/02_persistent_memory.py
 from typing import List
 
 from agno.memory.v2.db.schema import MemoryRow
@@ -56,11 +54,11 @@ for i, m in enumerate(memories):
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/memory/03_persistent_memory.py
+    python cookbook/agent_concepts/memory/02_persistent_memory.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/03_persistent_memory.py
+    python cookbook/agent_concepts/memory/02_persistent_memory.py
     ```
     </CodeGroup>
   </Step>

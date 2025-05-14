@@ -577,20 +577,19 @@
           "group": "Memory",
           "pages": [
             "examples/concepts/memory/00-built-in-memory",
-            "examples/concepts/memory/01-basic-memory",
-            "examples/concepts/memory/02-standalone-memory",
-            "examples/concepts/memory/03-persistent-memory",
-            "examples/concepts/memory/04-custom-memory-creation",
-            "examples/concepts/memory/05-memory-search",
+            "examples/concepts/memory/01-standalone-memory",
+            "examples/concepts/memory/02-persistent-memory",
+            "examples/concepts/memory/03-custom-memory-creation",
+            "examples/concepts/memory/04-memory-search",
+            "examples/concepts/memory/05-agent-with-memory",
             "examples/concepts/memory/06-agentic-memory",           
-            "examples/concepts/memory/07-memory-search-semantic",
-            "examples/concepts/memory/08-agent-with-summaries",
-            "examples/concepts/memory/09-agent-creates-memories",
-            "examples/concepts/memory/10-agent-manages-memories",
-            "examples/concepts/memory/11-custom-memory",
-            "examples/concepts/memory/12-multiple-agents-share-memory",
-            "examples/concepts/memory/13-multi-user-multi-session-chat",
-            "examples/concepts/memory/14-multi-user-multi-session-chat-concurrent",
+           
+            "examples/concepts/memory/07-agent-with-summaries",
+            "examples/concepts/memory/08-agents-share-memory",
+            
+            "examples/concepts/memory/09-custom-memory",
+            "examples/concepts/memory/10-multi-user-multi-session-chat",
+            "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
             "examples/concepts/memory/mem0-memory",          
             
 

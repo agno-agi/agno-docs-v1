@@ -2,11 +2,15 @@
 title: Custom Memory
 ---
 
-This example shows how you can configure the Memory Manager and Summarizer models individually. In this example, we use OpenRouter and LLama 3.3-70b-instruct for the memory manager and Claude 3.5 Sonnet for the summarizer, while using Gemini for the Agent. We also set custom system prompts for the memory manager and summarizer.
+This example shows how you can configure the Memory Manager and Summarizer models individually. 
+
+In this example, we use OpenRouter and LLama 3.3-70b-instruct for the memory manager and Claude 3.5 Sonnet for the summarizer, while using Gemini for the Agent. 
+
+We also set custom system prompts for the memory manager and summarizer.
 
 ## Code
 
-```python cookbook/agent_concepts/memory/11_custom_memory.py
+```python cookbook/agent_concepts/memory/10_custom_memory.py
 from agno.agent.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory, MemoryManager, SessionSummarizer
@@ -82,11 +86,11 @@ pprint(summary)
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/memory/11_custom_memory.py
+    python cookbook/agent_concepts/memory/10_custom_memory.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/11_custom_memory.py
+    python cookbook/agent_concepts/memory/10_custom_memory.py
     ```
     </CodeGroup>
   </Step>
