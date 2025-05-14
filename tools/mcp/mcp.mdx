@@ -14,7 +14,7 @@ You can connect your Agents to any MCP server, using Agno's MCP integration.
     </Step>
 
     <Step title="Initialize the MCP integration">
-    Intialize the `MCPTools` class as a context manager. The recommended way to define the MCP server, is to use the `command` parameter and pass the command you would use to start the MCP server.
+    Intialize the `MCPTools` class as a context manager. The recommended way to define the MCP server, is to use the `command` or `url` parameters. With `command`, you can pass the command used to run the MCP server you want. With `url`, you can pass the URL of the running MCP server you want to use.
 
 
     For example, to use the "[mcp-server-git](https://github.com/modelcontextprotocol/servers/tree/main/src/git)" server, you can do the following:
@@ -186,6 +186,7 @@ You are a filesystem assistant. Help users explore files and directories.
 
 ## More Information
 
+- Find examples of Agents that use MCP [here](https://docs.agno.com/examples/concepts/tools/mcp/airbnb).
 - Find a collection of MCP servers [here](https://github.com/modelcontextprotocol/servers).
 - Read the [MCP documentation](https://modelcontextprotocol.io/introduction) to learn more about the Model Context Protocol.
 - Checkout the Agno [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/tools/mcp) for more examples of Agents that use MCP.
