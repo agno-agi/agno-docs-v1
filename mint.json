@@ -776,6 +776,14 @@
           ]
         },
         {
+          "group": "Context",
+          "pages": [
+            "examples/concepts/context/01-add_context",
+            "examples/concepts/context/02-agent_context",
+            "examples/concepts/context/03-context_in_instructions"
+          ]
+        },
+        {
           "group": "Embedders",
           "pages": [
             "examples/concepts/embedders/azure-embedder",
