@@ -86,333 +86,352 @@
     {
       "group": "Concepts",
       "pages": [
-        {
-          "group": "Agents",
-          "pages": [
-            "agents/introduction",
-            "agents/run",
-            "agents/sessions",
-            "agents/state",
-            "agents/memory",
-            "agents/tools",
-            "agents/structured-output",
-            "agents/multimodal",
-            "agents/prompts",
-            "agents/knowledge",
-            "agents/storage",
-            "agents/context",
-            "agents/teams"
-          ]
-        },
-        {
-          "group": "Teams",
-          "pages": [
-            "teams/introduction",
-            {
-              "group": "Team Modes",
-              "pages": ["teams/route", "teams/coordinate", "teams/collaborate"]
-            }
-          ]
-        },
-        {
-          "group": "Models",
-          "pages": [
-            "models/introduction",
-            "models/compatibility",
-            "models/openai",
-            "models/openai-like",
-            "models/openai-responses",
-            {
-              "group": "Cerebras",
-              "pages": ["models/cerebras", "models/cerebras_openai"]
-            },
-            "models/anthropic",
-            {
-              "group": "AWS",
-              "pages": ["models/aws-bedrock", "models/aws-claude"]
-            },
-            {
-              "group": "Azure",
-              "pages": ["models/azure-ai-foundry", "models/azure-openai"]
-            },
-            "models/cohere",
-            "models/deepinfra",
-            "models/deepseek",
-            "models/fireworks",
-            "models/google",
-            "models/groq",
-            "models/huggingface",
-            "models/ibm-watsonx",
-            {
-              "group": "LiteLLM",
-              "pages": ["models/litellm", "models/litellm_openai"]
-            },
-            "models/lmstudio",
-            "models/meta",
-            "models/mistral",
-            "models/nvidia",
-            "models/ollama",
-            "models/openrouter",
-            "models/perplexity",
-            "models/sambanova",
-            "models/together",
-            "models/xai"
-          ]
-        },
-        {
-          "group": "Tools",
-          "pages": [
-            "tools/introduction",
-            "tools/tool-decorator",
-            "tools/exceptions",
-            "tools/hooks",
-            "tools/hitl",
-            {
-              "group": "Toolkits",
+          {
+              "group": "Agents",
               "pages": [
-                "tools/toolkits/toolkits",
-                {
-                  "group": "Search",
-                  "pages": [
-                    "tools/toolkits/search/arxiv",
-                    "tools/toolkits/search/baidusearch",
-                    "tools/toolkits/search/duckduckgo",
-                    "tools/toolkits/search/exa",
-                    "tools/toolkits/search/googlesearch",
-                    "tools/toolkits/search/hackernews",
-                    "tools/toolkits/search/pubmed",
-                    "tools/toolkits/search/searxng",
-                    "tools/toolkits/search/serpapi",
-                    "tools/toolkits/search/tavily",
-                    "tools/toolkits/search/wikipedia"
-                  ]
-                },
-                {
-                  "group": "Social",
-                  "pages": [
-                    "tools/toolkits/social/discord",
-                    "tools/toolkits/social/email",
-                    "tools/toolkits/social/gmail",
-                    "tools/toolkits/social/slack",
-                    "tools/toolkits/social/telegram",
-                    "tools/toolkits/social/twilio",
-                    "tools/toolkits/social/webex",
-                    "tools/toolkits/social/x",
-                    "tools/toolkits/social/zoom"
-                  ]
-                },
-                {
-                  "group": "Web Scraping",
-                  "pages": [
-                    "tools/toolkits/web_scrape/agentql",
-                    "tools/toolkits/web_scrape/browserbase",
-                    "tools/toolkits/web_scrape/crawl4ai",
-                    "tools/toolkits/web_scrape/firecrawl",
-                    "tools/toolkits/web_scrape/jina_reader",
-                    "tools/toolkits/web_scrape/newspaper",
-                    "tools/toolkits/web_scrape/newspaper4k",
-                    "tools/toolkits/web_scrape/spider",
-                    "tools/toolkits/web_scrape/website"
-                  ]
-                },
-                {
-                  "group": "Data",
-                  "pages": [
-                    "tools/toolkits/database/csv",
-                    "tools/toolkits/database/duckdb",
-                    "tools/toolkits/database/pandas",
-                    "tools/toolkits/database/postgres",
-                    "tools/toolkits/database/sql",
-                    "tools/toolkits/database/zep"
-                  ]
-                },
-                {
-                  "group": "Local",
-                  "pages": [
-                    "tools/toolkits/local/calculator",
-                    "tools/toolkits/local/docker",
-                    "tools/toolkits/local/file",
-                    "tools/toolkits/local/python",
-                    "tools/toolkits/local/shell",
-                    "tools/toolkits/local/sleep"
-                  ]
-                },
-                {
-                  "group": "Additional Toolkits",
-                  "pages": [
-                    "tools/toolkits/others/airflow",
-                    "tools/toolkits/others/apify",
-                    "tools/toolkits/others/aws_lambda",
-                    "tools/toolkits/others/calcom",
-                    "tools/toolkits/others/cartesia",
-                    "tools/toolkits/others/composio",
-                    "tools/toolkits/others/confluence",
-                    "tools/toolkits/others/custom_api",
-                    "tools/toolkits/others/dalle",
-                    "tools/toolkits/others/eleven_labs",
-                    "tools/toolkits/others/e2b",
-                    "tools/toolkits/others/fal",
-                    "tools/toolkits/others/financial_datasets",
-                    "tools/toolkits/others/giphy",
-                    "tools/toolkits/others/github",
-                    "tools/toolkits/others/google_maps",
-                    "tools/toolkits/others/googlecalendar",
-                    "tools/toolkits/others/google_sheets",
-                    "tools/toolkits/others/jira",
-                    "tools/toolkits/others/linear",
-                    "tools/toolkits/others/lumalabs",
-                    "tools/toolkits/others/mlx_transcribe",
-                    "tools/toolkits/others/models_labs",
-                    "tools/toolkits/others/openbb",
-                    "tools/toolkits/others/openweather",
-                    "tools/toolkits/others/replicate",
-                    "tools/toolkits/others/resend",
-                    "tools/toolkits/others/todoist",
-                    "tools/toolkits/others/yfinance",
-                    "tools/toolkits/others/youtube",
-                    "tools/toolkits/others/zendesk"
-                  ]
-                }
+                  "agents/introduction",
+                  "agents/run",
+                  "agents/sessions",
+                  "agents/state",
+                  "agents/memory",
+                  "agents/tools",
+                  "agents/structured-output",
+                  "agents/multimodal",
+                  "agents/prompts",
+                  "agents/knowledge",
+                  "agents/storage",
+                  "agents/context",
+                  "agents/teams"
               ]
-            },
-            {
-              "group": "MCP",
+          },
+          {
+              "group": "Teams",
               "pages": [
-                "tools/mcp/mcp",
-                {
-                  "group": "Transports",
-                  "pages": [
-                    "tools/mcp/transports/stdio",
-                    "tools/mcp/transports/sse",
-                    "tools/mcp/transports/streamable_http"
-                  ]
-                },
-                "tools/mcp/advanced_usage"
+                  "teams/introduction",
+                  {
+                      "group": "Team Modes",
+                      "pages": [
+                          "teams/route",
+                          "teams/coordinate",
+                          "teams/collaborate"
+                      ]
+                  }
               ]
-            },
-            {
-              "group": "Reasoning Tools",
+          },
+          {
+              "group": "Models",
               "pages": [
-                "tools/reasoning_tools/reasoning-tools",
-                "tools/reasoning_tools/thinking-tools",
-                "tools/reasoning_tools/knowledge-tools"
+                  "models/introduction",
+                  "models/compatibility",
+                  "models/openai",
+                  "models/openai-like",
+                  "models/openai-responses",
+                  {
+                      "group": "Cerebras",
+                      "pages": ["models/cerebras", "models/cerebras_openai"]
+                  },
+                  "models/anthropic",
+                  {
+                      "group": "AWS",
+                      "pages": ["models/aws-bedrock", "models/aws-claude"]
+                  },
+                  {
+                      "group": "Azure",
+                      "pages": [
+                          "models/azure-ai-foundry",
+                          "models/azure-openai"
+                      ]
+                  },
+                  "models/cohere",
+                  "models/deepinfra",
+                  "models/deepseek",
+                  "models/fireworks",
+                  "models/google",
+                  "models/groq",
+                  "models/huggingface",
+                  "models/ibm-watsonx",
+                  {
+                      "group": "LiteLLM",
+                      "pages": ["models/litellm", "models/litellm_openai"]
+                  },
+                  "models/lmstudio",
+                  "models/meta",
+                  "models/mistral",
+                  "models/nvidia",
+                  "models/ollama",
+                  "models/openrouter",
+                  "models/perplexity",
+                  "models/sambanova",
+                  "models/together",
+                  "models/xai"
               ]
-            },
-            "tools/custom-toolkits",
-            "tools/selecting-tools",
-            "tools/async-tools",
-            "tools/caching"
-          ]
-        },
-        {
-          "group": "Reasoning",
-          "pages": [
-            "reasoning/introduction",
-            "reasoning/reasoning-models",
-            "reasoning/reasoning-tools",
-            "reasoning/reasoning-agents"
-          ]
-        },
-        {
-          "group": "Memory",
-          "pages": ["memory/introduction", "memory/memory", "memory/storage"]
-        },
-        {
-          "group": "Knowledge",
-          "pages": [
-            "knowledge/introduction",
-            "knowledge/search",
-            "knowledge/arxiv",
-            "knowledge/combined",
-            "knowledge/csv",
-            "knowledge/csv-url",
-            "knowledge/docx",
-            "knowledge/document",
-            "knowledge/json",
-            "knowledge/langchain",
-            "knowledge/llamaindex",
-            "knowledge/pdf",
-            "knowledge/pdf-url",
-            "knowledge/s3_pdf",
-            "knowledge/s3_text",
-            "knowledge/text",
-            "knowledge/website",
-            "knowledge/wikipedia",
-            "knowledge/youtube"
-          ]
-        },
-        {
-          "group": "Chunking",
-          "pages": [
-            "chunking/fixed-size-chunking",
-            "chunking/agentic-chunking",
-            "chunking/semantic-chunking",
-            "chunking/recursive-chunking",
-            "chunking/document-chunking"
-          ]
-        },
-        {
-          "group": "Vector DBs",
-          "pages": [
-            "vectordb/introduction",
-            "vectordb/pgvector",
-            "vectordb/cassandra",
-            "vectordb/chroma",
-            "vectordb/clickhouse",
-            "vectordb/lancedb",
-            "vectordb/milvus",
-            "vectordb/pinecone",
-            "vectordb/qdrant",
-            "vectordb/singlestore",
-            "vectordb/mongodb",
-            "vectordb/weaviate"
-          ]
-        },
-        {
-          "group": "Storage",
-          "pages": [
-            "storage/introduction",
-            "storage/dynamodb",
-            "storage/json",
-            "storage/mongodb",
-            "storage/postgres",
-            "storage/sqlite",
-            "storage/yaml",
-            "storage/singlestore",
-            "storage/redis"
-          ]
-        },
-        {
-          "group": "Embeddings",
-          "pages": [
-            "embedder/introduction",
-            "embedder/openai",
-            "embedder/gemini",
-            "embedder/ollama",
-            "embedder/azure_openai",
-            "embedder/cohere",
-            "embedder/fireworks",
-            "embedder/huggingface",
-            "embedder/mistral",
-            "embedder/qdrant_fastembed",
-            "embedder/sentencetransformers",
-            "embedder/together",
-            "embedder/voyageai",
-            "embedder/aws_bedrock"
-          ]
-        },
-        {
-          "group": "Workflows",
-          "pages": [
-            "workflows/introduction",
-            "workflows/state",
-            "workflows/advanced"
-          ]
-        },
-        {
-          "group": "Evals",
-          "pages": ["evals/introduction"]
-        }
+          },
+          {
+              "group": "Tools",
+              "pages": [
+                  "tools/introduction",
+                  "tools/tool-decorator",
+                  "tools/exceptions",
+                  "tools/hooks",
+                  "tools/hitl",
+                  {
+                      "group": "Toolkits",
+                      "pages": [
+                          "tools/toolkits/toolkits",
+                          {
+                              "group": "Search",
+                              "pages": [
+                                  "tools/toolkits/search/arxiv",
+                                  "tools/toolkits/search/baidusearch",
+                                  "tools/toolkits/search/duckduckgo",
+                                  "tools/toolkits/search/exa",
+                                  "tools/toolkits/search/googlesearch",
+                                  "tools/toolkits/search/hackernews",
+                                  "tools/toolkits/search/pubmed",
+                                  "tools/toolkits/search/searxng",
+                                  "tools/toolkits/search/serpapi",
+                                  "tools/toolkits/search/tavily",
+                                  "tools/toolkits/search/wikipedia"
+                              ]
+                          },
+                          {
+                              "group": "Social",
+                              "pages": [
+                                  "tools/toolkits/social/discord",
+                                  "tools/toolkits/social/email",
+                                  "tools/toolkits/social/gmail",
+                                  "tools/toolkits/social/slack",
+                                  "tools/toolkits/social/telegram",
+                                  "tools/toolkits/social/twilio",
+                                  "tools/toolkits/social/webex",
+                                  "tools/toolkits/social/x",
+                                  "tools/toolkits/social/zoom"
+                              ]
+                          },
+                          {
+                              "group": "Web Scraping",
+                              "pages": [
+                                  "tools/toolkits/web_scrape/agentql",
+                                  "tools/toolkits/web_scrape/browserbase",
+                                  "tools/toolkits/web_scrape/crawl4ai",
+                                  "tools/toolkits/web_scrape/firecrawl",
+                                  "tools/toolkits/web_scrape/jina_reader",
+                                  "tools/toolkits/web_scrape/newspaper",
+                                  "tools/toolkits/web_scrape/newspaper4k",
+                                  "tools/toolkits/web_scrape/spider",
+                                  "tools/toolkits/web_scrape/website"
+                              ]
+                          },
+                          {
+                              "group": "Data",
+                              "pages": [
+                                  "tools/toolkits/database/csv",
+                                  "tools/toolkits/database/duckdb",
+                                  "tools/toolkits/database/pandas",
+                                  "tools/toolkits/database/postgres",
+                                  "tools/toolkits/database/sql",
+                                  "tools/toolkits/database/zep"
+                              ]
+                          },
+                          {
+                              "group": "Local",
+                              "pages": [
+                                  "tools/toolkits/local/calculator",
+                                  "tools/toolkits/local/docker",
+                                  "tools/toolkits/local/file",
+                                  "tools/toolkits/local/python",
+                                  "tools/toolkits/local/shell",
+                                  "tools/toolkits/local/sleep"
+                              ]
+                          },
+                          {
+                              "group": "Additional Toolkits",
+                              "pages": [
+                                  "tools/toolkits/others/airflow",
+                                  "tools/toolkits/others/apify",
+                                  "tools/toolkits/others/aws_lambda",
+                                  "tools/toolkits/others/calcom",
+                                  "tools/toolkits/others/cartesia",
+                                  "tools/toolkits/others/composio",
+                                  "tools/toolkits/others/confluence",
+                                  "tools/toolkits/others/custom_api",
+                                  "tools/toolkits/others/dalle",
+                                  "tools/toolkits/others/eleven_labs",
+                                  "tools/toolkits/others/e2b",
+                                  "tools/toolkits/others/fal",
+                                  "tools/toolkits/others/financial_datasets",
+                                  "tools/toolkits/others/giphy",
+                                  "tools/toolkits/others/github",
+                                  "tools/toolkits/others/google_maps",
+                                  "tools/toolkits/others/googlecalendar",
+                                  "tools/toolkits/others/google_sheets",
+                                  "tools/toolkits/others/jira",
+                                  "tools/toolkits/others/linear",
+                                  "tools/toolkits/others/lumalabs",
+                                  "tools/toolkits/others/mlx_transcribe",
+                                  "tools/toolkits/others/models_labs",
+                                  "tools/toolkits/others/openbb",
+                                  "tools/toolkits/others/openweather",
+                                  "tools/toolkits/others/replicate",
+                                  "tools/toolkits/others/resend",
+                                  "tools/toolkits/others/todoist",
+                                  "tools/toolkits/others/yfinance",
+                                  "tools/toolkits/others/youtube",
+                                  "tools/toolkits/others/zendesk"
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "group": "MCP",
+                      "pages": [
+                          "tools/mcp/mcp",
+                          {
+                              "group": "Transports",
+                              "pages": [
+                                  "tools/mcp/transports/stdio",
+                                  "tools/mcp/transports/sse",
+                                  "tools/mcp/transports/streamable_http"
+                              ]
+                          },
+                          "tools/mcp/advanced_usage"
+                      ]
+                  },
+                  {
+                      "group": "Reasoning Tools",
+                      "pages": [
+                          "tools/reasoning_tools/reasoning-tools",
+                          "tools/reasoning_tools/thinking-tools",
+                          "tools/reasoning_tools/knowledge-tools"
+                      ]
+                  },
+                  "tools/custom-toolkits",
+                  "tools/selecting-tools",
+                  "tools/async-tools",
+                  "tools/caching"
+              ]
+          },
+          {
+              "group": "Reasoning",
+              "pages": [
+                  "reasoning/introduction",
+                  "reasoning/reasoning-models",
+                  "reasoning/reasoning-tools",
+                  "reasoning/reasoning-agents"
+              ]
+          },
+          {
+              "group": "Memory",
+              "pages": [
+                  "memory/introduction",
+                  "memory/memory",
+                  "memory/storage"
+              ]
+          },
+          {
+              "group": "Knowledge",
+              "pages": [
+                  "knowledge/introduction",
+                  "knowledge/search",
+                  "knowledge/arxiv",
+                  "knowledge/combined",
+                  "knowledge/csv",
+                  "knowledge/csv-url",
+                  "knowledge/docx",
+                  "knowledge/document",
+                  "knowledge/json",
+                  "knowledge/langchain",
+                  "knowledge/llamaindex",
+                  "knowledge/pdf",
+                  "knowledge/pdf-url",
+                  "knowledge/s3_pdf",
+                  "knowledge/s3_text",
+                  "knowledge/text",
+                  "knowledge/website",
+                  "knowledge/wikipedia",
+                  "knowledge/youtube"
+              ]
+          },
+          {
+              "group": "Chunking",
+              "pages": [
+                  "chunking/fixed-size-chunking",
+                  "chunking/agentic-chunking",
+                  "chunking/semantic-chunking",
+                  "chunking/recursive-chunking",
+                  "chunking/document-chunking"
+              ]
+          },
+          {
+              "group": "Vector DBs",
+              "pages": [
+                  "vectordb/introduction",
+                  "vectordb/pgvector",
+                  "vectordb/cassandra",
+                  "vectordb/chroma",
+                  "vectordb/clickhouse",
+                  "vectordb/lancedb",
+                  "vectordb/milvus",
+                  "vectordb/pinecone",
+                  "vectordb/qdrant",
+                  "vectordb/singlestore",
+                  "vectordb/mongodb",
+                  "vectordb/weaviate"
+              ]
+          },
+          {
+              "group": "Storage",
+              "pages": [
+                  "storage/introduction",
+                  "storage/dynamodb",
+                  "storage/json",
+                  "storage/mongodb",
+                  "storage/postgres",
+                  "storage/sqlite",
+                  "storage/yaml",
+                  "storage/singlestore",
+                  "storage/redis"
+              ]
+          },
+          {
+              "group": "Embeddings",
+              "pages": [
+                  "embedder/introduction",
+                  "embedder/openai",
+                  "embedder/gemini",
+                  "embedder/ollama",
+                  "embedder/azure_openai",
+                  "embedder/cohere",
+                  "embedder/fireworks",
+                  "embedder/huggingface",
+                  "embedder/mistral",
+                  "embedder/qdrant_fastembed",
+                  "embedder/sentencetransformers",
+                  "embedder/together",
+                  "embedder/voyageai",
+                  "embedder/aws_bedrock"
+              ]
+          },
+          {
+              "group": "Workflows",
+              "pages": [
+                  "workflows/introduction",
+                  "workflows/state",
+                  "workflows/advanced"
+              ]
+          },
+          {
+              "group": "Evals",
+              "pages": ["evals/introduction"]
+          },
+          {
+              "group": "Knowledge Filters",
+              "pages": [
+                  "filters/introduction",
+                  "filters/manual-filters",
+                  "filters/agentic-filters"
+              ]
+          }
       ]
     },
     {
