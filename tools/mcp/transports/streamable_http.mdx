@@ -98,6 +98,7 @@ Let's set up a simple local server and connect to it using the Streamable HTTP t
             async with MultiMCPTools(
                 commands=["npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt"],
                 urls=[server_url],
+                urls_transports=["streamable-http"],
             ) as mcp_tools:
                 agent = Agent(
                     model=OpenAIChat(id="gpt-4o"),
