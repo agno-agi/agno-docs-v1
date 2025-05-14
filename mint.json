@@ -600,17 +600,24 @@
         {
           "group": "Memory",
           "pages": [
-            "examples/concepts/memory/01-basic-memory",
+            "examples/concepts/memory/00-built-in-memory",
+            "examples/concepts/memory/01-standalone-memory",
             "examples/concepts/memory/02-persistent-memory",
-            "examples/concepts/memory/03-agentic-memory",
+            "examples/concepts/memory/03-custom-memory-creation",
             "examples/concepts/memory/04-memory-search",
-            "examples/concepts/memory/05-memory-search-semantic",
-            "examples/concepts/memory/06-agent-creates-memories",
-            "examples/concepts/memory/07-agent-manages-memories",
-            "examples/concepts/memory/08-agent-with-summaries",
-            "examples/concepts/memory/09-multiple-agents-share-memory",
+            "examples/concepts/memory/05-agent-with-memory",
+            "examples/concepts/memory/06-agentic-memory",           
+           
+            "examples/concepts/memory/07-agent-with-summaries",
+            "examples/concepts/memory/08-agents-share-memory",
+            
+            "examples/concepts/memory/09-custom-memory",
             "examples/concepts/memory/10-multi-user-multi-session-chat",
-            "examples/concepts/memory/mem0-memory",
+            "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
+            "examples/concepts/memory/mem0-memory",          
+            
+
+
             {
               "group": "DB",
               "pages": [
@@ -797,6 +804,14 @@
             "examples/concepts/vectordb/qdrant",
             "examples/concepts/vectordb/singlestore",
             "examples/concepts/vectordb/weaviate"
+          ]
+        },
+        {
+          "group": "Context",
+          "pages": [
+            "examples/concepts/context/01-add_context",
+            "examples/concepts/context/02-agent_context",
+            "examples/concepts/context/03-context_in_instructions"
           ]
         },
         {

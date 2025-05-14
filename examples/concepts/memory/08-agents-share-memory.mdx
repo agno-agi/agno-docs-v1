@@ -1,19 +1,22 @@
 ---
 title: Multiple Agents Sharing Memory
 ---
+In this example, we have two agents that share the same memory.
 
 ## Code
 
-```python cookbook/agent_concepts/memory/09_multiple_agents_share_memory.py
+```python cookbook/agent_concepts/memory/09_agents_share_memory.py
 
 from agno.agent.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory
 from agno.models.google.gemini import Gemini
 from agno.tools.duckduckgo import DuckDuckGoTools
+from rich.pretty import pprint
 
 memory_db = SqliteMemoryDb(table_name="memory", db_file="tmp/memory.db")
 
+# No need to set the model, it gets set by the agent to the agent's model
 memory = Memory(db=memory_db)
 
 # Reset the memory for this example
@@ -52,9 +55,8 @@ research_agent.print_response(
 )
 
 memories = memory.get_user_memories(user_id=john_doe_id)
-print("John Doe's memories:")
-for i, m in enumerate(memories):
-    print(f"{i}: {m.memory}")
+print("Memories about John Doe:")
+pprint(memories)
 ```
 
 ## Usage
@@ -77,11 +79,11 @@ for i, m in enumerate(memories):
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/memory/09_multiple_agents_share_memory.py
+    python cookbook/agent_concepts/memory/09_agents_share_memory.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/09_multiple_agents_share_memory.py
+    python cookbook/agent_concepts/memory/09_agents_share_memory.py
     ```
     </CodeGroup>
   </Step>
