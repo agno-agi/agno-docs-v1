@@ -1,0 +1,28 @@
+---
+title: Stdio Transport
+sidebarTitle: stdio
+---
+
+Transports in the Model Context Protocol (MCP) define how messages are sent and received. The Agno integration supports the three existing types:
+[stdio](https://modelcontextprotocol.io/docs/concepts/transports#standard-input%2Foutput-stdio),
+[SSE](https://modelcontextprotocol.io/docs/concepts/transports#server-sent-events-sse) and
+[Streamable HTTP](https://modelcontextprotocol.io/specification/draft/basic/transports#streamable-http).
+
+The stdio (standard input/output) transport is the default one in Agno's integration. It works best for local integrations.
+
+To use it, simply initialize the `MCPTools` class with its `command` argument.
+The command you want to pass is the one used to run the MCP server the agent will have access to.
+
+For example `uvx mcp-server-git`, which runs a [git MCP server](https://github.com/modelcontextprotocol/servers/tree/main/src/git):
+
+```python
+from agno.agent import Agent
+    from agno.models.openai import OpenAIChat
+    from agno.tools.mcp import MCPTools
+
+    async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+        agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
+        await agent.aprint_response("What is the license for this project?", stream=True)
+```
+
+

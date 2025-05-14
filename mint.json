@@ -275,7 +275,31 @@
                 }
               ]
             },
-            "tools/mcp",
+            {
+              "group": "MCP",
+              "pages": [
+                "tools/mcp/mcp",
+                {
+                  "group": "Examples",
+                  "pages": [
+                    "tools/mcp/examples/airbnb",
+                    "tools/mcp/examples/github",
+                    "tools/mcp/examples/notion",
+                    "tools/mcp/examples/stripe",
+                    "tools/mcp/examples/supabase"
+                  ]
+                },
+                {
+                  "group": "Transports",
+                  "pages": [
+                    "tools/mcp/transports/stdio",
+                    "tools/mcp/transports/sse",
+                    "tools/mcp/transports/streamable_http"
+                  ]
+                },
+                "tools/mcp/advanced_usage"
+              ]
+            },
             {
               "group": "Reasoning Tools",
               "pages": [
