@@ -1,13 +1,14 @@
 ---
-title: Basic Memory Search
+title: Agentic Memory Search
 ---
 
 ## Code
 
-```python cookbook/agent_concepts/memory/04_memory_search.py
-from agno.memory.v2 import Memory, UserMemory
+```python cookbook/agent_concepts/memory/07_memory_search_agentic.py
+from agno.memory.v2.memory import Memory, UserMemory
+from agno.models.google.gemini import Gemini
 
-memory = Memory()
+memory = Memory(model=Gemini(id="gemini-2.0-flash-exp"))
 
 john_doe_id = "john_doe@example.com"
 
@@ -22,18 +23,13 @@ memory.add_user_memory(
     user_id=john_doe_id,
 )
 
+# This searches using a model
 memories = memory.search_user_memories(
-    user_id=john_doe_id, limit=1, retrieval_method="last_n"
+    user_id=john_doe_id,
+    query="What does the user like to do on weekends?",
+    retrieval_method="agentic",
 )
-print("John Doe's last_n memories:")
-for i, m in enumerate(memories):
-    print(f"{i}: {m.memory}")
-
-
-memories = memory.search_user_memories(
-    user_id=john_doe_id, limit=1, retrieval_method="first_n"
-)
-print("John Doe's first_n memories:")
+print("John Doe's found memories:")
 for i, m in enumerate(memories):
     print(f"{i}: {m.memory}")
 ```
@@ -43,20 +39,26 @@ for i, m in enumerate(memories):
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
+  <Step title="Set your API key">
+    ```bash
+    export GOOGLE_API_KEY=xxx
+    ```
+  </Step>
+
   <Step title="Install libraries">
     ```bash
-    pip install -U agno
+    pip install -U agno google-generativeai
     ```
   </Step>
 
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/memory/04_memory_search.py
+    python cookbook/agent_concepts/memory/07_memory_search_agentic.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/04_memory_search.py
+    python cookbook/agent_concepts/memory/07_memory_search_agentic.py
     ```
     </CodeGroup>
   </Step>
