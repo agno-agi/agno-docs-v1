@@ -353,6 +353,14 @@
               ]
           },
           {
+              "group": "Knowledge Filters",
+              "pages": [
+                  "filters/introduction",
+                  "filters/manual-filters",
+                  "filters/agentic-filters"
+              ]
+          },
+          {
               "group": "Chunking",
               "pages": [
                   "chunking/fixed-size-chunking",
@@ -423,14 +431,6 @@
           {
               "group": "Evals",
               "pages": ["evals/introduction"]
-          },
-          {
-              "group": "Knowledge Filters",
-              "pages": [
-                  "filters/introduction",
-                  "filters/manual-filters",
-                  "filters/agentic-filters"
-              ]
           }
       ]
     },
