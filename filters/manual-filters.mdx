@@ -36,7 +36,7 @@ There are two ways to attach metadata to your documents:
     )
 
     knowledge_base.load_document(
-        path=downloaded_cv_paths[0],
+        path=cv_path,
         metadata={"user_id": "jordan_mitchell", "document_type": "cv", "year": 2025},
         recreate=True,  # Set to True only for the first run, then set to False
     )
