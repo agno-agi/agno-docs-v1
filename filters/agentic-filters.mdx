@@ -2,6 +2,55 @@
 
 Agentic filtering lets the Agent automatically extract filter criteria from your query text, making the experience more natural and interactive.
 
+## Step 1: Attach Metadata
+
+There are two ways to attach metadata to your documents:
+
+1. **Attach Metadata When Initializing the Knowledge Base**
+
+    ```python
+    knowledge_base = PDFKnowledgeBase(
+        path=[
+            {
+                "path": "path/to/cv1.pdf",
+                "metadata": {
+                    "user_id": "jordan_mitchell",
+                    "document_type": "cv",
+                    "year": 2025,
+                },
+            },
+            # ... more documents ...
+        ],
+        vector_db=vector_db,
+    )
+    knowledge_base.load(recreate=True)
+    ```
+
+2. **Attach Metadata When Loading Documents One by One**
+
+    ```python
+    # Initialize the PDFKnowledgeBase
+    knowledge_base = PDFKnowledgeBase(
+        vector_db=vector_db,
+        num_documents=5,
+    )
+
+    # Load first document with user_1 metadata
+    knowledge_base.load_document(
+        path=path/to/cv1.pdf,
+        metadata={"user_id": "jordan_mitchell", "document_type": "cv", "year": 2025},
+        recreate=True,  # Set to True only for the first run, then set to False
+    )
+
+    # Load second document with user_2 metadata
+    knowledge_base.load_document(
+        path=path/to/cv2.pdf,
+        metadata={"user_id": "taylor_brooks", "document_type": "cv", "year": 2025},
+    )
+    ```
+
+---
+
 ## How It Works
 
 When you enable agentic filtering (`enable_agentic_knowledge_filters=True`), the Agent analyzes your query and applies filters based on the metadata it detects.

@@ -35,10 +35,17 @@ There are two ways to attach metadata to your documents:
         num_documents=5,
     )
 
+    # Load first document with user_1 metadata
     knowledge_base.load_document(
-        path=cv_path,
+        path=path/to/cv1.pdf,
         metadata={"user_id": "jordan_mitchell", "document_type": "cv", "year": 2025},
         recreate=True,  # Set to True only for the first run, then set to False
+    )
+
+    # Load second document with user_2 metadata
+    knowledge_base.load_document(
+        path=path/to/cv2.pdf,
+        metadata={"user_id": "taylor_brooks", "document_type": "cv", "year": 2025},
     )
     ```
 
@@ -89,11 +96,19 @@ knowledge_base.load_document(
 You can filter by multiple fields:
 
 ```python
-knowledge_filters={
-    "user_id": "jordan_mitchell",
-    "document_type": "cv",
-    "year": 2025,
-}
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+    knowledge_filters={
+        "user_id": "jordan_mitchell",
+        "document_type": "cv",
+        "year": 2025,
+    }
+)
+agent.print_response(
+    "Tell me about Jordan Mitchell's experience and skills",
+    markdown=True,
+)
 ```
 
 ## Try It Yourself!
