@@ -35,41 +35,30 @@ knowledge_base = UrlKnowledge(
 Then use the `knowledge_base` with an `Agent`:
 
 ```python
-
-from pathlib import Path
-from textwrap import dedent
-
 from agno.agent import Agent
 from agno.knowledge.url import UrlKnowledge
 from agno.models.openai import OpenAIChat
-from agno.vectordb.lancedb import LanceDb, SearchType
-
-# Setup paths
-cwd = Path(__file__).parent
-tmp_dir = cwd.joinpath("tmp")
-tmp_dir.mkdir(parents=True, exist_ok=True)
 
 # Initialize knowledge base
-agent_knowledge = UrlKnowledge(
-    urls=["https://docs.agno.com/introduction"],
-    vector_db=LanceDb(
-        uri=str(tmp_dir.joinpath("lancedb")),
-        table_name="agno_assist_knowledge",
-        search_type=SearchType.hybrid,
-    ),
-)
+COLLECTION_NAME = "website-content"
 
+vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
+
+knowledge_base = UrlKnowledge(
+    urls=["https://docs.agno.com/introduction"],
+    vector_db=vector_db,
+)
 agent_with_knowledge = Agent(
     name="Agent with Knowledge",
     model=OpenAIChat(id="gpt-4o"),
-    knowledge=agent_knowledge,
+    knowledge=knowledge_base,
     show_tool_calls=True,
     markdown=True,
 )
 
 if __name__ == "__main__":
     # Comment out after first run
-    agent_knowledge.load()
+    knowledge_base.load()
 
     agent_with_knowledge.print_response(
         "Tell me about teams with context to agno", stream=True
@@ -121,7 +110,7 @@ if __name__ == "__main__":
 | Parameter | Type               | Default             | Description                                                                           |
 | --------- | ------------------ | ------------------- | ------------------------------------------------------------------------------------- |
 | `urls`    | `List[str]`        | -                   | URLs of the website to read.                                                                                          |
-| `reader`  | `URLReader`        | `URLReader()`       | A `URLReader` that reads the `PDF` file and converts it into `Documents` for the vector database |
+| `reader`  | `URLReader`        | `URLReader()`       | A `URLReader` that reads the Website `URLs` and converts it into `Documents` for the vector database |
 
 `URLKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
 
