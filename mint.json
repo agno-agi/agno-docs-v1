@@ -275,7 +275,21 @@
                 }
               ]
             },
-            "tools/mcp",
+            {
+              "group": "MCP",
+              "pages": [
+                "tools/mcp/mcp",
+                {
+                  "group": "Transports",
+                  "pages": [
+                    "tools/mcp/transports/stdio",
+                    "tools/mcp/transports/sse",
+                    "tools/mcp/transports/streamable_http"
+                  ]
+                },
+                "tools/mcp/advanced_usage"
+              ]
+            },
             {
               "group": "Reasoning Tools",
               "pages": [
@@ -582,16 +596,16 @@
             "examples/concepts/memory/03-custom-memory-creation",
             "examples/concepts/memory/04-memory-search",
             "examples/concepts/memory/05-agent-with-memory",
-            "examples/concepts/memory/06-agentic-memory",           
-           
+            "examples/concepts/memory/06-agentic-memory",
+
             "examples/concepts/memory/07-agent-with-summaries",
             "examples/concepts/memory/08-agents-share-memory",
-            
+
             "examples/concepts/memory/09-custom-memory",
             "examples/concepts/memory/10-multi-user-multi-session-chat",
             "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
-            "examples/concepts/memory/mem0-memory",          
-            
+            "examples/concepts/memory/mem0-memory",
+
 
 
             {
@@ -762,6 +776,16 @@
                 "examples/concepts/tools/others/yfinance",
                 "examples/concepts/tools/others/youtube",
                 "examples/concepts/tools/others/zendesk"
+              ]
+            },
+            {
+              "group": "MCP",
+              "pages": [
+                "examples/concepts/tools/mcp/airbnb",
+                "examples/concepts/tools/mcp/github",
+                "examples/concepts/tools/mcp/notion",
+                "examples/concepts/tools/mcp/stripe",
+                "examples/concepts/tools/mcp/supabase"
               ]
             }
           ]
