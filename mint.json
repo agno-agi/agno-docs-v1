@@ -240,7 +240,8 @@
                 {
                   "group": "Models",
                   "pages": [
-                    "tools/toolkits/models/openai"
+                    "tools/toolkits/models/openai",
+                    "tools/toolkits/models/gemini"
                   ]
                 },
                 {
