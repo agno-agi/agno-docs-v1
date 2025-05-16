@@ -505,8 +505,7 @@
                 "examples/teams/coordinate/autonomous_startup_team",
                 "examples/teams/coordinate/hackernews_team",
                 "examples/teams/coordinate/news_agency_team",
-                "examples/teams/coordinate/travel_planner_mcp_team",
-                "examples/teams/coordinate/skyplanner_mcp_team"
+                "examples/teams/coordinate/travel_planner_mcp_team"
               ]
             },
             {
