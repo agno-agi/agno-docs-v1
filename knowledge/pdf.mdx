@@ -32,14 +32,13 @@ pdf_knowledge_base = PDFKnowledgeBase(
 )
 ```
 
-Then use the `knowledge_base` with an Agent:
+Then use the `pdf_knowledge_base` with an Agent:
 
 ```python agent.py
 from agno.agent import Agent
-from knowledge_base import knowledge_base
 
 agent = Agent(
-    knowledge=knowledge_base,
+    knowledge=pdf_knowledge_base,
     search_knowledge=True,
 )
 agent.knowledge.load(recreate=False)
