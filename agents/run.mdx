@@ -59,7 +59,7 @@ The `Agent.run()` function returns either a `RunResponse` object or an `Iterator
 
 ## Streaming Intermediate Steps
 
-You can enable streaming of intermediate steps by setting `stream_intermediate_steps=True`. This will provide detailed information about the agent's execution process through various events:
+You can enable streaming of intermediate steps by setting `stream_intermediate_steps=True`.
 
 ```python
 # Stream with intermediate steps
@@ -72,7 +72,7 @@ response_stream = agent.run(
 
 ### Event Types
 
-When streaming intermediate steps, you'll receive the following events:
+When streaming intermediate steps, Events that can be sent by the run() functions:
 
 | Event Type | Description |
 |------------|-------------|
