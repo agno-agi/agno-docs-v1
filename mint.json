@@ -518,6 +518,12 @@
             "examples/apps/geobuddy",
             "examples/apps/chess-team"
           ]
+        },
+        {
+          "group": "Templates",
+          "pages": [
+            "examples/templates/agent-api"
+          ]
         }
       ]
     },
