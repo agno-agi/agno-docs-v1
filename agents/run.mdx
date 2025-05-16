@@ -82,7 +82,7 @@ When streaming intermediate steps, Events that can be sent by the `Agent.run()` 
 | `RunError` | Indicates an error occurred during the run |
 | `RunCancelled` | Signals that the run was cancelled |
 | `ToolCallStarted` | Indicates the start of a tool call |
-| `ToolCallCompleted` | Signals completion of a tool call |
+| `ToolCallCompleted` | Signals completion of a tool call. This also contains the tool call results. |
 | `ReasoningStarted` | Indicates the start of the agent's reasoning process |
 | `ReasoningStep` | Contains a single step in the reasoning process |
 | `ReasoningCompleted` | Signals completion of the reasoning process |
