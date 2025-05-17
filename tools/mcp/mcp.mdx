@@ -1,0 +1,192 @@
+---
+title: Model Context Protocol (MCP) Introduction
+sidebarTitle: Introduction
+---
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io) enables Agents to interact with external systems through a standardized interface.
+You can connect your Agents to any MCP server, using Agno's MCP integration.
+
+## Usage
+
+<Steps>
+    <Step title="Find the MCP server you want to use">
+    You can use any working MCP server. To see some examples, you can check [this GitHub repository](https://github.com/modelcontextprotocol/servers), by the maintainers of the MCP themselves.
+    </Step>
+
+    <Step title="Initialize the MCP integration">
+    Intialize the `MCPTools` class as a context manager. The recommended way to define the MCP server, is to use the `command` or `url` parameters. With `command`, you can pass the command used to run the MCP server you want. With `url`, you can pass the URL of the running MCP server you want to use.
+
+
+    For example, to use the "[mcp-server-git](https://github.com/modelcontextprotocol/servers/tree/main/src/git)" server, you can do the following:
+
+
+    ```python
+    from agno.tools.mcp import MCPTools
+
+    async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+        ...
+    ```
+    </Step>
+
+    <Step title="Provide the MCPTools to the Agent">
+    When initializing the Agent, pass the `MCPTools` class in the `tools` parameter.
+
+
+    The agent will now be ready to use the MCP server:
+
+
+    ```python
+    from agno.agent import Agent
+    from agno.models.openai import OpenAIChat
+    from agno.tools.mcp import MCPTools
+
+    async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+        # Setup and run the agent
+        agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
+        await agent.aprint_response("What is the license for this project?", stream=True)
+    ```
+    </Step>
+
+</Steps>
+
+
+### Basic example: Filesystem Agent
+
+Here's a filesystem agent that uses the [Filesystem MCP server](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) to explore and analyze files:
+
+```python filesystem_agent.py
+import asyncio
+from pathlib import Path
+from textwrap import dedent
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.mcp import MCPTools
+from mcp import StdioServerParameters
+
+
+async def run_agent(message: str) -> None:
+    """Run the filesystem agent with the given message."""
+
+    file_path = str(Path(__file__).parent.parent.parent.parent)
+
+    # MCP server to access the filesystem (via `npx`)
+    async with MCPTools(f"npx -y @modelcontextprotocol/server-filesystem {file_path}") as mcp_tools:
+        agent = Agent(
+            model=OpenAIChat(id="gpt-4o"),
+            tools=[mcp_tools],
+            instructions=dedent("""\
+                You are a filesystem assistant. Help users explore files and directories.
+
+                - Navigate the filesystem to answer questions
+                - Use the list_allowed_directories tool to find directories that you can access
+                - Provide clear context about files you examine
+                - Use headings to organize your responses
+                - Be concise and focus on relevant information\
+            """),
+            markdown=True,
+            show_tool_calls=True,
+        )
+
+        # Run the agent
+        await agent.aprint_response(message, stream=True)
+
+
+# Example usage
+if __name__ == "__main__":
+    # Basic example - exploring project license
+    asyncio.run(run_agent("What is the license for this project?"))
+```
+
+
+## Using MCP in Agno Playground
+
+You can also run MCP servers in the Agno Playground, which provides a web interface for interacting with your agents. Here's an example of a GitHub agent running in the Playground:
+
+```python github_playground.py
+import asyncio
+from os import getenv
+from textwrap import dedent
+
+import nest_asyncio
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.playground import Playground, serve_playground_app
+from agno.storage.agent.sqlite import SqliteAgentStorage
+from agno.tools.mcp import MCPTools
+
+# Allow nested event loops
+nest_asyncio.apply()
+
+agent_storage_file: str = "tmp/agents.db"
+
+
+async def run_server() -> None:
+    """Run the GitHub agent server."""
+    github_token = getenv("GITHUB_TOKEN") or getenv("GITHUB_ACCESS_TOKEN")
+    if not github_token:
+        raise ValueError("GITHUB_TOKEN environment variable is required")
+
+    # Create a client session to connect to the MCP server
+    async with MCPTools("npx -y @modelcontextprotocol/server-github") as mcp_tools:
+        agent = Agent(
+            name="MCP GitHub Agent",
+            tools=[mcp_tools],
+            instructions=dedent("""\
+                You are a GitHub assistant. Help users explore repositories and their activity.
+
+                - Use headings to organize your responses
+                - Be concise and focus on relevant information\
+            """),
+            model=OpenAIChat(id="gpt-4o"),
+            storage=SqliteAgentStorage(
+                table_name="basic_agent",
+                db_file=agent_storage_file,
+                auto_upgrade_schema=True,
+            ),
+            add_history_to_messages=True,
+            num_history_responses=3,
+            add_datetime_to_instructions=True,
+            markdown=True,
+        )
+
+        playground = Playground(agents=[agent])
+        app = playground.get_app()
+
+        # Serve the app while keeping the MCPTools context manager alive
+        serve_playground_app(app)
+
+
+if __name__ == "__main__":
+    asyncio.run(run_server())
+```
+
+
+## Best Practices
+
+1. **Error Handling**: Always include proper error handling for MCP server connections and operations.
+
+2. **Resource Cleanup**: Use `MCPTools` or `MultiMCPTools` as an async context manager to ensure proper cleanup of resources:
+```python
+async with MCPTools(command) as mcp_tools:
+    # Your agent code here
+```
+
+3. **Clear Instructions**: Provide clear and specific instructions to your agent:
+
+```python
+instructions = """
+You are a filesystem assistant. Help users explore files and directories.
+- Navigate the filesystem to answer questions
+- Use the list_allowed_directories tool to find accessible directories
+- Provide clear context about files you examine
+- Be concise and focus on relevant information
+"""
+```
+
+## More Information
+
+- Find examples of Agents that use MCP [here](https://docs.agno.com/examples/concepts/tools/mcp/airbnb).
+- Find a collection of MCP servers [here](https://github.com/modelcontextprotocol/servers).
+- Read the [MCP documentation](https://modelcontextprotocol.io/introduction) to learn more about the Model Context Protocol.
+- Checkout the Agno [Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/tools/mcp) for more examples of Agents that use MCP.

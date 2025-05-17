@@ -2,6 +2,110 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-05-13" description="v1.5.0">
+## New Features:
+
+- **Azure OpenAI Tools**: Added image generation via Dall-E via Azure AI Foundry.
+- **OpenTelemetry Instrumentation:** We have contributed to the [OpenInference](https://github.com/Arize-ai/openinference) project and added an auto-instrumentor for Agno agents. This adds tracing instrumentation for Agno Agents for any OpenTelemetry-compatible observability provider. These include Arize, Langfuse and Langsmith. Examples added to illustrate how to use each one ([here](https://github.com/agno-agi/agno/tree/main/cookbook/observability)).
+- **Evals Updates**: Added logic to run accuracy evaluations with pre-generated answers and minor improvements for all evals classes.
+- **Hybrid Search and Reranker for Milvus Vector DB:** Added support for `hybrid_search` on Milvus.
+- **MCP with Streamable-HTTP:** Now supporting the streamable-HTTP transport for MCP servers.
+
+## Improvements:
+
+- **Knowledge Filters Cookbook:** Instead of storing the sample data locally, we now pull it from s3 at runtime to keep the forking of the repo as light as possible.
+
+## Bug Fixes:
+
+- **Team Model State:** Fixed issues related to state being shared between models on teams.
+- **Concurrent Agent Runs**: Fixed certain race-conditions related to running agents concurrently.
+
+## Breaking changes:
+
+- **Evals Refactoring:**
+    - Our performance evaluation class has been renamed from `PerfEval` to `PerformanceEval`
+    - Our accuracy evaluation class has new required fields: `agent`, `prompt` and `expected_answer`
+- **Concurrent Agent Runs:** We removed duplicate information from some events during streaming (`stream=True`). Individual events will have more relevant data now.
+</Update>
+
+<Update label="2025-05-10" description="v1.4.6">
+## New Features:
+
+- **Cerebras Model Provider**: Added Cerebras as a model provider.
+- **Claude Web Search**: Added support for [Claude’s new web search tool](https://www.anthropic.com/news/web-search).
+- **Knowledge Base Metadata Filtering (Beta)**: Added support for filtering documents by metadata
+    - **Two Ways to Apply Filters**:
+        - **Explicit Filtering**: Pass filters directly to Agent or during run/query
+            
+            ```python
+            # Option 1: Filters on Agent initialization
+            agent = Agent(
+            					knowledge=knowledge_base, 
+            					knowledge_filters={"filter_1": "abc"}
+            				)
+                 
+            # Option 2: Filters on run execution
+            agent.run("Tell me about...", knowledge_filters={"filter_1": "abc"})
+            ```
+            
+            See docs [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/filters/pdf/filtering.py)
+            
+        - **Agentic Filtering**: Agent automatically detects and applies filters from user queries
+            
+            ```python
+            # Enable automatic filter detection
+            agent = Agent(
+            					knowledge=knowledge_base, 
+            					enable_agentic_knowledge_filters=True
+            				)
+                 
+            # Agent extracts filters from query
+            agent.run("Tell me about John Doe's experience...")
+            ```
+            
+            See docs [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/filters/pdf/agentic_filtering.py)
+            
+    - Two approaches for adding metadata to documents:
+        1. **During Knowledge Base Initialization**:
+            
+            ```python
+            knowledge_base = PDFKnowledgeBase(path=[
+                 {
+            		     "path": "file_1.pdf", 
+            		     "metadata": {
+            				     "user_id": "abc"
+            				  }
+            		 },
+            		 {
+            		     "path": "file_2.pdf", 
+            		     "metadata": {
+            				     "user_id": "xyz"
+            				  }
+            		 }
+            ])
+            ```
+            
+        2. **During Individual Document Loading:**
+            
+            ```python
+            knowledge_base.load_document(
+                 path="file.pdf",
+                 metadata={"user_id": "abc"}
+            )
+            ```
+            
+    - **Compatibility**
+        - **Knowledge Base Types**: `PDF`, `Text`, `DOCX`, `JSON`, and `PDF_URL`
+        - **Vector Databases**: `Qdrant`, `LanceDB`, and `MongoDB`
+
+## Improvements:
+
+- **User and Session ID in Tools**: Added `current_user_id` and `current_session_id` as default variables in `session_data` for `Agent` and `Team`.
+
+## Bug Fixes:
+
+- **Knowledge Base ID Clashes**: Knowledge files with overlapping names (e.g., `abc.-.xyz.pdf` and `abc.-.def.pdf`) were being incorrectly identified due to the readers using formatted names as unique id which were getting uniqueness conflict. Introduced a unique ID for each document in all the readers using `uuidv4()` to ensure strict identification and prevent conflicts.
+</Update>
 
 <Update label="2025-05-06" description="v1.4.5">
 ## New Features:

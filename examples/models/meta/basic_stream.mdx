@@ -1,0 +1,47 @@
+---
+<title>Streaming Agent</title>
+---
+
+## Code
+
+```python cookbook/models/meta/basic_stream.py
+from agno.agent import Agent
+from agno.models.meta import Llama
+
+agent = Agent(
+    model=Llama(id="Llama-4-Scout-17B"),
+    markdown=True,
+)
+
+agent.print_response("Explain quantum entanglement in simple terms.", stream=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your LLAMA API key">
+    ```bash
+    export LLAMA_API_KEY=YOUR_API_KEY
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install llama-api-client agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/meta/basic_stream.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/meta/basic_stream.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 
