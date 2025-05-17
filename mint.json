@@ -573,13 +573,6 @@
                         "examples/apps/chess-team"
                     ]
                 }
-              ,
-        {
-          "group": "Templates",
-          "pages": [
-            "examples/templates/agent-api"
-          ]
-        }
             ]
         },
         {
@@ -1202,6 +1195,10 @@
                 {
                     "group": "Agent UI",
                     "pages": ["agent-ui/introduction"]
+                },
+                {
+                    "group": "Agent API",
+                    "pages": ["agent-api/introduction"]
                 }
             ]
         },
