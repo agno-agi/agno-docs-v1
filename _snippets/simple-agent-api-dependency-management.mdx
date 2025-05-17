@@ -1,13 +1,15 @@
 
 ## Managing Python Dependencies
 
-If you need to add or update python dependencies:
+<Steps>
 
-#### 1. Modify `pyproject.toml`
+<Step title="Modify pyproject.toml">
 
 Add or update your desired Python package dependencies in the `[tool.poetry.dependencies]` section of the `pyproject.toml` file.
 
-#### 2. Generate `requirements.txt`
+</Step>
+
+<Step title="Generate requirements.txt">
 
 The `requirements.txt` file is used to build the application image. After modifying `pyproject.toml`, regenerate `requirements.txt` using:
 
@@ -21,10 +23,15 @@ To upgrade all existing dependencies to their latest compatible versions, run:
 ./scripts/generate_requirements.sh upgrade
 ```
 
-#### 3. Rebuild Docker Images
+</Step>
+
+<Step title="Rebuild Docker Images">
 
 Rebuild your Docker images to include the updated dependencies:
 
 ```bash
 docker compose up -d --build
 ```
+</Step>
+
+</Steps>
