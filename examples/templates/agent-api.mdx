@@ -10,160 +10,17 @@ Welcome to the Simple Agent API: a robust, production-ready application for serv
 - A set of pre-built Agents to use as a starting point.
 
 
+<Snippet file="simple-agent-api-setup.mdx" />
 
-## Quickstart
-
-Follow these steps to get your Agent API up and running:
-
-**Prerequisites**: Docker Desktop should be installed and running.
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/agno-agi/agent-api.git
-cd agent-api
-```
-
-### 2. Configure API keys
-
-We use GPT 4.1 as the default model, please export the `OPENAI_API_KEY` environment variable to get started.
-
-```bash
-export OPENAI_API_KEY="YOUR_API_KEY_HERE"
-```
-**Note**: You can use any model provider, just update the agents in the `/agents` folder.
-
-### 3. Start the application
-
-Run the application using docker compose:
-
-```bash
-docker compose up -d
-```
-
-This command starts:
-
-- The FastAPI server, running on [http://localhost:8000](http://localhost:8000).
-- The PostgreSQL database, accessible on `localhost:5432`.
-
-Once started, you can:
-
-- Test the API at [http://localhost:8000/docs](http://localhost:8000/docs).
-- Connect to Agno Playground or Agent UI:
-    - Open the Agno Playground [https://app.agno.com/playground/agents](https://app.agno.com/playground/agents).
-    - Add `http://localhost:8000` as a new endpoint. You can name it `Agent API` (or any name you prefer).
-    - Select your newly added endpoint and start chatting with your Agents.
+<Snippet file="create-simple-agent-api-codebase.mdx" />
 
 
-### 4. Stop the application
+<Snippet file="simple-agent-api-dependency-management.mdx" />
 
-When you're done, stop the application using:
+<Snippet file="simple-agent-api-production.mdx" />
 
-```bash
-docker compose down
-```
+## Next
 
-## Prebuilt Agents
+Congratulations on running your Simple Agent API. Next Steps:
 
-The `/agents` folder contains pre-built agents that you can use as a starting point.
-
-- **Web Search Agent**: A simple agent that can search the web.
-- **Agno Assist**: An Agent that can help answer questions about Agno.
-    - **Important**: Make sure to load the `agno_assist` knowledge base before using this agent.
-- **Finance Agent**: An agent that uses the YFinance API to get stock prices and financial data.
-
-
-
-## Managing Python Dependencies
-
-If you need to add or update python dependencies:
-
-### 1. Modify `pyproject.toml`
-
-Add or update your desired Python package dependencies in the `[tool.poetry.dependencies]` section of the `pyproject.toml` file.
-
-### 2. Generate `requirements.txt`
-
-The `requirements.txt` file is used to build the application image. After modifying `pyproject.toml`, regenerate `requirements.txt` using:
-
-```bash
-./scripts/generate_requirements.sh
-```
-
-To upgrade all existing dependencies to their latest compatible versions, run:
-
-```bash
-./scripts/generate_requirements.sh upgrade
-```
-
-### 3. Rebuild Docker Images
-
-Rebuild your Docker images to include the updated dependencies:
-
-```bash
-docker compose up -d --build
-```
-
-
-## Running in Production
-
-This repository includes a `Dockerfile` for building a production-ready container image of the application.
-
-The general process to run in production is:
-
-1.  Update the `scripts/build_image.sh` file and set your `IMAGE_NAME` and `IMAGE_TAG` variables.
-2.  Build and push the image to your container registry:
-    ```bash
-    ./scripts/build_image.sh
-    ```
-3.  Run in your cloud provider of choice.
-
-### Detailed Steps
-
-#### 1. Configure for Production
-
-- Ensure your production environment variables (e.g., `OPENAI_API_KEY`, database connection strings) are securely managed. Most cloud providers offer a way to set these as environment variables for your deployed service.
-- Review the agent configurations in the `/agents` directory and ensure they are set up for your production needs (e.g., correct model versions, any production-specific settings).
-
-#### 2. Build Your Production Docker Image
-
-Update the `scripts/build_image.sh` script to set your desired `IMAGE_NAME` and `IMAGE_TAG` (e.g., `your-repo/agent-api:v1.0.0`).
-
-Run the script to build and push the image:
-
-```bash
-./scripts/build_image.sh
-```
-
-#### 3. Deploy to a Cloud Service
-
-With your image in a registry, you can deploy it to various cloud services that support containerized applications. Some common options include:
-
-**Serverless Container Platforms:**
-
--   [Google Cloud Run](https://cloud.google.com/run): A fully managed platform that automatically scales your stateless containers.
--   [AWS App Runner](https://aws.amazon.com/apprunner/): Makes it easy to deploy containerized web applications and APIs at scale.
--   [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps): Build and deploy modern apps and microservices using serverless containers.
-
-**Container Orchestration Services:**
-
--   [Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/): Often used with AWS Fargate for serverless compute or EC2 instances.
--   [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine): Managed Kubernetes service.
--   [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/services/kubernetes-service/): Managed Kubernetes service.
-
-**Platform as a Service (PaaS) with Docker Support:**
-
--   [Railway.app](https://railway.app/): Simple deployment from a Dockerfile.
--   [Render](https://render.com/): Simplifies deploying Docker containers, databases, and static sites.
--   [Heroku](https://www.heroku.com/): Supports deploying Docker containers.
-
-**Specialized Platforms:**
-
--   [Modal](https://modal.com/): Platform for running Python code in the cloud, can serve web endpoints.
-
-The specific deployment steps will vary depending on the chosen provider. Generally, you'll point the service to your container image in the registry and configure port mapping (application runs on port `8000` by default), environment variables, scaling, and database connections.
-
-#### 4. Database Configuration
-
-The default `docker-compose.yml` sets up a PostgreSQL database for local development. In production, use a managed database service (e.g., AWS RDS, Google Cloud SQL, Azure Database for PostgreSQL).
-Ensure your deployed application is configured with the correct database connection URL for your production database, usually via environment variables.
+- Read how to [use workspaces with Simple Agent API](/workspaces/introduction)
