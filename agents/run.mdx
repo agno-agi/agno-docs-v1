@@ -59,6 +59,8 @@ The `Agent.run()` function returns either a `RunResponse` object or an `Iterator
 
 ## Streaming Intermediate Steps
 
+Throughout the execution of an agent, multiple events take place, and we provide these events in real-time for enhanced agent transparency.
+
 You can enable streaming of intermediate steps by setting `stream_intermediate_steps=True`.
 
 ```python
@@ -72,7 +74,7 @@ response_stream = agent.run(
 
 ### Event Types
 
-When streaming intermediate steps, Events that can be sent by the `Agent.run()` function:
+The following events are sent by the `Agent.run()` and `Agent.arun()` functions depending on agent's configuration:
 
 | Event Type | Description |
 |------------|-------------|
