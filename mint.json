@@ -870,6 +870,25 @@
                         "examples/concepts/state/05-session-state-full-example",
                         "examples/concepts/state/06-team-session-state"
                     ]
+                },
+                {
+                    "group": "Other",
+                    "pages": [
+                        "examples/concepts/others/agent_extra_metrics",
+                        "examples/concepts/others/agent_metrics",
+                        "examples/concepts/others/datetime_instructions",
+                        "examples/concepts/others/image_input_high_fidelity",
+                        "examples/concepts/others/input_as_dict",
+                        "examples/concepts/others/input_as_list",
+                        "examples/concepts/others/input_as_message",
+                        "examples/concepts/others/input_as_messages_list",
+                        "examples/concepts/others/instructions_via_function",
+                        "examples/concepts/others/instructions",
+                        "examples/concepts/others/intermediate_steps",
+                        "examples/concepts/others/response_as_variable",
+                        "examples/concepts/others/scenario_testing",
+                        "examples/concepts/others/success_criteria"
+                    ]
                 }
             ]
         },
