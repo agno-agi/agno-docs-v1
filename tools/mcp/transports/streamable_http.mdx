@@ -1,0 +1,132 @@
+---
+title: Streamable HTTP Transport
+sidebarTitle: Streamable HTTP
+---
+
+The new [Streamable HTTP transport](https://modelcontextprotocol.io/specification/draft/basic/transports#streamable-http) replaces the HTTP+SSE transport from protocol version 2024-11-05.
+
+This transport enables the MCP server to handle multiple client connections, and can also use SSE for server-to-client streaming.
+
+To use it, initialize the `MCPTools` passing the URL of the MCP server and setting the transport to `streamable-http`:
+
+
+```python
+from agno.agent import Agent
+    from agno.models.openai import OpenAIChat
+    from agno.tools.mcp import MCPTools
+
+    server_url = "http://localhost:8000/mcp"
+
+    async with MCPTools(url=server_url, transport="streamable-http") as mcp_tools:
+        agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
+        await agent.aprint_response("What is the license for this project?", stream=True)
+```
+
+
+You can also use the `server_params` argument to define the MCP connection. This way you can specify the headers to send to the MCP server with every request, and the timeout values:
+
+```python
+from agno.tools.mcp import MCPTools, StreamableHTTPClientParams
+
+server_params = StreamableHTTPClientParams(
+    url=...,
+    headers=...,
+    timeout=...,
+    sse_read_timeout=...,
+    terminate_on_close=...,
+
+)
+
+async with MCPTools(server_params=server_params) as mcp_tools:
+    ...
+```
+
+
+## Complete example
+
+Let's set up a simple local server and connect to it using the Streamable HTTP transport:
+
+
+<Steps>
+    <Step title="Setup the server">
+        ```python streamable_http_server.py
+        from mcp.server.fastmcp import FastMCP
+
+        mcp = FastMCP("calendar_assistant")
+
+
+        @mcp.tool()
+        def get_events(day: str) -> str:
+            return f"There are no events scheduled for {day}."
+
+
+        @mcp.tool()
+        def get_birthdays_this_week() -> str:
+            return "It is your mom's birthday tomorrow"
+
+
+        if __name__ == "__main__":
+            mcp.run(transport="streamable-http")
+        ```
+    </Step>
+
+    <Step title="Setup the client">
+        ```python streamable_http_client.py
+        import asyncio
+
+        from agno.agent import Agent
+        from agno.models.openai import OpenAIChat
+        from agno.tools.mcp import MCPTools, MultiMCPTools
+
+        # This is the URL of the MCP server we want to use.
+        server_url = "http://localhost:8000/mcp"
+
+
+        async def run_agent(message: str) -> None:
+            async with MCPTools(transport="streamable-http", url=server_url) as mcp_tools:
+                agent = Agent(
+                    model=OpenAIChat(id="gpt-4o"),
+                    tools=[mcp_tools],
+                    markdown=True,
+                )
+                await agent.aprint_response(message=message, stream=True, markdown=True)
+
+
+        # Using MultiMCPTools, we can connect to multiple MCP servers at once, even if they use different transports.
+        # In this example we connect to both our example server (Streamable HTTP transport), and a different server (stdio transport).
+        async def run_agent_with_multimcp(message: str) -> None:
+            async with MultiMCPTools(
+                commands=["npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt"],
+                urls=[server_url],
+                urls_transports=["streamable-http"],
+            ) as mcp_tools:
+                agent = Agent(
+                    model=OpenAIChat(id="gpt-4o"),
+                    tools=[mcp_tools],
+                    markdown=True,
+                )
+                await agent.aprint_response(message=message, stream=True, markdown=True)
+
+
+        if __name__ == "__main__":
+            asyncio.run(run_agent("Do I have any birthdays this week?"))
+            asyncio.run(
+                run_agent_with_multimcp(
+                    "Can you check when is my mom's birthday, and if there are any AirBnb listings in SF for two people for that day?"
+                )
+            )
+        ```
+    </Step>
+
+    <Step title="Run the server">
+        ```bash
+        python streamable_http_server.py
+        ```
+    </Step>
+
+    <Step title="Run the client">
+        ```bash
+        python sse_client.py
+        ```
+    </Step>
+</Steps>

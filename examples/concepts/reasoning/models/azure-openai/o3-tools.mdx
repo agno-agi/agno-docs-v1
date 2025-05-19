@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI o3 with Tools
+title: Azure OpenAI o3
 ---
 
 ## Code
@@ -10,7 +10,7 @@ from agno.models.azure.openai_chat import AzureOpenAI
 from agno.tools.yfinance import YFinanceTools
 
 agent = Agent(
-    model=AzureOpenAI(id="o3-mini"),
+    model=AzureOpenAI(id="o3"),
     tools=[
         YFinanceTools(
             stock_price=True,
