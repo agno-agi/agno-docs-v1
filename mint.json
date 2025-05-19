@@ -814,6 +814,92 @@
             "examples/concepts/state/05-session-state-full-example",
             "examples/concepts/state/06-team-session-state"
           ]
+        },
+        {
+          "group": "Reasoning",
+          "pages": [
+            {
+              "group": "Agents",
+              "pages": [
+                "examples/concepts/reasoning/agents/basic-cot",
+                "examples/concepts/reasoning/agents/capture-reasoning-content-cot",
+                "examples/concepts/reasoning/agents/non-reasoning-model"
+              ]
+            },
+            {
+              "group": "Models",
+              "pages": [
+                {
+                  "group": "Azure AI Foundry",
+                  "pages": [
+                    "examples/concepts/reasoning/models/azure-ai-foundary/azure-ai-foundary"
+                  ]
+                },
+                {
+                  "group": "Azure OpenAI",
+                  "pages": [
+                    "examples/concepts/reasoning/models/azure-openai/o1",
+                    "examples/concepts/reasoning/models/azure-openai/o3-tools",
+                    "examples/concepts/reasoning/models/azure-openai/reasoning-model-gpt4-1"
+                  ]
+                },
+                {
+                  "group": "DeepSeek",
+                  "pages": [
+                    "examples/concepts/reasoning/models/deepseek/trolley-problem"
+                  ]
+                },
+                {
+                  "group": "Groq",
+                  "pages": [
+                    "examples/concepts/reasoning/models/groq/groq-basic",
+                    "examples/concepts/reasoning/models/groq/groq-plus-claude"
+                  ]
+                },
+                {
+                  "group": "Ollama",
+                  "pages": [
+                    "examples/concepts/reasoning/models/ollama/ollama-basic"
+                  ]
+                },
+                {
+                  "group": "OpenAI",
+                  "pages": [
+                    "examples/concepts/reasoning/models/openai/o1-pro",
+                    "examples/concepts/reasoning/models/openai/o3-mini-tools",
+                    "examples/concepts/reasoning/models/openai/reasoning-effort"
+                  ]
+                },
+                {
+                  "group": "xAI",
+                  "pages": [
+                    "examples/concepts/reasoning/models/xai/reasoning-effort"
+                  ]
+                }
+              
+              ]
+            },
+            {
+              "group": "Teams",
+              "pages": [
+                "examples/concepts/reasoning/teams/reasoning-tool-team",
+                "examples/concepts/reasoning/teams/knowledge-tool-team"
+              ]
+            },
+            {
+              "group": "Tools",
+              "pages": [
+                "examples/concepts/reasoning/tools/capture-reasoning-content-reasoning-tools",
+                "examples/concepts/reasoning/tools/capture-reasoning-content-knowledge-tools",
+                "examples/concepts/reasoning/tools/capture-reasoning-content-thinking-tools",
+                "examples/concepts/reasoning/tools/gemini-reasoning-tools",
+                "examples/concepts/reasoning/tools/gemini-thinking-tools",
+                "examples/concepts/reasoning/tools/reasoning-tools",
+                "examples/concepts/reasoning/tools/knowledge-tools",
+                "examples/concepts/reasoning/tools/thinking-tools"
+              ]
+            }
+          ]
         }
       ]
     },
