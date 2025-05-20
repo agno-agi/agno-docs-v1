@@ -1,0 +1,67 @@
+---
+title: Response as Variable
+---
+
+This example shows how to use the response of an agent as a variable.
+
+## Code
+
+```python cookbook/agent_concepts/other/response_as_variable.py
+from typing import Iterator
+from rich.pretty import pprint
+from agno.agent import Agent, RunResponse
+from agno.models.openai import OpenAIChat
+from agno.tools.yfinance import YFinanceTools
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+            company_info=True,
+            company_news=True,
+        )
+    ],
+    instructions=["Use tables where possible"],
+    show_tool_calls=True,
+    markdown=True,
+)
+
+run_response: RunResponse = agent.run("What is the stock price of NVDA")
+pprint(run_response)
+
+# run_response_strem: Iterator[RunResponse] = agent.run("What is the stock price of NVDA", stream=True)
+# for response in run_response_strem:
+#     pprint(response)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U openai agno yfinance rich
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/other/response_as_variable.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/other/response_as_variable.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 
