@@ -392,6 +392,7 @@
                         "vectordb/qdrant",
                         "vectordb/singlestore",
                         "vectordb/mongodb",
+                        "vectordb/azure_cosmos_mongodb",
                         "vectordb/weaviate"
                     ]
                 },
@@ -963,6 +964,7 @@
                         "examples/concepts/vectordb/lancedb",
                         "examples/concepts/vectordb/milvus",
                         "examples/concepts/vectordb/mongodb",
+                        "examples/concepts/vectordb/azure_cosmos_mongodb",
                         "examples/concepts/vectordb/pgvector",
                         "examples/concepts/vectordb/pinecone",
                         "examples/concepts/vectordb/qdrant",
