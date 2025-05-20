@@ -1,0 +1,63 @@
+---
+title: Oxylabs
+---
+
+**OxylabsTools** enable an Agent to leverage Oxylabs’ SERP, Amazon and Universal Scraper endpoints.
+
+## Prerequisites
+
+The following example requires the `oxylabs-sdk` library and valid Oxylabs Realtime API credentials.
+
+```shell
+pip install -U oxylabs-sdk
+```
+
+Set your credentials as environment variables (recommended):
+
+```shell
+export OXYLABS_USERNAME=your_oxylabs_username
+export OXYLABS_PASSWORD=your_oxylabs_password
+```
+
+*(Add `OPENAI_API_KEY` if you plan to chat with an Agent.)*
+
+## Example
+
+The following agent will (1) Google‑search “OpenAI GPT‑4”, (2) look up the Amazon product with ASIN **B09JRKG3LC**, and (3) scrape `https://example.com`:
+
+```python cookbook/tools/oxylabs_agent_quickstart.py
+from agno.agent import Agent
+from agno.tools.oxylabs import OxylabsTools
+
+oxylabs = OxylabsTools()           # picks up env vars
+agent = Agent(tools=[oxylabs], show_tool_calls=True, markdown=True)
+
+agent.print_response("""
+1. Google‑search “OpenAI GPT‑4” – give me the first 3 organic links.
+2. Fetch ASIN B09JRKG3LC – show its title and price.
+3. Visit https://example.com and return the page <title>.
+""")
+```
+
+## Toolkit Params
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `username` | `str` | `None` | Oxylabs dashboard username. If omitted, falls back to `OXYLABS_USERNAME` env var. |
+| `password` | `str` | `None` | Oxylabs dashboard password. If omitted, falls back to `OXYLABS_PASSWORD` env var. |
+
+## Toolkit Functions
+
+| Function | Description |
+|----------|-------------|
+| `google_search(**kwargs)` | Performs a Google SERP search via `client.google.scrape_search`. Accepts the same kwargs as the Oxylabs SDK (e.g. `query`, `geo_location`, `parse=True`). |
+| `amazon_product(**kwargs)` | Retrieves a single Amazon product via `client.amazon.scrape_product`. Pass an ASIN or full product URL. |
+| `amazon_search(**kwargs)` | Runs a keyword search on Amazon via `client.amazon.scrape_search`. |
+| `universal(**kwargs)` | Scrapes an arbitrary public URL via `client.universal.scrape_url`. |
+
+All functions return a JSON‑encoded string of the raw Oxylabs response, making them streaming‑friendly for Agents.
+
+## Developer Resources
+
+- View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/oxylabs.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/oxylabs_tools.py)
