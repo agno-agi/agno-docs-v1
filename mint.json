@@ -979,7 +979,7 @@
                     ]
                 },
                 {
-                    "group": "Other",
+                    "group": "Miscellaneous",
                     "pages": [
                         "examples/concepts/others/agent_extra_metrics",
                         "examples/concepts/others/agent_metrics",
