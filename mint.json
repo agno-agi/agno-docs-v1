@@ -340,6 +340,14 @@
                     "pages": [
                         "knowledge/introduction",
                         "knowledge/search",
+                        {
+                            "group": "Knowledge Filters",
+                            "pages": [
+                                "filters/introduction",
+                                "filters/manual-filters",
+                                "filters/agentic-filters"
+                            ]
+                        },
                         "knowledge/arxiv",
                         "knowledge/combined",
                         "knowledge/csv",
@@ -357,14 +365,6 @@
                         "knowledge/website",
                         "knowledge/wikipedia",
                         "knowledge/youtube"
-                    ]
-                },
-                {
-                    "group": "Knowledge Filters",
-                    "pages": [
-                        "filters/introduction",
-                        "filters/manual-filters",
-                        "filters/agentic-filters"
                     ]
                 },
                 {
@@ -578,6 +578,89 @@
         {
             "group": "Agent Concepts",
             "pages": [
+                {
+                  "group": "Reasoning",
+                  "pages": [
+                    {
+                      "group": "Agents",
+                      "pages": [
+                        "examples/concepts/reasoning/agents/basic-cot",
+                        "examples/concepts/reasoning/agents/capture-reasoning-content-cot",
+                        "examples/concepts/reasoning/agents/non-reasoning-model"
+                      ]
+                    },
+                    {
+                      "group": "Models",
+                      "pages": [
+                        {
+                          "group": "Azure AI Foundry",
+                          "pages": [
+                            "examples/concepts/reasoning/models/azure-ai-foundary/azure-ai-foundary"
+                          ]
+                        },
+                        {
+                          "group": "Azure OpenAI",
+                          "pages": [
+                            "examples/concepts/reasoning/models/azure-openai/o1",
+                            "examples/concepts/reasoning/models/azure-openai/o3-tools",
+                            "examples/concepts/reasoning/models/azure-openai/reasoning-model-gpt4-1"
+                          ]
+                        },
+                        {
+                          "group": "DeepSeek",
+                          "pages": [
+                            "examples/concepts/reasoning/models/deepseek/trolley-problem"
+                          ]
+                        },
+                        {
+                          "group": "Groq",
+                          "pages": [
+                            "examples/concepts/reasoning/models/groq/groq-basic",
+                            "examples/concepts/reasoning/models/groq/groq-plus-claude"
+                          ]
+                        },
+                        {
+                          "group": "Ollama",
+                          "pages": [
+                            "examples/concepts/reasoning/models/ollama/ollama-basic"
+                          ]
+                        },
+                        {
+                          "group": "OpenAI",
+                          "pages": [
+                            "examples/concepts/reasoning/models/openai/o1-pro",
+                            "examples/concepts/reasoning/models/openai/o3-mini-tools",
+                            "examples/concepts/reasoning/models/openai/reasoning-effort"
+                          ]
+                        },
+                        {
+                          "group": "xAI",
+                          "pages": [
+                            "examples/concepts/reasoning/models/xai/reasoning-effort"
+                          ]
+                        }
+
+                      ]
+                    },
+                    {
+                      "group": "Teams",
+                      "pages": [
+                        "examples/concepts/reasoning/teams/reasoning-tool-team",
+                        "examples/concepts/reasoning/teams/knowledge-tool-team"
+                      ]
+                    },
+                    {
+                      "group": "Tools",
+                      "pages": [
+                        "examples/concepts/reasoning/tools/reasoning-tools",
+                        "examples/concepts/reasoning/tools/knowledge-tools",
+                        "examples/concepts/reasoning/tools/thinking-tools",
+                        "examples/concepts/reasoning/tools/gemini-reasoning-tools",
+                        "examples/concepts/reasoning/tools/gemini-thinking-tools"
+                      ]
+                    }
+                  ]
+                },
                 {
                     "group": "Multimodal",
                     "pages": [
@@ -888,6 +971,28 @@
                         "examples/concepts/others/response_as_variable",
                         "examples/concepts/others/scenario_testing",
                         "examples/concepts/others/success_criteria"
+                      ]
+                },
+                    "group": "Observability",
+                    "pages": [
+                        {
+                            "group": "Arize Phoenix",
+                            "pages": [
+                                "examples/concepts/observability/arize-phoenix-via-openinference",
+                                "examples/concepts/observability/arize-phoenix-via-openinference-local"
+                            ]
+                        },
+                        {
+                            "group": "Langfuse",
+                            "pages": [
+                                "examples/concepts/observability/langfuse_via_openinference",
+                                "examples/concepts/observability/langfuse_via_openlit"
+                            ]
+                        },
+                        "examples/concepts/observability/langsmith-via-openinference",
+                        "examples/concepts/observability/langtrace-op",
+                        "examples/concepts/observability/weave-op"
+
                     ]
                 }
             ]
@@ -1056,6 +1161,52 @@
                     ]
                 },
                 {
+                    "group": "IBM",
+                    "pages": [
+                        "examples/models/ibm/basic",
+                        "examples/models/ibm/basic_stream",
+                        "examples/models/ibm/async_basic_stream",
+                        "examples/models/ibm/async_basic",
+                        "examples/models/ibm/tool_use",
+                        "examples/models/ibm/async_tool_use",
+                        "examples/models/ibm/structured_output",
+                        "examples/models/ibm/storage",
+                        "examples/models/ibm/knowledge",
+                        "examples/models/ibm/image_agent_bytes"
+                    ]
+                },
+                {
+                    "group": "LM Studio",
+                    "pages": [
+                        "examples/models/lmstudio/basic",
+                        "examples/models/lmstudio/basic_stream",
+                        "examples/models/lmstudio/tool_use",
+                        "examples/models/lmstudio/structured_output",
+                        "examples/models/lmstudio/storage",
+                        "examples/models/lmstudio/knowledge",
+                        "examples/models/lmstudio/image_agent"
+                    ]
+                },
+                {
+                    "group": "LiteLLM",
+                    "pages": [
+                        "examples/models/litellm/basic",
+                        "examples/models/litellm/basic_stream",
+                        "examples/models/litellm/tool_use",
+                        "examples/models/litellm/structured_output",
+                        "examples/models/litellm/storage",
+                        "examples/models/litellm/knowledge"
+                    ]
+                },
+                {
+                    "group": "LiteLLM OpenAI",
+                    "pages": [
+                        "examples/models/litellm_openai/basic",
+                        "examples/models/litellm_openai/basic_stream",
+                        "examples/models/litellm_openai/tool_use"
+                    ]
+                },
+                {
                     "group": "Meta",
                     "pages": [
                         "examples/models/meta/basic",
@@ -1153,57 +1304,11 @@
                     ]
                 },
                 {
-                    "group": "xAI",
+                    "group": "XAI",
                     "pages": [
                         "examples/models/xai/basic",
                         "examples/models/xai/basic_stream",
                         "examples/models/xai/tool_use"
-                    ]
-                },
-                {
-                    "group": "IBM",
-                    "pages": [
-                        "examples/models/ibm/basic",
-                        "examples/models/ibm/basic_stream",
-                        "examples/models/ibm/async_basic_stream",
-                        "examples/models/ibm/async_basic",
-                        "examples/models/ibm/tool_use",
-                        "examples/models/ibm/async_tool_use",
-                        "examples/models/ibm/structured_output",
-                        "examples/models/ibm/storage",
-                        "examples/models/ibm/knowledge",
-                        "examples/models/ibm/image_agent_bytes"
-                    ]
-                },
-                {
-                    "group": "LM Studio",
-                    "pages": [
-                        "examples/models/lmstudio/basic",
-                        "examples/models/lmstudio/basic_stream",
-                        "examples/models/lmstudio/tool_use",
-                        "examples/models/lmstudio/structured_output",
-                        "examples/models/lmstudio/storage",
-                        "examples/models/lmstudio/knowledge",
-                        "examples/models/lmstudio/image_agent"
-                    ]
-                },
-                {
-                    "group": "LiteLLM",
-                    "pages": [
-                        "examples/models/litellm/basic",
-                        "examples/models/litellm/basic_stream",
-                        "examples/models/litellm/tool_use",
-                        "examples/models/litellm/structured_output",
-                        "examples/models/litellm/storage",
-                        "examples/models/litellm/knowledge"
-                    ]
-                },
-                {
-                    "group": "LiteLLM OpenAI",
-                    "pages": [
-                        "examples/models/litellm_openai/basic",
-                        "examples/models/litellm_openai/basic_stream",
-                        "examples/models/litellm_openai/tool_use"
                     ]
                 }
             ]
@@ -1218,6 +1323,17 @@
                 {
                     "group": "Agent API",
                     "pages": ["agent-api/introduction"]
+                },
+                {
+                    "group": "Observability",
+                    "pages": [
+                        "observability/introduction",
+                        "observability/arize",
+                        "observability/langfuse",
+                        "observability/langsmith",
+                        "observability/langtrace",
+                        "observability/weave"
+                    ]
                 }
             ]
         },
@@ -1225,7 +1341,6 @@
             "group": "How to",
             "pages": [
                 "how-to/install",
-                "how-to/local-docker-guide",
                 "how-to/contribute",
                 "how-to/phidata-to-agno"
             ]
