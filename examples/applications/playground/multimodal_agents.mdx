@@ -4,7 +4,7 @@ title: Multimodal Agents
 
 ## Code
 
-```python cookbook/applications/playground/multimodal_agents.py
+```python cookbook/apps/playground/multimodal_agents.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.models.response import FileType
@@ -187,7 +187,7 @@ app = Playground(
     ]
 ).get_app(use_async=False)
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     serve_playground_app("multimodal_agents:app", reload=True)
 
 ```
@@ -216,11 +216,11 @@ if __name__ == "__main__":
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/applications/playground/multimodal_agents.py
+    python cookbook/apps/playground/multimodal_agents.py
     ```
 
     ```bash Windows
-    python cookbook/applications/playground/multimodal_agents.py
+    python cookbook/apps/playground/multimodal_agents.py
     ```
     </CodeGroup>
   </Step>
