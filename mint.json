@@ -207,6 +207,7 @@
                                         "tools/toolkits/social/telegram",
                                         "tools/toolkits/social/twilio",
                                         "tools/toolkits/social/webex",
+                                        "tools/toolkits/social/whatsapp",
                                         "tools/toolkits/social/x",
                                         "tools/toolkits/social/zoom"
                                     ]
@@ -438,6 +439,14 @@
                 {
                     "group": "Evals",
                     "pages": ["evals/introduction"]
+                },
+                {
+                    "group": "Applications",
+                    "pages": [
+                        "applications/fastapi/introduction",
+                        "applications/playground/introduction",
+                        "applications/whatsapp/introduction"
+                    ]
                 }
             ]
         },
@@ -563,16 +572,55 @@
                     ]
                 },
                 {
+                    "group": "Streamlit Apps",
+                    "pages": [
+                        "examples/streamlit/agentic-rag",
+                        "examples/streamlit/answer-engine",
+                        "examples/streamlit/text-to-sql",
+                        "examples/streamlit/game-generator",
+                        "examples/streamlit/geobuddy",
+                        "examples/streamlit/chess-team"
+                    ]
+                },
+                {
                     "group": "Applications",
                     "pages": [
-                        "examples/apps/agentic-rag",
-                        "examples/apps/answer-engine",
-                        "examples/apps/text-to-sql",
-                        "examples/apps/game-generator",
-                        "examples/apps/geobuddy",
-                        "examples/apps/chess-team"
-                    ]
-                }
+                        {
+                                "group": "FastAPI",
+                                "pages": [
+                                    "examples/applications/fastapi/basic",
+                                    "examples/applications/fastapi/study_friend"
+                                ]
+                            },
+                            {
+                                "group": "WhatsApp",
+                                "pages": [
+                                    "examples/applications/whatsapp/basic",
+                                    "examples/applications/whatsapp/study_friend",
+                                    "examples/applications/whatsapp/image_generation_tools",
+                                    "examples/applications/whatsapp/reasoning_agent",
+                                    "examples/applications/whatsapp/image_generation_model",
+                                    "examples/applications/whatsapp/agent_with_media",
+                                    "examples/applications/whatsapp/agent_with_user_memory"
+                                ]
+                            },
+                            {
+                                "group": "Playground",
+                                "pages": [
+                                    "examples/applications/playground/basic",
+                                    "examples/applications/playground/multimodal_agents",
+                                    "examples/applications/playground/reasoning_demo",
+                                    "examples/applications/playground/teams_demo",
+                                    "examples/applications/playground/ollama_agents",
+                                    "examples/applications/playground/agno_assist",
+                                    "examples/applications/playground/audio_conversation_agent",
+                                    "examples/applications/playground/mcp_demo",
+                                    "examples/applications/playground/reasoning_demo",
+                                    "examples/applications/playground/upload_files"
+                                ]
+                            }
+                        ]
+                    }
             ]
         },
         {
@@ -824,6 +872,7 @@
                                 "examples/concepts/tools/social/slack",
                                 "examples/concepts/tools/social/twilio",
                                 "examples/concepts/tools/social/webex",
+                                "examples/concepts/tools/social/whatsapp",
                                 "examples/concepts/tools/social/x"
                             ]
                         },
