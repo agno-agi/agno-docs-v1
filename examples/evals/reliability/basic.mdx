@@ -1,8 +1,7 @@
 ---
-title: Reliability Evaluation
+title: Reliability with Single Tool
+description: Evaluation to assert an Agent is making the expected tool calls.
 ---
-
-Use the `ReliabilityEval` class to assert an Agent is making the expected tool calls.
 
 ## Code
 
@@ -16,22 +15,24 @@ from agno.run.response import RunResponse
 from agno.tools.calculator import CalculatorTools
 
 
-def factorial():
+def multiply_and_exponentiate():
     agent = Agent(
         model=OpenAIChat(id="gpt-4o-mini"),
-        tools=[CalculatorTools(factorial=True)],
+        tools=[CalculatorTools(add=True, multiply=True, exponentiate=True)],
     )
-    response: RunResponse = agent.run("What is 10!?")
+    response: RunResponse = agent.run(
+        "What is 10*5 then to the power of 2? do it step by step"
+    )
     evaluation = ReliabilityEval(
         agent_response=response,
-        expected_tool_calls=["factorial"],
+        expected_tool_calls=["multiply", "exponentiate"],
     )
     result: Optional[ReliabilityResult] = evaluation.run(print_results=True)
     result.assert_passed()
 
 
 if __name__ == "__main__":
-    factorial()
+    multiply_and_exponentiate()
 ```
 
 
