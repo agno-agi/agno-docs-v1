@@ -573,6 +573,14 @@
                         "examples/apps/geobuddy",
                         "examples/apps/chess-team"
                     ]
+                },
+                {
+                  "group": "Evals",
+                  "pages": [
+                    "examples/evals/accuracy",
+                    "examples/evals/performance",
+                    "examples/evals/reliability"
+                  ]
                 }
             ]
         },
@@ -1000,7 +1008,7 @@
                       ]
                 }
             ]
-        
+
         },
         {
             "group": "Models",
