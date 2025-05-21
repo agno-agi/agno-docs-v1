@@ -19,7 +19,6 @@ def simple_response():
         system_message="Be concise, reply with one sentence.",
     )
     response = agent.run("What is the capital of France?")
-    print(response.content)
     return response
 
 
