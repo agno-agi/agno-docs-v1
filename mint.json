@@ -802,6 +802,8 @@
                         "examples/concepts/memory/09-custom-memory",
                         "examples/concepts/memory/10-multi-user-multi-session-chat",
                         "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
+                        "examples/concepts/memory/12-memory-references",
+                        "examples/concepts/memory/13-session-summary-references",
                         "examples/concepts/memory/mem0-memory",
 
                         {
