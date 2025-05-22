@@ -981,6 +981,9 @@
                                 "examples/concepts/tools/mcp/airbnb",
                                 "examples/concepts/tools/mcp/github",
                                 "examples/concepts/tools/mcp/notion",
+                                "examples/concepts/tools/mcp/pipedream_slack",
+                                "examples/concepts/tools/mcp/pipedream_google_calendar",
+                                "examples/concepts/tools/mcp/pipedream_linkedin",
                                 "examples/concepts/tools/mcp/stripe",
                                 "examples/concepts/tools/mcp/supabase"
                             ]
