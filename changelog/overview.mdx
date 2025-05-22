@@ -2,7 +2,29 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-05-21" description="v1.5.3">
+## Improvements:
 
+- **Improved Accuracy Evals:** Updated the way accuracy evals works for more accurate agent-based evaluation.
+
+## Bug Fixes:
+
+- **MCP Client Timeout:** Client timeouts now work correctly and use the timeout set on parameters.
+</Update>
+<Update label="2025-05-20" description="v1.5.2">
+## New Features:
+
+- **Agno Apps (Beta)**: Introducing Agno Apps, convenience functions to assist with building production-ready applications. The first supported apps are:
+    - `FastAPIApp` → A really simple FastAPI server that provides access to your `agent` or `team`.
+    - `WhatsappAPIApp` → An app that implements the Whatsapp protocol allowing you to have an Agno agent running on Whatsapp. Supports image / audio / video input and can generate images as responses. Supports reasoning.
+- **Couchbase Vector DB Support**: Added support for Couchbase as a vector DB for knowledge bases.
+- **Knowledge Filters Update for Teams:** Filters (manual + agentic) can now be used with Teams.
+- **Azure Cosmos DB for MongoDB (vCore) vector db support:**  In the MongoDB vector db class add support for cosmosdb mongo vcore support by enabling `cosmos_compatibility=True`
+- **Google Big Query Tools**: Added Toolkit for Google BigQuery support.
+- **Async Support for s3 Readers: A**dd async support for `pdf` and `text` s3 readers.
+- **`stop_after_tool_call` and `show_result` for Toolkits:** Now the base Toolkit class has `stop_after_tool_call_tools` and `show_result_tools` similar to the `@tool` decorator.
+
+</Update>
 <Update label="2025-05-16" description="v1.5.1">
 ## New Features:
 
