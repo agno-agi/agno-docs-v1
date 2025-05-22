@@ -1,0 +1,107 @@
+---
+title: Playground App
+description: Host agents as Playground Applications.
+---
+
+The Playground App is used to serve Agents, Teams and Workflows using a FastAPI server with several endpoints to manage and interact with `Agents`, `Workflows`, and `Teams` on the [Agno Playground](/introduction/playground).
+
+### Example Usage
+
+Create an agent, and serve it with `Playground`:
+
+```python
+from agno.agent import Agent
+from agno.memory.agent import AgentMemory
+from agno.memory.db.postgres import PgMemoryDb
+from agno.models.openai import OpenAIChat
+from agno.playground import Playground, serve_playground_app
+from agno.storage.postgres import PostgresStorage
+
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
+
+basic_agent = Agent(
+    name="Basic Agent",
+    model=OpenAIChat(id="gpt-4o"), # Ensure OPENAI_API_KEY is set
+    memory=AgentMemory(
+        db=PgMemoryDb(
+            table_name="agent_memory",
+            db_url=db_url,
+        ),
+        create_user_memories=True,
+        update_user_memories_after_run=True,
+        create_session_summary=True,
+        update_session_summary_after_run=True,
+    ),
+    storage=PostgresStorage(
+        table_name="agent_sessions", db_url=db_url, auto_upgrade_schema=True
+    ),
+    add_history_to_messages=True,
+    num_history_responses=3,
+    add_datetime_to_instructions=True,
+    markdown=True,
+)
+
+app = Playground(
+    agents=[
+        basic_agent,
+    ]
+).get_app()
+
+if __name__ == "__main__":
+    serve_playground_app("basic_playground_app:app", port=7777, reload=True)
+```
+
+**To run:**
+
+1.  Ensure your PostgreSQL server is running and accessible via the `db_url`.
+2.  Set the `OPENAI_API_KEY` environment variable.
+3.  The Playground UI will be available at `http://localhost:7777`. API docs (if enabled in settings) are typically at `http://localhost:7777/docs`.
+4.  Use playground with [Agent Playground](/introduction/playground) .
+
+## Core Components
+
+- `Playground`: Wraps Agno agents, teams, or workflows in an API.
+- `serve_playground_app`: Serves the Playground FastAPI app using Uvicorn.
+
+The `Playground` class is the main entry point for creating Agno Playground applications. It allows you to easily expose your agents, teams, and workflows through a web interface with [Agent Playground](/introduction/playground) or  [Agent UI](/agent-ui/introduction).
+
+## `Playground` Class
+
+### Initialization Parameters
+
+| Parameter   | Type                            | Default | Description                                                                 |
+| ----------- | ------------------------------- | ------- | --------------------------------------------------------------------------- |
+| `agents`    | `Optional[List[Agent]]`         | `None`  | List of Agno `Agent` instances.                                             |
+| `teams`     | `Optional[List[Team]]`          | `None`  | List of Agno `Team` instances.                                              |
+| `workflows` | `Optional[List[Workflow]]`      | `None`  | List of Agno `Workflow` instances.                                          |
+| `settings`  | `Optional[PlaygroundSettings]`  | `None`  | Playground configuration. Defaults if `None`.                               |
+| `api_app`   | `Optional[FastAPI]`             | `None`  | Existing FastAPI app. A new one is created if `None`.                       |
+| `router`    | `Optional[APIRouter]`           | `None`  | Existing APIRouter. A new one is created if `None`.                         |
+
+*Provide at least one of `agents`, `teams`, or `workflows`.*
+
+### Key Methods
+
+| Method                 | Parameters                                                    | Return Type          | Description                                                                                                |
+| ---------------------- | ------------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `get_app`              | `use_async: bool = True`<br/>`prefix: str = "/v1"`            | `FastAPI`            | Returns configured FastAPI app (async by default). Sets prefix, error handlers, CORS, docs.                 |
+| `get_router`           |                                                               | `APIRouter`          | Returns the synchronous APIRouter for playground endpoints.                                                  |
+| `get_async_router`     |                                                               | `APIRouter`          | Returns the asynchronous APIRouter for playground endpoints.                                               |
+| `create_endpoint`      | `endpoint: str`<br/>`prefix: str = "/v1"`                     | `None`               | Creates a playground endpoint (e.g. for UI hosting). Requires `AGNO_CLOUD_URL` and `AGNO_CLOUD_API_KEY`. |
+
+### Endpoints
+
+Endpoints are available at the specified `prefix` (default `/v1`) combined with the playground router's prefix (`/playground`). For example, the status endpoint is typically `/v1/playground/status`.
+
+## Serving the Application
+
+ `serve_playground_app` serves the Playground's FastAPI app using Uvicorn.
+
+### Parameters
+
+| Parameter | Type                | Default     | Description                                        |
+| --------- | ------------------- | ----------- | -------------------------------------------------- |
+| `app`     | `Union[str, FastAPI]` | `N/A`       | FastAPI app instance or import string (Required). |
+| `host`    | `str`               | `"localhost"` | Host to bind.                                      |
+| `port`    | `int`               | `7777`      | Port to bind.                                      |
+| `reload`  | `bool`              | `False`     | Enable auto-reload for development.                | 

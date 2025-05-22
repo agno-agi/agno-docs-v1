@@ -1,0 +1,87 @@
+---
+title: Langfuse via OpenInference
+---
+
+## Overview
+
+This example demonstrates how to instrument your Agno agent with OpenInference and send traces to Langfuse.
+
+## Code
+
+```python
+import base64
+import os
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.yfinance import YFinanceTools
+from openinference.instrumentation.agno import AgnoInstrumentor
+from opentelemetry import trace as trace_api
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor
+
+LANGFUSE_AUTH = base64.b64encode(
+    f"{os.getenv('LANGFUSE_PUBLIC_KEY')}:{os.getenv('LANGFUSE_SECRET_KEY')}".encode()
+).decode()
+os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = (
+    "https://us.cloud.langfuse.com/api/public/otel"  # 🇺🇸 US data region
+)
+# os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"]="https://cloud.langfuse.com/api/public/otel" # 🇪🇺 EU data region
+# os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"]="http://localhost:3000/api/public/otel" # 🏠 Local deployment (>= v3.22.0)
+
+os.environ["OTEL_EXPORTER_OTLP_HEADERS"] = f"Authorization=Basic {LANGFUSE_AUTH}"
+
+tracer_provider = TracerProvider()
+tracer_provider.add_span_processor(SimpleSpanProcessor(OTLPSpanExporter()))
+trace_api.set_tracer_provider(tracer_provider=tracer_provider)
+
+# Start instrumenting agno
+AgnoInstrumentor().instrument()
+
+agent = Agent(
+    name="Stock Price Agent",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    tools=[YFinanceTools()],
+    instructions="You are a stock price agent. Answer questions in the style of a stock analyst.",
+    debug_mode=True,
+)
+
+agent.print_response("What is the current price of Tesla?")
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install Dependencies">
+    ```bash
+    pip install agno openai langfuse opentelemetry-sdk opentelemetry-exporter-otlp openinference-instrumentation-agno
+    ```
+  </Step>
+
+  <Step title="Set Environment Variables">
+    ```bash
+    export LANGFUSE_PUBLIC_KEY=<your-public-key>
+    export LANGFUSE_SECRET_KEY=<your-secret-key>
+    ```
+  </Step>
+
+  <Step title="Run the Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/observability/langfuse_via_openinference.py
+    ```
+
+    ```bash Windows
+    python cookbook/observability/langfuse_via_openinference.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
+
+## Notes
+
+- **Data Regions**: Adjust the `OTEL_EXPORTER_OTLP_ENDPOINT` for your data region or local deployment as needed:
+  - `https://us.cloud.langfuse.com/api/public/otel` for the US region
+  - `https://cloud.langfuse.com/api/public/otel` for the EU region
+  - `http://localhost:3000/api/public/otel` for local deployment

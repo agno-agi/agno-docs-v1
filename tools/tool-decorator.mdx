@@ -63,6 +63,7 @@ Here's an example that uses all possible parameters on the `@tool` decorator.
 import httpx
 from agno.agent import Agent
 from agno.tools import tool
+from typing import Any, Callable, Dict
 
 def logger_hook(function_name: str, function_call: Callable, arguments: Dict[str, Any]):
     """Pre-hook function that runs before the tool execution"""

@@ -1,0 +1,53 @@
+# Knowledge Filters
+
+Knowledge filters allow you to restrict and refine searches within your knowledge base using metadata such as user IDs, document types, years, and more. This feature is especially useful when you have a large collection of documents and want to retrieve information relevant to specific users or contexts.
+
+## Why Use Knowledge Filters?
+
+- **Personalization:** Retrieve information for a specific user or group.
+- **Security:** Restrict access to sensitive documents.
+- **Efficiency:** Reduce noise by narrowing down search results.
+
+## How Do Knowledge Filters Work?
+
+When you load documents into your knowledge base, you can attach metadata (like user ID, document type, year, etc.). Later, when querying, you can specify filters to only search documents matching certain criteria.
+
+**Example Metadata:**
+```python
+{
+    "user_id": "jordan_mitchell",
+    "document_type": "cv",
+    "year": 2025,
+}
+```
+
+## Ways to Apply Filters
+
+You can apply knowledge filters in two main ways:
+1. **Manual Filters:** Explicitly pass filters when querying.
+2. **Agentic Filters:** Let the Agent automatically extract filters from your query.
+
+> **Tip:** You can combine multiple filters for more precise results!
+
+## Best Practices
+
+- Make your prompts descriptive (e.g., include user names, document types, years).
+- Use agentic filtering for interactive applications or chatbots.
+
+## Manual vs. Agentic Filtering
+
+| Manual Filtering | Agentic Filtering |
+|------------------|------------------|
+| Explicit filters in code | Filters inferred from query text |
+| Full control | More natural, less code |
+| Good for automation | Good for user-facing apps |
+
+<Note>
+🚦 **Currently, knowledge filtering is supported on the following vector databases:**
+
+- **Qdrant**
+- **LanceDB**
+- **MongoDB**
+
+*Support for additional databases will be added in the next version!*
+</Note>

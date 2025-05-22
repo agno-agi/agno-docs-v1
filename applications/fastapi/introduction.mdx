@@ -1,0 +1,111 @@
+---
+title: FastAPI App
+description: Host agents as FastAPI Applications.
+---
+
+
+The FastAPI App is used to serve Agents or Teams using a FastAPI server with a rest api interface.
+
+### Example Usage
+
+Create an agent, wrap it with `FastAPIApp`, and serve it:
+
+```python
+from agno.agent import Agent
+from agno.app.fastapi.app import FastAPIApp
+from agno.app.fastapi.serve import serve_fastapi_app
+from agno.models.openai import OpenAIChat
+
+basic_agent = Agent(
+    name="Basic Agent",
+    model=OpenAIChat(id="gpt-4o"), # Ensure OPENAI_API_KEY is set
+    add_history_to_messages=True,
+    num_history_responses=3,
+    add_datetime_to_instructions=True,
+    markdown=True,
+)
+
+# Async router by default (use_async=True)
+app = FastAPIApp(agent=basic_agent).get_app()
+
+# For synchronous router:
+# app = FastAPIApp(agent=basic_agent).get_app(use_async=False)
+
+if __name__ == "__main__":
+    # Assumes script is `basic_app.py`; update if different.
+    serve_fastapi_app("basic_app:app", port=8001, reload=True)
+```
+
+**To run:**
+
+1.  Set `OPENAI_API_KEY` environment variable.
+2.  API at `http://localhost:8001`, docs at `http://localhost:8001/docs`.
+
+Send `POST` requests to `http://localhost:8001/v1/run`:
+```json
+{
+  "message": "Hello Basic Agent, tell me a fun fact!",
+  "stream": false
+}
+```
+
+## Core Components
+
+- `FastAPIApp`: Wraps Agno agents/teams for FastAPI.
+- `serve_fastapi_app`: Serves the FastAPI app using Uvicorn.
+
+`FastAPIApp` uses helper functions for routing.
+
+## `FastAPIApp` Class
+
+Main entry point for Agno FastAPI apps.
+
+### Initialization Parameters
+
+| Parameter  | Type                      | Default | Description                                           |
+| ---------- | ------------------------- | ------- | ----------------------------------------------------- |
+| `agent`    | `Optional[Agent]`         | `None`  | Agno `Agent` instance.                                |
+| `team`     | `Optional[Team]`          | `None`  | Agno `Team` instance.                                 |
+| `settings` | `Optional[APIAppSettings]`| `None`  | API configuration. Defaults if `None`.                |
+| `api_app`  | `Optional[FastAPI]`       | `None`  | Existing FastAPI app. New one created if `None`.    |
+| `router`   | `Optional[APIRouter]`     | `None`  | Existing APIRouter. New one created if `None`.        |
+
+*Provide `agent` or `team`, not both.*
+
+### Key Method
+
+| Method | Parameters | Return Type | Description |
+|--------|------------|-------------|-------------|
+| `get_app` | `use_async: bool = True`<br/>`prefix: str = "/v1"` | `FastAPI` | Returns configured FastAPI app (async by default). Sets prefix, error handlers, CORS, docs. |
+
+## Endpoints
+
+Endpoints are available at the specified `prefix` (default `/v1`).
+
+### 1. `POST /run`
+    *   **Description**: Interacts with the agent/team (uses `agent.run()`/`arun()` or `team.run()`/`arun()`).
+    *   **Request Form Parameters**:
+        | Parameter    | Type                        | Default | Description                               |
+        | ------------ | --------------------------- | ------- | ----------------------------------------- |
+        | `message`    | `str`                       | `...`   | Input message (Required).                 |
+        | `stream`     | `bool`                      | `True` (sync), `False` (async default) | Stream response. |
+        | `monitor`    | `bool`                      | `False` | Enable monitoring.                        |
+        | `session_id` | `Optional[str]`             | `None`  | Session ID for conversation continuity.   |
+        | `user_id`    | `Optional[str]`             | `None`  | User ID.                                  |
+        | `files`      | `Optional[List[UploadFile]]`| `None`  | Files to upload.                          |
+    *   **Responses**:
+        *   `stream=True`: `StreamingResponse` (`text/event-stream`) with JSON `RunResponse`/`TeamRunResponse` events.
+        *   `stream=False`: JSON `RunResponse`/`TeamRunResponse` dictionary.
+
+## Serving the Application (`serve_fastapi_app`)
+
+Serves the FastAPI app using Uvicorn.
+
+### Parameters
+
+| Parameter | Type                | Default     | Description                                        |
+| --------- | ------------------- | ----------- | -------------------------------------------------- |
+| `app`     | `Union[str, FastAPI]` | `N/A`       | FastAPI app instance or import string (Required). |
+| `host`    | `str`               | `"localhost"` | Host to bind.                                      |
+| `port`    | `int`               | `7777`      | Port to bind.                                      |
+| `reload`  | `bool`              | `False`     | Enable auto-reload for development.                |

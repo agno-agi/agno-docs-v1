@@ -1,0 +1,121 @@
+---
+title: URL Knowledge Base
+sidebarTitle: URL
+---
+
+The **URLKnowledgeBase** reads **URLs** links, converts them into vector embeddings and loads them to a vector database.
+
+## Usage
+
+<Note>
+
+We are using a local Qdrant database for this example. [Make sure it's running](https://docs.agno.com/vectordb/qdrant)
+
+</Note>
+
+```shell
+pip install qdrant-client
+```
+
+```python
+from agno.agent import Agent
+from agno.knowledge.url import UrlKnowledge
+from agno.vectordb.qdrant import Qdrant
+
+COLLECTION_NAME = "website-content"
+
+vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
+
+knowledge_base = UrlKnowledge(
+    urls=["https://docs.agno.com/introduction"],
+    vector_db=vector_db,
+)
+```
+
+Then use the `knowledge_base` with an `Agent`:
+
+```python
+from agno.agent import Agent
+from agno.knowledge.url import UrlKnowledge
+from agno.models.openai import OpenAIChat
+
+# Initialize knowledge base
+COLLECTION_NAME = "website-content"
+
+vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
+
+knowledge_base = UrlKnowledge(
+    urls=["https://docs.agno.com/introduction"],
+    vector_db=vector_db,
+)
+agent_with_knowledge = Agent(
+    name="Agent with Knowledge",
+    model=OpenAIChat(id="gpt-4o"),
+    knowledge=knowledge_base,
+    show_tool_calls=True,
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    # Comment out after first run
+    knowledge_base.load()
+
+    agent_with_knowledge.print_response(
+        "Tell me about teams with context to agno", stream=True
+    )
+```
+
+#### URLKnowledgeBase also supports async loading.
+
+
+```python async_knowledge_base.py
+import asyncio
+
+from agno.agent import Agent
+from agno.knowledge.url import UrlKnowledge
+from agno.models.openai import OpenAIChat
+from agno.vectordb.qdrant import Qdrant
+
+COLLECTION_NAME = "website-content"
+
+# Initialize knowledge base
+agent_knowledge = UrlKnowledge(
+    urls=["https://docs.agno.com/introduction"],
+    vector_db=Qdrant(
+        collection=COLLECTION_NAME,
+        url="http://localhost:6333",
+    ),
+)
+
+agent_with_knowledge = Agent(
+    name="Agent with Knowledge",
+    model=OpenAIChat(id="gpt-4o"),
+    knowledge=agent_knowledge,
+    show_tool_calls=True,
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    asyncio.run(agent_knowledge.aload(recreate=False))
+
+    asyncio.run(
+        agent_with_knowledge.aprint_response(
+            "Tell me about teams with context to agno", stream=True
+        )
+    )
+```
+
+## Params
+
+| Parameter | Type               | Default             | Description                                                                           |
+| --------- | ------------------ | ------------------- | ------------------------------------------------------------------------------------- |
+| `urls`    | `List[str]`        | -                   | URLs of the website to read.                                                                                          |
+| `reader`  | `URLReader`        | `URLReader()`       | A `URLReader` that reads the Website `URLs` and converts it into `Documents` for the vector database |
+
+`URLKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
+
+## Developer Resources
+
+- View [Sync loading Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/url_kb.py)
+- View [Async loading Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/url_kb_async.py)
+
