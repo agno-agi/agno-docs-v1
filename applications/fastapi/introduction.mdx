@@ -1,9 +1,10 @@
 ---
 title: FastAPI App
+description: Host agents as FastAPI Applications.
 ---
 
 
-The FastAPI App is used to serve Agents or Teams using a fastapi server  with a rest api interface.
+The FastAPI App is used to serve Agents or Teams using a FastAPI server with a rest api interface.
 
 ### Example Usage
 
@@ -81,11 +82,7 @@ Main entry point for Agno FastAPI apps.
 
 Endpoints are available at the specified `prefix` (default `/v1`).
 
-### 1. `GET /status`
-    *   **Description**: API status.
-    *   **Response**: `{"status": "available"}`
-
-### 2. `POST /run`
+### 1. `POST /run`
     *   **Description**: Interacts with the agent/team (uses `agent.run()`/`arun()` or `team.run()`/`arun()`).
     *   **Request Form Parameters**:
         | Parameter    | Type                        | Default | Description                               |

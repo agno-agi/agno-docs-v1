@@ -1,10 +1,12 @@
 ---
 title: Whatsapp App
+description: Host agents as Whatsapp Applications.
 ---
 
-The Whatsapp App is used to serve Agents or Teams interacting via WhatsApp, using a FastAPI server to handle webhook events and send messages.
+The Whatsapp App is used to serve Agents or Teams interacting via WhatsApp, using a FastAPI server to handle webhook events and to send messages.
 
 <Snippet file="setup-whatsapp-app.mdx" />
+
 ### Example Usage
 
 Create an agent, wrap it with `WhatsappAPI`, and serve it:
@@ -77,30 +79,15 @@ Main entry point for Agno WhatsApp applications.
 
 Endpoints are accessible at the `prefix` (default is root level: `""`).
 
-### 1. `GET /status`
-    *   **Description**: Checks API status.
-    *   **Response**: `{"status": "available"}`
-
-### 2. `GET /webhook`
+### 1. `GET /webhook`
     *   **Description**: Verifies WhatsApp webhook (challenge).
-    *   **Query Parameters**:
-        | Parameter         | Type  | Description                    |
-        | ----------------- | ----- | ------------------------------ |
-        | `hub.mode`        | `str` | Expected: "subscribe".         |
-        | `hub.verify_token`| `str` | Your verification token.       |
-        | `hub.challenge`   | `str` | Challenge from WhatsApp.       |
     *   **Responses**:
         *   `200 OK`: Returns `hub.challenge` if tokens match.
         *   `403 Forbidden`: Token mismatch or invalid mode.
         *   `500 Internal Server Error`: `WHATSAPP_VERIFY_TOKEN` not set.
 
-### 3. `POST /webhook`
+### 2. `POST /webhook`
     *   **Description**: Receives incoming WhatsApp messages and events.
-    *   **Headers**:
-        | Header                | Description                                |
-        | --------------------- | ------------------------------------------ |
-        | `X-Hub-Signature-256` | SHA256 signature for payload validation. |
-    *   **Request Body**: JSON payload from WhatsApp with message details.
     *   **Processing**:
         *   Validates signature (if `APP_ENV="production"` and `WHATSAPP_APP_SECRET` is set).
         *   Processes messages (text, image, video, audio, document) via `agent.arun()` or `team.arun()`.

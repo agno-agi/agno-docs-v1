@@ -1,8 +1,9 @@
 ---
 title: Playground App
+description: Host agents as Playground Applications.
 ---
 
-The Playground App is used to serve Agents , Teams  and Workflows using a fastapi server with several endpoints to manage and interact with  `Agents`, `Workflows`, and `Teams`.
+The Playground App is used to serve Agents, Teams and Workflows using a FastAPI server with several endpoints to manage and interact with `Agents`, `Workflows`, and `Teams` on the [Agno Playground](/introduction/playground).
 
 ### Example Usage
 
@@ -54,14 +55,15 @@ if __name__ == "__main__":
 
 1.  Ensure your PostgreSQL server is running and accessible via the `db_url`.
 2.  Set the `OPENAI_API_KEY` environment variable.
-3.  The Playground UI will be available at `http://localhost:7777` (by default, if `create_endpoint` is called or via Agno Cloud). API docs (if enabled in settings) are typically at `http://localhost:7777/docs`.
-4.  use playground with [Agent Playground](/introduction/playground) . 
+3.  The Playground UI will be available at `http://localhost:7777`. API docs (if enabled in settings) are typically at `http://localhost:7777/docs`.
+4.  Use playground with [Agent Playground](/introduction/playground) .
+
 ## Core Components
 
-- `Playground`: Wraps Agno agents, teams, or workflows for API.
+- `Playground`: Wraps Agno agents, teams, or workflows in an API.
 - `serve_playground_app`: Serves the Playground FastAPI app using Uvicorn.
 
-The `Playground` class is the main entry point for creating Agno Playground applications. It allows you to easily expose your agents, teams, and workflows through a web interface with [Agent Playground](/introduction/playground) or  [Agent UI](/introduction/agent-ui).
+The `Playground` class is the main entry point for creating Agno Playground applications. It allows you to easily expose your agents, teams, and workflows through a web interface with [Agent Playground](/introduction/playground) or  [Agent UI](/agent-ui/introduction).
 
 ## `Playground` Class
 
@@ -85,40 +87,15 @@ The `Playground` class is the main entry point for creating Agno Playground appl
 | `get_app`              | `use_async: bool = True`<br/>`prefix: str = "/v1"`            | `FastAPI`            | Returns configured FastAPI app (async by default). Sets prefix, error handlers, CORS, docs.                 |
 | `get_router`           |                                                               | `APIRouter`          | Returns the synchronous APIRouter for playground endpoints.                                                  |
 | `get_async_router`     |                                                               | `APIRouter`          | Returns the asynchronous APIRouter for playground endpoints.                                               |
-| `create_endpoint`      | `endpoint: str`<br/>`prefix: str = "/v1"`                     | `None`               | Creates a playground endpoint (e.g., for UI hosting). Requires `AGNO_CLOUD_URL` and `AGNO_CLOUD_API_KEY`. |
+| `create_endpoint`      | `endpoint: str`<br/>`prefix: str = "/v1"`                     | `None`               | Creates a playground endpoint (e.g. for UI hosting). Requires `AGNO_CLOUD_URL` and `AGNO_CLOUD_API_KEY`. |
 
-## Endpoints
+### Endpoints
 
 Endpoints are available at the specified `prefix` (default `/v1`) combined with the playground router's prefix (`/playground`). For example, the status endpoint is typically `/v1/playground/status`.
 
-### General
+## Serving the Application
 
-*   **`GET /status`**: Checks the API status. Returns `{"playground": "available"}`.
-
-### Interacting with Agents, Workflows, and Teams
-
-The Playground provides a consistent set of API endpoints to manage and interact with your Agno `Agents`, `Workflows`, and `Teams`.
-
-**Common Operations:**
-
-*   `GET`: Retrieve a list of all available entities (agents, workflows, or teams).
-*   `GET`: Fetch detailed information about a specific entity by its ID.
-*   `POST`: Interact with an entity (agent, team, or workflow). This is the primary endpoint for sending messages or inputs.
-    *   Key parameters for Agents/Teams: `message` (str, required), `stream` (bool), `session_id` (str, optional), `user_id` (str, optional), `files` (list of `UploadFile`, optional for multimedia/document inputs).
-    *   Responses for Agents/Teams: `StreamingResponse` or JSON.
-    *   Key parameters for Workflows: `input` (dict, required), `session_id` (str, optional), `user_id` (str, optional).
-    *   Responses for Workflows: `StreamingResponse` or JSON, depending on workflow configuration.
-*   **Session Management (if storage is enabled)**:
-    *   `GET`: List all sessions for an entity.
-    *   `GET`: Retrieve a specific session by its ID.
-    *   `POST`: Rename a specific session.
-    *   `DELETE`: Delete a specific session by its ID.
-*   **Memory Retrieval (if memory is enabled)**:
-    *   `GET`: Retrieve memories associated with an entity for a specific user (requires `user_id` query parameter).
-
-## Serving the Application (`serve_playground_app`)
-
-Serves the Playground's FastAPI app using Uvicorn.
+ `serve_playground_app` serves the Playground's FastAPI app using Uvicorn.
 
 ### Parameters
 
