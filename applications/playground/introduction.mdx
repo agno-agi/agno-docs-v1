@@ -87,7 +87,6 @@ The `Playground` class is the main entry point for creating Agno Playground appl
 | `get_app`              | `use_async: bool = True`<br/>`prefix: str = "/v1"`            | `FastAPI`            | Returns configured FastAPI app (async by default). Sets prefix, error handlers, CORS, docs.                 |
 | `get_router`           |                                                               | `APIRouter`          | Returns the synchronous APIRouter for playground endpoints.                                                  |
 | `get_async_router`     |                                                               | `APIRouter`          | Returns the asynchronous APIRouter for playground endpoints.                                               |
-| `create_endpoint`      | `endpoint: str`<br/>`prefix: str = "/v1"`                     | `None`               | Creates a playground endpoint (e.g. for UI hosting). Requires `AGNO_CLOUD_URL` and `AGNO_CLOUD_API_KEY`. |
 
 ### Endpoints
 
