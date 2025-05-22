@@ -1,0 +1,105 @@
+---
+title: Registry
+description: Register and visualise your Agno entities in real-time.
+---
+
+## Register Your Entities
+
+In Agno, Agents, Teams, Workflows, and Apps are collectively referred to as Entities.
+When you run any of these via the CLI, they are automatically registered and monitored out of the box. This means you can instantly view them — along with their metadata and configuration in the Agno Registry.
+
+The Registry acts as a unified dashboard where all your CLI-executed entities are displayed, giving you full visibility into your operational environment. No additional setup is required.
+
+
+
+Start exploring at [app.agno.com](https://app.agno.com).
+
+## Authenticate & Enable Monitoring
+
+### Step 1: Authenticate using CLI or API key
+
+To log agent sessions, you need to authenticate using one of these methods:
+
+**Method A: Log in using your command line interface**
+```bash
+ag setup
+```
+
+**Method B: Log using an API key**
+
+Get your API key from [Agno App](https://app.agno.com/settings) and use it to log agent sessions to your workspace.
+
+```bash
+export AGNO_API_KEY=your_api_key_here
+```
+
+### Step 2: Enable Monitoring
+
+After authentication, enable monitoring for a particular agent or globally for all agents.
+
+**Method A: For a Specific Agent**
+```python
+agent = Agent(markdown=True, monitoring=True)
+```
+
+**Method B: Globally via Environment Variable**
+```bash
+export AGNO_MONITOR=true
+```
+
+### Step 3: Registry Your Entity
+
+Once monitoring is enabled, you can run your agent/team/workflow/app and view it in the registry:
+
+1. Create a file `agent.py` with this sample code:
+
+```python 
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.storage.sqlite import SqliteStorage
+
+agent_storage_file: str = "tmp/agents.db"
+
+agent = Agent(
+    name="Web Agent",
+    role="Search the web for information",
+    description="You are a web agent that searches the web for information",
+    agent_id="web-agent",
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[DuckDuckGoTools()],
+    instructions=[
+        "Break down the users request into 2-3 different searches.",
+        "Always include sources",
+    ],
+    storage=SqliteStorage(
+        table_name="web_agent", db_file=agent_storage_file, auto_upgrade_schema=True
+    ),
+)
+# Example usage
+agent.print_response(
+    "What is the weather in New York City?", stream=True
+)
+```
+
+2. Run your code locally
+3. View your agent at [app.agno.com/registry](https://app.agno.com/registry)
+
+<img height="200" src="/images/registry-agent-home.png" style={{ borderRadius: "8px" }} />
+
+4. You can also check your agent configuration
+
+<img height="200" src="/images/registry-agent-config.png" style={{ borderRadius: "8px" }} />
+
+### Applications
+You can register any application simply by running it via the CLI — it will be monitored and visible on the platform automatically,where you can view and interact with each component's configuration in detail.
+
+<Note>
+However, only Playground apps can be opened and explored in the Playground interface.
+</Note>
+<img height="200" src="/images/registry-app-component.png" style={{ borderRadius: "8px" }} />
+
+Learn more about the different types of [applications](/applications/playground/introduction).
+
+<Info>Facing issues? Check out our [troubleshooting guide](/faq/cli-auth)</Info>
+
