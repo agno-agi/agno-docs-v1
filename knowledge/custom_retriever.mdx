@@ -154,12 +154,8 @@ async def main():
     query = "List down the ingredients to make Massaman Gai"
     await agent.aprint_response(query, markdown=True)
 
-def main():
-    """Synchronous wrapper for main function"""
-    asyncio.run(amain())
-
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
 ```
 
 ### Explanation
