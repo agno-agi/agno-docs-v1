@@ -573,6 +573,35 @@
                         "examples/apps/geobuddy",
                         "examples/apps/chess-team"
                     ]
+                },
+                {
+                    "group": "Evals",
+                    "pages": [
+                        {
+                          "group": "Accuracy",
+                          "pages": [
+                              "examples/evals/accuracy/basic",
+                              "examples/evals/accuracy/accuracy_with_given_answer",
+                              "examples/evals/accuracy/accuracy_with_tools"
+                          ]
+                        },
+                        {
+                          "group": "Performance",
+                          "pages": [
+                            "examples/evals/performance/performance_agent_instantiation",
+                            "examples/evals/performance/performance_instantiation_with_tool",
+                            "examples/evals/performance/performance_simple_response",
+                            "examples/evals/performance/performance_with_storage"
+                          ]
+                        },
+                        {
+                          "group": "Reliability",
+                          "pages": [
+                            "examples/evals/reliability/basic",
+                            "examples/evals/reliability/multiple_tools"
+                          ]
+                        }
+                    ]
                 }
             ]
         },
@@ -1000,7 +1029,6 @@
                       ]
                 }
             ]
-        
         },
         {
             "group": "Models",
