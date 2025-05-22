@@ -9,58 +9,38 @@ title: PostgreSQL Memory Storage
 This example shows how to use the Memory class with PostgreSQL storage.
 """
 
-import asyncio
-import os
-
 from agno.agent.agent import Agent
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
 from agno.models.openai.chat import OpenAIChat
+from agno.storage.postgres import PostgresStorage
 
-# Get PostgreSQL connection string from environment
-# Format: postgresql://user:password@localhost:5432/dbname
-postgres_url = "postgresql://postgres:postgres@localhost:5432/agno_memory"
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
-# Create PostgreSQL memory database
-memory_db = PostgresMemoryDb(
-    table_name="agno_memory",  # Table name to use in the database
-    connection_string=postgres_url,
-    schema_name="public",      # Schema name for the table (optional)
-)
+memory = Memory(db=PostgresMemoryDb(table_name="agent_memories", db_url=db_url))
 
-# Create memory instance with PostgreSQL backend
-memory = Memory(db=memory_db)
+session_id = "postgres_memories"
+user_id = "postgres_user"
 
-# This will create the table if it doesn't exist
-memory.clear()
-
-# Create agent with memory
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=OpenAIChat(id="gpt-4o-mini"),
     memory=memory,
+    storage=PostgresStorage(table_name="agent_sessions", db_url=db_url),
     enable_user_memories=True,
+    enable_session_summaries=True,
 )
 
-async def run_example():
-    # Use the agent with PostgreSQL-backed memory
-    await agent.aprint_response(
-        "My name is John Doe and I like to hike in the mountains on weekends.",
-        user_id="john@example.com",
-    )
-    
-    await agent.aprint_response(
-        "What are my hobbies?",
-        user_id="john@example.com",
-    )
-    
-    # Display the memories stored in PostgreSQL
-    memories = memory.get_user_memories(user_id="john@example.com")
-    print("Memories stored in PostgreSQL:")
-    for i, m in enumerate(memories):
-        print(f"{i}: {m.memory}")
+agent.print_response(
+    "My name is John Doe and I like to hike in the mountains on weekends.",
+    stream=True,
+    user_id=user_id,
+    session_id=session_id,
+)
 
-if __name__ == "__main__":
-    asyncio.run(run_example())
+agent.print_response(
+    "What are my hobbies?", stream=True, user_id=user_id, session_id=session_id
+)
+
 ```
 
 ## Usage
