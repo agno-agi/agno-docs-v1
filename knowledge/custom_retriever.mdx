@@ -138,7 +138,7 @@ async def retriever(
         print(f"Error during vector database search: {str(e)}")
         return None
 
-async def amain():
+async def main():
     """Async main function to demonstrate agent usage."""
     agent = Agent(
         retriever=retriever,
