@@ -451,7 +451,6 @@
                         "workflows/state",
                         "workflows/advanced"
                     ]
->>>>>>> 6e8c415e650e2567e009b3925ab761412f80310a
                 }
             ]
         },
@@ -975,12 +974,6 @@
                                 "examples/concepts/tools/others/youtube",
                                 "examples/concepts/tools/others/zendesk"
                             ]
-                        },
-                        {
-                          "group": "Native Model Toolkit",
-                          "pages": [
-                            "examples/concepts/tools/models/groq"
-                          ]
                         },
                         {
                             "group": "MCP",
