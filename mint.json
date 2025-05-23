@@ -405,7 +405,8 @@
                         "vectordb/singlestore",
                         "vectordb/mongodb",
                         "vectordb/azure_cosmos_mongodb",
-                        "vectordb/weaviate"
+                        "vectordb/weaviate",
+                        "vectordb/couchbase"
                     ]
                 },
                 {
@@ -1007,7 +1008,8 @@
                         "examples/concepts/vectordb/pinecone",
                         "examples/concepts/vectordb/qdrant",
                         "examples/concepts/vectordb/singlestore",
-                        "examples/concepts/vectordb/weaviate"
+                        "examples/concepts/vectordb/weaviate",
+                        "examples/concepts/vectordb/couchbase"
                     ]
                 },
                 {
