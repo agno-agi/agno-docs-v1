@@ -2,6 +2,29 @@
 title: "Product updates"
 mode: "wide"
 ---
+
+<Update label="2025-05-23" description="v1.5.4">
+## New Features:
+
+- **User Control Flows**: This is the beta release of Agno’s Human-in-the-loop flows and tools.
+    - We now allow agent runs to be `paused` awaiting completion of certain user requirements before the agent can continue.
+    - This also adds the `agent.continue_run` and `agent.acontinue_run` functions.
+    - The control flows that are available:
+        - User confirmation flow → Decorate a function with `@tool(requires_confirmation=True)` and the agent will expect user confirmation before executing the tool.
+        - User input required → Decorate a function with `@tool(requires_user_input=True)` to have the agent stop and ask for user input before continuing.
+        - External tool execution → Decorate a function with `@tool(external_execution=True)` to indicate that you will execute this function outside of the agent context.
+        - Dynamic user input → Add `UserControlFlowTools()` to an agent to give the agent the ability to dynamically stop the flow and ask for user input where required.
+    - See a host of examples [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/user_control_flows).
+- **Mem0 Toolkit**: Added a toolkit for managing memories in Mem0.
+- **Firecrawl Search**: Added support for Firecrawl web search in `FirecrawlTools`.
+
+## Bug Fixes:
+
+- **Firecrawl Tools and Reader**: Fixed parameter parsing for the Firecrawl reader and tools.
+- **Include/Exclude on all Tools**: Ensure all toolkits support `include_tools` and `exclude_tools`.
+
+</Update>
+
 <Update label="2025-05-21" description="v1.5.3">
 ## Improvements:
 
