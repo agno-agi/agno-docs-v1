@@ -1525,7 +1525,7 @@
         "faq/cli-auth",
         "faq/connecting-to-tableplus",
         "faq/could-not-connect-to-docker",
-        "faq/openai-key-request-for-other-models",
+        "faq/openai_key_request_for_other_models",
         "faq/structured-outputs",
         "faq/When-to-use-a-Workflow-vs-a-Team-in-Agno",
         "faq/memoryv2"
