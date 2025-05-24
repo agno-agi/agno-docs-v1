@@ -97,6 +97,7 @@
                         "agents/tools",
                         "agents/structured-output",
                         "agents/multimodal",
+                        "agents/user-control-flow",
                         "agents/prompts",
                         "agents/knowledge",
                         "agents/storage",
@@ -773,6 +774,21 @@
                         "examples/concepts/rag/agentic-rag-with-reranking",
                         "examples/concepts/rag/agentic-rag-agent-ui",
                         "examples/concepts/rag/rag-with-lance-db-and-sqlite"
+                    ]
+                },
+                {
+                    "group": "User Control Flows",
+                    "pages": [
+                        "examples/concepts/user-control-flows/01-confirmation-required",
+                        "examples/concepts/user-control-flows/02-confirmation-required-async",
+                        "examples/concepts/user-control-flows/03-confirmation-required-stream",
+                        "examples/concepts/user-control-flows/04-user-input-required",
+                        "examples/concepts/user-control-flows/05-user-input-required-async",
+                        "examples/concepts/user-control-flows/06-user-input-required-stream",
+                        "examples/concepts/user-control-flows/07-agentic-user-input",
+                        "examples/concepts/user-control-flows/08-external-tool-execution",
+                        "examples/concepts/user-control-flows/09-external-tool-execution-async",
+                        "examples/concepts/user-control-flows/10-external-tool-execution-stream"
                     ]
                 },
                 {
