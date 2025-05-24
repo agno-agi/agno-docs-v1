@@ -361,6 +361,7 @@
                                 "filters/agentic-filters"
                             ]
                         },
+                        "knowledge/custom_retriever",
                         "knowledge/arxiv",
                         "knowledge/combined",
                         "knowledge/csv",
@@ -803,6 +804,8 @@
                         "examples/concepts/memory/09-custom-memory",
                         "examples/concepts/memory/10-multi-user-multi-session-chat",
                         "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
+                        "examples/concepts/memory/12-memory-references",
+                        "examples/concepts/memory/13-session-summary-references",
                         "examples/concepts/memory/mem0-memory",
 
                         {
@@ -982,6 +985,9 @@
                                 "examples/concepts/tools/mcp/airbnb",
                                 "examples/concepts/tools/mcp/github",
                                 "examples/concepts/tools/mcp/notion",
+                                "examples/concepts/tools/mcp/pipedream_slack",
+                                "examples/concepts/tools/mcp/pipedream_google_calendar",
+                                "examples/concepts/tools/mcp/pipedream_linkedin",
                                 "examples/concepts/tools/mcp/stripe",
                                 "examples/concepts/tools/mcp/supabase"
                             ]
@@ -1604,12 +1610,12 @@
         {
             "group": "FAQs",
             "pages": [
-                "faq/environment_variables",
+                "faq/environment-variables",
                 "faq/tpm-issues",
                 "faq/cli-auth",
                 "faq/connecting-to-tableplus",
                 "faq/could-not-connect-to-docker",
-                "faq/openai_key_request_for_other_models",
+                "faq/openai-key-request-for-other-models",
                 "faq/structured-outputs",
                 "faq/When-to-use-a-Workflow-vs-a-Team-in-Agno",
                 "faq/memoryv2"
