@@ -131,16 +131,7 @@
                     "pages": [
                         "models/introduction",
                         "models/compatibility",
-                        "models/openai",
                         "models/openai-like",
-                        "models/openai-responses",
-                        {
-                            "group": "Cerebras",
-                            "pages": [
-                                "models/cerebras",
-                                "models/cerebras_openai"
-                            ]
-                        },
                         "models/anthropic",
                         {
                             "group": "AWS",
@@ -151,6 +142,13 @@
                             "pages": [
                                 "models/azure-ai-foundry",
                                 "models/azure-openai"
+                            ]
+                        },
+                        {
+                            "group": "Cerebras",
+                            "pages": [
+                                "models/cerebras",
+                                "models/cerebras_openai"
                             ]
                         },
                         "models/cohere",
@@ -170,12 +168,14 @@
                         "models/mistral",
                         "models/nvidia",
                         "models/ollama",
+                        "models/openai",
+                        "models/openai-responses",
                         "models/openrouter",
                         "models/perplexity",
                         "models/sambanova",
                         "models/together",
-                        "models/xai",
-                        "models/vercel"
+                        "models/vercel",
+                        "models/xai"
                     ]
                 },
                 {
