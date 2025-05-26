@@ -444,7 +444,7 @@
                 },
                 {
                     "group": "Evals",
-                    "pages": ["evals/introduction"]
+                    "pages": ["evals/introduction", "evals/platform"]
                 },
                 {
                     "group": "Workflows",
