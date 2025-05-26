@@ -174,7 +174,8 @@
                         "models/perplexity",
                         "models/sambanova",
                         "models/together",
-                        "models/xai"
+                        "models/xai",
+                        "models/vercel"
                     ]
                 },
                 {
@@ -1401,6 +1402,14 @@
                         "examples/models/xai/basic_stream",
                         "examples/models/xai/tool_use"
                     ]
+                },
+                {
+                    "group": "Vercel",
+                    "pages": [
+                        "examples/models/vercel/basic",
+                        "examples/models/vercel/basic_stream",
+                        "examples/models/vercel/tool_use"
+                    ]
                 }
             ]
         },
@@ -1478,6 +1487,7 @@
                         "reference/models/perplexity",
                         "reference/models/together",
                         "reference/models/xai",
+                        "reference/models/vercel",
                         "reference/models/bedrock",
                         "reference/models/bedrock_claude",
                         "reference/models/azure",
