@@ -134,6 +134,7 @@
                         "models/introduction",
                         "models/compatibility",
                         "models/openai-like",
+                        "models/aimlapi",
                         "models/anthropic",
                         {
                             "group": "AWS",
@@ -1490,6 +1491,7 @@
                     "pages": [
                         "reference/models/model",
                         "reference/models/openai",
+                        "reference/models/aimlapi",
                         "reference/models/ollama",
                         "reference/models/anthropic",
                         "reference/models/cohere",
