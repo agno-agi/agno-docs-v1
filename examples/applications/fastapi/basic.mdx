@@ -1,0 +1,59 @@
+---
+title: Basic
+---
+
+## Code
+
+```python cookbook/apps/fastapi/basic.py  
+from agno.agent import Agent
+from agno.app.fastapi.app import FastAPIApp
+from agno.app.fastapi.serve import serve_fastapi_app
+from agno.models.openai import OpenAIChat
+
+basic_agent = Agent(
+    name="Basic Agent",
+    model=OpenAIChat(id="gpt-4o"),
+    add_history_to_messages=True,
+    num_history_responses=3,
+    add_datetime_to_instructions=True,
+    markdown=True,
+)
+
+app = FastAPIApp(
+    agent=basic_agent,
+).get_async_router()
+
+if __name__ == "__main__":
+    serve_fastapi_app("basic:app", port=8001, reload=True)
+
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno fastapi uvicorn openai
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/apps/fastapi/basic.py
+    ```
+
+    ```bash Windows
+    python cookbook/apps/fastapi/basic.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 

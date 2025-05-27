@@ -17,19 +17,19 @@ For example `uvx mcp-server-git`, which runs a [git MCP server](https://github.c
 
 ```python
 from agno.agent import Agent
-    from agno.models.openai import OpenAIChat
-    from agno.tools.mcp import MCPTools
+from agno.models.openai import OpenAIChat
+from agno.tools.mcp import MCPTools
 
-    async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
-        agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
-        await agent.aprint_response("What is the license for this project?", stream=True)
+async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+    agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
+    await agent.aprint_response("What is the license for this project?", stream=True)
 ```
 
 
 You can also use multiple MCP servers at once, with the `MultiMCPTools` class. For example:
 
+
 ```python
-```python multiple_mcp_servers.py
 import asyncio
 import os
 

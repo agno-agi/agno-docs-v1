@@ -80,6 +80,7 @@
                 "introduction/agents",
                 "introduction/playground",
                 "introduction/monitoring",
+                "introduction/registry",
                 "introduction/community"
             ]
         },
@@ -97,6 +98,7 @@
                         "agents/tools",
                         "agents/structured-output",
                         "agents/multimodal",
+                        "agents/user-control-flow",
                         "agents/prompts",
                         "agents/knowledge",
                         "agents/storage",
@@ -119,20 +121,19 @@
                     ]
                 },
                 {
+                    "group": "Applications",
+                    "pages": [
+                        "applications/playground/introduction",
+                        "applications/fastapi/introduction",
+                        "applications/whatsapp/introduction"
+                    ]
+                },
+                {
                     "group": "Models",
                     "pages": [
                         "models/introduction",
                         "models/compatibility",
-                        "models/openai",
                         "models/openai-like",
-                        "models/openai-responses",
-                        {
-                            "group": "Cerebras",
-                            "pages": [
-                                "models/cerebras",
-                                "models/cerebras_openai"
-                            ]
-                        },
                         "models/anthropic",
                         {
                             "group": "AWS",
@@ -143,6 +144,13 @@
                             "pages": [
                                 "models/azure-ai-foundry",
                                 "models/azure-openai"
+                            ]
+                        },
+                        {
+                            "group": "Cerebras",
+                            "pages": [
+                                "models/cerebras",
+                                "models/cerebras_openai"
                             ]
                         },
                         "models/cohere",
@@ -162,10 +170,13 @@
                         "models/mistral",
                         "models/nvidia",
                         "models/ollama",
+                        "models/openai",
+                        "models/openai-responses",
                         "models/openrouter",
                         "models/perplexity",
                         "models/sambanova",
                         "models/together",
+                        "models/vercel",
                         "models/xai"
                     ]
                 },
@@ -207,6 +218,7 @@
                                         "tools/toolkits/social/telegram",
                                         "tools/toolkits/social/twilio",
                                         "tools/toolkits/social/webex",
+                                        "tools/toolkits/social/whatsapp",
                                         "tools/toolkits/social/x",
                                         "tools/toolkits/social/zoom"
                                     ]
@@ -249,7 +261,10 @@
                                 },
                                 {
                                     "group": "Models",
-                                    "pages": ["tools/toolkits/models/gemini"]
+                                    "pages": [
+                                        "tools/toolkits/models/gemini",
+                                        "tools/toolkits/models/groq"
+                                    ]
                                 },
                                 {
                                     "group": "Additional Toolkits",
@@ -348,6 +363,7 @@
                                 "filters/agentic-filters"
                             ]
                         },
+                        "knowledge/custom_retriever",
                         "knowledge/arxiv",
                         "knowledge/combined",
                         "knowledge/csv",
@@ -429,16 +445,16 @@
                     ]
                 },
                 {
+                    "group": "Evals",
+                    "pages": ["evals/introduction", "evals/platform"]
+                },
+                {
                     "group": "Workflows",
                     "pages": [
                         "workflows/introduction",
                         "workflows/state",
                         "workflows/advanced"
                     ]
-                },
-                {
-                    "group": "Evals",
-                    "pages": ["evals/introduction"]
                 }
             ]
         },
@@ -566,12 +582,80 @@
                 {
                     "group": "Applications",
                     "pages": [
-                        "examples/apps/agentic-rag",
-                        "examples/apps/answer-engine",
-                        "examples/apps/text-to-sql",
-                        "examples/apps/game-generator",
-                        "examples/apps/geobuddy",
-                        "examples/apps/chess-team"
+                    {
+                            "group": "FastAPI",
+                            "pages": [
+                                "examples/applications/fastapi/basic",
+                                "examples/applications/fastapi/study_friend"
+                            ]
+                        },
+                        {
+                            "group": "WhatsApp",
+                            "pages": [
+                                "examples/applications/whatsapp/basic",
+                                "examples/applications/whatsapp/study_friend",
+                                "examples/applications/whatsapp/image_generation_tools",
+                                "examples/applications/whatsapp/reasoning_agent",
+                                "examples/applications/whatsapp/image_generation_model",
+                                "examples/applications/whatsapp/agent_with_media",
+                                "examples/applications/whatsapp/agent_with_user_memory"
+                            ]
+                        },
+                        {
+                            "group": "Playground",
+                            "pages": [
+                                "examples/applications/playground/basic",
+                                "examples/applications/playground/multimodal_agents",
+                                "examples/applications/playground/reasoning_demo",
+                                "examples/applications/playground/teams_demo",
+                                "examples/applications/playground/ollama_agents",
+                                "examples/applications/playground/agno_assist",
+                                "examples/applications/playground/audio_conversation_agent",
+                                "examples/applications/playground/mcp_demo",
+                                "examples/applications/playground/reasoning_demo",
+                                "examples/applications/playground/upload_files"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "group": "Streamlit Apps",
+                    "pages": [
+                        "examples/streamlit/agentic-rag",
+                        "examples/streamlit/answer-engine",
+                        "examples/streamlit/text-to-sql",
+                        "examples/streamlit/game-generator",
+                        "examples/streamlit/geobuddy",
+                        "examples/streamlit/chess-team"
+                    ]
+                },
+                {
+                    "group": "Evals",
+                    "pages": [
+                        {
+                          "group": "Accuracy",
+                          "pages": [
+                              "examples/evals/accuracy/basic",
+                              "examples/evals/accuracy/accuracy_with_given_answer",
+                              "examples/evals/accuracy/accuracy_with_tools"
+                          ]
+                        },
+                        {
+                          "group": "Performance",
+                          "pages": [
+                            "examples/evals/performance/performance_agent_instantiation",
+                            "examples/evals/performance/performance_instantiation_with_tool",
+                            "examples/evals/performance/performance_simple_response",
+                            "examples/evals/performance/performance_with_storage"
+                          ]
+                        },
+                        {
+                          "group": "Reliability",
+                          "pages": [
+                            "examples/evals/reliability/basic",
+                            "examples/evals/reliability/multiple_tools"
+                          ]
+                        }
                     ]
                 }
             ]
@@ -695,6 +779,21 @@
                     ]
                 },
                 {
+                    "group": "User Control Flows",
+                    "pages": [
+                        "examples/concepts/user-control-flows/01-confirmation-required",
+                        "examples/concepts/user-control-flows/02-confirmation-required-async",
+                        "examples/concepts/user-control-flows/03-confirmation-required-stream",
+                        "examples/concepts/user-control-flows/04-user-input-required",
+                        "examples/concepts/user-control-flows/05-user-input-required-async",
+                        "examples/concepts/user-control-flows/06-user-input-required-stream",
+                        "examples/concepts/user-control-flows/07-agentic-user-input",
+                        "examples/concepts/user-control-flows/08-external-tool-execution",
+                        "examples/concepts/user-control-flows/09-external-tool-execution-async",
+                        "examples/concepts/user-control-flows/10-external-tool-execution-stream"
+                    ]
+                },
+                {
                     "group": "Knowledge",
                     "pages": [
                         "examples/concepts/knowledge/arxiv-kb",
@@ -722,6 +821,8 @@
                         "examples/concepts/memory/09-custom-memory",
                         "examples/concepts/memory/10-multi-user-multi-session-chat",
                         "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
+                        "examples/concepts/memory/12-memory-references",
+                        "examples/concepts/memory/13-session-summary-references",
                         "examples/concepts/memory/mem0-memory",
 
                         {
@@ -825,6 +926,7 @@
                                 "examples/concepts/tools/social/slack",
                                 "examples/concepts/tools/social/twilio",
                                 "examples/concepts/tools/social/webex",
+                                "examples/concepts/tools/social/whatsapp",
                                 "examples/concepts/tools/social/x"
                             ]
                         },
@@ -900,6 +1002,9 @@
                                 "examples/concepts/tools/mcp/airbnb",
                                 "examples/concepts/tools/mcp/github",
                                 "examples/concepts/tools/mcp/notion",
+                                "examples/concepts/tools/mcp/pipedream_slack",
+                                "examples/concepts/tools/mcp/pipedream_google_calendar",
+                                "examples/concepts/tools/mcp/pipedream_linkedin",
                                 "examples/concepts/tools/mcp/stripe",
                                 "examples/concepts/tools/mcp/supabase"
                             ]
@@ -1000,7 +1105,6 @@
                       ]
                 }
             ]
-        
         },
         {
             "group": "Models",
@@ -1315,6 +1419,14 @@
                         "examples/models/xai/basic_stream",
                         "examples/models/xai/tool_use"
                     ]
+                },
+                {
+                    "group": "Vercel",
+                    "pages": [
+                        "examples/models/vercel/basic",
+                        "examples/models/vercel/basic_stream",
+                        "examples/models/vercel/tool_use"
+                    ]
                 }
             ]
         },
@@ -1392,6 +1504,7 @@
                         "reference/models/perplexity",
                         "reference/models/together",
                         "reference/models/xai",
+                        "reference/models/vercel",
                         "reference/models/bedrock",
                         "reference/models/bedrock_claude",
                         "reference/models/azure",
@@ -1523,12 +1636,12 @@
         {
             "group": "FAQs",
             "pages": [
-                "faq/environment_variables",
+                "faq/environment-variables",
                 "faq/tpm-issues",
                 "faq/cli-auth",
                 "faq/connecting-to-tableplus",
                 "faq/could-not-connect-to-docker",
-                "faq/openai_key_request_for_other_models",
+                "faq/openai-key-request-for-other-models",
                 "faq/structured-outputs",
                 "faq/When-to-use-a-Workflow-vs-a-Team-in-Agno",
                 "faq/memoryv2"
