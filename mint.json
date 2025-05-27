@@ -1115,15 +1115,18 @@
                     "pages": [
                         "examples/models/anthropic/basic",
                         "examples/models/anthropic/basic_stream",
+                        "examples/models/anthropic/code_execution",
                         "examples/models/anthropic/tool_use",
                         "examples/models/anthropic/structured_output",
                         "examples/models/anthropic/storage",
                         "examples/models/anthropic/knowledge",
+                        "examples/models/anthropic/file_upload",
                         "examples/models/anthropic/image_input_bytes",
                         "examples/models/anthropic/image_input_url",
                         "examples/models/anthropic/pdf_input_bytes",
                         "examples/models/anthropic/pdf_input_local",
-                        "examples/models/anthropic/pdf_input_url"
+                        "examples/models/anthropic/pdf_input_url",
+                        "examples/models/anthropic/prompt_caching"
                     ]
                 },
                 {
