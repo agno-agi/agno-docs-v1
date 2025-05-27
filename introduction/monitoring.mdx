@@ -9,7 +9,9 @@ You can track your agents sessions and performance to ensure everything is worki
 
 ## Authenticate & Enable Monitoring
 
-### Step 1: Authenticate using CLI or API key
+<Steps>
+<Step title="Authenticate using CLI or API key">
+
 
 To log agent sessions, you need to authenticate using one of these methods:
 
@@ -25,8 +27,9 @@ Get your API key from [Agno App](https://app.agno.com/settings) and use it to lo
 ```bash
 export AGNO_API_KEY=your_api_key_here
 ```
+</Step>
 
-### Step 2: Enable Monitoring
+<Step title="Enable Monitoring">
 
 After authentication, enable monitoring for a particular agent or globally for all agents.
 
@@ -39,13 +42,14 @@ agent = Agent(markdown=True, monitoring=True)
 ```bash
 export AGNO_MONITOR=true
 ```
+</Step>
 
-### Step 3: Track Your Agent Sessions
+<Step title="Track Your Agent Sessions">
 
 Once monitoring is enabled, you can run your agent and view its session data:
 
 1. Create a file `monitoring.py` with this sample code:
-   ```python
+   ```python monitoring.py
    from agno.agent import Agent
 
    agent = Agent(markdown=True, monitoring=True)
@@ -56,6 +60,7 @@ Once monitoring is enabled, you can run your agent and view its session data:
 3. View your sessions at [app.agno.com/sessions](https://app.agno.com/sessions)
 
 <img height="200" src="/images/monitoring.png" style={{ borderRadius: "8px" }} />
-
+</Step>
+</Steps>
 <Info>Facing issues? Check out our [troubleshooting guide](/faq/cli-auth)</Info>
 

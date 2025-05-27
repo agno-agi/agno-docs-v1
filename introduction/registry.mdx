@@ -1,12 +1,12 @@
 ---
 title: Registry
-description: Register and visualise your entities in real-time on Agno Platform.
+description: Register and visualise your components in real-time on Agno Platform.
 ---
 
-## Register Your Entities
+## Register Your Components
 
-In Agno, Agents, Teams, Workflows, and Apps are collectively referred to as "Entities".
-When you run any Agno entity, it is automatically registered and monitored out of the box. This means you can instantly view them, along with their metadata and configuration, in the Agno Registry.
+In Agno, Agents, Teams, Workflows, and Apps are collectively referred to as "Components of your Agentic System".
+When you run any Agno component, it is automatically registered and monitored out of the box. This means you can instantly view them, along with their metadata and configuration, in the Agno Registry.
 
 The Registry acts as a unified dashboard where all your Agno Agents, Teams, Workflows and Apps are displayed, giving you full visibility into your operational environment. No additional setup is required.
 
@@ -16,8 +16,8 @@ Start exploring at [app.agno.com/registry](https://app.agno.com/registry).
 
 ## Authenticate & Enable Monitoring
 
-### Step 1: Authenticate using CLI or API key
-
+<Steps>
+<Step title= "Authenticate using CLI or API key">
 To log agent sessions, you need to authenticate using one of these methods:
 
 **Method A: Log in using your command line interface**
@@ -32,8 +32,9 @@ Get your API key from [Agno App](https://app.agno.com/settings) and use it to co
 ```bash
 export AGNO_API_KEY=your_api_key_here
 ```
+</Step>
 
-### Step 2: Enable Monitoring
+<Step title="Enable Monitoring">
 
 After authentication, enable monitoring for a particular agent or globally for all agents.
 
@@ -46,14 +47,17 @@ agent = Agent(markdown=True, monitoring=True)
 ```bash
 export AGNO_MONITOR=true
 ```
+</Step>
 
-### Step 3: Register Your Entity
+<Step title="Register Your Component">
 
 Once monitoring is enabled, you can run your agent/team/workflow/app and view it in the registry:
 
 1. Create a file `agent.py` with this sample code:
 
-```python 
+
+
+```python agent.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 
@@ -66,6 +70,7 @@ agent = Agent(
 agent.print_response("What is are ai agents?")
 ```
 
+
 2. Run your code locally
 3. View your agent at [app.agno.com/registry](https://app.agno.com/registry)
 
@@ -74,6 +79,8 @@ agent.print_response("What is are ai agents?")
 4. You can also check your agent configuration
 
 <img height="200" src="/images/registry-agent-config.png" style={{ borderRadius: "8px" }} />
+</Step>
+</Steps>
 
 ### Applications
 You can register any application simply by running it — it will be monitored and visible on the platform automatically where you can view and interact with each component's configuration in detail.
