@@ -1,0 +1,102 @@
+---
+title: Markdown Knowledge Base
+description: Learn how to use Markdown files in your knowledge base.
+sidebarTitle: Markdown
+---
+
+The **MarkdownKnowledgeBase** reads **local markdown** files, converts them into vector embeddings and loads them to a vector database.
+
+## Usage
+
+<Note>
+
+We are using a local PgVector database for this example. [Make sure it's running](https://docs.agno.com/vectordb/pgvector)
+
+</Note>
+
+```python knowledge_base.py
+from agno.knowledge.markdown import MarkdownKnowledgeBase
+from agno.vectordb.pgvector import PgVector
+
+knowledge_base = MarkdownKnowledgeBase(
+    path="data/markdown_files",
+    vector_db=PgVector(
+        table_name="markdown_documents",
+        db_url="postgresql+psycopg://ai:ai@localhost:5532/ai",
+    ),
+)
+```
+
+Then use the `knowledge_base` with an Agent:
+
+```python agent.py
+from agno.agent import Agent
+from knowledge_base import knowledge_base
+
+agent = Agent(
+    knowledge_base=knowledge_base,
+    search_knowledge=True,
+)
+agent.knowledge.load(recreate=False)
+
+agent.print_response("Ask me about something from the knowledge base")
+```
+
+#### MarkdownKnowledgeBase also supports async loading.
+
+```shell
+pip install qdrant-client
+```
+We are using a local Qdrant database for this example. [Make sure it's running](https://docs.agno.com/vectordb/qdrant)
+
+```python async_knowledge_base.py
+import asyncio
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.knowledge.markdown import MarkdownKnowledgeBase
+from agno.vectordb.qdrant import Qdrant
+
+COLLECTION_NAME = "essay-txt"
+
+vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
+
+# Initialize the MarkdownKnowledgeBase
+knowledge_base = MarkdownKnowledgeBase(
+    path=Path("tmp/mds"),
+    vector_db=vector_db,
+    num_documents=5,
+)
+
+# Initialize the Assistant with the knowledge_base
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+)
+
+if __name__ == "__main__":
+    # Comment out after first run
+    asyncio.run(knowledge_base.aload(recreate=False))
+
+    asyncio.run(
+        agent.aprint_response(
+            "What knowledge is available in my knowledge base?", markdown=True
+        )
+    )
+```
+
+## Params
+
+| Parameter | Type               | Default            | Description                                                                             |
+| --------- | ------------------ | ------------------ | -------------------------------------------------------------------------------------   |
+| `path`    | `Union[str, Path]` | -                  | Path to md files. Can point to a single md file or a directory of md files.             |
+| `formats` | `List[str]`        | `[".md"]`          | Formats accepted by this knowledge base.                                                |
+| `reader`  | `MarkdownReader`   | `MarkdownReader()` | A `MarkdownReader` that converts the md files into `Documents` for the vector database. |
+
+`MarkdownKnowledgeBase` is a subclass of the [AgentKnowledge](/reference/knowledge/base) class and has access to the same params.
+
+## Developer Resources
+
+- View [Sync loading Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/markdown_kb.py)
+- View [Async loading Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/markdown_kb_async.py)
+

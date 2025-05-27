@@ -373,6 +373,7 @@
                         "knowledge/json",
                         "knowledge/langchain",
                         "knowledge/llamaindex",
+                        "knowledge/markdown",
                         "knowledge/pdf",
                         "knowledge/pdf-url",
                         "knowledge/s3_pdf",
