@@ -340,6 +340,7 @@
                     "pages": [
                         "knowledge/introduction",
                         "knowledge/search",
+                        "knowledge/hybrid_search",
                         {
                             "group": "Knowledge Filters",
                             "pages": [
@@ -750,7 +751,10 @@
                     "pages": [
                         "examples/concepts/hybrid-search/lancedb",
                         "examples/concepts/hybrid-search/pgvector",
-                        "examples/concepts/hybrid-search/pinecone"
+                        "examples/concepts/hybrid-search/qdrantdb",
+                        "examples/concepts/hybrid-search/weaviate",
+                        "examples/concepts/hybrid-search/milvusdb",
+                        "examples/concepts/hybrid-search/mongodb"
                     ]
                 },
                 {
