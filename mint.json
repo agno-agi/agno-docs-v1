@@ -231,7 +231,8 @@
                                         "tools/toolkits/web_scrape/newspaper",
                                         "tools/toolkits/web_scrape/newspaper4k",
                                         "tools/toolkits/web_scrape/spider",
-                                        "tools/toolkits/web_scrape/website"
+                                        "tools/toolkits/web_scrape/website",
+                                        "tools/toolkits/web_scrape/scrapegraph"
                                     ]
                                 },
                                 {
@@ -296,7 +297,10 @@
                                         "tools/toolkits/others/todoist",
                                         "tools/toolkits/others/yfinance",
                                         "tools/toolkits/others/youtube",
-                                        "tools/toolkits/others/zendesk"
+                                        "tools/toolkits/others/zendesk",
+                                        "tools/toolkits/others/trello",
+                                        "tools/toolkits/others/web-browser",
+                                        "tools/toolkits/others/moviepy"
                                     ]
                                 }
                             ]
