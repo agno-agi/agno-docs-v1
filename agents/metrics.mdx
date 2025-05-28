@@ -82,11 +82,10 @@ The aggregated metrics provide a comprehensive view of the entire run. This incl
 
 Similarly for the session metrics, you can see the aggregated metrics across all runs in the session, providing insights into the overall performance and resource usage of the agent across multiple runs.
 
-## How Metrics Are Populated
-- When a model or tool call is made, usage data (tokens, time, etc.) is extracted and stored in a MessageMetrics object.
-- For tool calls, metrics are attached to the `ToolExecution`.
-- For each message, metrics are attached to the `Message`.
-- At the end of a run, metrics are aggregated and attached to the `RunResponse`.
+## How Metrics Are Aggregated
+- **Per-message**: Each message (assistant, tool, etc.) has its own metrics object.
+- **Run-level**: RunResponse.metrics is a dictionary where each key (e.g., input_tokens) maps to a list of values from all assistant messages in the run.
+- **Session-level**: `SessionMetrics` (see `agent.session_metrics`) aggregates metrics across all runs in the session.
 
 ## `MessageMetrics` Params
 <Snippet file="message_metrics_params.mdx" />
