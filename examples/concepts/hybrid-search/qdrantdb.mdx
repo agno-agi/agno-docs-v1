@@ -1,35 +1,22 @@
 ---
-title: Pinecone Hybrid Search
+title: QdrantDB Hybrid Search
 ---
 
 ## Code
 
-```python
-import os
+```python cookbook/agent_concepts/knowledge/vector_dbs/qdrant_db/qdrant_db_hybrid_search.py
 from typing import Optional
 
-import nltk  # type: ignore
 import typer
 from agno.agent import Agent
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.vectordb.pineconedb import PineconeDb
+from agno.vectordb.search import SearchType
+from agno.vectordb.qdrant import Qdrant
 from rich.prompt import Prompt
 
-nltk.download("punkt")
-nltk.download("punkt_tab")
+COLLECTION_NAME = "thai-recipes"
 
-api_key = os.getenv("PINECONE_API_KEY")
-index_name = "thai-recipe-hybrid-search"
-
-vector_db = PineconeDb(
-    name=index_name,
-    dimension=1536,
-    metric="cosine",
-    spec={"serverless": {"cloud": "aws", "region": "us-east-1"}},
-    api_key=api_key,
-    use_hybrid_search=True,
-    hybrid_alpha=0.5,
-)
+vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333", search_type=SearchType.hybrid)
 
 knowledge_base = PDFUrlKnowledgeBase(
     urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
@@ -37,7 +24,7 @@ knowledge_base = PDFUrlKnowledgeBase(
 )
 
 
-def pinecone_agent(user: str = "user"):
+def qdrantdb_agent(user: str = "user"):
     agent = Agent(
         user_id=user,
         knowledge=knowledge_base,
@@ -53,9 +40,9 @@ def pinecone_agent(user: str = "user"):
 
 if __name__ == "__main__":
     # Comment out after first run
-    knowledge_base.load(recreate=False, upsert=True)
+    knowledge_base.load(recreate=True)
 
-    typer.run(pinecone_agent)
+    typer.run(qdrantdb_agent)
 ```
 
 ## Usage
@@ -63,27 +50,26 @@ if __name__ == "__main__":
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API keys">
+  <Step title="Set your API key">
     ```bash
     export OPENAI_API_KEY=xxx
-    export PINECONE_API_KEY=xxx
     ```
   </Step>
 
   <Step title="Install libraries">
     ```bash
-    pip install -U pinecone pinecone-text pypdf openai agno
+    pip install -U qdrant-client fastembed tantivy pypdf openai agno
     ```
   </Step>
 
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/hybrid_search/pinecone/agent.py
+    python cookbook/agent_concepts/knowledge/vector_dbs/qdrant_db/qdrant_db_hybrid_search.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/hybrid_search/pinecone/agent.py
+    python cookbook/agent_concepts/knowledge/vector_dbs/qdrant_db/qdrant_db_hybrid_search.py
     ```
     </CodeGroup>
   </Step>
