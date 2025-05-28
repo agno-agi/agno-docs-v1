@@ -40,10 +40,9 @@ agent = Agent(
     show_tool_calls=True,
 )
 
-run_stream: Iterator[RunResponse] = agent.run(
+agent.print_response(
     "What is the stock price of NVDA", stream=True
 )
-pprint_run_response(run_stream, markdown=True)
 
 # Print metrics per message
 if agent.run_response.messages:
