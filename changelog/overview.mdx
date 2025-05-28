@@ -2,7 +2,40 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-05-27" description="v1.5.5">
+## New Features:
 
+- **Claude File Upload:** We can now upload a file to Anthropic directly and then use it as an input to an agent.
+- **Claude 4 Code Execution Tool:** Updated Claude to execute Python code in a secure, sandboxed environment.
+- **Prompt caching with Anthropic Models: A**llowed resuming from specific prefixes in your prompts. This approach significantly reduces processing time and costs for repetitive tasks or prompts with consistent elements.
+- **Vercel v0 Model:** Added support for new Vercel v0 models and cookbook examples.
+- **Qdrant Hybrid Search support**
+- **Markdown Knowledge Base**: Added native support for Markdown-based knowledge bases.
+- **AI/ML API platform integration: I**ntroduced integration with [`AI/ML API`](https://aimlapi.com/models/?utm_source=agno&utm_medium=github&utm_campaign=integration), a platform providing AI/ML models. AI/ML API provides 300+ AI models including Deepseek, Gemini, ChatGPT. The models run at enterprise-grade rate limits and uptimes.
+- **Update Pydantic and dataclass in function handling:** Added ****support for `Pydantic` and `dataclass` objects as input to a function. See [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tool_concepts/custom_tools/complex_input_types.py) for an example.
+
+## Improvements:
+
+- **Timeout handling for API calls in ExaTools class:**
+    - Timeout functionality to Exa API calls to prevent indefinite hanging of search operations. The implementation uses Python's `concurrent.futures` module to enforce timeouts on all Exa API operations (search, get contents, find similar, and answer generation).
+    - This change addresses the issue where Exa search functions would hang indefinitely, causing potential service disruptions and resource leaks.
+- **Fetch messages from last N sessions:**
+    - A tool for the agent, something like `get_previous_session_messages(number_of_sessions: int)` that returns a list of messages that the agent can analyse
+    - Switch on with `search_previous_sessions_history`
+- **Redis Expiration**: Added `expire` key to set TTL on Redis keys.
+- **Add Anthropic Cache Write to Agent Session Metrics:** Added `cache_creation_input_tokens` to agent session metrics, to allow for tracking Anthropic cache write statistics
+
+## Bug Fixes:
+
+- **Huggingface Embedder Updates:**
+    - Huggingface has changed some things on their API and they've deprecated `.post` on their `InferenceClient()`- https://discuss.huggingface.co/t/getting-error-attributeerror-inferenceclient-object-has-no-attribute-post/156682
+    - We can also no longer use `id: str = "jinaai/jina-embeddings-v2-base-code"` as default, because these models are no longer provided by the `HF Inference API`. Changed the default to `id: str = "intfloat/multilingual-e5-large"`
+- **Add `role_map` for `OpenAIChat`:** This allows certain models that don’t adhere to OpenAI’s role mapping to be used vir `OpenAILike`.
+- **Use Content Hash as ID in Upsert in Pgvector:** Use reproducible `content_hash` in upsert as ID.
+- **Insert in Vector DB passes only last chunk meta_data:** Insert in vector db passes only last chunk meta_data. issue link- https://discord.com/channels/965734768803192842/1219054452221153463/1376631140047130649
+- **Remove Argument Sanitization:** Replaced with a safer way to do this that won't break arguments that shouldn't be sanitized
+- **Handle async tools when running async agents on playground:** Fixed a regression where using Agents with async tools (e.g. MCP tools) was breaking in the Playground.
+</Update>
 <Update label="2025-05-23" description="v1.5.4">
 ## New Features:
 
