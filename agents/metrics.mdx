@@ -26,13 +26,12 @@ You run the following code to create an agent and run it with the following conf
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.google import Gemini
 from agno.tools.yfinance import YFinanceTools
-from agno.utils.pprint import pprint_run_response
 from rich.pretty import pprint
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Gemini(id="gemini-2.0-flash-001"),
     tools=[YFinanceTools(stock_price=True)],
     markdown=True,
     show_tool_calls=True,
