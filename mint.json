@@ -80,6 +80,7 @@
                 "introduction/agents",
                 "introduction/playground",
                 "introduction/monitoring",
+                "introduction/registry",
                 "introduction/community"
             ]
         },
@@ -91,12 +92,14 @@
                     "pages": [
                         "agents/introduction",
                         "agents/run",
+                        "agents/metrics",
                         "agents/sessions",
                         "agents/state",
                         "agents/memory",
                         "agents/tools",
                         "agents/structured-output",
                         "agents/multimodal",
+                        "agents/user-control-flow",
                         "agents/prompts",
                         "agents/knowledge",
                         "agents/storage",
@@ -131,16 +134,7 @@
                     "pages": [
                         "models/introduction",
                         "models/compatibility",
-                        "models/openai",
                         "models/openai-like",
-                        "models/openai-responses",
-                        {
-                            "group": "Cerebras",
-                            "pages": [
-                                "models/cerebras",
-                                "models/cerebras_openai"
-                            ]
-                        },
                         "models/anthropic",
                         {
                             "group": "AWS",
@@ -151,6 +145,13 @@
                             "pages": [
                                 "models/azure-ai-foundry",
                                 "models/azure-openai"
+                            ]
+                        },
+                        {
+                            "group": "Cerebras",
+                            "pages": [
+                                "models/cerebras",
+                                "models/cerebras_openai"
                             ]
                         },
                         "models/cohere",
@@ -170,10 +171,13 @@
                         "models/mistral",
                         "models/nvidia",
                         "models/ollama",
+                        "models/openai",
+                        "models/openai-responses",
                         "models/openrouter",
                         "models/perplexity",
                         "models/sambanova",
                         "models/together",
+                        "models/vercel",
                         "models/xai"
                     ]
                 },
@@ -231,7 +235,8 @@
                                         "tools/toolkits/web_scrape/newspaper",
                                         "tools/toolkits/web_scrape/newspaper4k",
                                         "tools/toolkits/web_scrape/spider",
-                                        "tools/toolkits/web_scrape/website"
+                                        "tools/toolkits/web_scrape/website",
+                                        "tools/toolkits/web_scrape/scrapegraph"
                                     ]
                                 },
                                 {
@@ -296,7 +301,10 @@
                                         "tools/toolkits/others/todoist",
                                         "tools/toolkits/others/yfinance",
                                         "tools/toolkits/others/youtube",
-                                        "tools/toolkits/others/zendesk"
+                                        "tools/toolkits/others/zendesk",
+                                        "tools/toolkits/others/trello",
+                                        "tools/toolkits/others/web-browser",
+                                        "tools/toolkits/others/moviepy"
                                     ]
                                 }
                             ]
@@ -352,6 +360,7 @@
                     "pages": [
                         "knowledge/introduction",
                         "knowledge/search",
+                        "knowledge/hybrid_search",
                         {
                             "group": "Knowledge Filters",
                             "pages": [
@@ -444,7 +453,7 @@
                 },
                 {
                     "group": "Evals",
-                    "pages": ["evals/introduction"]
+                    "pages": ["evals/introduction", "evals/platform"]
                 },
                 {
                     "group": "Workflows",
@@ -777,6 +786,21 @@
                     ]
                 },
                 {
+                    "group": "User Control Flows",
+                    "pages": [
+                        "examples/concepts/user-control-flows/01-confirmation-required",
+                        "examples/concepts/user-control-flows/02-confirmation-required-async",
+                        "examples/concepts/user-control-flows/03-confirmation-required-stream",
+                        "examples/concepts/user-control-flows/04-user-input-required",
+                        "examples/concepts/user-control-flows/05-user-input-required-async",
+                        "examples/concepts/user-control-flows/06-user-input-required-stream",
+                        "examples/concepts/user-control-flows/07-agentic-user-input",
+                        "examples/concepts/user-control-flows/08-external-tool-execution",
+                        "examples/concepts/user-control-flows/09-external-tool-execution-async",
+                        "examples/concepts/user-control-flows/10-external-tool-execution-stream"
+                    ]
+                },
+                {
                     "group": "Knowledge",
                     "pages": [
                         "examples/concepts/knowledge/arxiv-kb",
@@ -834,7 +858,10 @@
                     "pages": [
                         "examples/concepts/hybrid-search/lancedb",
                         "examples/concepts/hybrid-search/pgvector",
-                        "examples/concepts/hybrid-search/pinecone"
+                        "examples/concepts/hybrid-search/qdrantdb",
+                        "examples/concepts/hybrid-search/weaviate",
+                        "examples/concepts/hybrid-search/milvusdb",
+                        "examples/concepts/hybrid-search/mongodb"
                     ]
                 },
                 {
@@ -985,6 +1012,7 @@
                                 "examples/concepts/tools/mcp/airbnb",
                                 "examples/concepts/tools/mcp/github",
                                 "examples/concepts/tools/mcp/notion",
+                                "examples/concepts/tools/mcp/pipedream_auth",
                                 "examples/concepts/tools/mcp/pipedream_slack",
                                 "examples/concepts/tools/mcp/pipedream_google_calendar",
                                 "examples/concepts/tools/mcp/pipedream_linkedin",
@@ -1403,6 +1431,14 @@
                         "examples/models/xai/basic_stream",
                         "examples/models/xai/tool_use"
                     ]
+                },
+                {
+                    "group": "Vercel",
+                    "pages": [
+                        "examples/models/vercel/basic",
+                        "examples/models/vercel/basic_stream",
+                        "examples/models/vercel/tool_use"
+                    ]
                 }
             ]
         },
@@ -1480,6 +1516,7 @@
                         "reference/models/perplexity",
                         "reference/models/together",
                         "reference/models/xai",
+                        "reference/models/vercel",
                         "reference/models/bedrock",
                         "reference/models/bedrock_claude",
                         "reference/models/azure",
