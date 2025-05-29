@@ -397,6 +397,7 @@
                         "vectordb/pgvector",
                         "vectordb/cassandra",
                         "vectordb/chroma",
+                        "vectordb/couchbase",
                         "vectordb/clickhouse",
                         "vectordb/lancedb",
                         "vectordb/milvus",
@@ -405,8 +406,7 @@
                         "vectordb/singlestore",
                         "vectordb/mongodb",
                         "vectordb/azure_cosmos_mongodb",
-                        "vectordb/weaviate",
-                        "vectordb/couchbase"
+                        "vectordb/weaviate"
                     ]
                 },
                 {
@@ -999,6 +999,7 @@
                     "pages": [
                         "examples/concepts/vectordb/cassandra",
                         "examples/concepts/vectordb/chromadb",
+                        "examples/concepts/vectordb/couchbase",
                         "examples/concepts/vectordb/clickhouse",
                         "examples/concepts/vectordb/lancedb",
                         "examples/concepts/vectordb/milvus",
@@ -1008,8 +1009,7 @@
                         "examples/concepts/vectordb/pinecone",
                         "examples/concepts/vectordb/qdrant",
                         "examples/concepts/vectordb/singlestore",
-                        "examples/concepts/vectordb/weaviate",
-                        "examples/concepts/vectordb/couchbase"
+                        "examples/concepts/vectordb/weaviate"
                     ]
                 },
                 {
@@ -1518,6 +1518,7 @@
                     "pages": [
                         "reference/vector_db/cassandra",
                         "reference/vector_db/chromadb",
+                        "reference/vector_db/couchbase",
                         "reference/vector_db/clickhouse",
                         "reference/vector_db/lancedb",
                         "reference/vector_db/milvus",
