@@ -1,0 +1,81 @@
+---
+title: Team State
+sidebarTitle: State
+description: Learn about the shared state of Agent Teams.
+---
+
+There are multiple ways to share state between team members.
+
+# Shared Team State
+
+You can set the `team_session_state` parameter on `Team` to share state between team members.
+This state is available to all team members and is synchronized between them.
+
+For example:
+
+```python
+team = Team(
+    members=[agent1, agent2, agent3],
+    team_session_state={"shopping_list": []},
+)
+```
+
+Members can access the shared state using the `team_session_state` attribute in tools.
+
+For example:
+
+```python
+def add_item(agent: Agent, item: str) -> str:
+    """Add an item to the shopping list and return confirmation.
+
+    Args:
+        item (str): The item to add to the shopping list.
+    """
+    # Add the item if it's not already in the list
+    if item.lower() not in [
+        i.lower() for i in agent.team_session_state["shopping_list"]
+    ]:
+        agent.team_session_state["shopping_list"].append(item)
+        return f"Added '{item}' to the shopping list"
+    else:
+        return f"'{item}' is already in the shopping list"
+```
+
+
+See a full example [here](/examples/teams/shared_state/team_with_shared_state).
+
+
+# Agentic Context
+
+The Team Leader maintains a shared context that is updated agentically (i.e. by the team leader) and is sent to team members if needed.
+
+Agentic Context is critical for effective information sharing and collaboration between agents and the quality of the team's responses depends on how well the team leader manages this shared agentic context.
+This could require higher quality models for the team leader to ensure the quality of the team's responses.
+
+<Note>
+The tasks and responses of team members are automatically added to the team context, but Agentic Context needs to be enabled by the developer.
+</Note>
+
+## Enable Agentic Context
+
+To enable the Team leader to maintain Agentic Context, set `enable_agentic_context=True`.
+
+This will allow the team leader to maintain and update the team context during the run.
+
+```python
+team = Team(
+    members=[agent1, agent2, agent3],
+    enable_agentic_context=True,  # Enable Team Leader to maintain Agentic Context
+)
+```
+
+## Team Member Interactions
+
+Agent Teams can share interactions between members, allowing agents to learn from each other's outputs:
+
+```python
+team = Team(
+    members=[agent1, agent2, agent3],
+    share_member_interactions=True,  # Share interactions
+)
+```
