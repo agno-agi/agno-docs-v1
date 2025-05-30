@@ -1,54 +1,56 @@
 ---
 title: What is Agno?
-description: "**Agno is a powerful, full-stack platform for building Multi-Agent Systems.**"
+description: "**Agno is a full-stack framework for building Multi-Agent Systems.**"
 sidebarTitle: What is Agno?
 ---
 
-- **Agno Framework:** Build Multi-Agent Systems with memory, knowledge and reasoning.
-- **Agno Platform:** Monitor and evaluate your Multi-Agent Systems.
-- **Agno Cloud:** Run and scale your Multi-Agent Systems (coming soon).
-
-## Building Agents
-
-**Agno helps you build the 5 levels of Agentic Systems:**
-
+Engineers and researchers use Agno to build the 5 levels of Agentic Systems:
 - **Level 1:** Agents with tools and instructions.
 - **Level 2:** Agents with knowledge and storage.
 - **Level 3:** Agents with memory and reasoning.
 - **Level 4:** Teams of Agents with collaboration and coordination.
 - **Level 5:** Agentic Workflows with state and determinism.
 
-Here's a (level 1) Investment Researcher that analyzes stocks, reasoning through each step:
+Demo: Level 1 Reasoning Agent that uses the YFinance API to answer questions:
 
-```python reasoning_finance_agent.py
+```python Reasoning Finance Agent
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 from agno.tools.reasoning import ReasoningTools
 from agno.tools.yfinance import YFinanceTools
 
-agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
+reasoning_agent = Agent(
+    model=Claude(id="claude-sonnet-4-20250514"),
     tools=[
         ReasoningTools(add_instructions=True),
         YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
     ],
-    instructions=[
-        "Use tables to display data",
-        "Only output the report, no other text",
-    ],
+    instructions="Use tables to display data.",
     markdown=True,
 )
-agent.print_response("Write a report on NVDA", stream=True, show_full_reasoning=True, stream_intermediate_steps=True)
+
+# Demo: Semiconductor market analysis example
+reasoning_agent.print_response("""\
+    Analyze the semiconductor market performance focusing on:
+    - NVIDIA (NVDA)
+    - AMD (AMD)
+    - Intel (INTC)
+    - Taiwan Semiconductor (TSM)
+    Compare their market positions, growth metrics, and future outlook.""",
+    stream=True,
+    show_full_reasoning=True,
+    stream_intermediate_steps=True,
+)
 ```
 
-<Frame caption="Here's the Reasoning Agent in action">
+<Frame caption="Here's the Reasoning Finance Agent in action">
   <video
     autoPlay
     muted
     controls
     className="w-full aspect-video"
     style={{ borderRadius: '8px' }}
-    src="/videos/reasoning_finance_agent_demo.mp4"
+    src="/videos/reasoning_finance_agent.mp4"
   ></video>
 </Frame>
 
