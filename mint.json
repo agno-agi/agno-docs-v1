@@ -584,7 +584,7 @@
                         {
                             "group": "Shared State",
                             "pages": [
-                                "examples/teams/shared_state/team_with_shared_state"
+                                "examples/teams/shared_state/team_session_state"
                             ]
                         }
                     ]
