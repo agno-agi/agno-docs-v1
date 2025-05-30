@@ -585,7 +585,8 @@
                         "examples/workflows/startup-idea-validator",
                         "examples/workflows/content-creator",
                         "examples/workflows/product-manager",
-                        "examples/workflows/team-workflow"
+                        "examples/workflows/team-workflow",
+                        "examples/workflows/async-hackernews-reporter"
                     ]
                 },
                 {
