@@ -1,17 +1,17 @@
 ---
 title: Simple Agent Evals
-description: Learn how to evaluate your Agno Agents across three key dimensions - accuracy (using LLM-as-a-judge), performance (runtime and memory), and reliability (tool calls).
+description: Learn how to evaluate your Agno Agents and Teams across three key dimensions - accuracy (using LLM-as-a-judge), performance (runtime and memory), and reliability (tool calls).
 sidebarTitle: Overview
 ---
 
-**Evals** are unit tests for your Agents, use them judiciously to measure and improve their performance. Agno provides 3 dimensions for evaluating Agents:
+**Evals** are unit tests for your Agents and Teams, use them judiciously to measure and improve their performance. Agno provides 3 dimensions for evaluating Agents:
 - **Accuracy:** How complete/correct/accurate is the Agent's response (LLM-as-a-judge)
 - **Performance:** How fast does the Agent respond and what's the memory footprint?
 - **Reliability:** Does the Agent make the expected tool calls?
 
 ## Accuracy
 
-Accuracy evals use input/output pairs to measure the Agent's performance against a gold-standard answer. Use a larger model to score the Agent's responses (LLM-as-a-judge).
+Accuracy evals use input/output pairs to measure your Agents and Teams performance against a gold-standard answer. Use a larger model to score the Agent's responses (LLM-as-a-judge).
 
 #### Example
 
@@ -68,10 +68,10 @@ assert result_with_given_answer is not None and result_with_given_answer.avg_sco
 
 ## Performance
 
-Performance evals measure the latency and memory footprint of an Agent.
+Performance evals measure the latency and memory footprint of an Agent or Team.
 
 <Note>
-While latency will be dominated by the model API response time, we should still keep performance top of mind and track the agent performance with and without certain components. Eg: it would be good to know what's the average latency with and without storage, memory, with a new prompt, or with a new model.
+While latency will be dominated by the model API response time, we should still keep performance top of mind and track the Agent or Team's performance with and without certain components. Eg: it would be good to know what's the average latency with and without storage, memory, with a new prompt, or with a new model.
 </Note>
 
 #### Example
@@ -100,11 +100,11 @@ if __name__ == "__main__":
 
 ## Reliability
 
-What makes an Agent reliable?
+What makes an Agent or Team reliable?
 
-- Does the Agent make the expected tool calls?
-- Does the Agent handle errors gracefully?
-- Does the Agent respect the rate limits of the model API?
+- Does it make the expected tool calls?
+- Does it handle errors gracefully?
+- Does it respect the rate limits of the model API?
 
 #### Example
 

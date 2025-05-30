@@ -644,7 +644,8 @@
                           "pages": [
                               "examples/evals/accuracy/basic",
                               "examples/evals/accuracy/accuracy_with_given_answer",
-                              "examples/evals/accuracy/accuracy_with_tools"
+                              "examples/evals/accuracy/accuracy_with_tools",
+                              "examples/evals/accuracy/accuracy_with_teams"
                           ]
                         },
                         {
@@ -653,14 +654,16 @@
                             "examples/evals/performance/performance_agent_instantiation",
                             "examples/evals/performance/performance_instantiation_with_tool",
                             "examples/evals/performance/performance_simple_response",
-                            "examples/evals/performance/performance_with_storage"
+                            "examples/evals/performance/performance_with_storage",
+                            "examples/evals/performance/performance_team_instantiation"
                           ]
                         },
                         {
                           "group": "Reliability",
                           "pages": [
                             "examples/evals/reliability/basic",
-                            "examples/evals/reliability/multiple_tools"
+                            "examples/evals/reliability/reliability_with_multiple_tools",
+                            "examples/evals/reliability/reliability_with_teams"
                           ]
                         }
                     ]
