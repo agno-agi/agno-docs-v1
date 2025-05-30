@@ -29,6 +29,23 @@ You can apply knowledge filters in two main ways:
 
 > **Tip:** You can combine multiple filters for more precise results!
 
+## Filters in Traditional RAG vs. Agentic RAG
+
+When configuring your Agent, it's important to choose the right approach for your use case. In traditional RAG, you typically set `add_references=True` to ensure that references are included in the responses. However, in Agentic RAG, you should use `search_knowledge=True` to leverage the agent's ability to infer and apply filters automatically. 
+
+Example:
+```python
+agent = Agent(
+    name="KnowledgeFilterAgent",
+    search_knowledge=False,  # Do not use agentic filtering
+    add_references=True,     # Useuse manual filtering
+)
+```
+
+<Check> 
+Remember to use only one of these configurations at a time, setting the other to false. By default, `search_knowledge=True` is preferred as it offers a more dynamic and interactive experience.
+</Check>
+
 ## Best Practices
 
 - Make your prompts descriptive (e.g., include user names, document types, years).
