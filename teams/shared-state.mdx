@@ -6,9 +6,7 @@ description: Learn about the shared state of Agent Teams.
 
 There are multiple ways to share state between team members.
 
-# Shared Team State
-
-
+## Shared Team State
 
 Team Session State enables sophisticated state management across teams of agents, with both shared and private state capabilities.
 
@@ -24,7 +22,7 @@ Agno's Team state management provides three distinct levels:
 Team state propagates through nested team structures as well
 </Check>
 
-## How to use Team Session State
+### How to use Team Session State
 
 You can set the `team_session_state` parameter on `Team` to share state between team members.
 This state is available to all team members and is synchronized between them.
@@ -59,7 +57,7 @@ def add_item(agent: Agent, item: str) -> str:
         return f"'{item}' is already in the shopping list"
 ```
 
-## Example
+### Example
 
 Here's a simple example of a team managing a shared shopping list:
 
@@ -164,7 +162,7 @@ In contrast, tools specific to a team use `team.session_state`, allowing for pri
 
 See a full example [here](/examples/teams/shared_state/team_shared_state).
 
-# Agentic Context
+## Agentic Context
 
 The Team Leader maintains a shared context that is updated agentically (i.e. by the team leader) and is sent to team members if needed.
 
@@ -175,7 +173,7 @@ This could require higher quality models for the team leader to ensure the quali
 The tasks and responses of team members are automatically added to the team context, but Agentic Context needs to be enabled by the developer.
 </Note>
 
-## Enable Agentic Context
+### Enable Agentic Context
 
 To enable the Team leader to maintain Agentic Context, set `enable_agentic_context=True`.
 
@@ -188,7 +186,7 @@ team = Team(
 )
 ```
 
-## Team Member Interactions
+### Team Member Interactions
 
 Agent Teams can share interactions between members, allowing agents to learn from each other's outputs:
 
