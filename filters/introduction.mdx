@@ -39,11 +39,13 @@ agent = Agent(
     name="KnowledgeFilterAgent",
     search_knowledge=False,  # Do not use agentic filtering
     add_references=True,     # Useuse manual filtering
+    knowledge_filters={"user_id": "jordan_mitchell"}, # Pass filters like this
 )
 ```
 
 <Check> 
 Remember to use only one of these configurations at a time, setting the other to false. By default, `search_knowledge=True` is preferred as it offers a more dynamic and interactive experience.
+Checkout an example [here](/examples/concepts/knowledge/filters/filtering-traditional-RAG) of how to set up knowledge filters in a Traditional RAG system
 </Check>
 
 ## Best Practices
