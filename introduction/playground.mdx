@@ -24,7 +24,7 @@ Let's run the playground application locally so we can chat with our Agents usin
 ```python demo.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
@@ -67,12 +67,12 @@ description="A playground for agents",
 ).get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("playground:app", reload=True)
+    app.serve("playground:app", reload=True)
 ```
 
 Remember to export your `OPENAI_API_KEY` before running the playground application.
 
-<Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
+<Tip>Make sure the `app.serve()` method points to the correct module and app instance (e.g., `"playground:app"`).</Tip>
 
 ## Authenticate with Agno
 
@@ -131,7 +131,7 @@ You can also run multi-agent teams on the playground.
 from agno.agent import Agent
 from agno.team.team import Team
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
 
@@ -177,7 +177,7 @@ app = Playground(
 ).get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("playground:app", reload=True)
+    playground.serve("playground:app", reload=True)
 
 
 ```

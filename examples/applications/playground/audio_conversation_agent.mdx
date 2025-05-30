@@ -9,7 +9,7 @@ This example shows how to use the audio conversation agent with playground.
 ```python cookbook/apps/playground/audio_conversation_agent.py 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 
 audio_and_text_agent = Agent(
@@ -28,10 +28,10 @@ audio_and_text_agent = Agent(
     ),
 )
 
-app = Playground(agents=[audio_and_text_agent]).get_app()
+app = Playground(agents=[audio_and_text_agent], app_id="audio_conversation_app", name="Audio Conversation App", description="Audio Conversation App").get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("audio_conversation_agent:app", reload=True)
+    app.serve("audio_conversation_agent:app", reload=True)
 
 ```
 

@@ -9,7 +9,7 @@ from agno.agent import Agent
 from agno.memory.agent import AgentMemory
 from agno.memory.db.postgres import PgMemoryDb
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.storage.postgres import PostgresStorage
 
@@ -46,11 +46,14 @@ basic_agent = Agent(
 app = Playground(
     agents=[
         basic_agent,
-    ]
+    ],
+    app_id="basic_playground_app",
+    name="Basic Playground App",
+    description="A basic playground app",
 ).get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("basic:app", reload=True)
+    app.serve("basic:app", reload=True)
 
 ```
 

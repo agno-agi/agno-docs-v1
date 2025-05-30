@@ -112,7 +112,7 @@ from textwrap import dedent
 import nest_asyncio
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.tools.mcp import MCPTools
 
@@ -151,11 +151,10 @@ async def run_server() -> None:
             markdown=True,
         )
 
-        playground = Playground(agents=[agent])
-        app = playground.get_app()
+        playground = Playground(agents=[agent], app_id="mcp_demo_app", name="MCP Demo App", description="MCP Demo App").get_app()
 
         # Serve the app while keeping the MCPTools context manager alive
-        serve_playground_app(app)
+        playground.serve("github_playground:app", reload=True)
 
 
 if __name__ == "__main__":
