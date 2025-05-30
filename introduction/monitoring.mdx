@@ -1,19 +1,18 @@
 ---
-title: Agent Monitoring
-description: Track and monitor your Agno agents in real-time.
+title: Monitoring
+description: Track and monitor your Agno agents and teams in real-time.
 ---
 
-## Monitor Your Agents
+## Monitor Your Agents & Teams
 
-You can track your agents sessions and performance to ensure everything is working as expected. Agno provides built-in monitoring that you can access at [app.agno.com](https://app.agno.com).
+You can track your agents and teams sessions and performance to ensure everything is working as expected. Agno provides built-in monitoring that you can access at [app.agno.com](https://app.agno.com).
 
 ## Authenticate & Enable Monitoring
 
 <Steps>
 <Step title="Authenticate using CLI or API key">
 
-
-To log agent sessions, you need to authenticate using one of these methods:
+To log sessions, you need to authenticate using one of these methods:
 
 **Method A: Log in using your command line interface**
 ```bash
@@ -22,7 +21,7 @@ ag setup
 
 **Method B: Log using an API key**
 
-Get your API key from [Agno App](https://app.agno.com/settings) and use it to log agent sessions to your workspace.
+Get your API key from [Agno App](https://app.agno.com/settings) and use it to log sessions to your workspace.
 
 ```bash
 export AGNO_API_KEY=your_api_key_here
@@ -31,29 +30,40 @@ export AGNO_API_KEY=your_api_key_here
 
 <Step title="Enable Monitoring">
 
-After authentication, enable monitoring for a particular agent or globally for all agents.
+After authentication, enable monitoring for specific agents/teams or globally for all components.
 
 **Method A: For a Specific Agent**
 ```python
 agent = Agent(markdown=True, monitoring=True)
 ```
 
-**Method B: Globally via Environment Variable**
+**Method B: For a Specific Team**
+```python
+team = Team(monitoring=True)
+```
+
+**Method C: Globally via Environment Variable**
 ```bash
 export AGNO_MONITOR=true
 ```
 </Step>
 
-<Step title="Track Your Agent Sessions">
+<Step title="Track Your Sessions">
 
-Once monitoring is enabled, you can run your agent and view its session data:
+Once monitoring is enabled, you can run your agents and teams and view their session data:
 
 1. Create a file `monitoring.py` with this sample code:
    ```python monitoring.py
    from agno.agent import Agent
+   from agno.team import Team
 
+   # Monitor an agent
    agent = Agent(markdown=True, monitoring=True)
    agent.print_response("Share a 2 sentence horror story")
+
+   # Monitor a team
+   team = Team(monitoring=True)
+   team.print_response("Collaborate on a story idea")
    ```
 
 2. Run your code locally
