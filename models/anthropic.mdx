@@ -48,6 +48,24 @@ agent = Agent(
 agent.print_response("Share a 2 sentence horror story.")
 ```
 
+## Prompt caching
+
+You can enable system prompt caching with our `Calude` model by setting `cache_system_prompt` to `True`:
+
+```python
+from agno.agent import Agent
+from agno.models.anthropic import Claude
+
+agent = Agent(
+    model=Claude(
+        id="claude-3-5-sonnet-20241022",
+        cache_system_prompt=True,
+    ),
+)
+```
+
+Read more about prompt caching with Agno's `Claude` model [here](https://docs.agno.com/examples/models/anthropic/prompt_caching).
+
 </CodeGroup>
 
 <Note> View more examples [here](../examples/models/anthropic). </Note>
