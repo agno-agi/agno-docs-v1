@@ -1,0 +1,73 @@
+---
+title: Team.run()
+description: Learn how to run a team and get the response.
+---
+
+The `Team.run()` function runs the team and generates a response, either as a `TeamRunResponse` object or a stream of `TeamRunResponse` objects.
+
+Many of our examples use `team.print_response()` which is a helper utility to print the response in the terminal. It uses `team.run()` under the hood.
+
+Here's how to run your team. The response is captured in the `response` and `response_stream` variables.
+
+```python
+from agno.team import Team
+from agno.models.openai import OpenAIChat
+
+agent_1 = Agent(name="News Agent", role="Get the latest news")
+
+agent_2 = Agent(name="Weather Agent", role="Get the weather for the next 7 days")
+
+team = Team(name="News and Weather Team", mode="coordinate", members=[agent_1, agent_2])
+
+response = team.run("What is the weather in Tokyo?")
+
+# Synchronous execution
+result = team.run("What is the weather in Tokyo?")
+
+# Asynchronous execution
+result = await team.arun("What is the weather in Tokyo?")
+
+# Streaming responses
+for chunk in team.run("What is the weather in Tokyo?", stream=True):
+    print(chunk.content, end="", flush=True)
+
+# Asynchronous streaming
+async for chunk in await team.arun("What is the weather in Tokyo?", stream=True):
+    print(chunk.content, end="", flush=True)
+```
+
+
+## Streaming Intermediate Steps
+
+Throughout the execution of a team, multiple events take place, and we provide these events in real-time for enhanced team transparency.
+
+You can enable streaming of intermediate steps by setting `stream_intermediate_steps=True`.
+
+```python
+# Stream with intermediate steps
+response_stream = team.run(
+    "What is the weather in Tokyo?",
+    stream=True,
+    stream_intermediate_steps=True
+)
+```
+
+### Event Types
+
+The following events are sent by the `Team.run()` and `Team.arun()` functions depending on team's configuration:
+
+| Event Type | Description |
+|------------|-------------|
+| `RunStarted` | Indicates the start of a run |
+| `RunResponse` | Contains the model's response text as individual chunks |
+| `RunCompleted` | Signals successful completion of the run |
+| `RunError` | Indicates an error occurred during the run |
+| `RunCancelled` | Signals that the run was cancelled |
+| `ToolCallStarted` | Indicates the start of a tool call |
+| `ToolCallCompleted` | Signals completion of a tool call. This also contains the tool call results. |
+| `ReasoningStarted` | Indicates the start of the agent's reasoning process |
+| `ReasoningStep` | Contains a single step in the reasoning process |
+| `ReasoningCompleted` | Signals completion of the reasoning process |
+| `UpdatingMemory` | Indicates that the agent is updating its memory |
+| `WorkflowStarted` | Indicates the start of a workflow |
+| `WorkflowCompleted` | Signals completion of a workflow |

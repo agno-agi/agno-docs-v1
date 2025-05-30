@@ -111,6 +111,8 @@
                     "group": "Teams",
                     "pages": [
                         "teams/introduction",
+                        "teams/run",
+                        "teams/shared-state",
                         {
                             "group": "Team Modes",
                             "pages": [
@@ -556,25 +558,35 @@
                     "group": "Teams",
                     "pages": [
                         {
-                            "group": "Collaborate",
+                            "group": "Modes",
                             "pages": [
-                                "examples/teams/collaborate/discussion_team"
+                                {
+                                    "group": "Collaborate",
+                                    "pages": [
+                                        "examples/teams/collaborate/discussion_team"
+                                    ]
+                                },
+                                {
+                                    "group": "Coordinate",
+                                    "pages": [
+                                        "examples/teams/coordinate/autonomous_startup_team",
+                                        "examples/teams/coordinate/hackernews_team",
+                                        "examples/teams/coordinate/news_agency_team"
+                                    ]
+                                },
+                                {
+                                    "group": "Route",
+                                    "pages": [
+                                        "examples/teams/route/ai_support_team",
+                                        "examples/teams/route/multi_language_team"
+                                    ]
+                                }
                             ]
                         },
                         {
-                            "group": "Coordinate",
+                            "group": "Shared State",
                             "pages": [
-                                "examples/teams/coordinate/autonomous_startup_team",
-                                "examples/teams/coordinate/hackernews_team",
-                                "examples/teams/coordinate/news_agency_team",
-                                "examples/teams/coordinate/team_session_state"
-                            ]
-                        },
-                        {
-                            "group": "Route",
-                            "pages": [
-                                "examples/teams/route/ai_support_team",
-                                "examples/teams/route/multi_language_team"
+                                "examples/teams/shared_state/team_session_state"
                             ]
                         }
                     ]

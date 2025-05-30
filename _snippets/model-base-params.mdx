@@ -1,20 +1,14 @@
 | Parameter                     | Type                                   | Default    | Description                                                    |
 | ----------------------------- | -------------------------------------- | ---------- | -------------------------------------------------------------- |
-| `id`                          | `str`                                  | -          | ID of the model to use. Alias: "model"                         |
+| `id`                          | `str`                                  | -          | ID of the model to use.                                        |
 | `name`                        | `Optional[str]`                        | `None`     | Name for this Model. Not sent to the Model API.                |
 | `provider`                    | `Optional[str]`                        | `None`     | Provider for this Model. Not sent to the Model API.            |
-| `metrics`                     | `Dict[str, Any]`                       | `{}`       | Metrics collected for this Model. Not sent to the Model API.   |
-| `response_format`             | `Optional[Any]`                        | `None`     | Format of the response.                                        |
-| `tools`                       | `Optional[List[Union[Tool, Dict]]]`    | `None`     | A list of tools provided to the Model.                         |
-| `tool_choice`                 | `Optional[Union[str, Dict[str, Any]]]` | `None`     | Controls which (if any) function is called by the model.       |
-| `show_tool_calls`             | `Optional[bool]`                       | `None`     | If True, shows function calls in the response.                 |
-| `tool_call_limit`             | `Optional[int]`                        | `None`     | Maximum number of tool calls allowed.                          |
-| `_functions`                  | `Optional[Dict[str, Function]]`        | `None`     | Functions extracted from the tools. Not sent to the Model API. |
-| `_function_call_stack`        | `Optional[List[FunctionCall]]`         | `None`     | Function call stack.                                           |
-| `system_message`               | `Optional[str]`                        | `None`     | System prompt from the model added to the Agent.               |
+| `supports_native_structured_outputs` | `bool`                          | `False`    | Whether the model supports structured outputs natively (e.g. OpenAI). |
+| `supports_json_schema_outputs` | `bool`                               | `False`    | Whether the model requires a json_schema for structured outputs (e.g. LMStudio). |
+| `system_prompt`               | `Optional[str]`                        | `None`     | System prompt from the model added to the Agent.               |
 | `instructions`                | `Optional[List[str]]`                  | `None`     | Instructions from the model added to the Agent.                |
+| `tool_message_role`           | `str`                                  | `"tool"`   | The role of the tool message.                                  |
+| `assistant_message_role`      | `str`                                  | `"assistant"` | The role of the assistant message.                          |
 | `session_id`                  | `Optional[str]`                        | `None`     | Session ID of the calling Agent or Workflow.                   |
 | `structured_outputs`          | `Optional[bool]`                       | `None`     | Whether to use the structured outputs with this Model.         |
-| `supports_structured_outputs` | `bool`                                 | `False`    | Whether the model supports structured outputs.                 |
-| `override_system_role`        | `bool`                                 | `False`    | Whether to override the system role.                           |
-| `system_message_role`         | `str`                                  | `"system"` | The role to map the system message to.                         |
+| `override_system_role`        | `bool`
