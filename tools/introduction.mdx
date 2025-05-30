@@ -1,8 +1,8 @@
 ---
-title: Introduction
+title: What are Tools?
+sidebarTitle: Overview
+description: Tools are functions that helps Agno Agents to interact with the external world.
 ---
-
-Tools are **functions** that an Agent can call to interact with the external world.
 
 Tools make agents - "agentic" by enabling them to interact with external systems like searching the web, running SQL, sending an email or calling APIs.
 
@@ -42,7 +42,31 @@ Then, the Agent will stop after the tool call because we set `stop_after_tool_ca
 
 </Tip>
 
+### Using the Toolkit Class
+
+The `Toolkit` class provides a way to manage multiple tools with additional control over their execution. You can specify which tools should stop the agent after execution and which should have their results shown.
+
+```python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.googlesearch import GoogleSearchTools
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4.5-preview"),
+    tools=[
+        GoogleSearchTools(
+            stop_after_tool_call_tools=["google_search"],
+            show_result_tools=["google_search"],
+        )
+    ],
+    show_tool_calls=True,
+)
+
+agent.print_response("What's the latest about gpt 4.5?", markdown=True)
+```
+
+In this example, the `GoogleSearchTools` toolkit is configured to stop the agent after executing the `google_search` function and to show the result of this function.
 
 Read more about:
 - [Available Toolkits](/tools/toolkits)
-- [Using functions as tools](/tools/functions)
+- [Using functions as tools](/tools/tool-decorator)

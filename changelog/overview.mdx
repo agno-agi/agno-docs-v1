@@ -2,7 +2,255 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-05-27" description="v1.5.5">
+## New Features:
 
+- **Claude File Upload:** We can now upload a file to Anthropic directly and then use it as an input to an agent.
+- **Claude 4 Code Execution Tool:** Updated Claude to execute Python code in a secure, sandboxed environment.
+- **Prompt caching with Anthropic Models: ** Allowed resuming from specific prefixes in your prompts. This approach significantly reduces processing time and costs for repetitive tasks or prompts with consistent elements.
+- **Vercel v0 Model:** Added support for new Vercel v0 models and cookbook examples.
+- **Qdrant Hybrid Search support**
+- **Markdown Knowledge Base**: Added native support for Markdown-based knowledge bases.
+- **AI/ML API platform integration:** Introduced integration with [`AI/ML API`](https://aimlapi.com/models/?utm_source=agno&utm_medium=github&utm_campaign=integration), a platform providing AI/ML models. AI/ML API provides 300+ AI models including Deepseek, Gemini, ChatGPT. The models run at enterprise-grade rate limits and uptimes.
+- **Update Pydantic and dataclass in function handling:** Added support for `Pydantic` and `dataclass` objects as input to a function. See [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tool_concepts/custom_tools/complex_input_types.py) for an example.
+
+## Improvements:
+
+- **Timeout handling for API calls in ExaTools class:**
+    - Timeout functionality to Exa API calls to prevent indefinite hanging of search operations. The implementation uses Python's `concurrent.futures` module to enforce timeouts on all Exa API operations (search, get contents, find similar, and answer generation).
+    - This change addresses the issue where Exa search functions would hang indefinitely, causing potential service disruptions and resource leaks.
+- **Fetch messages from last N sessions:**
+    - A tool for the agent, something like `get_previous_session_messages(number_of_sessions: int)` that returns a list of messages that the agent can analyse
+    - Switch on with `search_previous_sessions_history`
+- **Redis Expiration**: Added `expire` key to set TTL on Redis keys.
+- **Add Anthropic Cache Write to Agent Session Metrics:** Added `cache_creation_input_tokens` to agent session metrics, to allow for tracking Anthropic cache write statistics
+
+## Bug Fixes:
+
+- **Huggingface Embedder Updates:**
+    - Huggingface has changed some things on their API and they've deprecated `.post` on their `InferenceClient()`- https://discuss.huggingface.co/t/getting-error-attributeerror-inferenceclient-object-has-no-attribute-post/156682
+    - We can also no longer use `id: str = "jinaai/jina-embeddings-v2-base-code"` as default, because these models are no longer provided by the `HF Inference API`. Changed the default to `id: str = "intfloat/multilingual-e5-large"`
+- **Add `role_map` for `OpenAIChat`:** This allows certain models that don’t adhere to OpenAI’s role mapping to be used vir `OpenAILike`.
+- **Use Content Hash as ID in Upsert in Pgvector:** Use reproducible `content_hash` in upsert as ID.
+- **Insert in Vector DB passes only last chunk meta_data:** Insert in vector db passes only last chunk meta_data. issue link- https://discord.com/channels/965734768803192842/1219054452221153463/1376631140047130649
+- **Remove Argument Sanitization:** Replaced with a safer way to do this that won't break arguments that shouldn't be sanitized
+- **Handle async tools when running async agents on playground:** Fixed a regression where using Agents with async tools (e.g. MCP tools) was breaking in the Playground.
+</Update>
+<Update label="2025-05-23" description="v1.5.4">
+## New Features:
+
+- **User Control Flows**: This is the beta release of Agno’s Human-in-the-loop flows and tools.
+    - We now allow agent runs to be `paused` awaiting completion of certain user requirements before the agent can continue.
+    - This also adds the `agent.continue_run` and `agent.acontinue_run` functions.
+    - The control flows that are available:
+        - User confirmation flow → Decorate a function with `@tool(requires_confirmation=True)` and the agent will expect user confirmation before executing the tool.
+        - User input required → Decorate a function with `@tool(requires_user_input=True)` to have the agent stop and ask for user input before continuing.
+        - External tool execution → Decorate a function with `@tool(external_execution=True)` to indicate that you will execute this function outside of the agent context.
+        - Dynamic user input → Add `UserControlFlowTools()` to an agent to give the agent the ability to dynamically stop the flow and ask for user input where required.
+    - See a host of examples [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/user_control_flows).
+- **Mem0 Toolkit**: Added a toolkit for managing memories in Mem0.
+- **Firecrawl Search**: Added support for Firecrawl web search in `FirecrawlTools`.
+
+## Bug Fixes:
+
+- **Firecrawl Tools and Reader**: Fixed parameter parsing for the Firecrawl reader and tools.
+- **Include/Exclude on all Tools**: Ensure all toolkits support `include_tools` and `exclude_tools`.
+
+</Update>
+
+<Update label="2025-05-21" description="v1.5.3">
+## Improvements:
+
+- **Improved Accuracy Evals:** Updated the way accuracy evals works for more accurate agent-based evaluation.
+
+## Bug Fixes:
+
+- **MCP Client Timeout:** Client timeouts now work correctly and use the timeout set on parameters.
+</Update>
+<Update label="2025-05-20" description="v1.5.2">
+## New Features:
+
+- **Agno Apps (Beta)**: Introducing Agno Apps, convenience functions to assist with building production-ready applications. The first supported apps are:
+    - `FastAPIApp` → A really simple FastAPI server that provides access to your `agent` or `team`.
+    - `WhatsappAPIApp` → An app that implements the Whatsapp protocol allowing you to have an Agno agent running on Whatsapp. Supports image / audio / video input and can generate images as responses. Supports reasoning.
+- **Couchbase Vector DB Support**: Added support for Couchbase as a vector DB for knowledge bases.
+- **Knowledge Filters Update for Teams:** Filters (manual + agentic) can now be used with Teams.
+- **Azure Cosmos DB for MongoDB (vCore) vector db support:**  In the MongoDB vector db class add support for cosmosdb mongo vcore support by enabling `cosmos_compatibility=True`
+- **Google Big Query Tools**: Added Toolkit for Google BigQuery support.
+- **Async Support for s3 Readers:** Add async support for `pdf` and `text` s3 readers.
+- **`stop_after_tool_call` and `show_result` for Toolkits:** Now the base Toolkit class has `stop_after_tool_call_tools` and `show_result_tools` similar to the `@tool` decorator.
+
+</Update>
+<Update label="2025-05-16" description="v1.5.1">
+## New Features:
+
+- **Nebius Model Provider**: Added [Nebius](https://studio.nebius.com/) as a model provider.
+- **Extended Filters Support on Vector DBs**: Added filtering support for other vector DBs.
+    - pgvector
+    - Milvus
+    - Weaviate
+    - Chroma
+
+## Improvements:
+
+- **Redis SSL**: Added the `ssl` parameter to `Redis` storage.
+</Update>
+
+<Update label="2025-05-13" description="v1.5.0">
+## New Features:
+
+- **Azure OpenAI Tools**: Added image generation via Dall-E via Azure AI Foundry.
+- **OpenTelemetry Instrumentation:** We have contributed to the [OpenInference](https://github.com/Arize-ai/openinference) project and added an auto-instrumentor for Agno agents. This adds tracing instrumentation for Agno Agents for any OpenTelemetry-compatible observability provider. These include Arize, Langfuse and Langsmith. Examples added to illustrate how to use each one ([here](https://github.com/agno-agi/agno/tree/main/cookbook/observability)).
+- **Evals Updates**: Added logic to run accuracy evaluations with pre-generated answers and minor improvements for all evals classes.
+- **Hybrid Search and Reranker for Milvus Vector DB:** Added support for `hybrid_search` on Milvus.
+- **MCP with Streamable-HTTP:** Now supporting the streamable-HTTP transport for MCP servers.
+
+## Improvements:
+
+- **Knowledge Filters Cookbook:** Instead of storing the sample data locally, we now pull it from s3 at runtime to keep the forking of the repo as light as possible.
+
+## Bug Fixes:
+
+- **Team Model State:** Fixed issues related to state being shared between models on teams.
+- **Concurrent Agent Runs**: Fixed certain race-conditions related to running agents concurrently.
+
+## Breaking changes:
+
+- **Evals Refactoring:**
+    - Our performance evaluation class has been renamed from `PerfEval` to `PerformanceEval`
+    - Our accuracy evaluation class has new required fields: `agent`, `prompt` and `expected_answer`
+- **Concurrent Agent Runs:** We removed duplicate information from some events during streaming (`stream=True`). Individual events will have more relevant data now.
+</Update>
+
+<Update label="2025-05-10" description="v1.4.6">
+## New Features:
+
+- **Cerebras Model Provider**: Added Cerebras as a model provider.
+- **Claude Web Search**: Added support for [Claude’s new web search tool](https://www.anthropic.com/news/web-search).
+- **Knowledge Base Metadata Filtering (Beta)**: Added support for filtering documents by metadata
+    - **Two Ways to Apply Filters**:
+        - **Explicit Filtering**: Pass filters directly to Agent or during run/query
+            
+            ```python
+            # Option 1: Filters on Agent initialization
+            agent = Agent(
+            					knowledge=knowledge_base, 
+            					knowledge_filters={"filter_1": "abc"}
+            				)
+                 
+            # Option 2: Filters on run execution
+            agent.run("Tell me about...", knowledge_filters={"filter_1": "abc"})
+            ```
+            
+            See docs [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/filters/pdf/filtering.py)
+            
+        - **Agentic Filtering**: Agent automatically detects and applies filters from user queries
+            
+            ```python
+            # Enable automatic filter detection
+            agent = Agent(
+            					knowledge=knowledge_base, 
+            					enable_agentic_knowledge_filters=True
+            				)
+                 
+            # Agent extracts filters from query
+            agent.run("Tell me about John Doe's experience...")
+            ```
+            
+            See docs [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/filters/pdf/agentic_filtering.py)
+            
+    - Two approaches for adding metadata to documents:
+        1. **During Knowledge Base Initialization**:
+            
+            ```python
+            knowledge_base = PDFKnowledgeBase(path=[
+                 {
+            		     "path": "file_1.pdf", 
+            		     "metadata": {
+            				     "user_id": "abc"
+            				  }
+            		 },
+            		 {
+            		     "path": "file_2.pdf", 
+            		     "metadata": {
+            				     "user_id": "xyz"
+            				  }
+            		 }
+            ])
+            ```
+            
+        2. **During Individual Document Loading:**
+            
+            ```python
+            knowledge_base.load_document(
+                 path="file.pdf",
+                 metadata={"user_id": "abc"}
+            )
+            ```
+            
+    - **Compatibility**
+        - **Knowledge Base Types**: `PDF`, `Text`, `DOCX`, `JSON`, and `PDF_URL`
+        - **Vector Databases**: `Qdrant`, `LanceDB`, and `MongoDB`
+
+## Improvements:
+
+- **User and Session ID in Tools**: Added `current_user_id` and `current_session_id` as default variables in `session_data` for `Agent` and `Team`.
+
+## Bug Fixes:
+
+- **Knowledge Base ID Clashes**: Knowledge files with overlapping names (e.g., `abc.-.xyz.pdf` and `abc.-.def.pdf`) were being incorrectly identified due to the readers using formatted names as unique id which were getting uniqueness conflict. Introduced a unique ID for each document in all the readers using `uuidv4()` to ensure strict identification and prevent conflicts.
+</Update>
+
+<Update label="2025-05-06" description="v1.4.5">
+## New Features:
+
+- **Embedder Support via AWS Bedrock**: `AwsBedrockEmbedder` has been added with a default embedding model of `cohere.embed-multilingual-v3`.
+- **Gemini Video Generation Tool**: Added video generation capabilities to `GeminiTools`.
+
+## Improvements:
+
+- **Apify Revamp**: Complete revamp of `ApifyTools` to make it completely compatible with Apify actors.
+
+## Bug Fixes:
+
+- **Tools with Optional Parameters on Llama API**: Fixed edge cases with functions.
+
+</Update>
+<Update label="2025-05-03" description="v1.4.4">
+## New Features:
+
+- **OpenAI File Support:** Added support for `File` attached to prompts for agents with `OpenAIChat` models.
+
+## Improvements:
+
+- **Llama API:** Various improvements for Llama and LlamaOpenAI model classes including structured output and image input support
+- **Async Custom Retriever**: The `retriever` parameter can now be an `async` function to be used with `agent.arun` and `agent.aprint_response`.
+- **Gemini Video URL Input**: Added support for `Video(url=...)` for Gemini.
+
+## Bug Fixes:
+
+- **OpenAI Responses o3 / o4 Tools**: Fixed broken tool use for advanced reasoning models on `OpenAIResponses`.
+- **MCP on CLI Support**: Fixed support for `MCPTools` usage while calling `agent.acli_app`.
+
+</Update>
+
+<Update label="2025-04-30" description="v1.4.3">
+
+## **New Features:**
+
+- **Llama API:** Added native SDK and OpenAI-like model classes.
+
+## **Improvements:**
+
+- **Claude**: Added support for AWS Session token for Claude.
+- **DynamoDB**: Added support for AWS profile-based authentication.
+
+## **Bug Fixes:**
+
+- **Session Metrics**: Fix for session metrics showing up as 0.
+- **HF Embedder fix**: Fixed Hugging Face Embedder.
+
+</Update>
 <Update label="2025-04-25" description="v1.4.2">
 
 ## New Features:
