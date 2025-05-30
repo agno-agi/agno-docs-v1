@@ -171,12 +171,14 @@ finance_reasearch_team = Team(
     expected_output="A report on the finance industry.",
 )
 
-app = Playground(
+playground = Playground(
     teams=[finance_reasearch_team],
     app_id="teams-demo-playground-app",
     name="Teams Demo Playground",
     description="A playground for teams and agents",
-).get_app()
+)
+
+app = playground.get_app()
 
 if __name__ == "__main__":
     playground.serve("playground:app", reload=True)
