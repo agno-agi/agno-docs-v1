@@ -188,10 +188,12 @@ app = Playground(
     app_id="multimodal_agents_app",
     name="Multimodal Agents App",
     description="Multimodal Agents App",
-).get_app(use_async=False)
+)
+
+app = playground.get_app(use_async=False)
 
 if __name__ == "__main__":  
-    app.serve("multimodal_agents:app", reload=True)
+    playground.serve("multimodal_agents:app", reload=True)
 
 ```
 

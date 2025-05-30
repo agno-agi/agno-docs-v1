@@ -224,16 +224,18 @@ financial_news_team = Team(
     expected_output="A good financial news report.",
 )
 
-app = Playground(
+playground = Playground(
     teams=[research_team, financial_news_team, multimodal_team],
     agents=[web_agent, finance_agent, research_agent, simple_agent],
     app_id="teams_demo_app",
     name="Teams Demo App",
     description="Teams Demo App",
-).get_app()
+)
+
+app = playground.get_app()
 
 if __name__ == "__main__":
-    app.serve("teams_demo:app", reload=True)
+    playground.serve("teams_demo:app", reload=True)
 
 ```
 

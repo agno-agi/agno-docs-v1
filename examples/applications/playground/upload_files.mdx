@@ -83,10 +83,12 @@ video_agent = Agent(
     markdown=True,
 )
 
-app = Playground(agents=[file_agent, audio_agent, video_agent], app_id="upload_files_app", name="Upload Files App", description="Upload Files App").get_app()
+playground = Playground(agents=[file_agent, audio_agent, video_agent], app_id="upload_files_app", name="Upload Files App", description="Upload Files App")
+
+app = playground.get_app()
 
 if __name__ == "__main__":
-    app.serve("upload_files:app", reload=True)
+    playground.serve("upload_files:app", reload=True)
 
 ```
 

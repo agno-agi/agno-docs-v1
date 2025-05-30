@@ -59,10 +59,11 @@ async def run_server() -> None:
         )
 
         playground = Playground(agents=[agent], app_id="mcp_demo", name="MCP Demo", description="MCP Demo").get_app()
+        
         app = playground.get_app()
 
         # Serve the app while keeping the MCPTools context manager alive
-        app.serve("mcp_demo:app", reload=True)
+        playground.serve("mcp_demo:app", reload=True)
 
 
 if __name__ == "__main__":

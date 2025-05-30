@@ -43,17 +43,19 @@ basic_agent = Agent(
     markdown=True,
 )
 
-app = Playground(
+playground = Playground(
     agents=[
         basic_agent,
     ],
     app_id="basic_playground_app",
     name="Basic Playground App",
     description="A basic playground app",
-).get_app()
+)
+
+app = playground.get_app()
 
 if __name__ == "__main__":
-    app.serve("basic:app", reload=True)
+    playground.serve("basic:app", reload=True)
 
 ```
 

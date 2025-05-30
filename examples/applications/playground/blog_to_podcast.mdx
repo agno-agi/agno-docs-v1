@@ -51,17 +51,18 @@ blog_to_podcast_agent = Agent(
     ),
 )
 
-app = Playground(
+playground = Playground(
     agents=[
         blog_to_podcast_agent,
     ],
     app_id="blog_to_podcast_app",
     name="Blog to Podcast App",
     description="Blog to Podcast App",
-).get_app(use_async=False)
+)
+app = playground.get_app(use_async=False)
 
 if __name__ == "__main__":
-    app.serve("blog_to_podcast:app", reload=True)
+    playground.serve("blog_to_podcast:app", reload=True)
 
 ```
 

@@ -60,14 +60,16 @@ finance_agent = Agent(
     markdown=True,
 )
 
-app = Playground(agents=[web_agent, finance_agent], 
+playground = Playground(agents=[web_agent, finance_agent], 
 app_id="playground-app", 
 name="Playground App", 
 description="A playground for agents",
-).get_app()
+)
+
+app = playground.get_app()
 
 if __name__ == "__main__":
-    app.serve("playground:app", reload=True)
+    playground.serve("playground:app", reload=True)
 ```
 
 Remember to export your `OPENAI_API_KEY` before running the playground application.

@@ -41,17 +41,18 @@ basic_agent = Agent(
     markdown=True,
 )
 
-app = Playground(
+playground = Playground(
     agents=[
         basic_agent,
     ],
     app_id="basic_playground_app",
     name="Basic Playground App",
     description="A basic playground app",
-).get_app()
+)
+app = playground.get_app()
 
 if __name__ == "__main__":
-    app.serve("basic_playground_app:app", port=7777, reload=True)
+    playground.serve("basic_playground_app:app", port=7777, reload=True)
 ```
 **To run:**
 
@@ -63,7 +64,7 @@ if __name__ == "__main__":
 ## Core Components
 
 - `Playground`: Wraps Agno agents, teams, or workflows in an API.
-- `app.serve()`: Serves the Playground FastAPI app using Uvicorn.
+- `playground.serve()`: Serves the Playground FastAPI app using Uvicorn.
 
 The `Playground` class is the main entry point for creating Agno Playground applications. It allows you to easily expose your agents, teams, and workflows through a web interface with [Agent Playground](/introduction/playground) or  [Agent UI](/agent-ui/introduction).
 

@@ -151,7 +151,9 @@ async def run_server() -> None:
             markdown=True,
         )
 
-        playground = Playground(agents=[agent], app_id="mcp_demo_app", name="MCP Demo App", description="MCP Demo App").get_app()
+        playground = Playground(agents=[agent], app_id="mcp_demo_app", name="MCP Demo App", description="MCP Demo App")
+
+        app = playground.get_app()
 
         # Serve the app while keeping the MCPTools context manager alive
         playground.serve("github_playground:app", reload=True)

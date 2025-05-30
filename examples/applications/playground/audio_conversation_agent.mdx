@@ -28,10 +28,12 @@ audio_and_text_agent = Agent(
     ),
 )
 
-app = Playground(agents=[audio_and_text_agent], app_id="audio_conversation_app", name="Audio Conversation App", description="Audio Conversation App").get_app()
+playground = Playground(agents=[audio_and_text_agent], app_id="audio_conversation_app", name="Audio Conversation App", description="Audio Conversation App")
+
+app = playground.get_app()
 
 if __name__ == "__main__":
-    app.serve("audio_conversation_agent:app", reload=True)
+    playground.serve("audio_conversation_agent:app", reload=True)
 
 ```
 

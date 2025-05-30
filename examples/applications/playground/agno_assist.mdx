@@ -159,13 +159,15 @@ agno_support_voice = Agent(
 )
 
 # Create and configure the playground app
-app = Playground(agents=[agno_support, agno_support_voice], app_id="agno_assist", name="Agno Assist", description="Agno Assist").get_app()
+playground = Playground(agents=[agno_support, agno_support_voice], app_id="agno_assist", name="Agno Assist", description="Agno Assist")
+
+app = playground.get_app()
 
 if __name__ == "__main__":
     load_kb = False
     if load_kb:
         agent_knowledge.load(recreate=True)
-    app.serve("agno_assist:app", reload=True)
+    playground.serve("agno_assist:app", reload=True)
 
 ```
 ## Usage

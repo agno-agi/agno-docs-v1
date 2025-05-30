@@ -226,7 +226,7 @@ reasoning_finance_team = Team(
 )
 
 
-app = Playground(
+playground = Playground(
     agents=[
         cot_agent,
         reasoning_tool_agent,
@@ -238,11 +238,13 @@ app = Playground(
     app_id="reasoning_demo_app",
     name="Reasoning Demo App",
     description="Reasoning Demo App",
-).get_app()
+)
+
+app = playground.get_app()
 
 if __name__ == "__main__":
     asyncio.run(agno_docs.aload(recreate=True))
-    app.serve("reasoning_demo:app", reload=True)
+    playground.serve("reasoning_demo:app", reload=True)
 
 
 # reasoning_tool_agent

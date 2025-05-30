@@ -93,10 +93,13 @@ youtube_agent = Agent(
     markdown=True,
 )
 
-app = Playground(agents=[web_agent, finance_agent, youtube_agent], app_id="ollama_agents_app", name="Ollama Agents App", description="Ollama Agents App").get_app()
+playground = Playground(agents=[web_agent, finance_agent, youtube_agent], app_id="ollama_agents_app", name="Ollama Agents App", description="Ollama Agents App")
+
+app = playground.get_app()
+
 
 if __name__ == "__main__":
-    app.serve("ollama_agents:app", reload=True)
+    playground.serve("ollama_agents:app", reload=True)
 
 ```
 
