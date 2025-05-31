@@ -173,12 +173,13 @@
                         "models/meta",
                         "models/mistral",
                         "models/nvidia",
+                        "models/nebius",
                         "models/ollama",
                         "models/openai",
                         "models/openai-responses",
                         "models/openrouter",
                         "models/perplexity",
-                        "models/sambanova",
+                        "models/sambanova",                       
                         "models/together",
                         "models/vercel",
                         "models/xai"
@@ -1382,6 +1383,17 @@
                     ]
                 },
                 {
+                    "group": "Nebius",
+                    "pages": [
+                        "examples/models/nebius/basic",
+                        "examples/models/nebius/basic_stream",
+                        "examples/models/nebius/tool_use",
+                        "examples/models/nebius/structured_output",
+                        "examples/models/nebius/storage",
+                        "examples/models/nebius/knowledge"
+                    ]
+                },
+                {
                     "group": "Ollama",
                     "pages": [
                         "examples/models/ollama/basic",
@@ -1536,6 +1548,7 @@
                         "reference/models/meta",
                         "reference/models/mistral",
                         "reference/models/nvidia",
+                        "reference/models/nebius",
                         "reference/models/perplexity",
                         "reference/models/together",
                         "reference/models/xai",
