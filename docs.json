@@ -421,7 +421,8 @@
                 "pages": [
                   "applications/playground/introduction",
                   "applications/fastapi/introduction",
-                  "applications/whatsapp/introduction"
+                  "applications/whatsapp/introduction",
+                  "applications/slack/introduction"
                 ]
               }
             ]
@@ -580,6 +581,14 @@
                       "examples/applications/whatsapp/image_generation_model",
                       "examples/applications/whatsapp/agent_with_media",
                       "examples/applications/whatsapp/agent_with_user_memory"
+                    ]
+                  },
+                  {
+                    "group": "Slack",
+                    "pages": [
+                      "examples/applications/slack/basic",
+                      "examples/applications/slack/reasoning_agent",
+                      "examples/applications/slack/agent_with_user_memory"
                     ]
                   },
                   {
