@@ -13,7 +13,6 @@ Create an agent, wrap it with `FastAPIApp`, and serve it:
 ```python
 from agno.agent import Agent
 from agno.app.fastapi.app import FastAPIApp
-from agno.app.fastapi.serve import serve_fastapi_app
 from agno.models.openai import OpenAIChat
 
 basic_agent = Agent(
@@ -26,14 +25,21 @@ basic_agent = Agent(
 )
 
 # Async router by default (use_async=True)
-app = FastAPIApp(agent=basic_agent).get_app()
+fastapi_app = FastAPIApp(
+    agent=basic_agent,
+    name="Basic Agent",
+    app_id="basic_agent",
+    description="A basic agent that can answer questions and help with tasks.",
+)
+
+app = fastapi_app.get_app()
 
 # For synchronous router:
-# app = FastAPIApp(agent=basic_agent).get_app(use_async=False)
+# app = fastapi_app.get_app(use_async=False)
 
 if __name__ == "__main__":
-    # Assumes script is `basic_app.py`; update if different.
-    serve_fastapi_app("basic_app:app", port=8001, reload=True)
+    fastapi_app.serve(app="basic:app", port=8001, reload=True)
+
 ```
 
 **To run:**
