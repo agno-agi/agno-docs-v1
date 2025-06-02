@@ -2,6 +2,39 @@
 title: "Product updates"
 mode: "wide"
 ---
+
+<Update label="2025-05-30" description="v1.5.6">
+## New Features
+
+- **Team Evals**: All types of Evaluations now support Teams!
+
+## Improvements:
+
+- **Async Workflows**: Added `arun` support for Workflows, so they can now be used with `async` Python.
+- **Parallel Memory Updates**: Made speed improvements when user memories and session summaries are generated.
+- **Reimplement `tool_call_limit`**: Revamp of `tool_call_limit` to make it work across a whole agent run.
+- **Gemini / OpenAI Structure Response:** Improved Gemini and OpenAI Structured Response support. Dict types can now be used when defining structured responses.
+
+## Bug Fixes:
+
+- **Mistral Structured Outputs with Tools**: Fixed an issue preventing Mistral model use with structured output and tools.
+- **Images In Run Without Prompt**: Fixed issues related to images being ignored if there wasn’t a prompt provided on `run`.
+- **Pgvector Upsert Fix: Fixed** Pgvector upsert not copying metadata properly.
+- **Handle AgnoInstrumentor failing with OpenAIResponses:** PR merged in Arize’s openinference repo: https://github.com/Arize-ai/openinference/pull/1701.
+- **Pinecone Filters:** Enabled filters for pinecone vector db.
+- **Combined KB Async:** Add missing async method to Combined KB.
+- **Team Session State Fix**: **`team_session_state`** is now correctly propagated and shared between all members and sub-teams of a team.
+- **Gemini type fix for integers:**
+    - Pydantic models with `Dict[str, int]` fields (and other Dict types) were failing when used as `response_schema` for both OpenAI and Gemini models due to schema format incompatibilities.
+- **Session Name**: `session_name` is now available after a run.
+- **Handle UUIDs while serialization in RedisStorage:** Fixed error object of type UUID is not JSON serializable.
+
+## Updates:
+
+- For managing `team_session_state`, you now have to set `team_session_state` on the `Team` instead of `session_state`.
+
+</Update>
+
 <Update label="2025-05-27" description="v1.5.5">
 ## New Features:
 
