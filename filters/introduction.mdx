@@ -31,7 +31,7 @@ You can apply knowledge filters in two main ways:
 
 ## Filters in Traditional RAG vs. Agentic RAG
 
-When configuring your Agent it is important to choose the right approach for your use case. There are two broad approaches to RAG with Agno agents: traditional RAG and agentic RAG. With a traditional RAG approach youset `add_references=True` to ensure that references are included in the responses. For Agentic RAG, you set `search_knowledge=True` to leverage the agent's ability to infer and apply filters automatically. 
+When configuring your Agent it is important to choose the right approach for your use case. There are two broad approaches to RAG with Agno agents: traditional RAG and agentic RAG. With a traditional RAG approach you set `add_references=True` to ensure that references are included in the system message sent to the LLM. For Agentic RAG, you set `search_knowledge=True` to leverage the agent's ability search the knowledge base directly.
 
 Example:
 ```python
