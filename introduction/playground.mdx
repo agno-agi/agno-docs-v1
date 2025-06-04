@@ -1,6 +1,6 @@
 ---
-title: Agno Playground
-description: "**Agno provides a beautiful Agent UI for interacting with your agents and teams.**"
+title: Agent Playground
+description: "**Agno provides a beautiful frontend for interacting with your agents and teams.**"
 ---
 
 <Frame caption="Agent Playground">
@@ -15,9 +15,9 @@ description: "**Agno provides a beautiful Agent UI for interacting with your age
 No data is sent to [agno.com](https://app.agno.com), all agent data is stored locally in your sqlite database.
 </Note>
 
-## Running Playground Locally
+## Run Playground Server Locally
 
-Let's run the playground application locally so we can chat with our Agents using the Agent UI. Create a file `playground.py`
+Let's run the Playground Server locally so we can chat with our Agents using the Agent UI. Create a file `playground.py`
 
 ```python playground.py
 from agno.agent import Agent
@@ -93,9 +93,9 @@ setx AGNO_API_KEY ag-***
 </CodeGroup>
 
 
-## Run the playground app
+## Run the Playground Server
 
-Install dependencies and run your playground application:
+Install dependencies and run your playground server:
 
 ```shell
 pip install openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agno
@@ -103,7 +103,7 @@ pip install openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agn
 python playground.py
 ```
 
-## View the playground
+## View the Playground
 
 - Open the link provided or navigate to `http://app.agno.com/playground` (login required)
 - Select the `localhost:7777` endpoint and start chatting with your agents!
@@ -116,17 +116,15 @@ python playground.py
   src="/images/AgentPlayground.mp4"
 ></video>
 
-## Open Source Agent UI
+<Accordion title="Looking for a self-hosted alternative?">
 
-Looking for a self-hosted alternative? Check out our Open Source [Agent UI](https://github.com/agno-agi/agent-ui) - A modern Agent interface built with Next.js and TypeScript that works exactly like the Agent Playground.
+Looking for a self-hosted alternative? Check out our [Open Source Agent UI](https://github.com/agno-agi/agent-ui) - A modern Agent interface built with Next.js and TypeScript that works exactly like the Agent Playground.
 
-<Frame caption="Agent UI Interface">
-  <img
-    src="/images/agent-ui.png"
-    style={{ borderRadius: '10px', width: '100%', maxWidth: '800px' }}
-    alt="agent-ui"
-  />
-</Frame>
+<img
+  src="/images/agent-ui.png"
+  style={{ borderRadius: '10px', width: '100%', maxWidth: '800px' }}
+  alt="agent-ui"
+/>
 
 ### Get Started with Agent UI
 
@@ -141,13 +139,14 @@ cd agent-ui && pnpm install && pnpm dev
 
 The UI will connect to `localhost:7777` by default, matching the Playground setup above. Visit [GitHub](https://github.com/agno-agi/agent-ui) for more details.
 
+</Accordion>
 
 ## Troubleshooting
 
 We have identified that certain browsers may experience compatibility issues with the Agent Playground, potentially resulting in connection errors.
 
 #### Brave Browser
-Users may encounter difficulties connecting to localhost endpoints when using Brave, and the `ag setup` command might not work as expected. 
+Users may encounter difficulties connecting to localhost endpoints when using Brave, and the `ag setup` command might not work as expected.
 To resolve this issue, please try disabling Brave Shields in your browser settings.
 
 <video
@@ -157,8 +156,6 @@ To resolve this issue, please try disabling Brave Shields in your browser settin
   className="w-full aspect-video"
   src="/videos/brave-shields.mp4"
 ></video>
-
-
 
 #### Safari Browser
 Similar connection issues have been reported with Safari when attempting to connect to localhost endpoints and running `ag setup`.
