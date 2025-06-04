@@ -459,7 +459,8 @@
             "pages": [
               "how-to/install",
               "how-to/contribute",
-              "how-to/phidata-to-agno"
+              "how-to/phidata-to-agno",
+              "how-to/authentication"
             ]
           }
         ]
@@ -1531,7 +1532,8 @@
               "faq/openai-key-request-for-other-models",
               "faq/structured-outputs",
               "faq/When-to-use-a-Workflow-vs-a-Team-in-Agno",
-              "faq/memoryv2"
+              "faq/memoryv2",
+              "faq/playground-connection"
             ]
           }
         ]
