@@ -1,9 +1,10 @@
 ---
-title: Agent Playground
-description: "**Agno provides a beautiful frontend for interacting with your agents and teams.**"
+title: Playground
+description: "**Agno provides a beautiful frontend for interacting with your agentic systems.**"
 ---
 
-<Frame caption="Agent Playground">
+
+<Frame caption="Agno Platform - Playground">
   <img
     height="200"
     src="/images/agent_playground.png"
@@ -11,13 +12,35 @@ description: "**Agno provides a beautiful frontend for interacting with your age
   />
 </Frame>
 
+
+Agno Playground gives a robust interface to test your agentic systems.
+
+- **Streaming Support**: Real-time response streaming and intermediate states back to the user.
+
+- **Storage**: Visualize conversation history right in the playground. [<Icon icon="arrow-up-right-from-square" size={14} />](/storage/introduction)
+
+- **Memory**: Visualize user details, preferences, and session summaries across conversations. [<Icon icon="arrow-up-right-from-square" size={14} />](/memory/introduction)
+
+- **Configuration**: Comprehensive configuration interface allowing you to see agent parameters, model settings, tool configurations. 
+
+- **Reasoning Support**: Built-in support for detailed reasoning traces displayed in the playground interface. [<Icon icon="arrow-up-right-from-square" size={14} />](/reasoning/introduction)
+
+- **Multi-Agent Systems**: Support for multi-agent teams and workflows. [<Icon icon="arrow-up-right-from-square" size={14} />](/teams/introduction)
+
+
+
+
 <Note>
 No data is sent to [agno.com](https://app.agno.com), all agent data is stored locally in your sqlite database.
 </Note>
 
-## Run Playground Server Locally
+## Interact with your agents Locally
 
-Let's run the Playground Server locally so we can chat with our Agents using the Agent UI. Create a file `playground.py`
+<Steps>
+
+<Step title="Create a file with sample code">
+
+
 
 ```python playground.py
 from agno.agent import Agent
@@ -68,7 +91,9 @@ Remember to export your `OPENAI_API_KEY` before running the playground applicati
 
 <Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
 
-## Authenticate with Agno
+</Step>
+
+<Step title="Authenticate with Agno">
 
 Authenticate with [agno.com](https://app.agno.com) so your local application can let agno know which port you are running the playground on. Run:
 
@@ -92,8 +117,9 @@ setx AGNO_API_KEY ag-***
 ```
 </CodeGroup>
 
+</Step>
 
-## Run the Playground Server
+<Step title="Run the Playground Server">
 
 Install dependencies and run your playground server:
 
@@ -103,19 +129,24 @@ pip install openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agn
 python playground.py
 ```
 
-## View the Playground
+</Step>
+
+<Step title="View the Playground">
 
 - Open the link provided or navigate to `http://app.agno.com/playground` (login required)
-- Select the `localhost:7777` endpoint and start chatting with your agents!
+- Add/Select the `localhost:7777` endpoint and start chatting with your agents!
 
 <video
   autoPlay
   muted
   controls
   className="w-full aspect-video"
-  src="/images/AgentPlayground.mp4"
+  src="/videos/playground.mp4"
 ></video>
 
+</Step>
+
+</Steps>
 <Accordion title="Looking for a self-hosted alternative?">
 
 Looking for a self-hosted alternative? Check out our [Open Source Agent UI](https://github.com/agno-agi/agent-ui) - A modern Agent interface built with Next.js and TypeScript that works exactly like the Agent Playground.
