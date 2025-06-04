@@ -1,5 +1,6 @@
 ---
 title: Hooks
+description: Learn how to use tool hooks to modify the behavior of a tool.
 ---
 
 ## Tool Hooks
@@ -95,9 +96,9 @@ agent = Agent(
 )
 ```
 
-## Pre and Post Hooks (Deprecated)
+## Pre and Post Hooks
 
-Pre and post hooks let's you modify what happens before and after a tool is called.
+Pre and post hooks let's you modify what happens before and after a tool is called. It is an alternative to tool hooks.
 
 Set the `pre_hook` in the `@tool` decorator to run a function before the tool call.
 

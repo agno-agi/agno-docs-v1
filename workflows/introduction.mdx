@@ -1,8 +1,7 @@
 ---
-title: Introduction
+title: What are Workflows?
+sidebarTitle: Overview
 ---
-
-## What are Workflows?
 
 Workflows are deterministic, stateful, multi-agent programs that are built for production applications. They're battle-tested, incredibly powerful and offer the following benefits:
 
@@ -73,6 +72,10 @@ if __name__ == "__main__":
 1. Define your workflow as a class by inheriting the `Workflow` class.
 2. Add agents or teams as attributes on the workflow. These isn't a strict requirement, just helps us map the session_id of the agent to the session_id of the workflow.
 3. Implement the workflow logic in the `run()` method. This is the main function that will be called when you run the workflow (**the workflow entrypoint**). This function gives us so much control over the process, some agents can stream, other's can generate structured outputs, agents can be run in parallel using `async.gather()`, some agents can have validation logic that runs before returning the response.
+
+<Note>
+You can also execute workflows asynchronously using the `arun` method. This allows for more efficient and non-blocking operations when calling agents. For a detailed example, please refer to the [Async Workflows Example](examples/workflows/async-hackernews-reporter).
+</Note>
 
 ## Full Example: Blog Post Generator
 

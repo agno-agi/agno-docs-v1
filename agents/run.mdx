@@ -1,5 +1,6 @@
 ---
 title: Agent.run()
+description: Learn how to run an agent and get the response.
 ---
 
 The `Agent.run()` function runs the agent and generates a response, either as a `RunResponse` object or a stream of `RunResponse` objects.
@@ -33,6 +34,12 @@ pprint_run_response(response_stream, markdown=True)
 
 The `Agent.run()` function returns either a `RunResponse` object or an `Iterator[RunResponse]` when `stream=True`. It has the following attributes:
 
+<Note>
+Understanding Metrics
+
+For a detailed explanation of how metrics are collected and used, please refer to the [Metrics Documentation](/agents/metrics).
+</Note>
+
 ### RunResponse Attributes
 
 | Attribute        | Type                   | Default                       | Description                                                                                                                      |
@@ -55,3 +62,41 @@ The `Agent.run()` function returns either a `RunResponse` object or an `Iterator
 | `response_audio` | `ModelResponseAudio`   | `None`                        | The model's raw response in audio.                                                                                               |
 | `created_at`     | `int`                  | -                             | Unix timestamp of the response creation.                                                                                         |
 | `extra_data`     | `RunResponseExtraData` | `None`                        | Extra data containing optional fields like `references`, `add_messages`, `history`, `reasoning_steps`, and `reasoning_messages`. |
+
+
+## Streaming Intermediate Steps
+
+Throughout the execution of an agent, multiple events take place, and we provide these events in real-time for enhanced agent transparency.
+
+You can enable streaming of intermediate steps by setting `stream_intermediate_steps=True`.
+
+```python
+# Stream with intermediate steps
+response_stream = agent.run(
+    "Tell me a 5 second short story about a lion",
+    stream=True,
+    stream_intermediate_steps=True
+)
+```
+
+### Event Types
+
+The following events are sent by the `Agent.run()` and `Agent.arun()` functions depending on agent's configuration:
+
+| Event Type | Description |
+|------------|-------------|
+| `RunStarted` | Indicates the start of a run |
+| `RunResponse` | Contains the model's response text as individual chunks |
+| `RunCompleted` | Signals successful completion of the run |
+| `RunError` | Indicates an error occurred during the run |
+| `RunCancelled` | Signals that the run was cancelled |
+| `ToolCallStarted` | Indicates the start of a tool call |
+| `ToolCallCompleted` | Signals completion of a tool call. This also contains the tool call results. |
+| `ReasoningStarted` | Indicates the start of the agent's reasoning process |
+| `ReasoningStep` | Contains a single step in the reasoning process |
+| `ReasoningCompleted` | Signals completion of the reasoning process |
+| `UpdatingMemory` | Indicates that the agent is updating its memory |
+| `WorkflowStarted` | Indicates the start of a workflow |
+| `WorkflowCompleted` | Signals completion of a workflow |
+
+You can see this behavior in action in our [Playground](https://app.agno.com/playground/agents?endpoint=demo.agnoagents.com&agent=reasoning-agent).

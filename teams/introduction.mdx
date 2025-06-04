@@ -1,9 +1,8 @@
 ---
-title: 'Introduction'
-description: '**Build autonomous multi-agent systems with Agent Teams**'
+title: What are Agent Teams?
+sidebarTitle: Overview
+description: Build autonomous multi-agent systems with Agno Agent Teams.
 ---
-
-## What are Agent Teams?
 
 Agent Teams are a collection of Agents (or other sub-teams) that work together to accomplish tasks. Agent Teams can either **"coordinate"**, **"collaborate"** or **"route"** to solve a task.
 
@@ -65,39 +64,6 @@ if __name__ == "__main__":
     multi_language_team.print_response("Come stai?", stream=True)  # Italian
 ```
 
-## Agentic Team Context
-
-The Team Leader maintains a shared context that is updated agentically (i.e. by the team leader) and is sent to team members if needed.
-
-**Agentic Context is critical for effective information sharing and collaboration between agents and the quality of the team's responses depends on how well the team leader manages this shared agentic context.** This means we should use better models for the team leader to ensure the quality of the team's responses.
-
-<Note>
-The tasks and responses of team members are automatically added to the team context, but Agentic Context needs to be enabled by the developer.
-</Note>
-
-### Enable Agentic Context
-
-To enable the Team leader to maintain Agentic Context, set `enable_agentic_context=True`.
-
-This will allow the team leader to maintain and update the team context during the run.
-
-```python
-team = Team(
-    members=[agent1, agent2, agent3],
-    enable_agentic_context=True,  # Enable Team Leader to maintain Agentic Context
-)
-```
-
-### Team Member Interactions
-
-Agent Teams can share interactions between members, allowing agents to learn from each other's outputs:
-
-```python
-team = Team(
-    members=[agent1, agent2, agent3],
-    share_member_interactions=True,  # Share interactions
-)
-```
 
 ## Team Memory and History
 
@@ -219,26 +185,6 @@ team_with_memory.print_response("Hi! My name is John Doe.")
 team_with_memory.print_response("What is my name?")
 ```
 
-
-## Running Teams
-
-Teams support both synchronous and asynchronous execution, with optional streaming:
-
-```python
-# Synchronous execution
-result = team.run("Create an analysis of recent AI developments")
-
-# Asynchronous execution
-result = await team.arun("Create an analysis of recent AI developments")
-
-# Streaming responses
-for chunk in team.run("Create an analysis of recent AI developments", stream=True):
-    print(chunk.content, end="", flush=True)
-
-# Asynchronous streaming
-async for chunk in await team.arun("Create an analysis of recent AI developments", stream=True):
-    print(chunk.content, end="", flush=True)
-```
 
 ## Examples
 
