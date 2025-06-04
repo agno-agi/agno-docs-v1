@@ -421,7 +421,8 @@
                 "pages": [
                   "applications/playground/introduction",
                   "applications/fastapi/introduction",
-                  "applications/whatsapp/introduction"
+                  "applications/whatsapp/introduction",
+                  "applications/ag-ui/introduction"
                 ]
               }
             ]
@@ -595,6 +596,14 @@
                       "examples/applications/playground/mcp_demo",
                       "examples/applications/playground/reasoning_demo",
                       "examples/applications/playground/upload_files"
+                    ]
+                  },
+                  {
+                    "group": "AG-UI",
+                    "pages": [
+                      "examples/applications/ag-ui/basic",
+                      "examples/applications/ag-ui/agent_with_tools",
+                      "examples/applications/ag-ui/team"
                     ]
                   }
                 ]
