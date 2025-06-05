@@ -243,38 +243,3 @@ python level_3_agent.py
 ```
 
 <Tip>You can use the `Memory` and `Reasoning` separately, you don't need to use them together.</Tip>
-
-## Debug Logs
-
-Want to see the system prompt, user messages and tool calls?
-
-Agno includes a built-in debugger that will print debug logs in the terminal. Set `debug_mode=True` on any agent or set `AGNO_DEBUG=true` in your environment.
-
-```python debug_logs.py
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.tools.yfinance import YFinanceTools
-
-agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
-    tools=[YFinanceTools(stock_price=True)],
-    instructions="Use tables to display data. Don't include any other text.",
-    markdown=True,
-    debug_mode=True,
-)
-agent.print_response("What is the stock price of Apple?", stream=True)
-```
-
-Run the agent to view debug logs in the terminal:
-
-```shell
-python debug_logs.py
-```
-  <video
-    autoPlay
-    muted
-    controls
-    className="w-full aspect-video"
-    style={{ borderRadius: '8px' }}
-    src="/videos/debug_logs.mp4"
-  ></video>

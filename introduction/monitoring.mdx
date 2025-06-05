@@ -1,72 +1,108 @@
 ---
-title: Agent Monitoring
-description: Track and monitor your Agents in real-time.
+title: Monitoring & Debugging
+description: Monitor your Agents, Teams and Workflows in real-time.
 ---
 
-## Session Monitoring
+# Agent Monitoring
 
-You can track your agent sessions and performance in real-time on [app.agno.com](https://app.agno.com).
+You can track your Agent in real-time on [app.agno.com](https://app.agno.com).
 
-## Authenticate & Enable Monitoring
+## Authenticate
 
-<Steps>
-<Step title="Authenticate using CLI or API key">
-
-To log agent sessions locally, you need to authenticate using one of these methods:
-
-**Method A: Log in using your command line interface**
-
-This will store your authentication token locally.
-
-```bash
-ag setup
-```
-
-**Method B: Log using an API key**
-
-Get your API key from [Agno App](https://app.agno.com/settings) and use it to log agent sessions to your workspace.
+Get your API key from the [settings page](https://app.agno.com/settings) and set the `AGNO_API_KEY` env var.
 
 ```bash
 export AGNO_API_KEY=your_api_key_here
 ```
-</Step>
 
-<Step title="Enable Monitoring">
+## Enable Monitoring
 
-After authentication, enable monitoring for a particular agent or globally for all agents.
+Enable monitoring for a single agent or globally for all agents by setting `AGNO_MONITOR=true`.
 
-**Method A: For a Specific Agent**
+### For a Specific Agent
+
 ```python
 agent = Agent(markdown=True, monitoring=True)
 ```
 
-**Method B: Globally via Environment Variable**
+### Globally for all Agents
+
 ```bash
 export AGNO_MONITOR=true
 ```
+
+## Monitor Your Agents
+
+Run your agent and view the sessions on the [sessions page](https://app.agno.com/sessions).
+
+<Steps>
+
+<Step title="Create a file with sample code">
+
+```python monitoring.py
+from agno.agent import Agent
+
+agent = Agent(markdown=True, monitoring=True)
+agent.print_response("Share a 2 sentence horror story")
+```
+
 </Step>
 
-<Step title="Track Your Agent Sessions">
+<Step title="Run your Agent">
 
-Once monitoring is enabled, you can run your agent and view its session data.
+```shell
+python monitoring.py
+```
 
-1. Create a file `monitoring.py` with this sample code:
-   ```python monitoring.py
-   from agno.agent import Agent
+</Step>
 
-   agent = Agent(markdown=True, monitoring=True)
-   agent.print_response("Share a 2 sentence horror story")
-   ```
+<Step title="View your sessions">
 
-2. Run your Agent
-
-3. View your sessions at [app.agno.com/sessions](https://app.agno.com/sessions)
+View your sessions at [app.agno.com/sessions](https://app.agno.com/sessions)
 
 <img height="200" src="/images/monitoring.png" style={{ borderRadius: "8px" }} />
+
 </Step>
+
 </Steps>
+
 <Info>Facing issues? Check out our [troubleshooting guide](/faq/cli-auth)</Info>
 
+## Debug Logs
+
+Want to see the system prompt, user messages and tool calls?
+
+Agno includes a built-in debugger that will print debug logs in the terminal. Set `debug_mode=True` on any agent or set `AGNO_DEBUG=true` in your environment.
+
+```python debug_logs.py
+from agno.agent import Agent
+from agno.models.anthropic import Claude
+from agno.tools.yfinance import YFinanceTools
+
+agent = Agent(
+    model=Claude(id="claude-sonnet-4-20250514"),
+    tools=[YFinanceTools(stock_price=True)],
+    instructions="Use tables to display data. Don't include any other text.",
+    markdown=True,
+    debug_mode=True,
+)
+agent.print_response("What is the stock price of Apple?", stream=True)
+```
+
+Run the agent to view debug logs in the terminal:
+
+```shell
+python debug_logs.py
+```
+
+<video
+   autoPlay
+   muted
+   controls
+   className="w-full aspect-video"
+   style={{ borderRadius: '8px' }}
+   src="/videos/debug_logs.mp4"
+></video>
 
 ## Agent Registry
 
