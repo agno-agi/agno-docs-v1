@@ -14,7 +14,6 @@ Create an agent, wrap it with `WhatsappAPI`, and serve it:
 ```python
 from agno.agent import Agent
 from agno.app.whatsapp.app import WhatsappAPI
-from agno.app.whatsapp.serve import serve_whatsapp_app
 from agno.models.openai import OpenAIChat
 from agno.tools.openai import OpenAITools
 
@@ -28,17 +27,17 @@ image_agent = Agent(
 )
 
 # Async router by default (use_async=True)
-app = WhatsappAPI(
+whatsapp_app = WhatsappAPI(
     agent=image_agent,
-).get_app()
+    name="Image Generation Tools",
+    app_id="image_generation_tools",
+    description="A tool that generates images using the OpenAI API.",
+)
 
-# For synchronous router (though typically async is preferred for WhatsApp webhooks):
-# app = WhatsappAPI(agent=image_agent).get_app(use_async=False)
+app = whatsapp_app.get_app()
 
 if __name__ == "__main__":
-    # Assumes script is `image_generation_tools.py`; update if different.
-    # Ensure your ngrok tunnel points to this port (e.g., http://localhost:8000)
-    serve_whatsapp_app("image_generation_tools:app", port=8000, reload=True)
+    whatsapp_app.serve(app="image_generation_tools:app", port=8000, reload=True)
 ```
 
 **To run:**
@@ -51,7 +50,7 @@ if __name__ == "__main__":
 ## Core Components
 
 - `WhatsappAPI`: Wraps Agno agents/teams for WhatsApp integration via FastAPI.
-- `serve_whatsapp_app`: Serves the FastAPI app using Uvicorn, configured for WhatsApp.
+- `WhatsappAPI.serve`: Serves the FastAPI app using Uvicorn, configured for WhatsApp.
 
 ## `WhatsappAPI` Class
 
@@ -99,10 +98,6 @@ Endpoints are accessible at the `prefix` (default is root level: `""`).
         *   `200 OK`: `{"status": "processing"}` or `{"status": "ignored"}`.
         *   `403 Forbidden`: Invalid signature.
         *   `500 Internal Server Error`: Other processing errors.
-
-## Serving the Application (`serve_whatsapp_app`)
-
-Serves the `WhatsappAPI`'s FastAPI app using Uvicorn.
 
 ### Parameters
 

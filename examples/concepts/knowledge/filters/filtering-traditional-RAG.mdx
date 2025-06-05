@@ -1,0 +1,130 @@
+---
+title: Knowledge filtering using Traditional RAG
+description: Learn how to filter knowledge in Traditional RAG using metadata like user IDs, document types, and years. This example demonstrates how to set up a knowledge base with filters and query it effectively.
+---
+
+## Code
+
+```python filtering-traditional-RAG.py
+from agno.agent import Agent
+from agno.knowledge.text import TextKnowledgeBase
+from agno.utils.media import (
+    SampleDataFileExtension,
+    download_knowledge_filters_sample_data,
+)
+from agno.vectordb.lancedb import LanceDb
+
+# Download all sample CVs and get their paths
+downloaded_cv_paths = download_knowledge_filters_sample_data(
+    num_files=5, file_extension=SampleDataFileExtension.TXT
+)
+
+# Initialize LanceDB
+# By default, it stores data in /tmp/lancedb
+vector_db = LanceDb(
+    table_name="recipes",
+    uri="tmp/lancedb",  # You can change this path to store data elsewhere
+)
+
+# Step 1: Initialize knowledge base with documents and metadata
+knowledge_base = TextKnowledgeBase(
+    path=[
+        {
+            "path": downloaded_cv_paths[0],
+            "metadata": {
+                "user_id": "jordan_mitchell",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[1],
+            "metadata": {
+                "user_id": "taylor_brooks",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[2],
+            "metadata": {
+                "user_id": "morgan_lee",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[3],
+            "metadata": {
+                "user_id": "casey_jordan",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[4],
+            "metadata": {
+                "user_id": "alex_rivera",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+    ],
+    vector_db=vector_db,
+)
+
+# Load all documents into the vector database
+knowledge_base.load(recreate=True)
+
+# Step 2: Query the knowledge base with different filter combinations
+
+# Option 1: Filters on the Agent
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=False,
+    add_references=True,
+    knowledge_filters={"user_id": "jordan_mitchell"},
+)
+
+# Query for Jordan Mitchell's experience and skills
+agent.print_response(
+    "Tell me about Jordan Mitchell's experience and skills",
+    markdown=True,
+)
+
+# Option 2: Filters on the run/print_response
+# agent = Agent(
+#     knowledge=knowledge_base,
+#     add_references=True,
+#     search_knowledge=False,
+# )
+
+# Query for Taylor Brooks as a candidate
+# agent.print_response(
+#     "Tell me about Taylor Brooks as a candidate",
+#     knowledge_filters={"user_id": "taylor_brooks"},
+#     markdown=True,
+# )
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno lancedb openai
+    ```
+  </Step>
+
+  <Step title="Run the example">
+    <CodeGroup>
+    ```bash Mac
+    python filtering-traditional-RAG.py
+    ```
+
+    ```bash Windows
+    python filtering-traditional-RAG.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

@@ -422,7 +422,8 @@
                   "applications/playground/introduction",
                   "applications/fastapi/introduction",
                   "applications/whatsapp/introduction",
-                  "applications/ag-ui/introduction"
+                  "applications/ag-ui/introduction",
+                  "applications/slack/introduction"
                 ]
               }
             ]
@@ -581,6 +582,14 @@
                       "examples/applications/whatsapp/image_generation_model",
                       "examples/applications/whatsapp/agent_with_media",
                       "examples/applications/whatsapp/agent_with_user_memory"
+                    ]
+                  },
+                  {
+                    "group": "Slack",
+                    "pages": [
+                      "examples/applications/slack/basic",
+                      "examples/applications/slack/reasoning_agent",
+                      "examples/applications/slack/agent_with_user_memory"
                     ]
                   },
                   {
@@ -788,12 +797,66 @@
               {
                 "group": "Knowledge",
                 "pages": [
-                  "examples/concepts/knowledge/arxiv-kb",
-                  "examples/concepts/knowledge/combined-kb",
-                  "examples/concepts/knowledge/csv-kb",
-                  "examples/concepts/knowledge/csv-url-kb",
-                  "examples/concepts/knowledge/doc-kb",
-                  "examples/concepts/knowledge/docx-kb"
+                    {
+                        "group": "Knowledge Filters",
+                        "pages": [
+                            {
+                                "group": "Pdf",
+                                "pages": [
+                                    "examples/concepts/knowledge/filters/pdf/filtering",
+                                    "examples/concepts/knowledge/filters/pdf/agentic_filtering",
+                                    "examples/concepts/knowledge/filters/pdf/filtering_on_load"
+                                ]
+                            },
+                            {
+                                "group": "Pdf-Url",
+                                "pages": [
+                                    "examples/concepts/knowledge/filters/pdf_url/filtering",
+                                    "examples/concepts/knowledge/filters/pdf_url/agentic_filtering",
+                                    "examples/concepts/knowledge/filters/pdf_url/filtering_on_load"
+                                ]
+                            },
+                            {
+                                "group": "Json",
+                                "pages": [
+                                    "examples/concepts/knowledge/filters/json/filtering",
+                                    "examples/concepts/knowledge/filters/json/agentic_filtering",
+                                    "examples/concepts/knowledge/filters/json/filtering_on_load"
+                                ]
+                            },
+                            {
+                                "group": "Docx",
+                                "pages": [
+                                    "examples/concepts/knowledge/filters/docx/filtering",
+                                    "examples/concepts/knowledge/filters/docx/agentic_filtering",
+                                    "examples/concepts/knowledge/filters/docx/filtering_on_load"
+                                ]
+                            },
+                            {
+                                "group": "Text",
+                                "pages": [
+                                    "examples/concepts/knowledge/filters/text/filtering",
+                                    "examples/concepts/knowledge/filters/text/agentic_filtering",
+                                    "examples/concepts/knowledge/filters/text/filtering_on_load"
+                                ]
+                            },
+                            "examples/concepts/knowledge/filters/filtering_qdrant_db",
+                            "examples/concepts/knowledge/filters/filtering_milvus_db",
+                            "examples/concepts/knowledge/filters/filtering_mongo_db",
+                            "examples/concepts/knowledge/filters/filtering_pgvector",
+                            "examples/concepts/knowledge/filters/filtering_weaviate",
+                            "examples/concepts/knowledge/filters/filtering_lance_db",
+                            "examples/concepts/knowledge/filters/filtering_chroma_db",
+                            "examples/concepts/knowledge/filters/filtering_pinecone",
+                            "examples/concepts/knowledge/filters/filtering-traditional-RAG"
+                        ]
+                    },
+                    "examples/concepts/knowledge/arxiv-kb",
+                    "examples/concepts/knowledge/combined-kb",
+                    "examples/concepts/knowledge/csv-kb",
+                    "examples/concepts/knowledge/csv-url-kb",
+                    "examples/concepts/knowledge/doc-kb",
+                    "examples/concepts/knowledge/docx-kb"
                 ]
               },
               {
