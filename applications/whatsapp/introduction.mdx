@@ -50,7 +50,7 @@ if __name__ == "__main__":
 ## Core Components
 
 - `WhatsappAPI`: Wraps Agno agents/teams for WhatsApp integration via FastAPI.
-- `serve_whatsapp_app`: Serves the FastAPI app using Uvicorn, configured for WhatsApp.
+- `WhatsappAPI.serve`: Serves the FastAPI app using Uvicorn, configured for WhatsApp.
 
 ## `WhatsappAPI` Class
 
@@ -98,10 +98,6 @@ Endpoints are accessible at the `prefix` (default is root level: `""`).
         *   `200 OK`: `{"status": "processing"}` or `{"status": "ignored"}`.
         *   `403 Forbidden`: Invalid signature.
         *   `500 Internal Server Error`: Other processing errors.
-
-## Serving the Application (`serve_whatsapp_app`)
-
-Serves the `WhatsappAPI`'s FastAPI app using Uvicorn.
 
 ### Parameters
 

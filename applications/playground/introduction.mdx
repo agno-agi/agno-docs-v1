@@ -65,7 +65,7 @@ if __name__ == "__main__":
 ## Core Components
 
 - `Playground`: Wraps Agno agents, teams, or workflows in an API.
-- `serve_playground_app`: Serves the Playground FastAPI app using Uvicorn.
+- `Playground.serve`: Serves the Playground FastAPI app using Uvicorn.
 
 The `Playground` class is the main entry point for creating Agno Playground applications. It allows you to easily expose your agents, teams, and workflows through a web interface with [Agent Playground](/introduction/playground) or  [Agent UI](/agent-ui/introduction).
 
@@ -98,10 +98,6 @@ The `Playground` class is the main entry point for creating Agno Playground appl
 ### Endpoints
 
 Endpoints are available at the specified `prefix` (default `/v1`) combined with the playground router's prefix (`/playground`). For example, the status endpoint is typically `/v1/playground/status`.
-
-## Serving the Application
-
- `serve_playground_app` serves the Playground's FastAPI app using Uvicorn.
 
 ### Parameters
 
