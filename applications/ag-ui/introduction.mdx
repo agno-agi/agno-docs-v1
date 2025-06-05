@@ -5,22 +5,38 @@ description: Expose your Agno Agent as a AG-UI compatible app
 
 AG-UI, or [Agent-User Interaction Protocol](https://github.com/ag-ui-protocol/ag-ui), is a protocol standarizing how AI agents connect to front-end applications.
 
-You can use Agno's `AGUIApp` class to easily make your Agno Agents and Teams compatible with AG-UI. It looks like this:
 
-```python my_agent.py
-from agno.agent.agent import Agent
-from agno.app.agui.app import AGUIApp
-from agno.models.openai import OpenAIChat
+## Example usage
 
-# Setup the Agno Agent
-chat_agent = Agent(model=OpenAIChat(id="gpt-4o"))
+<Steps>
+  <Step title="Install the backend dependencies">
+    ```bash
+    pip install agno ag-ui-protocol
+    ```
+  </Step>
 
-# Setup the AG-UI App
-agui_app = AGUIApp(agent=chat_agent)
-agui_app.serve(app="basic:app", port=8000, reload=True)
-```
+  <Step title="Run the backend">
+    Now let's run a `AGUIApp` exposing an Agno Agent. You can use the previous code!
+  </Step>
 
-That's it! Your Agent is now exposed in an AG-UI compatible way, and can be used in AG-UI compatible front-ends:
+  <Step title="Run the frontend">
+
+
+You can use [Dojo](https://github.com/ag-ui-protocol/ag-ui/tree/main/typescript-sdk/apps/dojo), an advanced and customizable option to use as frontend for AG-UI agents.
+
+1. Clone the project: `git clone https://github.com/ag-ui-protocol/ag-ui.git`
+2. Follow the instructions [here](https://github.com/ag-ui-protocol/ag-ui/tree/main/typescript-sdk/apps/dojo) to learn how to install the needed dependencies and run the project.
+3. Remember to install the dependencies in `/ag-ui/typescript-sdk` with `pnpm install`, and to build the Agno package in `/integrations/agno` with `pnpm run build`.
+4. You can now run your Dojo! It will show our Agno agent as one of the available options.
+</Step>
+
+<Step title="Chat with your Agno Agent">
+
+Done! If you are running Dojo as your front-end, you can now go to http://localhost:3000 in your browser and chat with your Agno Agent.
+
+</Step>
+</Steps>
+
 
 ![AG-UI Dojo screenshot](/images/agui-dojo.png)
 
