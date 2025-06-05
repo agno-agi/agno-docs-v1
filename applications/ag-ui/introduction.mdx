@@ -79,14 +79,14 @@ Main entry point for Agno AG-UI apps.
 
 Endpoints are available at the specified `prefix` (default `/v1`).
 
-### 1. `POST /agui/awp`
+### 1. `POST /agui`
 
 This is the main entrypoint to interact with your Agno Agent or Team.
 
 It expects a `RunAgentInput` object (from the `ag-ui-protocol` package) as defined by the protocol. You can read more about it in [their docs](https://docs.ag-ui.com/quickstart/server).
 
 
-## Serving the Application (`serve_fastapi_app`)
+## Serving the Application (`serve`)
 
 Serves the FastAPI app using Uvicorn.
 
