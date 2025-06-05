@@ -30,9 +30,7 @@ Agno Playground gives a robust interface to test your agentic systems.
 
 
 
-<Note>
-No data is sent to [agno.com](https://app.agno.com), all agent data is stored locally in your sqlite database.
-</Note>
+
 
 ## Interact with your agents Locally
 
@@ -95,27 +93,14 @@ Remember to export your `OPENAI_API_KEY` before running the playground applicati
 
 <Step title="Authenticate with Agno">
 
-Authenticate with [agno.com](https://app.agno.com) so your local application can let agno know which port you are running the playground on. Run:
+Authenticate with [agno.com](https://app.agno.com) so your local application can let agno know which port you are running the playground on.
+Check out [Authenticatication guide](how-to/authentication) for instructions on how to Authenticate with Agno.
 
 <Note>
-No data is sent to agno.com, only that you're running a playground application at port 7777.
+No data is sent to agno.com, all agent data is stored locally in your sqlite database.
 </Note>
 
-```shell
-ag setup
-```
 
-[or] export your `AGNO_API_KEY` from [app.agno.com](https://app.agno.com/settings)
-
-<CodeGroup>
-```bash Mac
-export AGNO_API_KEY=ag-***
-```
-
-```bash Windows
-setx AGNO_API_KEY ag-***
-```
-</CodeGroup>
 
 </Step>
 
@@ -133,7 +118,7 @@ python playground.py
 
 <Step title="View the Playground">
 
-- Open the link provided or navigate to `http://app.agno.com/playground` (login required)
+- Open the link provided or navigate to `http://app.agno.com/playground` (login required).
 - Add/Select the `localhost:7777` endpoint and start chatting with your agents!
 
 <video
@@ -172,22 +157,4 @@ The UI will connect to `localhost:7777` by default, matching the Playground setu
 
 </Accordion>
 
-## Troubleshooting
-
-We have identified that certain browsers may experience compatibility issues with the Agent Playground, potentially resulting in connection errors.
-
-#### Brave Browser
-Users may encounter difficulties connecting to localhost endpoints when using Brave, and the `ag setup` command might not work as expected.
-To resolve this issue, please try disabling Brave Shields in your browser settings.
-
-<video
-  autoPlay
-  muted
-  controls
-  className="w-full aspect-video"
-  src="/videos/brave-shields.mp4"
-></video>
-
-#### Safari Browser
-Similar connection issues have been reported with Safari when attempting to connect to localhost endpoints and running `ag setup`.
-While we are actively working on a solution, we kindly recommend using alternative browsers such as Chrome, Firefox, or Edge for the best experience.
+<Info>Facing connection issues? Check out our [troubleshooting guide](/faq/playground-connection)</Info>
