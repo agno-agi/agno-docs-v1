@@ -1,13 +1,13 @@
 ---
 title: Basic
+description: Expose your Agno Agent as a FastAPI app
 ---
 
 ## Code
 
-```python cookbook/apps/fastapi/basic.py  
+```python cookbook/apps/fastapi/basic.py
 from agno.agent import Agent
 from agno.app.fastapi.app import FastAPIApp
-from agno.app.fastapi.serve import serve_fastapi_app
 from agno.models.openai import OpenAIChat
 
 basic_agent = Agent(
@@ -19,12 +19,17 @@ basic_agent = Agent(
     markdown=True,
 )
 
-app = FastAPIApp(
+fastapi_app = FastAPIApp(
     agent=basic_agent,
-).get_async_router()
+    name="Basic Agent",
+    app_id="basic_agent",
+    description="A basic agent that can answer questions and help with tasks.",
+)
+
+app = fastapi_app.get_app()
 
 if __name__ == "__main__":
-    serve_fastapi_app("basic:app", port=8001, reload=True)
+    fastapi_app.serve(app="basic:app", port=8001, reload=True)
 
 ```
 
@@ -56,4 +61,4 @@ if __name__ == "__main__":
     ```
     </CodeGroup>
   </Step>
-</Steps> 
+</Steps>

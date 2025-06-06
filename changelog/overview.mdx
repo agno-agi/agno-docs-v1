@@ -3,6 +3,77 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-06-05" description="v1.5.9">
+## New Features:
+
+- **AG-UI App**: Expose your Agno Agents and Teams with an AG-UI compatible FastAPI APP.
+- **vLLM Support**: Added support for running vLLM models via Agno.
+- **Serper Toolkit:** Added `SerperTools` toolkit to search Google
+- **LangDB Support**: Added LangDB AI Gateway support into Agno.
+- **LightRAG server support:** Added LightRAG support which provides a fast, graph-based RAG system that enhances document retrieval and knowledge querying capabilities.
+- **Parser Model:** Added ability to use an external model to apply a structured output to a model response
+- **Pdf Bytes Knowledge: I**ntroduced a new knowledge base class: `PDFBytesKnowledgeBase`, which allows the ingestion of in-memory PDF content via bytes or IO streams instead of file paths.
+- **Qdrant Mcp Server:** Added MCP support for Qdrant
+- **Daytona integration:** Added `DaytonaTools` toolkit to let Agents execute code remotely on Daytona sandboxes
+- **Expand URL addition in Crawl4ai: I**ntroduced a new URL expansion feature directly into the Crawl4ai toolkit. Our agents frequently encounter shortened URLs that crawl4ai cannot scrape effectively, leading to incomplete data retrieval. With this update, shortened URLs are expanded to their final destinations before being processed by the crawler.
+- **AWS SES Tools**: Added `AWSSESTools` to send emails via AWS SES.
+- **Location Aware Agents:** Added `add_location_to_instructions` to automatically detect the current location where the agent is running and add that to the system message.
+
+## Improvements:
+
+- **FastAPIApp Update**: FastAPIApp was updated and `agent` was replaced with `agents`, `team` with `teams` and `workflows` was added. This also now requires you to specify which agent/team/workflow to run.
+    - E.g. `http://localhost:8001/runs?agent_id=my-agent`
+- **ZepTools Updates**: Updated `ZepTools` to remove deprecated features.
+- **GmailTools Attachments**: `GmailTools` now support attachments.
+- **Improve code reusability by using fetch with retry and async_fetch_with_retry:** updated `fetch_with_retry` and `async_fetc_with_retry` to be reused in`url_reader.py`
+- **Add name to evaluation examples:** Included name param in evaluation examples
+- **XTools Search**: Added `search_posts` for `XTools`.
+
+## Bug Fixes:
+
+- **Claude Prompt Tokens**: Fixed a bug with prompt tokens not propagating in Claude model class
+- **Add type in base App class for registry:** Can have different types of app like- `slack`, `whatsapp`, etc
+- **Accept empty array of pdf urls:** Fixed an issue where empty PDF URL arrays were not accepted, preventing knowledge base queries without adding new documents
+- **Anthropic cache metrics propagation:** Fixed a bug where Anthropic's prompt caching metrics were not propagating to Agent responses, despite the raw Anthropic API working correctly. This minimal fix ensures cache performance metrics are properly captured and reported.
+- **Handle non serializable objects on RunResponse dict parsing:**
+    - Updated `RunResponse.to_dict()` to handle non-serializable fields, as Python enums
+</Update>
+
+<Update label="2025-06-03" description="v1.5.8">
+## New Features:
+
+- **Slack App**: Introducing the `SlackApp` to allow you to create agents for Slack! The app allows agents to respond to individual messages or on group chats, and it creates threads to respond to messages.
+- **Visualization Tools**: Added `VisualizationTools` that uses `matplotlib` to give agents the ability to make graphs.
+- **Brave Search Tools:** Introduced a new toolkit for integrating `BraveSearch` that allows agent to search the web using brave search api.
+
+## Improvements:
+
+- **Pass filters for traditional RAG:** Properly pass down `knowledge_filters` even if `self.add_references=True` which is a case for traditional RAG (diff from Agentic RAG)
+- **Add infer param to Mem0:** Added infer as a param to `Mem0Tools`
+
+## Bug Fixes:
+
+- **Searxng tool initialization:**  Fixed Searxng tool initialization error
+    
+    ```
+    AttributeError: 'Searxng' object has no attribute 'include_tools'
+    ```
+    
+    and added comprehensive unit tests.
+    
+- **Fix for enum as a response model for Gemini:** With 1.5.6, a [bug](https://discord.com/channels/965734768803192842/965734768803192845/1377999191632121926) was introduced now allowing enum as a data type for Gemini response model.
+- **OpenAI parsing structured output:** With the changes in the OpenAI library we don't need to parse the structured output separately.
+- **Fix accuracy evals monitoring:** Added logic to handle monitoring when evaluating Teams in the run function of AccuracyEval
+
+## Updates
+
+- **Updates to Apps:**
+    - `FastAPIApp` does not have a default `prefix` anymore and `/run` → `/runs` (i.e. the created run endpoint is now `<your_domain>/runs`)
+    - `serve_fastapi_app` is now replaced with `.serve()` on the instance of `FastAPIApp`.
+    - `serve_whatsapp_app` is now replaced with `.serve()` on the instance of `WhatsappAPI`.
+
+</Update>
+
 <Update label="2025-05-30" description="v1.5.6">
 ## New Features
 

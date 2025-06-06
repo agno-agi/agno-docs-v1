@@ -229,6 +229,7 @@
                           "tools/toolkits/others/confluence",
                           "tools/toolkits/others/custom_api",
                           "tools/toolkits/others/dalle",
+                          "tools/toolkits/others/daytona",
                           "tools/toolkits/others/eleven_labs",
                           "tools/toolkits/others/e2b",
                           "tools/toolkits/others/fal",
@@ -421,7 +422,9 @@
                 "pages": [
                   "applications/playground/introduction",
                   "applications/fastapi/introduction",
-                  "applications/whatsapp/introduction"
+                  "applications/whatsapp/introduction",
+                  "applications/ag-ui/introduction",
+                  "applications/slack/introduction"
                 ]
               }
             ]
@@ -584,6 +587,14 @@
                     ]
                   },
                   {
+                    "group": "Slack",
+                    "pages": [
+                      "examples/applications/slack/basic",
+                      "examples/applications/slack/reasoning_agent",
+                      "examples/applications/slack/agent_with_user_memory"
+                    ]
+                  },
+                  {
                     "group": "Playground",
                     "pages": [
                       "examples/applications/playground/basic",
@@ -596,6 +607,14 @@
                       "examples/applications/playground/mcp_demo",
                       "examples/applications/playground/reasoning_demo",
                       "examples/applications/playground/upload_files"
+                    ]
+                  },
+                  {
+                    "group": "AG-UI",
+                    "pages": [
+                      "examples/applications/ag-ui/basic",
+                      "examples/applications/ag-ui/agent_with_tools",
+                      "examples/applications/ag-ui/team"
                     ]
                   }
                 ]
@@ -1012,6 +1031,7 @@
                       "examples/concepts/tools/others/composio",
                       "examples/concepts/tools/others/confluence",
                       "examples/concepts/tools/others/dalle",
+                      "examples/concepts/tools/others/daytona",
                       "examples/concepts/tools/others/desi_vocal",
                       "examples/concepts/tools/others/e2b",
                       "examples/concepts/tools/others/fal",
@@ -1129,6 +1149,7 @@
                   "examples/concepts/others/agent_extra_metrics",
                   "examples/concepts/others/agent_metrics",
                   "examples/concepts/others/datetime_instructions",
+                  "examples/concepts/others/location_instructions",
                   "examples/concepts/others/image_input_high_fidelity",
                   "examples/concepts/others/input_as_dict",
                   "examples/concepts/others/input_as_list",

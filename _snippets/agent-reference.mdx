@@ -52,7 +52,8 @@
 | `additional_context` | `Optional[str]` | `None` | Additional context added to the end of the system message |
 | `markdown` | `bool` | `False` | If markdown=true, add instructions to format the output using markdown |
 | `add_name_to_instructions` | `bool` | `False` | If True, add the agent name to the instructions |
-| `add_datetime_to_instructions` | `bool` | `False` | If True, add the current datetime to the instructions |
+| `add_datetime_to_instructions` | `bool` | `False` | If True, add the current datetime to the system message |
+| `add_location_to_instructions` | `bool` | `False` | If True, add the current location to the system message |
 | `add_state_in_messages` | `bool` | `False` | If True, add the session state variables in messages |
 | `add_messages` | `Optional[List[Union[Dict, Message]]]` | `None` | A list of extra messages added after the system message |
 | `user_message` | `Optional[Union[List, Dict, str, Callable, Message]]` | `None` | Provide the user message |
