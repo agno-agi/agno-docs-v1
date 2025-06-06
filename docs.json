@@ -332,6 +332,7 @@
                   "knowledge/markdown",
                   "knowledge/pdf",
                   "knowledge/pdf-url",
+                  "knowledge/pdf-bytes",
                   "knowledge/s3_pdf",
                   "knowledge/s3_text",
                   "knowledge/text",
