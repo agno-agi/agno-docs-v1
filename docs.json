@@ -328,6 +328,7 @@
                   "knowledge/document",
                   "knowledge/json",
                   "knowledge/langchain",
+                  "knowledge/lightrag",
                   "knowledge/llamaindex",
                   "knowledge/markdown",
                   "knowledge/pdf",
