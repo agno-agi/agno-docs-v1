@@ -1,0 +1,86 @@
+---
+title: vLLM OpenAI
+description: Use vLLM with Agno through an OpenAI-compatible server.
+---
+
+## Overview
+
+vLLM provides an OpenAI-compatible API service that can be deployed as a server implementing the OpenAI API protocol. This guide explains how to set up and use vLLM with Agno.
+
+## Environment Setup
+
+### Installation
+
+Install vLLM using pip in a clean environment:
+
+```shell
+pip install "vllm>=0.8.5"
+```
+
+**Note:** The prebuilt vLLM package has strict dependencies on PyTorch and CUDA versions. For installation troubleshooting, refer to the [official vLLM installation guide](https://docs.vllm.ai/en/latest/getting_started/installation.html).
+
+### Starting the Server
+
+Launch the vLLM server with the following command:
+
+```shell
+vllm serve Qwen/Qwen3-8B --trust-remote-code
+```
+
+By default, the server starts at `http://localhost:8000`. You can customize the address using `--host` and `--port` arguments.
+
+**Note:** If the model path does not point to a valid local directory, vLLM will automatically download the model files from Hugging Face Hub.
+
+### Tool Call Parsing
+
+vLLM supports parsing tool calling content from model generation into structured messages. Enable this feature with:
+
+```shell
+vllm serve Qwen/Qwen2.5-7B-Instruct \
+    --enable-auto-tool-choice \
+    --tool-call-parser hermes \
+    --dtype float16 \
+    --max-model-len 8192 \
+    --gpu-memory-utilization 0.9
+```
+
+For detailed information on function calling, refer to the [Qwen Function Calling guide](https://qwen.readthedocs.io/en/latest/framework/function_call.html#vllm).
+
+## Usage Example
+
+Here's how to use vLLM with an Agno Agent:
+
+<CodeGroup>
+```python basic.py
+from agno.agent import Agent, RunResponse
+from agno.models.vllm import vLLM
+
+agent = Agent(
+    model=vLLM(id="Qwen/Qwen2.5-7B-Instruct", top_k=20, enable_thinking=False),
+    markdown=True,
+)
+
+agent.print_response("Share a 2 sentence horror story")
+```
+</CodeGroup>
+
+## Configuration Options
+
+The vLLM OpenAI class accepts the following parameters:
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `id` | str | Model identifier | `"not-set"` |
+| `name` | str | API name | `"vLLM"` |
+| `provider` | str | API provider | `"vLLM"` |
+| `api_key` | Optional[str] | API key for authentication | `VLLM_API_KEY` env var or `"EMPTY"` |
+| `base_url` | Optional[str] | vLLM server URL | `VLLM_BASE_URL` env var or `"http://localhost:8000/v1/"` |
+| `temperature` | float | Sampling temperature for randomness | `0.7` |
+| `top_p` | float | Nucleus sampling probability | `0.8` |
+| `presence_penalty` | float | Repetition penalty | `1.5` |
+| `top_k` | Optional[int] | Top-k sampling parameter | `None` |
+| `enable_thinking` | Optional[bool] | Special mode flag for reasoning | `None` |
+
+## Additional Examples
+
+For more comprehensive examples and use cases, check out the cookbook examples [here](../examples/models/vllm).

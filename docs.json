@@ -127,6 +127,12 @@
                   "models/sambanova",
                   "models/together",
                   "models/vercel",
+                  {
+                    "group": "vLLM",
+                    "pages": [
+                      "models/vllm_openai"
+                    ]
+                  },
                   "models/xai"
                 ]
               },
@@ -799,66 +805,66 @@
               {
                 "group": "Knowledge",
                 "pages": [
-                    {
-                        "group": "Knowledge Filters",
+                  {
+                    "group": "Knowledge Filters",
+                    "pages": [
+                      {
+                        "group": "Pdf",
                         "pages": [
-                            {
-                                "group": "Pdf",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/pdf/filtering",
-                                    "examples/concepts/knowledge/filters/pdf/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/pdf/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Pdf-Url",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/pdf_url/filtering",
-                                    "examples/concepts/knowledge/filters/pdf_url/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/pdf_url/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Json",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/json/filtering",
-                                    "examples/concepts/knowledge/filters/json/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/json/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Docx",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/docx/filtering",
-                                    "examples/concepts/knowledge/filters/docx/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/docx/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Text",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/text/filtering",
-                                    "examples/concepts/knowledge/filters/text/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/text/filtering_on_load"
-                                ]
-                            },
-                            "examples/concepts/knowledge/filters/filtering_qdrant_db",
-                            "examples/concepts/knowledge/filters/filtering_milvus_db",
-                            "examples/concepts/knowledge/filters/filtering_mongo_db",
-                            "examples/concepts/knowledge/filters/filtering_pgvector",
-                            "examples/concepts/knowledge/filters/filtering_weaviate",
-                            "examples/concepts/knowledge/filters/filtering_lance_db",
-                            "examples/concepts/knowledge/filters/filtering_chroma_db",
-                            "examples/concepts/knowledge/filters/filtering_pinecone",
-                            "examples/concepts/knowledge/filters/filtering-traditional-RAG"
+                          "examples/concepts/knowledge/filters/pdf/filtering",
+                          "examples/concepts/knowledge/filters/pdf/agentic_filtering",
+                          "examples/concepts/knowledge/filters/pdf/filtering_on_load"
                         ]
-                    },
-                    "examples/concepts/knowledge/arxiv-kb",
-                    "examples/concepts/knowledge/combined-kb",
-                    "examples/concepts/knowledge/csv-kb",
-                    "examples/concepts/knowledge/csv-url-kb",
-                    "examples/concepts/knowledge/doc-kb",
-                    "examples/concepts/knowledge/docx-kb"
+                      },
+                      {
+                        "group": "Pdf-Url",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/pdf_url/filtering",
+                          "examples/concepts/knowledge/filters/pdf_url/agentic_filtering",
+                          "examples/concepts/knowledge/filters/pdf_url/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Json",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/json/filtering",
+                          "examples/concepts/knowledge/filters/json/agentic_filtering",
+                          "examples/concepts/knowledge/filters/json/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Docx",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/docx/filtering",
+                          "examples/concepts/knowledge/filters/docx/agentic_filtering",
+                          "examples/concepts/knowledge/filters/docx/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Text",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/text/filtering",
+                          "examples/concepts/knowledge/filters/text/agentic_filtering",
+                          "examples/concepts/knowledge/filters/text/filtering_on_load"
+                        ]
+                      },
+                      "examples/concepts/knowledge/filters/filtering_qdrant_db",
+                      "examples/concepts/knowledge/filters/filtering_milvus_db",
+                      "examples/concepts/knowledge/filters/filtering_mongo_db",
+                      "examples/concepts/knowledge/filters/filtering_pgvector",
+                      "examples/concepts/knowledge/filters/filtering_weaviate",
+                      "examples/concepts/knowledge/filters/filtering_lance_db",
+                      "examples/concepts/knowledge/filters/filtering_chroma_db",
+                      "examples/concepts/knowledge/filters/filtering_pinecone",
+                      "examples/concepts/knowledge/filters/filtering-traditional-RAG"
+                    ]
+                  },
+                  "examples/concepts/knowledge/arxiv-kb",
+                  "examples/concepts/knowledge/combined-kb",
+                  "examples/concepts/knowledge/csv-kb",
+                  "examples/concepts/knowledge/csv-url-kb",
+                  "examples/concepts/knowledge/doc-kb",
+                  "examples/concepts/knowledge/docx-kb"
                 ]
               },
               {
@@ -1475,19 +1481,28 @@
                 ]
               },
               {
-                "group": "XAI",
-                "pages": [
-                  "examples/models/xai/basic",
-                  "examples/models/xai/basic_stream",
-                  "examples/models/xai/tool_use"
-                ]
-              },
-              {
                 "group": "Vercel",
                 "pages": [
                   "examples/models/vercel/basic",
                   "examples/models/vercel/basic_stream",
                   "examples/models/vercel/tool_use"
+                ]
+              },
+              {
+                "group": "vLLM OpenAI",
+                "pages": [
+                  "examples/models/vllm_openai/basic",
+                  "examples/models/vllm_openai/basic_stream",
+                  "examples/models/vllm_openai/structured_output",
+                  "examples/models/vllm_openai/tool_use"
+                ]
+              },
+              {
+                "group": "XAI",
+                "pages": [
+                  "examples/models/xai/basic",
+                  "examples/models/xai/basic_stream",
+                  "examples/models/xai/tool_use"
                 ]
               }
             ]
