@@ -1570,14 +1570,16 @@
                 "group": "Agents",
                 "pages": [
                   "reference/agents/agent",
-                  "reference/agents/session"
+                  "reference/agents/session",
+                  "reference/agents/run-response"
                 ]
               },
               {
                 "group": "Teams",
                 "pages": [
                   "reference/teams/team",
-                  "reference/teams/session"
+                  "reference/teams/session",
+                  "reference/teams/team-response"
                 ]
               },
               {
