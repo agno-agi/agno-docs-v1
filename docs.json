@@ -155,7 +155,8 @@
                           "tools/toolkits/search/searxng",
                           "tools/toolkits/search/serpapi",
                           "tools/toolkits/search/tavily",
-                          "tools/toolkits/search/wikipedia"
+                          "tools/toolkits/search/wikipedia",
+                          "tools/toolkits/search/bravesearch"
                         ]
                       },
                       {
@@ -972,7 +973,8 @@
                       "examples/concepts/tools/search/searxng",
                       "examples/concepts/tools/search/serpapi",
                       "examples/concepts/tools/search/tavily",
-                      "examples/concepts/tools/search/wikipedia"
+                      "examples/concepts/tools/search/wikipedia",
+                      "examples/concepts/tools/search/bravesearch"
                     ]
                   },
                   {
