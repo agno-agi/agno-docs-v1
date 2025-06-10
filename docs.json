@@ -329,6 +329,7 @@
                   "knowledge/document",
                   "knowledge/json",
                   "knowledge/langchain",
+                  "knowledge/lightrag",
                   "knowledge/llamaindex",
                   "knowledge/markdown",
                   "knowledge/pdf",
@@ -1570,14 +1571,16 @@
                 "group": "Agents",
                 "pages": [
                   "reference/agents/agent",
-                  "reference/agents/session"
+                  "reference/agents/session",
+                  "reference/agents/run-response"
                 ]
               },
               {
                 "group": "Teams",
                 "pages": [
                   "reference/teams/team",
-                  "reference/teams/session"
+                  "reference/teams/session",
+                  "reference/teams/team-response"
                 ]
               },
               {
