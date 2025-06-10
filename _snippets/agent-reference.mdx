@@ -121,7 +121,7 @@ Run the agent.
 - `knowledge_filters` (Optional[Dict[str, Any]]): Knowledge filters to apply
 
 **Returns:**
-- `Union[RunResponse, Iterator[RunResponse]]`: Either a RunResponse or an iterator of RunResponses, depending on the `stream` parameter
+- `Union[RunResponse, Iterator[RunResponseEvent]]`: Either a RunResponse or an iterator of RunResponseEvents, depending on the `stream` parameter
 
 ### `aprint_response`
 
@@ -164,7 +164,7 @@ Run the agent asynchronously.
 - `knowledge_filters` (Optional[Dict[str, Any]]): Knowledge filters to apply
 
 **Returns:**
-- `Union[RunResponse, AsyncIterator[RunResponse]]`: Either a RunResponse or an iterator of RunResponses, depending on the `stream` parameter
+- `Union[RunResponse, AsyncIterator[RunResponseEvent]]`: Either a RunResponse or an iterator of RunResponseEvents, depending on the `stream` parameter
 
 
 ### `continue_run`
@@ -183,7 +183,7 @@ Continue a run.
 - `knowledge_filters` (Optional[Dict[str, Any]]): Knowledge filters to apply
 
 **Returns:**
-- `Union[RunResponse, Iterator[RunResponse]]`: Either a RunResponse or an iterator of RunResponses, depending on the `stream` parameter
+- `Union[RunResponse, Iterator[RunResponseEvent]]`: Either a RunResponse or an iterator of RunResponseEvents, depending on the `stream` parameter
 
 ### `acontinue_run`
 
@@ -201,7 +201,7 @@ Continue a run asynchronously.
 - `knowledge_filters` (Optional[Dict[str, Any]]): Knowledge filters to apply
 
 **Returns:**
-- `Union[RunResponse, AsyncIterator[RunResponse]]`: Either a RunResponse or an iterator of RunResponses, depending on the `stream` parameter
+- `Union[RunResponse, AsyncIterator[RunResponseEvent]]`: Either a RunResponse or an iterator of RunResponseEvents, depending on the `stream` parameter
 
 ### get_session_summary
 

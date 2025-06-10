@@ -155,7 +155,8 @@
                           "tools/toolkits/search/searxng",
                           "tools/toolkits/search/serpapi",
                           "tools/toolkits/search/tavily",
-                          "tools/toolkits/search/wikipedia"
+                          "tools/toolkits/search/wikipedia",
+                          "tools/toolkits/search/bravesearch"
                         ]
                       },
                       {
@@ -973,7 +974,8 @@
                       "examples/concepts/tools/search/searxng",
                       "examples/concepts/tools/search/serpapi",
                       "examples/concepts/tools/search/tavily",
-                      "examples/concepts/tools/search/wikipedia"
+                      "examples/concepts/tools/search/wikipedia",
+                      "examples/concepts/tools/search/bravesearch"
                     ]
                   },
                   {
@@ -1570,14 +1572,16 @@
                 "group": "Agents",
                 "pages": [
                   "reference/agents/agent",
-                  "reference/agents/session"
+                  "reference/agents/session",
+                  "reference/agents/run-response"
                 ]
               },
               {
                 "group": "Teams",
                 "pages": [
                   "reference/teams/team",
-                  "reference/teams/session"
+                  "reference/teams/session",
+                  "reference/teams/team-response"
                 ]
               },
               {
