@@ -1800,5 +1800,10 @@
       "family": "Inter",
       "weight": 400
     }
+  },
+"integrations": {
+    "posthog": {
+        "apiKey": "phc_MjuWiUsZe9racJUG1IpiikP0gPInPwL0206gjfsBWSk"
+    }
   }
 }
