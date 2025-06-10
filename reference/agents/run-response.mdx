@@ -9,6 +9,7 @@ sidebarTitle: Run Response & Events
 | ---------------- | ---------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `content`        | `Any`                  | `None`                        | Content of the response.                                                                                                         |
 | `content_type`   | `str`                  | `"str"`                       | Specifies the data type of the content.                                                                                          |
+| `status`         | `str`                  | `"RUNNING"`                   | Status of the run. "RUNNING", "PAUSED", "CANCELLED", or "ERROR".                                                                  |
 | `thinking`       | `str`                  | `None`                        | Any thinking content the model produced (used by Anthropic models).                                                                                       |
 | `reasoning_content` | `str`               | `None`                     | Any reasoning content the model produced.                                                                                       |
 | `messages`       | `List[Message]`        | `None`                        | A list of messages included in the response.                                                                                     |
