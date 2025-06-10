@@ -1,0 +1,64 @@
+---
+title: Code Generation
+---
+
+## Code
+
+```python cookbook/models/vllm/code_generation.py
+"""Code generation example with DeepSeek-Coder.
+Run vLLM model: vllm serve deepseek-ai/deepseek-coder-6.7b-instruct \
+        --dtype float32 \
+        --tool-call-parser pythonic
+"""
+
+from agno.agent import Agent
+from agno.models.vllm import vLLM
+
+agent = Agent(
+    model=vLLM(id="deepseek-ai/deepseek-coder-6.7b-instruct"),
+    description="You are an expert Python developer.",
+    markdown=True,
+)
+
+agent.print_response(
+    "Write a Python function that returns the nth Fibonacci number using dynamic programming."
+)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install vLLM">
+    ```bash
+    pip install vllm
+    ```
+  </Step>
+
+  <Step title="Start vLLM server">
+    ```bash
+    vllm serve deepseek-ai/deepseek-coder-6.7b-instruct \
+        --dtype float32 \
+        --tool-call-parser pythonic
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/vllm/code_generation.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/vllm/code_generation.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 

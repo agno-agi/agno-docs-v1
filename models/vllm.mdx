@@ -1,0 +1,98 @@
+---
+title: vLLM
+---
+[vLLM](https://docs.vllm.ai/en/latest/) is a fast and easy-to-use library for LLM inference and serving, designed for high-throughput and memory-efficient LLM serving. It seamlessly integrates with popular HuggingFace models and provides an OpenAI-compatible API server.
+
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+
+- `meta-llama/Llama-3.1-8B-Instruct` models are good for most basic use-cases.
+- `Qwen/Qwen2.5-7B-Instruct` models perform well with tool use and reasoning.
+- `mistralai/Mistral-7B-Instruct-v0.3` models offer strong performance with efficient inference.
+
+## Prerequisites
+
+Install vLLM and start serving a model:
+
+```bash install vLLM
+pip install vllm
+```
+
+```bash start vLLM server
+vllm serve Qwen/Qwen2.5-7B-Instruct \
+    --enable-auto-tool-choice \
+    --tool-call-parser hermes \
+    --dtype float16 \
+    --max-model-len 8192 \
+    --gpu-memory-utilization 0.9
+```
+
+This spins up the vLLM server with an OpenAI-compatible API at `http://localhost:8000`.
+
+## Example
+
+Basic Agent
+<CodeGroup>
+
+```python agent.py
+from agno.agent import Agent
+from agno.models.vllm import vLLM
+
+agent = Agent(
+    model=vLLM(id="meta-llama/Llama-3.1-8B-Instruct"),
+    base_url="http://your-server:8000/v1" #localhost by default
+    markdown=True
+)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
+
+</CodeGroup>
+
+## Advanced Usage
+
+### With Tools
+
+vLLM models work seamlessly with Agno tools:
+
+```python with_tools.py
+from agno.agent import Agent
+from agno.models.vllm import vLLM
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    model=vLLM(id="meta-llama/Llama-3.1-8B-Instruct"),
+    tools=[DuckDuckGoTools()],
+    show_tool_calls=True,
+    markdown=True
+)
+
+agent.print_response("What's the latest news about AI?")
+```
+
+<Note> View more examples [here](../examples/models/vllm). </Note>
+
+## Performance Benefits
+
+vLLM offers several performance advantages:
+
+- **High Throughput**: State-of-the-art serving throughput with continuous batching
+- **Memory Efficiency**: Efficient attention memory management with PagedAttention
+- **Optimized Execution**: Fast model execution with CUDA/HIP graph and optimized kernels
+- **Flexible Serving**: Support for various decoding algorithms and distributed inference
+
+## Supported Models
+
+vLLM supports most popular open-source models on HuggingFace, including:
+
+- **Transformer-like LLMs**: Llama, GPT, Qwen, Mistral, etc.
+- **Mixture-of-Expert LLMs**: Mixtral, DeepSeek-V2, etc.
+- **Multi-modal LLMs**: LLaVA and other vision-language models
+
+For the full list of supported models, see the [vLLM documentation](https://docs.vllm.ai/en/latest/models/supported_models.html).
+
+## Params
+
+<Snippet file="model-vllm-params.mdx" />
+
+`vLLM` is a subclass of the [Model](/reference/models/model) class and has access to the same params.
