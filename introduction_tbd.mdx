@@ -1,20 +1,18 @@
 ---
 title: What is Agno?
-description: "Agno is a framework for building enterprise-grade superintelligence."
+description: "**Agno is a full-stack framework for building Multi-Agent Systems with memory, knowledge and reasoning.**"
 sidebarTitle: What is Agno?
 ---
 
-Superintelligence is a system of agents, multi-agent teams, and agentic workflows with shared memory, knowledge and reasoning. Engineers use Agno to build the 5 levels of intelligence:
+Engineers and researchers use Agno to build the 5 levels of Agentic Systems:
 
 - **Level 1:** Agents with tools and instructions ([example](/introduction/agents#level-1%3A-agents-with-tools-and-instructions)).
-- **Level 2:** Agents with memory and knowledge ([example](/introduction/agents#level-2%3A-agents-with-knowledge-and-storage)).
-- **Level 3:** Agents with memory, knowledge and reasoning ([example](/introduction/agents#level-3%3A-agents-with-memory-and-reasoning)).
-- **Level 4:** Multi-Agent Teams with shared memory and context ([example](/introduction/multi-agent-systems#level-4%3A-agent-teams-that-can-reason-and-collaborate)).
-- **Level 5:** Agentic Workflows with shared state and deterministic execution ([example](/introduction/multi-agent-systems#level-5%3A-agentic-workflows-with-state-and-determinism)).
+- **Level 2:** Agents with knowledge and storage ([example](/introduction/agents#level-2%3A-agents-with-knowledge-and-storage)).
+- **Level 3:** Agents with memory and reasoning ([example](/introduction/agents#level-3%3A-agents-with-memory-and-reasoning)).
+- **Level 4:** Agent Teams that can reason and collaborate ([example](/introduction/multi-agent-systems#level-4%3A-agent-teams-that-can-reason-and-collaborate)).
+- **Level 5:** Agentic Workflows with state and determinism ([example](/introduction/multi-agent-systems#level-5%3A-agentic-workflows-with-state-and-determinism)).
 
-Combined together, these agents, teams and workflows form superintelligence.
-
-**Demo Example:** Level 1 Agent that uses Reasoning and YFinance to answer questions:
+**Example:** Level 1 Reasoning Agent that uses the YFinance API to answer questions:
 
 ```python Reasoning Finance Agent
 from agno.agent import Agent
@@ -32,10 +30,6 @@ reasoning_agent = Agent(
     markdown=True,
 )
 ```
-
-# Agent OS
-
-Agent OS is the user interface for superintelligence. It connects directly to your live-running agents, teams and workflows, and allows you to run, monitor and manage them.
 
 <Accordion title="Watch the reasoning finance agent in action">
   <video
