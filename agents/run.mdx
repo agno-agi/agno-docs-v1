@@ -42,6 +42,10 @@ See detailed documentation in the [RunResponse](/reference/agents/run-response) 
 
 To enable streaming, set `stream=True` when calling `run()`. This will return an iterator of `RunResponseEvent` objects instead of a single response.
 
+<Note>
+From `agno` version `1.6.0`, the `Agent.run()` function returns an iterator of `RunResponseEvent`, not of `RunResponse` objects.
+</Note>
+
 ```python
 from typing import Iterator
 from agno.agent import Agent, RunResponseEvent
@@ -130,4 +134,4 @@ The following events are yielded by the `Agent.run()` and `Agent.arun()` functio
 | `MemoryUpdateStarted` | Indicates that the agent is updating its memory |
 | `MemoryUpdateCompleted` | Signals completion of a memory update |
 
-See detailed documentation in the [RunResponse](/reference/agents/run-response) documentation.
+See detailed documentation in the [RunResponseEvent](/reference/agents/run-response) documentation.
