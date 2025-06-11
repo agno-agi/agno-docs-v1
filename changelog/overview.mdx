@@ -2,6 +2,204 @@
 title: "Product updates"
 mode: "wide"
 ---
+
+<Update label="2025-06-05" description="v1.5.9">
+## New Features:
+
+- **AG-UI App**: Expose your Agno Agents and Teams with an AG-UI compatible FastAPI APP.
+- **vLLM Support**: Added support for running vLLM models via Agno.
+- **Serper Toolkit:** Added `SerperTools` toolkit to search Google
+- **LangDB Support**: Added LangDB AI Gateway support into Agno.
+- **LightRAG server support:** Added LightRAG support which provides a fast, graph-based RAG system that enhances document retrieval and knowledge querying capabilities.
+- **Parser Model:** Added ability to use an external model to apply a structured output to a model response
+- **Pdf Bytes Knowledge: I**ntroduced a new knowledge base class: `PDFBytesKnowledgeBase`, which allows the ingestion of in-memory PDF content via bytes or IO streams instead of file paths.
+- **Qdrant Mcp Server:** Added MCP support for Qdrant
+- **Daytona integration:** Added `DaytonaTools` toolkit to let Agents execute code remotely on Daytona sandboxes
+- **Expand URL addition in Crawl4ai: I**ntroduced a new URL expansion feature directly into the Crawl4ai toolkit. Our agents frequently encounter shortened URLs that crawl4ai cannot scrape effectively, leading to incomplete data retrieval. With this update, shortened URLs are expanded to their final destinations before being processed by the crawler.
+- **AWS SES Tools**: Added `AWSSESTools` to send emails via AWS SES.
+- **Location Aware Agents:** Added `add_location_to_instructions` to automatically detect the current location where the agent is running and add that to the system message.
+
+## Improvements:
+
+- **FastAPIApp Update**: FastAPIApp was updated and `agent` was replaced with `agents`, `team` with `teams` and `workflows` was added. This also now requires you to specify which agent/team/workflow to run.
+    - E.g. `http://localhost:8001/runs?agent_id=my-agent`
+- **ZepTools Updates**: Updated `ZepTools` to remove deprecated features.
+- **GmailTools Attachments**: `GmailTools` now support attachments.
+- **Improve code reusability by using fetch with retry and async_fetch_with_retry:** updated `fetch_with_retry` and `async_fetc_with_retry` to be reused in`url_reader.py`
+- **Add name to evaluation examples:** Included name param in evaluation examples
+- **XTools Search**: Added `search_posts` for `XTools`.
+
+## Bug Fixes:
+
+- **Claude Prompt Tokens**: Fixed a bug with prompt tokens not propagating in Claude model class
+- **Add type in base App class for registry:** Can have different types of app like- `slack`, `whatsapp`, etc
+- **Accept empty array of pdf urls:** Fixed an issue where empty PDF URL arrays were not accepted, preventing knowledge base queries without adding new documents
+- **Anthropic cache metrics propagation:** Fixed a bug where Anthropic's prompt caching metrics were not propagating to Agent responses, despite the raw Anthropic API working correctly. This minimal fix ensures cache performance metrics are properly captured and reported.
+- **Handle non serializable objects on RunResponse dict parsing:**
+    - Updated `RunResponse.to_dict()` to handle non-serializable fields, as Python enums
+</Update>
+
+<Update label="2025-06-03" description="v1.5.8">
+## New Features:
+
+- **Slack App**: Introducing the `SlackApp` to allow you to create agents for Slack! The app allows agents to respond to individual messages or on group chats, and it creates threads to respond to messages.
+- **Visualization Tools**: Added `VisualizationTools` that uses `matplotlib` to give agents the ability to make graphs.
+- **Brave Search Tools:** Introduced a new toolkit for integrating `BraveSearch` that allows agent to search the web using brave search api.
+
+## Improvements:
+
+- **Pass filters for traditional RAG:** Properly pass down `knowledge_filters` even if `self.add_references=True` which is a case for traditional RAG (diff from Agentic RAG)
+- **Add infer param to Mem0:** Added infer as a param to `Mem0Tools`
+
+## Bug Fixes:
+
+- **Searxng tool initialization:**  Fixed Searxng tool initialization error
+    
+    ```
+    AttributeError: 'Searxng' object has no attribute 'include_tools'
+    ```
+    
+    and added comprehensive unit tests.
+    
+- **Fix for enum as a response model for Gemini:** With 1.5.6, a [bug](https://discord.com/channels/965734768803192842/965734768803192845/1377999191632121926) was introduced now allowing enum as a data type for Gemini response model.
+- **OpenAI parsing structured output:** With the changes in the OpenAI library we don't need to parse the structured output separately.
+- **Fix accuracy evals monitoring:** Added logic to handle monitoring when evaluating Teams in the run function of AccuracyEval
+
+## Updates
+
+- **Updates to Apps:**
+    - `FastAPIApp` does not have a default `prefix` anymore and `/run` → `/runs` (i.e. the created run endpoint is now `<your_domain>/runs`)
+    - `serve_fastapi_app` is now replaced with `.serve()` on the instance of `FastAPIApp`.
+    - `serve_whatsapp_app` is now replaced with `.serve()` on the instance of `WhatsappAPI`.
+
+</Update>
+
+<Update label="2025-05-30" description="v1.5.6">
+## New Features
+
+- **Team Evals**: All types of Evaluations now support Teams!
+
+## Improvements:
+
+- **Async Workflows**: Added `arun` support for Workflows, so they can now be used with `async` Python.
+- **Parallel Memory Updates**: Made speed improvements when user memories and session summaries are generated.
+- **Reimplement `tool_call_limit`**: Revamp of `tool_call_limit` to make it work across a whole agent run.
+- **Gemini / OpenAI Structure Response:** Improved Gemini and OpenAI Structured Response support. Dict types can now be used when defining structured responses.
+
+## Bug Fixes:
+
+- **Mistral Structured Outputs with Tools**: Fixed an issue preventing Mistral model use with structured output and tools.
+- **Images In Run Without Prompt**: Fixed issues related to images being ignored if there wasn’t a prompt provided on `run`.
+- **Pgvector Upsert Fix: Fixed** Pgvector upsert not copying metadata properly.
+- **Handle AgnoInstrumentor failing with OpenAIResponses:** PR merged in Arize’s openinference repo: https://github.com/Arize-ai/openinference/pull/1701.
+- **Pinecone Filters:** Enabled filters for pinecone vector db.
+- **Combined KB Async:** Add missing async method to Combined KB.
+- **Team Session State Fix**: **`team_session_state`** is now correctly propagated and shared between all members and sub-teams of a team.
+- **Gemini type fix for integers:**
+    - Pydantic models with `Dict[str, int]` fields (and other Dict types) were failing when used as `response_schema` for both OpenAI and Gemini models due to schema format incompatibilities.
+- **Session Name**: `session_name` is now available after a run.
+- **Handle UUIDs while serialization in RedisStorage:** Fixed error object of type UUID is not JSON serializable.
+
+## Updates:
+
+- For managing `team_session_state`, you now have to set `team_session_state` on the `Team` instead of `session_state`.
+
+</Update>
+
+<Update label="2025-05-27" description="v1.5.5">
+## New Features:
+
+- **Claude File Upload:** We can now upload a file to Anthropic directly and then use it as an input to an agent.
+- **Claude 4 Code Execution Tool:** Updated Claude to execute Python code in a secure, sandboxed environment.
+- **Prompt caching with Anthropic Models: ** Allowed resuming from specific prefixes in your prompts. This approach significantly reduces processing time and costs for repetitive tasks or prompts with consistent elements.
+- **Vercel v0 Model:** Added support for new Vercel v0 models and cookbook examples.
+- **Qdrant Hybrid Search support**
+- **Markdown Knowledge Base**: Added native support for Markdown-based knowledge bases.
+- **AI/ML API platform integration:** Introduced integration with [`AI/ML API`](https://aimlapi.com/models/?utm_source=agno&utm_medium=github&utm_campaign=integration), a platform providing AI/ML models. AI/ML API provides 300+ AI models including Deepseek, Gemini, ChatGPT. The models run at enterprise-grade rate limits and uptimes.
+- **Update Pydantic and dataclass in function handling:** Added support for `Pydantic` and `dataclass` objects as input to a function. See [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tool_concepts/custom_tools/complex_input_types.py) for an example.
+
+## Improvements:
+
+- **Timeout handling for API calls in ExaTools class:**
+    - Timeout functionality to Exa API calls to prevent indefinite hanging of search operations. The implementation uses Python's `concurrent.futures` module to enforce timeouts on all Exa API operations (search, get contents, find similar, and answer generation).
+    - This change addresses the issue where Exa search functions would hang indefinitely, causing potential service disruptions and resource leaks.
+- **Fetch messages from last N sessions:**
+    - A tool for the agent, something like `get_previous_session_messages(number_of_sessions: int)` that returns a list of messages that the agent can analyse
+    - Switch on with `search_previous_sessions_history`
+- **Redis Expiration**: Added `expire` key to set TTL on Redis keys.
+- **Add Anthropic Cache Write to Agent Session Metrics:** Added `cache_creation_input_tokens` to agent session metrics, to allow for tracking Anthropic cache write statistics
+
+## Bug Fixes:
+
+- **Huggingface Embedder Updates:**
+    - Huggingface has changed some things on their API and they've deprecated `.post` on their `InferenceClient()`- https://discuss.huggingface.co/t/getting-error-attributeerror-inferenceclient-object-has-no-attribute-post/156682
+    - We can also no longer use `id: str = "jinaai/jina-embeddings-v2-base-code"` as default, because these models are no longer provided by the `HF Inference API`. Changed the default to `id: str = "intfloat/multilingual-e5-large"`
+- **Add `role_map` for `OpenAIChat`:** This allows certain models that don’t adhere to OpenAI’s role mapping to be used vir `OpenAILike`.
+- **Use Content Hash as ID in Upsert in Pgvector:** Use reproducible `content_hash` in upsert as ID.
+- **Insert in Vector DB passes only last chunk meta_data:** Insert in vector db passes only last chunk meta_data. issue link- https://discord.com/channels/965734768803192842/1219054452221153463/1376631140047130649
+- **Remove Argument Sanitization:** Replaced with a safer way to do this that won't break arguments that shouldn't be sanitized
+- **Handle async tools when running async agents on playground:** Fixed a regression where using Agents with async tools (e.g. MCP tools) was breaking in the Playground.
+</Update>
+<Update label="2025-05-23" description="v1.5.4">
+## New Features:
+
+- **User Control Flows**: This is the beta release of Agno’s Human-in-the-loop flows and tools.
+    - We now allow agent runs to be `paused` awaiting completion of certain user requirements before the agent can continue.
+    - This also adds the `agent.continue_run` and `agent.acontinue_run` functions.
+    - The control flows that are available:
+        - User confirmation flow → Decorate a function with `@tool(requires_confirmation=True)` and the agent will expect user confirmation before executing the tool.
+        - User input required → Decorate a function with `@tool(requires_user_input=True)` to have the agent stop and ask for user input before continuing.
+        - External tool execution → Decorate a function with `@tool(external_execution=True)` to indicate that you will execute this function outside of the agent context.
+        - Dynamic user input → Add `UserControlFlowTools()` to an agent to give the agent the ability to dynamically stop the flow and ask for user input where required.
+    - See a host of examples [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/user_control_flows).
+- **Mem0 Toolkit**: Added a toolkit for managing memories in Mem0.
+- **Firecrawl Search**: Added support for Firecrawl web search in `FirecrawlTools`.
+
+## Bug Fixes:
+
+- **Firecrawl Tools and Reader**: Fixed parameter parsing for the Firecrawl reader and tools.
+- **Include/Exclude on all Tools**: Ensure all toolkits support `include_tools` and `exclude_tools`.
+
+</Update>
+
+<Update label="2025-05-21" description="v1.5.3">
+## Improvements:
+
+- **Improved Accuracy Evals:** Updated the way accuracy evals works for more accurate agent-based evaluation.
+
+## Bug Fixes:
+
+- **MCP Client Timeout:** Client timeouts now work correctly and use the timeout set on parameters.
+</Update>
+<Update label="2025-05-20" description="v1.5.2">
+## New Features:
+
+- **Agno Apps (Beta)**: Introducing Agno Apps, convenience functions to assist with building production-ready applications. The first supported apps are:
+    - `FastAPIApp` → A really simple FastAPI server that provides access to your `agent` or `team`.
+    - `WhatsappAPIApp` → An app that implements the Whatsapp protocol allowing you to have an Agno agent running on Whatsapp. Supports image / audio / video input and can generate images as responses. Supports reasoning.
+- **Couchbase Vector DB Support**: Added support for Couchbase as a vector DB for knowledge bases.
+- **Knowledge Filters Update for Teams:** Filters (manual + agentic) can now be used with Teams.
+- **Azure Cosmos DB for MongoDB (vCore) vector db support:**  In the MongoDB vector db class add support for cosmosdb mongo vcore support by enabling `cosmos_compatibility=True`
+- **Google Big Query Tools**: Added Toolkit for Google BigQuery support.
+- **Async Support for s3 Readers:** Add async support for `pdf` and `text` s3 readers.
+- **`stop_after_tool_call` and `show_result` for Toolkits:** Now the base Toolkit class has `stop_after_tool_call_tools` and `show_result_tools` similar to the `@tool` decorator.
+
+</Update>
+<Update label="2025-05-16" description="v1.5.1">
+## New Features:
+
+- **Nebius Model Provider**: Added [Nebius](https://studio.nebius.com/) as a model provider.
+- **Extended Filters Support on Vector DBs**: Added filtering support for other vector DBs.
+    - pgvector
+    - Milvus
+    - Weaviate
+    - Chroma
+
+## Improvements:
+
+- **Redis SSL**: Added the `ssl` parameter to `Redis` storage.
+</Update>
+
 <Update label="2025-05-13" description="v1.5.0">
 ## New Features:
 

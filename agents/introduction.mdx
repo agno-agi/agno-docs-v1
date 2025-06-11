@@ -1,23 +1,23 @@
 ---
-title: Introduction
+title: What are Agents?
+sidebarTitle: Overview
+description: Learn about Agno Agents and how they work.
 ---
 
-## What are Agents?
-
-**Agents** are AI programs that operate autonomously.
+**Agents** are AI programs that operate autonomously. Traditional software follows a pre-programmed sequence of steps. Agents dynamically determine their course of action using a machine learning **model**.
 
 The core of an Agent is the **model**, **tools** and **instructions**:
 
-- **Model:** is the brain of an Agent, helping it reason, act, and respond to the user.
-- **Tools:** are the body of an Agent, enabling it to interact with the real world.
-- **Instructions:** guide the Agent's behavior. Better the model, better it is at following instructions.
+- **Model:** controls the flow of execution. It decides whether to reason, act or respond.
+- **Tools:** enable an Agent to take actions and interact with external systems.
+- **Instructions:** are how we program the Agent, teaching it how to use tools and respond.
 
-Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**.
+Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**:
 
-- **Reasoning:** lets Agents "think" before responding and "analyze" the results of their actions (i.e. tool calls). Reasoning improves the Agents ability to solve problems that require multi-step tool use. Reasoning improves quality, but also increases latency and cost.
-- **Knowledge:** is domain-specific information that the Agent can **search on demand** to make better decisions (dynamic few-shot learning) and provide accurate responses (agentic RAG). Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG. **Agno (is aiming to) have first class support for the popular Agentic Search pattern, Hybrid Search + Reranking, for every major vector database.**
-- **Storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations across runs using a `session_id`. This makes Agents stateful and enables multi-turn conversations.
-- **Memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses. This is an evolving field and Agno is aiming to support the popular Memory patterns.
+- **Reasoning:** enables Agents to "think" before responding and "analyze" the results of their actions (i.e. tool calls), this improves reliability and quality of responses.
+- **Knowledge:** is domain-specific information that the Agent can **search at runtime** to make better decisions and provide accurate responses (RAG). Knowledge is stored in a vector database and this **search at runtime** pattern is known as Agentic RAG/Agentic Search.
+- **Storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off. This makes Agents stateful, enabling multi-turn, long-term conversations.
+- **Memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses.
 
 <img height="200" src="/images/agent.png" style={{ borderRadius: "8px" }} />
 

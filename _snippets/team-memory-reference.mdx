@@ -61,7 +61,7 @@
 | Parameter | Type | Description | Default |
 |-----------|------|-------------|---------|
 | `model` | `Optional[Model]` | Model used for classifying memories | `None` |
-| `system_prompt` | `Optional[str]` | Custom system prompt for the classifier | `None` |
+| `system_message` | `Optional[str]` | Custom system prompt for the classifier | `None` |
 | `existing_memories` | `Optional[List[Memory]]` | List of existing memories to check against | `None` |
 
 ### Memory Manager
@@ -70,6 +70,6 @@
 |-----------|------|-------------|---------|
 | `model` | `Optional[Model]` | Model used for managing memories | `None` |
 | `user_id` | `Optional[str]` | Unique identifier for the user | `None` |
-| `system_prompt` | `Optional[str]` | Custom system prompt for the memory manager | `None` |
+| `system_message` | `Optional[str]` | Custom system prompt for the memory manager | `None` |
 | `db` | `Optional[MemoryDb]` | Database for storing memories | `None` |
 | `input_message` | `Optional[str]` | Current input message being processed | `None` |

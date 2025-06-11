@@ -1,0 +1,13 @@
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `bucket_name` | `str` | Name of the Couchbase bucket | Required |
+| `scope_name` | `str` | Name of the scope within the bucket | Required |
+| `collection_name` | `str` | Name of the collection within the scope | Required |
+| `couchbase_connection_string` | `str` | Couchbase cluster connection string | Required |
+| `cluster_options` | `ClusterOptions` | Options for configuring the Couchbase cluster connection | Required |
+| `search_index` | `Union[str, SearchIndex]` | Search index configuration, either as index name or SearchIndex definition | Required |
+| `embedder` | `Embedder` | Embedder instance for generating embeddings | `OpenAIEmbedder()` |
+| `overwrite` | `bool` | Whether to overwrite existing collection | `False` |
+| `is_global_level_index` | `bool` | Whether the search index is at global level | `False` |
+| `wait_until_index_ready` | `Optional[float]` | Time in seconds to wait until the index is ready | `None` |
+| `batch_limit` | `int` | Maximum number of documents to process in a single batch (applies to both sync and async operations) | `500` | 
