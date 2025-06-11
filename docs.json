@@ -214,6 +214,7 @@
                       {
                         "group": "Models",
                         "pages": [
+                          "tools/toolkits/models/openai",
                           "tools/toolkits/models/gemini",
                           "tools/toolkits/models/groq"
                         ]
@@ -1023,6 +1024,18 @@
                       "examples/concepts/tools/local/python",
                       "examples/concepts/tools/local/shell",
                       "examples/concepts/tools/local/sleep"
+                    ]
+                  },
+                  {
+                    "group": "Native Model Toolkit",
+                    "pages": [
+                      {
+                        "group": "OpenAI",
+                        "pages": [
+                          "examples/concepts/tools/models/openai/rag-recipe-image",
+                          "examples/concepts/tools/models/openai/meeting-summarizer"
+                        ]
+                      }
                     ]
                   },
                   {

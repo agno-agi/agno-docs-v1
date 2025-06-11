@@ -110,7 +110,7 @@ agent = Agent(
     markdown=True,
 )
 
-agent.print_response("Hello, this is a synthesized voice example.")
+agent.print_response("Generate audio for the text: 'Hello, this is a synthesized voice example.'")
 
 response = agent.run_response
 if response and response.audio:
