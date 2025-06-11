@@ -1,0 +1,58 @@
+---
+<title>Agent with Structured Outputs</title>
+---
+
+## Code
+
+```python cookbook/models/meta/structured_output.py
+from typing import List
+from pydantic import BaseModel, Field
+from agno.agent import Agent
+from agno.models.meta import Llama
+
+class MovieScript(BaseModel):
+    name: str = Field(..., description="Name of the movie.")
+    setting: str = Field(..., description="Provide a setting for the movie.")
+    ending: str = Field(..., description="Describe the movie ending.")
+    genre: str = Field(..., description="Genre of the movie.")
+    characters: List[str] = Field(..., description="List of characters.")
+    storyline: str = Field(..., description="A 3-sentence storyline.")
+
+agent = Agent(
+    model=Llama(id="Llama-3.3-70B"),
+    response_model=MovieScript,
+    markdown=True,
+)
+
+agent.print_response("Generate a movie script outline for a sci-fi adventure.")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your LLAMA API key">
+    ```bash
+    export LLAMA_API_KEY=YOUR_API_KEY
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install llama-api-client agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/meta/structured_output.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/meta/structured_output.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 

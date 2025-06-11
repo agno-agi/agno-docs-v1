@@ -1,0 +1,54 @@
+---
+<title>Asynchronous Streaming Agent</title>
+---
+
+## Code
+
+```python cookbook/models/meta/async_stream.py
+import asyncio
+from agno.agent import Agent
+from agno.models.meta import Llama
+
+async def main():
+    agent = Agent(
+        model=Llama(id="Llama-3.3-70B"),
+        markdown=True,
+    )
+    
+    await agent.aprint_response(
+        "Share a two-sentence horror story.",
+        stream=True
+    )
+
+asyncio.run(main())
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your LLAMA API key">
+    ```bash
+    export LLAMA_API_KEY=YOUR_API_KEY
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install llama-api-client agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/meta/async_stream.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/meta/async_stream.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps> 

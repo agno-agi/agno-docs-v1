@@ -1,0 +1,13 @@
+### Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `id` | `str` | The model ID to use for embeddings | `"voyage-2"` |
+| `dimensions` | `int` | Output dimensions of the embedding | `1024` |
+| `request_params` | `Optional[Dict[str, Any]]` | Additional parameters for embedding requests | `None` |
+| `api_key` | `Optional[str]` | VoyageAI API key | Environment variable `VOYAGEAI_API_KEY` |
+| `base_url` | `str` | Base URL for API requests | `"https://api.voyageai.com/v1/embeddings"` |
+| `max_retries` | `Optional[int]` | Maximum number of retry attempts | `None` |
+| `timeout` | `Optional[float]` | Request timeout in seconds | `None` |
+| `client_params` | `Optional[Dict[str, Any]]` | Additional parameters for client initialization | `None` |
+| `voyage_client` | `Optional[Client]` | Pre-configured VoyageAI client | `None` |

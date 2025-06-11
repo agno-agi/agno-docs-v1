@@ -1,8 +1,8 @@
 ---
-title: Introduction
+title: What are Vector Databases?
+sidebarTitle: Overview
+description: Vector databases enable us to store information as embeddings and search for "results similar" to our input query using cosine similarity or full text search. These results are then provided to the Agent as context so it can respond in a context-aware manner using Retrieval Augmented Generation (RAG).
 ---
-
-Vector databases enable us to store information as embeddings and search for "results similar" to our input query using cosine similarity or full text search. These results are then provided to the Agent as context so it can respond in a context-aware manner using Retrieval Augmented Generation (**RAG**).
 
 Here's how vector databases are used with Agents:
 
@@ -31,19 +31,30 @@ Hybrid search typically works by:
 
 This capability allows for more flexible and powerful querying, often yielding better results than either method alone.
 
+<Card title="⚡ Asynchronous Operations">
+  <p>Several vector databases support asynchronous operations, offering improved performance through non-blocking operations, concurrent processing, reduced latency, and seamless integration with FastAPI and async agents.</p>
+  <Tip className="mt-4">
+    When building with Agno, use the <code>aload</code> methods for async knowledge base loading in production environments.
+  </Tip>
+</Card>
+
+## Supported Vector Databases
+
 The following VectorDb are currently supported:
 
 - [PgVector](/vectordb/pgvector)\*
-- [LanceDb](/vectordb/lancedb)\*
-- [Pinecone](/vectordb/pinecone)\*
-- [Qdrant](/vectordb/qdrant)
-- [MongoDb](/vectordb/mongodb)
 - [Cassandra](/vectordb/cassandra)
 - [ChromaDb](/vectordb/chroma)
+- [Couchbase](/vectordb/couchbase)\*
 - [Clickhouse](/vectordb/clickhouse)
+- [LanceDb](/vectordb/lancedb)\*
 - [Milvus](/vectordb/milvus)
+- [MongoDb](/vectordb/mongodb)
+- [Pinecone](/vectordb/pinecone)\*
+- [Qdrant](/vectordb/qdrant)
 - [Singlestore](/vectordb/singlestore)
+- [Weaviate](/vectordb/weaviate)
 
 \*hybrid search supported
 
-Each of these databases has its own strengths and features, including varying levels of support for hybrid search. Be sure to check the specific documentation for each to understand how to best leverage their capabilities in your projects.
+Each of these databases has its own strengths and features, including varying levels of support for hybrid search and async operations. Be sure to check the specific documentation for each to understand how to best leverage their capabilities in your projects.

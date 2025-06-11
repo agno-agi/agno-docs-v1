@@ -1,6 +1,7 @@
 .idea
 node_modules
-
+tmp
 *.code-workspace
 
 .DS_Store
+.mintlify-last

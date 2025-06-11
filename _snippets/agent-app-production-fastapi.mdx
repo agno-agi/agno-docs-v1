@@ -1,12 +1,12 @@
 ## Production FastAPI
 
 - **Open the LoadBalancer DNS** + the `/docs` endpoint to view the API Endpoints.
-- Test the `/v1/playground/agent/run` endpoint with
+- Test the `/v1/agents/{agent_id}/runs` endpoint with
 
 ```json
 {
   "message": "howdy",
-  "agent_id": "example-agent",
+  "agent_id": "sage",
   "stream": true
 }
 ```

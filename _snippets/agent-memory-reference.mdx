@@ -1,0 +1,69 @@
+### Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for memories and summaries | `None` |
+| `memory_manager` | `Optional[MemoryManager]` | Manager for memory operations | `None` |
+| `summarizer` | `Optional[SessionSummarizer]` | Summarizer for generating session summaries | `None` |
+| `db` | `Optional[MemoryDb]` | Database for storing memories | `None` |
+| `debug_mode` | `bool` | Whether to enable debug logging | `False` |
+
+### Key Methods
+
+#### User Memory Management
+
+| Method | Description | Parameters | Returns |
+|--------|-------------|------------|---------|
+| `get_user_memories` | Retrieves all memories for a user | `user_id: str` | `List[UserMemory]` |
+| `get_user_memory` | Gets a specific memory | `user_id: str, memory_id: str` | `UserMemory` |
+| `add_user_memory` | Adds a new memory and gets the memory id | `memory: UserMemory, user_id: Optional[str] = None` | `str` |
+| `replace_user_memory` | Updates an existing memory and gets the memory id | `memory_id: str, memory: UserMemory, user_id: Optional[str] = None` | `str` |
+| `delete_user_memory` | Deletes a memory | `user_id: str, memory_id: str` | `None` |
+| `create_user_memories` | Creates memories from one or more messages | `message: Optional[str] = None, messages: Optional[List[Message]] = None, user_id: Optional[str] = None` | `str` |
+| `acreate_user_memories` | Creates memories from one or more messages (Async) | `message: Optional[str] = None, messages: Optional[List[Message]] = None, user_id: Optional[str] = None` | `str` |
+| `search_user_memories` | Searches user memories using specified retrieval method | `query: Optional[str] = None, limit: Optional[int] = None, retrieval_method: Optional[Literal["last_n", "first_n", "semantic"]] = None, user_id: Optional[str] = None` | `List[UserMemory]` |
+
+#### Session Summary Management
+
+| Method | Description | Parameters |
+|--------|-------------|------------|
+| `get_session_summaries` | Retrieves all session summaries for a user | `user_id: str` |
+| `get_session_summary` | Gets a specific session summary | `user_id: str, session_id: str` |
+| `create_session_summary` | Creates a summary for a session from the stored session runs | `session_id: str, user_id: Optional[str] = None` |
+| `acreate_session_summary` | Creates a summary for a session from the stored session runs (Async) | `session_id: str, user_id: Optional[str] = None` |
+| `delete_session_summary` | Deletes a session summary | `user_id: str, session_id: str` |
+
+### UserMemory
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `memory` | `str` | The actual memory content | Required |
+| `topics` | `Optional[List[str]]` | Topics or categories of the memory | `None` |
+| `input` | `Optional[str]` | Original input that generated the memory | `None` |
+| `last_updated` | `Optional[datetime]` | When the memory was last updated | `None` |
+| `memory_id` | `Optional[str]` | Unique identifier for the memory | `None` |
+
+### SessionSummary
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `summary` | `str` | Concise summary of the session | Required |
+| `topics` | `Optional[List[str]]` | Topics discussed in the session | `None` |
+| `last_updated` | `Optional[datetime]` | When the summary was last updated | `None` |
+
+### Memory Manager
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for managing memories | `None` |
+| `system_message` | `Optional[str]` | Custom system prompt for the memory manager | `None` |
+| `additional_instructions` | `Optional[str]` | Additional instructions added to the end of the system message | `None` |
+
+
+### Session Summarizer
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | `Optional[Model]` | Model used for summarizing sessions | `None` |
+| `system_message` | `Optional[str]` | Custom system prompt for the summarizer | `None` |
+| `additional_instructions` | `Optional[str]` | Additional instructions added to the end of the system message | `None` |

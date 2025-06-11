@@ -1,0 +1,75 @@
+---
+title: Cerebras
+description: Learn how to use Cerebras models in Agno.
+---
+
+[Cerebras Inference](https://inference-docs.cerebras.ai/introduction) provides high-speed, low-latency AI model inference powered by Cerebras Wafer-Scale Engines and CS-3 systems. Agno integrates directly with the Cerebras Python SDK, allowing you to use state-of-the-art Llama models with a simple interface.
+
+## Prerequisites
+
+To use Cerebras with Agno, you need to:
+
+1. **Install the required packages:**
+   ```shell
+   pip install cerebras-cloud-sdk
+   ```
+
+2. **Set your API key:**
+   The Cerebras SDK expects your API key to be available as an environment variable:
+   ```shell
+   export CEREBRAS_API_KEY=your_api_key_here
+   ```
+
+## Basic Usage
+
+Here's how to use a Cerebras model with Agno:
+
+```python
+from agno.agent import Agent
+from agno.models.cerebras import Cerebras
+
+agent = Agent(
+    model=Cerebras(id="llama-4-scout-17b-16e-instruct"),
+    markdown=True,
+)
+
+# Print the response in the terminal
+agent.print_response("write a two sentence horror story")
+```
+
+## Supported Models
+
+Cerebras currently supports the following models (see [docs](https://inference-docs.cerebras.ai/introduction) for the latest list):
+
+| Model Name                      | Model ID                       | Parameters  | Knowledge     |
+| ------------------------------- | ------------------------------ | ----------- | ------------- |
+| Llama 4 Scout                   | llama-4-scout-17b-16e-instruct | 109 billion | August 2024   |
+| Llama 3.1 8B                    | llama3.1-8b                    | 8 billion   | March 2023    |
+| Llama 3.3 70B                   | llama-3.3-70b                  | 70 billion  | December 2023 |
+| DeepSeek R1 Distill Llama 70B*  | deepseek-r1-distill-llama-70b  | 70 billion  | December 2023 |
+
+\* DeepSeek R1 Distill Llama 70B is available in private preview.
+
+## Configuration Options
+
+The `Cerebras` class accepts the following parameters:
+
+| Parameter     | Type           | Description                                         | Default                        |
+| ------------- | -------------- | --------------------------------------------------- | ------------------------------ |
+| `id`          | str            | Model identifier (e.g., "llama-4-scout-17b-16e-instruct") | **Required**                   |
+| `name`        | str            | Display name for the model                          | "Cerebras"                     |
+| `provider`    | str            | Provider name                                       | "Cerebras"                     |
+| `api_key`     | Optional[str]  | API key (falls back to `CEREBRAS_API_KEY` env var)  | None                           |
+| `max_tokens`  | Optional[int]  | Maximum tokens in the response                      | None                           |
+| `temperature` | float          | Sampling temperature                                | 0.7                            |
+| `top_p`       | float          | Top-p sampling value                                | 1.0                            |
+| `request_params` | Optional[Dict[str, Any]] | Additional request parameters           | None                           |
+
+
+## Resources
+
+- [Cerebras Inference Documentation](https://inference-docs.cerebras.ai/introduction)
+- [Cerebras API Reference](https://inference-docs.cerebras.ai/api-reference/chat-completions)
+
+### SDK Examples
+- View more examples [here](../examples/models/cerebras).

@@ -1,0 +1,56 @@
+---
+title: Singlestore Agent Storage
+sidebarTitle: Singlestore
+---
+
+Agno supports using Singlestore as a storage backend for Agents using the `SingleStoreStorage` class.
+
+## Usage
+
+Obtain the credentials for Singlestore from [here](https://portal.singlestore.com/)
+
+```python singlestore_storage_for_agent.py
+from os import getenv
+
+from sqlalchemy.engine import create_engine
+
+from agno.agent import Agent
+from agno.storage.singlestore import SingleStoreStorage
+
+# SingleStore Configuration
+USERNAME = getenv("SINGLESTORE_USERNAME")
+PASSWORD = getenv("SINGLESTORE_PASSWORD")
+HOST = getenv("SINGLESTORE_HOST")
+PORT = getenv("SINGLESTORE_PORT")
+DATABASE = getenv("SINGLESTORE_DATABASE")
+SSL_CERT = getenv("SINGLESTORE_SSL_CERT", None)
+
+# SingleStore DB URL
+db_url = f"mysql+pymysql://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}?charset=utf8mb4"
+if SSL_CERT:
+    db_url += f"&ssl_ca={SSL_CERT}&ssl_verify_cert=true"
+
+# Create a database engine
+db_engine = create_engine(db_url)
+
+# Create a storage backend using the Singlestore database
+storage = SingleStoreStorage(
+    # store sessions in the ai.sessions table
+    table_name="agent_sessions",
+    # db_engine: Singlestore database engine
+    db_engine=db_engine,
+    # schema: Singlestore schema
+    schema=DATABASE,
+)
+
+# Add storage to the Agent
+agent = Agent(storage=storage)
+```
+
+## Params
+
+<Snippet file="storage-s2-params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/singlestore_storage/singlestore_storage_for_agent.py)

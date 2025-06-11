@@ -1,0 +1,35 @@
+
+### Properties
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `document_lists` | `Iterator[List[Document]]` | Iterator that yields lists of documents in the knowledge base |
+| `async_document_lists` | `AsyncIterator[List[Document]]` | Async iterator that yields lists of documents in the knowledge base |
+
+### Search Methods
+
+| Method | Parameters | Return Type | Description |
+| --- | --- | --- | --- |
+| `search` | `query: str, num_documents: Optional[int] = None, filters: Optional[Dict[str, Any]] = None` | `List[Document]` | Returns relevant documents matching a query |
+| `async_search` | `query: str, num_documents: Optional[int] = None, filters: Optional[Dict[str, Any]] = None` | `List[Document]` | Asynchronously returns relevant documents matching a query |
+
+### Loading Methods
+
+| Method | Parameters | Return Type | Description |
+| --- | --- | --- | --- |
+| `load` | `recreate: bool = False, upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Load the knowledge base to the vector db |
+| `aload` | `recreate: bool = False, upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Asynchronously load the knowledge base to the vector db |
+| `load_documents` | `documents: List[Document], upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Load documents to the knowledge base |
+| `async_load_documents` | `documents: List[Document], upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Asynchronously load documents to the knowledge base |
+| `load_document` | `document: Document, upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Load a single document to the knowledge base |
+| `async_load_document` | `document: Document, upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Asynchronously load a single document to the knowledge base |
+| `load_dict` | `document: Dict[str, Any], upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Load a dictionary representation of a document to the knowledge base |
+| `load_json` | `document: str, upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Load a JSON representation of a document to the knowledge base |
+| `load_text` | `text: str, upsert: bool = False, skip_existing: bool = True, filters: Optional[Dict[str, Any]] = None` | `None` | Load a text to the knowledge base |
+
+### Utility Methods
+
+| Method | Parameters | Return Type | Description |
+| --- | --- | --- | --- |
+| `exists` | None | `bool` | Returns True if the knowledge base exists |
+| `delete` | None | `bool` | Clear the knowledge base |

@@ -1,10 +1,10 @@
 ---
-title: Introduction
+title: What are Models?
+sidebarTitle: Overview
+description: Language Models are machine-learning programs that are trained to understand natural language and code.
+
 ---
-
-Language Models are machine-learning programs that are trained to understand natural language and code. They provide reasoning and planning capabilities to Agents.
-
-Use any `model` with an `Agent` like:
+Models act as the **brain** of the Agent - helping it reason, act, and respond to the user. The better the model, the smarter the Agent.
 
 ```python
 from agno.agent import Agent
@@ -32,8 +32,10 @@ agent = Agent(
 ```
 
 ## Supported Models
+
 Agno supports the following model providers:
 
+- [AI/ML API](/models/aimlapi)
 - [OpenAI](/models/openai)
 - [OpenAI Like](/models/openai-like)
 - [Anthropic](/models/anthropic)
@@ -54,6 +56,5 @@ Agno supports the following model providers:
 - [Perplexity](/models/perplexity)
 - [Sambanova](/models/sambanova)
 - [Together](/models/together)
-- [VertexAI](/models/vertexai)
+- [LiteLLM](/models/litellm)
 - [LangDB](/models/langdb)
-

@@ -1,0 +1,164 @@
+---
+title: Memory Storage
+---
+
+# Memory Storage
+
+To persist memories across sessions and execution cycles, store memories in a persistent storage like a database.
+
+If you're using Memory in production, persistent storage is critical as you'd want to retain user memories across application restarts.
+
+Agno's memory system supports multiple persistent storage options.
+
+## Storage Options
+
+The Memory class supports different backend storage options through a pluggable database interface. Currently, Agno provides:
+
+1. [SQLite Storage](/reference/memory/storage/sqlite)
+2. [PostgreSQL Storage](/reference/memory/storage/postgres)
+3. [MongoDB Storage](/reference/memory/storage/mongo)
+4. [Redis Storage](/reference/memory/storage/redis)
+
+## Setting Up Storage
+
+To configure memory storage, you'll need to create a database instance and pass it to the Memory constructor:
+
+```python
+from agno.memory.v2.memory import Memory
+from agno.memory.v2.db.sqlite import SqliteMemoryDb
+
+# Create a SQLite database for memory
+memory_db = SqliteMemoryDb(
+    table_name="memories",  # The table name to use
+    db_file="path/to/memory.db"  # The SQLite database file
+)
+
+# Initialize Memory with the storage backend
+memory = Memory(db=memory_db)
+```
+
+## Data Model
+
+When using persistent storage, the Memory system stores:
+
+- **User Memories** - Facts and insights about users
+- **Last Updated Timestamps** - To track when memories were last modified
+- **Memory IDs** - Unique identifiers for each memory
+
+## Storage Examples
+
+```python sqlite_memory.py
+from agno.memory.v2.memory import Memory
+from agno.memory.v2.db.sqlite import SqliteMemoryDb
+from agno.memory.v2.schema import UserMemory
+
+# Create a SQLite memory database
+memory_db = SqliteMemoryDb(
+    table_name="user_memories",
+    db_file="tmp/memory.db"
+)
+
+# Initialize Memory with the storage backend
+memory = Memory(db=memory_db)
+
+# Add a user memory that will persist across restarts
+user_id = "user@example.com"
+memory.add_user_memory(
+    memory=UserMemory(
+        memory="The user prefers dark mode in applications",
+        topics=["preferences", "ui"]
+    ),
+    user_id=user_id
+)
+
+# Retrieve memories (these will be loaded from the database)
+user_memories = memory.get_user_memories(user_id=user_id)
+for m in user_memories:
+    print(f"Memory: {m.memory}")
+    print(f"Topics: {m.topics}")
+    print(f"Last Updated: {m.last_updated}")
+```
+```python postgres_memory.py
+from agno.memory.v2.memory import Memory
+from agno.memory.v2.db.postgres import PostgresMemoryDb
+from agno.memory.v2.schema import UserMemory
+
+# Create a PostgreSQL memory database
+memory_db = PostgresMemoryDb(
+    table_name="user_memories",
+    connection_string="postgresql://user:password@localhost:5432/mydb"
+)
+
+# Initialize Memory with the storage backend
+memory = Memory(db=memory_db)
+
+# Add user memories
+user_id = "user@example.com"
+memory.add_user_memory(
+    memory=UserMemory(
+        memory="The user has a premium subscription",
+        topics=["subscription", "account"]
+    ),
+    user_id=user_id
+)
+
+# Memory operations work the same regardless of the backend
+print(f"User has {len(memory.get_user_memories(user_id=user_id))} memories stored")
+```
+
+## Integrating with Agent Storage
+
+When building agents with memory, you'll often want to store both agent sessions and memories. Agno makes this easy by allowing you to configure both storage systems:
+
+```python
+from agno.agent import Agent
+from agno.memory.v2.memory import Memory
+from agno.memory.v2.db.sqlite import SqliteMemoryDb
+from agno.models.openai import OpenAIChat
+from agno.storage.sqlite import SqliteStorage
+
+# Create memory storage
+memory_db = SqliteMemoryDb(
+    table_name="memories",
+    db_file="tmp/memory.db"
+)
+memory = Memory(db=memory_db)
+
+# Create agent storage
+agent_storage = SqliteStorage(
+    table_name="agent_sessions",
+    db_file="tmp/agent_storage.db"
+)
+
+# Create agent with both memory and storage
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    memory=memory,
+    storage=agent_storage,
+    enable_user_memories=True,
+)
+```
+
+## Memory Management
+
+When using persistent storage, the Memory system offers several functions to manage stored memories:
+
+```python
+# Delete a specific memory
+memory.delete_user_memory(user_id="user@example.com", memory_id="memory_123")
+
+# Replace/update a memory
+memory.replace_user_memory(
+    memory_id="memory_123",
+    memory=UserMemory(memory="Updated information about the user"),
+    user_id="user@example.com"
+)
+
+# Clear all memories
+memory.clear()
+```
+
+
+## Developer Resources
+
+- Find reference documentation for memory storage [here](/reference/memory/storage)

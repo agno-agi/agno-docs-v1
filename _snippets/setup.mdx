@@ -1,12 +1,12 @@
 ## Setup
 
 <Steps>
-  <Step title="Create a virtual environment">
+  <Step title="Create and activate a virtual environment">
 
     <CodeGroup>
     ```bash Mac
-    python3 -m venv ~/.venvs/aienv
-    source ~/.venvs/aienv/bin/activate
+    python3 -m venv .venv
+    source .venv/bin/activate
     ```
 
     ```bash Windows
@@ -16,7 +16,7 @@
     </CodeGroup>
 
   </Step>
-  <Step title="Install agno">
+  <Step title="Install Agno">
 
     <CodeGroup>
     ```bash Mac
@@ -29,8 +29,14 @@
     </CodeGroup>
 
   </Step>
-  <Step title="Install docker">
-    Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) to run your app locally
+  <Step title="Install uv and docker">
+    - Install [uv](https://docs.astral.sh/uv/#getting-started) for managing your python environment.
+
+    ```bash
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
+
+    - Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) to run your app locally
   </Step>
   <Step title="Export your OpenAI key">
 
@@ -45,7 +51,7 @@
     </CodeGroup>
 
     <Tip>
-    You can get an API key from [here](https://platform.openai.com/account/api-keys).
+    Agno is compatible with any model provider; simply update the agents in the workspace.
     </Tip>
   </Step>
 </Steps>

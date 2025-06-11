@@ -6,5 +6,6 @@
 | `embedder` | `Optional[Embedder]` | `OpenAIEmbedder()` | Embedder instance to generate embeddings |
 | `distance_metric` | `str` | `Distance.cosine` | Distance metric to use for similarity search |
 | `overwrite` | `bool` | `False` | Whether to overwrite existing collection and index |
-| `wait_until_index_ready` | `Optional[float]` | `None` | Time in seconds to wait until the index is ready |
-| `wait_after_insert` | `Optional[float]` | `None` | Time in seconds to wait after inserting documents |
+| `cosmos_compatibility` | `bool` | `False` | Whether to enable support for azure cosmos db mongodb vcore |
+| `wait_until_index_ready_in_seconds` | `Optional[float]` | `None` | Time in seconds to wait until the index is ready |
+| `wait_after_insert_in_seconds` | `Optional[float]` | `None` | Time in seconds to wait after inserting documents |

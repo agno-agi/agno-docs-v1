@@ -1,0 +1,10 @@
+### Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `table_name` | `str` | Name of the SQLite table | Required |
+| `db_url` | `Optional[str]` | SQLite connection URL | `None` |
+| `db_file` | `Optional[str]` | Path to SQLite database file | `None` |
+| `db_engine` | `Optional[Engine]` | Pre-configured SQLAlchemy engine | `None` |
+| `schema_version` | `int` | Schema version number | `1` |
+| `auto_upgrade_schema` | `bool` | Auto-upgrade schema | `False` |

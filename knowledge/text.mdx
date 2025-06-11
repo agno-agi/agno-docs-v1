@@ -1,5 +1,6 @@
 ---
 title: Text Knowledge Base
+description: Learn how to use text files in your knowledge base.
 sidebarTitle: Text
 ---
 
@@ -42,6 +43,49 @@ agent.knowledge.load(recreate=False)
 agent.print_response("Ask me about something from the knowledge base")
 ```
 
+#### TextKnowledgeBase also supports async loading.
+
+```shell
+pip install qdrant-client
+```
+We are using a local Qdrant database for this example. [Make sure it's running](https://docs.agno.com/vectordb/qdrant)
+
+```python async_knowledge_base.py
+import asyncio
+from pathlib import Path
+
+from agno.agent import Agent
+from agno.knowledge.text import TextKnowledgeBase
+from agno.vectordb.qdrant import Qdrant
+
+COLLECTION_NAME = "essay-txt"
+
+vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
+
+# Initialize the TextKnowledgeBase
+knowledge_base = TextKnowledgeBase(
+    path=Path("tmp/docs"),
+    vector_db=vector_db,
+    num_documents=5,
+)
+
+# Initialize the Assistant with the knowledge_base
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+)
+
+if __name__ == "__main__":
+    # Comment out after first run
+    asyncio.run(knowledge_base.aload(recreate=False))
+
+    asyncio.run(
+        agent.aprint_response(
+            "What knowledge is available in my knowledge base?", markdown=True
+        )
+    )
+```
+
 ## Params
 
 | Parameter | Type               | Default        | Description                                                                           |
@@ -54,4 +98,6 @@ agent.print_response("Ask me about something from the knowledge base")
 
 ## Developer Resources
 
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/text_kb.py)
+- View [Sync loading Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/text_kb.py)
+- View [Async loading Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/text_kb_async.py)
+

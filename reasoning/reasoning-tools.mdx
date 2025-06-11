@@ -1,0 +1,128 @@
+---
+title: Reasoning Tools
+---
+
+A new class of research is emerging where giving models tools for structured thinking, like a scratchpad, greatly improves their reasoning capabilities.
+
+For example, by giving a model a **"think" tool**, we can greatly improve its reasoning capabilities by providing a dedicated space for working through the problem. This is a simple, yet effective approach to add reasoning to non-reasoning models.
+
+First published by Anthropic in [this blog post](https://www.anthropic.com/engineering/claude-think-tool), this technique has been practiced by many AI Engineers (including our own team) long before it was published.
+
+## v0: The Think Tool
+
+The first version of the Think Tool was published by Anthropic in [this blog post](https://www.anthropic.com/engineering/claude-think-tool).
+
+```python claude_thinking_tools.py
+from agno.agent import Agent
+from agno.models.anthropic import Claude
+from agno.tools.thinking import ThinkingTools
+from agno.tools.yfinance import YFinanceTools
+
+reasoning_agent = Agent(
+    model=Claude(id="claude-3-7-sonnet-latest"),
+    tools=[
+        ThinkingTools(add_instructions=True),
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+            company_info=True,
+            company_news=True,
+        ),
+    ],
+    instructions="Use tables where possible",
+    markdown=True,
+)
+
+if __name__ == "__main__":
+    reasoning_agent.print_response(
+        "Write a report on NVDA. Only the report, no other text.",
+        stream=True,
+        show_full_reasoning=True,
+        stream_intermediate_steps=True,
+    )
+```
+
+## v1: The Reasoning Tools
+
+While the v0 Think Tool is a great start, it is limited in that it only allows for a thinking space. The v1 Reasoning Tools take this one step further by allowing the Agent to **analyze** the results of their actions (i.e. tool calls), greatly improving the Agents' ability to solve problems that require sequential tool calls.
+
+**ReasoningTools = `think` + `analyze`**
+
+```python claude_reasoning_tools.py
+from agno.agent import Agent
+from agno.models.anthropic import Claude
+from agno.tools.reasoning import ReasoningTools
+from agno.tools.yfinance import YFinanceTools
+
+reasoning_agent = Agent(
+    model=Claude(id="claude-3-7-sonnet-20250219"),
+    tools=[
+        ReasoningTools(add_instructions=True),
+        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
+    ],
+    show_tool_calls=True,
+)
+reasoning_agent.print_response(
+    "Write a report comparing NVDA to TSLA", stream=True, markdown=True
+)
+```
+
+## v2: The Knowledge Tools
+
+The Knowledge Tools take the v1 Reasoning Tools one step further by allowing the Agent to **search** a knowledge base and **analyze** the results of their actions.
+
+**KnowledgeTools = `think` + `search` + `analyze`** 
+
+```python knowledge_tools.py
+import os
+from agno.agent import Agent
+from agno.embedder.openai import OpenAIEmbedder
+from agno.knowledge.url import UrlKnowledge
+from agno.models.openai import OpenAIChat
+from agno.tools.knowledge import KnowledgeTools
+from agno.vectordb.lancedb import LanceDb, SearchType
+
+
+agno_docs = UrlKnowledge(
+    urls=["https://docs.agno.com/llms-full.txt"],
+
+    vector_db=LanceDb(
+        uri="tmp/lancedb",
+        table_name="agno_docs",
+        search_type=SearchType.hybrid,
+        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+    ),
+)
+
+
+knowledge_tools = KnowledgeTools(
+    knowledge=agno_docs,
+    think=True,   
+    search=True,  
+    analyze=True,  
+    add_few_shot=True, 
+)
+
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[knowledge_tools],
+    show_tool_calls=True, 
+    markdown=True, 
+)
+
+
+agno_docs.load(recreate=True)
+
+
+agent.print_response("How do I build multi-agent teams with Agno?", stream=True)
+```
+
+## Developer Resources
+
+
+
+- View [Agents with Reasoning Tools Examples](/examples/concepts/reasoning/tools)
+- View [Agents with Reasoning Tools Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/reasoning/tools)
+- View [Teams with Reasoning Tools Examples](/examples/concepts/reasoning/teams)
+- View [Teams with Reasoning Tools Cookbook](https://github.com/agno-agi/agno/tree/main/cookbook/reasoning/teams)

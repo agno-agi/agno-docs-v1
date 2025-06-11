@@ -1,8 +1,21 @@
 ---
-title: Introduction
+title: What is Knowledge?
+sidebarTitle: Overview
+description: Knowledge is domain-specific information that the Agent can search at runtime to make better decisions (dynamic few-shot learning) and provide accurate responses (agentic RAG).
 ---
+Knowledge is stored in a vector db and this searching on demand pattern is called Agentic RAG.
 
-A **knowledge base** is a database of information that an agent can search to improve its responses. This information is stored in a vector database and provides agents with business context, helping them respond in a context-aware manner. The general syntax is:
+<Accordion title="Dynamic Few-Shot Learning: Text2Sql Agent" icon="database">
+Example: If we're building a Text2Sql Agent, we'll need to give the table schemas, column names, data types, example queries, common "gotchas" to help it generate the best-possible SQL query.
+
+We're obviously not going to put this all in the system prompt, instead we store this information in a vector database and let the Agent query it at runtime.
+
+Using this information, the Agent can then generate the best-possible SQL query. This is called dynamic few-shot learning.
+</Accordion>
+
+**Agno Agents use Agentic RAG** by default, meaning if you add `knowledge` to an Agent, it will search this knowledge base, at runtime, for the specific information it needs to achieve its task.
+
+The pseudo steps for adding knowledge to an Agent are:
 
 ```python
 from agno.agent import Agent, AgentKnowledge
@@ -17,6 +30,25 @@ knowledge_base.load_text("The sky is blue")
 # give it a tool to search the knowledge base as needed
 agent = Agent(knowledge=knowledge_base, search_knowledge=True)
 ```
+
+We can give our agent access to the knowledge base in the following ways:
+
+- We can set `search_knowledge=True` to add a `search_knowledge_base()` tool to the Agent. `search_knowledge` is `True` **by default** if you add `knowledge` to an Agent.
+- We can set `add_references=True` to automatically add references from the knowledge base to the Agent's prompt. This is the traditional 2023 RAG approach.
+
+<Tip>
+
+If you need complete control over the knowledge base search, you can pass your own `retriever` function with the following signature:
+
+```python
+def retriever(agent: Agent, query: str, num_documents: Optional[int], **kwargs) -> Optional[list[dict]]:
+  ...
+```
+
+This function is called during `search_knowledge_base()` and is used by the Agent to retrieve references from the knowledge base.
+For more details check out the [Custom Retriever](../knowledge/custom_retriever) page.
+
+</Tip>
 
 ## Vector Databases
 
@@ -39,8 +71,50 @@ While any type of storage can act as a knowledge base, vector databases offer th
 
 ## Loading the Knowledge Base
 
-Before you can use a knowledge base, it needs to be loaded with embeddings that will be used for retrieval. Use one of the following knowledge bases to simplify the chunking, loading, searching and optimization process:
+Before you can use a knowledge base, it needs to be loaded with embeddings that will be used for retrieval. 
 
+### Asynchronous Loading
+
+Many vector databases support asynchronous operations, which can significantly improve performance when loading large knowledge bases. You can leverage this capability using the `aload()` method:
+
+```python
+import asyncio
+
+from agno.agent import Agent
+from agno.knowledge.pdf import PDFKnowledgeBase, PDFReader
+from agno.vectordb.qdrant import Qdrant
+
+COLLECTION_NAME = "pdf-reader"
+
+vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
+
+# Create a knowledge base with the PDFs from the data/pdfs directory
+knowledge_base = PDFKnowledgeBase(
+    path="data/pdf",
+    vector_db=vector_db,
+    reader=PDFReader(chunk=True),
+)
+
+# Create an agent with the knowledge base
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+)
+
+if __name__ == "__main__":
+    # Comment out after first run
+    asyncio.run(knowledge_base.aload(recreate=False))
+
+    # Create and use the agent
+    asyncio.run(agent.aprint_response("How to make Thai curry?", markdown=True))
+```
+
+Using `aload()` ensures you take full advantage of the non-blocking operations, concurrent processing, and reduced latency that async vector database operations offer. This is especially valuable in production environments with high throughput requirements.
+
+For more details on vector database async capabilities, see the [Vector Database Introduction](/vectordb/introduction).
+
+
+Use one of the following knowledge bases to simplify the chunking, loading, searching and optimization process:
 - [ArXiv knowledge base](/knowledge/arxiv): Load ArXiv papers to a knowledge base
 - [Combined knowledge base](/knowledge/combined): Combine multiple knowledge bases into 1
 - [CSV knowledge base](/knowledge/csv): Load local CSV files to a knowledge base

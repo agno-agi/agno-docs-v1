@@ -1,33 +1,55 @@
 ---
-title: Introduction
+title: Standardized Codebases for Agentic Systems
+sidebarTitle: Overview
 ---
 
-To run agents in production, we need to:
-1. Serve them using an application like **FastAPI**, **Django** or **Streamlit**.
-2. Manage their sessions, memory and knowlege in a database.
-3. Monitor, evaluate and improve their performance.
+When building an Agentic System, you'll need an API to serve your Agents, a database to store session and vector data and an admin interface for testing and evaluation. You'll also need cron jobs, alerting and data pipelines for ingestion and cleaning. This system would generally take a few months to build, we're open-sourcing it for the community for free.
 
-Agno not only makes building Agents easy but also provides templates that can be deployed to AWS with 1 command. Here's how they work:
+# What are Workspaces?
 
-- Create your codebase using a template: `ag ws create`
-- Run your application locally: `ag ws up`
-- Run your application on AWS: `ag ws up prd:aws`
+**Workspaces are standardized codebases for production Agentic Systems.** They contain:
 
-<Note>
-We strongly believe that data used by AI applications should be stored securely inside your VPC.
+- A RestAPI (FastAPI) for serving Agents, Teams and Workflows.
+- A streamlit application for testing -- think of this as an admin interface.
+- A postgres database for session and vector storage.
 
-We fully support BYOC (Bring Your Own Cloud) and encourage you to use your own AWS account.
-</Note>
+Workspaces are setup to run locally using docker and be easily deployed to AWS. They're a fantastic starting point and exactly what we use for our customers. You'll definitely need to customize them to fit your specific needs, but they'll get you started much faster.
 
-## Templates
+They contain years of learnings, available for free for the open-source community.
 
-We recommend starting with the `agent-app` template and adding your own agents.
+# Here's how they work
+
+- Create your codebase using: `ag ws create`
+- Run locally using docker: `ag ws up`
+- Run on AWS: `ag ws up prd:aws`
+
+We recommend starting with the `agent-app` template and taking it from there.
 
 <CardGroup cols={2}>
-  <Card title="Agent App" icon="books" href="/templates/agent-app/run-local">
-    Run agents using FastAPI, Streamlit and store memory and knowlege in Postgres
+  <Card title="Agent App" icon="books" href="/workspaces/agent-app/local">
+    An Agentic System built with FastAPI, Streamlit and a Postgres database.
   </Card>
-  <Card title="Agent Api" icon="bolt" href="/templates/agent-api/run-local">
-    Run agents using FastAPI and store memory and knowlege in Postgres
+  <Card title="Agent Api" icon="bolt" href="/workspaces/agent-api/local">
+    An Agent API built with FastAPI and Postgres.
   </Card>
 </CardGroup>
+
+# How we build Agentic Systems
+
+When building Agents, we experiment locally till we achieve 6/10 quality.
+This helps us see quick results and get a rough idea of how our solution should look like in production.
+
+Then, we start moving to a production environment and iterate from there. Here's how __*we*__ build production systems:
+- Serve Agents, Teams and Workflows via a REST API (FastAPI).
+- Use a streamlit application for debugging and testing. This streamlit app is generally used as an admin interface for the agentic system and shows all sorts of data.
+- Monitor, evaluate and improve the implementation until we reach 9/10 quality.
+- In parallel, we start integrating our front-end with the REST API above.
+
+Having built 100s of such systems, we have a standard set of codebases we use and we call them **Workspaces**. They help us manage our Agentic System as code.
+
+![workspace](/images/workspace.png)
+
+<Note>
+We strongly believe that your AI applications should run securely inside your VPC.
+We fully support BYOC (Bring Your Own Cloud) and encourage you to use your own cloud account.
+</Note>

@@ -1,0 +1,101 @@
+---
+title: Redis Memory Storage
+---
+
+## Code
+
+```python cookbook/agent_concepts/memory/redis_memory.py
+"""
+This example shows how to use the Memory class with Redis storage.
+"""
+
+from agno.agent.agent import Agent
+from agno.memory.v2.db.redis import RedisMemoryDb
+from agno.memory.v2.memory import Memory
+from agno.models.openai import OpenAIChat
+from agno.storage.redis import RedisStorage
+
+# Create Redis memory database
+memory_db = RedisMemoryDb(
+    prefix="agno_memory",  # Prefix for Redis keys to namespace the memories
+    host="localhost",      # Redis host address
+    port=6379,             # Redis port number
+)
+
+# Create memory instance with Redis backend
+memory = Memory(db=memory_db)
+
+# This will clear any existing memories
+memory.clear()
+
+# Session and user identifiers
+session_id = "redis_memories"
+user_id = "redis_user"
+
+# Create agent with memory and Redis storage
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o-mini"),
+    memory=memory,
+    storage=RedisStorage(prefix="agno_test", host="localhost", port=6379),
+    enable_user_memories=True,
+    enable_session_summaries=True,
+)
+
+# First interaction - introducing personal information
+agent.print_response(
+    "My name is John Doe and I like to hike in the mountains on weekends.",
+    stream=True,
+    user_id=user_id,
+    session_id=session_id,
+)
+
+# Second interaction - testing if memory was stored
+agent.print_response(
+    "What are my hobbies?", 
+    stream=True, 
+    user_id=user_id, 
+    session_id=session_id
+)
+
+# Display the memories stored in Redis
+memories = memory.get_user_memories(user_id=user_id)
+print("Memories stored in Redis:")
+for i, m in enumerate(memories):
+    print(f"{i}: {m.memory}")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set environment variables">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno openai redis
+    ```
+  </Step>
+
+  <Step title="Run Redis">
+    ```bash
+    docker run --name my-redis -p 6379:6379 -d redis
+    ```
+  </Step>
+
+  <Step title="Run Example">
+    <CodeGroup>
+    ```bash Mac/Linux
+    python cookbook/agent_concepts/memory/redis_memory.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/memory/redis_memory.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
