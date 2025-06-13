@@ -3,6 +3,25 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-06-13" description="v1.6.1">
+
+## New Features:
+
+- **Nebius Embeddings**: Added support for embedding models on Nebius.
+- **Firestore Memory and Storage:** Added support for Firestore both as memory and storage provider for your agents.
+
+## Improvements:
+
+- **Improved Event Payloads**: Added `agent_name` to agent events, and `team_name` to team events. Also added `team_session_id` to team-member events to indicate that it belongs to the top-level team session.
+- **Team Run Events**: Added `stream_member_events` to teams to optionally disable streaming of member events.
+- **DocumentKnowledgeBase Async**: Added `async` support on `DocumentKnowledgeBase`
+- **Enums on Custom Tools**: Added support for `enum` parameters in custom tools.
+
+## Bug Fixes:
+
+- **Team Events:** Fixed issues related to team and member events not being part of the same session. Going forward a team and its members will all have the same session ID.
+</Update>
+
 <Update label="2025-06-10" description="v1.6.0">
 ## Improvements:
 
@@ -54,6 +73,21 @@ mode: "wide"
     - See detailed documentation [here](https://docs.agno.com/teams/run).
 - **Updates to Workflows:**
     - You should now yield `WorkflowRunResponseStartedEvent` and `WorkflowRunResponseCompletedEvent` events.
+</Update>
+<Update label="2025-06-06" description="v1.5.10">
+## New Features:
+
+- **Playground File Upload**: We now support file upload via the Agno Playground. This will send PDF, CSV, Docx, etc files directly to the agents/teams for interpretation by the downstream LLMs.  If you have a knowledge base attached to the agent/team, it will upload the file to the knowledge base instead.
+- **Async Evals**: Support for `async` and evaluations. See examples [here](https://github.com/agno-agi/agno/tree/main/cookbook/evals).
+
+## Improvements:
+
+- **Exa Research**: Added `research` tool on `ExaTools`. See more on their [docs](https://docs.exa.ai/reference/exa-research) about how research works.
+- **Whatsapp Type Indicator**: Add type indicator to Whatsapp responses.
+
+## Bug Fixes:
+
+- **State in Messages Fixes**: Fixed issues around nested json inside messages and adding state into messages.
 </Update>
 <Update label="2025-06-05" description="v1.5.9">
 ## New Features:
