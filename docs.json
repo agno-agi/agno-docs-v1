@@ -415,7 +415,8 @@
               {
                 "group": "Workflows v2 (Beta)",
                 "pages": [
-                  "workflows/overview"
+                  "workflows/overview",
+                  "workflows/workflow_session_state"
                 ]
               },
               {
