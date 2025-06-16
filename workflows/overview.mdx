@@ -1,0 +1,37 @@
+---
+title: What are Workflows?
+sidebarTitle: Overview
+---
+
+The workflow system is designed to automate complex processes by defining a series of tasks that are executed in sequence. Each task can be executed by an agent, a team, or a custom function. The workflow is composed of pipelines, which are collections of tasks that execute in a defined order.
+
+![Workflows 2.0](/images//workflows_v2_flow.png)
+
+## Core Design Philosophy
+
+### Atomic Units with Controlled Execution
+The workflow system is built around the concept of atomic execution units in Agno- `Agents` and `Teams`, these are individual components that can work independently but gain enhanced capabilities when orchestrated together:
+- **Agents**: Individual AI executors with specific capabilities and instructions
+- **Teams**: Coordinated groups of agents working together on complex problems
+- **Functions**: Custom Python functions for specialized processing logic
+
+The beauty of this approach is that you maintain the full power and flexibility of each atomic unit while gaining sophisticated orchestration capabilities. Your agents and teams retain their individual characteristics, memory, and behavior patterns, but now operate within a structured workflow that provides:
+- Sequential task execution with output chaining
+- Session management and state persistence
+- Error handling and retry mechanisms
+- Streaming capabilities for real-time feedback
+
+
+### Architectural components
+1. **Workflow**: The Workflow class is the top-level orchestrator that manages the entire execution process.
+2. **Task**: Tasks are the fundamental atomic units of work in the workflow system. Each task encapsulates exactly one `executor` - either an `agent`, a `team`, or a `custom function`. This design ensures clarity and maintainability while preserving the individual characteristics of each executor.
+
+<Note>
+`TaskInput` and `TaskOutput` provides standardized interfaces for data flow between tasks:
+![Workflows Task IO](/images/task_io_flow.png)
+
+So if you make a custom function as an executor for a task, do make sure that the input and output types are compatible with the `TaskInput` and `TaskOutput` interfaces. This will ensure that your custom function can seamlessly integrate into the workflow system.
+</Note>
+
+3. **Pipeline**: Pipelines manage the sequential execution of tasks, handling data flow and coordination between atomic units.
+In theory there could be multiple pipelines, and you could choose one from them to execute.

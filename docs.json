@@ -413,11 +413,17 @@
                 ]
               },
               {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "workflows/overview"
+                ]
+              },
+              {
                 "group": "Workflows",
                 "pages": [
-                  "workflows/introduction",
-                  "workflows/state",
-                  "workflows/advanced"
+                  "workflows_legacy/introduction",
+                  "workflows_legacy/state",
+                  "workflows_legacy/advanced"
                 ]
               },
               {
