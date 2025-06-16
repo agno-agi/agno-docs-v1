@@ -4,3 +4,163 @@ sidebarTitle: Advanced
 description: Explore advanced features and concepts in the Agno workflow system, including custom functions, error handling, and streaming capabilities.
 ---
 
+## Custom Functions for Workflows
+
+### Overview
+Custom functions provide flexibility by allowing developers to define specific logic for task execution. They can be used to `preprocess inputs`, `call agents`, and `postprocess outputs`.
+
+### How Custom Functions Work
+- **Execution Function**: Tasks can be defined with a custom execution function that handles the task logic.
+- **Integration with Agents and Teams**: Custom functions can interact with agents and teams, leveraging their capabilities.
+
+While defining a `Task`, you can specify a custom function as an `execution_function`. This function should accept a `TaskInput` object and return a `TaskOutput` object.
+
+```python
+task = Task(
+    name="custom_analysis",
+    execution_function=custom_blog_analysis_function,  # Custom function with agent
+    description="Custom blog analysis with preprocessing and postprocessing",
+)
+
+def custom_blog_analysis_function(task_input: TaskInput) -> TaskOutput:
+    """
+    Custom function that does preprocessing, calls an agent, and does postprocessing
+    """
+    query = task_input.get_primary_input()
+
+    # Custom preprocessing
+    print(f"🔍 Starting custom blog analysis for: {query}")
+
+    # Add custom context and formatting
+    enhanced_query = f"""
+        BLOG ANALYSIS REQUEST:
+        Topic: {query}
+        
+        Please provide:
+        1. Key themes and trends
+        2. Target audience insights  
+        3. Content opportunities
+        4. SEO considerations
+        
+        Additional context from previous tasks:
+        {task_input.previous_outputs if task_input.previous_outputs else "No previous context"}
+    """
+
+    # Call the agent with enhanced input
+    try:
+        response = blog_analyzer.run(enhanced_query)
+
+        # Custom postprocessing
+        enhanced_content = f"""
+            ## Custom Blog Analysis Results
+
+            **Original Query:** {query}
+
+            **Analysis:**
+            {response.content}
+
+            **Custom Insights:**
+            - Analysis completed with enhanced context
+            - Ready for next stage processing
+            - Confidence level: High
+        """.strip()
+
+        # Return TaskOutput with enhanced response
+        return TaskOutput(
+            content=enhanced_content,
+            response=response,
+            data={"analysis_type": "custom", "confidence": "high"},
+            metadata={
+                "function_name": "custom_blog_analysis_function",
+                "preprocessing": True,
+                "postprocessing": True,
+            },
+        )
+
+    except Exception as e:
+        return TaskOutput(
+            content=f"Custom blog analysis failed: {str(e)}",
+            metadata={"error": True, "function_name": "custom_blog_analysis_function"},
+        )
+```
+
+Just make sure to follow this structure and return the output as a `TaskOutput` object.
+
+```python
+def custom_blog_analysis_function(task_input: TaskInput) -> TaskOutput:
+    # Custom preprocessing
+    # Call the agent
+    # Custom postprocessing
+    return TaskOutput(content=enhanced_content)
+```
+
+See a more detailed example in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_custom_execution_function_workflow.py)
+
+## Streaming
+Streaming in workflows allows for real-time updates and feedback during task execution. This is particularly useful for long-running tasks or when immediate feedback is required.
+- **Event-Driven Execution**: Tasks can yield events during execution, providing updates on progress or intermediate results.
+
+To use streaming with workflows just set the `stream` and `stream_intermediate_steps` parameter to `True` in the `run` or `print_response` methods of the `Workflow` class.
+
+```python
+workflow.print_response(
+    message="AI trends in 2024",
+    markdown=True,
+    stream=True,
+    stream_intermediate_steps=True,
+)
+```
+
+Check the full example cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_stream_pipeline_workflow.py)
+
+## Custom Streaming Functions
+Custom functions can also support streaming by yielding events during execution. While performing `.run` or `.arun` in your custom execution function, you can `yield` events to provide real-time updates. 
+
+Something like this-
+```python
+ # Stream the agent response
+for event in blog_analyzer.run(
+        enhanced_query, stream=True, stream_intermediate_steps=True
+    ):
+    yield event
+    if hasattr(event, "content") and event.content:
+        accumulated_content += event.content
+```
+
+This is demonstrated in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_stream_custom_execution_function_workflow.py)
+
+## Asynchronous Execution
+Asynchronous workflows allow tasks to be executed concurrently, improving efficiency and responsiveness, especially in I/O-bound operations.
+
+To enable asynchronous execution, you can use the `async` keyword in your task definitions and run the workflow using `await`.
+
+See a detailed example in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/async_basic_pipeline_workflow.py)
+
+
+## Pydantic Input
+Pydantic is used for data validation and settings management using Python type annotations. It ensures that inputs to tasks are structured and validated.
+- **Data Models**: Define structured data models using Pydantic's BaseModel.
+- **Validation**: Automatically validate input data against the defined models.
+
+To use a Pydantic model as input you can define it and put it as the `message_data` parameter in the `print_response`/`run` method of the `Workflow` class.
+
+```python
+class ResearchTopic(BaseModel):
+    focus_areas: List[str] = Field(description="Specific areas to focus on")
+    target_audience: str = Field(description="Who this research is for")
+    sources_required: int = Field(description="Number of sources needed", default=5)
+
+research_topic = ResearchTopic(
+    focus_areas=["Machine Learning", "NLP", "Computer Vision", "AI Ethics"],
+    target_audience="Tech professionals and business leaders",
+    sources_required=8,
+)
+
+workflow.print_response(
+    message="AI trends in 2024",
+    message_data=research_topic,
+    markdown=True,
+)
+```
+
+For a detailed example, check out the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/pydantic_input_basic_pipeline_workflow.py)
