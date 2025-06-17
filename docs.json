@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Agno",
   "colors": {
-    "primary": "#FF4017",
-    "light": "#FF4017",
-    "dark": "#FF4017"
+    "primary": "#FF3017",
+    "light": "#FF3017",
+    "dark": "#FF3017"
   },
   "favicon": "/favicon.png",
   "contextual": {
@@ -19,17 +19,15 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "User Guide",
+        "tab": "Guide",
         "groups": [
           {
-            "group": "Introduction",
+            "group": "Getting Started",
             "pages": [
               "introduction",
-              "introduction/agents",
-              "introduction/multi-agent-systems",
-              "introduction/playground",
-              "introduction/monitoring",
-              "introduction/community"
+              "building-agents",
+              "agent-os",
+              "project-structure"
             ]
           },
           {
@@ -1799,11 +1797,11 @@
   "fonts": {
     "heading": {
       "family": "Inter",
-      "weight": 750
+      "weight": 650
     },
     "body": {
       "family": "Inter",
-      "weight": 400
+      "weight": 450
     }
   },
 "integrations": {

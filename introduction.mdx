@@ -1,164 +1,23 @@
 ---
-title: What is Agno?
-description: "**Agno is a full-stack framework for building Multi-Agent Systems with memory, knowledge and reasoning.**"
-sidebarTitle: What is Agno?
+title: Introduction
+description: "Superintelligence: a network of agents, multi-agent teams and agentic workflows with shared memory, knowledge, and reasoning, operating as a single unit."
 ---
 
-Engineers and researchers use Agno to build the 5 levels of Agentic Systems:
+Agno is a multi-agent framework for building:
 
-- **Level 1:** Agents with tools and instructions ([example](/introduction/agents#level-1%3A-agents-with-tools-and-instructions)).
-- **Level 2:** Agents with knowledge and storage ([example](/introduction/agents#level-2%3A-agents-with-knowledge-and-storage)).
-- **Level 3:** Agents with memory and reasoning ([example](/introduction/agents#level-3%3A-agents-with-memory-and-reasoning)).
-- **Level 4:** Agent Teams that can reason and collaborate ([example](/introduction/multi-agent-systems#level-4%3A-agent-teams-that-can-reason-and-collaborate)).
-- **Level 5:** Agentic Workflows with state and determinism ([example](/introduction/multi-agent-systems#level-5%3A-agentic-workflows-with-state-and-determinism)).
+1. **Agents with tools:** Simple agents executing narrowly scoped tasks using tools.
+2. **Agents with memory and knowledge:** Agents that dynamically access memory and knowledge at runtime, improving performance and response quality.
+3. **Agents with memory, knowledge and reasoning:** Agents capable of reasoning through complex multi-step problems, accessing memory and knowledge as needed.
+4. **Multi-Agent Teams:** Multiple agents collaborating using shared context, memory, and knowledge to achieve complex tasks.
+5. **Agentic Workflows:** Robust workflows orchestrating multiple agents and teams, maintaining shared state and ensuring reliable, deterministic execution.
+6. **Superintelligence:** A system of agents, teams and workflows that can reason, collaborate and achieve complex goals, and even self-improve.
 
-**Example:** Level 1 Reasoning Agent that uses the YFinance API to answer questions:
+# Agent OS
 
-```python Reasoning Finance Agent
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
-
-reasoning_agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
-    tools=[
-        ReasoningTools(add_instructions=True),
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
-    ],
-    instructions="Use tables to display data.",
-    markdown=True,
-)
-```
-
-<Accordion title="Watch the reasoning finance agent in action">
-  <video
-    autoPlay
-    muted
-    controls
-    className="w-full aspect-video"
-    style={{ borderRadius: "8px" }}
-    src="/videos/reasoning_finance_agent.mp4"
-  ></video>
-</Accordion>
+Agent OS is a system of agents, teams and workflows, operating as a single unit. Agno helps you build the Agent OS and provides a beautiful UI to run, monitor and manage it.
 
 # Getting Started
 
-If you're new to Agno, learn how to build your [first Agent](/introduction/agents), chat with it on the [playground](/introduction/playground) and [monitor](/introduction/monitoring) it on [app.agno.com](https://app.agno.com).
-
-<CardGroup cols={3}>
-  <Card
-    title="Your first Agents"
-    icon="user-astronaut"
-    iconType="duotone"
-    href="/introduction/agents"
-  >
-    Learn how to build Agents with Agno
-  </Card>
-  <Card
-    title="Agent Playground"
-    icon="comment-dots"
-    iconType="duotone"
-    href="introduction/playground"
-  >
-    Chat with your Agents using a beautiful Agent UI
-  </Card>
-  <Card
-    title="Agent Monitoring"
-    icon="rocket-launch"
-    iconType="duotone"
-    href="introduction/monitoring"
-  >
-    Monitor your Agents on [agno.com](https://app.agno.com)
-  </Card>
-</CardGroup>
-
-After that, dive deeper into the [concepts below](/introduction#dive-deeper) or explore the [examples gallery](/examples) to build real-world applications with Agno.
-
-# Why Agno?
-
-Agno will help you build best-in-class, highly-performant agentic systems, saving you hours of research and boilerplate. Here are some key features that set Agno apart:
-
-- **Model Agnostic**: Agno provides a unified interface to 23+ model providers, no lock-in.
-- **Highly performant**: Agents instantiate in **~3μs** and use **~6.5Kib** memory on average.
-- **Reasoning is a first class citizen**: Reasoning improves reliability and is a must-have for complex autonomous agents. Agno supports 3 approaches to reasoning: Reasoning Models, `ReasoningTools` or our custom `chain-of-thought` approach.
-- **Natively Multi-Modal**: Agno Agents are natively multi-modal, they accept text, image, audio and video as input and generate text, image, audio and video as output.
-- **Advanced Multi-Agent Architecture**: Agno provides an industry leading multi-agent architecture (**Agent Teams**) with reasoning, memory, and shared context.
-- **Built-in Agentic Search**: Agents can search for information at runtime using 20+ vector databases. Agno provides state-of-the-art Agentic RAG, **fully async and highly performant.**
-- **Built-in Memory & Session Storage**: Agents come with built-in `Storage` & `Memory` drivers that give your Agents long-term memory and session storage.
-- **Structured Outputs**: Agno Agents can return fully-typed responses using model provided structured outputs or `json_mode`.
-- **Pre-built FastAPI Routes**: After building your Agents, serve them using pre-built FastAPI routes. 0 to production in minutes.
-- **Monitoring**: Monitor agent sessions and performance in real-time on [agno.com](https://app.agno.com).
-
-# Dive deeper
-
-Agno is a battle-tested framework with a state of the art reasoning and multi-agent architecture, read the following guides to learn more:
-
-<CardGroup cols={3}>
-  <Card title="Agents" icon="user-astronaut" iconType="duotone" href="/agents">
-    Learn how to build lightning fast Agents.
-  </Card>
-  <Card title="Teams" icon="microchip" iconType="duotone" href="/teams">
-    Build autonomous multi-agent teams.
-  </Card>
-  <Card title="Models" icon="cube" iconType="duotone" href="/models">
-    Use any model, any provider, no lock-in.
-  </Card>
-  <Card
-    title="Tools"
-    icon="screwdriver-wrench"
-    iconType="duotone"
-    href="/tools"
-  >
-    100s of tools to extend your Agents.
-  </Card>
-  <Card
-    title="Reasoning"
-    icon="brain-circuit"
-    iconType="duotone"
-    href="/reasoning"
-  >
-    Make Agents "think" and "analyze".
-  </Card>
-  <Card title="Knowledge" icon="server" iconType="duotone" href="/knowledge">
-    Give Agents domain-specific knowledge.
-  </Card>
-  <Card
-    title="Vector Databases"
-    icon="spider-web"
-    iconType="duotone"
-    href="/vectordb"
-  >
-    Store and search your knowledge base.
-  </Card>
-  <Card title="Storage" icon="database" iconType="duotone" href="/storage">
-    Persist Agent session and state in a database.
-  </Card>
-  <Card
-    title="Memory"
-    icon="lightbulb"
-    iconType="duotone"
-    href="/agents/memory"
-  >
-    Remember user details and session summaries.
-  </Card>
-  <Card
-    title="Embeddings"
-    icon="network-wired"
-    iconType="duotone"
-    href="/embedder"
-  >
-    Generate embeddings for your knowledge base.
-  </Card>
-  <Card
-    title="Workflows"
-    icon="diagram-project"
-    iconType="duotone"
-    href="/workflows"
-  >
-    Deterministic, stateful, multi-agent workflows.
-  </Card>
-  <Card title="Evals" icon="shield" iconType="duotone" href="/evals">
-    Evaluate, monitor and improve your Agents.
-  </Card>
-</CardGroup>
+- If you're new to Agno, learn about [Agents](/introduction/agents) and how to manage them using the [Agent OS](/introduction/agent-os).
+- After that, dive deeper into the [core concepts](/introduction#dive-deeper) or explore the [examples gallery](/examples).
+- If you're looking for help, checkout our [community and support](/introduction/community) forums.
