@@ -3,6 +3,58 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-06-10" description="v1.6.0">
+## Improvements:
+
+- **New Streaming Events**: We have improved our streaming events system. See the details in “breaking changes” section at the bottom.
+- **Member Events in Teams**: The above change includes streaming of events from team members with the top-level team events.
+
+## Bug Fixes:
+
+- **Apify Tools:** Fixed the ApifyTools initialize to correctly register functions.
+
+## Breaking Changes:
+
+- **Updates to Run Without Streaming**:
+    - `RunResponse` now does not have an `event` attribute. It still represents the responses of the entire run.
+    - An additional attribute `RunResponse.status` now indicates whether the run response is `RUNNING`, `PAUSED`, or `CANCELLED`.
+- **Updates to Run Streaming:**
+    - In the case of streaming you now get reformulated run events. These events are streamed if you do `agent.run(..., stream=True)` or `agent.arun(..., stream=True)` .
+    - Agents have the following event types:
+        - `RunResponseContent`
+        - `RunError`
+        - `RunCancelled`
+        - `ToolCallStarted`
+        - `ToolCallCompleted`
+        - with `stream_intermediate_steps=True`:
+            - `RunStarted`
+            - `RunCompleted`
+            - `ReasoningStarted`
+            - `ReasoningStep`
+            - `ReasoningCompleted`
+            - `MemoryUpdateStarted`
+            - `MemoryUpdateCompleted`
+    - See detailed documentation [here](https://docs.agno.com/agents/run).
+- **Updates to Teams:**
+    - Teams have the following event types:
+        - `TeamRunResponseContent`
+        - `TeamRunError`
+        - `TeamRunCancelled`
+        - `TeamToolCallStarted`
+        - `TeamToolCallCompleted`
+        - with `stream_intermediate_steps=True`:
+            - `TeamRunStarted`
+            - `TeamRunCompleted`
+            - `TeamReasoningStarted`
+            - `TeamReasoningStep`
+            - `TeamReasoningCompleted`
+            - `TeamMemoryUpdateStarted`
+            - `TeamMemoryUpdateCompleted`
+    - Teams will also yield events from team members as they are executed.
+    - See detailed documentation [here](https://docs.agno.com/teams/run).
+- **Updates to Workflows:**
+    - You should now yield `WorkflowRunResponseStartedEvent` and `WorkflowRunResponseCompletedEvent` events.
+</Update>
 <Update label="2025-06-05" description="v1.5.9">
 ## New Features:
 
