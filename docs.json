@@ -127,6 +127,7 @@
                   "models/sambanova",
                   "models/together",
                   "models/vercel",
+                  "models/vllm",
                   "models/xai"
                 ]
               },
@@ -1505,6 +1506,20 @@
                   "examples/models/vercel/basic",
                   "examples/models/vercel/basic_stream",
                   "examples/models/vercel/tool_use"
+                ]
+              },
+              {
+                "group": "vLLM",
+                "pages": [
+                  "examples/models/vllm/basic_stream",
+                  "examples/models/vllm/async_basic",
+                  "examples/models/vllm/async_basic_stream",
+                  "examples/models/vllm/tool_use",
+                  "examples/models/vllm/async_tool_use",
+                  "examples/models/vllm/structured_output",
+                  "examples/models/vllm/code_generation",
+                  "examples/models/vllm/storage",
+                  "examples/models/vllm/memory"
                 ]
               }
             ]
