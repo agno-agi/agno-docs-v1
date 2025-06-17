@@ -42,7 +42,7 @@ The Playground gives a robust interface to test your agentic systems with extens
 ```python playground.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
@@ -78,15 +78,16 @@ finance_agent = Agent(
     markdown=True,
 )
 
-app = Playground(agents=[web_agent, finance_agent]).get_app()
+playground_app = Playground(agents=[web_agent, finance_agent])
+app = playground_app.get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("playground:app", reload=True)
+    playground_app.serve("playground:app", reload=True)
 ```
 
 Remember to export your `OPENAI_API_KEY` before running the playground application.
 
-<Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
+<Tip>Make sure the `serve()` points to the file that contains your `Playground` app.</Tip>
 
 </Step>
 
