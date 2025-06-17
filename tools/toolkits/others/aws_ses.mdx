@@ -23,7 +23,9 @@ export AWS_DEFAULT_REGION=us-east-1
 ```
 
 <Note>
-Make sure to add the domain or email address you want to send FROM (and, if still in sandbox mode, the TO address) to the verified emails in  the [SES Console](https://console.aws.amazon.com/ses/home).
+  Make sure to add the domain or email address you want to send FROM (and, if
+  still in sandbox mode, the TO address) to the verified emails in the [SES
+  Console](https://console.aws.amazon.com/ses/home).
 </Note>
 
 ## Example
@@ -46,8 +48,8 @@ agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     tools=[
         AWSSESTool(
-            sender_email=sender_email, 
-            sender_name=sender_name, 
+            sender_email=sender_email,
+            sender_name=sender_name,
             region_name=region_name
         ),
         DuckDuckGoTools(),
@@ -70,20 +72,20 @@ agent.print_response(
 
 ## Toolkit Params
 
-| Parameter      | Type   | Default      | Description                                                                     |
-| -------------- | ------ | ------------ | ------------------------------------------------------------------------------- |
-| `sender_email` | `str`  | `None`       | Verified SES sender address.                                                    |
-| `sender_name`  | `str`  | `None`       | Display name that appears to recipients.                                        |
-| `region_name`  | `str`  | `"us-east-1"` | AWS region where SES is provisioned.                                            |
+| Parameter      | Type  | Default       | Description                              |
+| -------------- | ----- | ------------- | ---------------------------------------- |
+| `sender_email` | `str` | `None`        | Verified SES sender address.             |
+| `sender_name`  | `str` | `None`        | Display name that appears to recipients. |
+| `region_name`  | `str` | `"us-east-1"` | AWS region where SES is provisioned.     |
 
 ## Toolkit Functions
 
-| Function      | Description                                                  |
-| ------------- | ------------------------------------------------------------ |
-| `send_email`  | Send a plain-text email. Accepts the arguments: `subject`, `body`, `receiver_email`. |
+| Function     | Description                                                                          |
+| ------------ | ------------------------------------------------------------------------------------ |
+| `send_email` | Send a plain-text email. Accepts the arguments: `subject`, `body`, `receiver_email`. |
 
 ## Developer Resources
 
 - View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/aws_ses.py)
-- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/aws_ses_tools.py) 
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/aws_ses_tools.py)
 - [Amazon SES Documentation](https://docs.aws.amazon.com/ses/latest/dg/)
