@@ -71,7 +71,7 @@ Let's start with a local playground server. Create a file `playground.py`
 ```python playground.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
@@ -107,10 +107,11 @@ finance_agent = Agent(
     markdown=True,
 )
 
-app = Playground(agents=[web_agent, finance_agent]).get_app()
+playground = Playground(agents=[web_agent, finance_agent])
+app = playground.get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("playground:app", reload=True)
+    playground.serve("playground:app", reload=True)
 ```
 
 In another terminal, run the playground server:
