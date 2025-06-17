@@ -47,9 +47,9 @@ agent.print_response("Llamas ruling the world")
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install vLLM">
+  <Step title="Install Libraries">
     ```bash
-    pip install vllm
+    pip install -U agno pydantic vllm openai
     ```
   </Step>
 
@@ -64,21 +64,9 @@ agent.print_response("Llamas ruling the world")
     ```
   </Step>
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U agno pydantic
-    ```
-  </Step>
-
   <Step title="Run Agent">
-    <CodeGroup>
-    ```bash Mac
+    ```bash
     python cookbook/models/vllm/structured_output.py
     ```
-
-    ```bash Windows
-    python cookbook/models/vllm/structured_output.py
-    ```
-    </CodeGroup>
   </Step>
 </Steps> 

@@ -27,9 +27,9 @@ asyncio.run(agent.aprint_response("Whats happening in France?", stream=True))
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install dependencies">
+  <Step title="Install Libraries">
     ```bash
-    pip install vllm duckduckgo-search
+    pip install -U agno openai vllm duckduckgo-search
     ```
   </Step>
 
@@ -44,21 +44,9 @@ asyncio.run(agent.aprint_response("Whats happening in France?", stream=True))
     ```
   </Step>
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U agno
-    ```
-  </Step>
-
   <Step title="Run Agent">
-    <CodeGroup>
-    ```bash Mac
+    ```bash
     python cookbook/models/vllm/async_tool_use.py
     ```
-
-    ```bash Windows
-    python cookbook/models/vllm/async_tool_use.py
-    ```
-    </CodeGroup>
   </Step>
 </Steps> 

@@ -19,9 +19,9 @@ asyncio.run(agent.aprint_response("Share a 2 sentence horror story"))
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install vLLM">
+  <Step title="Install libraries">
     ```bash
-    pip install vllm
+    pip install -U agno openai vllm
     ```
   </Step>
 
@@ -36,21 +36,9 @@ asyncio.run(agent.aprint_response("Share a 2 sentence horror story"))
     ```
   </Step>
 
-  <Step title="Install libraries">
-    ```bash
-    pip install -U agno
-    ```
-  </Step>
-
   <Step title="Run Agent">
-    <CodeGroup>
-    ```bash Mac
+    ```bash
     python cookbook/models/vllm/async_basic.py
     ```
-
-    ```bash Windows
-    python cookbook/models/vllm/async_basic.py
-    ```
-    </CodeGroup>
   </Step>
 </Steps> 
