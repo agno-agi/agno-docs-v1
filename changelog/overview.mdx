@@ -3,6 +3,27 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-06-18" description="v1.6.3">
+
+## New Features:
+
+- **User Control Flows on Playground**: The Agno Platform now support user control flows on the playground.
+- **Team & Agent Events on RunResponse:** Added `store_events` parameter to optionally add all events that happened during the course of an agent/team run on the `RunResponse`/`TeamRunResponse`.
+- **Team Member Responses on Playground**: The Agno Platform now shows member responses during team runs.
+- **Behind-the-scenes on Playground**: The Agno Platform now shows what is happening during runs, for both agents and teams.
+- **Metadata filtering support for `csv` and `csv_url` knowledge bases:** Add knowledge filters support for these knowledge base types.
+
+## Updates
+
+- **Removed `a` prefix from async function names:** `asearch_knowledge_base`, etc will now be the same as their `sync` counterparts when sent to the model. The names of functions are important for accurate function calling.
+
+## Bug Fixes:
+
+- **AG-UI Fix**: Fixed issue related to missing messages when using the Agno AG-UI app.
+- **Chat History Fix**: Fixed issue related to history not available when `agent_id` not set.
+- **MongoDB ObjectId serialization issue when using with agent:** Fixed issue while ****using mongodb vectordb with ObjectId present in the metadata it throws Object of type `ObjectId` is not JSON serializable
+
+</Update>
 <Update label="2025-06-13" description="v1.6.1">
 
 ## New Features:
