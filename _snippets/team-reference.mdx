@@ -60,6 +60,11 @@
 | `reasoning_model` | `Optional[Model]` | `None` | Model to use for reasoning |
 | `reasoning_min_steps` | `int` | `1` | Minimum number of reasoning steps |
 | `reasoning_max_steps` | `int` | `10` | Maximum number of reasoning steps |
+| `stream` | `Optional[bool]` | `None` | Stream the response from the Team |
+| `stream_intermediate_steps` | `bool` | `False` | Stream the intermediate steps from the Team |
+| `stream_member_events` | `bool` | `True` | Stream the member events from the Team members |
+| `store_events` | `bool` | `False` | Store the streaming events on the TeamRunResponse |
+| `events_to_skip` | `Optional[List[Union[RunEvent, TeamRunEvent]]]` | `None` | Specify which event types to skip when storing events on the TeamRunResponse |
 | `app_id` | `Optional[str]` | `None` | Optional app ID. Indicates this team is part of an app |
 | `debug_mode` | `bool` | `False` | Enable debug logs |
 | `show_members_responses` | `bool` | `False` | Enable member logs - Sets the debug_mode for team and members |

@@ -68,6 +68,8 @@
 | `save_response_to_file` | `Optional[str]` | `None` | Save the response to a file |
 | `stream` | `Optional[bool]` | `None` | Stream the response from the Agent |
 | `stream_intermediate_steps` | `bool` | `False` | Stream the intermediate steps from the Agent |
+| `store_events` | `bool` | `False` | Store the streaming events on the RunResponse |
+| `events_to_skip` | `Optional[List[RunEvent]]` | `None` | Specify which event types to skip when storing events on the RunResponse |
 | `team` | `Optional[List[Agent]]` | `None` | The team of agents that this agent can transfer tasks to |
 | `team_data` | `Optional[Dict[str, Any]]` | `None` | Data shared between team members |
 | `role` | `Optional[str]` | `None` | If this Agent is part of a team, this is the role of the agent |

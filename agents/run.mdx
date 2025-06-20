@@ -96,6 +96,32 @@ for event in response_stream:
 
 You can see this behavior in action in our [Playground](https://app.agno.com/playground/agents?endpoint=demo.agnoagents.com&agent=reasoning-agent).
 
+### Storing Events
+
+You can store all the events that happened during a run on the `RunResponse` object.
+
+```python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.utils.pprint import pprint_run_response
+
+agent = Agent(model=OpenAIChat(id="gpt-4o-mini"), store_events=True)
+
+response = agent.run("Tell me a 5 second short story about a lion", stream=True, stream_intermediate_steps=True)
+pprint_run_response(response)
+
+for event in agent.run_response.events:
+    print(event.event)
+```
+
+By default the `RunResponseContentEvent` event is not stored. You can modify which events are skipped by setting the `events_to_skip` parameter.
+
+For example:
+
+```python
+agent = Agent(model=OpenAIChat(id="gpt-4o-mini"), store_events=True, events_to_skip=[RunEvent.run_started.value])
+```
+
 ### Event Types
 
 The following events are yielded by the `Agent.run()` and `Agent.arun()` functions depending on the agent's configuration:
