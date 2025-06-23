@@ -75,6 +75,23 @@ MovieScript(
 │   storyline='Isabella Grant, a fearless investigative journalist, uncovers a massive conspiracy involving a powerful syndicate plotting to control New York City. Teaming up with renegade cop Alex Chen, they must race against time to expose the culprits before the city descends into chaos. Dodging danger at every turn, they fight to protect the city they love from imminent destruction.'
 )
 ```
+
+## Using a Parser Model
+
+You can use an additional model to parse and structure the output from your primary model. This approach is particularly effective when the primary model is optimized for reasoning tasks, as such models may not consistently produce detailed structured responses.
+
+```python
+agent = Agent(
+    model=Claude(id="claude-sonnet-4-20250514"),
+    description="You write movie scripts.",
+    response_model=MovieScript,
+    parser_model=OpenAIChat(id="gpt-4o"),
+)
+```
+
+You can also provide a custom `parser_model_prompt` to your Agent.
+
 ## Developer Resources
 
 - View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/async/structured_output.py)
+- View [Parser Model Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/other/parse_model.py)
