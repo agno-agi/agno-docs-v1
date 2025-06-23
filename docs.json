@@ -430,7 +430,8 @@
                   "applications/fastapi/introduction",
                   "applications/whatsapp/introduction",
                   "applications/ag-ui/introduction",
-                  "applications/slack/introduction"
+                  "applications/slack/introduction",
+                  "applications/discord/introduction"
                 ]
               }
             ]
@@ -598,6 +599,14 @@
                       "examples/applications/slack/basic",
                       "examples/applications/slack/reasoning_agent",
                       "examples/applications/slack/agent_with_user_memory"
+                    ]
+                  },
+                  {
+                    "group": "Discord",
+                    "pages": [
+                      "examples/applications/discord/basic",
+                      "examples/applications/discord/agent_with_media",
+                      "examples/applications/discord/agent_with_user_memory"
                     ]
                   },
                   {
