@@ -2,74 +2,55 @@
 title: Scenario Testing
 ---
 
-This example shows how to use the [scenario](https://github.com/langwatch/scenario) testing library to test an agent.
+This example shows how to use the [Scenario](https://github.com/langwatch/scenario) framework for agentic simulation-based testing.
 
 ## Code
 
 ```python cookbook/agent_concepts/other/scenario_testing.py
 import pytest
-from scenario import Scenario, TestingAgent, scenario_cache
+import scenario
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
 
-Scenario.configure(testing_agent=TestingAgent(model="openai/gpt-4o-mini"))
-
+# Configure Scenario defaults (model for user simulator and judge)
+scenario.configure(default_model="openai/gpt-4.1-mini")
 
 @pytest.mark.agent_test
 @pytest.mark.asyncio
 async def test_vegetarian_recipe_agent():
-    agent = VegetarianRecipeAgent()
-
-    def vegetarian_recipe_agent(message, context):
-        # Call your agent here
-        return agent.run(message)
-
-    # Define the scenario
-    scenario = Scenario(
-        "User is looking for a dinner idea",
-        agent=vegetarian_recipe_agent,
-        success_criteria=[
-            "Recipe agent generates a vegetarian recipe",
-            "Recipe includes a list of ingredients",
-            "Recipe includes step-by-step cooking instructions",
-        ],
-        failure_criteria=[
-            "The recipe is not vegetarian or includes meat",
-            "The agent asks more than two follow-up questions",
-        ],
-    )
-
-    # Run the scenario and get results
-    result = await scenario.run()
-
-    # Assert for pytest to know whether the test passed
-    assert result.success
-
-
-# Example agent implementation
-from agno.agent import Agent
-from agno.models.openai import OpenAIChat
-
-
-class VegetarianRecipeAgent:
+  # 1. Create your agent adapter
+  class RecipeAgent(scenario.AgentAdapter):
     def __init__(self):
-        self.history = []
+      self.agent = Agent(
+        model=OpenAIChat(id="gpt-4.1-mini"),
+        markdown=True,
+        debug_mode=True,
+        instructions="You are a vegetarian recipe agent",
+      )
 
-    @scenario_cache()
-    def run(self, message: str):
-        self.history.append({"role": "user", "content": message})
+    async def call(self, input: scenario.AgentInput) -> scenario.AgentReturnTypes:
+      response = self.agent.run(input.messages)
+      return response.content
 
-        agent = Agent(
-            model=OpenAIChat(id="gpt-4o"),
-            markdown=True,
-            debug_mode=True,
-            instructions="You are a vegetarian recipe agent",
-        )
+  # 2. Run the scenario
+  result = await scenario.run(
+    name="dinner recipe request",
+    description="User is looking for a vegetarian dinner idea.",
+    agents=[
+      VegetarianRecipeAgentAdapter(),
+      scenario.UserSimulatorAgent(),
+      scenario.JudgeAgent(criteria=[
+        "Agent should not ask more than two follow-up questions",
+        "Agent should generate a recipe",
+        "Recipe should include a list of ingredients",
+        "Recipe should include step-by-step cooking instructions",
+        "Recipe should be vegetarian and not include any sort of meat",
+      ])
+    ],
+  )
 
-        response = agent.run(message)
-        result = response.content
-        print(result)
-        self.history.append(result)
-
-        return {"message": result}
+  # 3. Assert the result
+  assert result.success
 ```
 
 ## Usage
@@ -80,6 +61,7 @@ class VegetarianRecipeAgent:
   <Step title="Set your API key">
     ```bash
     export OPENAI_API_KEY=xxx
+    export LANGWATCH_API_KEY=xxx # Optional, required for Simulation monitoring
     ```
   </Step>
 
