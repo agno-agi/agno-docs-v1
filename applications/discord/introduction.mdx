@@ -28,13 +28,13 @@ basic_agent = Agent(
 
 discord_agent = DiscordClient(basic_agent)
 if __name__ == "__main__":
-    discord_agent.run()
+    discord_agent.serve()
 ```
 
 ## Core Components
 
 - `DiscordClient`: Wraps Agno agents/teams for Discord integration using discord.py.
-- `DiscordClient.run`: Starts the Discord bot client with the provided token.
+- `DiscordClient.serve`: Starts the Discord bot client with the provided token.
 
 ## `DiscordClient` Class
 
