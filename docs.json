@@ -408,13 +408,14 @@
                   "embedder/aws_bedrock"
                 ]
               },
-              {
-                "group": "Evals",
-                "pages": [
-                  "evals/introduction",
-                  "evals/platform"
-                ]
-              },
+                        {
+            "group": "Evals",
+            "pages": [
+              "evals/introduction",
+              "evals/scenario-testing",
+              "evals/platform"
+            ]
+          },
               {
                 "group": "Workflows",
                 "pages": [
@@ -664,6 +665,12 @@
                       "examples/evals/reliability/basic",
                       "examples/evals/reliability/reliability_with_multiple_tools",
                       "examples/evals/reliability/reliability_with_teams"
+                    ]
+                  },
+                  {
+                    "group": "Scenario Testing",
+                    "pages": [
+                      "examples/evals/scenario/basic"
                     ]
                   }
                 ]
@@ -1179,7 +1186,6 @@
                   "examples/concepts/others/instructions",
                   "examples/concepts/others/intermediate_steps",
                   "examples/concepts/others/response_as_variable",
-                  "examples/concepts/others/scenario_testing",
                   "examples/concepts/others/success_criteria"
                 ]
               }
