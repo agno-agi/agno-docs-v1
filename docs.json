@@ -393,13 +393,13 @@
                 ]
               },
               {
-            "group": "Evals",
-            "pages": [
-              "evals/introduction",
-              "evals/scenario-testing",
-              "evals/platform"
-            ]
-          },
+                "group": "Evals",
+                "pages": [
+                  "evals/introduction",
+                  "evals/scenario-testing",
+                  "evals/platform"
+                ]
+              },
               {
                 "group": "Workflows",
                 "pages": [
@@ -654,9 +654,7 @@
                   },
                   {
                     "group": "Scenario Testing",
-                    "pages": [
-                      "examples/evals/scenario/basic"
-                    ]
+                    "pages": ["examples/evals/scenario/basic"]
                   }
                 ]
               }
