@@ -9,12 +9,7 @@
   },
   "favicon": "/favicon.png",
   "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude"
-    ]
+    "options": ["copy", "view", "chatgpt", "claude"]
   },
   "navigation": {
     "tabs": [
@@ -81,24 +76,15 @@
                   "models/anthropic",
                   {
                     "group": "AWS",
-                    "pages": [
-                      "models/aws-bedrock",
-                      "models/aws-claude"
-                    ]
+                    "pages": ["models/aws-bedrock", "models/aws-claude"]
                   },
                   {
                     "group": "Azure",
-                    "pages": [
-                      "models/azure-ai-foundry",
-                      "models/azure-openai"
-                    ]
+                    "pages": ["models/azure-ai-foundry", "models/azure-openai"]
                   },
                   {
                     "group": "Cerebras",
-                    "pages": [
-                      "models/cerebras",
-                      "models/cerebras_openai"
-                    ]
+                    "pages": ["models/cerebras", "models/cerebras_openai"]
                   },
                   "models/cohere",
                   "models/deepinfra",
@@ -110,10 +96,7 @@
                   "models/ibm-watsonx",
                   {
                     "group": "LiteLLM",
-                    "pages": [
-                      "models/litellm",
-                      "models/litellm_openai"
-                    ]
+                    "pages": ["models/litellm", "models/litellm_openai"]
                   },
                   "models/lmstudio",
                   "models/meta",
@@ -155,6 +138,7 @@
                           "tools/toolkits/search/pubmed",
                           "tools/toolkits/search/searxng",
                           "tools/toolkits/search/serpapi",
+                          "tools/toolkits/search/serper",
                           "tools/toolkits/search/tavily",
                           "tools/toolkits/search/wikipedia",
                           "tools/toolkits/search/bravesearch"
@@ -408,7 +392,7 @@
                   "embedder/aws_bedrock"
                 ]
               },
-                        {
+              {
             "group": "Evals",
             "pages": [
               "evals/introduction",
@@ -431,7 +415,8 @@
                   "applications/fastapi/introduction",
                   "applications/whatsapp/introduction",
                   "applications/ag-ui/introduction",
-                  "applications/slack/introduction"
+                  "applications/slack/introduction",
+                  "applications/discord/introduction"
                 ]
               }
             ]
@@ -441,15 +426,11 @@
             "pages": [
               {
                 "group": "Agent UI",
-                "pages": [
-                  "agent-ui/introduction"
-                ]
+                "pages": ["agent-ui/introduction"]
               },
               {
                 "group": "Agent API",
-                "pages": [
-                  "agent-api/introduction"
-                ]
+                "pages": ["agent-api/introduction"]
               },
               {
                 "group": "Observability",
@@ -529,9 +510,7 @@
                     "pages": [
                       {
                         "group": "Collaborate",
-                        "pages": [
-                          "examples/teams/collaborate/discussion_team"
-                        ]
+                        "pages": ["examples/teams/collaborate/discussion_team"]
                       },
                       {
                         "group": "Coordinate",
@@ -552,9 +531,7 @@
                   },
                   {
                     "group": "Shared State",
-                    "pages": [
-                      "examples/teams/shared_state/team_session_state"
-                    ]
+                    "pages": ["examples/teams/shared_state/team_session_state"]
                   }
                 ]
               },
@@ -599,6 +576,14 @@
                       "examples/applications/slack/basic",
                       "examples/applications/slack/reasoning_agent",
                       "examples/applications/slack/agent_with_user_memory"
+                    ]
+                  },
+                  {
+                    "group": "Discord",
+                    "pages": [
+                      "examples/applications/discord/basic",
+                      "examples/applications/discord/agent_with_media",
+                      "examples/applications/discord/agent_with_user_memory"
                     ]
                   },
                   {
@@ -812,66 +797,66 @@
               {
                 "group": "Knowledge",
                 "pages": [
-                    {
-                        "group": "Knowledge Filters",
+                  {
+                    "group": "Knowledge Filters",
+                    "pages": [
+                      {
+                        "group": "Pdf",
                         "pages": [
-                            {
-                                "group": "Pdf",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/pdf/filtering",
-                                    "examples/concepts/knowledge/filters/pdf/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/pdf/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Pdf-Url",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/pdf_url/filtering",
-                                    "examples/concepts/knowledge/filters/pdf_url/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/pdf_url/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Json",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/json/filtering",
-                                    "examples/concepts/knowledge/filters/json/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/json/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Docx",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/docx/filtering",
-                                    "examples/concepts/knowledge/filters/docx/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/docx/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Text",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/text/filtering",
-                                    "examples/concepts/knowledge/filters/text/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/text/filtering_on_load"
-                                ]
-                            },
-                            "examples/concepts/knowledge/filters/filtering_qdrant_db",
-                            "examples/concepts/knowledge/filters/filtering_milvus_db",
-                            "examples/concepts/knowledge/filters/filtering_mongo_db",
-                            "examples/concepts/knowledge/filters/filtering_pgvector",
-                            "examples/concepts/knowledge/filters/filtering_weaviate",
-                            "examples/concepts/knowledge/filters/filtering_lance_db",
-                            "examples/concepts/knowledge/filters/filtering_chroma_db",
-                            "examples/concepts/knowledge/filters/filtering_pinecone",
-                            "examples/concepts/knowledge/filters/filtering-traditional-RAG"
+                          "examples/concepts/knowledge/filters/pdf/filtering",
+                          "examples/concepts/knowledge/filters/pdf/agentic_filtering",
+                          "examples/concepts/knowledge/filters/pdf/filtering_on_load"
                         ]
-                    },
-                    "examples/concepts/knowledge/arxiv-kb",
-                    "examples/concepts/knowledge/combined-kb",
-                    "examples/concepts/knowledge/csv-kb",
-                    "examples/concepts/knowledge/csv-url-kb",
-                    "examples/concepts/knowledge/doc-kb",
-                    "examples/concepts/knowledge/docx-kb"
+                      },
+                      {
+                        "group": "Pdf-Url",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/pdf_url/filtering",
+                          "examples/concepts/knowledge/filters/pdf_url/agentic_filtering",
+                          "examples/concepts/knowledge/filters/pdf_url/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Json",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/json/filtering",
+                          "examples/concepts/knowledge/filters/json/agentic_filtering",
+                          "examples/concepts/knowledge/filters/json/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Docx",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/docx/filtering",
+                          "examples/concepts/knowledge/filters/docx/agentic_filtering",
+                          "examples/concepts/knowledge/filters/docx/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Text",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/text/filtering",
+                          "examples/concepts/knowledge/filters/text/agentic_filtering",
+                          "examples/concepts/knowledge/filters/text/filtering_on_load"
+                        ]
+                      },
+                      "examples/concepts/knowledge/filters/filtering_qdrant_db",
+                      "examples/concepts/knowledge/filters/filtering_milvus_db",
+                      "examples/concepts/knowledge/filters/filtering_mongo_db",
+                      "examples/concepts/knowledge/filters/filtering_pgvector",
+                      "examples/concepts/knowledge/filters/filtering_weaviate",
+                      "examples/concepts/knowledge/filters/filtering_lance_db",
+                      "examples/concepts/knowledge/filters/filtering_chroma_db",
+                      "examples/concepts/knowledge/filters/filtering_pinecone",
+                      "examples/concepts/knowledge/filters/filtering-traditional-RAG"
+                    ]
+                  },
+                  "examples/concepts/knowledge/arxiv-kb",
+                  "examples/concepts/knowledge/combined-kb",
+                  "examples/concepts/knowledge/csv-kb",
+                  "examples/concepts/knowledge/csv-url-kb",
+                  "examples/concepts/knowledge/doc-kb",
+                  "examples/concepts/knowledge/docx-kb"
                 ]
               },
               {
@@ -1747,9 +1732,7 @@
               },
               {
                 "group": "Rerankers",
-                "pages": [
-                  "reference/reranker/cohere"
-                ]
+                "pages": ["reference/reranker/cohere"]
               },
               {
                 "group": "Chunking",
@@ -1789,9 +1772,7 @@
         "groups": [
           {
             "group": "Changelog",
-            "pages": [
-              "changelog/overview"
-            ]
+            "pages": ["changelog/overview"]
           }
         ]
       }
@@ -1842,9 +1823,9 @@
       "weight": 400
     }
   },
-"integrations": {
+  "integrations": {
     "posthog": {
-        "apiKey": "phc_MjuWiUsZe9racJUG1IpiikP0gPInPwL0206gjfsBWSk"
+      "apiKey": "phc_MjuWiUsZe9racJUG1IpiikP0gPInPwL0206gjfsBWSk"
     }
   }
 }
