@@ -138,7 +138,7 @@
                           "tools/toolkits/search/pubmed",
                           "tools/toolkits/search/searxng",
                           "tools/toolkits/search/serpapi",
-                          "tools/toolkits/search/serperapi",
+                          "tools/toolkits/search/serper",
                           "tools/toolkits/search/tavily",
                           "tools/toolkits/search/wikipedia",
                           "tools/toolkits/search/bravesearch"
