@@ -1,0 +1,114 @@
+---
+title: Filtering with Pdf
+description: Learn how to filter knowledge base searches using Pdf documents with user-specific metadata.
+---
+
+## Code
+
+```python
+from agno.agent import Agent
+from agno.knowledge.pdf import PDFKnowledgeBase
+from agno.utils.media import (
+    SampleDataFileExtension,
+    download_knowledge_filters_sample_data,
+)
+from agno.vectordb.lancedb import LanceDb
+
+# Download all sample CVs and get their paths
+downloaded_cv_paths = download_knowledge_filters_sample_data(
+    num_files=5, file_extension=SampleDataFileExtension.PDF
+)
+
+# Initialize LanceDB
+# By default, it stores data in /tmp/lancedb
+vector_db = LanceDb(
+    table_name="recipes",
+    uri="tmp/lancedb",  # You can change this path to store data elsewhere
+)
+
+# Step 1: Initialize knowledge base with documents and metadata
+knowledge_base = PDFKnowledgeBase(
+    path=[
+        {
+            "path": downloaded_cv_paths[0],
+            "metadata": {
+                "user_id": "jordan_mitchell",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[1],
+            "metadata": {
+                "user_id": "taylor_brooks",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[2],
+            "metadata": {
+                "user_id": "morgan_lee",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[3],
+            "metadata": {
+                "user_id": "casey_jordan",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+        {
+            "path": downloaded_cv_paths[4],
+            "metadata": {
+                "user_id": "alex_rivera",
+                "document_type": "cv",
+                "year": 2025,
+            },
+        },
+    ],
+    vector_db=vector_db,
+)
+
+# Load all documents into the vector database
+knowledge_base.load(recreate=True)
+
+# Step 2: Query the knowledge base with different filter combinations
+
+# Option 1: Filters on the Agent
+agent = Agent(
+    knowledge=knowledge_base,
+    search_knowledge=True,
+)
+
+agent.print_response(
+    "Tell me about Jordan Mitchell's experience and skills",
+    knowledge_filters={"user_id": "jordan_mitchell"},
+    markdown=True,
+)
+```
+
+## Usage
+
+<Steps>
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno openai lancedb
+    ```
+  </Step>
+
+  <Step title="Run the example">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/knowledge/filters/pdf/filtering.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/knowledge/filters/pdf/filtering.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

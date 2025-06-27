@@ -75,8 +75,8 @@ from agno.team import Team
 team_with_memory = Team(
     name="Team with Memory",
     members=[agent1, agent2],
-    enable_team_history=True,
-    num_of_interactions_from_history=5,
+    add_history_to_messages=True,
+    num_history_runs=5,
 )
 
 # The team will remember previous interactions
@@ -104,6 +104,27 @@ team_with_memory = Team(
 
 team_with_memory.print_response("Hi! My name is John Doe.")
 team_with_memory.print_response("What is my name?")
+```
+
+## Session Summaries
+
+To enable session summaries, set `enable_session_summaries=True` on the `Team`.
+
+```python
+from agno.team import Team
+from agno.memory.v2.db.sqlite import SqliteMemoryDb
+from agno.memory.v2.memory import Memory
+
+team_with_session_summaries = Team(
+    name="Team with Memory",
+    members=[agent1, agent2],
+    enable_session_summaries=True,
+)
+
+team_with_session_summaries.print_response("Hi! My name is John Doe and I live in New York City.")
+
+session_summary = team_with_session_summaries.get_session_summary()
+print("Session Summary: ", session_summary.summary)
 ```
 
 ## Team Knowledge

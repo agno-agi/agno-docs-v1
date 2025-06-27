@@ -1,42 +1,43 @@
 ---
-title: Your first Agents
-description: Learn how to build Agents with Agno - from basic agents to advanced teams with memory, knowledge, tools, reasoning, and storage.
+title: What are Agents?
+description: "**Agents are AI programs that operate autonomously.**"
+sidebarTitle: Your first Agents
 ---
 
-## What are Agents?
+Traditional software follows a pre-programmed sequence of steps. Agents dynamically determine their course of action using a machine learning **model**, its core components are:
 
-**Agents** are AI programs that operate autonomously.
-
-The core of an Agent is the **model**, **tools** and **instructions**:
-
-- **Model:** is the brain of an Agent, helping it reason, act, and respond to the user.
-- **Tools:** are the body of an Agent, enabling it to interact with the real world.
-- **Instructions:** guide the Agent's behavior. Better the model, better it is at following instructions.
+- **Model:** controls the flow of execution. It decides whether to reason, act or respond.
+- **Tools:** enable an Agent to take actions and interact with external systems.
+- **Instructions:** are how we program the Agent, teaching it how to use tools and respond.
 
 Agents also have **memory**, **knowledge**, **storage** and the ability to **reason**:
 
-- **Reasoning:** enables Agents to "think" before responding and "analyze" the results of their actions (i.e. tool calls), this improves the Agents' ability to solve problems that require sequential tool calls.
-- **Knowledge:** is domain-specific information that the Agent can **search on demand** to make better decisions and provide accurate responses. Knowledge is stored in a vector database and this **search on demand** pattern is known as Agentic RAG.
-- **Storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off. This makes Agents stateful, enabling multi-turn conversations.
+- **Reasoning:** enables Agents to "think" before responding and "analyze" the results of their actions (i.e. tool calls), this improves reliability and quality of responses.
+- **Knowledge:** is domain-specific information that the Agent can **search at runtime** to make better decisions and provide accurate responses (RAG). Knowledge is stored in a vector database and this **search at runtime** pattern is known as Agentic RAG/Agentic Search.
+- **Storage:** is used by Agents to save session history and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off. This makes Agents stateful, enabling multi-turn, long-term conversations.
 - **Memory:** gives Agents the ability to store and recall information from previous interactions, allowing them to learn user preferences and personalize their responses.
 
 <Check>Let's build a few Agents to see how they work.</Check>
 
-## Basic Agent
+## Level 1: Agents with tools and instructions
 
-The simplest Agent only contains a model and calls the model API to generate a response.
+The simplest Agent has a model, a tool and instructions. Let's build an Agent that can fetch data using the `yfinance` library, along with instructions to display the results in a table.
 
-Agno provides a unified interface to 23+ model providers, so you can test different providers and switch models as needed.
-
-```python basic_agent.py
+```python level_1_agent.py
 from agno.agent import Agent
 from agno.models.anthropic import Claude
+from agno.tools.yfinance import YFinanceTools
 
-agent = Agent(model=Claude(id="claude-3-7-sonnet-latest"), markdown=True)
+agent = Agent(
+    model=Claude(id="claude-sonnet-4-20250514"),
+    tools=[YFinanceTools(stock_price=True)],
+    instructions="Use tables to display data. Don't include any other text.",
+    markdown=True,
+)
 agent.print_response("What is the stock price of Apple?", stream=True)
 ```
 
-To run the agent, install dependencies and export your `ANTHROPIC_API_KEY`.
+Create a virtual environment, install dependencies, export your API key and run the Agent.
 
 <Steps>
   <Step title="Setup your virtual environment">
@@ -58,11 +59,11 @@ To run the agent, install dependencies and export your `ANTHROPIC_API_KEY`.
 
     <CodeGroup>
     ```bash Mac
-    uv pip install -U agno anthropic
+    uv pip install -U agno anthropic yfinance
     ```
 
     ```bash Windows
-    uv pip install -U agno anthropic
+    uv pip install -U agno anthropic yfinance
     ```
     </CodeGroup>
 
@@ -83,163 +84,38 @@ To run the agent, install dependencies and export your `ANTHROPIC_API_KEY`.
   <Step title="Run the agent">
 
     ```shell
-    python basic_agent.py
-    ```
-
-  </Step>
-</Steps>
-
-<Note>This Agent will not be able to give you the latest stock price because it doesn't have access to it.</Note>
-
-## Agent with tools
-
-Lets give the Agent a tool to fetch the latest stock price using the `yfinance` library.
-
-```python agent_with_tools.py
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.tools.yfinance import YFinanceTools
-
-agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
-    tools=[YFinanceTools(stock_price=True)],
-    markdown=True,
-)
-agent.print_response("What is the stock price of Apple?", stream=True)
-```
-
-Install dependencies and run the Agent
-
-<Steps>
-  <Step title="Install new dependencies">
-
-    <CodeGroup>
-    ```bash Mac
-    uv pip install -U yfinance
-    ```
-
-    ```bash Windows
-    uv pip install -U yfinance
-    ```
-    </CodeGroup>
-
-  </Step>
-  <Step title="Run the agent">
-
-    ```shell
     python agent_with_tools.py
     ```
 
   </Step>
 </Steps>
 
-Now the Agent will be able to give you the latest stock price.
-
-## Agent with instructions
-
-The Agent will give you the latest stock price, but it will also yap along with it. To control the Agent's output, we can and should add instructions.
-
-```python agent_with_instructions.py
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.tools.yfinance import YFinanceTools
-
-agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
-    tools=[YFinanceTools(stock_price=True)],
-    instructions=[
-        "Use tables to display data.",
-        "Only include the table in your response. No other text.",
-    ],
-    markdown=True,
-)
-agent.print_response("What is the stock price of Apple?", stream=True)
-```
-
-Run the Agent
-
-```shell
-python agent_with_instructions.py
-```
-
-This will give you a much more concise response.
-
 <Note>
-Set `debug_mode=True` or `export AGNO_DEBUG=true` to see the system prompt, user messages and tool calls.
+Set `debug_mode=True` or `export AGNO_DEBUG=true` to see the system prompt and user messages.
 </Note>
 
-## Agent with reasoning
+## Level 2: Agents with knowledge and storage
 
-Agents can also **"think" & "analyze"** to solve problems that require more than one step. The `ReasoningTools` is one of the best "hacks" to improve the Agents's response quality.
+**Knowledge:** While models have a large amount of training data, we almost always need to give them domain-specific information to make better decisions and provide accurate responses (RAG). We store this information in a vector database and let the Agent **search** it at runtime.
 
-```python agent_with_reasoning.py
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
+**Storage:** Model APIs are stateless and `Storage` drivers save chat history and state to a database. When the Agent runs, it reads the chat history and state from the database and add it to the messages list, resuming the conversation and making the Agent stateful.
 
-agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
-    tools=[
-        ReasoningTools(add_instructions=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
-        ),
-    ],
-    instructions=[
-        "Use tables to display data.",
-        "Include sources in your response.",
-        "Only include the report in your response. No other text.",
-    ],
-    markdown=True,
-)
-agent.print_response(
-    "Write a report on NVDA",
-    stream=True,
-    show_full_reasoning=True,
-    stream_intermediate_steps=True,
-)
-```
+In this example, we'll use:
+- `UrlKnowledge` to load Agno documentation to LanceDB, using OpenAI for embeddings.
+- `SqliteStorage` to save the Agent's session history and state in a database.
 
-Run the Agent
-
-```shell
-python agent_with_reasoning.py
-```
-
-## Agent with knowledge
-
-While models have a large amount of training data, we almost always need to give them domain-specific information to help them achieve their task. This knowledge isn't just used for RAG, an emerging use case is to dynamically provide few-shot examples to the model.
-
-<Accordion title="Dynamic Few-Shot Learning: Text2Sql Agent" icon="database">
-Example: You're building a Text2Sql Agent and for best results, you'll need to give the Agent table schemas, column names, data types, example queries, common "gotchas", etc.
-
-You're not going to put this all in the system prompt, instead you'll store this information in a vector database and let the Agent query it at runtime, based on the user's question.
-
-Using this information, the Agent can then generate the best-possible SQL query. This is called dynamic few-shot learning.
-</Accordion>
-
-**Agno Agents use Agentic RAG** by default, which means they will search their knowledge base, at runtime, for the specific information they need to achieve their task.
-
-Here's how the following example works:
-
-- The `UrlKnowledge` will download the Agno documentation and load it into a LanceDB vector database, using OpenAI for embeddings
-- At runtime, the Agent will search the knowledge base for the most relevant information and use the `ReasoningTools` to reason about the user's question.
-
-```python agent_with_knowledge.py
+```python level_2_agent.py
 from agno.agent import Agent
 from agno.embedder.openai import OpenAIEmbedder
 from agno.knowledge.url import UrlKnowledge
 from agno.models.anthropic import Claude
-from agno.tools.reasoning import ReasoningTools
+from agno.storage.sqlite import SqliteStorage
 from agno.vectordb.lancedb import LanceDb, SearchType
 
 # Load Agno documentation in a knowledge base
+# You can also use `https://docs.agno.com/llms-full.txt` for the full documentation
 knowledge = UrlKnowledge(
-    urls=["https://docs.agno.com/introduction/agents.md"],
+    urls=["https://docs.agno.com/introduction.md"],
     vector_db=LanceDb(
         uri="tmp/lancedb",
         table_name="agno_docs",
@@ -249,18 +125,23 @@ knowledge = UrlKnowledge(
     ),
 )
 
+# Store agent sessions in a SQLite database
+storage = SqliteStorage(table_name="agent_sessions", db_file="tmp/agent.db")
+
 agent = Agent(
     name="Agno Assist",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Claude(id="claude-sonnet-4-20250514"),
     instructions=[
-        "Use tables to display data.",
-        "Include sources in your response.",
         "Search your knowledge before answering the question.",
         "Only include the output in your response. No other text.",
     ],
     knowledge=knowledge,
-    tools=[ReasoningTools(add_instructions=True)],
+    storage=storage,
     add_datetime_to_instructions=True,
+    # Add the chat history to the messages
+    add_history_to_messages=True,
+    # Number of history runs
+    num_history_runs=3,
     markdown=True,
 )
 
@@ -268,12 +149,7 @@ if __name__ == "__main__":
     # Load the knowledge base, comment out after first run
     # Set recreate to True to recreate the knowledge base if needed
     agent.knowledge.load(recreate=False)
-    agent.print_response(
-        "What are Agents?",
-        stream=True,
-        show_full_reasoning=True,
-        stream_intermediate_steps=True,
-    )
+    agent.print_response("What is Agno?", stream=True)
 ```
 
 Install dependencies, export your `OPENAI_API_KEY` and run the Agent
@@ -283,11 +159,11 @@ Install dependencies, export your `OPENAI_API_KEY` and run the Agent
 
     <CodeGroup>
     ```bash Mac
-    uv pip install -U lancedb tantivy openai
+    uv pip install -U lancedb tantivy openai sqlalchemy
     ```
 
     ```bash Windows
-    uv pip install -U lancedb tantivy openai
+    uv pip install -U lancedb tantivy openai sqlalchemy
     ```
     </CodeGroup>
 
@@ -295,243 +171,75 @@ Install dependencies, export your `OPENAI_API_KEY` and run the Agent
   <Step title="Run the agent">
 
     ```shell
-    python agent_with_knowledge.py
+    python level_2_agent.py
     ```
 
   </Step>
 </Steps>
 
-## Agent with storage
+## Level 3: Agents with memory and reasoning
 
-`Storage` drivers will help you save Agent sessions and state in a database. Model APIs are stateless and storage enables us to continue conversations from where they left off, by storing chat history and state in a database.
+- **Reasoning:** enables Agents to **"think" & "analyze"**, improving reliability and quality. `ReasoningTools` is one of the best approaches to improve an Agent's response quality.
+- **Memory:** enables Agents to classify, store and recall user preferences, personalizing their responses. Memory helps the Agent build personas and learn from previous interactions.
 
-In this example, we'll use the `SqliteStorage` driver to save the Agent's session history and state in a database.
-
-We'll also set the `session_id` to a fixed value to demo persistence. Run this example multiple times to see the conversation continue from where it left off.
-
-```python agent_with_storage.py
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.storage.sqlite import SqliteStorage
-from agno.tools.duckduckgo import DuckDuckGoTools
-from rich.pretty import pprint
-
-agent = Agent(
-    # This session_id is usually auto-generated
-    # But for this example, we can set it to a fixed value
-    # This session will now forever continue as a very long chat
-    session_id="agent_session_which_is_autogenerated_if_not_set",
-    model=Claude(id="claude-3-7-sonnet-latest"),
-    storage=SqliteStorage(table_name="agent_sessions", db_file="tmp/agents.db"),
-    tools=[DuckDuckGoTools()],
-    add_history_to_messages=True,
-    num_history_runs=3,
-    add_datetime_to_instructions=True,
-    markdown=True,
-)
-
-if __name__ == "__main__":
-    print(f"Session id: {agent.session_id}")
-    agent.print_response("How many people live in Canada?")
-    agent.print_response("What is their national anthem?")
-    agent.print_response("List my messages one by one")
-
-    # Print all messages in this session
-    messages_in_session = agent.get_messages_for_session()
-    pprint(messages_in_session)
-```
-
-Install dependencies and run the Agent
-
-<Steps>
-  <Step title="Install new dependencies">
-
-    <CodeGroup>
-    ```bash Mac
-    uv pip install -U sqlalchemy duckduckgo-search
-    ```
-
-    ```bash Windows
-    uv pip install -U sqlalchemy duckduckgo-search
-    ```
-    </CodeGroup>
-
-  </Step>
-  <Step title="Run the agent">
-
-    ```shell
-    python agent_with_storage.py
-    ```
-
-  </Step>
-</Steps>
-
-## Agent with memory
-
-`Memory` drivers enable Agents to store and recall information about users from previous interactions, allowing them to learn user preferences and personalize their responses.
-
-In this example, we'll use the v2 Memory driver to store user memories in a Sqlite database.
-
-Because memories are tied to a user, we'll set the `user_id` to a fixed value to build a persona for the user.
-
-```python agent_with_memory.py
+```python level_3_agent.py
 from agno.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.manager import MemoryManager
 from agno.memory.v2.memory import Memory
 from agno.models.anthropic import Claude
-from agno.models.openai import OpenAIChat
-from rich.pretty import pprint
+from agno.tools.reasoning import ReasoningTools
+from agno.tools.yfinance import YFinanceTools
 
-user_id = "peter_rabbit"
 memory = Memory(
-    db=SqliteMemoryDb(table_name="memory", db_file="tmp/memory.db"),
-    model=OpenAIChat(id="gpt-4o-mini"),
+    # Use any model for creating and managing memories
+    model=Claude(id="claude-sonnet-4-20250514"),
+    # Store memories in a SQLite database
+    db=SqliteMemoryDb(table_name="user_memories", db_file="tmp/agent.db"),
+    # We disable deletion by default, enable it if needed
+    delete_memories=True,
+    clear_memories=True,
 )
-memory.clear()
 
 agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
-    user_id=user_id,
+    model=Claude(id="claude-sonnet-4-20250514"),
+    tools=[
+        ReasoningTools(add_instructions=True),
+        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
+    ],
+    # User ID for storing memories, `default` if not provided
+    user_id="ava",
+    instructions=[
+        "Use tables to display data.",
+        "Include sources in your response.",
+        "Only include the report in your response. No other text.",
+    ],
     memory=memory,
-    # Enable the Agent to dynamically create and manage user memories
+    # Let the Agent manage its memories
     enable_agentic_memory=True,
-    add_datetime_to_instructions=True,
     markdown=True,
 )
 
 if __name__ == "__main__":
-    agent.print_response("My name is Peter Rabbit and I like to eat carrots.")
-    memories = memory.get_user_memories(user_id=user_id)
-    print(f"Memories about {user_id}:")
-    pprint(memories)
-    agent.print_response("What is my favorite food?")
-    agent.print_response("My best friend is Jemima Puddleduck.")
-    print(f"Memories about {user_id}:")
-    pprint(memories)
-    agent.print_response("Recommend a good lunch meal, who should i invite?")
+    # This will create a memory that "ava's" favorite stocks are NVIDIA and TSLA
+    agent.print_response(
+        "My favorite stocks are NVIDIA and TSLA",
+        stream=True,
+        show_full_reasoning=True,
+        stream_intermediate_steps=True,
+    )
+    # This will use the memory to answer the question
+    agent.print_response(
+        "Can you compare my favorite stocks?",
+        stream=True,
+        show_full_reasoning=True,
+        stream_intermediate_steps=True,
+    )
 ```
 
 Run the Agent
 
 ```shell
-python agent_with_memory.py
+python level_3_agent.py
 ```
 
-## Multi Agent Teams
-
-Agents work best when they have a singular purpose, a narrow scope and a small number of tools. When the number of tools grows beyond what the language model can handle or the tools belong to different categories, use a team of agents to spread the load.
-
-Agno provides an industry leading multi-agent Architecture that allows you to build Reasoning Agent Teams. You can run the team in 3 modes: `route`, `coordinate` and `collaborate`.
-
-In this example, we'll build a team of 2 agents to analyze the semiconductor market performance, reasoning step by step.
-
-```python agent_team.py
-from textwrap import dedent
-
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.models.openai import OpenAIChat
-from agno.team.team import Team
-from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
-
-web_agent = Agent(
-    name="Web Search Agent",
-    role="Handle web search requests",
-    model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[DuckDuckGoTools()],
-    instructions="Always include sources.",
-    add_datetime_to_instructions=True,
-)
-
-finance_agent = Agent(
-    name="Finance Agent",
-    role="Handle financial data requests",
-    model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
-    ],
-    instructions="Use tables to display data.",
-    add_datetime_to_instructions=True,
-)
-
-team_leader = Team(
-    name="Reasoning Finance Team Leader",
-    mode="coordinate",
-    model=Claude(id="claude-3-7-sonnet-latest"),
-    members=[web_agent, finance_agent],
-    tools=[ReasoningTools(add_instructions=True)],
-    instructions=[
-        "Use tables to display data.",
-        "Only respond with the final answer, no other text.",
-    ],
-    markdown=True,
-    show_members_responses=True,
-    enable_agentic_context=True,
-    add_datetime_to_instructions=True,
-    success_criteria="The team has successfully completed the task.",
-)
-
-task = """\
-Analyze the semiconductor market performance focusing on:
-- NVIDIA (NVDA)
-- AMD (AMD)
-- Intel (INTC)
-- Taiwan Semiconductor (TSM)
-Compare their market positions, growth metrics, and future outlook."""
-
-team_leader.print_response(
-    task,
-    stream=True,
-    stream_intermediate_steps=True,
-    show_full_reasoning=True,
-)
-```
-
-Install dependencies and run the Agent team
-
-<Steps>
-  <Step title="Install dependencies">
-
-    <CodeGroup>
-    ```bash Mac
-    uv pip install -U duckduckgo-search yfinance
-    ```
-
-    ```bash Windows
-    uv pip install -U duckduckgo-search yfinance
-    ```
-    </CodeGroup>
-
-  </Step>
-  <Step title="Run the agent">
-
-    ```shell
-    python agent_team.py
-    ```
-
-  </Step>
-</Steps>
-
-## Debugging
-
-Want to see the system prompt, user messages and tool calls?
-
-Agno includes a built-in debugger that will print debug logs in the terminal. Set `debug_mode=True` on any agent or set `AGNO_DEBUG=true` in your environment.
-
-```python debugging.py
-from agno.agent import Agent
-
-agent = Agent(markdown=True, debug_mode=True)
-agent.print_response("Share a 2 sentence horror story")
-```
-
-Run the agent to view debug logs in the terminal:
-
-```shell
-python debugging.py
-```
-
-<img height="200" src="/images/debugging.png" style={{ borderRadius: "8px" }} />
+<Tip>You can use the `Memory` and `Reasoning` separately, you don't need to use them together.</Tip>
