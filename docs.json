@@ -396,7 +396,6 @@
                 "group": "Evals",
                 "pages": [
                   "evals/introduction",
-                  "evals/scenario-testing",
                   "evals/platform"
                 ]
               },
@@ -441,6 +440,12 @@
                   "observability/langsmith",
                   "observability/langtrace",
                   "observability/weave"
+                ]
+              },
+              {
+                "group": "Testing",
+                "pages": [
+                  "testing/scenario-testing"
                 ]
               }
             ]
@@ -651,10 +656,6 @@
                       "examples/evals/reliability/reliability_with_multiple_tools",
                       "examples/evals/reliability/reliability_with_teams"
                     ]
-                  },
-                  {
-                    "group": "Scenario Testing",
-                    "pages": ["examples/evals/scenario/basic"]
                   }
                 ]
               }
@@ -1151,6 +1152,12 @@
                   "examples/concepts/observability/langsmith-via-openinference",
                   "examples/concepts/observability/langtrace-op",
                   "examples/concepts/observability/weave-op"
+                ]
+              },
+              {
+                "group": "Testing",
+                "pages": [
+                  "examples/testing/scenario/basic"
                 ]
               },
               {
