@@ -498,6 +498,7 @@
                 "group": "Agents",
                 "pages": [
                   "examples/agents/finance-agent",
+                  "examples/agents/tweet-analysis-agent",
                   "examples/agents/youtube-agent",
                   "examples/agents/research-agent",
                   "examples/agents/research-agent-exa",
