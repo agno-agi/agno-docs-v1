@@ -62,17 +62,29 @@ agent = Agent(
 # Search for posts
 agent.print_response("Search for recent posts about AI agents", markdown=True)
 
-# Example: Create and post a tweet
+# Create and post a tweet
 agent.print_response("Create a post about AI ethics", markdown=True)
 
-# Example: Get user timeline
+# Get user timeline
 agent.print_response("Get my timeline", markdown=True)
 
-# Example: Reply to a post
+# Reply to a post
 agent.print_response(
     "Can you reply to this [post ID] post as a general message as to how great this project is: https://x.com/AgnoAgi",
     markdown=True,
 )
+
+# Get information about a user
+agent.print_response("Can you retrieve information about this user https://x.com/AgnoAgi ", markdown=True)
+
+# Send a direct message
+agent.print_response(
+    "Send direct message to the user @AgnoAgi telling them I want to learn more about them and a link to their community.",
+    markdown=True,
+)
+
+# Get user profile
+agent.print_response("Get my X profile", markdown=True)
 ```
 
 <Note> Check out the [Tweet Analysis Agent](/examples/agents/tweet-analysis-agent) for a more advanced example. </Note>
@@ -81,25 +93,24 @@ agent.print_response(
 
 | Parameter               | Type                | Default | Description                                                      |
 | ----------------------- | ------------------- | ------- | ---------------------------------------------------------------- |
-| `bearer_token`          | `Optional[str]`     | `None`  | Bearer token for authentication                                  |
-| `consumer_key`          | `Optional[str]`     | `None`  | Consumer key for authentication                                  |
-| `consumer_secret`       | `Optional[str]`     | `None`  | Consumer secret for authentication                               |
-| `access_token`          | `Optional[str]`     | `None`  | Access token for authentication                                  |
-| `access_token_secret`   | `Optional[str]`     | `None`  | Access token secret for authentication                          |
+| `bearer_token`          | `str`     | `None`  | Bearer token for authentication                                  |
+| `consumer_key`          | `str`     | `None`  | Consumer key for authentication                                  |
+| `consumer_secret`       | `str`     | `None`  | Consumer secret for authentication                               |
+| `access_token`          | `str`     | `None`  | Access token for authentication                                  |
+| `access_token_secret`   | `str`     | `None`  | Access token secret for authentication                          |
 | `include_post_metrics`  | `bool`              | `False` | Include post metrics (likes, retweets, etc.) in search results |
 | `wait_on_rate_limit`    | `bool`              | `False` | Retry when rate limits are reached                               |
 
 ## Toolkit Functions
 
-| Function              | Description                                                                                         |
-| --------------------- | --------------------------------------------------------------------------------------------------- |
-| `create_post`         | Creates and posts new content. Returns post URL with confirmation.                                 |
-| `reply_to_post`       | Replies to an existing post using post ID. Returns reply URL.                                      |
-| `send_dm`             | Sends direct message to user by username or ID. Handles user lookup automatically.                 |
-| `get_my_info`         | Retrieves authenticated user's profile details and metrics.                                        |
-| `get_user_info`       | Retrieves information about a specific user by username.                                           |
-| `get_home_timeline`   | Gets home timeline with configurable number of posts.                                              |
-| `search_posts`        | Searches for recent posts based on query with optional metrics.                                    |
+| Function            | Description                                 |
+| ------------------- | ------------------------------------------- |
+| `create_post`      | Creates and posts a new post               |
+| `reply_to_post`    | Replies to an existing post                |
+| `send_dm`           | Sends a direct message to a X user    |
+| `get_user_info`     | Retrieves information about a X user  |
+| `get_home_timeline` | Gets the authenticated user's home timeline |
+| `search_posts`      | Searches for tweets                          |
 
 ## Developer Resources
 
