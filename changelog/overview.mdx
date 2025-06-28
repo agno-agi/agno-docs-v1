@@ -3,6 +3,26 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-06-23" description="v1.6.4">
+
+## New Features:
+
+- **Brightdata Toolkit**: Added multiple web-based tools via Brightdata.
+- **OpenCV Video/Image Toolkit**: Added tools for capturing image/video via your webcam.
+- **DiscordClient App**: Added a DiscordClient app for connecting your agent or team with Discord in the form of a discord bot.
+
+## Improvements:
+
+- **FileTools File Search**: Added `search` to `FileTools`.
+
+## Bug Fixes:
+
+- **Fix User Control Flow with History**: Fixed issues where user control flow (HITL) flows failed with message history.
+- **Fix lance db upsert method for supporting knowledge filters:** Fixed function `upsert` not using the parameter `filters`
+- **Update mongo db hybrid search for filters:** Mongodb now correctly uses filters for hybrid search
+- **Fixed `team.rename_session(...)` that raises an `AttributeError`: Fixed** function `rename_session` not using the parameter `session_id`
+
+</Update>
 <Update label="2025-06-18" description="v1.6.3">
 
 ## New Features:
