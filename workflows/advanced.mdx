@@ -7,98 +7,88 @@ description: Explore advanced features and concepts in the Agno workflow system,
 ## Custom Functions for Workflows
 
 ### Overview
-Custom functions provide flexibility by allowing developers to define specific logic for task execution. They can be used to `preprocess inputs`, `call agents`, and `postprocess outputs`.
+Custom functions provide flexibility by allowing developers to define specific logic for step execution. They can be used to `preprocess inputs`, `call agents`, and `postprocess outputs`.
 
 ### How Custom Functions Work
-- **Execution Function**: Tasks can be defined with a custom execution function that handles the task logic.
+- **Execution Function**: Step can be defined with a custom execution function that handles the step logic.
 - **Integration with Agents and Teams**: Custom functions can interact with agents and teams, leveraging their capabilities.
 
-While defining a `Task`, you can specify a custom function as an `execution_function`. This function should accept a `TaskInput` object and return a `TaskOutput` object.
+While defining a `Step`, you can specify a custom function as an `executor`. This function should accept a `StepInput` object and return a `StepOutput` object.
 
 ```python
-task = Task(
-    name="custom_analysis",
-    execution_function=custom_blog_analysis_function,  # Custom function with agent
-    description="Custom blog analysis with preprocessing and postprocessing",
+content_planning_step = Step(
+    name="Content Planning Step",
+    executor=custom_content_planning_function,
 )
 
-def custom_blog_analysis_function(task_input: TaskInput) -> TaskOutput:
+def custom_content_planning_function(step_input: StepInput) -> StepOutput:
     """
-    Custom function that does preprocessing, calls an agent, and does postprocessing
+    Custom function that does intelligent content planning with context awareness
     """
-    query = task_input.get_primary_input()
+    message = step_input.message
+    previous_step_content = step_input.previous_step_content
 
-    # Custom preprocessing
-    print(f"🔍 Starting custom blog analysis for: {query}")
+    # Create intelligent planning prompt
+    planning_prompt = f"""
+        STRATEGIC CONTENT PLANNING REQUEST:
 
-    # Add custom context and formatting
-    enhanced_query = f"""
-        BLOG ANALYSIS REQUEST:
-        Topic: {query}
-        
-        Please provide:
-        1. Key themes and trends
-        2. Target audience insights  
-        3. Content opportunities
-        4. SEO considerations
-        
-        Additional context from previous tasks:
-        {task_input.previous_outputs if task_input.previous_outputs else "No previous context"}
+        Core Topic: {message}
+
+        Research Results: {previous_step_content[:500] if previous_step_content else "No research results"}
+
+        Planning Requirements:
+        1. Create a comprehensive content strategy based on the research
+        2. Leverage the research findings effectively
+        3. Identify content formats and channels
+        4. Provide timeline and priority recommendations
+        5. Include engagement and distribution strategies
+
+        Please create a detailed, actionable content plan.
     """
 
-    # Call the agent with enhanced input
     try:
-        response = blog_analyzer.run(enhanced_query)
+        response = content_planner.run(planning_prompt)
 
-        # Custom postprocessing
         enhanced_content = f"""
-            ## Custom Blog Analysis Results
+            ## Strategic Content Plan
 
-            **Original Query:** {query}
+            **Planning Topic:** {message}
 
-            **Analysis:**
+            **Research Integration:** {"✓ Research-based" if previous_step_content else "✗ No research foundation"}
+
+            **Content Strategy:**
             {response.content}
 
-            **Custom Insights:**
-            - Analysis completed with enhanced context
-            - Ready for next stage processing
-            - Confidence level: High
+            **Custom Planning Enhancements:**
+            - Research Integration: {"High" if previous_step_content else "Baseline"}
+            - Strategic Alignment: Optimized for multi-channel distribution
+            - Execution Ready: Detailed action items included
         """.strip()
 
-        # Return TaskOutput with enhanced response
-        return TaskOutput(
-            content=enhanced_content,
-            response=response,
-            data={"analysis_type": "custom", "confidence": "high"},
-            metadata={
-                "function_name": "custom_blog_analysis_function",
-                "preprocessing": True,
-                "postprocessing": True,
-            },
-        )
+        return StepOutput(content=enhanced_content, response=response)
 
     except Exception as e:
-        return TaskOutput(
-            content=f"Custom blog analysis failed: {str(e)}",
-            metadata={"error": True, "function_name": "custom_blog_analysis_function"},
+        return StepOutput(
+            content=f"Custom content planning failed: {str(e)}",
+            success=False,
         )
 ```
 
-Just make sure to follow this structure and return the output as a `TaskOutput` object.
+Just make sure to follow this structure and return the output as a `StepOutput` object.
 
 ```python
-def custom_blog_analysis_function(task_input: TaskInput) -> TaskOutput:
+def custom_content_planning_function(step_input: StepInput) -> StepOutput:
     # Custom preprocessing
     # Call the agent
     # Custom postprocessing
-    return TaskOutput(content=enhanced_content)
+    return StepOutput(content=enhanced_content)
 ```
 
 See a more detailed example in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_custom_execution_function_workflow.py)
 
 ## Streaming
-Streaming in workflows allows for real-time updates and feedback during task execution. This is particularly useful for long-running tasks or when immediate feedback is required.
-- **Event-Driven Execution**: Tasks can yield events during execution, providing updates on progress or intermediate results.
+Streaming in workflows allows for real-time updates and feedback during step execution. This is particularly useful for long-running steps or when immediate feedback is required.
+- **Event-Driven Execution**: Steps can yield events during execution, providing updates on progress or intermediate results.
 
 To use streaming with workflows just set the `stream` and `stream_intermediate_steps` parameter to `True` in the `run` or `print_response` methods of the `Workflow` class.
 
@@ -130,15 +120,15 @@ for event in blog_analyzer.run(
 This is demonstrated in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_stream_custom_execution_function_workflow.py)
 
 ## Asynchronous Execution
-Asynchronous workflows allow tasks to be executed concurrently, improving efficiency and responsiveness, especially in I/O-bound operations.
+Asynchronous workflows allow steps to be executed concurrently, improving efficiency and responsiveness, especially in I/O-bound operations.
 
-To enable asynchronous execution, you can use the `async` keyword in your task definitions and run the workflow using `await`.
+To enable asynchronous execution, you can use the `async` keyword in your step definitions and run the workflow using `await`.
 
 See a detailed example in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/async_basic_pipeline_workflow.py)
 
 
 ## Pydantic Input
-Pydantic is used for data validation and settings management using Python type annotations. It ensures that inputs to tasks are structured and validated.
+Pydantic is used for data validation and settings management using Python type annotations. It ensures that inputs to steps are structured and validated.
 - **Data Models**: Define structured data models using Pydantic's BaseModel.
 - **Validation**: Automatically validate input data against the defined models.
 
@@ -146,19 +136,20 @@ To use a Pydantic model as input you can define it and put it as the `message_da
 
 ```python
 class ResearchTopic(BaseModel):
+    topic: str = Field(description="The topic of the research")
     focus_areas: List[str] = Field(description="Specific areas to focus on")
     target_audience: str = Field(description="Who this research is for")
     sources_required: int = Field(description="Number of sources needed", default=5)
 
 research_topic = ResearchTopic(
+    topic="AI trends in 2024",
     focus_areas=["Machine Learning", "NLP", "Computer Vision", "AI Ethics"],
     target_audience="Tech professionals and business leaders",
     sources_required=8,
 )
 
 workflow.print_response(
-    message="AI trends in 2024",
-    message_data=research_topic,
+    message_data=research_topic, # <-- This can be either str, dict, list or a Pydantic model
     markdown=True,
 )
 ```

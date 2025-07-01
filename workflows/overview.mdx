@@ -3,7 +3,7 @@ title: What are Workflows?
 sidebarTitle: Overview
 ---
 
-The workflow system is designed to automate complex processes by defining a series of tasks that are executed in sequence. Each task can be executed by an agent, a team, or a custom function. The workflow is composed of pipelines, which are collections of tasks that execute in a defined order.
+The workflow system is designed to automate complex processes by defining a series of steps that are executed in sequence. Each step can be executed by an agent, a team, or a custom function.
 
 ![Workflows 2.0](/images//workflows_v2_flow.png)
 
@@ -16,7 +16,7 @@ The workflow system is built around the concept of atomic execution units in Agn
 - **Functions**: Custom Python functions for specialized processing logic
 
 The beauty of this approach is that you maintain the full power and flexibility of each atomic unit while gaining sophisticated orchestration capabilities. Your agents and teams retain their individual characteristics, memory, and behavior patterns, but now operate within a structured workflow that provides:
-- Sequential task execution with output chaining
+- Sequential step execution with output chaining
 - Session management and state persistence
 - Error handling and retry mechanisms
 - Streaming capabilities for real-time feedback
@@ -24,30 +24,30 @@ The beauty of this approach is that you maintain the full power and flexibility 
 
 ### Architectural components
 1. **Workflow**: The Workflow class is the top-level orchestrator that manages the entire execution process.
-2. **Task**: Tasks are the fundamental atomic units of work in the workflow system. Each task encapsulates exactly one `executor` - either an `agent`, a `team`, or a `custom function`. This design ensures clarity and maintainability while preserving the individual characteristics of each executor.
+2. **Step**: Steps are the fundamental atomic units of work in the workflow system. Each step encapsulates exactly one `executor` - either an `agent`, a `team`, or a `custom function`. This design ensures clarity and maintainability while preserving the individual characteristics of each executor.
 
 <Note>
-`TaskInput` and `TaskOutput` provides standardized interfaces for data flow between tasks:
-![Workflows Task IO](/images/task_io_flow.png)
+`StepInput` and `StepOutput` provides standardized interfaces for data flow between steps:
+![Workflows Step IO](/images/step_io_flow.png)
 
-So if you make a custom function as an executor for a task, do make sure that the input and output types are compatible with the `TaskInput` and `TaskOutput` interfaces. This will ensure that your custom function can seamlessly integrate into the workflow system.
+So if you make a custom function as an executor for a step, do make sure that the input and output types are compatible with the `StepInput` and `StepOutput` interfaces. This will ensure that your custom function can seamlessly integrate into the workflow system.
 </Note>
 
-3. **Pipeline**: Pipelines manage the sequential execution of tasks, handling data flow and coordination between atomic units.
+3. **Pipeline**: Pipelines manage the sequential execution of steps, handling data flow and coordination between atomic units.
 In theory there could be multiple pipelines, and you could choose one from them to execute.
 
 ### How to make a basic workflow?
 
-Lets set up a sequential pipeline of tasks that utilize agents and teams to automate content creation based on tech trends from Hackernews.
-It involves two main tasks: 
+Lets set up a sequential pipeline of steps that utilize agents and teams to automate content creation based on tech trends from Hackernews.
+It involves two main steps: 
 - researching tech topics
 - planning content. 
 
-These tasks are passed as a list to the `Workflow` class, which orchestrates their execution, which we refer to as a particular pipeline of a workflow.
+These steps are passed as a list to the `Workflow` class, which orchestrates their execution, which we refer to as a particular pipeline of a workflow.
 
 ```python basic_hackernews_workflow.py
 """
-This example shows a basic sequential pipeline of tasks that run agents and teams.
+This example shows a basic sequential pipeline of steps that run agents and teams.
 
 It is for a content writer that creates posts about tech trends from Hackernews.
 """
@@ -58,7 +58,7 @@ from agno.storage.sqlite import SqliteStorage
 from agno.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.hackernews import HackerNewsTools
-from agno.workflow.v2.task import Task
+from agno.workflow.v2.step import Step
 from agno.workflow.v2.workflow import Workflow
 
 # Define agents
@@ -92,17 +92,16 @@ content_planner = Agent(
     ],
 )
 
-# Define tasks
-research_task = Task(
-    name="Research Task",
+# Define steps
+research_step = Step(
+    name="Research Step",
     team=research_team,
 )
 
-content_planning_task = Task(
-    name="Content Planning Task",
+content_planning_step = Step(
+    name="Content Planning Step",
     agent=content_planner,
 )
-
 
 # Create and use workflow
 if __name__ == "__main__":
@@ -114,14 +113,11 @@ if __name__ == "__main__":
             db_file="tmp/workflow_v2.db",
             mode="workflow_v2",
         ),
-        tasks=[research_task, content_planning_task],
+        steps=[research_step, content_planning_step],
     )
-    print("=== Research Pipeline (Rich Display) ===")
-    try:
-        content_creation_workflow.print_response(
-            message="AI agent frameworks 2025",
-            markdown=True,
-        )
-    except Exception as e:
-        print(f"Research sequence failed: {e}")
+    content_creation_workflow.print_response(
+        message="AI trends in 2024",
+        markdown=True,
+    )
+
 ```
