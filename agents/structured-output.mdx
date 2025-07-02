@@ -91,7 +91,136 @@ agent = Agent(
 
 You can also provide a custom `parser_model_prompt` to your Parser Model.
 
+## Streaming Structured Output
+
+You can enable streaming when setting `response_model`. This doesn't stream the response content itself, but ensures an iterator is still returned, allowing you to stream intermediate steps and processing updates.
+
+### Streaming with Agents
+
+```python streaming_agent.py
+import asyncio
+from typing import Dict, List
+
+from agno.agent import Agent
+from agno.models.openai.chat import OpenAIChat
+from pydantic import BaseModel, Field
+
+
+class MovieScript(BaseModel):
+    setting: str = Field(
+        ..., description="Provide a nice setting for a blockbuster movie."
+    )
+    ending: str = Field(
+        ...,
+        description="Ending of the movie. If not available, provide a happy ending.",
+    )
+    genre: str = Field(
+        ...,
+        description="Genre of the movie. If not available, select action, thriller or romantic comedy.",
+    )
+    name: str = Field(..., description="Give a name to this movie")
+    characters: List[str] = Field(..., description="Name of characters for this movie.")
+    storyline: str = Field(
+        ..., description="3 sentence storyline for the movie. Make it exciting!"
+    )
+    rating: Dict[str, int] = Field(
+        ...,
+        description="Your own rating of the movie. 1-10. Return a dictionary with the keys 'story' and 'acting'.",
+    )
+
+
+# Agent that uses structured outputs with streaming
+structured_output_agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    description="You write movie scripts.",
+    response_model=MovieScript,
+)
+
+structured_output_agent.print_response(
+    "New York", stream=True, stream_intermediate_steps=True
+)
+```
+
+### Streaming with Teams
+
+When using streaming with structured output in teams, the final `content` chunk will contain only one chunk with the complete structured output, rather 
+than streaming the content progressively.
+
+```python streaming_team.py
+import asyncio
+from typing import Iterator
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.team.team import Team
+from agno.tools.yfinance import YFinanceTools
+from agno.utils.pprint import pprint_run_response
+from pydantic import BaseModel
+
+
+class StockAnalysis(BaseModel):
+    symbol: str
+    company_name: str
+    analysis: str
+
+
+stock_searcher = Agent(
+    name="Stock Searcher",
+    model=OpenAIChat("gpt-4o"),
+    response_model=StockAnalysis,
+    role="Searches the web for information on a stock.",
+    tools=[
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+        )
+    ],
+)
+
+
+class CompanyAnalysis(BaseModel):
+    company_name: str
+    analysis: str
+
+
+company_info_agent = Agent(
+    name="Company Info Searcher",
+    model=OpenAIChat("gpt-4o"),
+    role="Searches the web for information on a stock.",
+    response_model=CompanyAnalysis,
+    tools=[
+        YFinanceTools(
+            stock_price=False,
+            company_info=True,
+            company_news=True,
+        )
+    ],
+)
+
+
+class StockReport(BaseModel):
+    symbol: str
+    company_name: str
+    analysis: str
+
+
+team = Team(
+    name="Stock Research Team",
+    mode="coordinate",
+    model=OpenAIChat("gpt-4o"),
+    members=[stock_searcher, company_info_agent],
+    response_model=StockReport,
+    markdown=True,
+    show_members_responses=True,
+)
+
+team.print_response(
+    "Give me a stock report for NVDA", stream=True, stream_intermediate_steps=True
+)
+```
+
 ## Developer Resources
 
 - View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/async/structured_output.py)
 - View [Parser Model Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/other/parse_model.py)
+- View [Streaming Structured Output](https://github.com/agno-agi/agno/blob/main/cookbook/models/openai/chat/structured_output_stream.py)
