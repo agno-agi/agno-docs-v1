@@ -9,48 +9,88 @@ description: Integrate Agno with Weave by WandB to send traces and gain insights
 
 ## Prerequisites
 
-1. **Install Weave**
+1. **Create a WandB Account**
 
-   Ensure you have the Weave package installed:
+   - Sign up for an account at [WandB](https://wandb.ai).
+   - Obtain your API key from [WandB Authorize](https://wandb.ai/authorize).
 
-   ```bash
-   pip install weave
-   ```
+2. **Set Environment Variables**
 
-2. **Authentication**
-   Go to [WandB](https://wandb.ai) and copy your API key
+   Configure your environment with the WandB API key:
+
    ```bash
    export WANDB_API_KEY=<your-api-key>
    ```
 
-## Logging Model Calls with Weave
+3. **Install Dependencies**
 
-This example demonstrates how to use Weave to log model calls.
+   Ensure you have the necessary packages installed:
+
+   ```bash
+   pip install openai openinference-instrumentation-agno opentelemetry-sdk opentelemetry-exporter-otlp-proto-http
+   ```
+
+## Sending Traces to Weave
+
+This example demonstrates how to instrument your Agno agent with OpenInference and send traces to Weave.
 
 ```python
-import weave
+import base64
+import os
+
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
+from agno.tools.yfinance import YFinanceTools
+from openinference.instrumentation.agno import AgnoInstrumentor
+from opentelemetry import trace as trace_api
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor
 
-# Initialize Weave with your project name
-weave.init("agno")
+from dotenv import load_dotenv
+load_dotenv()
+
+# Set the endpoint and headers for Weave
+WANDB_BASE_URL = "https://trace.wandb.ai"
+PROJECT_ID = "<your-entity>/<your-project>"
+OTEL_EXPORTER_OTLP_ENDPOINT = f"{WANDB_BASE_URL}/otel/v1/traces"
+
+# Configure authentication
+WANDB_API_KEY = os.getenv("WANDB_API_KEY")
+AUTH = base64.b64encode(f"api:{WANDB_API_KEY}".encode()).decode()
+
+headers = {
+    "Authorization": f"Basic {AUTH}",
+    "project_id": PROJECT_ID,
+}
+
+# Configure the tracer provider
+tracer_provider = TracerProvider()
+tracer_provider.add_span_processor(
+    SimpleSpanProcessor(OTLPSpanExporter(endpoint=OTEL_EXPORTER_OTLP_ENDPOINT, headers=headers))
+)
+trace_api.set_tracer_provider(tracer_provider=tracer_provider)
+
+# Start instrumenting agno
+AgnoInstrumentor().instrument()
 
 # Create and configure the agent
-agent = Agent(model=OpenAIChat(id="gpt-4o"), markdown=True, debug_mode=True)
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o-mini"),
+    tools=[YFinanceTools(stock_price=True)],
+    instructions="Use tables to display data. Don't include any other text.",
+    markdown=True,
+    debug_mode=True
+)
 
-# Define a function to run the agent, decorated with weave.op()
-@weave.op()
-def run(content: str):
-    return agent.run(content)
-
-# Use the function to log a model call
-run("Share a 2 sentence horror story")
+# Use the agent
+agent.print_response("What is the stock price of Apple?", stream=True)
 ```
 
 ## Notes
 
 - **Environment Variables**: Ensure your environment variable is correctly set for the WandB API key.
-- **Initialization**: Call `weave.init("project-name")` to initialize Weave with your project name.
-- **Decorators**: Use `@weave.op()` to decorate functions you want to log with Weave.
+- **Project Configuration**: Replace `<your-entity>/<your-project>` with your actual WandB entity and project name.
+- **Entity Name**: You can find your entity name by visiting your [WandB dashboard](https://wandb.ai/home) and checking the **Teams** field in the left sidebar.
 
 By following these steps, you can effectively integrate Agno with Weave, enabling comprehensive logging and visualization of your AI agents' model calls.
