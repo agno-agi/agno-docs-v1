@@ -63,7 +63,8 @@
                       "teams/coordinate",
                       "teams/collaborate"
                     ]
-                  }
+                  },
+                  "teams/structured-output"
                 ]
               },
               {
