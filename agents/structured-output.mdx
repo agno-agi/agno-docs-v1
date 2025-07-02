@@ -93,7 +93,7 @@ You can also provide a custom `parser_model_prompt` to your Parser Model.
 
 ## Streaming Structured Output
 
-You can enable streaming when setting `response_model`. This doesn't stream the response content itself, but ensures an iterator is still returned, allowing you to stream intermediate steps and processing updates.
+Streaming can be used in combination with `response_model`. This returns the structured output as a single event in the stream of events.
 
 ### Streaming with Agents
 
