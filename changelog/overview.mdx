@@ -3,6 +3,25 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-06-26" description="v1.7.0">
+
+## New Features:
+
+- **Agent/Team Add Tool**: Added convenience function to `Agent` and `Team` → `add_tool(tool)` to append new tools after inititialisation.
+- **Streaming Structured Output**: Implemented structured output during streaming. This means streaming won’t be turned off when `response_model` is passed. The structured output itself is not streamed, but it is part of the iterator response when running an agent/team with streaming. The response model is set on a single `RunResponseContentEvent` and on the final `RunResponseCompletedEvent`.
+
+## Improvements:
+
+- **Linear Teams Tool**: Added tool to get the list of teams from Linear.
+
+## Bug Fixes:
+
+- **Uppercase Structured Output**: Resolved cases where pydantic model fields contain field names with upper case characters.
+
+## Breaking Change:
+
+- If you use `run(..., stream=True)` or `arun(..., stream=True)` on `Agent` or `Team` with a `response_model` set, the current behaviour would switch off streaming and respond with a single `RunResponse` object. After the changes mentioned above, you will get the `Iterator[RunResponseEvent]` / `AsyncIterator[RunResponseEvent]` response instead.
+</Update>
 <Update label="2025-06-23" description="v1.6.4">
 
 ## New Features:

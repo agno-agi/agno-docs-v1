@@ -1,0 +1,148 @@
+---
+title: Structured Output
+---
+
+Teams can generate structured data using Pydantic models, just like individual agents. This feature is perfect for coordinated data extraction, analysis, and report generation where multiple agents work together to produce a structured result.
+
+## Example
+
+Let's create a Stock Research Team that produces a structured `StockReport`.
+
+```python stock_team.py
+from typing import List
+from pydantic import BaseModel, Field
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.team.team import Team
+from agno.tools.yfinance import YFinanceTools
+
+class StockAnalysis(BaseModel):
+    symbol: str
+    company_name: str
+    analysis: str
+
+class CompanyAnalysis(BaseModel):
+    company_name: str
+    analysis: str
+
+class StockReport(BaseModel):
+    symbol: str = Field(..., description="Stock ticker symbol")
+    company_name: str = Field(..., description="Full company name")
+    current_price: str = Field(..., description="Current stock price")
+    analysis: str = Field(..., description="Comprehensive analysis combining multiple perspectives")
+    recommendation: str = Field(..., description="Investment recommendation: Buy, Hold, or Sell")
+
+# Create specialized agents
+stock_searcher = Agent(
+    name="Stock Searcher",
+    model=OpenAIChat("gpt-4o"),
+    response_model=StockAnalysis,
+    role="Searches for current stock information and price data.",
+    tools=[
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+        )
+    ],
+)
+
+company_info_agent = Agent(
+    name="Company Info Searcher", 
+    model=OpenAIChat("gpt-4o"),
+    role="Researches company fundamentals and recent news.",
+    response_model=CompanyAnalysis,
+    tools=[
+        YFinanceTools(
+            stock_price=False,
+            company_info=True,
+            company_news=True,
+        )
+    ],
+)
+
+# Create team with structured output
+stock_research_team = Team(
+    name="Stock Research Team",
+    mode="coordinate",
+    model=OpenAIChat("gpt-4o"),
+    members=[stock_searcher, company_info_agent],
+    response_model=StockReport,
+    markdown=True,
+    show_members_responses=True,
+)
+
+stock_research_team.print_response("Give me a comprehensive stock report for NVDA")
+```
+
+The team will coordinate between its members and produce a structured `StockReport` object:
+
+```python
+StockReport(
+│   symbol='NVDA',
+│   company_name='NVIDIA Corporation',
+│   current_price='$875.42',
+│   analysis='NVIDIA continues to dominate the AI chip market with strong demand for its H100 and upcoming H200 GPUs. The company has shown exceptional growth in data center revenue, driven by enterprise AI adoption and cloud provider expansion. Recent partnerships with major tech companies strengthen its market position, though competition from AMD and Intel is intensifying.',
+│   recommendation='Buy'
+)
+```
+
+## Streaming Structured Output
+
+Teams support streaming with structured output, where the `content` event contains the complete structured result as a single event.
+
+```python streaming_team.py
+from typing import List
+from pydantic import BaseModel, Field
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.team.team import Team
+from agno.tools.yfinance import YFinanceTools
+
+class MarketAnalysis(BaseModel):
+    sector: str = Field(..., description="Market sector being analyzed")
+    key_trends: List[str] = Field(..., description="Major trends affecting the sector")
+    top_performers: List[str] = Field(..., description="Best performing stocks in the sector")
+    market_outlook: str = Field(..., description="Overall market outlook and predictions")
+    risk_factors: List[str] = Field(..., description="Key risks to consider")
+
+# Create research agents
+trend_analyst = Agent(
+    name="Trend Analyst",
+    model=OpenAIChat("gpt-4o"),
+    role="Analyzes market trends and sector performance.",
+    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True)]
+)
+
+risk_assessor = Agent(
+    name="Risk Assessor", 
+    model=OpenAIChat("gpt-4o"),
+    role="Identifies and evaluates market risks and opportunities.",
+    tools=[YFinanceTools(company_news=True, company_info=True)]
+)
+
+# Create streaming team
+market_research_team = Team(
+    name="Market Research Team",
+    mode="coordinate", 
+    model=OpenAIChat("gpt-4o"),
+    members=[trend_analyst, risk_assessor],
+    response_model=MarketAnalysis,
+    markdown=True,
+    show_members_responses=True,
+)
+
+# Stream the team response
+market_research_team.print_response(
+    "Analyze the technology sector for Q1 2024", 
+    stream=True, 
+    stream_intermediate_steps=True
+)
+```
+
+<Note>
+When streaming with teams and structured output, you'll see intermediate steps from individual team members, but the final structured result is delivered as a single complete chunk rather than being streamed progressively.
+</Note>
+
+
+## Developer Resources
+- View [Streaming Team Output](https://github.com/agno-agi/agno/blob/main/cookbook/teams/structured_output_streaming.py)
