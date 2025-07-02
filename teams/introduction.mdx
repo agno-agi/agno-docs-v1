@@ -1,68 +1,65 @@
 ---
-title: What are Agent Teams?
+title: What are Teams?
 sidebarTitle: Overview
-description: Build autonomous multi-agent systems with Agno Agent Teams.
+description: Build autonomous multi-agent systems with Agno Teams.
 ---
 
-Agent Teams are a collection of Agents (or other sub-teams) that work together to accomplish tasks. Agent Teams can either **"coordinate"**, **"collaborate"** or **"route"** to solve a task.
+A Team is a collection of Agents (or other sub-teams) that work together to accomplish tasks. Teams can either **"coordinate"**, **"collaborate"** or **"route"** to solve a task.
 
-- [**Route Mode**](/teams/route): The Team Leader routes the user's request to the most appropriate team member based on the content of the request.
-- [**Coordinate Mode**](/teams/coordinate): The Team Leader delegates tasks to team members and synthesizes their outputs into a cohesive response.
-- [**Collaborate Mode**](/teams/collaborate): All team members are given the same task and the team coordinator synthesizes their outputs into a cohesive response.
+A `Team` has a list of `members` that can be instances of `Agent` or `Team`.
 
-## Example
-
-Let's walk through a simple example where we use different models to answer questions in different languages. The team consists of three specialized agents and the team leader routes the user's question to the appropriate language agent.
-
-```python multilanguage_team.py
+```python
+from agno.team import Team
 from agno.agent import Agent
-from agno.models.deepseek import DeepSeek
-from agno.models.mistral.mistral import MistralChat
-from agno.models.openai import OpenAIChat
-from agno.team.team import Team
 
-english_agent = Agent(
-    name="English Agent",
-    role="You only answer in English",
-    model=OpenAIChat(id="gpt-4o"),
-)
-chinese_agent = Agent(
-    name="Chinese Agent",
-    role="You only answer in Chinese",
-    model=DeepSeek(id="deepseek-chat"),
-)
-french_agent = Agent(
-    name="French Agent",
-    role="You can only answer in French",
-    model=MistralChat(id="mistral-large-latest"),
-)
-
-multi_language_team = Team(
-    name="Multi Language Team",
-    mode="route",
-    model=OpenAIChat("gpt-4o"),
-    members=[english_agent, chinese_agent, french_agent],
-    show_tool_calls=True,
-    markdown=True,
-    description="You are a language router that directs questions to the appropriate language agent.",
-    instructions=[
-        "Identify the language of the user's question and direct it to the appropriate language agent.",
-        "If the user asks in a language whose agent is not a team member, respond in English with:",
-        "'I can only answer in the following languages: English, Chinese, French. Please ask your question in one of these languages.'",
-        "Always check the language of the user's input before routing to an agent.",
-        "For unsupported languages like Italian, respond in English with the above message.",
-    ],
-    show_members_responses=True,
-)
-
-
-if __name__ == "__main__":
-    # Ask "How are you?" in all supported languages
-    multi_language_team.print_response("Comment allez-vous?", stream=True)  # French
-    multi_language_team.print_response("How are you?", stream=True)  # English
-    multi_language_team.print_response("你好吗？", stream=True)  # Chinese
-    multi_language_team.print_response("Come stai?", stream=True)  # Italian
+team = Team(members=[
+    Agent(name="Agent 1", role="You answer questions in English"),
+    Agent(name="Agent 2", role="You answer questions in Chinese"),
+    Team(name="Team 1", role="You answer questions in French"),
+])
 ```
+
+The team will transfer tasks to the members depending on the `mode` of the team.
+
+<Note>
+
+It is recommended to specify the `name` and the `role` fields of the team member, for better identification by the team leader.
+
+</Note>
+
+## Modes
+
+### Route Mode
+
+In [**Route Mode**](/teams/route), the team leader routes the user's request to the most appropriate team member based on the content of the request. The member's response is returned directly to the user and the team leader doesn't interpret/transform the response.
+
+<Note>
+
+In `async` execution, if more than once member is transferred to at once by the team leader, these members are executed concurrently.
+
+</Note>
+
+
+### Coordinate Mode
+
+In [**Coordinate Mode**](/teams/coordinate), the team leader delegates tasks to team members and synthesizes their outputs into a cohesive response. The team leader can send to multiple members at once, or one after the other depending on the request and what the model decides is most appropriate.
+
+<Note>
+
+In `async` execution, if more than once member is transferred to at once by the team leader, these members are executed concurrently.
+
+</Note>
+
+### Collaborate Mode
+
+In [**Collaborate Mode**](/teams/collaborate), all team members are given the same task and the team leader synthesizes their outputs into a cohesive response. 
+
+<Note>
+
+In `async` execution, all the members are executed concurrently.
+
+</Note>
+
 
 
 ## Team Memory and History
@@ -106,26 +103,6 @@ team_with_memory.print_response("Hi! My name is John Doe.")
 team_with_memory.print_response("What is my name?")
 ```
 
-## Session Summaries
-
-To enable session summaries, set `enable_session_summaries=True` on the `Team`.
-
-```python
-from agno.team import Team
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.memory import Memory
-
-team_with_session_summaries = Team(
-    name="Team with Memory",
-    members=[agent1, agent2],
-    enable_session_summaries=True,
-)
-
-team_with_session_summaries.print_response("Hi! My name is John Doe and I live in New York City.")
-
-session_summary = team_with_session_summaries.get_session_summary()
-print("Session Summary: ", session_summary.summary)
-```
 
 ## Team Knowledge
 
@@ -206,8 +183,84 @@ team_with_memory.print_response("Hi! My name is John Doe.")
 team_with_memory.print_response("What is my name?")
 ```
 
+## Session Summaries
+
+To enable session summaries, set `enable_session_summaries=True` on the `Team`.
+
+```python
+from agno.team import Team
+from agno.memory.v2.db.sqlite import SqliteMemoryDb
+from agno.memory.v2.memory import Memory
+
+team_with_session_summaries = Team(
+    name="Team with Memory",
+    members=[agent1, agent2],
+    enable_session_summaries=True,
+)
+
+team_with_session_summaries.print_response("Hi! My name is John Doe and I live in New York City.")
+
+session_summary = team_with_session_summaries.get_session_summary()
+print("Session Summary: ", session_summary.summary)
+```
+
 
 ## Examples
+
+### Multi-Language Team
+
+Let's walk through a simple example where we use different models to answer questions in different languages. The team consists of three specialized agents and the team leader routes the user's question to the appropriate language agent.
+
+```python multilanguage_team.py
+from agno.agent import Agent
+from agno.models.deepseek import DeepSeek
+from agno.models.mistral.mistral import MistralChat
+from agno.models.openai import OpenAIChat
+from agno.team.team import Team
+
+english_agent = Agent(
+    name="English Agent",
+    role="You only answer in English",
+    model=OpenAIChat(id="gpt-4o"),
+)
+chinese_agent = Agent(
+    name="Chinese Agent",
+    role="You only answer in Chinese",
+    model=DeepSeek(id="deepseek-chat"),
+)
+french_agent = Agent(
+    name="French Agent",
+    role="You can only answer in French",
+    model=MistralChat(id="mistral-large-latest"),
+)
+
+multi_language_team = Team(
+    name="Multi Language Team",
+    mode="route",
+    model=OpenAIChat("gpt-4o"),
+    members=[english_agent, chinese_agent, french_agent],
+    show_tool_calls=True,
+    markdown=True,
+    description="You are a language router that directs questions to the appropriate language agent.",
+    instructions=[
+        "Identify the language of the user's question and direct it to the appropriate language agent.",
+        "If the user asks in a language whose agent is not a team member, respond in English with:",
+        "'I can only answer in the following languages: English, Chinese, French. Please ask your question in one of these languages.'",
+        "Always check the language of the user's input before routing to an agent.",
+        "For unsupported languages like Italian, respond in English with the above message.",
+    ],
+    show_members_responses=True,
+)
+
+
+if __name__ == "__main__":
+    # Ask "How are you?" in all supported languages
+    multi_language_team.print_response("Comment allez-vous?", stream=True)  # French
+    multi_language_team.print_response("How are you?", stream=True)  # English
+    multi_language_team.print_response("你好吗？", stream=True)  # Chinese
+    multi_language_team.print_response("Come stai?", stream=True)  # Italian
+```
+
 
 ### Content Team
 
