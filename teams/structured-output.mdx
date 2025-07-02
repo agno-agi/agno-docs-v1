@@ -86,6 +86,23 @@ StockReport(
 )
 ```
 
+## Using a Parser Model
+
+You can use an additional model to parse and structure the output from your primary model. This approach is particularly effective when the primary model is optimized for reasoning tasks, as such models may not consistently produce detailed structured responses.
+
+```python
+team = Team(
+    name="Stock Research Team",
+    mode="coordinate",
+    model=Claude(id="claude-sonnet-4-20250514"),
+    members=[stock_searcher, company_info_agent],
+    response_model=StockReport,
+    parser_model=OpenAIChat(id="gpt-4o"),
+)
+```
+
+You can also provide a custom `parser_model_prompt` to your Parser Model.
+
 ## Streaming Structured Output
 
 Teams support streaming with structured output, where the `content` event contains the complete structured result as a single event.
