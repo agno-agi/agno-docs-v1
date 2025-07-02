@@ -274,6 +274,7 @@
                   },
                   "tools/custom-toolkits",
                   "tools/selecting-tools",
+                  "tools/attaching-tools",
                   "tools/async-tools",
                   "tools/caching"
                 ]
