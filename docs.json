@@ -173,7 +173,8 @@
                           "tools/toolkits/web_scrape/newspaper4k",
                           "tools/toolkits/web_scrape/spider",
                           "tools/toolkits/web_scrape/website",
-                          "tools/toolkits/web_scrape/scrapegraph"
+                          "tools/toolkits/web_scrape/scrapegraph",
+                          "tools/toolkits/web_scrape/oxylabs"
                         ]
                       },
                       {
