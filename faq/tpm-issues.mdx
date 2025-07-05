@@ -5,7 +5,9 @@ sidebarTitle: TPM rate limiting
 
 ![Chat with pdf](/images/tpm_issues.png)
 
-If you face any problems with proprietary models (like OpenAI models) where you are rate limited, we provide the option to set `exponential_backoff=True` and to change `delay_between_retries` to a value in seconds (defaults to 1 second).
+If you encounter any issues with proprietary models (such as OpenAI models) due to rate limiting, we provide options to configure `retries`, enable `exponential_backoff=True`, and set `delay_between_retries` to a specific value in seconds (default is 1 second).
+
+Please note that this retry mechanism does not work in stream mode. For instance, using `agent.print_response` with `stream=True` will bypass this retry mechanism.
 
 For example:
 ```python
@@ -16,6 +18,7 @@ agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     description="You are an enthusiastic news reporter with a flair for storytelling!",
     markdown=True,
+    retries=10,
     exponential_backoff=True,
     delay_between_retries=2
 )
