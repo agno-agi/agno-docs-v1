@@ -63,7 +63,8 @@
                       "teams/coordinate",
                       "teams/collaborate"
                     ]
-                  }
+                  },
+                  "teams/structured-output"
                 ]
               },
               {
@@ -395,10 +396,7 @@
               },
               {
                 "group": "Evals",
-                "pages": [
-                  "evals/introduction",
-                  "evals/platform"
-                ]
+                "pages": ["evals/introduction", "evals/platform"]
               },
               {
                 "group": "Workflows",
@@ -436,6 +434,7 @@
                 "group": "Observability",
                 "pages": [
                   "observability/introduction",
+                  "observability/agentops",
                   "observability/arize",
                   "observability/langfuse",
                   "observability/langsmith",
@@ -445,9 +444,7 @@
               },
               {
                 "group": "Testing",
-                "pages": [
-                  "testing/scenario-testing"
-                ]
+                "pages": ["testing/scenario-testing"]
               }
             ]
           },
@@ -498,6 +495,7 @@
                 "group": "Agents",
                 "pages": [
                   "examples/agents/finance-agent",
+                  "examples/agents/tweet-analysis-agent",
                   "examples/agents/youtube-agent",
                   "examples/agents/research-agent",
                   "examples/agents/research-agent-exa",
@@ -1157,9 +1155,7 @@
               },
               {
                 "group": "Testing",
-                "pages": [
-                  "examples/testing/scenario/basic"
-                ]
+                "pages": ["examples/testing/scenario/basic"]
               },
               {
                 "group": "Miscellaneous",
@@ -1428,7 +1424,7 @@
                   "examples/models/nebius/storage",
                   "examples/models/nebius/knowledge"
                 ]
-                },
+              },
               {
                 "group": "NVIDIA",
                 "pages": [

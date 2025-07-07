@@ -44,6 +44,8 @@
 | `tool_choice` | `Optional[Union[str, Dict[str, Any]]]` | `None` | Controls which (if any) tool is called by the team model |
 | `tool_hooks` | `Optional[List[Callable]]` | `None` | A list of hooks to be called before and after the tool call |
 | `response_model` | `Optional[Type[BaseModel]]` | `None` | Response model for the team response |
+| `parser_model` | `Optional[Model]` | `None` | Model to use for parsing the response |
+| `parser_model_prompt` | `Optional[str]` | `None` | Prompt to use for parsing the response |
 | `use_json_mode` | `bool` | `False` | If `response_model` is set, sets the response mode of the model |
 | `parse_response` | `bool` | `True` | If True, parse the response |
 | `memory` | `Optional[Union[TeamMemory, Memory]]` | `None` | Memory for the team |
