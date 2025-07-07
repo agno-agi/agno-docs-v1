@@ -13,7 +13,6 @@ Create an agent, wrap it with `FastAPIApp`, and serve it:
 ```python
 from agno.agent import Agent
 from agno.app.fastapi.app import FastAPIApp
-from agno.app.fastapi.serve import serve_fastapi_app
 from agno.models.openai import OpenAIChat
 
 basic_agent = Agent(
@@ -26,14 +25,21 @@ basic_agent = Agent(
 )
 
 # Async router by default (use_async=True)
-app = FastAPIApp(agent=basic_agent).get_app()
+fastapi_app = FastAPIApp(
+    agent=basic_agent,
+    name="Basic Agent",
+    app_id="basic_agent",
+    description="A basic agent that can answer questions and help with tasks.",
+)
+
+app = fastapi_app.get_app()
 
 # For synchronous router:
-# app = FastAPIApp(agent=basic_agent).get_app(use_async=False)
+# app = fastapi_app.get_app(use_async=False)
 
 if __name__ == "__main__":
-    # Assumes script is `basic_app.py`; update if different.
-    serve_fastapi_app("basic_app:app", port=8001, reload=True)
+    fastapi_app.serve(app="basic:app", port=8001, reload=True)
+
 ```
 
 **To run:**
@@ -52,7 +58,7 @@ Send `POST` requests to `http://localhost:8001/v1/run`:
 ## Core Components
 
 - `FastAPIApp`: Wraps Agno agents/teams for FastAPI.
-- `serve_fastapi_app`: Serves the FastAPI app using Uvicorn.
+- `FastAPIApp.serve`: Serves the FastAPI app using Uvicorn.
 
 `FastAPIApp` uses helper functions for routing.
 
@@ -64,8 +70,9 @@ Main entry point for Agno FastAPI apps.
 
 | Parameter  | Type                      | Default | Description                                           |
 | ---------- | ------------------------- | ------- | ----------------------------------------------------- |
-| `agent`    | `Optional[Agent]`         | `None`  | Agno `Agent` instance.                                |
-| `team`     | `Optional[Team]`          | `None`  | Agno `Team` instance.                                 |
+| `agents`    | `Optional[List[Agent]]`         | `None`  | List of Agno `Agent` instances.                |
+| `teams`     | `Optional[List[Team]]`          | `None`  | List of Agno `Team` instances.                 |
+| `workflows`     | `Optional[List[Team]]`          | `None`  | List of Agno `Workflow` instances.                 |
 | `settings` | `Optional[APIAppSettings]`| `None`  | API configuration. Defaults if `None`.                |
 | `api_app`  | `Optional[FastAPI]`       | `None`  | Existing FastAPI app. New one created if `None`.    |
 | `router`   | `Optional[APIRouter]`     | `None`  | Existing APIRouter. New one created if `None`.        |
@@ -99,10 +106,6 @@ Endpoints are available at the specified `prefix` (default `/v1`).
     *   **Responses**:
         *   `stream=True`: `StreamingResponse` (`text/event-stream`) with JSON `RunResponse`/`TeamRunResponse` events.
         *   `stream=False`: JSON `RunResponse`/`TeamRunResponse` dictionary.
-
-## Serving the Application (`serve_fastapi_app`)
-
-Serves the FastAPI app using Uvicorn.
 
 ### Parameters
 
