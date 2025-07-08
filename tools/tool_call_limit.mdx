@@ -17,7 +17,6 @@ from agno.tools.yfinance import YFinanceTools
 agent = Agent(
     model=OpenAIChat(id="gpt-4o-mini"),
     tools=[YFinanceTools(company_news=True, cache_results=True)],
-    show_tool_calls=True,
     tool_call_limit=1, # The Agent will not perform more than one tool call.
 )
 
@@ -28,3 +27,8 @@ agent.print_response(
 )
 
 ```
+
+## To consider
+
+- If the Agent tries to run a number of tool calls that exceeds the limit **all at once**, the limit will remain effective. Only as many tool calls as allowed will be performed.
+- The limit is enforced **across a full run**, and not per individual requests triggered by the Agent.
