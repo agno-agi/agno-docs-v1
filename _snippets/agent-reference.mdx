@@ -240,3 +240,19 @@ Get the user memories for the given user ID.
 **Returns:**
 
 - `Optional[List[UserMemory]]`: The user memories
+
+### add_tool
+
+Add a tool to the agent.
+
+**Parameters:**
+
+- `tool` (Union[Toolkit, Callable, Function, Dict]): The tool to add
+
+### set_tools
+
+Replace the tools of the agent.
+
+**Parameters:**
+
+- `tools` (List[Union[Toolkit, Callable, Function, Dict]]): The tools to set
