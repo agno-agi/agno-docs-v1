@@ -370,6 +370,7 @@
                   "storage/dynamodb",
                   "storage/json",
                   "storage/mongodb",
+                  "storage/mysql",
                   "storage/postgres",
                   "storage/sqlite",
                   "storage/yaml",
