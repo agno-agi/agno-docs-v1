@@ -370,6 +370,7 @@
                   "storage/dynamodb",
                   "storage/json",
                   "storage/mongodb",
+                  "storage/mysql",
                   "storage/postgres",
                   "storage/sqlite",
                   "storage/yaml",
@@ -920,22 +921,10 @@
                       "examples/concepts/storage/agent_storage/singlestore",
                       "examples/concepts/storage/agent_storage/dynamodb",
                       "examples/concepts/storage/agent_storage/mongodb",
+                      "examples/concepts/storage/agent_storage/mysql",
                       "examples/concepts/storage/agent_storage/json",
                       "examples/concepts/storage/agent_storage/yaml",
                       "examples/concepts/storage/agent_storage/redis"
-                    ]
-                  },
-                  {
-                    "group": "Workflow Storage",
-                    "pages": [
-                      "examples/concepts/storage/workflow_storage/postgres",
-                      "examples/concepts/storage/workflow_storage/sqlite",
-                      "examples/concepts/storage/workflow_storage/singlestore",
-                      "examples/concepts/storage/workflow_storage/dynamodb",
-                      "examples/concepts/storage/workflow_storage/mongodb",
-                      "examples/concepts/storage/workflow_storage/json",
-                      "examples/concepts/storage/workflow_storage/yaml",
-                      "examples/concepts/storage/workflow_storage/redis"
                     ]
                   },
                   {
@@ -946,9 +935,24 @@
                       "examples/concepts/storage/team_storage/singlestore",
                       "examples/concepts/storage/team_storage/dynamodb",
                       "examples/concepts/storage/team_storage/mongodb",
+                      "examples/concepts/storage/team_storage/mysql",
                       "examples/concepts/storage/team_storage/json",
                       "examples/concepts/storage/team_storage/yaml",
                       "examples/concepts/storage/team_storage/redis"
+                    ]
+                  },
+                  {
+                    "group": "Workflow Storage",
+                    "pages": [
+                      "examples/concepts/storage/workflow_storage/postgres",
+                      "examples/concepts/storage/workflow_storage/sqlite",
+                      "examples/concepts/storage/workflow_storage/singlestore",
+                      "examples/concepts/storage/workflow_storage/dynamodb",
+                      "examples/concepts/storage/workflow_storage/mongodb",
+                      "examples/concepts/storage/workflow_storage/mysql",
+                      "examples/concepts/storage/workflow_storage/json",
+                      "examples/concepts/storage/workflow_storage/yaml",
+                      "examples/concepts/storage/workflow_storage/redis"
                     ]
                   }
                 ]
@@ -1740,6 +1744,7 @@
                   "reference/storage/yaml",
                   "reference/storage/json",
                   "reference/storage/mongodb",
+                  "reference/storage/mysql",
                   "reference/storage/postgres",
                   "reference/storage/sqlite",
                   "reference/storage/dynamodb",
