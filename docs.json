@@ -1505,7 +1505,18 @@
                 "pages": [
                   "examples/models/xai/basic",
                   "examples/models/xai/basic_stream",
-                  "examples/models/xai/tool_use"
+                  "examples/models/xai/tool_use",
+                  "examples/models/xai/basic_async",
+                  "examples/models/xai/basic_async_stream",
+                  "examples/models/xai/async_tool_use",
+                  "examples/models/xai/structured_output",
+                  "examples/models/xai/finance_agent",
+                  "examples/models/xai/image_agent",
+                  "examples/models/xai/image_agent_bytes",
+                  "examples/models/xai/image_agent_with_memory",
+                  "examples/models/xai/live_search_agent",
+                  "examples/models/xai/live_search_agent_stream",
+                  "examples/models/xai/reasoning_agent"
                 ]
               },
               {
