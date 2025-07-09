@@ -275,8 +275,10 @@
                   },
                   "tools/custom-toolkits",
                   "tools/selecting-tools",
+                  "tools/attaching-tools",
                   "tools/async-tools",
-                  "tools/caching"
+                  "tools/caching",
+                  "tools/tool_call_limit"
                 ]
               },
               {
