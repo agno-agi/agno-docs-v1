@@ -1,0 +1,48 @@
+---
+title: MySQL Workflow Storage
+sidebarTitle: MySQL
+---
+
+Agno supports using MySQL as a storage backend for Workflows using the `MySQLStorage` class.
+
+## Usage
+
+### Run MySQL
+
+Install [docker desktop](https://docs.docker.com/desktop/install/mac-install/) and run **MySQL** on port **3306** using:
+
+```bash
+docker run -d \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_DATABASE=agno \
+  -e MYSQL_USER=agno \
+  -e MYSQL_PASSWORD=agno \
+  -p 3306:3306 \
+  --name mysql \
+  mysql:8.0
+```
+
+```python mysql_storage_for_workflow.py
+from agno.storage.mysql import MySQLStorage
+
+db_url = "mysql+pymysql://agno:agno@localhost:3306/agno"
+
+# Create a storage backend using the MySQL database
+storage = MySQLStorage(
+    # store sessions in the agno.workflows table
+    table_name="workflow_sessions",
+    # db_url: MySQL database URL
+    db_url=db_url,
+)
+
+  # Add storage to the Workflow
+workflow = Workflow(storage=storage)
+```
+
+## Params
+
+<Snippet file="storage-mysql-params.mdx" />
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/mysql_storage/mysql_storage_for_workflow.py)
