@@ -403,20 +403,20 @@
                 "pages": ["evals/introduction", "evals/platform"]
               },
               {
-                "group": "Workflows v2 (Beta)",
+                "group": "Workflows",
                 "pages": [
-                  "workflows/overview",
-                  "workflows/types_of_workflows",
-                  "workflows/workflow_session_state",
+                  "workflows/introduction",
+                  "workflows/state",
                   "workflows/advanced"
                 ]
               },
               {
-                "group": "Workflows",
+                "group": "Workflows v2 (Beta)",
                 "pages": [
-                  "workflows_legacy/introduction",
-                  "workflows_legacy/state",
-                  "workflows_legacy/advanced"
+                  "workflows_2/overview",
+                  "workflows_2/types_of_workflows",
+                  "workflows_2/workflow_session_state",
+                  "workflows_2/advanced"
                 ]
               },
               {

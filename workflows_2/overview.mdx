@@ -4,19 +4,31 @@ sidebarTitle: Overview
 description: Learn more about Agno Workflows and why they can be really useful to build a multi-agent system 
 ---
 
-The workflow system is designed to automate complex processes by defining a series of steps that are executed in sequence. Each step can be executed by an agent, a team, or a custom function.
+Agno Workflows are designed to automate complex processes by defining a series of steps that are executed in sequence. Each step can be executed by an agent, a team, or a custom function.
 
 ![Workflows 2.0](/images//workflows_v2_flow.png)
 
+## Why would you use Workflows?
+
+Workflows are a great way to automate complex processes by defining a series of steps that are executed in sequence. They are particularly useful when you need to:
+
+- Automate a series of tasks
+- Orchestrate a series of agents and teams
+- Have complex logic where you require agents to run in loops, or in parallel, or route different flows based on the output of previous steps
+
+When building multi-agent systems, there is often a need to control the flow of execution, and this is where Workflows come in. Workflows are best suited for deterministic agent automation, as opposed to [Teams](/teams) which are made for agentic coordination between agents.
+
 ## Core Design Philosophy
 
-### Atomic Units with Controlled Execution
-The workflow system is built around the concept of atomic execution units in Agno- `Agents` and `Teams`, these are individual components that can work independently but gain enhanced capabilities when orchestrated together:
+### Step-Wise Controlled Execution
+Agno Workflows are fundamentally an execution of a series of steps. These steps are executed in sequence, and the output of each step is passed to the next step.
+
+Each step can be executed by an agent, a team, or a custom Python function. These are individual components that can work independently but gain enhanced capabilities when orchestrated together:
 - **Agents**: Individual AI executors with specific capabilities and instructions
 - **Teams**: Coordinated groups of agents working together on complex problems
 - **Functions**: Custom Python functions for specialized processing logic
 
-The beauty of this approach is that you maintain the full power and flexibility of each atomic unit while gaining sophisticated orchestration capabilities. Your agents and teams retain their individual characteristics, memory, and behavior patterns, but now operate within a structured workflow that provides:
+The beauty of this approach is that you have access to the full power of Agno Agents and Teams, with the flexibility of a sophisticated orchestration system. Your agents and teams retain their individual characteristics, memory, and behavior patterns, but now operate within a structured workflow that provides:
 - Sequential step execution with output chaining
 - Session management and state persistence
 - Error handling and retry mechanisms
@@ -24,22 +36,21 @@ The beauty of this approach is that you maintain the full power and flexibility 
 
 
 ### Architectural components
-1. **Workflow**: The Workflow class is the top-level orchestrator that manages the entire execution process.
-2. **Step**: Steps are the fundamental atomic units of work in the workflow system. Each step encapsulates exactly one `executor` - either an `agent`, a `team`, or a `custom function`. This design ensures clarity and maintainability while preserving the individual characteristics of each executor.
+1. The **`Workflow`** class is the top-level orchestrator that manages the entire execution process.
+2. **`Step`** is the fundamental unit of work in the workflow system. Each step encapsulates exactly one `executor` - either an `Agent`, a `Team`, or a custom Python function. This design ensures clarity and maintainability while preserving the individual characteristics of each executor.
+3. **`Loop`** is a construct that allows you to execute one or more steps multiple times. This is useful when you need to repeat a set of steps until a certain condition is met.
+4. **`Parallel`** is a construct that allows you to execute one or more steps in parallel. This is useful when you need to execute a set of steps concurrently with the outputs joined together.
+5. **`Condition`** makes a step conditional based on criteria you specify.
+6. **`Router`** allows you to specify which step(s) to execute next, effectively creating branching logic in your workflow.
 
 <Note>
-`StepInput` and `StepOutput` provides standardized interfaces for data flow between steps:
+When using a custom Python function as an executor for a step, `StepInput` and `StepOutput` provides standardized interfaces for data flow between steps:
 ![Workflows Step IO](/images/step_io_flow.png)
-
-So if you make a custom function as an executor for a step, do make sure that the input and output types are compatible with the `StepInput` and `StepOutput` interfaces. This will ensure that your custom function can seamlessly integrate into the workflow system.
 </Note>
 
-3. **Pipeline**: Pipelines manage the sequential execution of steps, handling data flow and coordination between atomic units.
-In theory there could be multiple pipelines, and you could choose one from them to execute.
+### How to make your first workflow?
 
-### How to make a basic workflow?
-
-Lets set up a sequential pipeline of steps that utilize agents and teams to automate content creation based on tech trends from Hackernews.
+Lets set up a series of steps that utilize agents and teams to automate content creation based on tech trends from Hackernews.
 It involves two main steps: 
 - researching tech topics
 - planning content. 

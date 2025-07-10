@@ -1,157 +1,83 @@
 ---
-title: Advanced Concepts in Workflows
-sidebarTitle: Advanced
-description: Explore advanced features and concepts in the Agno workflow system, including custom functions, error handling, and streaming capabilities.
+title: Advanced
 ---
 
-## Custom Functions for Workflows
+**Workflows are all about control and flexibility.**
 
-### Overview
-Custom functions provide flexibility by allowing developers to define specific logic for step execution. They can be used to `preprocess inputs`, `call agents`, and `postprocess outputs`.
+Your workflow logic is just a python function, so you have full control over the workflow logic. You can:
+- Validate input before processing
+- Depending on the input, spawn agents and run them in parallel
+- Cache results as needed
+- Correct any intermediate errors
+- Stream the output
+- Return a single or multiple outputs
 
-### How Custom Functions Work
-- **Execution Function**: Step can be defined with a custom execution function that handles the step logic.
-- **Integration with Agents and Teams**: Custom functions can interact with agents and teams, leveraging their capabilities.
+**This level of control is critical for reliability.**
 
-While defining a `Step`, you can specify a custom function as an `executor`. This function should accept a `StepInput` object and return a `StepOutput` object.
-
-```python
-content_planning_step = Step(
-    name="Content Planning Step",
-    executor=custom_content_planning_function,
-)
-
-def custom_content_planning_function(step_input: StepInput) -> StepOutput:
-    """
-    Custom function that does intelligent content planning with context awareness
-    """
-    message = step_input.message
-    previous_step_content = step_input.previous_step_content
-
-    # Create intelligent planning prompt
-    planning_prompt = f"""
-        STRATEGIC CONTENT PLANNING REQUEST:
-
-        Core Topic: {message}
-
-        Research Results: {previous_step_content[:500] if previous_step_content else "No research results"}
-
-        Planning Requirements:
-        1. Create a comprehensive content strategy based on the research
-        2. Leverage the research findings effectively
-        3. Identify content formats and channels
-        4. Provide timeline and priority recommendations
-        5. Include engagement and distribution strategies
-
-        Please create a detailed, actionable content plan.
-    """
-
-    try:
-        response = content_planner.run(planning_prompt)
-
-        enhanced_content = f"""
-            ## Strategic Content Plan
-
-            **Planning Topic:** {message}
-
-            **Research Integration:** {"✓ Research-based" if previous_step_content else "✗ No research foundation"}
-
-            **Content Strategy:**
-            {response.content}
-
-            **Custom Planning Enhancements:**
-            - Research Integration: {"High" if previous_step_content else "Baseline"}
-            - Strategic Alignment: Optimized for multi-channel distribution
-            - Execution Ready: Detailed action items included
-        """.strip()
-
-        return StepOutput(content=enhanced_content, response=response)
-
-    except Exception as e:
-        return StepOutput(
-            content=f"Custom content planning failed: {str(e)}",
-            success=False,
-        )
-```
-
-Just make sure to follow this structure and return the output as a `StepOutput` object.
-
-```python
-def custom_content_planning_function(step_input: StepInput) -> StepOutput:
-    # Custom preprocessing
-    # Call the agent
-    # Custom postprocessing
-    return StepOutput(content=enhanced_content)
-```
-
-See a more detailed example in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_custom_execution_function_workflow.py)
 
 ## Streaming
-Streaming in workflows allows for real-time updates and feedback during step execution. This is particularly useful for long-running steps or when immediate feedback is required.
-- **Event-Driven Execution**: Steps can yield events during execution, providing updates on progress or intermediate results.
 
-To use streaming with workflows just set the `stream` and `stream_intermediate_steps` parameter to `True` in the `run` or `print_response` methods of the `Workflow` class.
+It is important to understand that when you build a workflow, you are writing a python function, meaning you decide if the function streams the output or not. To stream the output, yield an `Iterator[RunResponse]` from the `run()` method of your workflow.
 
-```python
-workflow.print_response(
-    message="AI trends in 2024",
-    markdown=True,
-    stream=True,
-    stream_intermediate_steps=True,
-)
+```python news_report_generator.py
+# Define the workflow
+class GenerateNewsReport(Workflow):
+    agent_1: Agent = ...
+
+    agent_2: Agent = ...
+
+    agent_3: Agent = ...
+
+    def run(self, ...) -> Iterator[RunResponse]:
+        # Run agents and gather the response
+        # These can be batch responses, you can also stream intermediate results if you want
+        final_agent_input = ...
+
+        # Generate the final response from the writer agent
+        agent_3_response_stream: Iterator[RunResponse] = self.agent_3.run(final_agent_input, stream=True)
+
+        # Yield the response
+        yield agent_3_response_stream
+
+# Instantiate the workflow
+generate_news_report = GenerateNewsReport()
+
+# Run workflow and get the response as an iterator of RunResponse objects
+report_stream: Iterator[RunResponse] = generate_news_report.run(...)
+
+# Print the response
+pprint_run_response(report_stream, markdown=True)
 ```
 
-Check the full example cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_stream_pipeline_workflow.py)
+## Batch
 
-## Custom Streaming Functions
-Custom functions can also support streaming by yielding events during execution. While performing `.run` or `.arun` in your custom execution function, you can `yield` events to provide real-time updates. 
+Simply return a `RunResponse` object from the `run()` method of your workflow to return a single output.
 
-Something like this-
-```python
- # Stream the agent response
-for event in blog_analyzer.run(
-        enhanced_query, stream=True, stream_intermediate_steps=True
-    ):
-    yield event
-    if hasattr(event, "content") and event.content:
-        accumulated_content += event.content
+```python news_report_generator.py
+# Define the workflow
+class GenerateNewsReport(Workflow):
+    agent_1: Agent = ...
+
+    agent_2: Agent = ...
+
+    agent_3: Agent = ...
+
+    def run(self, ...) -> RunResponse:
+        # Run agents and gather the response
+        final_agent_input = ...
+
+        # Generate the final response from the writer agent
+        agent_3_response: RunResponse = self.agent_3.run(final_agent_input)
+
+        # Return the response
+        return agent_3_response
+
+# Instantiate the workflow
+generate_news_report = GenerateNewsReport()
+
+# Run workflow and get the response as a RunResponse object
+report: RunResponse = generate_news_report.run(...)
+
+# Print the response
+pprint_run_response(report, markdown=True)
 ```
-
-This is demonstrated in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/basic_stream_custom_execution_function_workflow.py)
-
-## Asynchronous Execution
-Asynchronous workflows allow steps to be executed concurrently, improving efficiency and responsiveness, especially in I/O-bound operations.
-
-To enable asynchronous execution, you can use the `async` keyword in your step definitions and run the workflow using `await`.
-
-See a detailed example in the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/async_basic_pipeline_workflow.py)
-
-
-## Pydantic Input
-Pydantic is used for data validation and settings management using Python type annotations. It ensures that inputs to steps are structured and validated.
-- **Data Models**: Define structured data models using Pydantic's BaseModel.
-- **Validation**: Automatically validate input data against the defined models.
-
-To use a Pydantic model as input you can define it and put it as the `message_data` parameter in the `print_response`/`run` method of the `Workflow` class.
-
-```python
-class ResearchTopic(BaseModel):
-    topic: str = Field(description="The topic of the research")
-    focus_areas: List[str] = Field(description="Specific areas to focus on")
-    target_audience: str = Field(description="Who this research is for")
-    sources_required: int = Field(description="Number of sources needed", default=5)
-
-research_topic = ResearchTopic(
-    topic="AI trends in 2024",
-    focus_areas=["Machine Learning", "NLP", "Computer Vision", "AI Ethics"],
-    target_audience="Tech professionals and business leaders",
-    sources_required=8,
-)
-
-workflow.print_response(
-    message_data=research_topic, # <-- This can be either str, dict, list or a Pydantic model
-    markdown=True,
-)
-```
-
-For a detailed example, check out the cookbook [here](https://github.com/agno-agi/agno/blob/main/cookbook/workflows/pydantic_input_basic_pipeline_workflow.py)
