@@ -555,14 +555,39 @@
               {
                 "group": "Workflows",
                 "pages": [
-                  "examples/workflows_legacy/blog-post-generator",
-                  "examples/workflows_legacy/investment-report-generator",
-                  "examples/workflows_legacy/personalized-email-generator",
-                  "examples/workflows_legacy/startup-idea-validator",
-                  "examples/workflows_legacy/content-creator",
-                  "examples/workflows_legacy/product-manager",
-                  "examples/workflows_legacy/team-workflow",
-                  "examples/workflows_legacy/async-hackernews-reporter"
+                  "examples/workflows/blog-post-generator",
+                  "examples/workflows/investment-report-generator",
+                  "examples/workflows/personalized-email-generator",
+                  "examples/workflows/startup-idea-validator",
+                  "examples/workflows/content-creator",
+                  "examples/workflows/product-manager",
+                  "examples/workflows/team-workflow",
+                  "examples/workflows/async-hackernews-reporter"
+                ]
+              },
+              {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  {
+                    "group": "Basic Workflows",
+                    "pages": [
+                      "examples/workflows_2/01-basic-workflows/function_instead_of_steps_stream",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_functions_and_agents",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_steps",
+                      "examples/workflows_2/01-basic-workflows/workflow_using_steps",
+                      "examples/workflows_2/01-basic-workflows/step_with_function"
+                    ]
+                  },
+                  {
+                    "group": "Conditional Execution",
+                    "pages": [
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_steps_workflow_stream",
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_with_list_of_steps"
+                    ]
+                  },
+                  "examples/workflows_2/blog-post-generator",
+                  "examples/workflows_2/employee-recruiter",
+                  "examples/workflows_2/startup-idea-validator"
                 ]
               },
               {
