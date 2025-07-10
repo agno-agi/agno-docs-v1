@@ -44,6 +44,8 @@
 | `tool_choice` | `Optional[Union[str, Dict[str, Any]]]` | `None` | Controls which (if any) tool is called by the team model |
 | `tool_hooks` | `Optional[List[Callable]]` | `None` | A list of hooks to be called before and after the tool call |
 | `response_model` | `Optional[Type[BaseModel]]` | `None` | Response model for the team response |
+| `parser_model` | `Optional[Model]` | `None` | Model to use for parsing the response |
+| `parser_model_prompt` | `Optional[str]` | `None` | Prompt to use for parsing the response |
 | `use_json_mode` | `bool` | `False` | If `response_model` is set, sets the response mode of the model |
 | `parse_response` | `bool` | `True` | If True, parse the response |
 | `memory` | `Optional[Union[TeamMemory, Memory]]` | `None` | Memory for the team |
@@ -60,6 +62,11 @@
 | `reasoning_model` | `Optional[Model]` | `None` | Model to use for reasoning |
 | `reasoning_min_steps` | `int` | `1` | Minimum number of reasoning steps |
 | `reasoning_max_steps` | `int` | `10` | Maximum number of reasoning steps |
+| `stream` | `Optional[bool]` | `None` | Stream the response from the Team |
+| `stream_intermediate_steps` | `bool` | `False` | Stream the intermediate steps from the Team |
+| `stream_member_events` | `bool` | `True` | Stream the member events from the Team members |
+| `store_events` | `bool` | `False` | Store the streaming events on the TeamRunResponse |
+| `events_to_skip` | `Optional[List[Union[RunEvent, TeamRunEvent]]]` | `None` | Specify which event types to skip when storing events on the TeamRunResponse |
 | `app_id` | `Optional[str]` | `None` | Optional app ID. Indicates this team is part of an app |
 | `debug_mode` | `bool` | `False` | Enable debug logs |
 | `show_members_responses` | `bool` | `False` | Enable member logs - Sets the debug_mode for team and members |
@@ -76,18 +83,14 @@
 | `arun` | Run the team asynchronously |
 | `get_session_summary` | Get the session summary for the given session ID and user ID |
 | `get_user_memories` | Get the user memories for the given user ID |
-| `get_member_information` | Get information about the members of the team |
-| `get_team_history` | Get the team chat history |
-| `search_knowledge_base` | Search the knowledge base for information |
 | `load_session` | Load an existing session from the database or create a new one |
 | `rename_session` | Rename the current session |
 | `delete_session` | Delete a session |
-| `add_image` | Add an image to the team session |
-| `add_video` | Add a video to the team session |
-| `add_audio` | Add audio to the team session |
 | `get_images` | Get all images from the team session |
 | `get_videos` | Get all videos from the team session |
 | `get_audio` | Get all audio from the team session |
+| `add_tool` | Add a tool to the team |
+| `set_tools` | Replace the tools of the team |
 
 ## Team Modes
 

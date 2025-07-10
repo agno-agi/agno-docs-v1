@@ -3,6 +3,85 @@ title: "Product updates"
 mode: "wide"
 ---
 
+<Update label="2025-06-26" description="v1.7.0">
+
+## New Features:
+
+- **Agent/Team Add Tool**: Added convenience function to `Agent` and `Team` → `add_tool(tool)` to append new tools after inititialisation.
+- **Streaming Structured Output**: Implemented structured output during streaming. This means streaming won’t be turned off when `response_model` is passed. The structured output itself is not streamed, but it is part of the iterator response when running an agent/team with streaming. The response model is set on a single `RunResponseContentEvent` and on the final `RunResponseCompletedEvent`.
+
+## Improvements:
+
+- **Linear Teams Tool**: Added tool to get the list of teams from Linear.
+
+## Bug Fixes:
+
+- **Uppercase Structured Output**: Resolved cases where pydantic model fields contain field names with upper case characters.
+
+## Breaking Change:
+
+- If you use `run(..., stream=True)` or `arun(..., stream=True)` on `Agent` or `Team` with a `response_model` set, the current behaviour would switch off streaming and respond with a single `RunResponse` object. After the changes mentioned above, you will get the `Iterator[RunResponseEvent]` / `AsyncIterator[RunResponseEvent]` response instead.
+</Update>
+<Update label="2025-06-23" description="v1.6.4">
+
+## New Features:
+
+- **Brightdata Toolkit**: Added multiple web-based tools via Brightdata.
+- **OpenCV Video/Image Toolkit**: Added tools for capturing image/video via your webcam.
+- **DiscordClient App**: Added a DiscordClient app for connecting your agent or team with Discord in the form of a discord bot.
+
+## Improvements:
+
+- **FileTools File Search**: Added `search` to `FileTools`.
+
+## Bug Fixes:
+
+- **Fix User Control Flow with History**: Fixed issues where user control flow (HITL) flows failed with message history.
+- **Fix lance db upsert method for supporting knowledge filters:** Fixed function `upsert` not using the parameter `filters`
+- **Update mongo db hybrid search for filters:** Mongodb now correctly uses filters for hybrid search
+- **Fixed `team.rename_session(...)` that raises an `AttributeError`: Fixed** function `rename_session` not using the parameter `session_id`
+
+</Update>
+<Update label="2025-06-18" description="v1.6.3">
+
+## New Features:
+
+- **User Control Flows on Playground**: The Agno Platform now support user control flows on the playground.
+- **Team & Agent Events on RunResponse:** Added `store_events` parameter to optionally add all events that happened during the course of an agent/team run on the `RunResponse`/`TeamRunResponse`.
+- **Team Member Responses on Playground**: The Agno Platform now shows member responses during team runs.
+- **Behind-the-scenes on Playground**: The Agno Platform now shows what is happening during runs, for both agents and teams.
+- **Metadata filtering support for `csv` and `csv_url` knowledge bases:** Add knowledge filters support for these knowledge base types.
+
+## Updates
+
+- **Removed `a` prefix from async function names:** `asearch_knowledge_base`, etc will now be the same as their `sync` counterparts when sent to the model. The names of functions are important for accurate function calling.
+
+## Bug Fixes:
+
+- **AG-UI Fix**: Fixed issue related to missing messages when using the Agno AG-UI app.
+- **Chat History Fix**: Fixed issue related to history not available when `agent_id` not set.
+- **MongoDB ObjectId serialization issue when using with agent:** Fixed issue while ****using mongodb vectordb with ObjectId present in the metadata it throws Object of type `ObjectId` is not JSON serializable
+
+</Update>
+<Update label="2025-06-13" description="v1.6.1">
+
+## New Features:
+
+- **Nebius Embeddings**: Added support for embedding models on Nebius.
+- **Firestore Memory and Storage:** Added support for Firestore both as memory and storage provider for your agents.
+
+## Improvements:
+
+- **Improved Event Payloads**: Added `agent_name` to agent events, and `team_name` to team events. Also added `team_session_id` to team-member events to indicate that it belongs to the top-level team session.
+- **Team Run Events**: Added `stream_member_events` to teams to optionally disable streaming of member events.
+- **DocumentKnowledgeBase Async**: Added `async` support on `DocumentKnowledgeBase`
+- **Enums on Custom Tools**: Added support for `enum` parameters in custom tools.
+
+## Bug Fixes:
+
+- **Team Events:** Fixed issues related to team and member events not being part of the same session. Going forward a team and its members will all have the same session ID.
+</Update>
+
 <Update label="2025-06-10" description="v1.6.0">
 ## Improvements:
 
@@ -54,6 +133,21 @@ mode: "wide"
     - See detailed documentation [here](https://docs.agno.com/teams/run).
 - **Updates to Workflows:**
     - You should now yield `WorkflowRunResponseStartedEvent` and `WorkflowRunResponseCompletedEvent` events.
+</Update>
+<Update label="2025-06-06" description="v1.5.10">
+## New Features:
+
+- **Playground File Upload**: We now support file upload via the Agno Playground. This will send PDF, CSV, Docx, etc files directly to the agents/teams for interpretation by the downstream LLMs.  If you have a knowledge base attached to the agent/team, it will upload the file to the knowledge base instead.
+- **Async Evals**: Support for `async` and evaluations. See examples [here](https://github.com/agno-agi/agno/tree/main/cookbook/evals).
+
+## Improvements:
+
+- **Exa Research**: Added `research` tool on `ExaTools`. See more on their [docs](https://docs.exa.ai/reference/exa-research) about how research works.
+- **Whatsapp Type Indicator**: Add type indicator to Whatsapp responses.
+
+## Bug Fixes:
+
+- **State in Messages Fixes**: Fixed issues around nested json inside messages and adding state into messages.
 </Update>
 <Update label="2025-06-05" description="v1.5.9">
 ## New Features:
