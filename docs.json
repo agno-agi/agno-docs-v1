@@ -509,7 +509,8 @@
                   "examples/agents/recipe-creator",
                   "examples/agents/movie-recommender",
                   "examples/agents/books-recommender",
-                  "examples/agents/travel-planner"
+                  "examples/agents/travel-planner",
+                  "examples/agents/startup-analyst-agent"
                 ]
               },
               {
