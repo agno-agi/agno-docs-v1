@@ -1,0 +1,28 @@
+---
+title: Migrating to Workflows 2.0
+sidebarTitle: Migrating to Workflows 2.0
+description: Learn how to migrate to Workflows 2.0.
+---
+
+## Migrating from Workflows 1.0
+
+Workflows 2.0 is a completely new approach to agent automation, and requires an upgrade from the Workflows 1.0 implementation. It introduces a new, more flexible and powerful way to build workflows.
+
+### Key Differences
+
+| Workflows 1.0 | Workflows 2.0 | Migration Path |
+|---------------|---------------|----------------|
+| Linear only | Multiple patterns | Add Parallel/Condition as needed |
+| Agent-focused | Mixed components | Convert functions to Steps |
+| Limited branching | Smart routing | Replace if/else with Router |
+| Manual loops | Built-in Loop | Use Loop component |
+
+### Migration Steps
+
+1. **Assess current workflow**: Identify parallel opportunities
+2. **Add conditions**: Convert if/else logic to Condition components
+3. **Extract functions**: Move custom logic to function-based steps
+4. **Enable streaming**: For event-based information
+5. **Add state management**: Use `workflow_session_state` for data sharing
+
+For more examples and advanced patterns, explore the [`cookbook/workflows/sync/`](/cookbook/workflows_2/sync) and [`cookbook/workflows/async/`](/cookbook/workflows_2/async) directory. Each file demonstrates a specific pattern with detailed comments and real-world use cases.

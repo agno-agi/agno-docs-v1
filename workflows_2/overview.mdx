@@ -8,15 +8,15 @@ Agno Workflows are designed to automate complex processes by defining a series o
 
 ![Workflows 2.0](/images//workflows_v2_flow.png)
 
-## Why would you use Workflows?
+## Why should you use Workflows?
 
-Workflows are a great way to automate complex processes by defining a series of steps that are executed in sequence. They are particularly useful when you need to:
+Workflows are a great way to automate complex processes by defining a series of steps that are executed in a flow that you control. This is particularly useful when you need to:
 
 - Automate a series of tasks
-- Orchestrate a series of agents and teams
+- Orchestrate multiple agents or teams of agents
 - Have complex logic where you require agents to run in loops, or in parallel, or route different flows based on the output of previous steps
 
-When building multi-agent systems, there is often a need to control the flow of execution, and this is where Workflows come in. Workflows are best suited for deterministic agent automation, as opposed to [Teams](/teams) which are made for agentic coordination between agents.
+When building multi-agent systems, there is often a need to control the flow of execution, and this is where Workflows come in. Workflows are best suited for deterministic agent automation, in comparison to [Teams](/teams) which are designed for agentic coordination between agents.
 
 ## Core Design Philosophy
 
@@ -28,7 +28,8 @@ Each step can be executed by an agent, a team, or a custom Python function. Thes
 - **Teams**: Coordinated groups of agents working together on complex problems
 - **Functions**: Custom Python functions for specialized processing logic
 
-The beauty of this approach is that you have access to the full power of Agno Agents and Teams, with the flexibility of a sophisticated orchestration system. Your agents and teams retain their individual characteristics, memory, and behavior patterns, but now operate within a structured workflow that provides:
+The beauty of this approach is that you have access to the full power of Agno Agents and Teams, with the flexibility of a sophisticated orchestration system. 
+Your agents and teams retain their individual characteristics, memory, and behavior patterns, but now operate within a structured workflow that provides:
 - Sequential step execution with output chaining
 - Session management and state persistence
 - Error handling and retry mechanisms
@@ -48,7 +49,7 @@ When using a custom Python function as an executor for a step, `StepInput` and `
 ![Workflows Step IO](/images/step_io_flow.png)
 </Note>
 
-### How to make your first workflow?
+## How to make your first workflow?
 
 There are different types of patterns you can use to build your workflows. 
 To learn more about how to start building workflow systems, check out the [development guide](/workflows_2/types_of_workflows) page.
