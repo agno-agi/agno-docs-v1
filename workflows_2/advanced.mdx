@@ -81,7 +81,8 @@ def custom_content_planning_function(step_input: StepInput) -> StepOutput:
     return StepOutput(content=enhanced_content)
 ```
 
-See a more detailed example in the cookbook [here](/examples/workflows_2/01-basic-workflows/step_with_function)
+**See Example**:
+- [Step with a Custom Function](/examples/workflows_2/01-basic-workflows/step_with_function)
 
 ### Early Stopping
 
@@ -124,7 +125,7 @@ workflow.print_response("Scan this code: exec(input('Enter command: '))")
 ```
 
 **See Examples**: 
-- [`early_stop_workflow_with_agents.py`](/examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow_with_agents)
+- [Early Stop Workflow with Agents](/examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow_with_agents)
 
 ### Access Multiple Previous Steps Output
 
@@ -302,42 +303,6 @@ for event in workflow.run(message="AI trends", stream=True, stream_intermediate_
 ```
 
 **See**: Any `*_stream.py` file for streaming examples.
-
-### Session State Management
-
-Share data across workflow steps:
-
-```python
-from agno.workflow.v2 import Workflow
-from agno.agent.agent import Agent
-
-# Access state in agent tools
-def add_to_shared_data(agent: Agent, data: str) -> str:
-    agent.workflow_session_state["collected_data"] = data
-    return f"Added: {data}"
-
-shopping_assistant = Agent(
-    name="Shopping Assistant",
-    model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[add_to_shared_data],
-    instructions=[
-        "You are a helpful shopping assistant.",
-        "You can help users manage their shopping list by adding, removing, and listing items.",
-        "Always use the provided tools to interact with the shopping list.",
-        "Be friendly and helpful in your responses.",
-    ],
-)
-
-workflow = Workflow(
-    name="Stateful Workflow",
-    workflow_session_state={},  # Initialize shared state
-    steps=[data_collector_step, data_processor_step, data_finalizer_step]
-)
-
-workflow.print_response("Add apples and oranges to my shopping list")
-```
-
-**See**: [`shared_session_state_with_agent.py`](/cookbook/workflows_2/sync/06_workflows_advanced_concepts/shared_session_state_with_agent.py)
 
 ### Structured Inputs
 
