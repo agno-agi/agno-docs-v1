@@ -11,7 +11,7 @@ Metrics are available at multiple levels:
 - **Per-tool call**: Each tool execution has its own metrics.
 - **Per-member run**: Each team member run has its own metrics.
 - **Team-level**: The `TeamRunResponse` aggregates metrics across all team leader messages.
-- **Session-level**: Aggregated metrics across all runs in the session.
+- **Session-level**: Aggregated metrics across all runs in the session, for both the team leader and all team members.
 
 <Note>
 Where Metrics Live
@@ -19,8 +19,8 @@ Where Metrics Live
 - `TeamRunResponse.member_responses`: Individual member responses with their own metrics.
 - `ToolExecution.metrics`: Metrics for each tool call.
 - `Message.metrics`: Metrics for each message (assistant, tool, etc.).
-- `team.session_metrics`: Session-level metrics for the team leader.
-- `team.full_team_session_metrics`: Session-level metrics including all team member metrics.
+- `Team.session_metrics`: Session-level metrics for the team leader.
+- `Team.full_team_session_metrics`: Session-level metrics including all team member metrics.
 </Note>
 
 ## Example Usage
