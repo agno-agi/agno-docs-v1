@@ -55,6 +55,7 @@
                 "pages": [
                   "teams/introduction",
                   "teams/run",
+                  "teams/metrics",
                   "teams/shared-state",
                   {
                     "group": "Team Modes",
