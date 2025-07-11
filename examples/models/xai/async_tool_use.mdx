@@ -1,21 +1,25 @@
 ---
-title: Agent with Tools
+title: Async Agent with Tools
 ---
 
 ## Code
 
-```python cookbook/models/xai/tool_use.py
+```python cookbook/models/xai/async_tool_use.py
+"""Run `pip install duckduckgo-search` to install dependencies."""
+
+import asyncio
+
 from agno.agent import Agent
 from agno.models.xai import xAI
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
-    model=xAI(id="grok-beta"),
+    model=xAI(id="grok-3"),
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     markdown=True,
 )
-agent.print_response("Whats happening in France?", stream=True)
+asyncio.run(agent.aprint_response("Whats happening in France?", stream=True))
 ```
 
 ## Usage
@@ -37,7 +41,7 @@ agent.print_response("Whats happening in France?", stream=True)
 
   <Step title="Run Agent">
     ```bash
-    python cookbook/models/xai/tool_use.py
+    python cookbook/models/xai/async_tool_use.py
     ```
   </Step>
-</Steps>
+</Steps> 
