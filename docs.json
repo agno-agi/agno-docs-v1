@@ -613,8 +613,11 @@
                   {
                     "group": "Advanced Concepts",
                     "pages": [
-                      "examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow_with_agents",
-                      "examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data"
+                      "examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow",
+                      "examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data",
+                      "examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output",
+                      "examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow",
+                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level"
                     ]
                   },
                   "examples/workflows_2/blog-post-generator",
