@@ -8,6 +8,15 @@ Agno Workflows are designed to automate complex processes by defining a series o
 
 ![Workflows 2.0](/images//workflows_v2_flow.png)
 
+> **Workflows support multiple input types for maximum flexibility:**
+>
+> | Input Type | Example | Use Case |
+> |------------|---------|----------|
+> | **String** | `"Analyze AI trends"` | Simple text prompts |
+> | **Pydantic Model** | `ResearchRequest(topic="AI", depth=5)` | Type-safe structured input |
+> | **List** | `["AI", "ML", "LLMs"]` | Multiple items to process |
+> | **Dictionary** | `{"query": "AI", "sources": ["web", "academic"]}` | Key-value pairs |
+
 ## Why should you use Workflows?
 
 Workflows are a great way to automate complex processes by defining a series of steps that are executed in a flow that you control. This is particularly useful when you need to:
