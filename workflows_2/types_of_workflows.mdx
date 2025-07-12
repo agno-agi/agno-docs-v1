@@ -92,6 +92,10 @@ For migration from 1.0 style workflows, refer to the page for [Migrating to Work
 
 **You can name your steps** for better logging and future support on the Agno platform:
 
+#### Step Params
+
+<Snippet file="step-reference.mdx" />
+
 ```python
 from agno.workflow.v2 import Step, Workflow
 
@@ -122,6 +126,10 @@ workflow.print_response(
 **Example**: Topic-specific research strategies, content type routing
 
 ![Condition Steps](/images/condition_steps.png)
+
+#### Condition Params
+
+<Snippet file="condition-step-reference.mdx" />
 
 ```python
 from agno.workflow.v2 import Condition, Step, Workflow
@@ -157,6 +165,10 @@ workflow.print_response("Comprehensive analysis of AI and machine learning trend
 
 ![Parallel Steps](/images/parallel_steps.png)
 
+#### Parallel Params
+
+<Snippet file="parallel-step-reference.mdx" />
+
 ```python
 from agno.workflow.v2 import Parallel, Step, Workflow
 
@@ -186,6 +198,10 @@ workflow.print_response("Write about the latest AI developments", markdown=True)
 **Example**: Research until sufficient quality, iterative improvement
 
 ![Loop Steps](/images/loop_steps.png)
+
+#### Loop Params
+
+<Snippet file="loop-step-reference.mdx" />
 
 ```python
 from agno.workflow.v2 import Loop, Step, Workflow
@@ -220,6 +236,10 @@ workflow.print_response("Research the impact of renewable energy on global marke
 **Example**: Content type detection, expertise routing
 
 ![Router Steps](/images/router_steps.png)
+
+#### Router Params
+
+<Snippet file="router-step-reference.mdx" />
 
 ```python
 from agno.workflow.v2 import Router, Step, Workflow
@@ -257,6 +277,10 @@ workflow.print_response("Latest developments in artificial intelligence and mach
 **When to use**: When you need to group multiple steps into logical sequences, create reusable workflows, or organize complex workflows with multiple branching paths.
 
 Better Routing: Use with Router for clean branching logic
+
+#### Steps Params
+
+<Snippet file="steps-reference.mdx" />
 
 ```python
 from agno.workflow.v2 import Steps, Step, Workflow
