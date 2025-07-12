@@ -445,6 +445,7 @@
                   "observability/langfuse",
                   "observability/langsmith",
                   "observability/langtrace",
+                  "observability/maxim",
                   "observability/weave"
                 ]
               },
