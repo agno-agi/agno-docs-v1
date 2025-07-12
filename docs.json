@@ -175,7 +175,8 @@
                           "tools/toolkits/web_scrape/spider",
                           "tools/toolkits/web_scrape/website",
                           "tools/toolkits/web_scrape/scrapegraph",
-                          "tools/toolkits/web_scrape/oxylabs"
+                          "tools/toolkits/web_scrape/oxylabs",
+                          "tools/toolkits/web_scrape/brightdata"
                         ]
                       },
                       {
@@ -518,7 +519,8 @@
                   "examples/agents/recipe-creator",
                   "examples/agents/movie-recommender",
                   "examples/agents/books-recommender",
-                  "examples/agents/travel-planner"
+                  "examples/agents/travel-planner",
+                  "examples/agents/startup-analyst-agent"
                 ]
               },
               {
@@ -1069,7 +1071,8 @@
                       "examples/concepts/tools/web_scrape/website",
                       "examples/concepts/tools/web_scrape/spider",
                       "examples/concepts/tools/web_scrape/firecrawl",
-                      "examples/concepts/tools/web_scrape/oxylabs"
+                      "examples/concepts/tools/web_scrape/oxylabs",
+                      "examples/concepts/tools/web_scrape/brightdata"
                     ]
                   },
                   {
@@ -1151,6 +1154,7 @@
                       "examples/concepts/tools/mcp/pipedream_slack",
                       "examples/concepts/tools/mcp/pipedream_google_calendar",
                       "examples/concepts/tools/mcp/pipedream_linkedin",
+                      "examples/concepts/tools/mcp/stagehand",
                       "examples/concepts/tools/mcp/stripe",
                       "examples/concepts/tools/mcp/supabase"
                     ]
