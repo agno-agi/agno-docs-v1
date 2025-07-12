@@ -125,7 +125,7 @@ workflow.print_response("Scan this code: exec(input('Enter command: '))")
 ```
 
 **See Examples**: 
-- [Early Stop Workflow with Agents](/examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow_with_agents)
+- [Early Stop Workflow](/examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow)
 
 ### Access Multiple Previous Steps Output
 
@@ -185,6 +185,24 @@ workflow = Workflow(
 > - `step_input.get_all_previous_content()` - Get all previous step content combined
 > - `step_input.workflow_message` - Access the original workflow input message
 > - `step_input.previous_step_content` - Get content from immediate previous step
+
+<Note>
+In case of `Parallel` step, when you do `step_input.get_step_content("parallel_step_name")`, it will return a dict with each key as `individual_step_name` for all the outputs from the steps defined in parallel.
+Example:
+```python
+parallel_step_output = step_input.get_step_content("parallel_step_name")
+
+# parallel_step_output will be a dict with each key as `individual_step_name` for all the outputs from the steps defined in parallel.
+# Example:
+# {
+#     "individual_step_name_1": "output_from_individual_step_1",
+#     "individual_step_name_2": "output_from_individual_step_2",
+# }
+```
+</Note>
+
+**See Examples**:
+- [Access Multiple Previous Steps Output](/examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output)
 
 ### Event Storage and Filtering
 
@@ -255,7 +273,7 @@ fast_workflow = Workflow(
 ```
 
 **See Examples**:
-- [`store_events_and_events_to_skip_in_a_workflow.py`](/cookbook/workflows_2/sync/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow.py)
+- [Store Events and Events to Skip in a Workflow](/examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow)
 
 ### Additional Data
 
@@ -410,3 +428,62 @@ workflow.print_response(
 ```
 
 **See**: [`pydantic_model_as_input.py`](/cookbook/workflows_2/sync/06_workflows_advanced_concepts/pydantic_model_as_input.py)
+
+## Structured IO at Each Step Level
+
+Workflows 2.0 introduces a powerful type-safe data flow system where each step in your workflow can:
+1. **Receive** structured input (Pydantic models, lists, dicts, or raw strings)
+2. **Produce** structured output (validated Pydantic models)
+3. **Maintain** type safety throughout the entire workflow execution
+
+#### How Data Flows Between Steps
+
+1. **Input Handling**:
+   - The first step receives the workflow's input message
+   - Subsequent steps receive the previous step's structured output
+
+2. **Output Processing**:
+   - Each Agent processes the input using its `response_model`
+   - The output is automatically validated against the model
+
+```python
+# Define agents with response models
+research_agent = Agent(
+    name="Research Specialist",
+    model=OpenAIChat(id="gpt-4"),
+    response_model=ResearchFindings,  # <-- Set on Agent
+)
+
+analysis_agent = Agent(
+    name="Analysis Expert", 
+    model=OpenAIChat(id="gpt-4"),
+    response_model=AnalysisResults,  # <-- Set on Agent
+)
+
+# Steps reference these agents
+workflow = Workflow(steps=[
+    Step(agent=research_agent),  # Will output ResearchFindings
+    Step(agent=analysis_agent)   # Will output AnalysisResults
+])
+```
+
+#### Structured Data Transformation in Custom Functions
+
+Custom functions in workflows can access the structured output of previous steps via `step_input.previous_step_content`, which preserves the original Pydantic model type (e.g., ResearchFindings). To transform data:
+- Type-Check Inputs: Use `isinstance(step_input.previous_step_content, ModelName)` to verify the input structure.
+- Modify Data: Extract fields (e.g., `step_input.previous_step_content.topic`), process them, and construct a new Pydantic model (e.g., AnalysisReport).
+- Return Typed Output: Wrap the new model in `StepOutput(content=new_model)`. This ensures type safety for downstream steps. Example:
+
+```python
+   def transform_data(step_input: StepInput) -> StepOutput:
+       research = step_input.previous_step_content  # Type: ResearchFindings
+       analysis = AnalysisReport(
+           analysis_type="Custom",
+           key_findings=[f"Processed: {research.topic}"],
+           ...  # Modified fields
+       )
+       return StepOutput(content=analysis)
+```
+
+**See Examples**:
+- [Structured IO at each Step Level](/examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level)
