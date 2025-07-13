@@ -442,6 +442,7 @@
                   "observability/introduction",
                   "observability/agentops",
                   "observability/arize",
+                  "observability/atla",
                   "observability/langfuse",
                   "observability/langsmith",
                   "observability/langtrace",
