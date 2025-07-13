@@ -1721,6 +1721,12 @@
                 ]
               },
               {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "reference/workflows_2/workflow"
+                ]
+              },
+              {
                 "group": "Models",
                 "pages": [
                   "reference/models/model",
