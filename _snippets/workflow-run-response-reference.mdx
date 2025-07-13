@@ -1,0 +1,20 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `content` | `Optional[Any]` | `None` | Main content/output from the workflow execution |
+| `content_type` | `str` | `"str"` | Type of the content (e.g., "str", "json", etc.) |
+| `messages` | `Optional[List[Message]]` | `None` | List of messages generated during execution |
+| `metrics` | `Optional[Dict[str, Any]]` | `None` | Performance and execution metrics |
+| `workflow_id` | `Optional[str]` | `None` | Unique identifier of the executed workflow |
+| `workflow_name` | `Optional[str]` | `None` | Name of the executed workflow |
+| `run_id` | `Optional[str]` | `None` | Unique identifier for this specific run |
+| `session_id` | `Optional[str]` | `None` | Session UUID associated with this run |
+| `images` | `Optional[List[ImageArtifact]]` | `None` | List of image artifacts generated |
+| `videos` | `Optional[List[VideoArtifact]]` | `None` | List of video artifacts generated |
+| `audio` | `Optional[List[AudioArtifact]]` | `None` | List of audio artifacts generated |
+| `response_audio` | `Optional[AudioResponse]` | `None` | Audio response from the workflow |
+| `step_responses` | `List[Union[StepOutput, List[StepOutput]]]` | `[]` | Actual step execution results as StepOutput objects |
+| `events` | `Optional[List[WorkflowRunResponseEvent]]` | `None` | Events captured during workflow execution |
+| `workflow_metrics` | `Optional[WorkflowMetrics]` | `None` | Aggregated metrics from all workflow steps |
+| `extra_data` | `Optional[Dict[str, Any]]` | `None` | Additional data stored with the response |
+| `created_at` | `int` | `int(time())` | Unix timestamp when the response was created |
+| `status` | `RunStatus` | `RunStatus.pending` | Current status of the workflow run |
