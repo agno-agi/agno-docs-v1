@@ -24,7 +24,7 @@ Here's an example of an Agent managing a shopping list:
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 
-# Define a tool that increments our counter and returns the new value
+# Define a tool that adds an item to the shopping list
 def add_item(agent: Agent, item: str) -> str:
     """Add an item to the shopping list."""
     agent.session_state["shopping_list"].append(item)
