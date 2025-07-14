@@ -443,3 +443,93 @@ Custom functions in workflows can access the structured output of previous steps
 
 **More Examples**:
 - [Structured IO at each Step Level](/examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level)
+
+## Media Input
+**Media Artifact Handling in Workflows 2.0**: Workflows seamlessly handle media artifacts (images, videos, audio) throughout the execution pipeline. 
+Media can be provided as input in `.run/.print_response` and is passed through to steps via `WorkflowExecutionInput` using `ImageArtifact`, `VideoArtifact`, 
+and `AudioArtifact` objects, which are automatically converted to the appropriate `Image`, `Video`, and `Audio` formats when passed to `agents/teams`. 
+
+During execution, media artifacts accumulate across steps - each step receives shared media from previous steps and can 
+produce additional media outputs. The Step class handles automatic conversion between artifact formats 
+(e.g., `ImageArtifact.content` with base64 data to `Image.content` with actual bytes), ensuring compatibility between 
+workflow components and `agent/team` executors. All media artifacts are preserved in `StepOutput` and propagated to 
+subsequent steps, creating a comprehensive media flow where the final WorkflowRunResponse contains all accumulated 
+`images, videos, and audio` from the entire execution chain.
+
+Here's an example of how to pass image as input:
+
+```python
+from agno.agent import Agent
+from agno.media import Image
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.workflow.v2.step import Step
+from agno.workflow.v2.workflow import Workflow
+from agno.storage.sqlite import SqliteStorage
+
+# Define agents
+image_analyzer = Agent(
+    name="Image Analyzer",
+    model=OpenAIChat(id="gpt-4o"),
+    instructions="Analyze the provided image and extract key details, objects, and context.",
+)
+
+news_researcher = Agent(
+    name="News Researcher", 
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[DuckDuckGoTools()],
+    instructions="Search for latest news and information related to the analyzed image content.",
+)
+
+# Define steps
+analysis_step = Step(
+    name="Image Analysis Step",
+    agent=image_analyzer,
+)
+
+research_step = Step(
+    name="News Research Step", 
+    agent=news_researcher,
+)
+
+# Create workflow with media input
+media_workflow = Workflow(
+    name="Image Analysis and Research Workflow",
+    description="Analyze an image and research related news",
+    steps=[analysis_step, research_step],
+    storage=SqliteStorage(
+        table_name="workflow_v2",
+        db_file="tmp/workflow_v2.db",
+        mode="workflow_v2",
+    ),
+)
+
+# Run workflow with image input
+if __name__ == "__main__":
+    media_workflow.print_response(
+        message="Please analyze this image and find related news",
+        images=[
+            Image(url="https://upload.wikimedia.org/wikipedia/commons/0/0c/GoldenGateBridge-001.jpg")
+        ],
+        markdown=True,
+    )
+```
+
+<Note>
+If you are using `Workflow.run()`, you need to use `WorkflowRunResponse` to access the images, videos, and audio.
+```python
+from agno.run.v2.workflow import WorkflowRunResponse
+
+response: WorkflowRunResponse = media_workflow.run(
+    message="Please analyze this image and find related news",
+    images=[
+        Image(url="https://upload.wikimedia.org/wikipedia/commons/0/0c/GoldenGateBridge-001.jpg")
+    ],
+    markdown=True,
+)
+
+print(response.images)
+```
+</Note>
+
+Similarly, you can pass `Video` and `Audio` as input.
