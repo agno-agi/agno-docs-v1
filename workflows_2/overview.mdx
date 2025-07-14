@@ -50,6 +50,8 @@ Workflows support multiple input types for maximum flexibility:
 When this input is passed to an `Agent` or `Team`, it will be serialized to a string before being passed to the agent or team.
 </Note>
 
+See more on Pydantic as input in the [Structured Inputs](/workflows_2/advanced#structured-inputs) documentation.
+
 ## Architectural components
 1. The **`Workflow`** class is the top-level orchestrator that manages the entire execution process.
 2. **`Step`** is the fundamental unit of work in the workflow system. Each step encapsulates exactly one `executor` - either an `Agent`, a `Team`, or a custom Python function. This design ensures clarity and maintainability while preserving the individual characteristics of each executor.

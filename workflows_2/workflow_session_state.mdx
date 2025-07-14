@@ -4,17 +4,14 @@ sidebarTitle: Workflow Session State
 description: Learn to handle shared state between the different components of a Workflow
 ---
 
-## Overview
-The workflow session state is a powerful feature of the Workflows system that allows for the persistence and sharing of state information across different components of a workflow. This state is crucial for maintaining state and continuity in workflows that involve multiple tasks, agents, and teams.
-
-## Key Concepts
-- **Workflow Session State**: A `dictionary-like` structure that stores state information accessible to all components within a workflow.
-- **State Sharing**: The capability to share state information between different agents and teams within a workflow.
+The workflow session state is a powerful feature of the Workflows system that allows for the persistence and sharing of state information across different components of a workflow. 
+This state is crucial for maintaining continuity in workflows that involve multiple tasks, agents, and teams.
 
 ![Workflow Session State](/images/workflow_session_state.png)
 
 ## How Workflow Session State Works
-1. **Initialization**: The workflow session state is initialized when a Workflow object is created. It can be an empty dictionary or pre-populated with initial state data.
+### 1. Initialization
+The workflow session state is initialized when a Workflow object is created. It can be an empty dictionary or pre-populated with initial state data.
 
 ```python 
 shopping_workflow = Workflow(
@@ -24,7 +21,8 @@ shopping_workflow = Workflow(
 )
 ```
 
-2. **Access and Modification**: Agents and teams can access and modify the workflow session state during task execution. This is typically done through methods or tools that interact with the state.
+### 2. Access and Modification
+Agents and teams can access and modify the workflow session state during task execution. This is typically done through methods or tools that interact with the state.
 
 Consider the following example-
 
@@ -187,6 +185,6 @@ In the example, the `add_item` function which is passed as a tool to the `Agent`
 The `workflow_session_state` is shared across all agents and teams within a workflow. This allows for seamless collaboration and data sharing between different components.
 </Note>
 
-**See Examples**:
-- [`shared_session_state_with_agent.py`](https://github.com/agno-agi/agno/tree/main/cookbook/workflows_2/sync/06_workflows_advanced_concepts/shared_session_state_with_agent.py)
-- [`shared_session_state_with_team.py`](https://github.com/agno-agi/agno/tree/main/cookbook/workflows_2/sync/06_workflows_advanced_concepts/shared_session_state_with_team.py)
+**More Examples**:
+- [Shared Session State with Agent](https://github.com/agno-agi/agno/tree/main/cookbook/workflows_2/sync/06_workflows_advanced_concepts/shared_session_state_with_agent.py)
+- [Shared Session State with Team](https://github.com/agno-agi/agno/tree/main/cookbook/workflows_2/sync/06_workflows_advanced_concepts/shared_session_state_with_team.py)
