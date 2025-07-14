@@ -8,14 +8,6 @@ Agno Workflows are designed to automate complex processes by defining a series o
 
 ![Workflows 2.0](/images//workflows_v2_flow.png)
 
-> **Workflows support multiple input types for maximum flexibility:**
->
-> | Input Type | Example | Use Case |
-> |------------|---------|----------|
-> | **String** | `"Analyze AI trends"` | Simple text prompts |
-> | **Pydantic Model** | `ResearchRequest(topic="AI", depth=5)` | Type-safe structured input |
-> | **List** | `["AI", "ML", "LLMs"]` | Multiple items to process |
-> | **Dictionary** | `{"query": "AI", "sources": ["web", "academic"]}` | Key-value pairs |
 
 ## Why should you use Workflows?
 
@@ -27,9 +19,8 @@ Workflows are a great way to automate complex processes by defining a series of 
 
 When building multi-agent systems, there is often a need to control the flow of execution, and this is where Workflows come in. Workflows are best suited for deterministic agent automation, in comparison to [Teams](/teams) which are designed for agentic coordination between agents.
 
-## Core Design Philosophy
 
-### Step-Wise Controlled Execution
+## Step-Wise Controlled Execution
 Agno Workflows are fundamentally an execution of a series of steps. These steps are executed in sequence, and the output of each step is passed to the next step.
 
 Each step can be executed by an agent, a team, or a custom Python function. These are individual components that can work independently but gain enhanced capabilities when orchestrated together:
@@ -44,8 +35,22 @@ Your agents and teams retain their individual characteristics, memory, and behav
 - Error handling and retry mechanisms
 - Streaming capabilities for real-time feedback
 
+## Workflow Input
 
-### Architectural components
+Workflows support multiple input types for maximum flexibility:
+
+ | Input Type | Example | Use Case |
+ |------------|---------|----------|
+ | **String** | `"Analyze AI trends"` | Simple text prompts |
+ | **Pydantic Model** | `ResearchRequest(topic="AI", depth=5)` | Type-safe structured input |
+ | **List** | `["AI", "ML", "LLMs"]` | Multiple items to process |
+ | **Dictionary** | `{"query": "AI", "sources": ["web", "academic"]}` | Key-value pairs |
+
+<Note>
+When this input is passed to an `Agent` or `Team`, it will be serialized to a string before being passed to the agent or team.
+</Note>
+
+## Architectural components
 1. The **`Workflow`** class is the top-level orchestrator that manages the entire execution process.
 2. **`Step`** is the fundamental unit of work in the workflow system. Each step encapsulates exactly one `executor` - either an `Agent`, a `Team`, or a custom Python function. This design ensures clarity and maintainability while preserving the individual characteristics of each executor.
 3. **`Loop`** is a construct that allows you to execute one or more steps multiple times. This is useful when you need to repeat a set of steps until a certain condition is met.

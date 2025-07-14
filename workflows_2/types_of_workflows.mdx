@@ -57,9 +57,11 @@ workflow.print_response("Analyze the competitive landscape for fintech startups"
 **See Example**: 
 - [Sequence of Functions and Agents](/examples/workflows_2/01-basic-workflows/sequence_of_functions_and_agents)
 
+<Note>
+`StepInput` and `StepOutput` provides standardized interfaces for data flow between steps:
+So if you make a custom function as an executor for a step, do make sure that the input and output types are compatible with the `StepInput` and `StepOutput` interfaces. This will ensure that your custom function can seamlessly integrate into the workflow system.
+</Note>
 
-> **Note**: `StepInput` and `StepOutput` provides standardized interfaces for data flow between steps:
-> So if you make a custom function as an executor for a step, do make sure that the input and output types are compatible with the `StepInput` and `StepOutput` interfaces. This will ensure that your custom function can seamlessly integrate into the workflow system.
 
 ### 2. Fully Python Workflow
 
@@ -88,13 +90,16 @@ workflow.print_response("Evaluate the market potential for quantum computing app
 
 For migration from 1.0 style workflows, refer to the page for [Migrating to Workflows 2.0](./migration)
 
-### 3. Basic Step Based Execution
+### 3. Step-Based Workflows
 
-**You can name your steps** for better logging and future support on the Agno platform:
+**You can name your steps** for better logging and future support on the Agno platform.  
+This also changes the name of a step when accessing that step's output inside a `StepInput` object.
 
-#### Step Params
+#### Parameters
 
 <Snippet file="step-reference.mdx" />
+
+#### Example
 
 ```python
 from agno.workflow.v2 import Step, Workflow
@@ -123,13 +128,15 @@ workflow.print_response(
 
 **When to use**: Conditional step execution based on business logic.
 
-**Example**: Topic-specific research strategies, content type routing
+**Example Use-Cases**: Topic-specific research strategies, content type routing
 
 ![Condition Steps](/images/condition_steps.png)
 
-#### Condition Params
+#### Parameters
 
 <Snippet file="condition-step-reference.mdx" />
+
+#### Example
 
 ```python
 from agno.workflow.v2 import Condition, Step, Workflow
@@ -153,7 +160,7 @@ workflow = Workflow(
 workflow.print_response("Comprehensive analysis of AI and machine learning trends", markdown=True)
 ```
 
-**See Examples**: 
+**More Examples**: 
 - [Condition Steps Workflow](/examples/workflows_2/02-workflows-conditional-execution/condition_steps_workflow_stream)
 - [Condition with List of Steps](/examples/workflows_2/02-workflows-conditional-execution/condition_with_list_of_steps)
 
@@ -161,14 +168,15 @@ workflow.print_response("Comprehensive analysis of AI and machine learning trend
 
 **When to use**: Independent tasks that can run simultaneously to save time.
 
-**Example**: Multiple research sources, parallel content creation
+**Example Use-Cases**: Multiple research sources, parallel content creation
 
 ![Parallel Steps](/images/parallel_steps.png)
 
-#### Parallel Params
+#### Parameters
 
 <Snippet file="parallel-step-reference.mdx" />
 
+#### Example
 ```python
 from agno.workflow.v2 import Parallel, Step, Workflow
 
@@ -188,20 +196,22 @@ workflow = Workflow(
 workflow.print_response("Write about the latest AI developments", markdown=True)
 ```
 
-**See Example**: 
+**More Examples**: 
 - [Parallel Steps Workflow](/examples/workflows_2/04-workflows-parallel-execution/parallel_steps_workflow)
 
 ### 6. Loop/Iteration Workflows
 
 **When to use**: Quality-driven processes, iterative refinement, or retry logic.
 
-**Example**: Research until sufficient quality, iterative improvement
+**Example Use-Cases**: Research until sufficient quality, iterative improvement
 
 ![Loop Steps](/images/loop_steps.png)
 
-#### Loop Params
+#### Parameters
 
 <Snippet file="loop-step-reference.mdx" />
+
+#### Example
 
 ```python
 from agno.workflow.v2 import Loop, Step, Workflow
@@ -226,21 +236,22 @@ workflow = Workflow(
 workflow.print_response("Research the impact of renewable energy on global markets", markdown=True)
 ```
 
-**See Example**: 
+**More Examples**: 
 - [Loop Steps Workflow](/examples/workflows_2/03_workflows_loop_execution/loop_steps_workflow)
 
 ### 7. Branching Workflows
 
 **When to use**: Complex decision trees, topic-specific workflows, dynamic routing.
 
-**Example**: Content type detection, expertise routing
+**Example Use-Cases**: Content type detection, expertise routing
 
 ![Router Steps](/images/router_steps.png)
 
-#### Router Params
+#### Parameters
 
 <Snippet file="router-step-reference.mdx" />
 
+#### Example
 ```python
 from agno.workflow.v2 import Router, Step, Workflow
 
@@ -269,19 +280,20 @@ workflow = Workflow(
 workflow.print_response("Latest developments in artificial intelligence and machine learning", markdown=True)
 ```
 
-**See Example**: 
+**More Examples**: 
 - [Router Steps Workflow](/examples/workflows_2/05_workflows_conditional_branching/router_steps_workflow)
 
 ### 8. Steps: Grouping a list of steps
 
 **When to use**: When you need to group multiple steps into logical sequences, create reusable workflows, or organize complex workflows with multiple branching paths.
 
-Better Routing: Use with Router for clean branching logic
+**Better Routing**: Use with Router for clean branching logic
 
-#### Steps Params
+#### Parameters
 
 <Snippet file="steps-reference.mdx" />
 
+####  Basic Example
 ```python
 from agno.workflow.v2 import Steps, Step, Workflow
 
@@ -305,8 +317,8 @@ workflow = Workflow(
 workflow.print_response("Write an article about renewable energy", markdown=True)
 ```
 
-#### Steps with Router for Clean Branching
-This is where Steps really shines - creating distinct sequences for different content types or workflows:
+#### Steps with Router
+This is where `Steps` really shines - creating distinct sequences for different content types or workflows:
 
 ```python
 from agno.workflow.v2 import Steps, Router, Step, Workflow
@@ -363,16 +375,16 @@ media_workflow.print_response("Create an image of a magical forest", markdown=Tr
 media_workflow.print_response("Create a cinematic video of city timelapse", markdown=True)
 ```
 
-**See Examples**
+**More Examples**: 
 - [`workflow_using_steps.py`](/examples/workflows_2/01-basic-workflows/workflow_using_steps)
 - [`workflow_using_steps_nested.py`](/examples/workflows_2/01-basic-workflows/workflow_using_steps_nested)
 - [`selector_for_image_video_generation_pipelines.py`](/examples/workflows_2/05_workflows_conditional_branching/selector_for_image_video_generation_pipelines)
 
-### 9. Complex Combinations
+### 9. Advanced Workflow Patterns
 
-**When to use**: Sophisticated workflows requiring multiple patterns.
+You can use the patterns above to construct sophisticated workflows.
 
-**Example**: Conditions + Parallel + Loops + Custom Post-Processing Function + Routing
+**Example Usage**: Conditions + Parallel + Loops + Custom Post-Processing Function + Routing
 
 ```python
 from agno.workflow.v2 import Condition, Loop, Parallel, Router, Step, Workflow
@@ -456,7 +468,7 @@ workflow = Workflow(
 workflow.print_response("Create a comprehensive analysis of sustainable technology trends and their business impact for 2024", markdown=True)
 ```
 
-**See Examples**: 
+**More Examples**: 
 - [Condition and Parallel Steps (Streaming Example)](/examples/workflows_2/02-workflows-conditional-execution/condition_and_parallel_steps_stream)
 - [Loop with Parallel Steps (Streaming Example)](/examples/workflows_2/03_workflows_loop_execution/loop_with_parallel_steps_stream)
 - [Router with Loop Steps](/examples/workflows_2/05_workflows_conditional_branching/router_with_loop_steps)
