@@ -63,51 +63,11 @@ For more information on how to use custom functions, refer to the [Advanced](/wo
 
 <Note>
 `StepInput` and `StepOutput` provides standardized interfaces for data flow between steps:
-So if you make a custom function as an executor for a step, do make sure that the input and output types are compatible with the `StepInput` and `StepOutput` interfaces. This will ensure that your custom function can seamlessly integrate into the workflow system.
+So if you make a custom function as an executor for a step, make sure that the input and output types are compatible with the `StepInput` and `StepOutput` interfaces. 
+This will ensure that your custom function can seamlessly integrate into the workflow system.
+
+Take a look at the schemas for [`StepInput`](/reference/workflows_2/step_input.mdx) and [`StepOutput`](/reference/workflows_2/step_output.mdx).
 </Note>
-
-**<u>StepInput Schema</u>**
-
-The `StepInput` object is passed to each step executor and contains all the data needed for execution:
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `message` | `Optional[Union[str, Dict[str, Any], List[Any], BaseModel]]` | Primary input message (can be any format) |
-| `previous_step_content` | `Optional[Any]` | Content from the last step |
-| `previous_step_outputs` | `Optional[Dict[str, StepOutput]]` | All previous step outputs by name |
-| `additional_data` | `Optional[Dict[str, Any]]` | Additional context data |
-| `images` | `Optional[List[ImageArtifact]]` | Media inputs - images (accumulated from workflow input and previous steps) |
-| `videos` | `Optional[List[VideoArtifact]]` | Media inputs - videos (accumulated from workflow input and previous steps) |
-| `audio` | `Optional[List[AudioArtifact]]` | Media inputs - audio (accumulated from workflow input and previous steps) |
-
-**Helper Methods:**
-| Method | Return Type | Description |
-|--------|-------------|-------------|
-| `get_step_content(step_name: str)` | `Optional[Union[str, Dict[str, str]]]` | Get content from a specific step by name |
-| `get_all_previous_content()` | `str` | Get all previous step content combined |
-| `get_last_step_content()` | `Optional[str]` | Get content from the immediate previous step |
-
-**<u>StepOutput Schema</u>**
-
-The `StepOutput` object is returned by each step executor and contains the execution results:
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `step_name` | `Optional[str]` | Step identification name |
-| `step_id` | `Optional[str]` | Unique step identifier |
-| `executor_type` | `Optional[str]` | Type of executor: "agent", "team", or "function" |
-| `executor_name` | `Optional[str]` | Name of the executor |
-| `content` | `Optional[Union[str, Dict[str, Any], List[Any], BaseModel, Any]]` | Primary output (can be any format) |
-| `parallel_step_outputs` | `Optional[Dict[str, StepOutput]]` | For parallel steps: individual sub-step outputs |
-| `response` | `Optional[Union[RunResponse, TeamRunResponse]]` | Raw execution response from agent/team |
-| `images` | `Optional[List[ImageArtifact]]` | Media outputs - images (new or passed-through) |
-| `videos` | `Optional[List[VideoArtifact]]` | Media outputs - videos (new or passed-through) |
-| `audio` | `Optional[List[AudioArtifact]]` | Media outputs - audio (new or passed-through) |
-| `metrics` | `Optional[Dict[str, Any]]` | Execution metadata |
-| `success` | `bool` | Execution success status (default: True) |
-| `error` | `Optional[str]` | Error message if execution failed |
-| `stop` | `bool` | Request early workflow termination (default: False) |
-
 
 ### 2. Fully Python Workflow
 

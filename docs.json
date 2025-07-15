@@ -1726,7 +1726,9 @@
                 "group": "Workflows v2 (Beta)",
                 "pages": [
                   "reference/workflows_2/workflow",
-                  "reference/workflows_2/workflow_run_response"
+                  "reference/workflows_2/workflow_run_response",
+                  "reference/workflows_2/step_input",
+                  "reference/workflows_2/step_output"
                 ]
               },
               {

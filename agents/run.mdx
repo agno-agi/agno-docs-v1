@@ -164,7 +164,7 @@ See detailed documentation in the [RunResponseEvent](/reference/agents/run-respo
 
 ## Structured Input
 
-An agent can be provided with structured input (i.e a pydantic model) by passing it in the `.run/.print_response` as `message` parameter.
+An agent can be provided with structured input (i.e a pydantic model) by passing it in the `Agent.run()` or `Agent.print_response()` as the `message` parameter.
 
 ```python
 from typing import List

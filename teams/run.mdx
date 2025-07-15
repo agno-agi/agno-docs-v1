@@ -141,7 +141,7 @@ See detailed documentation in the [TeamRunResponse](/reference/teams/team-respon
 
 ## Structured Input
 
-A team can be provided with structured input (i.e a pydantic model) by passing it in the `.run/.print_response` as `message` parameter.
+A team can be provided with structured input (i.e a pydantic model) by passing it in the `Team.run()` or `Team.print_response()` as the `message` parameter.
 
 ```python
 from typing import List
