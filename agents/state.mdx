@@ -16,7 +16,8 @@ Agno's provides a powerful and elegant state management system, here's how it wo
 - We add our state variables to this `session_state` dictionary.
 - We update the `session_state` dictionary in tool calls or other functions.
 - We share the current `session_state` with the Model in the `description` and `instructions`.
-- The `session_state` is stored with Agent sessions and is persisted in a database. Meaning, it is available across execution cycles.
+- The `session_state` is stored with Agent sessions and is persisted in a database. Meaning, it is available across execution cycles. This also means when switching sessions between calls to `agent.run()`, the state is loaded and available.
+- You can also pass `session_state` to the agent on `agent.run()`, effectively overriding any state that was set on Agent initialization.
 
 Here's an example of an Agent managing a shopping list:
 
@@ -140,8 +141,9 @@ print(f"Session state: {agent.session_state}")
 ```
 
 <Tip>
-We love how elegantly we can maintain and pass on state across multiple runs.
+State is a great way to control context across multiple runs.
 </Tip>
+
 
 ## Using state in instructions
 
@@ -171,6 +173,36 @@ agent = Agent(
 
 agent.print_response("What is my name?", stream=True)
 ```
+
+## Changing state on run
+
+When you pass `session_id` to the agent on `agent.run()`, it will switch to the session with the given `session_id` and load any state that was set on that session.
+
+This is useful when you want to continue a session for a specific user.
+
+```python changing_state_on_run.py
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o-mini"),
+    add_state_in_messages=True,
+    instructions="Users name is {user_name} and age is {age}",
+)
+
+# Sets the session state for the session with the id "user_1_session_1"
+agent.print_response("What is my name?", session_id="user_1_session_1", user_id="user_1", session_state={"user_name": "John", "age": 30})
+
+# Will load the session state from the session with the id "user_1_session_1"
+agent.print_response("How old am I?", session_id="user_1_session_1", user_id="user_1")
+
+# Sets the session state for the session with the id "user_2_session_1"
+agent.print_response("What is my name?", session_id="user_2_session_1", user_id="user_2", session_state={"user_name": "Jane", "age": 25})
+
+# Will load the session state from the session with the id "user_2_session_1"
+agent.print_response("How old am I?", session_id="user_2_session_1", user_id="user_2")
+```
+
 
 ## Persisting state in database
 
