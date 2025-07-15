@@ -161,3 +161,43 @@ The following events are yielded by the `Agent.run()` and `Agent.arun()` functio
 | `MemoryUpdateCompleted` | Signals completion of a memory update |
 
 See detailed documentation in the [RunResponseEvent](/reference/agents/run-response) documentation.
+
+## Structured Input
+
+An agent can be provided with structured input (i.e a pydantic model) by passing it in the `.run/.print_response` as `message` parameter.
+
+```python
+from typing import List
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.hackernews import HackerNewsTools
+from pydantic import BaseModel, Field
+
+
+class ResearchTopic(BaseModel):
+    """Structured research topic with specific requirements"""
+
+    topic: str
+    focus_areas: List[str] = Field(description="Specific areas to focus on")
+    target_audience: str = Field(description="Who this research is for")
+    sources_required: int = Field(description="Number of sources needed", default=5)
+
+
+# Define agents
+hackernews_agent = Agent(
+    name="Hackernews Agent",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    tools=[HackerNewsTools()],
+    role="Extract key insights and content from Hackernews posts",
+)
+
+hackernews_agent.print_response(
+    message=ResearchTopic(
+        topic="AI",
+        focus_areas=["AI", "Machine Learning"],
+        target_audience="Developers",
+        sources_required=5,
+    )
+)
+```
