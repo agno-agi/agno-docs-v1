@@ -2,7 +2,38 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-07-16" description="v1.7.4">
+## Workflows 2.0
 
+<img height="200" src="/images/changelogs/release-1-7-4.png" /> 
+
+## New Features:
+
+- **Workflows Revamped (beta):** Our new Workflows implementation (internally referred to as Workflows 2.0) is a complete redesign of the workflow system in Agno, introducing a step-based architecture that provides better structure, flexibility, and control over multi-stage AI agent processes
+    - Core Concepts:
+        - **Flexible Execution**: Sequential, parallel, conditional, and loop-based execution
+        - **Smart Routing**: Dynamic step selection based on content analysis or user intent
+        - **Mixed Components**: Combine agents, teams, and functions seamlessly
+        - **State Management:** Share data across steps with session state
+    - For a comprehensive guide to the new Workflows system, check out the [docs](https://docs.agno.com/workflows_2/overview).
+- **Pydantic Input for Agents/Teams:** Both Agent and Team now accepts structured input (i.e. a pydantic model) on run() and print_response().
+
+</Update>
+<Update label="2025-07-15" description="v1.7.3">
+
+## New Features:
+
+- **Session State on Run**: You can now pass `session_state` when running an agent or team. See [docs](https://docs.agno.com/agents/state) for more information.
+- **GCS Support for PDF Knowledge Base:** Added `GCSPDFKnowledgeBase` to support PDFs on Google Cloud Storage.
+
+## Bug Fixes:
+
+- **Workflows Async + Storage**: Fixed issues where sessions was not correctly stored with async workflow executions.
+- **Session State Management**: Fixed issues around session state management in teams and agents. Session state and session name will now correctly reset and load from storage if sessions are switched.
+- **Metadata Support for Document Knowledge Base:** Adds metadata support for `DocumentKnowledgeBase`
+- **Session Metrics with History**: Fixed bug with session metrics on `Agent` where history is enabled.
+
+</Update>
 <Update label="2025-07-10" description="v1.7.2">
 
 ## New Features:
