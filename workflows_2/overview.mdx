@@ -68,4 +68,28 @@ When using a custom Python function as an executor for a step, `StepInput` and `
 ## How to make your first workflow?
 
 There are different types of patterns you can use to build your workflows. 
+For example you can combine agents, teams, and functions to build a workflow.
+
+```python
+from agno.workflow.v2 import Step, Workflow, StepOutput
+
+def data_preprocessor(step_input):
+    # Custom preprocessing logic
+
+    # Or you can also run any agent/team over here itself
+    # response = some_agent.run(...)
+    return StepOutput(content=f"Processed: {step_input.message}") # <-- Now pass the agent/team response in content here
+
+workflow = Workflow(
+    name="Mixed Execution Pipeline",
+    steps=[
+        research_team,      # Team
+        data_preprocessor,  # Function
+        content_agent,      # Agent
+    ]
+)
+
+workflow.print_response("Analyze the competitive landscape for fintech startups", markdown=True)
+```
+
 To learn more about how to start building workflow systems, check out the [development guide](/workflows_2/types_of_workflows) page.
