@@ -1,0 +1,18 @@
+| Parameter | Type | Description |
+|-------|------|-------------|
+| `message` | `Optional[Union[str, Dict[str, Any], List[Any], BaseModel]]` | Primary input message (can be any format) |
+| `previous_step_content` | `Optional[Any]` | Content from the last step |
+| `previous_step_outputs` | `Optional[Dict[str, StepOutput]]` | All previous step outputs by name |
+| `additional_data` | `Optional[Dict[str, Any]]` | Additional context data |
+| `images` | `Optional[List[ImageArtifact]]` | Media inputs - images (accumulated from workflow input and previous steps) |
+| `videos` | `Optional[List[VideoArtifact]]` | Media inputs - videos (accumulated from workflow input and previous steps) |
+| `audio` | `Optional[List[AudioArtifact]]` | Media inputs - audio (accumulated from workflow input and previous steps) |
+
+
+## Helper Functions
+
+| Method | Return Type | Description |
+|--------|-------------|-------------|
+| `get_step_content(step_name: str)` | `Optional[Union[str, Dict[str, str]]]` | Get content from a specific step by name |
+| `get_all_previous_content()` | `str` | Get all previous step content combined |
+| `get_last_step_content()` | `Optional[str]` | Get content from the immediate previous step |

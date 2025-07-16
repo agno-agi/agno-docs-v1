@@ -413,6 +413,17 @@
                 ]
               },
               {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "workflows_2/overview",
+                  "workflows_2/types_of_workflows",
+                  "workflows_2/run_workflow",
+                  "workflows_2/workflow_session_state",
+                  "workflows_2/advanced",
+                  "workflows_2/migration"
+                ]
+              },
+              {
                 "group": "Applications",
                 "pages": [
                   "applications/playground/introduction",
@@ -558,6 +569,64 @@
                   "examples/workflows/product-manager",
                   "examples/workflows/team-workflow",
                   "examples/workflows/async-hackernews-reporter"
+                ]
+              },
+              {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  {
+                    "group": "Basic Workflows",
+                    "pages": [
+                      "examples/workflows_2/01-basic-workflows/function_instead_of_steps",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_functions_and_agents",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_steps",
+                      "examples/workflows_2/01-basic-workflows/step_with_function",
+                      "examples/workflows_2/01-basic-workflows/workflow_using_steps",
+                      "examples/workflows_2/01-basic-workflows/workflow_using_steps_nested"
+                    ]
+                  },
+                  {
+                    "group": "Conditional Execution",
+                    "pages": [
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_steps_workflow_stream",
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_with_list_of_steps",
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_and_parallel_steps_stream"
+                    ]
+                  },
+                  {
+                    "group": "Parallel Execution",
+                    "pages": [
+                      "examples/workflows_2/04-workflows-parallel-execution/parallel_steps_workflow"
+                    ]
+                  },
+                  {
+                    "group": "Loop Execution",
+                    "pages": [
+                      "examples/workflows_2/03_workflows_loop_execution/loop_steps_workflow",
+                      "examples/workflows_2/03_workflows_loop_execution/loop_with_parallel_steps_stream"
+                    ] 
+                  },
+                  {
+                    "group": "Conditional Branching (Router)",
+                    "pages": [
+                      "examples/workflows_2/05_workflows_conditional_branching/router_steps_workflow",
+                      "examples/workflows_2/05_workflows_conditional_branching/router_with_loop_steps",
+                      "examples/workflows_2/05_workflows_conditional_branching/selector_for_image_video_generation_pipelines"
+                    ]
+                  },
+                  {
+                    "group": "Advanced Concepts",
+                    "pages": [
+                      "examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow",
+                      "examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data",
+                      "examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output",
+                      "examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow",
+                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level"
+                    ]
+                  },
+                  "examples/workflows_2/blog-post-generator",
+                  "examples/workflows_2/employee-recruiter",
+                  "examples/workflows_2/startup-idea-validator"
                 ]
               },
               {
@@ -1651,6 +1720,15 @@
                   "reference/workflows/storage/mongodb",
                   "reference/workflows/storage/postgres",
                   "reference/workflows/storage/sqlite"
+                ]
+              },
+              {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "reference/workflows_2/workflow",
+                  "reference/workflows_2/workflow_run_response",
+                  "reference/workflows_2/step_input",
+                  "reference/workflows_2/step_output"
                 ]
               },
               {

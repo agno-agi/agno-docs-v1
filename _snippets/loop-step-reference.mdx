@@ -1,0 +1,7 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `steps` | `WorkflowSteps` | Required | Steps to execute in each loop iteration |
+| `name` | `Optional[str]` | `None` | Name of the loop step |
+| `description` | `Optional[str]` | `None` | Description of the loop step |
+| `max_iterations` | `int` | `3` | Maximum number of iterations for the loop |
+| `end_condition` | `Optional[Callable[[List[StepOutput]], bool]]` | `None` | Function to evaluate if the loop should end |
