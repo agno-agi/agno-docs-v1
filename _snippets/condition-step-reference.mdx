@@ -1,0 +1,6 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `evaluator` | `Union[Callable[[StepInput], bool], bool]` | Required | Function or boolean to evaluate the condition |
+| `steps` | `WorkflowSteps` | Required | Steps to execute if the condition is met |
+| `name` | `Optional[str]` | `None` | Name of the condition step |
+| `description` | `Optional[str]` | `None` | Description of the condition step |
