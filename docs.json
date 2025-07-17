@@ -561,6 +561,7 @@
               {
                 "group": "Workflows",
                 "pages": [
+                  "examples/workflows/agentic-deep-researcher",
                   "examples/workflows/blog-post-generator",
                   "examples/workflows/investment-report-generator",
                   "examples/workflows/personalized-email-generator",
