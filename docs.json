@@ -363,7 +363,8 @@
                   "vectordb/singlestore",
                   "vectordb/mongodb",
                   "vectordb/azure_cosmos_mongodb",
-                  "vectordb/weaviate"
+                  "vectordb/weaviate",
+                  "vectordb/surrealdb"
                 ]
               },
               {
@@ -924,6 +925,7 @@
                       "examples/concepts/knowledge/filters/filtering_lance_db",
                       "examples/concepts/knowledge/filters/filtering_chroma_db",
                       "examples/concepts/knowledge/filters/filtering_pinecone",
+                      "examples/concepts/knowledge/filters/filtering_surreal_db",
                       "examples/concepts/knowledge/filters/filtering-traditional-RAG"
                     ]
                   },
@@ -1806,7 +1808,8 @@
                   "reference/vector_db/pinecone",
                   "reference/vector_db/qdrant",
                   "reference/vector_db/singlestore",
-                  "reference/vector_db/weaviate"
+                  "reference/vector_db/weaviate",
+                  "reference/vector_db/surrealdb"
                 ]
               },
               {
