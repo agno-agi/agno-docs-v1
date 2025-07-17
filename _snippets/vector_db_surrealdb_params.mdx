@@ -1,0 +1,10 @@
+| Parameter      | Type                                                                             | Default            | Description                                                      |
+| -------------- | -------------------------------------------------------------------------------- | ------------------ | ---------------------------------------------------------------- |
+| `client`       | `Optional[Union[BlockingWsSurrealConnection, BlockingHttpSurrealConnection]]`   | `None`             | A blocking connection, either HTTP or WS                        |
+| `async_client` | `Optional[Union[AsyncWsSurrealConnection, AsyncHttpSurrealConnection]]`         | `None`             | An async connection, either HTTP or WS                          |
+| `collection`   | `str`                                                                           | `"documents"`      | Collection name to store documents                               |
+| `distance`     | `Distance`                                                                      | `Distance.cosine`  | Distance metric to use (cosine, l2, or max_inner_product)       |
+| `efc`          | `int`                                                                           | `150`              | HNSW construction time/accuracy trade-off                        |
+| `m`            | `int`                                                                           | `12`               | HNSW max number of connections per element                       |
+| `search_ef`    | `int`                                                                           | `40`               | HNSW search time/accuracy trade-off                              |
+| `embedder`     | `Optional[Embedder]`                                                            | `OpenAIEmbedder()` | Embedder instance for creating embeddings                       |
