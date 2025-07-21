@@ -6,9 +6,8 @@ description: Learn how to use xAI with Agno.
 xAI is a platform for providing endpoints for Large Language models.
 See their list of models [here](https://docs.x.ai/docs/models).
 
-We recommend experimenting to find the best-suited model for your use-case. `grok-beta` model is good for most use-cases.
+We recommend experimenting to find the best-suited model for your use-case. The `grok-3` model is good for most use-cases.
 
-xAI has rate limits on their APIs. See the [docs](https://docs.x.ai/docs/usage-tiers-and-rate-limits) for more information.
 
 ## Authentication
 
@@ -34,26 +33,48 @@ Use `xAI` with your `Agent`:
 
 ```python agent.py
 
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
 from agno.models.xai import xAI
 
 agent = Agent(
-    model=xAI(id="grok-beta"),
+    model=xAI(id="grok-3"),
     markdown=True
 )
 
-# Print the response in the terminal
 agent.print_response("Share a 2 sentence horror story.")
+```
 
+</CodeGroup>
+
+## Live Search
+
+xAI models support live search capabilities that can access real-time information:
+
+<CodeGroup>
+
+```python live_search.py
+from agno.agent import Agent
+from agno.models.xai import xAI
+
+agent = Agent(
+    model=xAI(
+        id="grok-3",
+        search_parameters={
+            "mode": "on",
+            "max_search_results": 20,
+            "return_citations": True,
+        },
+    ),
+    markdown=True,
+)
+
+agent.print_response("What's the latest news about AI developments?")
 ```
 
 </CodeGroup>
 
 <Note> View more examples [here](../examples/models/xai). </Note>
 
-## Params
-
-For more information, please refer to the [xAI docs](https://docs.x.ai/docs) as well.
 
 ## Params
 

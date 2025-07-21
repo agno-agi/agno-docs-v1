@@ -1,0 +1,87 @@
+## Setup and Configuration
+<Steps>
+
+<Step title="Prerequisites">
+Ensure you have the following:
+- Python 3.7+
+- A Discord account with server management permissions
+- Required Python packages (will be installed in later steps)
+</Step>
+
+<Step title="Create a Discord Application">
+1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
+2. Click "New Application"
+3. Provide an application name (e.g., "My Agno Bot")
+4. Accept the Developer Terms of Service
+5. Click "Create"
+</Step>
+
+<Step title="Create a Bot User">
+1. In your application settings, navigate to the "Bot" section
+2. Click "Add Bot"
+3. Confirm by clicking "Yes, do it!"
+4. Under the "Token" section, click "Copy" to copy your bot token
+5. Save this token securely (you'll need it later)
+</Step>
+
+<Step title="Configure Bot Permissions and Intents">
+1. In the Bot settings, scroll down to "Privileged Gateway Intents"
+2. Enable the following intents:
+   - **Presence Intent** (optional, for user status)
+   - **Server Members Intent** (for member-related events)
+   - **Message Content Intent** (required for reading message content)
+3. Under "Bot Permissions", ensure your bot has:
+   - Send Messages
+   - Read Message History
+   - Create Public Threads
+   - Use Slash Commands (optional)
+</Step>
+
+<Step title="Setup Environment Variables">
+Create a `.envrc` file in your project root with the following content, replacing the placeholder with your actual bot token:
+```bash
+export DISCORD_BOT_TOKEN="your_bot_token_here"
+```
+
+Find your bot token in the Discord Developer Portal under "Bot" > "Token".
+
+Ensure this file is sourced by your shell (e.g., by using `direnv allow`).
+</Step>
+
+<Step title="Install Required Packages">
+Install the necessary Python packages:
+```bash
+pip install discord.py agno
+```
+
+
+</Step>
+
+<Step title="Invite Bot to Your Discord Server">
+1. In your application settings, go to "OAuth2" > "URL Generator"
+2. Under "Scopes", select:
+   - `bot`
+   - `applications.commands` (if using slash commands)
+3. Under "Bot Permissions", select the permissions your bot needs:
+   - **Send Messages**
+   - **Create Public Threads**
+   - **Read Message History**
+   - **Attach Files**
+   - **Embed Links**
+   - **Use External Emojis** (optional)
+4. Copy the generated URL, navigate to it in your browser, and select the server where you want to add the bot
+</Step>
+
+<Step title="Test Your Bot">
+1. Start your bot application
+2. Go to your Discord server
+3. Send a message in any channel where your bot has access
+4. Your bot should automatically create a thread and respond
+5. If using a media bot, try uploading an image or file to test media processing
+</Step>
+
+</Steps>
+
+<Callout type="warning">
+**Security Note**: Never commit your Discord bot token to version control. Always use environment variables or secure configuration management for sensitive data.
+</Callout>

@@ -73,6 +73,37 @@ for event in response_stream:
     ...
 ```
 
+<Note>
+Team member events are yielded during team execution when a team member is being executed.  You can disable this by setting `stream_member_events=False`.
+</Note>
+
+
+### Storing Events
+
+You can store all the events that happened during a run on the `RunResponse` object.
+
+```python
+from agno.team import Team
+from agno.models.openai import OpenAIChat
+from agno.utils.pprint import pprint_run_response
+
+team = Team(model=OpenAIChat(id="gpt-4o-mini"), members=[], store_events=True)
+
+response = team.run("Tell me a 5 second short story about a lion", stream=True, stream_intermediate_steps=True)
+pprint_run_response(response)
+
+for event in agent.run_response.events:
+    print(event.event)
+```
+
+By default the `TeamRunResponseContentEvent` and `RunResponseContentEvent` events are not stored. You can modify which events are skipped by setting the `events_to_skip` parameter.
+
+For example:
+
+```python
+team = Team(model=OpenAIChat(id="gpt-4o-mini"), members=[], store_events=True, events_to_skip=[TeamRunEvent.run_started.value])
+```
+
 
 ### Event Types
 
@@ -106,8 +137,52 @@ The following events are sent by the `Team.run()` and `Team.arun()` functions de
 | `TeamMemoryUpdateStarted` | Indicates that the agent is updating its memory |
 | `TeamMemoryUpdateCompleted` | Signals completion of a memory update |
 
-<Note>
-Team member events are yielded during team execution when a team member is being executed.
-</Note>
-
 See detailed documentation in the [TeamRunResponse](/reference/teams/team-response) documentation.
+
+## Structured Input
+
+A team can be provided with structured input (i.e a pydantic model) by passing it in the `Team.run()` or `Team.print_response()` as the `message` parameter.
+
+```python
+from typing import List
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.team import Team
+from agno.tools.hackernews import HackerNewsTools
+from pydantic import BaseModel, Field
+
+
+class ResearchTopic(BaseModel):
+    """Structured research topic with specific requirements"""
+
+    topic: str
+    focus_areas: List[str] = Field(description="Specific areas to focus on")
+    target_audience: str = Field(description="Who this research is for")
+    sources_required: int = Field(description="Number of sources needed", default=5)
+
+
+# Define agents
+hackernews_agent = Agent(
+    name="Hackernews Agent",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    tools=[HackerNewsTools()],
+    role="Extract key insights and content from Hackernews posts",
+)
+
+team = Team(
+    name="Hackernews Team",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    members=[hackernews_agent],
+    mode="collaborate",
+)
+
+team.print_response(
+    message=ResearchTopic(
+        topic="AI",
+        focus_areas=["AI", "Machine Learning"],
+        target_audience="Developers",
+        sources_required=5,
+    )
+)
+```

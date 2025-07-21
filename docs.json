@@ -9,12 +9,7 @@
   },
   "favicon": "/favicon.png",
   "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude"
-    ]
+    "options": ["copy", "view", "chatgpt", "claude"]
   },
   "navigation": {
     "tabs": [
@@ -60,6 +55,7 @@
                 "pages": [
                   "teams/introduction",
                   "teams/run",
+                  "teams/metrics",
                   "teams/shared-state",
                   {
                     "group": "Team Modes",
@@ -68,7 +64,8 @@
                       "teams/coordinate",
                       "teams/collaborate"
                     ]
-                  }
+                  },
+                  "teams/structured-output"
                 ]
               },
               {
@@ -81,24 +78,15 @@
                   "models/anthropic",
                   {
                     "group": "AWS",
-                    "pages": [
-                      "models/aws-bedrock",
-                      "models/aws-claude"
-                    ]
+                    "pages": ["models/aws-bedrock", "models/aws-claude"]
                   },
                   {
                     "group": "Azure",
-                    "pages": [
-                      "models/azure-ai-foundry",
-                      "models/azure-openai"
-                    ]
+                    "pages": ["models/azure-ai-foundry", "models/azure-openai"]
                   },
                   {
                     "group": "Cerebras",
-                    "pages": [
-                      "models/cerebras",
-                      "models/cerebras_openai"
-                    ]
+                    "pages": ["models/cerebras", "models/cerebras_openai"]
                   },
                   "models/cohere",
                   "models/deepinfra",
@@ -110,15 +98,13 @@
                   "models/ibm-watsonx",
                   {
                     "group": "LiteLLM",
-                    "pages": [
-                      "models/litellm",
-                      "models/litellm_openai"
-                    ]
+                    "pages": ["models/litellm", "models/litellm_openai"]
                   },
                   "models/lmstudio",
                   "models/meta",
                   "models/mistral",
                   "models/nvidia",
+                  "models/nebius",
                   "models/ollama",
                   "models/openai",
                   "models/openai-responses",
@@ -127,6 +113,7 @@
                   "models/sambanova",
                   "models/together",
                   "models/vercel",
+                  "models/vllm",
                   "models/xai"
                 ]
               },
@@ -154,6 +141,7 @@
                           "tools/toolkits/search/pubmed",
                           "tools/toolkits/search/searxng",
                           "tools/toolkits/search/serpapi",
+                          "tools/toolkits/search/serper",
                           "tools/toolkits/search/tavily",
                           "tools/toolkits/search/wikipedia",
                           "tools/toolkits/search/bravesearch"
@@ -186,7 +174,9 @@
                           "tools/toolkits/web_scrape/newspaper4k",
                           "tools/toolkits/web_scrape/spider",
                           "tools/toolkits/web_scrape/website",
-                          "tools/toolkits/web_scrape/scrapegraph"
+                          "tools/toolkits/web_scrape/scrapegraph",
+                          "tools/toolkits/web_scrape/oxylabs",
+                          "tools/toolkits/web_scrape/brightdata"
                         ]
                       },
                       {
@@ -214,6 +204,7 @@
                       {
                         "group": "Models",
                         "pages": [
+                          "tools/toolkits/models/openai",
                           "tools/toolkits/models/gemini",
                           "tools/toolkits/models/groq"
                         ]
@@ -224,6 +215,7 @@
                           "tools/toolkits/others/airflow",
                           "tools/toolkits/others/apify",
                           "tools/toolkits/others/aws_lambda",
+                          "tools/toolkits/others/aws_ses",
                           "tools/toolkits/others/calcom",
                           "tools/toolkits/others/cartesia",
                           "tools/toolkits/others/composio",
@@ -285,8 +277,10 @@
                   },
                   "tools/custom-toolkits",
                   "tools/selecting-tools",
+                  "tools/attaching-tools",
                   "tools/async-tools",
-                  "tools/caching"
+                  "tools/caching",
+                  "tools/tool_call_limit"
                 ]
               },
               {
@@ -369,7 +363,8 @@
                   "vectordb/singlestore",
                   "vectordb/mongodb",
                   "vectordb/azure_cosmos_mongodb",
-                  "vectordb/weaviate"
+                  "vectordb/weaviate",
+                  "vectordb/surrealdb"
                 ]
               },
               {
@@ -379,6 +374,7 @@
                   "storage/dynamodb",
                   "storage/json",
                   "storage/mongodb",
+                  "storage/mysql",
                   "storage/postgres",
                   "storage/sqlite",
                   "storage/yaml",
@@ -407,10 +403,7 @@
               },
               {
                 "group": "Evals",
-                "pages": [
-                  "evals/introduction",
-                  "evals/platform"
-                ]
+                "pages": ["evals/introduction", "evals/platform"]
               },
               {
                 "group": "Workflows",
@@ -421,13 +414,25 @@
                 ]
               },
               {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "workflows_2/overview",
+                  "workflows_2/types_of_workflows",
+                  "workflows_2/run_workflow",
+                  "workflows_2/workflow_session_state",
+                  "workflows_2/advanced",
+                  "workflows_2/migration"
+                ]
+              },
+              {
                 "group": "Applications",
                 "pages": [
                   "applications/playground/introduction",
                   "applications/fastapi/introduction",
                   "applications/whatsapp/introduction",
                   "applications/ag-ui/introduction",
-                  "applications/slack/introduction"
+                  "applications/slack/introduction",
+                  "applications/discord/introduction"
                 ]
               }
             ]
@@ -437,26 +442,28 @@
             "pages": [
               {
                 "group": "Agent UI",
-                "pages": [
-                  "agent-ui/introduction"
-                ]
+                "pages": ["agent-ui/introduction"]
               },
               {
                 "group": "Agent API",
-                "pages": [
-                  "agent-api/introduction"
-                ]
+                "pages": ["agent-api/introduction"]
               },
               {
                 "group": "Observability",
                 "pages": [
                   "observability/introduction",
+                  "observability/agentops",
                   "observability/arize",
+                  "observability/atla",
                   "observability/langfuse",
                   "observability/langsmith",
                   "observability/langtrace",
                   "observability/weave"
                 ]
+              },
+              {
+                "group": "Testing",
+                "pages": ["testing/scenario-testing"]
               }
             ]
           },
@@ -507,6 +514,7 @@
                 "group": "Agents",
                 "pages": [
                   "examples/agents/finance-agent",
+                  "examples/agents/tweet-analysis-agent",
                   "examples/agents/youtube-agent",
                   "examples/agents/research-agent",
                   "examples/agents/research-agent-exa",
@@ -514,7 +522,8 @@
                   "examples/agents/recipe-creator",
                   "examples/agents/movie-recommender",
                   "examples/agents/books-recommender",
-                  "examples/agents/travel-planner"
+                  "examples/agents/travel-planner",
+                  "examples/agents/startup-analyst-agent"
                 ]
               },
               {
@@ -525,9 +534,7 @@
                     "pages": [
                       {
                         "group": "Collaborate",
-                        "pages": [
-                          "examples/teams/collaborate/discussion_team"
-                        ]
+                        "pages": ["examples/teams/collaborate/discussion_team"]
                       },
                       {
                         "group": "Coordinate",
@@ -548,15 +555,14 @@
                   },
                   {
                     "group": "Shared State",
-                    "pages": [
-                      "examples/teams/shared_state/team_session_state"
-                    ]
+                    "pages": ["examples/teams/shared_state/team_session_state"]
                   }
                 ]
               },
               {
                 "group": "Workflows",
                 "pages": [
+                  "examples/workflows/agentic-deep-researcher",
                   "examples/workflows/blog-post-generator",
                   "examples/workflows/investment-report-generator",
                   "examples/workflows/personalized-email-generator",
@@ -565,6 +571,64 @@
                   "examples/workflows/product-manager",
                   "examples/workflows/team-workflow",
                   "examples/workflows/async-hackernews-reporter"
+                ]
+              },
+              {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  {
+                    "group": "Basic Workflows",
+                    "pages": [
+                      "examples/workflows_2/01-basic-workflows/function_instead_of_steps",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_functions_and_agents",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_steps",
+                      "examples/workflows_2/01-basic-workflows/step_with_function",
+                      "examples/workflows_2/01-basic-workflows/workflow_using_steps",
+                      "examples/workflows_2/01-basic-workflows/workflow_using_steps_nested"
+                    ]
+                  },
+                  {
+                    "group": "Conditional Execution",
+                    "pages": [
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_steps_workflow_stream",
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_with_list_of_steps",
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_and_parallel_steps_stream"
+                    ]
+                  },
+                  {
+                    "group": "Parallel Execution",
+                    "pages": [
+                      "examples/workflows_2/04-workflows-parallel-execution/parallel_steps_workflow"
+                    ]
+                  },
+                  {
+                    "group": "Loop Execution",
+                    "pages": [
+                      "examples/workflows_2/03_workflows_loop_execution/loop_steps_workflow",
+                      "examples/workflows_2/03_workflows_loop_execution/loop_with_parallel_steps_stream"
+                    ] 
+                  },
+                  {
+                    "group": "Conditional Branching (Router)",
+                    "pages": [
+                      "examples/workflows_2/05_workflows_conditional_branching/router_steps_workflow",
+                      "examples/workflows_2/05_workflows_conditional_branching/router_with_loop_steps",
+                      "examples/workflows_2/05_workflows_conditional_branching/selector_for_image_video_generation_pipelines"
+                    ]
+                  },
+                  {
+                    "group": "Advanced Concepts",
+                    "pages": [
+                      "examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow",
+                      "examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data",
+                      "examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output",
+                      "examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow",
+                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level"
+                    ]
+                  },
+                  "examples/workflows_2/blog-post-generator",
+                  "examples/workflows_2/employee-recruiter",
+                  "examples/workflows_2/startup-idea-validator"
                 ]
               },
               {
@@ -595,6 +659,14 @@
                       "examples/applications/slack/basic",
                       "examples/applications/slack/reasoning_agent",
                       "examples/applications/slack/agent_with_user_memory"
+                    ]
+                  },
+                  {
+                    "group": "Discord",
+                    "pages": [
+                      "examples/applications/discord/basic",
+                      "examples/applications/discord/agent_with_media",
+                      "examples/applications/discord/agent_with_user_memory"
                     ]
                   },
                   {
@@ -802,66 +874,67 @@
               {
                 "group": "Knowledge",
                 "pages": [
-                    {
-                        "group": "Knowledge Filters",
+                  {
+                    "group": "Knowledge Filters",
+                    "pages": [
+                      {
+                        "group": "Pdf",
                         "pages": [
-                            {
-                                "group": "Pdf",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/pdf/filtering",
-                                    "examples/concepts/knowledge/filters/pdf/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/pdf/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Pdf-Url",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/pdf_url/filtering",
-                                    "examples/concepts/knowledge/filters/pdf_url/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/pdf_url/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Json",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/json/filtering",
-                                    "examples/concepts/knowledge/filters/json/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/json/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Docx",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/docx/filtering",
-                                    "examples/concepts/knowledge/filters/docx/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/docx/filtering_on_load"
-                                ]
-                            },
-                            {
-                                "group": "Text",
-                                "pages": [
-                                    "examples/concepts/knowledge/filters/text/filtering",
-                                    "examples/concepts/knowledge/filters/text/agentic_filtering",
-                                    "examples/concepts/knowledge/filters/text/filtering_on_load"
-                                ]
-                            },
-                            "examples/concepts/knowledge/filters/filtering_qdrant_db",
-                            "examples/concepts/knowledge/filters/filtering_milvus_db",
-                            "examples/concepts/knowledge/filters/filtering_mongo_db",
-                            "examples/concepts/knowledge/filters/filtering_pgvector",
-                            "examples/concepts/knowledge/filters/filtering_weaviate",
-                            "examples/concepts/knowledge/filters/filtering_lance_db",
-                            "examples/concepts/knowledge/filters/filtering_chroma_db",
-                            "examples/concepts/knowledge/filters/filtering_pinecone",
-                            "examples/concepts/knowledge/filters/filtering-traditional-RAG"
+                          "examples/concepts/knowledge/filters/pdf/filtering",
+                          "examples/concepts/knowledge/filters/pdf/agentic_filtering",
+                          "examples/concepts/knowledge/filters/pdf/filtering_on_load"
                         ]
-                    },
-                    "examples/concepts/knowledge/arxiv-kb",
-                    "examples/concepts/knowledge/combined-kb",
-                    "examples/concepts/knowledge/csv-kb",
-                    "examples/concepts/knowledge/csv-url-kb",
-                    "examples/concepts/knowledge/doc-kb",
-                    "examples/concepts/knowledge/docx-kb"
+                      },
+                      {
+                        "group": "Pdf-Url",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/pdf_url/filtering",
+                          "examples/concepts/knowledge/filters/pdf_url/agentic_filtering",
+                          "examples/concepts/knowledge/filters/pdf_url/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Json",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/json/filtering",
+                          "examples/concepts/knowledge/filters/json/agentic_filtering",
+                          "examples/concepts/knowledge/filters/json/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Docx",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/docx/filtering",
+                          "examples/concepts/knowledge/filters/docx/agentic_filtering",
+                          "examples/concepts/knowledge/filters/docx/filtering_on_load"
+                        ]
+                      },
+                      {
+                        "group": "Text",
+                        "pages": [
+                          "examples/concepts/knowledge/filters/text/filtering",
+                          "examples/concepts/knowledge/filters/text/agentic_filtering",
+                          "examples/concepts/knowledge/filters/text/filtering_on_load"
+                        ]
+                      },
+                      "examples/concepts/knowledge/filters/filtering_qdrant_db",
+                      "examples/concepts/knowledge/filters/filtering_milvus_db",
+                      "examples/concepts/knowledge/filters/filtering_mongo_db",
+                      "examples/concepts/knowledge/filters/filtering_pgvector",
+                      "examples/concepts/knowledge/filters/filtering_weaviate",
+                      "examples/concepts/knowledge/filters/filtering_lance_db",
+                      "examples/concepts/knowledge/filters/filtering_chroma_db",
+                      "examples/concepts/knowledge/filters/filtering_pinecone",
+                      "examples/concepts/knowledge/filters/filtering_surreal_db",
+                      "examples/concepts/knowledge/filters/filtering-traditional-RAG"
+                    ]
+                  },
+                  "examples/concepts/knowledge/arxiv-kb",
+                  "examples/concepts/knowledge/combined-kb",
+                  "examples/concepts/knowledge/csv-kb",
+                  "examples/concepts/knowledge/csv-url-kb",
+                  "examples/concepts/knowledge/doc-kb",
+                  "examples/concepts/knowledge/docx-kb"
                 ]
               },
               {
@@ -925,22 +998,10 @@
                       "examples/concepts/storage/agent_storage/singlestore",
                       "examples/concepts/storage/agent_storage/dynamodb",
                       "examples/concepts/storage/agent_storage/mongodb",
+                      "examples/concepts/storage/agent_storage/mysql",
                       "examples/concepts/storage/agent_storage/json",
                       "examples/concepts/storage/agent_storage/yaml",
                       "examples/concepts/storage/agent_storage/redis"
-                    ]
-                  },
-                  {
-                    "group": "Workflow Storage",
-                    "pages": [
-                      "examples/concepts/storage/workflow_storage/postgres",
-                      "examples/concepts/storage/workflow_storage/sqlite",
-                      "examples/concepts/storage/workflow_storage/singlestore",
-                      "examples/concepts/storage/workflow_storage/dynamodb",
-                      "examples/concepts/storage/workflow_storage/mongodb",
-                      "examples/concepts/storage/workflow_storage/json",
-                      "examples/concepts/storage/workflow_storage/yaml",
-                      "examples/concepts/storage/workflow_storage/redis"
                     ]
                   },
                   {
@@ -951,9 +1012,24 @@
                       "examples/concepts/storage/team_storage/singlestore",
                       "examples/concepts/storage/team_storage/dynamodb",
                       "examples/concepts/storage/team_storage/mongodb",
+                      "examples/concepts/storage/team_storage/mysql",
                       "examples/concepts/storage/team_storage/json",
                       "examples/concepts/storage/team_storage/yaml",
                       "examples/concepts/storage/team_storage/redis"
+                    ]
+                  },
+                  {
+                    "group": "Workflow Storage",
+                    "pages": [
+                      "examples/concepts/storage/workflow_storage/postgres",
+                      "examples/concepts/storage/workflow_storage/sqlite",
+                      "examples/concepts/storage/workflow_storage/singlestore",
+                      "examples/concepts/storage/workflow_storage/dynamodb",
+                      "examples/concepts/storage/workflow_storage/mongodb",
+                      "examples/concepts/storage/workflow_storage/mysql",
+                      "examples/concepts/storage/workflow_storage/json",
+                      "examples/concepts/storage/workflow_storage/yaml",
+                      "examples/concepts/storage/workflow_storage/redis"
                     ]
                   }
                 ]
@@ -999,7 +1075,9 @@
                       "examples/concepts/tools/web_scrape/newspaper4k",
                       "examples/concepts/tools/web_scrape/website",
                       "examples/concepts/tools/web_scrape/spider",
-                      "examples/concepts/tools/web_scrape/firecrawl"
+                      "examples/concepts/tools/web_scrape/firecrawl",
+                      "examples/concepts/tools/web_scrape/oxylabs",
+                      "examples/concepts/tools/web_scrape/brightdata"
                     ]
                   },
                   {
@@ -1026,11 +1104,24 @@
                     ]
                   },
                   {
+                    "group": "Native Model Toolkit",
+                    "pages": [
+                      {
+                        "group": "OpenAI",
+                        "pages": [
+                          "examples/concepts/tools/models/openai/rag-recipe-image",
+                          "examples/concepts/tools/models/openai/meeting-summarizer"
+                        ]
+                      }
+                    ]
+                  },
+                  {
                     "group": "APIs & External Services",
                     "pages": [
                       "examples/concepts/tools/others/airflow",
                       "examples/concepts/tools/others/apify",
                       "examples/concepts/tools/others/aws_lambda",
+                      "examples/concepts/tools/others/aws_ses",
                       "examples/concepts/tools/others/calcom",
                       "examples/concepts/tools/others/composio",
                       "examples/concepts/tools/others/confluence",
@@ -1068,6 +1159,7 @@
                       "examples/concepts/tools/mcp/pipedream_slack",
                       "examples/concepts/tools/mcp/pipedream_google_calendar",
                       "examples/concepts/tools/mcp/pipedream_linkedin",
+                      "examples/concepts/tools/mcp/stagehand",
                       "examples/concepts/tools/mcp/stripe",
                       "examples/concepts/tools/mcp/supabase"
                     ]
@@ -1148,6 +1240,10 @@
                 ]
               },
               {
+                "group": "Testing",
+                "pages": ["examples/testing/scenario/basic"]
+              },
+              {
                 "group": "Miscellaneous",
                 "pages": [
                   "examples/concepts/others/agent_extra_metrics",
@@ -1163,7 +1259,6 @@
                   "examples/concepts/others/instructions",
                   "examples/concepts/others/intermediate_steps",
                   "examples/concepts/others/response_as_variable",
-                  "examples/concepts/others/scenario_testing",
                   "examples/concepts/others/success_criteria"
                 ]
               }
@@ -1406,6 +1501,17 @@
                 ]
               },
               {
+                "group": "Nebius",
+                "pages": [
+                  "examples/models/nebius/basic",
+                  "examples/models/nebius/basic_stream",
+                  "examples/models/nebius/tool_use",
+                  "examples/models/nebius/structured_output",
+                  "examples/models/nebius/storage",
+                  "examples/models/nebius/knowledge"
+                ]
+              },
+              {
                 "group": "NVIDIA",
                 "pages": [
                   "examples/models/nvidia/basic",
@@ -1483,7 +1589,18 @@
                 "pages": [
                   "examples/models/xai/basic",
                   "examples/models/xai/basic_stream",
-                  "examples/models/xai/tool_use"
+                  "examples/models/xai/tool_use",
+                  "examples/models/xai/basic_async",
+                  "examples/models/xai/basic_async_stream",
+                  "examples/models/xai/async_tool_use",
+                  "examples/models/xai/structured_output",
+                  "examples/models/xai/finance_agent",
+                  "examples/models/xai/image_agent",
+                  "examples/models/xai/image_agent_bytes",
+                  "examples/models/xai/image_agent_with_memory",
+                  "examples/models/xai/live_search_agent",
+                  "examples/models/xai/live_search_agent_stream",
+                  "examples/models/xai/reasoning_agent"
                 ]
               },
               {
@@ -1492,6 +1609,20 @@
                   "examples/models/vercel/basic",
                   "examples/models/vercel/basic_stream",
                   "examples/models/vercel/tool_use"
+                ]
+              },
+              {
+                "group": "vLLM",
+                "pages": [
+                  "examples/models/vllm/basic_stream",
+                  "examples/models/vllm/async_basic",
+                  "examples/models/vllm/async_basic_stream",
+                  "examples/models/vllm/tool_use",
+                  "examples/models/vllm/async_tool_use",
+                  "examples/models/vllm/structured_output",
+                  "examples/models/vllm/code_generation",
+                  "examples/models/vllm/storage",
+                  "examples/models/vllm/memory"
                 ]
               }
             ]
@@ -1595,6 +1726,20 @@
                 ]
               },
               {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "reference/workflows_2/workflow",
+                  "reference/workflows_2/workflow_run_response",
+                  "reference/workflows_2/step_input",
+                  "reference/workflows_2/step_output",
+                  "reference/workflows_2/conditional-steps",
+                  "reference/workflows_2/parallel-steps",
+                  "reference/workflows_2/router-steps",
+                  "reference/workflows_2/loop-steps",
+                  "reference/workflows_2/steps-step"
+                ]
+              },
+              {
                 "group": "Models",
                 "pages": [
                   "reference/models/model",
@@ -1610,6 +1755,7 @@
                   "reference/models/huggingface",
                   "reference/models/meta",
                   "reference/models/mistral",
+                  "reference/models/nebius",
                   "reference/models/nvidia",
                   "reference/models/perplexity",
                   "reference/models/together",
@@ -1662,7 +1808,8 @@
                   "reference/vector_db/pinecone",
                   "reference/vector_db/qdrant",
                   "reference/vector_db/singlestore",
-                  "reference/vector_db/weaviate"
+                  "reference/vector_db/weaviate",
+                  "reference/vector_db/surrealdb"
                 ]
               },
               {
@@ -1703,6 +1850,7 @@
                   "reference/storage/yaml",
                   "reference/storage/json",
                   "reference/storage/mongodb",
+                  "reference/storage/mysql",
                   "reference/storage/postgres",
                   "reference/storage/sqlite",
                   "reference/storage/dynamodb",
@@ -1711,9 +1859,7 @@
               },
               {
                 "group": "Rerankers",
-                "pages": [
-                  "reference/reranker/cohere"
-                ]
+                "pages": ["reference/reranker/cohere"]
               },
               {
                 "group": "Chunking",
@@ -1753,9 +1899,7 @@
         "groups": [
           {
             "group": "Changelog",
-            "pages": [
-              "changelog/overview"
-            ]
+            "pages": ["changelog/overview"]
           }
         ]
       }
@@ -1806,9 +1950,9 @@
       "weight": 400
     }
   },
-"integrations": {
+  "integrations": {
     "posthog": {
-        "apiKey": "phc_MjuWiUsZe9racJUG1IpiikP0gPInPwL0206gjfsBWSk"
+      "apiKey": "phc_MjuWiUsZe9racJUG1IpiikP0gPInPwL0206gjfsBWSk"
     }
   }
 }
