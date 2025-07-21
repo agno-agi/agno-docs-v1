@@ -1,0 +1,49 @@
+---
+title: Linkup
+---
+
+**LinkupTools** enable an Agent to search the web using the Linkup API, the World’s best search 
+for AI Apps.
+
+## Prerequisites
+
+The following examples requires the `linkup-sdk` library and an API key from [Linkup](https://www.linkup.so).
+
+```shell
+pip install -U linkup-sdk
+```
+
+```shell
+export LINKUP_API_KEY=***
+```
+
+## Example
+
+The following agent will run a search on Linkup to find companies that are building AI Agents and print the response.
+
+```python cookbook/tools/linkup_tools.py
+from agno.agent import Agent
+from agno.tools.linkup import LinkupTools
+agent = Agent(tools=[LinkupTools()], show_tool_calls=True)
+agent.print_response("Whats happening in France?", markdown=True)
+```
+
+## Toolkit Params
+
+| Parameter            | Type                           | Default           | Description                                                                                                                                                                                                                       |
+| -------------------- | ------------------------------ | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `api_key`            | `str`                          | -                 | API key for authentication. If not provided, will check LINKUP_API_KEY environment variable.                                                                                                                                      |
+| `search`             | `bool`                         | `True`            | Enables search functionality.                                                                                                                                                                                                     |
+| `depth`              | `str`                          | `standard`        | (standard or deep) Use 'standard' for Fast and affordable web search and 'deep' for Comprehensive, in-depth web search.                                                                                                              |
+| `output_type`        | `str`                          | `searchResults`   | (sourcedAnswer or searchResults) 'sourcedAnswer' provides a comprehensive natural language answer to the query along with citations to the source material and 'searchResults' returns the raw search context data without synthesis |
+
+## Toolkit Functions
+
+| Function                  | Description                                       |
+| ------------------------- | ------------------------------------------------- |
+| `web_search_using_linkup` | Searches the web for a query using Linkup API.    |
+
+## Developer Resources
+
+- View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/linkup.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/linkup_tools.py)

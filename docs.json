@@ -139,6 +139,7 @@
                           "tools/toolkits/search/exa",
                           "tools/toolkits/search/googlesearch",
                           "tools/toolkits/search/hackernews",
+                          "tools/toolkits/search/linkup",
                           "tools/toolkits/search/pubmed",
                           "tools/toolkits/search/searxng",
                           "tools/toolkits/search/serpapi",
