@@ -96,6 +96,7 @@
                   "models/groq",
                   "models/huggingface",
                   "models/ibm-watsonx",
+                  "models/langdb",
                   {
                     "group": "LiteLLM",
                     "pages": ["models/litellm", "models/litellm_openai"]
@@ -449,12 +450,13 @@
                 "pages": ["agent-api/introduction"]
               },
               {
-                "group": "Observability",
+                "group":                 "Observability",
                 "pages": [
                   "observability/introduction",
                   "observability/agentops",
                   "observability/arize",
                   "observability/atla",
+                  "observability/langdb",
                   "observability/langfuse",
                   "observability/langsmith",
                   "observability/langtrace",
@@ -1443,6 +1445,14 @@
                   "examples/models/ibm/storage",
                   "examples/models/ibm/knowledge",
                   "examples/models/ibm/image_agent_bytes"
+                ]
+              },
+              {
+                "group": "LangDB",
+                "pages": [
+                  "examples/models/langdb/basic",
+                  "examples/models/langdb/basic_stream",
+                  "examples/models/langdb/tool_use"
                 ]
               },
               {
