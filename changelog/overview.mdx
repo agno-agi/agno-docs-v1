@@ -2,6 +2,47 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-07-24" description="v1.7.6">
+## New Features:
+
+- **Portkey Model Support**: Added support for Portkey hosted models.
+- **Bitbucket Tool**: Added `BitbucketTools` with a variety of Bitbucket repository actions.
+- **Jina Embedder:** Added `JinaEmbedder` for using embedding models via Jina.
+- **Row Chunking**: Added `RowChunking` as a CSV chunking strategy.
+- **EVM Toolkit**: Added `EvmTools` to do transactions on EVM compatible blockchains using `web3`.
+- **LinkUp Toolkit**: Added `LinkupTools` for powerful search.
+
+## Improvements:
+
+- **Async Bedrock Support**: Added async execution support for the AWS bedrock implementation.
+- **PostgreSQL Tools Updates:** Various security and stability overhauls made to the `PostgresTools` toolkit.
+- **Daytona Toolkit Updates:** Added new tools for `Daytona`  agent Toolkit
+
+## Bug Fixes:
+
+- **LiteLLM Metrics**: Fixed issue with metrics on streaming responses from LiteLLM.
+- **Team Expected Output**: Fixed issue where expected_output of members were overwritten by the team leader agent.
+- **Workflows Async Generators**: Fixed how async generator `arun` functions are treated. It now correctly keeps async generators as async generators and doesn't convert it to a coroutine.
+    - **Before:** Workflows with Async generator `arun` functions were incorrectly awaited as coroutines, which could cause runtime errors or prevent proper iteration through the yielded asynchronous values.
+    - **After:** Async generator workflows are now properly recognised and handled as async generators, allowing for correct iteration over their yielded values using `async for`. This ensures all yielded results are processed as intended within asynchronous workflows.
+
+</Update>
+<Update label="2025-07-17" description="v1.7.5">
+
+## New Features:
+
+- **SurrealDB:** Added SurrealDB support as a vector DB for knowledge bases.
+
+## Improvements:
+
+- **Session Caching:** Added `cache_session` attribute to allow users to switch off session caching, which improves on memory management.
+- **Workflows 2.0 FastAPI Support**: Added support for running the new workflows in `FastAPIApp` .
+
+## Bug Fixes:
+
+- **Nested Tool Hooks**: Fixed bug with nested tool hooks.
+
+</Update>
 <Update label="2025-07-16" description="v1.7.4">
 ## Workflows 2.0
 
