@@ -14,8 +14,8 @@ agent = Agent(
 )
 
 # Get the response in a variable
-# run_response: AsyncIterator[RunResponse] = agent.arun("Share a 2 sentence horror story", stream=True)
-# for chunk in run_response:
+# run_response: AsyncIterator[RunResponse] = await agent.arun("Share a 2 sentence horror story", stream=True)
+# async for chunk in run_response:
 #     print(chunk.content)
 
 # Print the response in the terminal
