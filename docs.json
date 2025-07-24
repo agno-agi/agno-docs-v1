@@ -96,6 +96,7 @@
                   "models/groq",
                   "models/huggingface",
                   "models/ibm-watsonx",
+                  "models/langdb",
                   {
                     "group": "LiteLLM",
                     "pages": ["models/litellm", "models/litellm_openai"]
@@ -363,7 +364,8 @@
                   "vectordb/singlestore",
                   "vectordb/mongodb",
                   "vectordb/azure_cosmos_mongodb",
-                  "vectordb/weaviate"
+                  "vectordb/weaviate",
+                  "vectordb/surrealdb"
                 ]
               },
               {
@@ -397,7 +399,8 @@
                   "embedder/sentencetransformers",
                   "embedder/together",
                   "embedder/voyageai",
-                  "embedder/aws_bedrock"
+                  "embedder/aws_bedrock",
+                  "embedder/jina"
                 ]
               },
               {
@@ -448,12 +451,13 @@
                 "pages": ["agent-api/introduction"]
               },
               {
-                "group": "Observability",
+                "group":                 "Observability",
                 "pages": [
                   "observability/introduction",
                   "observability/agentops",
                   "observability/arize",
                   "observability/atla",
+                  "observability/langdb",
                   "observability/langfuse",
                   "observability/langsmith",
                   "observability/langtrace",
@@ -622,7 +626,8 @@
                       "examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data",
                       "examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output",
                       "examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow",
-                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level"
+                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level",
+                      "examples/workflows_2/06_workflows_advanced_concepts/background_execution_poll"
                     ]
                   },
                   "examples/workflows_2/blog-post-generator",
@@ -924,6 +929,7 @@
                       "examples/concepts/knowledge/filters/filtering_lance_db",
                       "examples/concepts/knowledge/filters/filtering_chroma_db",
                       "examples/concepts/knowledge/filters/filtering_pinecone",
+                      "examples/concepts/knowledge/filters/filtering_surreal_db",
                       "examples/concepts/knowledge/filters/filtering-traditional-RAG"
                     ]
                   },
@@ -1201,7 +1207,8 @@
                   "examples/concepts/embedders/mistral-embedder",
                   "examples/concepts/embedders/ollama-embedder",
                   "examples/concepts/embedders/openai-embedder",
-                  "examples/concepts/embedders/qdrant-fastembed"
+                  "examples/concepts/embedders/qdrant-fastembed",
+                  "examples/concepts/embedders/jina-embedder"
                 ]
               },
               {
@@ -1289,7 +1296,9 @@
                 "pages": [
                   "examples/models/aws/bedrock/basic",
                   "examples/models/aws/bedrock/basic_stream",
+                  "examples/models/aws/bedrock/async_basic_stream",
                   "examples/models/aws/bedrock/tool_use",
+                  "examples/models/aws/bedrock/async_tool_use_stream",
                   "examples/models/aws/bedrock/structured_output",
                   "examples/models/aws/bedrock/storage",
                   "examples/models/aws/bedrock/knowledge",
@@ -1441,6 +1450,14 @@
                   "examples/models/ibm/storage",
                   "examples/models/ibm/knowledge",
                   "examples/models/ibm/image_agent_bytes"
+                ]
+              },
+              {
+                "group": "LangDB",
+                "pages": [
+                  "examples/models/langdb/basic",
+                  "examples/models/langdb/basic_stream",
+                  "examples/models/langdb/tool_use"
                 ]
               },
               {
@@ -1806,7 +1823,8 @@
                   "reference/vector_db/pinecone",
                   "reference/vector_db/qdrant",
                   "reference/vector_db/singlestore",
-                  "reference/vector_db/weaviate"
+                  "reference/vector_db/weaviate",
+                  "reference/vector_db/surrealdb"
                 ]
               },
               {
