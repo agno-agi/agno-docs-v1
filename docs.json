@@ -17,7 +17,7 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Introduction",
+            "group": "Getting Started",
             "pages": [
               "introduction",
               "introduction/agents",
