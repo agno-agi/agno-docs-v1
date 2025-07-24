@@ -86,7 +86,7 @@ def custom_content_planning_function(step_input: StepInput) -> StepOutput:
 
 ## Run a Workflow non-blocking (in the background)
 
-You can run a workflow in the background by passing `background=True` to `Workflow.arun()`. This will return a `WorkflowRunResponse` object that you can use to get the result of the workflow.
+You can run a workflow as a non-blocking task by passing `background=True` to `Workflow.arun()`. This will return a `WorkflowRunResponse` object with a `run_id` that you can use to poll for the result of the workflow until it is completed.
 
 <Note>
 This feature is only available for async workflows using `Workflow.arun()`. 
