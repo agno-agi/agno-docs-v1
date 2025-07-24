@@ -625,7 +625,8 @@
                       "examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data",
                       "examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output",
                       "examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow",
-                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level"
+                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level",
+                      "examples/workflows_2/06_workflows_advanced_concepts/background_execution_poll"
                     ]
                   },
                   "examples/workflows_2/blog-post-generator",
@@ -1293,7 +1294,9 @@
                 "pages": [
                   "examples/models/aws/bedrock/basic",
                   "examples/models/aws/bedrock/basic_stream",
+                  "examples/models/aws/bedrock/async_basic_stream",
                   "examples/models/aws/bedrock/tool_use",
+                  "examples/models/aws/bedrock/async_tool_use_stream",
                   "examples/models/aws/bedrock/structured_output",
                   "examples/models/aws/bedrock/storage",
                   "examples/models/aws/bedrock/knowledge",
