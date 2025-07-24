@@ -399,7 +399,8 @@
                   "embedder/sentencetransformers",
                   "embedder/together",
                   "embedder/voyageai",
-                  "embedder/aws_bedrock"
+                  "embedder/aws_bedrock",
+                  "embedder/jina"
                 ]
               },
               {
@@ -1205,7 +1206,8 @@
                   "examples/concepts/embedders/mistral-embedder",
                   "examples/concepts/embedders/ollama-embedder",
                   "examples/concepts/embedders/openai-embedder",
-                  "examples/concepts/embedders/qdrant-fastembed"
+                  "examples/concepts/embedders/qdrant-fastembed",
+                  "examples/concepts/embedders/jina-embedder"
                 ]
               },
               {
