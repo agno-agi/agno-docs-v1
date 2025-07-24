@@ -10,8 +10,6 @@ import asyncio
 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.run.base import RunStatus
-from agno.run.v2.workflow import WorkflowRunResponse
 from agno.storage.sqlite import SqliteStorage
 from agno.team import Team
 from agno.tools.googlesearch import GoogleSearchTools
@@ -86,6 +84,7 @@ async def main():
 
     # Poll every 5 seconds until completion
     poll_count = 0
+    final_result = None
 
     while True:
         poll_count += 1
@@ -101,8 +100,13 @@ async def main():
             await asyncio.sleep(5)
             continue
 
+        final_result = result
+
         if result.has_completed():
+            print(f" Workflow completed with status: {result.status}")
             break
+
+        print(f" Status: {result.status}")
 
         if poll_count > 200:
             print(f"⏰ Timeout after {poll_count} attempts")
@@ -110,11 +114,12 @@ async def main():
 
         await asyncio.sleep(5)
 
-    final_result = content_creation_workflow.get_run(bg_response.run_id)
-
-    print(f"\n Final Result:")
-    print("=" * 50)
-    pprint_run_response(final_result, markdown=True)
+    if final_result:
+        print(f"\n Final Result:")
+        print("=" * 50)
+        pprint_run_response(final_result, markdown=True)
+    else:
+        print("❌ No final result available")
 
 
 if __name__ == "__main__":
