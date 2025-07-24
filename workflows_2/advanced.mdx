@@ -90,7 +90,7 @@ You can run a workflow as a non-blocking task by passing `background=True` to `W
 
 <Note>
 This feature is only available for async workflows using `.arun()`. 
-For long-running workflows, you can poll the result using `result = workflow.get_run(run_id)` which returns the current `WorkflowRunResponse`. 
+For long-running workflows, you can poll for the result using `result = workflow.get_run(run_id)` which returns the updated `WorkflowRunResponse`. 
 
 Use `result.has_completed()` to check if the workflow has finished executing. This is particularly useful for workflows that involve time-consuming operations like large-scale data processing, multi-step research tasks, or batch operations that you don't want to block your main application thread.
 </Note>
