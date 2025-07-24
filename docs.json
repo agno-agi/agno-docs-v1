@@ -14,7 +14,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "User Guide",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Introduction",
@@ -450,7 +450,7 @@
                 "pages": ["agent-api/introduction"]
               },
               {
-                "group":                 "Observability",
+                "group": "Observability",
                 "pages": [
                   "observability/introduction",
                   "observability/agentops",
@@ -608,7 +608,7 @@
                     "pages": [
                       "examples/workflows_2/03_workflows_loop_execution/loop_steps_workflow",
                       "examples/workflows_2/03_workflows_loop_execution/loop_with_parallel_steps_stream"
-                    ] 
+                    ]
                   },
                   {
                     "group": "Conditional Branching (Router)",

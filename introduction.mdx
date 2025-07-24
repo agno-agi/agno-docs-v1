@@ -3,51 +3,11 @@ title: What is Agno?
 sidebarTitle: What is Agno?
 ---
 
-Agno is a multi-agent framework that brings you speed, performance and reliability, without sacrificing developer experience. We provide a framework for building multi-agent systems, a runtime called the AgentOS and a beautiful control plane for managing your AgentOS.
+Agno is a multi-agent framework that brings you speed, performance and reliability, without sacrificing developer experience. We provide a framework for building agents, a runtime for serving them in production called the AgentOS and a beautiful UI for managing your AgentOS.
 
-Agno Agents come with built-in memory, knowledge and reasoning. They can be orchestrated as autonomous multi-agent teams or deterministic, stateful workflows.
+Agno Agents come with built-in memory, knowledge and reasoning. They can be orchestrated as autonomous multi-agent teams or deterministic, stateful workflows. To serve your Agents, Teams and Workflows in production, Agno provides a FastAPI based runtime called the AgentOS, which comes with a beautiful UI that acts as a control plane for your agentic system.
 
-Agno also provides a FastAPI based runtime called the AgentOS to serve your agentic system in production, along with a beautiful UI for managing your AgentOS.
-
-For organizations building agentic systems (for automating internal processes or building AI products), Agno provides a complete solution. You get the most advanced framework for building your agentic system, an API runtime for serving it and a beautiful UI for managing it.
-
-Engineers and researchers use Agno to build:
-
-- **Level 1:** Agents with tools and instructions ([example](/introduction/agents#level-1%3A-agents-with-tools-and-instructions)).
-- **Level 2:** Agents with knowledge and storage ([example](/introduction/agents#level-2%3A-agents-with-knowledge-and-storage)).
-- **Level 3:** Agents with memory and reasoning ([example](/introduction/agents#level-3%3A-agents-with-memory-and-reasoning)).
-- **Level 4:** Agent Teams that can reason and collaborate ([example](/introduction/multi-agent-systems#level-4%3A-agent-teams-that-can-reason-and-collaborate)).
-- **Level 5:** Agentic Workflows with state and determinism ([example](/introduction/multi-agent-systems#level-5%3A-agentic-workflows-with-state-and-determinism)).
-
-**Example:** Level 1 Reasoning Agent that uses the YFinance API to answer questions:
-
-```python Reasoning Finance Agent
-from agno.agent import Agent
-from agno.models.anthropic import Claude
-from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
-
-reasoning_agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
-    tools=[
-        ReasoningTools(add_instructions=True),
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
-    ],
-    instructions="Use tables to display data.",
-    markdown=True,
-)
-```
-
-<Accordion title="Watch the reasoning finance agent in action">
-  <video
-    autoPlay
-    muted
-    controls
-    className="w-full aspect-video"
-    style={{ borderRadius: "8px" }}
-    src="/videos/reasoning_finance_agent.mp4"
-  ></video>
-</Accordion>
+For organizations building agentic systems, Agno provides a complete solution. You get the most advanced framework for building your agentic system, an API for serving it in production and a beautiful UI for managing it. Your also get complete data privacy and control, the AgentOS runs on your infrastructure and no data ever leaves your system.
 
 # Getting Started
 
