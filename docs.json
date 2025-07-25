@@ -12,7 +12,10 @@
     "options": ["copy", "view", "chatgpt", "claude"]
   },
   "navigation": {
-    "tabs": [
+    "versions": [
+      {
+        "version": "1.0",
+        "tabs": [
       {
         "tab": "User Guide",
         "groups": [
@@ -1915,6 +1918,66 @@
           {
             "group": "Changelog",
             "pages": ["changelog/overview"]
+          }
+        ]
+      }
+        ]
+      },
+      {
+        "version": "2.0",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": []
+          },
+          {
+            "tab": "Guides",
+            "groups": []
+          },
+          {
+            "tab": "Examples",
+            "groups": []
+          },
+          {
+            "tab": "Agno OS",
+            "groups": []
+          },
+          {
+            "tab": "AgentOS API Reference",
+            "groups": []
+          },
+          {
+            "tab": "SDK References",
+            "groups": []
+          },
+          {
+            "tab": "FAQs",
+            "groups": [
+              {
+                "group": "FAQs",
+                "pages": [
+                  "faq/environment-variables",
+                  "faq/tpm-issues",
+                  "faq/cli-auth",
+                  "faq/connecting-to-tableplus",
+                  "faq/could-not-connect-to-docker",
+                  "faq/openai-key-request-for-other-models",
+                  "faq/structured-outputs",
+                  "faq/When-to-use-a-Workflow-vs-a-Team-in-Agno",
+                  "faq/memoryv2",
+                  "faq/playground-connection"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Changelog",
+            "groups": [
+              {
+                "group": "Changelog",
+                "pages": ["changelog/overview"]
+              }
+            ]
           }
         ]
       }
