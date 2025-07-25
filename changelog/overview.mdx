@@ -11,6 +11,7 @@ mode: "wide"
 - **Row Chunking**: Added `RowChunking` as a CSV chunking strategy.
 - **EVM Toolkit**: Added `EvmTools` to do transactions on EVM compatible blockchains using `web3`.
 - **LinkUp Toolkit**: Added `LinkupTools` for powerful search.
+- **Background Execution Support for Workflows 2.0:** Introduced background execution capabilities for Workflows 2.0, enabling non-blocking workflow execution with polling support. See docs [here](https://docs.agno.com/workflows_2/background-execution).
 
 ## Improvements:
 
@@ -25,6 +26,7 @@ mode: "wide"
 - **Workflows Async Generators**: Fixed how async generator `arun` functions are treated. It now correctly keeps async generators as async generators and doesn't convert it to a coroutine.
     - **Before:** Workflows with Async generator `arun` functions were incorrectly awaited as coroutines, which could cause runtime errors or prevent proper iteration through the yielded asynchronous values.
     - **After:** Async generator workflows are now properly recognised and handled as async generators, allowing for correct iteration over their yielded values using `async for`. This ensures all yielded results are processed as intended within asynchronous workflows.
+- **LiteLLM Multiple Streaming Tool Calls:** When Agno is run through LiteLLM against OpenAI chat models (eg. GPT4.1), multiple streamed tool_calls lost their individual argument streams. This has been resolved.
 
 </Update>
 <Update label="2025-07-17" description="v1.7.5">
