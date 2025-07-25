@@ -7,7 +7,7 @@ for AI Apps.
 
 ## Prerequisites
 
-The following examples requires the `linkup-sdk` library and an API key from [Linkup](https://www.linkup.so).
+The following examples requires the [linkup-sdk](https://github.com/LinkupPlatform/linkup-python-sdk) library and an API key from [Linkup](https://www.linkup.so).
 
 ```shell
 pip install -U linkup-sdk
@@ -25,7 +25,7 @@ The following agent will run a search on Linkup to find companies that are build
 from agno.agent import Agent
 from agno.tools.linkup import LinkupTools
 agent = Agent(tools=[LinkupTools()], show_tool_calls=True)
-agent.print_response("Whats happening in France?", markdown=True)
+agent.print_response("What's the latest news in French politics?", markdown=True)
 ```
 
 ## Toolkit Params
