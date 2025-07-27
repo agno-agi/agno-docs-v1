@@ -1052,6 +1052,7 @@
                       "examples/concepts/tools/search/exa",
                       "examples/concepts/tools/search/google_search",
                       "examples/concepts/tools/search/hackernews",
+                      "examples/concepts/tools/search/linkup",
                       "examples/concepts/tools/search/pubmed",
                       "examples/concepts/tools/search/searxng",
                       "examples/concepts/tools/search/serpapi",
