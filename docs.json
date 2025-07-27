@@ -400,7 +400,8 @@
                   "embedder/sentencetransformers",
                   "embedder/together",
                   "embedder/voyageai",
-                  "embedder/aws_bedrock"
+                  "embedder/aws_bedrock",
+                  "embedder/jina"
                 ]
               },
               {
@@ -607,26 +608,27 @@
                   {
                     "group": "Loop Execution",
                     "pages": [
-                      "examples/workflows_2/03_workflows_loop_execution/loop_steps_workflow",
-                      "examples/workflows_2/03_workflows_loop_execution/loop_with_parallel_steps_stream"
+                      "examples/workflows_2/03-workflows-loop-execution/loop_steps_workflow",
+                      "examples/workflows_2/03-workflows-loop-execution/loop_with_parallel_steps_stream"
                     ] 
                   },
                   {
                     "group": "Conditional Branching (Router)",
                     "pages": [
-                      "examples/workflows_2/05_workflows_conditional_branching/router_steps_workflow",
-                      "examples/workflows_2/05_workflows_conditional_branching/router_with_loop_steps",
-                      "examples/workflows_2/05_workflows_conditional_branching/selector_for_image_video_generation_pipelines"
+                      "examples/workflows_2/05-workflows-conditional-branching/router_steps_workflow",
+                      "examples/workflows_2/05-workflows-conditional-branching/router_with_loop_steps",
+                      "examples/workflows_2/05-workflows-conditional-branching/selector_for_image_video_generation_pipelines"
                     ]
                   },
                   {
                     "group": "Advanced Concepts",
                     "pages": [
-                      "examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow",
-                      "examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data",
-                      "examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output",
-                      "examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow",
-                      "examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level"
+                      "examples/workflows_2/06-workflows-advanced-concepts/early_stop_workflow",
+                      "examples/workflows_2/06-workflows-advanced-concepts/step_with_function_additional_data",
+                      "examples/workflows_2/06-workflows-advanced-concepts/access_multiple_previous_steps_output",
+                      "examples/workflows_2/06-workflows-advanced-concepts/store_events_and_events_to_skip_in_a_workflow",
+                      "examples/workflows_2/06-workflows-advanced-concepts/structured_io_at_each_step_level",
+                      "examples/workflows_2/06-workflows-advanced-concepts/background_execution_poll"
                     ]
                   },
                   "examples/workflows_2/blog-post-generator",
@@ -1206,7 +1208,8 @@
                   "examples/concepts/embedders/mistral-embedder",
                   "examples/concepts/embedders/ollama-embedder",
                   "examples/concepts/embedders/openai-embedder",
-                  "examples/concepts/embedders/qdrant-fastembed"
+                  "examples/concepts/embedders/qdrant-fastembed",
+                  "examples/concepts/embedders/jina-embedder"
                 ]
               },
               {
@@ -1294,7 +1297,9 @@
                 "pages": [
                   "examples/models/aws/bedrock/basic",
                   "examples/models/aws/bedrock/basic_stream",
+                  "examples/models/aws/bedrock/async_basic_stream",
                   "examples/models/aws/bedrock/tool_use",
+                  "examples/models/aws/bedrock/async_tool_use_stream",
                   "examples/models/aws/bedrock/structured_output",
                   "examples/models/aws/bedrock/storage",
                   "examples/models/aws/bedrock/knowledge",

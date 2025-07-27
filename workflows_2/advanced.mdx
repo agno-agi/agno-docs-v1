@@ -84,6 +84,134 @@ def custom_content_planning_function(step_input: StepInput) -> StepOutput:
 **More Examples**:
 - [Step with a Custom Function](/examples/workflows_2/01-basic-workflows/step_with_function)
 
+## Run a Workflow non-blocking (in the background)
+
+You can run a workflow as a non-blocking task by passing `background=True` to `Workflow.arun()`. This will return a `WorkflowRunResponse` object with a `run_id` that you can use to poll for the result of the workflow until it is completed.
+
+<Note>
+This feature is only available for async workflows using `.arun()`. 
+For long-running workflows, you can poll for the result using `result = workflow.get_run(run_id)` which returns the updated `WorkflowRunResponse`. 
+
+Use `.has_completed()` to check if the workflow has finished executing. This is particularly useful for workflows that involve time-consuming operations like large-scale data processing, multi-step research tasks, or batch operations that you don't want to block your main application thread.
+</Note>
+
+```python
+import asyncio
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.run.base import RunStatus
+from agno.run.v2.workflow import WorkflowRunResponse
+from agno.storage.sqlite import SqliteStorage
+from agno.team import Team
+from agno.tools.googlesearch import GoogleSearchTools
+from agno.tools.hackernews import HackerNewsTools
+from agno.utils.pprint import pprint_run_response
+from agno.workflow.v2.step import Step
+from agno.workflow.v2.workflow import Workflow
+
+# Define agents
+hackernews_agent = Agent(
+    name="Hackernews Agent",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    tools=[HackerNewsTools()],
+    role="Extract key insights and content from Hackernews posts",
+)
+web_agent = Agent(
+    name="Web Agent",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    tools=[GoogleSearchTools()],
+    role="Search the web for the latest news and trends",
+)
+
+# Define research team for complex analysis
+research_team = Team(
+    name="Research Team",
+    mode="coordinate",
+    members=[hackernews_agent, web_agent],
+    instructions="Research tech topics from Hackernews and the web",
+)
+
+content_planner = Agent(
+    name="Content Planner",
+    model=OpenAIChat(id="gpt-4o"),
+    instructions=[
+        "Plan a content schedule over 4 weeks for the provided topic and research content",
+        "Ensure that I have posts for 3 posts per week",
+    ],
+)
+
+# Define steps
+research_step = Step(
+    name="Research Step",
+    team=research_team,
+)
+
+content_planning_step = Step(
+    name="Content Planning Step",
+    agent=content_planner,
+)
+
+content_creation_workflow = Workflow(
+    name="Content Creation Workflow",
+    description="Automated content creation from blog posts to social media",
+    storage=SqliteStorage(
+        table_name="workflow_v2_bg",
+        db_file="tmp/workflow_v2_bg.db",
+        mode="workflow_v2",
+    ),
+    steps=[research_step, content_planning_step],
+)
+
+
+async def main():
+    print(" Starting Async Background Workflow Test")
+
+    # Start background execution (async)
+    bg_response = await content_creation_workflow.arun(
+        message="AI trends in 2024", background=True
+    )
+    print(f" Initial Response: {bg_response.status} - {bg_response.content}")
+    print(f" Run ID: {bg_response.run_id}")
+
+    # Poll every 5 seconds until completion
+    poll_count = 0
+
+    while True:
+        poll_count += 1
+        print(f"\n Poll #{poll_count} (every 5s)")
+
+        result = content_creation_workflow.get_run(bg_response.run_id)
+
+        if result is None:
+            print(" Workflow not found yet, still waiting...")
+            if poll_count > 50:
+                print(f"⏰ Timeout after {poll_count} attempts")
+                break
+            await asyncio.sleep(5)
+            continue
+
+        if result.has_completed():
+            break
+
+        if poll_count > 200:
+            print(f"⏰ Timeout after {poll_count} attempts")
+            break
+
+        await asyncio.sleep(5)
+
+    final_result = content_creation_workflow.get_run(bg_response.run_id)
+
+    print(f"\n Final Result:")
+    print("=" * 50)
+    pprint_run_response(final_result, markdown=True)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+
 ## Early Stopping
 
 Workflows can be terminated early when certain conditions are met, preventing unnecessary processing and ensuring safety gates work properly. Any step can trigger early termination by returning `StepOutput(stop=True)`.
@@ -125,7 +253,7 @@ workflow.print_response("Scan this code: exec(input('Enter command: '))")
 ```
 
 **More Examples**: 
-- [Early Stop Workflow](/examples/workflows_2/06_workflows_advanced_concepts/early_stop_workflow)
+- [Early Stop Workflow](/examples/workflows_2/06-workflows-advanced-concepts/early_stop_workflow)
 
 ## Access Multiple Previous Steps Output
 
@@ -183,7 +311,7 @@ workflow = Workflow(
 **Key Methods:**
 - `step_input.get_step_content("step_name")` - Get content from specific step by name
 - `step_input.get_all_previous_content()` - Get all previous step content combined
-- `step_input.workflow_message` - Access the original workflow input message
+- `step_input.message` - Access the original workflow input message
 - `step_input.previous_step_content` - Get content from immediate previous step
 
 <Note>
@@ -203,7 +331,7 @@ parallel_step_output = step_input.get_step_content("parallel_step_name")
 </Note>
 
 **More Examples**:
-- [Access Multiple Previous Steps Output](/examples/workflows_2/06_workflows_advanced_concepts/access_multiple_previous_steps_output)
+- [Access Multiple Previous Steps Output](/examples/workflows_2/06-workflows-advanced-concepts/access_multiple_previous_steps_output)
 
 ## Store Events
 
@@ -274,7 +402,7 @@ fast_workflow = Workflow(
 ```
 
 **More Examples**:
-- [Store Events and Events to Skip in a Workflow](/examples/workflows_2/06_workflows_advanced_concepts/store_events_and_events_to_skip_in_a_workflow)
+- [Store Events and Events to Skip in a Workflow](/examples/workflows_2/06-workflows-advanced-concepts/store_events_and_events_to_skip_in_a_workflow)
 
 ## Additional Data
 
@@ -359,7 +487,7 @@ workflow.print_response(
 ```
 
 **More Examples**:
-- [Step with Function and Additional Data](/examples/workflows_2/06_workflows_advanced_concepts/step_with_function_additional_data)
+- [Step with Function and Additional Data](/examples/workflows_2/06-workflows-advanced-concepts/step_with_function_additional_data)
 
 ## Structured Inputs
 
@@ -383,7 +511,7 @@ workflow.print_response(
 ```
 
 **More Examples**:
-- [Pydantic Model as Input](/examples/workflows_2/06_workflows_advanced_concepts/pydantic_model_as_input)
+- [Pydantic Model as Input](/examples/workflows_2/06-workflows-advanced-concepts/pydantic_model_as_input)
 
 ## Structured IO at Each Step Level
 
@@ -442,7 +570,7 @@ Custom functions in workflows can access the structured output of previous steps
 ```
 
 **More Examples**:
-- [Structured IO at each Step Level](/examples/workflows_2/06_workflows_advanced_concepts/structured_io_at_each_step_level)
+- [Structured IO at each Step Level](/examples/workflows_2/06-workflows-advanced-concepts/structured_io_at_each_step_level)
 
 ## Media Input
 Workflows seamlessly handle media artifacts (images, videos, audio) throughout the execution pipeline. 
@@ -533,4 +661,4 @@ print(response.images)
 Similarly, you can pass `Video` and `Audio` as input.
 
 **More Examples**:
-- [Image/Video Selection Sequence](/examples/workflows_2/05_workflows_conditional_branching/selector_for_image_video_generation_pipelines)
+- [Image/Video Selection Sequence](/examples/workflows_2/05-workflows-conditional-branching/selector_for_image_video_generation_pipelines)
