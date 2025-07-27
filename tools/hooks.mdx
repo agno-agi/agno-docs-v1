@@ -6,7 +6,11 @@ description: Learn how to use tool hooks to modify the behavior of a tool.
 ## Tool Hooks
 You can use tool hooks to perform validation, logging, or any other logic before or after a tool is called.
 
-A tool hook is a function that takes a function name, function call, and arguments.  Inside the tool hook, you have to call the function call and return the result.
+A tool hook is a function that takes a function name, function call, and arguments. Optionally, you can access the `Agent` or `Team` object as well.  Inside the tool hook, you have to call the function call and return the result.
+
+<Note>
+It is important to use exact parameter names when defining a tool hook. `agent`, `team`, `function_name`, `function_call`, and `arguments` are available parameters.
+</Note>
 
 For example:
 
@@ -41,7 +45,7 @@ def confirmation_hook(
     return function_call(**arguments)
 ```
 
-You can assign tool hooks on agents and teams.  The tool hooks will be applied to all tools in the agent or team.
+You can assign tool hooks on agents and teams.  The tool hooks will be applied to all tool calls made by the agent or team.
 
 For example:
 
@@ -52,6 +56,28 @@ agent = Agent(
     tool_hooks=[logger_hook],
 )
 ```
+
+You can also get access to the `Agent` or `Team` object in the tool hook.
+
+```python
+
+def grab_customer_profile_hook(
+    agent: Agent, function_name: str, function_call: Callable, arguments: Dict[str, Any]
+):
+    cust_id = arguments.get("customer")
+    if cust_id not in agent.session_state["customer_profiles"]:
+        raise ValueError(f"Customer profile for {cust_id} not found")
+    customer_profile = agent.session_state["customer_profiles"][cust_id]
+
+    # Replace the customer with the customer_profile for the function call
+    arguments["customer"] = json.dumps(customer_profile)
+    # Call the function with the updated arguments
+    result = function_call(**arguments)
+
+    return result
+```
+
+### Multiple Tool Hooks
 
 You can also assign multiple tool hooks at once. They will be applied in the order they are assigned.
 
