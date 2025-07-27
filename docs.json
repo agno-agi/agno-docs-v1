@@ -185,6 +185,7 @@
                         "pages": [
                           "tools/toolkits/database/csv",
                           "tools/toolkits/database/duckdb",
+                          "tools/toolkits/database/mem0",
                           "tools/toolkits/database/pandas",
                           "tools/toolkits/database/postgres",
                           "tools/toolkits/database/sql",
@@ -1089,6 +1090,7 @@
                     "pages": [
                       "examples/concepts/tools/database/csv",
                       "examples/concepts/tools/database/duckdb",
+                      "examples/concepts/tools/database/mem0",
                       "examples/concepts/tools/database/pandas",
                       "examples/concepts/tools/database/postgres",
                       "examples/concepts/tools/database/sql",

@@ -1,0 +1,123 @@
+---
+title: Mem0
+description: The toolkit enables an Agent to interact with a Mem0 memory system, providing capabilities to store, retrieve, search, and manage persistent memory data associated with users.
+---
+
+## Prerequisites
+
+The Mem0 toolkit requires the `mem0ai` Python package and either a Mem0 API key for cloud usage or local configuration for self-hosted deployments.
+
+```shell
+pip install mem0ai
+```
+
+For cloud usage with the [Mem0 app](https://app.mem0.ai/dashboard/get-started):
+```shell
+export MEM0_API_KEY=your_api_key
+export MEM0_ORG_ID=your_org_id          # Optional
+export MEM0_PROJECT_ID=your_project_id  # Optional
+```
+
+## Example
+
+The following example demonstrates how to create an agent with access to Mem0 memory:
+
+```python cookbook/tools/mem0_tools.py
+from textwrap import dedent
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.mem0 import Mem0Tools
+
+USER_ID = "jane_doe"
+SESSION_ID = "agno_session"
+
+# Initialize the Agent with Mem0Tools
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[Mem0Tools()],
+    user_id=USER_ID,
+    session_id=SESSION_ID,
+    add_state_in_messages=True,
+    markdown=True,
+    instructions=dedent(
+        """
+        You have an evolving memory of this user. Proactively capture new 
+        personal details, preferences, plans, and relevant context the user 
+        shares, and naturally bring them up in later conversation. Before 
+        answering questions about past details, recall from your memory 
+        to provide precise and personalized responses. Keep your memory concise: store only meaningful 
+        information that enhances long-term dialogue. If the user asks to start fresh,
+        clear all remembered information and proceed anew.
+        """
+    ),
+    show_tool_calls=True,
+)
+
+# Interact with the Agent to store memories
+agent.print_response("I live in NYC")
+agent.print_response("I lived in San Francisco for 5 years previously")
+agent.print_response("I'm going to a Taylor Swift concert tomorrow")
+
+# Query the stored memories
+agent.print_response("Summarize all the details of the conversation")
+```
+
+## Toolkit Params
+
+| Parameter    | Type   | Default | Description                                               |
+| ------------ | ------ | ------- | --------------------------------------------------------- |
+| `config`     | `dict` | `None`  | Configuration dictionary for self-hosted Mem0 instance.  |
+| `api_key`    | `str`  | `None`  | Mem0 API key. If not provided, uses MEM0_API_KEY env var.|
+| `user_id`    | `str`  | `None`  | Default user ID for memory operations.                   |
+| `org_id`     | `str`  | `None`  | Organization ID. If not provided, uses MEM0_ORG_ID env var.|
+| `project_id` | `str`  | `None`  | Project ID. If not provided, uses MEM0_PROJECT_ID env var.|
+| `infer`      | `bool` | `True`  | Whether to enable automatic memory inference and extraction.|
+
+## Toolkit Functions
+
+| Function | Description |
+| -------- | ----------- |
+| `add_memory` | Adds facts to the user's memory. Supports both text strings and structured dictionaries. Returns success confirmation or error message. |
+| `search_memory` | Performs semantic search across the user's stored memories. Takes `query` (str) to find relevant facts. Returns list of search results or error message. |
+| `get_all_memories` | Retrieves all memories for the current user. Returns list of all stored memories. |
+| `delete_all_memories` | Deletes all memories associated with the current user. Returns success confirmation or error message. |
+
+## Configuration Options
+
+```python
+from agno.tools.mem0 import Mem0Tools
+
+config = {
+    "vector_store": {
+        "provider": "chroma",
+        "config": {
+            "collection_name": "test",
+            "path": "db",
+        }
+    },
+    "llm": {
+        "provider": "openai",
+        "config": {
+            "model": "gpt-4o-mini",
+            "temperature": 0.1,
+            "max_tokens": 1000,
+        }
+    },
+    "embedder": {
+        "provider": "openai",
+        "config": {
+            "model": "text-embedding-ada-002",
+        }
+    }
+}
+
+mem0_tools = Mem0Tools(config=config)
+```
+
+## Developer Resources
+
+- View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/mem0.py)
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/mem0_tools.py)
+- [Mem0 Documentation](https://docs.mem0.ai/)
+- [Mem0 Platform](https://app.mem0.ai/dashboard/api-keys)
