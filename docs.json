@@ -1055,6 +1055,7 @@
                       "examples/concepts/tools/search/pubmed",
                       "examples/concepts/tools/search/searxng",
                       "examples/concepts/tools/search/serpapi",
+                      "examples/concepts/tools/search/serper",
                       "examples/concepts/tools/search/tavily",
                       "examples/concepts/tools/search/wikipedia",
                       "examples/concepts/tools/search/bravesearch"
