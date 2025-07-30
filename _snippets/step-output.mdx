@@ -1,0 +1,17 @@
+
+| Parameter | Type | Description |
+|-------|------|-------------|
+| `step_name` | `Optional[str]` | Step identification name |
+| `step_id` | `Optional[str]` | Unique step identifier |
+| `executor_type` | `Optional[str]` | Type of executor: "agent", "team", or "function" |
+| `executor_name` | `Optional[str]` | Name of the executor |
+| `content` | `Optional[Union[str, Dict[str, Any], List[Any], BaseModel, Any]]` | Primary output (can be any format) |
+| `parallel_step_outputs` | `Optional[Dict[str, StepOutput]]` | For parallel steps: individual sub-step outputs |
+| `response` | `Optional[Union[RunResponse, TeamRunResponse]]` | Raw execution response from agent/team |
+| `images` | `Optional[List[ImageArtifact]]` | Media outputs - images (new or passed-through) |
+| `videos` | `Optional[List[VideoArtifact]]` | Media outputs - videos (new or passed-through) |
+| `audio` | `Optional[List[AudioArtifact]]` | Media outputs - audio (new or passed-through) |
+| `metrics` | `Optional[Dict[str, Any]]` | Execution metadata |
+| `success` | `bool` | Execution success status (default: True) |
+| `error` | `Optional[str]` | Error message if execution failed |
+| `stop` | `bool` | Request early workflow termination (default: False) |

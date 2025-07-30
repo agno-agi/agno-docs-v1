@@ -1,0 +1,50 @@
+---
+title: Agent with Tools
+---
+
+## Code
+
+```python cookbook/models/vllm/tool_use.py
+from agno.agent import Agent
+from agno.models.vllm import vLLM
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    model=vLLM(
+        id="NousResearch/Nous-Hermes-2-Mistral-7B-DPO", top_k=20, enable_thinking=False
+    ),
+    tools=[DuckDuckGoTools()],
+    show_tool_calls=True,
+    markdown=True,
+)
+agent.print_response("Whats happening in France?", stream=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install Libraries">
+    ```bash
+    pip install -U agno openai vllm duckduckgo-search
+    ```
+  </Step>
+
+  <Step title="Start vLLM server">
+    ```bash
+    vllm serve NousResearch/Nous-Hermes-2-Mistral-7B-DPO \
+        --enable-auto-tool-choice \
+        --tool-call-parser hermes \
+        --dtype float16 \
+        --max-model-len 8192 \
+        --gpu-memory-utilization 0.9
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    ```bash
+    python cookbook/models/vllm/tool_use.py
+    ```
+  </Step>
+</Steps> 

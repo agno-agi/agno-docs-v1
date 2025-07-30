@@ -1,28 +1,48 @@
 ---
-title: Agent Playground
-description: "**Agno provides a beautiful frontend for interacting with your agents and teams.**"
+title: Playground
+description: "**Agno provides an intuitive interface for testing and interacting with your AI agents.**"
 ---
 
-<Frame caption="Agent Playground">
+
+<Frame caption="Agno Platform - Playground">
   <img
     height="200"
-    src="/images/agent_playground.png"
+    src="/images/playground.png"
     style={{ borderRadius: '8px' }}
   />
 </Frame>
 
-<Note>
-No data is sent to [agno.com](https://app.agno.com), all agent data is stored locally in your sqlite database.
-</Note>
 
-## Run Playground Server Locally
+The Playground gives a robust interface to test your agentic systems with extensive features.
 
-Let's run the Playground Server locally so we can chat with our Agents using the Agent UI. Create a file `playground.py`
+- **Streaming Support**: Real-time response streaming and intermediate states back to the user.
+
+- **Session History**: Visualize conversation history right in the playground.
+
+- **User Memory**: Visualize user details and preferences across conversations. 
+
+- **Configuration**: Comprehensive configuration interface allowing you to see agent parameters, model settings, tool configurations. 
+
+- **Reasoning Support**: Built-in support for detailed reasoning traces displayed in the playground interface.
+
+- **Human in Loop Support**: Enable manual intervention in agent workflows with specialized human oversight and approval. 
+
+- **Multimodal Support**: Support for processing and generating text, images, audio, and other media types.
+
+- **Multi-Agent Systems**: Support for multi-agent teams and workflows.
+
+## Interact with your agents Locally
+
+<Steps>
+
+<Step title="Create a file with sample code">
+
+
 
 ```python playground.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
@@ -58,42 +78,34 @@ finance_agent = Agent(
     markdown=True,
 )
 
-app = Playground(agents=[web_agent, finance_agent]).get_app()
+playground_app = Playground(agents=[web_agent, finance_agent])
+app = playground_app.get_app()
 
 if __name__ == "__main__":
-    serve_playground_app("playground:app", reload=True)
+    playground_app.serve("playground:app", reload=True)
 ```
 
 Remember to export your `OPENAI_API_KEY` before running the playground application.
 
-<Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
+<Tip>Make sure the `serve()` points to the file that contains your `Playground` app.</Tip>
 
-## Authenticate with Agno
+</Step>
 
-Authenticate with [agno.com](https://app.agno.com) so your local application can let agno know which port you are running the playground on. Run:
+<Step title="Authenticate with Agno">
+
+Authenticate with [agno.com](https://app.agno.com) so your local application can let agno know which port you are running the playground on.
+
+Check out [Authentication guide](/how-to/authentication) for instructions on how to Authenticate with Agno.
 
 <Note>
-No data is sent to agno.com, only that you're running a playground application at port 7777.
+No data is sent to agno.com, all agent data is stored locally in your sqlite database.
 </Note>
 
-```shell
-ag setup
-```
-
-[or] export your `AGNO_API_KEY` from [app.agno.com](https://app.agno.com/settings)
-
-<CodeGroup>
-```bash Mac
-export AGNO_API_KEY=ag-***
-```
-
-```bash Windows
-setx AGNO_API_KEY ag-***
-```
-</CodeGroup>
 
 
-## Run the Playground Server
+</Step>
+
+<Step title="Run the Playground Server">
 
 Install dependencies and run your playground server:
 
@@ -103,19 +115,24 @@ pip install openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agn
 python playground.py
 ```
 
-## View the Playground
+</Step>
 
-- Open the link provided or navigate to `http://app.agno.com/playground` (login required)
-- Select the `localhost:7777` endpoint and start chatting with your agents!
+<Step title="View the Playground">
+
+- Open the link provided or navigate to `http://app.agno.com/playground` (login required).
+- Add/Select the `localhost:7777/v1` (v1 is default prefix) endpoint and start chatting with your agents!
 
 <video
   autoPlay
   muted
   controls
   className="w-full aspect-video"
-  src="/images/AgentPlayground.mp4"
+  src="/videos/playground.mp4"
 ></video>
 
+</Step>
+
+</Steps>
 <Accordion title="Looking for a self-hosted alternative?">
 
 Looking for a self-hosted alternative? Check out our [Open Source Agent UI](https://github.com/agno-agi/agent-ui) - A modern Agent interface built with Next.js and TypeScript that works exactly like the Agent Playground.
@@ -141,22 +158,4 @@ The UI will connect to `localhost:7777` by default, matching the Playground setu
 
 </Accordion>
 
-## Troubleshooting
-
-We have identified that certain browsers may experience compatibility issues with the Agent Playground, potentially resulting in connection errors.
-
-#### Brave Browser
-Users may encounter difficulties connecting to localhost endpoints when using Brave, and the `ag setup` command might not work as expected.
-To resolve this issue, please try disabling Brave Shields in your browser settings.
-
-<video
-  autoPlay
-  muted
-  controls
-  className="w-full aspect-video"
-  src="/videos/brave-shields.mp4"
-></video>
-
-#### Safari Browser
-Similar connection issues have been reported with Safari when attempting to connect to localhost endpoints and running `ag setup`.
-While we are actively working on a solution, we kindly recommend using alternative browsers such as Chrome, Firefox, or Edge for the best experience.
+<Info>Facing connection issues? Check out our [troubleshooting guide](/faq/playground-connection)</Info>
