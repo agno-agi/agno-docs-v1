@@ -1,0 +1,6 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `selector` | `Callable[[StepInput], Union[WorkflowSteps, List[WorkflowSteps]]]` | Required | Function to select steps dynamically |
+| `choices` | `WorkflowSteps` | Required | Available steps for selection |
+| `name` | `Optional[str]` | `None` | Name of the router step |
+| `description` | `Optional[str]` | `None` | Description of the router step |   

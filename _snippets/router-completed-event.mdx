@@ -1,0 +1,9 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `event` | `str` | `WorkflowRunEvent.router_execution_completed.value` | Event type identifier |
+| `step_name` | `Optional[str]` | `None` | Name of the router step |
+| `step_index` | `Optional[Union[int, tuple]]` | `None` | Index or position of the router |
+| `selected_steps` | `List[str]` | `[]` | Names of steps that were selected |
+| `executed_steps` | `Optional[int]` | `None` | Number of steps executed |
+| `step_results` | `List[StepOutput]` | `[]` | Results from executed steps |
+| *Inherits all fields from `BaseWorkflowRunResponseEvent`* |
