@@ -1,7 +1,6 @@
 ---
 title: Mem0 Memory
 ---
-
 ## Code
 
 ```python cookbook/agent_concepts/memory/mem0_memory.py
@@ -39,9 +38,12 @@ client.add(messages, user_id=user_id)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
+  <Step title="Set your API keys">
     ```bash
     export OPENAI_API_KEY=xxx
+    export MEM0_API_KEY=xxx (optional)
+    export MEM0_ORG_ID=xxx (optional)
+    export MEM0_PROJECT_ID=xxx (optional)
     ```
   </Step>
 

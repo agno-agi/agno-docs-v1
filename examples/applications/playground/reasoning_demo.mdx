@@ -10,7 +10,7 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.knowledge.url import UrlKnowledge
 from agno.models.openai import OpenAIChat
-from agno.playground import Playground, serve_playground_app
+from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -226,7 +226,7 @@ reasoning_finance_team = Team(
 )
 
 
-app = Playground(
+playground = Playground(
     agents=[
         cot_agent,
         reasoning_tool_agent,
@@ -235,11 +235,15 @@ app = Playground(
         thinking_tool_agent,
     ],
     teams=[reasoning_finance_team],
-).get_app()
+    name="Reasoning Demo",
+    app_id="reasoning-demo",
+    description="A playground for reasoning",
+)
+app = playground.get_app()
 
 if __name__ == "__main__":
     asyncio.run(agno_docs.aload(recreate=True))
-    serve_playground_app("reasoning_demo:app", reload=True)
+    playground.serve(app="reasoning_demo:app", reload=True)
 
 
 # reasoning_tool_agent

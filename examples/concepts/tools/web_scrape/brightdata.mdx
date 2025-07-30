@@ -1,0 +1,59 @@
+---
+title: BrightData Tools
+---
+
+## Code
+
+```python cookbook/tools/brightdata_tools.py
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.brightdata import BrightDataTools
+from agno.utils.media import save_base64_data
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[
+        BrightDataTools(
+            get_screenshot=True,
+        )
+    ],
+    markdown=True,
+    show_tool_calls=True,
+)
+
+# Example 1: Scrape a webpage as Markdown
+agent.print_response(
+    "Scrape this webpage as markdown: https://docs.agno.com/introduction",
+)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API keys">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    export BRIGHT_DATA_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U requests openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/tools/brightdata_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/tools/brightdata_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

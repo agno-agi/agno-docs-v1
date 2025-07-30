@@ -2,7 +2,407 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-07-24" description="v1.7.6">
+## New Features:
 
+- **Portkey Model Support**: Added support for Portkey hosted models.
+- **Bitbucket Tool**: Added `BitbucketTools` with a variety of Bitbucket repository actions.
+- **Jina Embedder:** Added `JinaEmbedder` for using embedding models via Jina.
+- **Row Chunking**: Added `RowChunking` as a CSV chunking strategy.
+- **EVM Toolkit**: Added `EvmTools` to do transactions on EVM compatible blockchains using `web3`.
+- **LinkUp Toolkit**: Added `LinkupTools` for powerful search.
+- **Background Execution Support for Workflows 2.0:** Introduced background execution capabilities for Workflows 2.0, enabling non-blocking workflow execution with polling support. See docs [here](https://docs.agno.com/workflows_2/background-execution).
+
+## Improvements:
+
+- **Async Bedrock Support**: Added async execution support for the AWS bedrock implementation.
+- **PostgreSQL Tools Updates:** Various security and stability overhauls made to the `PostgresTools` toolkit.
+- **Daytona Toolkit Updates:** Added new tools for `Daytona`  agent Toolkit
+
+## Bug Fixes:
+
+- **LiteLLM Metrics**: Fixed issue with metrics on streaming responses from LiteLLM.
+- **Team Expected Output**: Fixed issue where expected_output of members were overwritten by the team leader agent.
+- **Workflows Async Generators**: Fixed how async generator `arun` functions are treated. It now correctly keeps async generators as async generators and doesn't convert it to a coroutine.
+    - **Before:** Workflows with Async generator `arun` functions were incorrectly awaited as coroutines, which could cause runtime errors or prevent proper iteration through the yielded asynchronous values.
+    - **After:** Async generator workflows are now properly recognised and handled as async generators, allowing for correct iteration over their yielded values using `async for`. This ensures all yielded results are processed as intended within asynchronous workflows.
+- **LiteLLM Multiple Streaming Tool Calls:** When Agno is run through LiteLLM against OpenAI chat models (eg. GPT4.1), multiple streamed tool_calls lost their individual argument streams. This has been resolved.
+
+</Update>
+<Update label="2025-07-17" description="v1.7.5">
+
+## New Features:
+
+- **SurrealDB:** Added SurrealDB support as a vector DB for knowledge bases.
+
+## Improvements:
+
+- **Session Caching:** Added `cache_session` attribute to allow users to switch off session caching, which improves on memory management.
+- **Workflows 2.0 FastAPI Support**: Added support for running the new workflows in `FastAPIApp` .
+
+## Bug Fixes:
+
+- **Nested Tool Hooks**: Fixed bug with nested tool hooks.
+
+</Update>
+<Update label="2025-07-16" description="v1.7.4">
+## Workflows 2.0
+
+<img height="200" src="/images/changelogs/release-1-7-4.png" /> 
+
+## New Features:
+
+- **Workflows Revamped (beta):** Our new Workflows implementation (internally referred to as Workflows 2.0) is a complete redesign of the workflow system in Agno, introducing a step-based architecture that provides better structure, flexibility, and control over multi-stage AI agent processes
+    - Core Concepts:
+        - **Flexible Execution**: Sequential, parallel, conditional, and loop-based execution
+        - **Smart Routing**: Dynamic step selection based on content analysis or user intent
+        - **Mixed Components**: Combine agents, teams, and functions seamlessly
+        - **State Management:** Share data across steps with session state
+    - For a comprehensive guide to the new Workflows system, check out the [docs](https://docs.agno.com/workflows_2/overview).
+- **Pydantic Input for Agents/Teams:** Both Agent and Team now accepts structured input (i.e. a pydantic model) on run() and print_response().
+
+</Update>
+<Update label="2025-07-15" description="v1.7.3">
+
+## New Features:
+
+- **Session State on Run**: You can now pass `session_state` when running an agent or team. See [docs](https://docs.agno.com/agents/state) for more information.
+- **GCS Support for PDF Knowledge Base:** Added `GCSPDFKnowledgeBase` to support PDFs on Google Cloud Storage.
+
+## Bug Fixes:
+
+- **Workflows Async + Storage**: Fixed issues where sessions was not correctly stored with async workflow executions.
+- **Session State Management**: Fixed issues around session state management in teams and agents. Session state and session name will now correctly reset and load from storage if sessions are switched.
+- **Metadata Support for Document Knowledge Base:** Adds metadata support for `DocumentKnowledgeBase`
+- **Session Metrics with History**: Fixed bug with session metrics on `Agent` where history is enabled.
+
+</Update>
+<Update label="2025-07-10" description="v1.7.2">
+
+## New Features:
+
+- **MySQL Storage**: Added support for `MySQLStorage` as an agent/team/workflow session storage backend.
+- **XAi Live Search**: Added support for live search on the XAi model provider.
+- **OpenAI Deep Research**: Support added for `o4-mini-deep-research` and `o3-deep-research` models.
+- **Stagehand MCP example**: Added an example of using Stagehand MCP with Agno.
+- **Atla observability example**: Added an example of using Atla observability with Agno.
+- **Scrapegraph example**: Added an example of using Scrapegraph with Agno.
+
+## Improvements:
+
+- **Memory Growth on Performance Evals**: Added `memory_growth_tracking` as an attribute on `PerformanceEval` to enable additional debug logs for memory growth.
+- **Agent/Team in Tool Hook**: Added `agent` and `team` as optional parameters in tool hooks, for more flexibility.
+
+## Bug Fixes:
+
+- **Gemini 2.5 Metrics:** Fixed Gemini metrics to correctly include “thinking” tokens.
+- **Claude tool calling:** Fixed a bug related to parsing function call responses when using Claude models.
+- **Team Metrics**: Fixed a bug with team metrics when teams have history enabled.
+
+</Update>
+<Update label="2025-06-30" description="v1.7.1">
+
+## New Features:
+
+- **Debug Level:** Added `debug_level` to both `Agent` and `Team`. This is an `int` value of either `1` (default) or `2` (more verbose logging). Currently this only enables more verbose model logs, but will be used more widely in future.
+
+## Improvements:
+
+- **Parser Model on Teams**: Added `parser_model` support for `Team`. See docs [here](https://docs.agno.com/teams/structured-output#using-a-parser-model).
+- **Support for Gemini Thinking**: Added `thinking_budget` and `include_thoughts` parameters for `Gemini` model class.
+- **Serper Tools**: Made updates to the toolkit to include new tools `search_news` , `search_scholar` and `scrape_webpage`.
+- **Valyu Tools:** New Valyu toolkit for Deep Search capabilities of academic sources.
+- **Oxylabs:** Added `OxylabsTools` for adding more web-scraping capabilities to agents.
+
+## Bug Fixes:
+
+- **DuckDB CSV parsing error:** For CSV files use the custom `read_csv` method for improved CSV parsing
+- **Full Team Metrics**: Fixed an issue with calculation of the `full_team_session_metrics` on Teams.
+
+</Update>
+<Update label="2025-06-26" description="v1.7.0">
+
+## New Features:
+
+- **Agent/Team Add Tool**: Added convenience function to `Agent` and `Team` → `add_tool(tool)` to append new tools after inititialisation.
+- **Streaming Structured Output**: Implemented structured output during streaming. This means streaming won’t be turned off when `response_model` is passed. The structured output itself is not streamed, but it is part of the iterator response when running an agent/team with streaming. The response model is set on a single `RunResponseContentEvent` and on the final `RunResponseCompletedEvent`.
+
+## Improvements:
+
+- **Linear Teams Tool**: Added tool to get the list of teams from Linear.
+
+## Bug Fixes:
+
+- **Uppercase Structured Output**: Resolved cases where pydantic model fields contain field names with upper case characters.
+
+## Breaking Change:
+
+- If you use `run(..., stream=True)` or `arun(..., stream=True)` on `Agent` or `Team` with a `response_model` set, the current behaviour would switch off streaming and respond with a single `RunResponse` object. After the changes mentioned above, you will get the `Iterator[RunResponseEvent]` / `AsyncIterator[RunResponseEvent]` response instead.
+</Update>
+<Update label="2025-06-23" description="v1.6.4">
+
+## New Features:
+
+- **Brightdata Toolkit**: Added multiple web-based tools via Brightdata.
+- **OpenCV Video/Image Toolkit**: Added tools for capturing image/video via your webcam.
+- **DiscordClient App**: Added a DiscordClient app for connecting your agent or team with Discord in the form of a discord bot.
+
+## Improvements:
+
+- **FileTools File Search**: Added `search` to `FileTools`.
+
+## Bug Fixes:
+
+- **Fix User Control Flow with History**: Fixed issues where user control flow (HITL) flows failed with message history.
+- **Fix lance db upsert method for supporting knowledge filters:** Fixed function `upsert` not using the parameter `filters`
+- **Update mongo db hybrid search for filters:** Mongodb now correctly uses filters for hybrid search
+- **Fixed `team.rename_session(...)` that raises an `AttributeError`: Fixed** function `rename_session` not using the parameter `session_id`
+
+</Update>
+<Update label="2025-06-18" description="v1.6.3">
+
+## New Features:
+
+- **User Control Flows on Playground**: The Agno Platform now support user control flows on the playground.
+- **Team & Agent Events on RunResponse:** Added `store_events` parameter to optionally add all events that happened during the course of an agent/team run on the `RunResponse`/`TeamRunResponse`.
+- **Team Member Responses on Playground**: The Agno Platform now shows member responses during team runs.
+- **Behind-the-scenes on Playground**: The Agno Platform now shows what is happening during runs, for both agents and teams.
+- **Metadata filtering support for `csv` and `csv_url` knowledge bases:** Add knowledge filters support for these knowledge base types.
+
+## Updates
+
+- **Removed `a` prefix from async function names:** `asearch_knowledge_base`, etc will now be the same as their `sync` counterparts when sent to the model. The names of functions are important for accurate function calling.
+
+## Bug Fixes:
+
+- **AG-UI Fix**: Fixed issue related to missing messages when using the Agno AG-UI app.
+- **Chat History Fix**: Fixed issue related to history not available when `agent_id` not set.
+- **MongoDB ObjectId serialization issue when using with agent:** Fixed issue while ****using mongodb vectordb with ObjectId present in the metadata it throws Object of type `ObjectId` is not JSON serializable
+
+</Update>
+<Update label="2025-06-13" description="v1.6.1">
+
+## New Features:
+
+- **Nebius Embeddings**: Added support for embedding models on Nebius.
+- **Firestore Memory and Storage:** Added support for Firestore both as memory and storage provider for your agents.
+
+## Improvements:
+
+- **Improved Event Payloads**: Added `agent_name` to agent events, and `team_name` to team events. Also added `team_session_id` to team-member events to indicate that it belongs to the top-level team session.
+- **Team Run Events**: Added `stream_member_events` to teams to optionally disable streaming of member events.
+- **DocumentKnowledgeBase Async**: Added `async` support on `DocumentKnowledgeBase`
+- **Enums on Custom Tools**: Added support for `enum` parameters in custom tools.
+
+## Bug Fixes:
+
+- **Team Events:** Fixed issues related to team and member events not being part of the same session. Going forward a team and its members will all have the same session ID.
+</Update>
+
+<Update label="2025-06-10" description="v1.6.0">
+## Improvements:
+
+- **New Streaming Events**: We have improved our streaming events system. See the details in “breaking changes” section at the bottom.
+- **Member Events in Teams**: The above change includes streaming of events from team members with the top-level team events.
+
+## Bug Fixes:
+
+- **Apify Tools:** Fixed the ApifyTools initialize to correctly register functions.
+
+## Breaking Changes:
+
+- **Updates to Run Without Streaming**:
+    - `RunResponse` now does not have an `event` attribute. It still represents the responses of the entire run.
+    - An additional attribute `RunResponse.status` now indicates whether the run response is `RUNNING`, `PAUSED`, or `CANCELLED`.
+- **Updates to Run Streaming:**
+    - In the case of streaming you now get reformulated run events. These events are streamed if you do `agent.run(..., stream=True)` or `agent.arun(..., stream=True)` .
+    - Agents have the following event types:
+        - `RunResponseContent`
+        - `RunError`
+        - `RunCancelled`
+        - `ToolCallStarted`
+        - `ToolCallCompleted`
+        - with `stream_intermediate_steps=True`:
+            - `RunStarted`
+            - `RunCompleted`
+            - `ReasoningStarted`
+            - `ReasoningStep`
+            - `ReasoningCompleted`
+            - `MemoryUpdateStarted`
+            - `MemoryUpdateCompleted`
+    - See detailed documentation [here](https://docs.agno.com/agents/run).
+- **Updates to Teams:**
+    - Teams have the following event types:
+        - `TeamRunResponseContent`
+        - `TeamRunError`
+        - `TeamRunCancelled`
+        - `TeamToolCallStarted`
+        - `TeamToolCallCompleted`
+        - with `stream_intermediate_steps=True`:
+            - `TeamRunStarted`
+            - `TeamRunCompleted`
+            - `TeamReasoningStarted`
+            - `TeamReasoningStep`
+            - `TeamReasoningCompleted`
+            - `TeamMemoryUpdateStarted`
+            - `TeamMemoryUpdateCompleted`
+    - Teams will also yield events from team members as they are executed.
+    - See detailed documentation [here](https://docs.agno.com/teams/run).
+- **Updates to Workflows:**
+    - You should now yield `WorkflowRunResponseStartedEvent` and `WorkflowRunResponseCompletedEvent` events.
+</Update>
+<Update label="2025-06-06" description="v1.5.10">
+## New Features:
+
+- **Playground File Upload**: We now support file upload via the Agno Playground. This will send PDF, CSV, Docx, etc files directly to the agents/teams for interpretation by the downstream LLMs.  If you have a knowledge base attached to the agent/team, it will upload the file to the knowledge base instead.
+- **Async Evals**: Support for `async` and evaluations. See examples [here](https://github.com/agno-agi/agno/tree/main/cookbook/evals).
+
+## Improvements:
+
+- **Exa Research**: Added `research` tool on `ExaTools`. See more on their [docs](https://docs.exa.ai/reference/exa-research) about how research works.
+- **Whatsapp Type Indicator**: Add type indicator to Whatsapp responses.
+
+## Bug Fixes:
+
+- **State in Messages Fixes**: Fixed issues around nested json inside messages and adding state into messages.
+</Update>
+<Update label="2025-06-05" description="v1.5.9">
+## New Features:
+
+- **AG-UI App**: Expose your Agno Agents and Teams with an AG-UI compatible FastAPI APP.
+- **vLLM Support**: Added support for running vLLM models via Agno.
+- **Serper Toolkit:** Added `SerperTools` toolkit to search Google
+- **LangDB Support**: Added LangDB AI Gateway support into Agno.
+- **LightRAG server support:** Added LightRAG support which provides a fast, graph-based RAG system that enhances document retrieval and knowledge querying capabilities.
+- **Parser Model:** Added ability to use an external model to apply a structured output to a model response
+- **Pdf Bytes Knowledge: I**ntroduced a new knowledge base class: `PDFBytesKnowledgeBase`, which allows the ingestion of in-memory PDF content via bytes or IO streams instead of file paths.
+- **Qdrant Mcp Server:** Added MCP support for Qdrant
+- **Daytona integration:** Added `DaytonaTools` toolkit to let Agents execute code remotely on Daytona sandboxes
+- **Expand URL addition in Crawl4ai: I**ntroduced a new URL expansion feature directly into the Crawl4ai toolkit. Our agents frequently encounter shortened URLs that crawl4ai cannot scrape effectively, leading to incomplete data retrieval. With this update, shortened URLs are expanded to their final destinations before being processed by the crawler.
+- **AWS SES Tools**: Added `AWSSESTools` to send emails via AWS SES.
+- **Location Aware Agents:** Added `add_location_to_instructions` to automatically detect the current location where the agent is running and add that to the system message.
+
+## Improvements:
+
+- **FastAPIApp Update**: FastAPIApp was updated and `agent` was replaced with `agents`, `team` with `teams` and `workflows` was added. This also now requires you to specify which agent/team/workflow to run.
+    - E.g. `http://localhost:8001/runs?agent_id=my-agent`
+- **ZepTools Updates**: Updated `ZepTools` to remove deprecated features.
+- **GmailTools Attachments**: `GmailTools` now support attachments.
+- **Improve code reusability by using fetch with retry and async_fetch_with_retry:** updated `fetch_with_retry` and `async_fetc_with_retry` to be reused in`url_reader.py`
+- **Add name to evaluation examples:** Included name param in evaluation examples
+- **XTools Search**: Added `search_posts` for `XTools`.
+
+## Bug Fixes:
+
+- **Claude Prompt Tokens**: Fixed a bug with prompt tokens not propagating in Claude model class
+- **Add type in base App class for registry:** Can have different types of app like- `slack`, `whatsapp`, etc
+- **Accept empty array of pdf urls:** Fixed an issue where empty PDF URL arrays were not accepted, preventing knowledge base queries without adding new documents
+- **Anthropic cache metrics propagation:** Fixed a bug where Anthropic's prompt caching metrics were not propagating to Agent responses, despite the raw Anthropic API working correctly. This minimal fix ensures cache performance metrics are properly captured and reported.
+- **Handle non serializable objects on RunResponse dict parsing:**
+    - Updated `RunResponse.to_dict()` to handle non-serializable fields, as Python enums
+</Update>
+
+<Update label="2025-06-03" description="v1.5.8">
+## New Features:
+
+- **Slack App**: Introducing the `SlackApp` to allow you to create agents for Slack! The app allows agents to respond to individual messages or on group chats, and it creates threads to respond to messages.
+- **Visualization Tools**: Added `VisualizationTools` that uses `matplotlib` to give agents the ability to make graphs.
+- **Brave Search Tools:** Introduced a new toolkit for integrating `BraveSearch` that allows agent to search the web using brave search api.
+
+## Improvements:
+
+- **Pass filters for traditional RAG:** Properly pass down `knowledge_filters` even if `self.add_references=True` which is a case for traditional RAG (diff from Agentic RAG)
+- **Add infer param to Mem0:** Added infer as a param to `Mem0Tools`
+
+## Bug Fixes:
+
+- **Searxng tool initialization:**  Fixed Searxng tool initialization error
+    
+    ```
+    AttributeError: 'Searxng' object has no attribute 'include_tools'
+    ```
+    
+    and added comprehensive unit tests.
+    
+- **Fix for enum as a response model for Gemini:** With 1.5.6, a [bug](https://discord.com/channels/965734768803192842/965734768803192845/1377999191632121926) was introduced now allowing enum as a data type for Gemini response model.
+- **OpenAI parsing structured output:** With the changes in the OpenAI library we don't need to parse the structured output separately.
+- **Fix accuracy evals monitoring:** Added logic to handle monitoring when evaluating Teams in the run function of AccuracyEval
+
+## Updates
+
+- **Updates to Apps:**
+    - `FastAPIApp` does not have a default `prefix` anymore and `/run` → `/runs` (i.e. the created run endpoint is now `<your_domain>/runs`)
+    - `serve_fastapi_app` is now replaced with `.serve()` on the instance of `FastAPIApp`.
+    - `serve_whatsapp_app` is now replaced with `.serve()` on the instance of `WhatsappAPI`.
+
+</Update>
+
+<Update label="2025-05-30" description="v1.5.6">
+## New Features
+
+- **Team Evals**: All types of Evaluations now support Teams!
+
+## Improvements:
+
+- **Async Workflows**: Added `arun` support for Workflows, so they can now be used with `async` Python.
+- **Parallel Memory Updates**: Made speed improvements when user memories and session summaries are generated.
+- **Reimplement `tool_call_limit`**: Revamp of `tool_call_limit` to make it work across a whole agent run.
+- **Gemini / OpenAI Structure Response:** Improved Gemini and OpenAI Structured Response support. Dict types can now be used when defining structured responses.
+
+## Bug Fixes:
+
+- **Mistral Structured Outputs with Tools**: Fixed an issue preventing Mistral model use with structured output and tools.
+- **Images In Run Without Prompt**: Fixed issues related to images being ignored if there wasn’t a prompt provided on `run`.
+- **Pgvector Upsert Fix: Fixed** Pgvector upsert not copying metadata properly.
+- **Handle AgnoInstrumentor failing with OpenAIResponses:** PR merged in Arize’s openinference repo: https://github.com/Arize-ai/openinference/pull/1701.
+- **Pinecone Filters:** Enabled filters for pinecone vector db.
+- **Combined KB Async:** Add missing async method to Combined KB.
+- **Team Session State Fix**: **`team_session_state`** is now correctly propagated and shared between all members and sub-teams of a team.
+- **Gemini type fix for integers:**
+    - Pydantic models with `Dict[str, int]` fields (and other Dict types) were failing when used as `response_schema` for both OpenAI and Gemini models due to schema format incompatibilities.
+- **Session Name**: `session_name` is now available after a run.
+- **Handle UUIDs while serialization in RedisStorage:** Fixed error object of type UUID is not JSON serializable.
+
+## Updates:
+
+- For managing `team_session_state`, you now have to set `team_session_state` on the `Team` instead of `session_state`.
+
+</Update>
+
+<Update label="2025-05-27" description="v1.5.5">
+## New Features:
+
+- **Claude File Upload:** We can now upload a file to Anthropic directly and then use it as an input to an agent.
+- **Claude 4 Code Execution Tool:** Updated Claude to execute Python code in a secure, sandboxed environment.
+- **Prompt caching with Anthropic Models: ** Allowed resuming from specific prefixes in your prompts. This approach significantly reduces processing time and costs for repetitive tasks or prompts with consistent elements.
+- **Vercel v0 Model:** Added support for new Vercel v0 models and cookbook examples.
+- **Qdrant Hybrid Search support**
+- **Markdown Knowledge Base**: Added native support for Markdown-based knowledge bases.
+- **AI/ML API platform integration:** Introduced integration with [`AI/ML API`](https://aimlapi.com/models/?utm_source=agno&utm_medium=github&utm_campaign=integration), a platform providing AI/ML models. AI/ML API provides 300+ AI models including Deepseek, Gemini, ChatGPT. The models run at enterprise-grade rate limits and uptimes.
+- **Update Pydantic and dataclass in function handling:** Added support for `Pydantic` and `dataclass` objects as input to a function. See [here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/tool_concepts/custom_tools/complex_input_types.py) for an example.
+
+## Improvements:
+
+- **Timeout handling for API calls in ExaTools class:**
+    - Timeout functionality to Exa API calls to prevent indefinite hanging of search operations. The implementation uses Python's `concurrent.futures` module to enforce timeouts on all Exa API operations (search, get contents, find similar, and answer generation).
+    - This change addresses the issue where Exa search functions would hang indefinitely, causing potential service disruptions and resource leaks.
+- **Fetch messages from last N sessions:**
+    - A tool for the agent, something like `get_previous_session_messages(number_of_sessions: int)` that returns a list of messages that the agent can analyse
+    - Switch on with `search_previous_sessions_history`
+- **Redis Expiration**: Added `expire` key to set TTL on Redis keys.
+- **Add Anthropic Cache Write to Agent Session Metrics:** Added `cache_creation_input_tokens` to agent session metrics, to allow for tracking Anthropic cache write statistics
+
+## Bug Fixes:
+
+- **Huggingface Embedder Updates:**
+    - Huggingface has changed some things on their API and they've deprecated `.post` on their `InferenceClient()`- https://discuss.huggingface.co/t/getting-error-attributeerror-inferenceclient-object-has-no-attribute-post/156682
+    - We can also no longer use `id: str = "jinaai/jina-embeddings-v2-base-code"` as default, because these models are no longer provided by the `HF Inference API`. Changed the default to `id: str = "intfloat/multilingual-e5-large"`
+- **Add `role_map` for `OpenAIChat`:** This allows certain models that don’t adhere to OpenAI’s role mapping to be used vir `OpenAILike`.
+- **Use Content Hash as ID in Upsert in Pgvector:** Use reproducible `content_hash` in upsert as ID.
+- **Insert in Vector DB passes only last chunk meta_data:** Insert in vector db passes only last chunk meta_data. issue link- https://discord.com/channels/965734768803192842/1219054452221153463/1376631140047130649
+- **Remove Argument Sanitization:** Replaced with a safer way to do this that won't break arguments that shouldn't be sanitized
+- **Handle async tools when running async agents on playground:** Fixed a regression where using Agents with async tools (e.g. MCP tools) was breaking in the Playground.
+</Update>
 <Update label="2025-05-23" description="v1.5.4">
 ## New Features:
 

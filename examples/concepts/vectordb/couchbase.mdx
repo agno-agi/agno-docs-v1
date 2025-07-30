@@ -1,0 +1,102 @@
+---
+title: Couchbase Integration
+---
+
+## Code
+
+```python cookbook/agent_concepts/vector_dbs/couchbase.py
+import os
+import time
+from agno.agent import Agent
+from agno.embedder.openai import OpenAIEmbedder
+from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
+from agno.vectordb.couchbase import CouchbaseSearch
+from couchbase.options import ClusterOptions, KnownConfigProfiles
+from couchbase.auth import PasswordAuthenticator
+
+# Couchbase connection settings
+username = os.getenv("COUCHBASE_USER", "Administrator")
+password = os.getenv("COUCHBASE_PASSWORD", "password")
+connection_string = os.getenv("COUCHBASE_CONNECTION_STRING", "couchbase://localhost")
+
+# Create cluster options with authentication
+auth = PasswordAuthenticator(username, password)
+cluster_options = ClusterOptions(auth)
+cluster_options.apply_profile(KnownConfigProfiles.WanDevelopment)
+
+knowledge_base = PDFUrlKnowledgeBase(
+    urls=["https://agno-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"],
+    vector_db=CouchbaseSearch(
+        bucket_name="recipe_bucket",
+        scope_name="recipe_scope",
+        collection_name="recipes",
+        couchbase_connection_string=connection_string,
+        cluster_options=cluster_options,
+        search_index="vector_search_fts_index",
+        embedder=OpenAIEmbedder(
+            id="text-embedding-3-large", 
+            dimensions=3072, 
+            api_key=os.getenv("OPENAI_API_KEY")
+        ),
+        wait_until_index_ready=60,
+        overwrite=True
+    ),
+)
+
+knowledge_base.load(recreate=True)
+
+# Wait for the vector index to sync with KV
+time.sleep(20)
+
+agent = Agent(knowledge=knowledge_base, show_tool_calls=True)
+agent.print_response("How to make Thai curry?", markdown=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Start Couchbase">
+    ```bash
+    docker run -d --name couchbase-server \
+      -p 8091-8096:8091-8096 \
+      -p 11210:11210 \
+      -e COUCHBASE_ADMINISTRATOR_USERNAME=Administrator \
+      -e COUCHBASE_ADMINISTRATOR_PASSWORD=password \
+      couchbase:latest
+    ```
+    
+    Then access http://localhost:8091 and create:
+    - Bucket: `recipe_bucket`
+    - Scope: `recipe_scope` 
+    - Collection: `recipes`
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U couchbase openai agno
+    ```
+  </Step>
+
+  <Step title="Set environment variables">
+    ```bash
+    export COUCHBASE_USER="Administrator"
+    export COUCHBASE_PASSWORD="password"
+    export COUCHBASE_CONNECTION_STRING="couchbase://localhost"
+    export OPENAI_API_KEY="your-openai-api-key"
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/agent_concepts/vector_dbs/couchbase.py
+    ```
+
+    ```bash Windows
+    python cookbook/agent_concepts/vector_dbs/couchbase.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
