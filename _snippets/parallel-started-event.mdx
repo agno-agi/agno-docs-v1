@@ -1,0 +1,7 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `event` | `str` | `WorkflowRunEvent.parallel_execution_started.value` | Event type identifier |
+| `step_name` | `Optional[str]` | `None` | Name of the parallel step |
+| `step_index` | `Optional[Union[int, tuple]]` | `None` | Index or position of the parallel step |
+| `parallel_step_count` | `Optional[int]` | `None` | Number of steps to execute in parallel |
+| *Inherits all fields from `BaseWorkflowRunResponseEvent`* |
