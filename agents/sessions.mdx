@@ -10,7 +10,7 @@ In practice, a session is a multi-turn conversation between a user and an Agent.
 
 Let's outline some key concepts:
 
-- **User:** A user represents an individual entity that interacts with the Agent. Each user has specific session state, memories, summaries, and conversation history separate from other users.
+- **User:** A user represents an individual that interacts with the Agent. Each user has associated memories, sessions, and conversation history separate from other users.
 - **Session:** A session is collection of consecutive runs like a multi-turn conversation between a user and an Agent. Sessions are identified by a `session_id` and each turn is a **run**.
 - **Run:** Every interaction (i.e. chat or turn) with an Agent is called a **run**. Runs are identified by a `run_id` and `Agent.run()` creates a new `run_id` when called.
 - **Messages:** are the individual messages sent between the model and the Agent. Messages are the communication protocol between the Agent and model.
