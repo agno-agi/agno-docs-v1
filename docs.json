@@ -447,6 +447,7 @@
                   "observability/introduction",
                   "observability/arize",
                   "observability/langfuse",
+                  "observability/langwatch",
                   "observability/langsmith",
                   "observability/langtrace",
                   "observability/weave"
