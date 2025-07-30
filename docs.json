@@ -461,6 +461,7 @@
                   "observability/atla",
                   "observability/langdb",
                   "observability/langfuse",
+                  "observability/langwatch",
                   "observability/langsmith",
                   "observability/langtrace",
                   "observability/weave"
