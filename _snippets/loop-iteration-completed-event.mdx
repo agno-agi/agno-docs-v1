@@ -1,0 +1,10 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `event` | `str` | `WorkflowRunEvent.loop_iteration_completed.value` | Event type identifier |
+| `step_name` | `Optional[str]` | `None` | Name of the loop step |
+| `step_index` | `Optional[Union[int, tuple]]` | `None` | Index or position of the loop |
+| `iteration` | `int` | `0` | Current iteration number |
+| `max_iterations` | `Optional[int]` | `None` | Maximum number of iterations allowed |
+| `iteration_results` | `List[StepOutput]` | `[]` | Results from this iteration |
+| `should_continue` | `bool` | `True` | Whether the loop should continue |
+| *Inherits all fields from `BaseWorkflowRunResponseEvent`* |
