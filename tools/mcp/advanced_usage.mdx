@@ -12,44 +12,44 @@ You can use multiple MCP servers in a single agent by using the `MultiMCPTools` 
 
 ```python multiple_mcp_servers.py
 import asyncio
-import os
+from os import getenv
 
 from agno.agent import Agent
 from agno.tools.mcp import MultiMCPTools
 
 
 async def run_agent(message: str) -> None:
-    """Run the Airbnb and Google Maps agent with the given message."""
-
-    env = {
-        **os.environ,
-        "GOOGLE_MAPS_API_KEY": os.getenv("GOOGLE_MAPS_API_KEY"),
-    }
-
-    async with MultiMCPTools(
+    # Initialize the MCP tools
+    mcp_tools = MultiMCPTools(
         [
             "npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt",
-            "npx -y @modelcontextprotocol/server-google-maps",
+            "npx -y @modelcontextprotocol/server-brave-search",
         ],
-        env=env,
-    ) as mcp_tools:
-        agent = Agent(
-            tools=[mcp_tools],
-            markdown=True,
-            show_tool_calls=True,
-        )
+        env={
+            "BRAVE_API_KEY": getenv("BRAVE_API_KEY"),
+        },
+        timeout_seconds=30,
+    )
 
-        await agent.aprint_response(message, stream=True)
+    # Connect to the MCP servers
+    await mcp_tools.connect()
+
+    # Use the MCP tools with an Agent
+    agent = Agent(
+        tools=[mcp_tools],
+        markdown=True,
+        show_tool_calls=True,
+    )
+    await agent.aprint_response(message)
+
+    # Close the MCP connection
+    await mcp_tools.close()
 
 
 # Example usage
 if __name__ == "__main__":
-    # Pull request example
-    asyncio.run(
-        run_agent(
-            "What listings are available in Cape Town for 2 people for 3 nights from 1 to 4 August 2025?"
-        )
-    )
+    asyncio.run(run_agent("What listings are available in Barcelona tonight?"))
+    asyncio.run(run_agent("What's the fastest way to get to Barcelona from London?"))
 ```
 
 
@@ -73,12 +73,6 @@ e.g.
 }
 ```
 
-When using the **SSE** transport, the `server_params` parameter should be an instance of `SSEClientParams`. It contains the following fields:
-- `url`: The URL of the MCP server.
-- `headers`: Headers to pass to the MCP server (optional).
-- `timeout`: Timeout for the connection to the MCP server (optional).
-- `sse_read_timeout`: Timeout for the SSE connection itself (optional).
-
 When using the **Streamable HTTP** transport, the `server_params` parameter should be an instance of `StreamableHTTPClientParams`. It contains the following fields:
 - `url`: The URL of the MCP server.
 - `headers`: Headers to pass to the MCP server (optional).
@@ -86,7 +80,13 @@ When using the **Streamable HTTP** transport, the `server_params` parameter shou
 - `sse_read_timeout`: how long (in seconds) the client will wait for a new event before disconnecting. All other HTTP operations are controlled by `timeout` (optional).
 - `terminate_on_close`: Whether to terminate the connection when the client is closed (optional).
 
+:warning: The SSE transport is deprecated and will be removed in a future version. Use the Streamable HTTP transport instead.
 
+When using the **SSE** transport, the `server_params` parameter should be an instance of `SSEClientParams`. It contains the following fields:
+- `url`: The URL of the MCP server.
+- `headers`: Headers to pass to the MCP server (optional).
+- `timeout`: Timeout for the connection to the MCP server (optional).
+- `sse_read_timeout`: Timeout for the SSE connection itself (optional).
 
 
 ## More Flexibility
