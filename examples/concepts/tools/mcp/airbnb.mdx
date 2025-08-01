@@ -22,7 +22,6 @@ from agno.tools.mcp import MCPTools
 
 async def run_mcp_agent(message: str):
     # Initialize the MCP tools
-    "npx -y @modelcontextprotocol/server-filesystem {file_path}"
     mcp_tools = MCPTools("npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt")
 
     # Connect to the MCP server
