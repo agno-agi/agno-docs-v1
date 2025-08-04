@@ -2,6 +2,23 @@
 title: "Product updates"
 mode: "wide"
 ---
+
+<Update label="2025-08-01" description="v1.7.7">
+
+## New Features:
+
+- **Updated MCP Tools:** Our ****`MCPTools` and `MultiMCPTools` classes can now be initialized and used without an async context manager, providing a much easier experience. See the updated [docs](https://docs.agno.com/tools/mcp/mcp).
+- **Morph Tools:** Morph’s Fast Apply model as a Tool, it intelligently merges your original code with update snippets at 98% accuracy and 4500+ tokens/second.
+
+## Improvements:
+
+- **LiteLLM File & Image Understanding**: Added support for file and image inputs for `LiteLLM`.
+- **Upgrade ZepTools to v3 Zep**: `ZepTools` are now compatible with Zep v3.
+
+## Bug Fixes:
+
+- **OpenAIEmbedder() wrong dimensions for text-embedding-3-large:** Automatically handles default `dimensions` length for `text-embedding-3-small` as 1536 and `text-embedding-3-large` as 3072.
+</Update>
 <Update label="2025-07-24" description="v1.7.6">
 ## New Features:
 
