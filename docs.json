@@ -354,20 +354,20 @@
                 "group": "Vector DBs",
                 "pages": [
                   "vectordb/introduction",
-                  "vectordb/pgvector",
                   "vectordb/cassandra",
                   "vectordb/chroma",
-                  "vectordb/couchbase",
                   "vectordb/clickhouse",
+                  "vectordb/couchbase",
                   "vectordb/lancedb",
                   "vectordb/milvus",
+                  "vectordb/mongodb",
+                  "vectordb/azure_cosmos_mongodb",
+                  "vectordb/pgvector",
                   "vectordb/pinecone",
                   "vectordb/qdrant",
                   "vectordb/singlestore",
-                  "vectordb/mongodb",
-                  "vectordb/azure_cosmos_mongodb",
-                  "vectordb/weaviate",
-                  "vectordb/surrealdb"
+                  "vectordb/surrealdb",
+                  "vectordb/weaviate"
                 ]
               },
               {
@@ -453,7 +453,7 @@
                 "pages": ["agent-api/introduction"]
               },
               {
-                "group":                 "Observability",
+                "group": "Observability",
                 "pages": [
                   "observability/introduction",
                   "observability/agentops",
@@ -612,7 +612,7 @@
                     "pages": [
                       "examples/workflows_2/03-workflows-loop-execution/loop_steps_workflow",
                       "examples/workflows_2/03-workflows-loop-execution/loop_with_parallel_steps_stream"
-                    ] 
+                    ]
                   },
                   {
                     "group": "Conditional Branching (Router)",
@@ -1820,8 +1820,8 @@
                 "pages": [
                   "reference/vector_db/cassandra",
                   "reference/vector_db/chromadb",
-                  "reference/vector_db/couchbase",
                   "reference/vector_db/clickhouse",
+                  "reference/vector_db/couchbase",
                   "reference/vector_db/lancedb",
                   "reference/vector_db/milvus",
                   "reference/vector_db/mongodb",
@@ -1829,8 +1829,8 @@
                   "reference/vector_db/pinecone",
                   "reference/vector_db/qdrant",
                   "reference/vector_db/singlestore",
-                  "reference/vector_db/weaviate",
-                  "reference/vector_db/surrealdb"
+                  "reference/vector_db/surrealdb",
+                  "reference/vector_db/weaviate"
                 ]
               },
               {
