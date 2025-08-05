@@ -32,9 +32,14 @@ Hybrid search typically works by:
 This capability allows for more flexible and powerful querying, often yielding better results than either method alone.
 
 <Card title="⚡ Asynchronous Operations">
-  <p>Several vector databases support asynchronous operations, offering improved performance through non-blocking operations, concurrent processing, reduced latency, and seamless integration with FastAPI and async agents.</p>
+  <p>
+    Several vector databases support asynchronous operations, offering improved
+    performance through non-blocking operations, concurrent processing, reduced
+    latency, and seamless integration with FastAPI and async agents.
+  </p>
   <Tip className="mt-4">
-    When building with Agno, use the <code>aload</code> methods for async knowledge base loading in production environments.
+    When building with Agno, use the <code>aload</code> methods for async
+    knowledge base loading in production environments.
   </Tip>
 </Card>
 
@@ -43,16 +48,19 @@ This capability allows for more flexible and powerful querying, often yielding b
 The following VectorDb are currently supported:
 
 - [PgVector](/vectordb/pgvector)\*
+- [Azure Cosmos MongoDB](/vectordb/azure-cosmos-mongodb)
 - [Cassandra](/vectordb/cassandra)
 - [ChromaDb](/vectordb/chroma)
-- [Couchbase](/vectordb/couchbase)\*
 - [Clickhouse](/vectordb/clickhouse)
+- [Couchbase](/vectordb/couchbase)\*
 - [LanceDb](/vectordb/lancedb)\*
 - [Milvus](/vectordb/milvus)
 - [MongoDb](/vectordb/mongodb)
+- [PgVector](/vectordb/pgvector)\*
 - [Pinecone](/vectordb/pinecone)\*
 - [Qdrant](/vectordb/qdrant)
 - [Singlestore](/vectordb/singlestore)
+- [SurrealDB](/vectordb/surrealdb)
 - [Weaviate](/vectordb/weaviate)
 
 \*hybrid search supported
