@@ -1,0 +1,210 @@
+---
+title: "TrueFoundry"
+---
+
+This guide provides instructions for integrating Agno AI with the [Truefoundry AI Gateway](https://www.truefoundry.com/ai-gateway).
+
+## What is TrueFoundry AI Gateway?
+
+TrueFoundry provides an enterprise-ready [AI Gateway](https://www.truefoundry.com/ai-gateway) which can integrate with agentic frameworks like Agno AI and provides governance and observability for your AI Applications.
+
+## Prerequisites
+
+Before integrating Agno AI with TrueFoundry, ensure you have:
+
+1. **TrueFoundry Account**: Create a [Truefoundry account](https://www.truefoundry.com/register) with atleast one model provider and generate a Personal Access Token by following the instructions in [Generating Tokens](https://docs.truefoundry.com/gateway/authentication). For a quick setup guide, see our [Gateway Quick Start](https://docs.truefoundry.com/gateway/quick-start)
+2. **Agno Installation**: Install Agno using pip: `pip install agno-agi[openai]`
+
+## Setup Process
+
+### 1. Generate Your TrueFoundry Access Token
+
+Navigate to your TrueFoundry dashboard and generate a Personal Access Token:
+
+<Frame>
+  <img src="/images/create-PAT.png" />
+</Frame>
+
+### 2. Configure Environment Variables
+
+Set up your environment variables to connect Agno with TrueFoundry Gateway:
+
+```bash
+export OPENAI_API_KEY="your-truefoundry-api-key"
+export OPENAI_BASE_URL="your-truefoundry-gateway-url"
+```
+
+### 3. Configure Agno Agents
+
+Create your Agno agents with TrueFoundry Gateway configuration:
+
+<Frame>
+  <img src="/images/unified-code-tfy.png" />
+</Frame>
+
+```python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+# Configure agent with TrueFoundry Gateway
+agent = Agent(
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",  # Use TrueFoundry model name. Similarly you can call any model from any model provider like anthropic, gemini etc
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+    ),
+    description="AI assistant powered by TrueFoundry Gateway",
+    instructions=[
+        "You are a helpful AI assistant",
+        "Provide accurate and concise responses"
+    ]
+)
+```
+
+## Usage Examples
+
+### Basic Single Agent
+
+Create a simple agent using the configured TrueFoundry Gateway:
+
+```python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+# Single agent with TrueFoundry Gateway
+agent = Agent(
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+        ),
+    name="Assistant",
+    description="General purpose AI assistant"
+)
+
+# Run the agent
+response = agent.run("What is the capital of Brazil?")
+print(response.content)
+```
+
+### Multi-Agent Team
+
+Create a team of specialized agents for complex tasks:
+
+```python
+from agno.agent import Agent
+from agno.team import Team
+from agno.models.openai import OpenAIChat
+
+# Research Agent
+researcher = Agent(
+    model=OpenAIChat(id="openai-main/gpt-4o"),
+    name="Researcher",
+    description="Conducts thorough research on topics",
+    instructions=[
+        "Research the given topic thoroughly",
+        "Provide factual and well-sourced information"
+    ]
+)
+
+# Writer Agent
+writer = Agent(
+    model=OpenAIChat(id="openai-main/gpt-4o"),
+    name="Writer",
+    description="Creates well-structured content",
+    instructions=[
+        "Write clear and engaging content",
+        "Structure information logically"
+    ]
+)
+
+# Create team
+research_team = Team(
+    agents=[researcher, writer],
+    instructions=[
+        "Researcher should investigate the topic first",
+        "Writer should create content based on research findings"
+    ]
+)
+
+# Execute team task
+result = research_team.run("Research and write about sustainable energy solutions")
+```
+
+### Agent with Custom Tools
+
+Integrate Agno agents with custom tools and TrueFoundry Gateway:
+
+```python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.python import PythonTools
+
+# Agent with tools
+coding_agent = Agent(
+    model=OpenAIChat(id="openai-main/gpt-4o"),
+    name="Coding Assistant",
+    description="Helps with coding and data analysis",
+    tools=[PythonTools()],
+    instructions=[
+        "Write clean and efficient code",
+        "Explain your code solutions"
+    ]
+)
+
+# Use agent for coding tasks
+response = coding_agent.run("Create a Python function to calculate the Fibonacci sequence")
+```
+
+### Environment Variables Configuration
+
+For persistent configuration across all Agno agents, set these environment variables:
+
+```bash
+# Add to your ~/.bashrc, ~/.zshrc, or equivalent
+export OPENAI_API_KEY="your-truefoundry-api-key"
+export OPENAI_BASE_URL="your-truefoundry-gateway-url"
+
+# Optional: Set default model
+export OPENAI_MODEL="openai-main/gpt-4o"
+```
+
+## Advanced Configuration
+
+### Custom Model Configuration
+
+You can also configure models programmatically with additional parameters:
+
+```python
+from agno.models.openai import OpenAIChat
+
+# Advanced model configuration
+model = OpenAIChat(
+    id="openai-main/gpt-4o",
+    api_key="your-truefoundry-api-key",
+    base_url="your-truefoundry-gateway-url",
+    temperature=0.7,
+    max_tokens=2000,
+    timeout=30.0
+)
+
+agent = Agent(
+    model=model,
+    name="Advanced Assistant"
+)
+```
+
+
+## Benefits of Using TrueFoundry Gateway with Agno AI
+
+1. **Cost Tracking**: Monitor and track costs across all your Agno AI agents and teams
+2. **Security**: Enhanced security with centralized API key management
+3. **Access Controls**: Implement fine-grained access controls for different teams and agents
+4. **Rate Limiting**: Prevent API quota exhaustion with intelligent rate limiting
+5. **Fallback Support**: Automatic failover to alternative providers when needed
+6. **Analytics**: Detailed analytics and monitoring for all LLM calls across your agent ecosystem
+7. **Multi-Provider Support**: Seamlessly switch between different model providers
+
+<Frame>
+  <img src="/images/monitoring-cost.png" />
+</Frame>
