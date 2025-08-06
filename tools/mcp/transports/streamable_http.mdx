@@ -12,14 +12,27 @@ To use it, initialize the `MCPTools` passing the URL of the MCP server and setti
 
 ```python
 from agno.agent import Agent
-    from agno.models.openai import OpenAIChat
-    from agno.tools.mcp import MCPTools
+from agno.models.openai import OpenAIChat
+from agno.tools.mcp import MCPTools
 
-    server_url = "http://localhost:8000/mcp"
+server_url = "http://localhost:8000/mcp"
 
-    async with MCPTools(url=server_url, transport="streamable-http") as mcp_tools:
-        agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
-        await agent.aprint_response("What is the license for this project?", stream=True)
+async def run_mcp_agent():
+
+    # Initialize the MCP tools
+    mcp_tools = MCPTools(url=server_url, transport="streamable-http")
+
+    # Connect to the MCP server
+    await mcp_tools.connect()
+
+    # Initialize the Agent
+    agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
+
+    # Run the agent
+    await agent.aprint_response("What is the license for this project?", stream=True)
+
+    # Close the MCP connection
+    await mcp_tools.close()
 ```
 
 
@@ -37,8 +50,16 @@ server_params = StreamableHTTPClientParams(
 
 )
 
-async with MCPTools(server_params=server_params) as mcp_tools:
+async def run_mcp_agent():
+
+    # Initialize the MCP tools
+    mcp_tools = MCPTools(server_params=server_params)
+
+    # Connect to the MCP server
+    await mcp_tools.connect()
+
     ...
+
 ```
 
 
@@ -83,29 +104,50 @@ Let's set up a simple local server and connect to it using the Streamable HTTP t
 
 
         async def run_agent(message: str) -> None:
-            async with MCPTools(transport="streamable-http", url=server_url) as mcp_tools:
-                agent = Agent(
-                    model=OpenAIChat(id="gpt-4o"),
-                    tools=[mcp_tools],
-                    markdown=True,
-                )
-                await agent.aprint_response(message=message, stream=True, markdown=True)
+
+            # Initialize the MCP tools
+            mcp_tools = MCPTools(transport="streamable-http", url=server_url)
+
+            # Connect to the MCP server
+            await mcp_tools.connect()
+
+            # Initialize the Agent
+            agent = Agent(
+                model=OpenAIChat(id="gpt-4o"),
+                tools=[mcp_tools],
+                markdown=True,
+            )
+
+            # Run the agent
+            await agent.aprint_response(message=message, stream=True, markdown=True)
+
+            # Close the MCP connection
+            await mcp_tools.close()
 
 
         # Using MultiMCPTools, we can connect to multiple MCP servers at once, even if they use different transports.
         # In this example we connect to both our example server (Streamable HTTP transport), and a different server (stdio transport).
         async def run_agent_with_multimcp(message: str) -> None:
-            async with MultiMCPTools(
+
+            # Initialize the MultiMCPTools instance
+            multi_mcp_tools = MultiMCPTools(
                 commands=["npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt"],
                 urls=[server_url],
                 urls_transports=["streamable-http"],
-            ) as mcp_tools:
-                agent = Agent(
-                    model=OpenAIChat(id="gpt-4o"),
-                    tools=[mcp_tools],
-                    markdown=True,
-                )
-                await agent.aprint_response(message=message, stream=True, markdown=True)
+            )
+
+            # Connect to the MCP servers
+            await multi_mcp_tools.connect()
+
+            # Initialize the Agent
+            agent = Agent(
+                model=OpenAIChat(id="gpt-4o"),
+                tools=[mcp_tools],
+                markdown=True,
+            )
+
+            # Run the agent
+            await agent.aprint_response(message=message, stream=True, markdown=True)
 
 
         if __name__ == "__main__":
@@ -126,7 +168,7 @@ Let's set up a simple local server and connect to it using the Streamable HTTP t
 
     <Step title="Run the client">
         ```bash
-        python sse_client.py
+        python streamable_http_client.py
         ```
     </Step>
 </Steps>

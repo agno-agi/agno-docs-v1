@@ -20,9 +20,21 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.mcp import MCPTools
 
-async with MCPTools(command=f"uvx mcp-server-git") as mcp_tools:
+async def run_mcp_agent():
+    # Initialize the MCP tools
+    mcp_tools = MCPTools(command=f"uvx mcp-server-git")
+
+    # Connect to the MCP server
+    await mcp_tools.connect()
+
+    # Initialize the Agent
     agent = Agent(model=OpenAIChat(id="gpt-4o"), tools=[mcp_tools])
+
+    # Run the agent
     await agent.aprint_response("What is the license for this project?", stream=True)
+
+    # Close the MCP connection
+    await mcp_tools.close()
 ```
 
 
@@ -45,20 +57,30 @@ async def run_agent(message: str) -> None:
         "GOOGLE_MAPS_API_KEY": os.getenv("GOOGLE_MAPS_API_KEY"),
     }
 
-    async with MultiMCPTools(
+    # Initialize the MultiMCPTools instance
+    multi_mcp_tools = MultiMCPTools(
         [
             "npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt",
             "npx -y @modelcontextprotocol/server-google-maps",
         ],
         env=env,
-    ) as mcp_tools:
-        agent = Agent(
-            tools=[mcp_tools],
-            markdown=True,
-            show_tool_calls=True,
-        )
+    )
 
-        await agent.aprint_response(message, stream=True)
+    # Connect to the MCP servers
+    await multi_mcp_tools.connect()
+
+    # Initialize the Agent
+    agent = Agent(
+        tools=[mcp_tools],
+        markdown=True,
+        show_tool_calls=True,
+    )
+
+    # Run the agent
+    await agent.aprint_response(message, stream=True)
+
+    # Close the MCP connections
+    await multi_mcp_tools.close()
 
 
 # Example usage
