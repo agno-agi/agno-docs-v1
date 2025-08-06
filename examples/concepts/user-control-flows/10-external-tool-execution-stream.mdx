@@ -13,6 +13,7 @@ from agno.models.openai import OpenAIChat
 from agno.tools import tool
 from agno.utils import pprint
 
+# We have to create a tool with the correct name, arguments and docstring for the agent to know what to call.
 @tool(external_execution=True)
 def execute_shell_command(command: str) -> str:
     """Execute a shell command.
@@ -28,6 +29,7 @@ def execute_shell_command(command: str) -> str:
     else:
         raise Exception(f"Unsupported command: {command}")
 
+
 agent = Agent(
     model=OpenAIChat(id="gpt-4o-mini"),
     tools=[execute_shell_command],
@@ -40,13 +42,19 @@ for run_response in agent.run(
     if run_response.is_paused:
         for tool in run_response.tools_awaiting_external_execution:
             if tool.tool_name == execute_shell_command.name:
-                print(f"Executing {tool.tool_name} with args {tool.tool_args} externally")
+                print(
+                    f"Executing {tool.tool_name} with args {tool.tool_args} externally"
+                )
                 # We execute the tool ourselves. You can also execute something completely external here.
                 result = execute_shell_command.entrypoint(**tool.tool_args)
                 # We have to set the result on the tool execution object so that the agent can continue
                 tool.result = result
 
-        run_response = agent.continue_run(run_response=run_response, stream=True)
+        run_response = agent.continue_run(
+            run_id=agent.run_response.run_id,
+            updated_tools=agent.run_response.tools,
+            stream=True,
+        )
         pprint.pprint_run_response(run_response)
 ```
 
