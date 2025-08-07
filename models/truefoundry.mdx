@@ -12,35 +12,30 @@ TrueFoundry provides an enterprise-ready [AI Gateway](https://www.truefoundry.co
 
 Before integrating Agno AI with TrueFoundry, ensure you have:
 
-1. **TrueFoundry Account**: Create a [Truefoundry account](https://www.truefoundry.com/register) with atleast one model provider and generate a Personal Access Token by following the instructions in [Generating Tokens](https://docs.truefoundry.com/gateway/authentication). For a quick setup guide, see our [Gateway Quick Start](https://docs.truefoundry.com/gateway/quick-start)
-2. **Agno Installation**: Install Agno using pip: `pip install agno-agi[openai]`
+1. **TrueFoundry Account**: Create a [Truefoundry account](https://www.truefoundry.com/register) and follow the instructions in our [Gateway Quick Start Guide](https://docs.truefoundry.com/gateway/quick-start)
+2. **Agno Installation**: In your project directory, install Agno using pip: `pip install agno`        #See [PyPI](https://pypi.org/project/agno/1.1.6/) for latest updates
 
 ## Setup Process
 
-### 1. Generate Your TrueFoundry Access Token
-
-Navigate to your TrueFoundry dashboard and generate a Personal Access Token:
-
-<Frame>
-  <img src="/images/create-PAT.png" />
-</Frame>
-
-### 2. Configure Environment Variables
+### 1. Configure Environment Variables (Optional)
 
 Set up your environment variables to connect Agno with TrueFoundry Gateway:
 
 ```bash
-export OPENAI_API_KEY="your-truefoundry-api-key"
-export OPENAI_BASE_URL="your-truefoundry-gateway-url"
+export API_KEY="your-truefoundry-api-key"
+export BASE_URL="your-truefoundry-gateway-url"
 ```
 
-### 3. Configure Agno Agents
+You will get your 'truefoundry-api-key', 'truefoundry-gateway-url' and model name directly from the unified code snippet
+
+<Frame>
+  <img src="/images/new-code-snippet.png" />
+</Frame>
+
+### 2. Configure Agno Agents
 
 Create your Agno agents with TrueFoundry Gateway configuration:
 
-<Frame>
-  <img src="/images/unified-code-tfy.png" />
-</Frame>
 
 ```python
 from agno.agent import Agent
@@ -49,7 +44,7 @@ from agno.models.openai import OpenAIChat
 # Configure agent with TrueFoundry Gateway
 agent = Agent(
     model=OpenAIChat(
-        id="openai-main/gpt-4o",  # Use TrueFoundry model name. Similarly you can call any model from any model provider like anthropic, gemini etc
+        id="openai-main/gpt-4o",    # Use TrueFoundry model name. Similarly you can call any model from any model provider like anthropic, gemini etc
         api_key="your-truefoundry-api-key",
         base_url="your-truefoundry-gateway-url"
     ),
@@ -98,7 +93,11 @@ from agno.models.openai import OpenAIChat
 
 # Research Agent
 researcher = Agent(
-    model=OpenAIChat(id="openai-main/gpt-4o"),
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+        ),
     name="Researcher",
     description="Conducts thorough research on topics",
     instructions=[
@@ -109,7 +108,11 @@ researcher = Agent(
 
 # Writer Agent
 writer = Agent(
-    model=OpenAIChat(id="openai-main/gpt-4o"),
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+        ),
     name="Writer",
     description="Creates well-structured content",
     instructions=[
@@ -129,69 +132,6 @@ research_team = Team(
 
 # Execute team task
 result = research_team.run("Research and write about sustainable energy solutions")
-```
-
-### Agent with Custom Tools
-
-Integrate Agno agents with custom tools and TrueFoundry Gateway:
-
-```python
-from agno.agent import Agent
-from agno.models.openai import OpenAIChat
-from agno.tools.python import PythonTools
-
-# Agent with tools
-coding_agent = Agent(
-    model=OpenAIChat(id="openai-main/gpt-4o"),
-    name="Coding Assistant",
-    description="Helps with coding and data analysis",
-    tools=[PythonTools()],
-    instructions=[
-        "Write clean and efficient code",
-        "Explain your code solutions"
-    ]
-)
-
-# Use agent for coding tasks
-response = coding_agent.run("Create a Python function to calculate the Fibonacci sequence")
-```
-
-### Environment Variables Configuration
-
-For persistent configuration across all Agno agents, set these environment variables:
-
-```bash
-# Add to your ~/.bashrc, ~/.zshrc, or equivalent
-export OPENAI_API_KEY="your-truefoundry-api-key"
-export OPENAI_BASE_URL="your-truefoundry-gateway-url"
-
-# Optional: Set default model
-export OPENAI_MODEL="openai-main/gpt-4o"
-```
-
-## Advanced Configuration
-
-### Custom Model Configuration
-
-You can also configure models programmatically with additional parameters:
-
-```python
-from agno.models.openai import OpenAIChat
-
-# Advanced model configuration
-model = OpenAIChat(
-    id="openai-main/gpt-4o",
-    api_key="your-truefoundry-api-key",
-    base_url="your-truefoundry-gateway-url",
-    temperature=0.7,
-    max_tokens=2000,
-    timeout=30.0
-)
-
-agent = Agent(
-    model=model,
-    name="Advanced Assistant"
-)
 ```
 
 
