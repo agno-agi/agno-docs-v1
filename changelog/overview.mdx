@@ -2,6 +2,37 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-08-08" description="v1.7.9">
+
+## **Improvements:**
+
+- **Reranker in Hybrid Search**: Added support for Reranker in Pgvector hybrid search
+- **Output Model**: Added support for `stream_intermediate_steps` with output model
+- **PDF page split**: Refactor of PDF Readers and addition of Page Number Handling
+
+## **Bug Fixes:**
+
+- **LanceDb Remote Connection**: Fixed a bug preventing connection to a remote LanceDb connection.
+- **Messages**: Fixed the order when using both `message` and `messages`.
+</Update>
+
+<Update label="2025-08-07" description="v1.7.8">
+## Improvements:
+
+- **Support for OpenAI Flex Processing**: Added `service_tier` to `OpenAIChat` and `OpenAIResponses`.
+
+## Bug Fixes:
+
+- **Print Response:**
+    - Fixed `show_member_responses` not working correctly on `Team`
+    - Fixed printing of MCP responses on streamable HTTP
+- **Session State on Team**: Fixed precedence for session state from sessions DB.
+- **`YouTubeTranscriptApi` has no attribute `get_transcript` :**
+    - The `YoutubeTranscriptApi` is updated and now uses `.fetch(video_id)` for getting transcripts.
+- **HITL streaming:**
+    - Added the required attributes- `tools_requiring_confirmation`, `tools_requiring_user_input`, `tools_awaiting_external_execution` on the class `BaseAgentRunResponseEvent`
+    - If you are using streaming, it is recommended to pass the `run_id` and a list of `updated_tools` to the `continue_run` or `acontinue_run` method.
+</Update>
 
 <Update label="2025-08-01" description="v1.7.7">
 
