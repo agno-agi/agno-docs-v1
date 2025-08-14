@@ -374,15 +374,16 @@
                 "group": "Storage",
                 "pages": [
                   "storage/introduction",
-                  "storage/dynamodb",
-                  "storage/json",
-                  "storage/mongodb",
-                  "storage/mysql",
                   "storage/postgres",
                   "storage/sqlite",
-                  "storage/yaml",
+                  "storage/in-memory",
+                  "storage/dynamodb",
+                  "storage/redis",
+                  "storage/mongodb",
+                  "storage/mysql",
                   "storage/singlestore",
-                  "storage/redis"
+                  "storage/yaml",
+                  "storage/json"
                 ]
               },
               {
