@@ -1,0 +1,50 @@
+---
+title: Basic Streaming Agent
+---
+
+## Code
+
+```python cookbook/models/portkey/basic_stream.py
+from agno.agent import Agent
+from agno.models.portkey import Portkey
+
+# Create model using Portkey
+model = Portkey(
+    id="gpt-4o-mini",
+)
+
+agent = Agent(model=model, markdown=True)
+
+agent.print_response("What is Portkey and why would I use it as an AI gateway?", stream=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API keys">
+    ```bash
+    export PORTKEY_API_KEY=xxx
+    export PORTKEY_VIRTUAL_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno portkey_ai
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/portkey/basic_stream.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/portkey/basic_stream.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

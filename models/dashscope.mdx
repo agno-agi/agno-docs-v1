@@ -1,0 +1,76 @@
+---
+title: Dashscope
+description: Learn how to use Dashscope Qwen models in Agno.
+---
+
+Dashscope provides access to Alibaba Cloud's Qwen family of large language models. Qwen models are multilingual, efficient, and offer strong performance across various tasks including reasoning, coding, and creative writing.
+
+We recommend experimenting to find the best-suited model for your use-case. Here are some general recommendations:
+
+- `qwen-plus` is good for most general use-cases with balanced performance and cost.
+- `qwen-max` offers the highest quality for complex reasoning tasks.
+- `qwen-turbo` provides faster inference for simpler tasks.
+
+Dashscope also supports advanced features like structured outputs and thinking processes for enhanced reasoning capabilities.
+
+## Authentication
+
+Set your `DASHSCOPE_API_KEY` environment variable. You can get one [from Alibaba Cloud here](https://www.alibabacloud.com/help/en/model-studio/get-api-key).
+
+<CodeGroup>
+
+```bash Mac
+export DASHSCOPE_API_KEY=sk-***
+```
+
+```bash Windows
+setx DASHSCOPE_API_KEY sk-***
+```
+
+</CodeGroup>
+
+## Example
+
+Use `DashScope` with your `Agent`:
+
+<CodeGroup>
+
+```python agent.py
+from agno.agent import Agent, RunResponse
+from agno.models.dashscope import DashScope
+
+agent = Agent(
+    model=DashScope(id="qwen-plus"),
+    markdown=True
+)
+
+# Print the response in the terminal
+agent.print_response("Share a 2 sentence horror story.")
+```
+
+</CodeGroup>
+
+## Thinking Process
+
+DashScope models support enabling thinking processes for enhanced reasoning:
+
+```python
+from agno.agent import Agent
+from agno.models.dashscope import DashScope
+
+agent = Agent(
+    model=DashScope(
+        id="qwen-plus",
+        enable_thinking=True,
+        include_thoughts=True,
+    ),
+)
+```
+
+<Note> View more examples [here](../examples/models/dashscope). </Note>
+
+## Params
+
+<Snippet file="model-dashscope-params.mdx" />
+
+`DashScope` also supports the params of [OpenAI](/reference/models/openai).
