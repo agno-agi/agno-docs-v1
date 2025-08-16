@@ -9,7 +9,7 @@ You can track your Agent in real-time on [app.agno.com](https://app.agno.com).
 
 ## Authenticate
 Authenticate with [agno.com](https://app.agno.com) to start monitoring your sessions.
-Check out [Authentication guide](how-to/authentication) for instructions on how to Authenticate with Agno.
+Check out [Authentication guide](/how-to/authentication) for instructions on how to Authenticate with Agno.
 
 ## Enable Monitoring
 
@@ -100,3 +100,9 @@ python debug_logs.py
    src="/videos/debug_logs.mp4"
 ></video>
 
+## Telemetry
+
+Agno logs which model an agent used so we can prioritize updates to the most popular providers. You can disable this by setting `AGNO_TELEMETRY=false` in your environment.
+
+```bash
+export AGNO_TELEMETRY=false

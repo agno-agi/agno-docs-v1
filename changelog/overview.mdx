@@ -2,7 +2,172 @@
 title: "Product updates"
 mode: "wide"
 ---
+<Update label="2025-08-08" description="v1.7.9">
 
+## **Improvements:**
+
+- **Reranker in Hybrid Search**: Added support for Reranker in Pgvector hybrid search
+- **Output Model**: Added support for `stream_intermediate_steps` with output model
+- **PDF page split**: Refactor of PDF Readers and addition of Page Number Handling
+
+## **Bug Fixes:**
+
+- **LanceDb Remote Connection**: Fixed a bug preventing connection to a remote LanceDb connection.
+- **Messages**: Fixed the order when using both `message` and `messages`.
+</Update>
+
+<Update label="2025-08-07" description="v1.7.8">
+## Improvements:
+
+- **Support for OpenAI Flex Processing**: Added `service_tier` to `OpenAIChat` and `OpenAIResponses`.
+
+## Bug Fixes:
+
+- **Print Response:**
+    - Fixed `show_member_responses` not working correctly on `Team`
+    - Fixed printing of MCP responses on streamable HTTP
+- **Session State on Team**: Fixed precedence for session state from sessions DB.
+- **`YouTubeTranscriptApi` has no attribute `get_transcript` :**
+    - The `YoutubeTranscriptApi` is updated and now uses `.fetch(video_id)` for getting transcripts.
+- **HITL streaming:**
+    - Added the required attributes- `tools_requiring_confirmation`, `tools_requiring_user_input`, `tools_awaiting_external_execution` on the class `BaseAgentRunResponseEvent`
+    - If you are using streaming, it is recommended to pass the `run_id` and a list of `updated_tools` to the `continue_run` or `acontinue_run` method.
+</Update>
+
+<Update label="2025-08-01" description="v1.7.7">
+
+## New Features:
+
+- **Updated MCP Tools:** Our ****`MCPTools` and `MultiMCPTools` classes can now be initialized and used without an async context manager, providing a much easier experience. See the updated [docs](https://docs.agno.com/tools/mcp/mcp).
+- **Morph Tools:** Morph’s Fast Apply model as a Tool, it intelligently merges your original code with update snippets at 98% accuracy and 4500+ tokens/second.
+
+## Improvements:
+
+- **LiteLLM File & Image Understanding**: Added support for file and image inputs for `LiteLLM`.
+- **Upgrade ZepTools to v3 Zep**: `ZepTools` are now compatible with Zep v3.
+
+## Bug Fixes:
+
+- **OpenAIEmbedder() wrong dimensions for text-embedding-3-large:** Automatically handles default `dimensions` length for `text-embedding-3-small` as 1536 and `text-embedding-3-large` as 3072.
+</Update>
+<Update label="2025-07-24" description="v1.7.6">
+## New Features:
+
+- **Portkey Model Support**: Added support for Portkey hosted models.
+- **Bitbucket Tool**: Added `BitbucketTools` with a variety of Bitbucket repository actions.
+- **Jina Embedder:** Added `JinaEmbedder` for using embedding models via Jina.
+- **Row Chunking**: Added `RowChunking` as a CSV chunking strategy.
+- **EVM Toolkit**: Added `EvmTools` to do transactions on EVM compatible blockchains using `web3`.
+- **LinkUp Toolkit**: Added `LinkupTools` for powerful search.
+- **Background Execution Support for Workflows 2.0:** Introduced background execution capabilities for Workflows 2.0, enabling non-blocking workflow execution with polling support. See docs [here](https://docs.agno.com/workflows_2/background-execution).
+
+## Improvements:
+
+- **Async Bedrock Support**: Added async execution support for the AWS bedrock implementation.
+- **PostgreSQL Tools Updates:** Various security and stability overhauls made to the `PostgresTools` toolkit.
+- **Daytona Toolkit Updates:** Added new tools for `Daytona`  agent Toolkit
+
+## Bug Fixes:
+
+- **LiteLLM Metrics**: Fixed issue with metrics on streaming responses from LiteLLM.
+- **Team Expected Output**: Fixed issue where expected_output of members were overwritten by the team leader agent.
+- **Workflows Async Generators**: Fixed how async generator `arun` functions are treated. It now correctly keeps async generators as async generators and doesn't convert it to a coroutine.
+    - **Before:** Workflows with Async generator `arun` functions were incorrectly awaited as coroutines, which could cause runtime errors or prevent proper iteration through the yielded asynchronous values.
+    - **After:** Async generator workflows are now properly recognised and handled as async generators, allowing for correct iteration over their yielded values using `async for`. This ensures all yielded results are processed as intended within asynchronous workflows.
+- **LiteLLM Multiple Streaming Tool Calls:** When Agno is run through LiteLLM against OpenAI chat models (eg. GPT4.1), multiple streamed tool_calls lost their individual argument streams. This has been resolved.
+
+</Update>
+<Update label="2025-07-17" description="v1.7.5">
+
+## New Features:
+
+- **SurrealDB:** Added SurrealDB support as a vector DB for knowledge bases.
+
+## Improvements:
+
+- **Session Caching:** Added `cache_session` attribute to allow users to switch off session caching, which improves on memory management.
+- **Workflows 2.0 FastAPI Support**: Added support for running the new workflows in `FastAPIApp` .
+
+## Bug Fixes:
+
+- **Nested Tool Hooks**: Fixed bug with nested tool hooks.
+
+</Update>
+<Update label="2025-07-16" description="v1.7.4">
+## Workflows 2.0
+
+<img height="200" src="/images/changelogs/release-1-7-4.png" /> 
+
+## New Features:
+
+- **Workflows Revamped (beta):** Our new Workflows implementation (internally referred to as Workflows 2.0) is a complete redesign of the workflow system in Agno, introducing a step-based architecture that provides better structure, flexibility, and control over multi-stage AI agent processes
+    - Core Concepts:
+        - **Flexible Execution**: Sequential, parallel, conditional, and loop-based execution
+        - **Smart Routing**: Dynamic step selection based on content analysis or user intent
+        - **Mixed Components**: Combine agents, teams, and functions seamlessly
+        - **State Management:** Share data across steps with session state
+    - For a comprehensive guide to the new Workflows system, check out the [docs](https://docs.agno.com/workflows_2/overview).
+- **Pydantic Input for Agents/Teams:** Both Agent and Team now accepts structured input (i.e. a pydantic model) on run() and print_response().
+
+</Update>
+<Update label="2025-07-15" description="v1.7.3">
+
+## New Features:
+
+- **Session State on Run**: You can now pass `session_state` when running an agent or team. See [docs](https://docs.agno.com/agents/state) for more information.
+- **GCS Support for PDF Knowledge Base:** Added `GCSPDFKnowledgeBase` to support PDFs on Google Cloud Storage.
+
+## Bug Fixes:
+
+- **Workflows Async + Storage**: Fixed issues where sessions was not correctly stored with async workflow executions.
+- **Session State Management**: Fixed issues around session state management in teams and agents. Session state and session name will now correctly reset and load from storage if sessions are switched.
+- **Metadata Support for Document Knowledge Base:** Adds metadata support for `DocumentKnowledgeBase`
+- **Session Metrics with History**: Fixed bug with session metrics on `Agent` where history is enabled.
+
+</Update>
+<Update label="2025-07-10" description="v1.7.2">
+
+## New Features:
+
+- **MySQL Storage**: Added support for `MySQLStorage` as an agent/team/workflow session storage backend.
+- **XAi Live Search**: Added support for live search on the XAi model provider.
+- **OpenAI Deep Research**: Support added for `o4-mini-deep-research` and `o3-deep-research` models.
+- **Stagehand MCP example**: Added an example of using Stagehand MCP with Agno.
+- **Atla observability example**: Added an example of using Atla observability with Agno.
+- **Scrapegraph example**: Added an example of using Scrapegraph with Agno.
+
+## Improvements:
+
+- **Memory Growth on Performance Evals**: Added `memory_growth_tracking` as an attribute on `PerformanceEval` to enable additional debug logs for memory growth.
+- **Agent/Team in Tool Hook**: Added `agent` and `team` as optional parameters in tool hooks, for more flexibility.
+
+## Bug Fixes:
+
+- **Gemini 2.5 Metrics:** Fixed Gemini metrics to correctly include “thinking” tokens.
+- **Claude tool calling:** Fixed a bug related to parsing function call responses when using Claude models.
+- **Team Metrics**: Fixed a bug with team metrics when teams have history enabled.
+
+</Update>
+<Update label="2025-06-30" description="v1.7.1">
+
+## New Features:
+
+- **Debug Level:** Added `debug_level` to both `Agent` and `Team`. This is an `int` value of either `1` (default) or `2` (more verbose logging). Currently this only enables more verbose model logs, but will be used more widely in future.
+
+## Improvements:
+
+- **Parser Model on Teams**: Added `parser_model` support for `Team`. See docs [here](https://docs.agno.com/teams/structured-output#using-a-parser-model).
+- **Support for Gemini Thinking**: Added `thinking_budget` and `include_thoughts` parameters for `Gemini` model class.
+- **Serper Tools**: Made updates to the toolkit to include new tools `search_news` , `search_scholar` and `scrape_webpage`.
+- **Valyu Tools:** New Valyu toolkit for Deep Search capabilities of academic sources.
+- **Oxylabs:** Added `OxylabsTools` for adding more web-scraping capabilities to agents.
+
+## Bug Fixes:
+
+- **DuckDB CSV parsing error:** For CSV files use the custom `read_csv` method for improved CSV parsing
+- **Full Team Metrics**: Fixed an issue with calculation of the `full_team_session_metrics` on Teams.
+
+</Update>
 <Update label="2025-06-26" description="v1.7.0">
 
 ## New Features:
