@@ -1,0 +1,20 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `name` | `Optional[str]` | `None` | Name of the workflow for identification |
+| `workflow_id` | `Optional[str]` | `None` | Unique identifier for the workflow |
+| `description` | `Optional[str]` | `None` | Description of the workflow's purpose |
+| `steps` | `Optional[WorkflowSteps]` | `None` | Steps to execute in the workflow |
+| `storage` | `Optional[Storage]` | `None` | Storage backend for persisting workflow data |
+| `session_id` | `Optional[str]` | `None` | Session UUID for tracking workflow execution |
+| `session_name` | `Optional[str]` | `None` | Human-readable name for the session |
+| `user_id` | `Optional[str]` | `None` | ID of the user executing the workflow |
+| `workflow_session_id` | `Optional[str]` | `None` | ID of the workflow session, this is set on the Agent/Team of the Workflow |
+| `workflow_session_state` | `Optional[Dict[str, Any]]` | `None` | State data for the workflow session |
+| `run_id` | `Optional[str]` | `None` | Unique identifier for the current run |
+| `run_response` | `Optional[WorkflowRunResponse]` | `None` | Response object from workflow execution |
+| `workflow_session` | `Optional[WorkflowSessionV2]` | `None` | Workflow session object for storage |
+| `debug_mode` | `Optional[bool]` | `False` | Enable debug mode for detailed logging |
+| `stream` | `Optional[bool]` | `None` | Stream the response from the workflow |
+| `stream_intermediate_steps` | `bool` | `False` | Stream intermediate steps during execution |
+| `store_events` | `bool` | `False` | Store execution events for debugging/auditing |
+| `events_to_skip` | `Optional[List[WorkflowRunEvent]]` | `None` | List of event types to skip when storing |
