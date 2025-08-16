@@ -89,6 +89,7 @@
                     "pages": ["models/cerebras", "models/cerebras_openai"]
                   },
                   "models/cohere",
+                  "models/dashscope",
                   "models/deepinfra",
                   "models/deepseek",
                   "models/fireworks",
@@ -111,6 +112,7 @@
                   "models/openai-responses",
                   "models/openrouter",
                   "models/perplexity",
+                  "models/portkey",
                   "models/sambanova",
                   "models/together",
                   "models/vercel",
@@ -1378,6 +1380,15 @@
                 ]
               },
               {
+                "group": "DashScope",
+                "pages": [
+                  "examples/models/dashscope/basic",
+                  "examples/models/dashscope/basic_stream",
+                  "examples/models/dashscope/tool_use",
+                  "examples/models/dashscope/structured_output"
+                ]
+              },
+              {
                 "group": "DeepInfra",
                 "pages": [
                   "examples/models/deepinfra/basic",
@@ -1599,6 +1610,15 @@
                 ]
               },
               {
+                "group": "Portkey",
+                "pages": [
+                  "examples/models/portkey/basic",
+                  "examples/models/portkey/basic_stream",
+                  "examples/models/portkey/tool_use",
+                  "examples/models/portkey/structured_output"
+                ]
+              },
+              {
                 "group": "Together",
                 "pages": [
                   "examples/models/together/basic",
@@ -1771,6 +1791,7 @@
                   "reference/models/ollama",
                   "reference/models/anthropic",
                   "reference/models/cohere",
+                  "reference/models/dashscope",
                   "reference/models/deepinfra",
                   "reference/models/deepseek",
                   "reference/models/gemini",
@@ -1790,6 +1811,7 @@
                   "reference/models/azure_open_ai",
                   "reference/models/fireworks",
                   "reference/models/openrouter",
+                  "reference/models/portkey",
                   "reference/models/sambanova",
                   "reference/models/internlm",
                   "reference/models/ollama_tools",
