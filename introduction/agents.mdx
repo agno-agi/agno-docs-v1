@@ -206,8 +206,6 @@ agent = Agent(
         ReasoningTools(add_instructions=True),
         YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
     ],
-    # User ID for storing memories, `default` if not provided
-    user_id="ava",
     instructions=[
         "Use tables to display data.",
         "Include sources in your response.",
@@ -220,16 +218,18 @@ agent = Agent(
 )
 
 if __name__ == "__main__":
-    # This will create a memory that "ava's" favorite stocks are NVIDIA and TSLA
+    # Create memory for user's favorite stocks
     agent.print_response(
         "My favorite stocks are NVIDIA and TSLA",
+        user_id="ava",  # Links to user's memories
         stream=True,
         show_full_reasoning=True,
         stream_intermediate_steps=True,
     )
-    # This will use the memory to answer the question
+    # Use memory to answer question
     agent.print_response(
         "Can you compare my favorite stocks?",
+        user_id="ava",  # Links to user's memories
         stream=True,
         show_full_reasoning=True,
         stream_intermediate_steps=True,
