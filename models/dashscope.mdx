@@ -29,6 +29,18 @@ setx DASHSCOPE_API_KEY sk-***
 
 </CodeGroup>
 
+## Base URL
+
+Dashscope provides different base URLs depending on your region:
+
+- **International users**:  
+  `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
+- **China mainland users**:  
+  `https://dashscope.aliyuncs.com/compatible-mode/v1`
+
+By default, Agno uses the international endpoint.  
+If you are located in mainland China, you may need to override `base_url`
+
 ## Example
 
 Use `DashScope` with your `Agent`:
