@@ -68,6 +68,22 @@ agent = Agent(
 )
 ```
 
+To use Vertex AI Search:
+
+```python
+# Replace with your actual datastore ID
+datastore_id = "projects/your-project-id/locations/global/collections/default_collection/dataStores/your-datastore-id"
+
+agent = Agent(
+    model=Gemini(
+        id="gemini-2.5-flash",
+        vertex_ai_search=True,
+        vertex_ai_search_datastore=datastore_id,
+        vertexai=True,  # Required for Vertex AI Search
+    ),
+)
+```
+
 ## Example
 
 Use `Gemini` with your `Agent`:
