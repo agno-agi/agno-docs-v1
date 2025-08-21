@@ -189,6 +189,7 @@
                           "tools/toolkits/database/csv",
                           "tools/toolkits/database/duckdb",
                           "tools/toolkits/database/mem0",
+                          "tools/toolkits/database/memori",
                           "tools/toolkits/database/pandas",
                           "tools/toolkits/database/postgres",
                           "tools/toolkits/database/sql",
