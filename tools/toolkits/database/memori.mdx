@@ -78,21 +78,6 @@ agent.print_response("Show me your memory statistics")
 | `record_conversation` | Store a user/agent conversation in memory. Can be called manually or automatically (if `auto_ingest=True`).     |
 | `get_memory_stats`    | Retrieve statistics and status about the current memory system (total memories, database type, etc.).           |
 
-## Configuration Options
-
-```python
-from agno.tools.memori import MemoriTools
-
-# Basic SQLite configuration
-memori_tools = MemoriTools(
-    database_connect="sqlite:///my_agent_memory.db",
-    namespace="my_agent",
-    auto_ingest=True,
-    conscious_ingest=True,
-    verbose=False
-)
-```
-
 ## Developer Resources
 
 * View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/memori.py)
