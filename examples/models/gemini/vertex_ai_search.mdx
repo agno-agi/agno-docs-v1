@@ -4,7 +4,7 @@ title: Vertex AI Agent
 
 ## Code
 
-```python cookbook/models/google/gemini/vertex_ai_search.py
+```python cookbook/models/google/gemini/vertexai_search.py
 from agno.agent import Agent
 from agno.models.google import Gemini
 
@@ -14,8 +14,8 @@ datastore_id = "projects/your-project-id/locations/global/collections/default_co
 agent = Agent(
     model=Gemini(
         id="gemini-2.5-flash",
-        vertex_ai_search=True,
-        vertex_ai_search_datastore=datastore_id,
+        vertexai_search=True,
+        vertexai_search_datastore=datastore_id,
         vertexai=True,  # Use Vertex AI endpoint
     ),
     show_tool_calls=True,
@@ -55,10 +55,10 @@ agent.print_response("What are our company's policies regarding remote work?")
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac/Linux
-    python cookbook/models/google/gemini/vertex_ai_search.py
+    python cookbook/models/google/gemini/vertexai_search.py
     ```
     ```bash Windows
-    python cookbook/models/google/gemini/vertex_ai_search.py
+    python cookbook/models/google/gemini/vertexai_search.py
     ```
     </CodeGroup>
   </Step>
