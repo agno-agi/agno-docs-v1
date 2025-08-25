@@ -2,6 +2,58 @@
 title: "Product updates"
 mode: "wide"
 ---
+
+<Update label="2025-08-21" description="v1.7.12">
+## Improvements:
+
+- **Teams Collaborate Streaming:** Added support for streaming or teams on `collaborate` mode.
+- **OpenAI Verbosity**: Added `verbosity` parameter to `OpenAIChat` and `OpenAIResponses`.
+- **Gemini URL Context Tool:** Adds support fior Gemini URL context tool.
+
+## Bug Fixes:
+
+- **GCSKnowledgeBase Load:** Fixed cases where `.load()` functioned incorrectly.
+- **Youtube Transcripts**: Removed deprecated implementation in `YoutubeTools`.
+
+</Update>
+
+<Update label="2025-08-17" description="v1.7.11">
+## New Features:
+
+- **In Memory Storage**: Added `InMemoryStorage` for a simpler storage option useful in rapid prototyping.
+- **Trafilatura Tools**: Added `TrafilaturaTools` SDK for web scraping and text extraction using the Trafilatura library, with 15 comprehensive cookbook examples.
+- **Qwen and Dashscope Native Models**: Use Qwen models via `DashScope` integration.
+- **Brandfetch Tools**: Added tools allowing agents to fetch brand information and assets via Brandfetch.
+
+## Improvements:
+
+- **Async Support for Milvus Hybrid Search**
+- **Bedrock Files Support**: Now supporting `File` for compatible AWS Bedrock models.
+
+## Bug Fixes:
+
+- **MarkdownKnowledgeBase Custom Chunking Strategy**: Fixed issues with setting a custom chunking strategy.
+- **Teams Routing/Coordination System Message**: Added criteria for when the team must respond directly or forward requests to its members.
+
+</Update>
+
+<Update label="2025-08-12" description="v1.7.10">
+
+## New Features:
+
+- **GPT-5 Compatibility**: Support for GPT-5 with our `OpenAIResponses` class
+
+## Improvements:
+
+- **Knowledge Base PDF with Password Support**: Added support for password-protected PDFs on `PDFKnowledgeBase`.
+- **Pagination for GitHub Tools:**  Added pagination with metadata for GitHub Tools.
+- **Team** **Role Parameter:** Added a `role` parameter to the `Team` class for defining the team's purpose and specialization.
+
+## Bug fixes:
+
+- Support for all GPT reasoning models with our `OpenAIResponses` class
+</Update>
+
 <Update label="2025-08-08" description="v1.7.9">
 
 ## **Improvements:**
