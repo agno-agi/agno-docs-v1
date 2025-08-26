@@ -51,6 +51,11 @@ agent.print_response("Show me my latest 5 unread emails", markdown=True)
 | `create_draft_email`  | `bool`  | `True`  | Enable creating email drafts                              |
 | `send_email`          | `bool`  | `True`  | Enable sending emails                                     |
 | `search_emails`       | `bool`  | `True`  | Enable searching emails                                   |
+| `creds`          | `Credentials` | `None` | Pre-fetched OAuth credentials                             |
+| `credentials_path`    | `str`   | `None`  | Path to credentials file                                  |
+| `token_path`          | `str`   | `None`  | Path to token file                                        |
+| `scopes`          | `List[str]`   | `None`  | Custom OAuth scopes                                     |
+| `port`                | `int`   | `None`  | Port to use for OAuth authentication                      |
 
 ## Toolkit Functions
 
