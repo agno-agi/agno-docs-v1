@@ -1073,6 +1073,7 @@
                     "pages": [
                       "examples/concepts/tools/social/discord",
                       "examples/concepts/tools/social/email",
+                      "examples/concepts/tools/social/gmail",
                       "examples/concepts/tools/social/slack",
                       "examples/concepts/tools/social/twilio",
                       "examples/concepts/tools/social/webex",

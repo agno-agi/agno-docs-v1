@@ -1,0 +1,66 @@
+---
+title: Gmail Tools
+---
+
+## Code
+
+```python cookbook/tools/gmail_tools.py
+from agno.agent import Agent
+from agno.tools.gmail import GmailTools
+
+agent = Agent(
+    name="Gmail Agent",
+    tools=[GmailTools()],
+    instructions=[
+        "Based on user query, you can read, draft and send emails using Gmail.",
+        "While showing email contents, you can summarize the email contents, extract key details and dates.",
+        "Show the email contents in a structured markdown format.",
+    ],
+    markdown=True,
+    show_tool_calls=True,
+)
+
+# Send a reply to an email
+agent.print_response(
+    "Send a reply to the last email saying 'Thank you for your message. I'll get back to you soon.'",
+    stream=True,
+)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export OPENAI_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Set up Gmail credentials">
+    ```bash
+    export GOOGLE_CLIENT_ID=xxx
+    export GOOGLE_CLIENT_SECRET=xxx
+    export GOOGLE_PROJECT_ID=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U google-auth google-api-python-client openai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/tools/gmail_tools.py
+    ```
+
+    ```bash Windows
+    python cookbook/tools/gmail_tools.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
