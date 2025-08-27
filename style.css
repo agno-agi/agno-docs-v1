@@ -1,4 +1,3 @@
 #banner a{
-    text-decoration: underline;
-    text-decoration-color: #FFF;
+    border-bottom: 1px solid #ff;
 }
