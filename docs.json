@@ -13,7 +13,7 @@
   },
   "banner": {
     "content": "Build, ship and monitor agents at scale. AgentOS managed platform coming soon. [Join the waitlist.](https://www.agno.com/agent-os-waitlist)",
-    "dismissible": false
+    "dismissible": true
   },
   "navigation": {
     "tabs": [
