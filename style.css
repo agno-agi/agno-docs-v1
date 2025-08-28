@@ -1,3 +1,6 @@
+#banner p{
+    font-weight: 500;
+}
 #banner a{
     text-decoration: underline;
     text-decoration-color: #FFF;
