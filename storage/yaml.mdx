@@ -13,7 +13,7 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.storage.yaml import YamlStorage
 
 agent = Agent(
-    storage=YamlStorage(path="tmp/agent_sessions_yaml"),
+    storage=YamlStorage(dir_path="tmp"),
     tools=[DuckDuckGoTools()],
     add_history_to_messages=True,
 )
