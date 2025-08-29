@@ -33,7 +33,11 @@ server_params = SSEClientParams(
     sse_read_timeout=...,
 )
 
-async with MCPTools(server_params=server_params) as mcp_tools:
+async def run_mcp_agent():
+
+    # Initialize the MCP tools with the server parameters
+    mcp_tools = MCPTools(server_params=server_params)
+
     ...
 ```
 
@@ -78,28 +82,44 @@ Let's set up a simple local server and connect to it using the SSE transport:
 
 
         async def run_agent(message: str) -> None:
-            async with MCPTools(transport="sse", url=server_url) as mcp_tools:
-                agent = Agent(
-                    model=OpenAIChat(id="gpt-4o"),
-                    tools=[mcp_tools],
-                    markdown=True,
-                )
-                await agent.aprint_response(message=message, stream=True, markdown=True)
+            mcp_tools = MCPTools(transport="sse", url=server_url)
+            await mcp_tools.connect()
+
+            agent = Agent(
+                model=OpenAIChat(id="gpt-4o"),
+                tools=[mcp_tools],
+                markdown=True,
+            )
+            await agent.aprint_response(message=message, stream=True, markdown=True)
+
+            await mcp_tools.close()
 
 
         # Using MultiMCPTools, we can connect to multiple MCP servers at once, even if they use different transports.
         # In this example we connect to both our example server (SSE transport), and a different server (stdio transport).
         async def run_agent_with_multimcp(message: str) -> None:
-            async with MultiMCPTools(
+
+            # Initialize the MultiMCPTools instance
+            multi_mcp_tools =MultiMCPTools(
                 commands=["npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt"],
                 urls=[server_url],
-            ) as mcp_tools:
-                agent = Agent(
-                    model=OpenAIChat(id="gpt-4o"),
-                    tools=[mcp_tools],
-                    markdown=True,
-                )
-                await agent.aprint_response(message=message, stream=True, markdown=True)
+            )
+
+            # Connect to the MCP servers
+            await multi_mcp_tools.connect()
+
+            # Initialize the Agent
+            agent = Agent(
+                model=OpenAIChat(id="gpt-4o"),
+                tools=[mcp_tools],
+                markdown=True,
+            )
+
+            # Run the agent
+            await agent.aprint_response(message=message, stream=True, markdown=True)
+
+            # Close the MCP connections
+            await multi_mcp_tools.close()
 
 
         if __name__ == "__main__":

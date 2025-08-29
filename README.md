@@ -8,7 +8,7 @@ Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to run docume
 npm i -g mint
 ```
 
-Run the following command at the root of your documentation (where mint.json is)
+Run the following command at the root of your documentation (where docs.json is)
 
 ```
 mint dev

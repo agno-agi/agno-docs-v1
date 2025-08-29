@@ -1,0 +1,72 @@
+---
+title: Vertex AI Agent
+---
+
+## Code
+
+```python cookbook/models/google/gemini/vertexai_search.py
+from agno.agent import Agent
+from agno.models.google import Gemini
+
+# Replace with your actual Vertex AI Search datastore ID
+datastore_id = "projects/your-project-id/locations/global/collections/default_collection/dataStores/your-datastore-id"
+
+agent = Agent(
+    model=Gemini(
+        id="gemini-2.5-flash",
+        vertexai_search=True,
+        vertexai_search_datastore=datastore_id,
+        vertexai=True,  # Use Vertex AI endpoint
+    ),
+    show_tool_calls=True,
+    markdown=True,
+)
+
+agent.print_response("What are our company's policies regarding remote work?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set up Vertex AI Search datastore">
+    Create a Vertex AI Search datastore in Google Cloud Console and note the datastore ID.
+  </Step>
+
+  <Step title="Set environment variables">
+    ```bash
+    export GOOGLE_GENAI_USE_VERTEXAI="true"
+    export GOOGLE_CLOUD_PROJECT="your-project-id"
+    export GOOGLE_CLOUD_LOCATION="your-location"
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U google-genai agno
+    ```
+  </Step>
+
+  <Step title="Update the datastore ID">
+    Replace `datastore_id` in the code with your actual Vertex AI Search datastore ID.
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac/Linux
+    python cookbook/models/google/gemini/vertexai_search.py
+    ```
+    ```bash Windows
+    python cookbook/models/google/gemini/vertexai_search.py
+    ```
+    </CodeGroup>
+  </Step>
+
+</Steps>
+
+## Information
+
+- Requires setting up a Vertex AI Search datastore in Google Cloud Console
+- Must use `vertexai=True` to enable Vertex AI endpoint
+- The datastore ID format: `projects/{project_id}/locations/{location}/collections/default_collection/dataStores/{datastore_id}`

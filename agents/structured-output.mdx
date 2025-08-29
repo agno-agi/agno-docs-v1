@@ -78,7 +78,7 @@ MovieScript(
 
 ## Using a Parser Model
 
-You can use an additional model to parse and structure the output from your primary model. This approach is particularly effective when the primary model is optimized for reasoning tasks, as such models may not consistently produce detailed structured responses.
+You can use an additional model to parse and structure the output from your primary model. A `parser_model` can be employed to transform the raw response into structured output, replacing the default model for this specific task. This approach is particularly effective when the primary model is optimized for reasoning tasks, as such models may not consistently produce detailed structured responses. 
 
 ```python
 agent = Agent(
