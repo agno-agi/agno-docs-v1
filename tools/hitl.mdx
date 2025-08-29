@@ -58,7 +58,7 @@ def confirmation_hook(
     live.stop()  # type: ignore
 
     # Ask for confirmation
-    console.print(f"\nAbout to run [bold blue]{fc.function.name}[/]")
+    console.print(f"\nAbout to run [bold blue]{function_name}[/]")
     message = (
         Prompt.ask("Do you want to continue?", choices=["y", "n"], default="y")
         .strip()

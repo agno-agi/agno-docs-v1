@@ -11,6 +11,10 @@
   "contextual": {
     "options": ["copy", "view", "chatgpt", "claude"]
   },
+  "banner": {
+    "content": "Run enterprise grade agent systems in your cloud with the AgentOS. [Join the waitlist.](https://www.agno.com/agent-os-waitlist)",
+    "dismissible": true
+  },
   "navigation": {
     "tabs": [
       {
@@ -89,6 +93,7 @@
                     "pages": ["models/cerebras", "models/cerebras_openai"]
                   },
                   "models/cohere",
+                  "models/dashscope",
                   "models/deepinfra",
                   "models/deepseek",
                   "models/fireworks",
@@ -111,6 +116,7 @@
                   "models/openai-responses",
                   "models/openrouter",
                   "models/perplexity",
+                  "models/portkey",
                   "models/sambanova",
                   "models/together",
                   "models/vercel",
@@ -187,6 +193,7 @@
                           "tools/toolkits/database/csv",
                           "tools/toolkits/database/duckdb",
                           "tools/toolkits/database/mem0",
+                          "tools/toolkits/database/memori",
                           "tools/toolkits/database/pandas",
                           "tools/toolkits/database/postgres",
                           "tools/toolkits/database/sql",
@@ -354,35 +361,36 @@
                 "group": "Vector DBs",
                 "pages": [
                   "vectordb/introduction",
-                  "vectordb/pgvector",
                   "vectordb/cassandra",
                   "vectordb/chroma",
-                  "vectordb/couchbase",
                   "vectordb/clickhouse",
+                  "vectordb/couchbase",
                   "vectordb/lancedb",
                   "vectordb/milvus",
+                  "vectordb/mongodb",
+                  "vectordb/azure_cosmos_mongodb",
+                  "vectordb/pgvector",
                   "vectordb/pinecone",
                   "vectordb/qdrant",
                   "vectordb/singlestore",
-                  "vectordb/mongodb",
-                  "vectordb/azure_cosmos_mongodb",
-                  "vectordb/weaviate",
-                  "vectordb/surrealdb"
+                  "vectordb/surrealdb",
+                  "vectordb/weaviate"
                 ]
               },
               {
                 "group": "Storage",
                 "pages": [
                   "storage/introduction",
-                  "storage/dynamodb",
-                  "storage/json",
-                  "storage/mongodb",
-                  "storage/mysql",
                   "storage/postgres",
                   "storage/sqlite",
-                  "storage/yaml",
+                  "storage/in-memory",
+                  "storage/dynamodb",
+                  "storage/redis",
+                  "storage/mongodb",
+                  "storage/mysql",
                   "storage/singlestore",
-                  "storage/redis"
+                  "storage/yaml",
+                  "storage/json"
                 ]
               },
               {
@@ -453,7 +461,7 @@
                 "pages": ["agent-api/introduction"]
               },
               {
-                "group":                 "Observability",
+                "group": "Observability",
                 "pages": [
                   "observability/introduction",
                   "observability/agentops",
@@ -461,6 +469,8 @@
                   "observability/atla",
                   "observability/langdb",
                   "observability/langfuse",
+                  "observability/mlflow",
+                  "observability/langwatch",
                   "observability/langsmith",
                   "observability/langtrace",
                   "observability/weave"
@@ -611,7 +621,7 @@
                     "pages": [
                       "examples/workflows_2/03-workflows-loop-execution/loop_steps_workflow",
                       "examples/workflows_2/03-workflows-loop-execution/loop_with_parallel_steps_stream"
-                    ] 
+                    ]
                   },
                   {
                     "group": "Conditional Branching (Router)",
@@ -1068,6 +1078,7 @@
                     "pages": [
                       "examples/concepts/tools/social/discord",
                       "examples/concepts/tools/social/email",
+                      "examples/concepts/tools/social/gmail",
                       "examples/concepts/tools/social/slack",
                       "examples/concepts/tools/social/twilio",
                       "examples/concepts/tools/social/webex",
@@ -1162,6 +1173,7 @@
                     "group": "MCP",
                     "pages": [
                       "examples/concepts/tools/mcp/airbnb",
+                      "examples/concepts/tools/mcp/gibson_ai",
                       "examples/concepts/tools/mcp/github",
                       "examples/concepts/tools/mcp/notion",
                       "examples/concepts/tools/mcp/pipedream_auth",
@@ -1375,6 +1387,15 @@
                 ]
               },
               {
+                "group": "DashScope",
+                "pages": [
+                  "examples/models/dashscope/basic",
+                  "examples/models/dashscope/basic_stream",
+                  "examples/models/dashscope/tool_use",
+                  "examples/models/dashscope/structured_output"
+                ]
+              },
+              {
                 "group": "DeepInfra",
                 "pages": [
                   "examples/models/deepinfra/basic",
@@ -1411,6 +1432,9 @@
                   "examples/models/gemini/storage",
                   "examples/models/gemini/knowledge",
                   "examples/models/gemini/image_input",
+                  "examples/models/gemini/vertex_ai_search",
+                  "examples/models/gemini/grounding",
+                  "examples/models/gemini/search",
                   "examples/models/gemini/flash_thinking",
                   "examples/models/gemini/audio_input_bytes_content",
                   "examples/models/gemini/audio_input_file_upload",
@@ -1596,6 +1620,15 @@
                 ]
               },
               {
+                "group": "Portkey",
+                "pages": [
+                  "examples/models/portkey/basic",
+                  "examples/models/portkey/basic_stream",
+                  "examples/models/portkey/tool_use",
+                  "examples/models/portkey/structured_output"
+                ]
+              },
+              {
                 "group": "Together",
                 "pages": [
                   "examples/models/together/basic",
@@ -1768,6 +1801,7 @@
                   "reference/models/ollama",
                   "reference/models/anthropic",
                   "reference/models/cohere",
+                  "reference/models/dashscope",
                   "reference/models/deepinfra",
                   "reference/models/deepseek",
                   "reference/models/gemini",
@@ -1787,6 +1821,7 @@
                   "reference/models/azure_open_ai",
                   "reference/models/fireworks",
                   "reference/models/openrouter",
+                  "reference/models/portkey",
                   "reference/models/sambanova",
                   "reference/models/internlm",
                   "reference/models/ollama_tools",
@@ -1819,8 +1854,8 @@
                 "pages": [
                   "reference/vector_db/cassandra",
                   "reference/vector_db/chromadb",
-                  "reference/vector_db/couchbase",
                   "reference/vector_db/clickhouse",
+                  "reference/vector_db/couchbase",
                   "reference/vector_db/lancedb",
                   "reference/vector_db/milvus",
                   "reference/vector_db/mongodb",
@@ -1828,8 +1863,8 @@
                   "reference/vector_db/pinecone",
                   "reference/vector_db/qdrant",
                   "reference/vector_db/singlestore",
-                  "reference/vector_db/weaviate",
-                  "reference/vector_db/surrealdb"
+                  "reference/vector_db/surrealdb",
+                  "reference/vector_db/weaviate"
                 ]
               },
               {

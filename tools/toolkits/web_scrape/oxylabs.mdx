@@ -17,9 +17,11 @@ export OXYLABS_USERNAME=your_oxylabs_username
 export OXYLABS_PASSWORD=your_oxylabs_password
 ```
 
-## Example
+## Examples
 
-```
+### iPhone Reviews
+
+``` python
 from agno.agent import Agent
 from agno.tools.oxylabs import OxylabsTools
 
@@ -32,10 +34,11 @@ agent = Agent(
 agent.print_response("""
 Search for 'latest iPhone reviews' and provide a summary of the top 3 results. 
 """)
-
-## Amazon Product Search
-
 ```
+
+### Amazon Product Search
+
+``` python
 from agno.agent import Agent
 from agno.tools.oxylabs import OxylabsTools
 

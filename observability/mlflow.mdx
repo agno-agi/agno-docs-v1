@@ -1,0 +1,77 @@
+---
+title: MLflow
+description: Instrument Agno agents to send traces, spans, and logs to the MLflow Observability UI.
+---
+
+## Integrating Agno with MLflow Observability
+
+[MLflow](https://mlflow.org) can automatically instrument your Agno agents - capturing agent interactions, model/tool calls, inputs/outputs, and timing and surface them in the **Observability** (Traces) UI.
+
+## Prerequisites
+
+### 1) Install packages
+
+```bash
+pip install mlflow agno openai
+```
+
+> Use your preferred LLM provider package if not OpenAI.
+
+### 2) Tracking server / UI
+
+- **Local**: run an MLflow server/UI or `mlflow ui` for quick local tests.  
+- **Remote**: point to your team’s MLflow Tracking Server.
+
+### 3) Authentication & configuration
+
+**Standard MLflow env vars:**
+
+```bash
+export MLFLOW_TRACKING_URI=http://localhost:5000   # or your server
+export MLFLOW_TRACKING_TOKEN=<token-if-required>   # only if your server uses tokens
+```
+
+
+## Quickstart: Autologging Agno → MLflow Observability
+
+```python
+import os
+import mlflow
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000"))
+mlflow.set_experiment("agno-observation-demo")
+mlflow.agno.autolog()
+
+agent = Agent(model=OpenAIChat(id="gpt-4o"), name="horror-writer")
+
+with mlflow.start_run(run_name="two-sentence-horror") as run:
+    result = agent.run("Share a 2 sentence horror story")
+    print(result.content)
+
+    mlflow.log_text(result.content, artifact_file="outputs/horror.txt")
+
+    trace_id = mlflow.get_last_active_trace_id()
+    print(f"Trace ID: {trace_id}")
+```
+
+### View your traces
+
+Open your MLflow UI and:
+
+- Select the **agno-observation-demo** experiment → open the latest **Run**.
+- Go to **Observability / Traces** (or the **Traces** tab in the run) to inspect spans:
+  - Agent & model calls (LLM invocations)
+  - Tool calls, inputs/outputs
+  - Timing, status, and attributes
+
+## Notes
+
+- **Autologging**: Use `mlflow.agno.autolog()` before creating/running agents.
+- **Runs & traces**: Wrap your workflow in `with mlflow.start_run(...):` so runs and traces are grouped.
+- **Artifacts**: Use helpers like `mlflow.log_text(...)`, `mlflow.log_dict(...)`, or `mlflow.log_figure(...)` to attach outputs to the run.
+
+---
+
+This setup routes Agno’s agent/model/tool activity into MLflow **Observability**, letting you observe every span and correlate rich traces with your experiment runs and artifacts.
