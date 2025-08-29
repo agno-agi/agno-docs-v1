@@ -1175,6 +1175,7 @@
                       "examples/concepts/tools/mcp/airbnb",
                       "examples/concepts/tools/mcp/gibson_ai",
                       "examples/concepts/tools/mcp/github",
+                      "examples/concepts/tools/mcp/keboola",
                       "examples/concepts/tools/mcp/notion",
                       "examples/concepts/tools/mcp/pipedream_auth",
                       "examples/concepts/tools/mcp/pipedream_slack",
