@@ -21,16 +21,16 @@ Agents also have **memory**, **knowledge**, **storage** and the ability to **rea
 
 ## Level 1: Agents with tools and instructions
 
-The simplest Agent has a model, a tool and instructions. Let's build an Agent that can fetch data using the `yfinance` library, along with instructions to display the results in a table.
+The simplest Agent has a model, a tool and instructions. Let's build an Agent that can fetch data using the `ddgs` library, along with instructions to display the results in a table.
 
 ```python level_1_agent.py
 from agno.agent import Agent
 from agno.models.anthropic import Claude
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=Claude(id="claude-sonnet-4-20250514"),
-    tools=[YFinanceTools(stock_price=True)],
+    tools=[DuckDuckGoTools()],
     instructions="Use tables to display data. Don't include any other text.",
     markdown=True,
 )
@@ -59,11 +59,11 @@ Create a virtual environment, install dependencies, export your API key and run 
 
     <CodeGroup>
     ```bash Mac
-    uv pip install -U agno anthropic yfinance
+    uv pip install -U agno anthropic ddgs
     ```
 
     ```bash Windows
-    uv pip install -U agno anthropic yfinance
+    uv pip install -U agno anthropic ddgs
     ```
     </CodeGroup>
 
