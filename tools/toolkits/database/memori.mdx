@@ -1,0 +1,86 @@
+---
+title: Memori
+description: The Memori toolkit gives an Agent human-like memory. With multi-agent memory engine, Memori provides capabilities to store, retrieve, search structured data, and promote long term memories to short-term.
+---
+
+## Prerequisites
+
+The Memori toolkit requires the `memorisdk` Python package and a relational database connection string (SQLite, PostgreSQL, etc.).
+
+```shell
+pip install memorisdk
+```
+
+## Example
+
+The following example demonstrates how to create an agent with persistent memory using Memori:
+
+```python cookbook/tools/memori_tools.py
+from textwrap import dedent
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.memori import MemoriTools
+
+# Setup the Memori ToolKit
+memori_tools = MemoriTools(
+    database_connect="sqlite:///memori_cookbook_memory.db",
+    namespace="cookbook_agent",
+)
+
+# Setup your Agent
+agent = Agent(
+    # Add the Memori ToolKit to the Agent
+    tools=[memori_tools],
+    model=OpenAIChat(id="gpt-4o"),
+    show_tool_calls=True,
+    markdown=True,
+    instructions=dedent(
+        """\
+        Instructions:
+        1. First, search your memory for relevant past conversations using the memori tool
+        2. Use any relevant memories to provide a personalized response
+        3. Provide a helpful and contextual answer
+        4. Be conversational and friendly
+
+        If this is the first conversation, introduce yourself and explain that you'll remember our conversations.
+    """
+    ),
+)
+
+# Run your Agent
+agent.print_response("I'm a Python developer and I love building web applications")
+
+# Thanks to the Memori ToolKit, your Agent can now remember the conversation:
+agent.print_response("What do you remember about my programming background?")
+
+# Using the Memori ToolKit, your Agent also gains access to memory statistics:
+agent.print_response("Show me your memory statistics")
+```
+
+## Toolkit Params
+
+| Parameter          | Type     | Default | Description                                                                       |
+| ------------------ | -------- | ------- | --------------------------------------------------------------------------------- |
+| `database_connect` | `str`    | `SQLite`| Database connection string (e.g., "sqlite:///memory.db", PostgreSQL, etc.).       |
+| `namespace`        | `str`    | `None`  | Namespace for organizing memories (e.g., "agent_v1", "user_session").             |
+| `conscious_ingest` | `bool`   | `True`  | Whether to use conscious memory ingestion.                                        |
+| `auto_ingest`      | `bool`   | `True`  | Whether to automatically ingest conversations into memory.                        |
+| `verbose`          | `bool`   | `False` | Enable verbose logging from Memori.                                               |
+| `config`           | `dict`   | `None`  | Additional Memori configuration dictionary.                                       |
+| `auto_enable`      | `bool`   | `True`  | Automatically enable the memory system on initialization.                         |
+
+## Toolkit Functions
+
+| Function              | Description                                                                                                     |
+| --------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `search_memory`       | Search through stored memories using a query string. Returns relevant past conversations and facts.             |
+| `record_conversation` | Store a user/agent conversation in memory. Can be called manually or automatically (if `auto_ingest=True`).     |
+| `get_memory_stats`    | Retrieve statistics and status about the current memory system (total memories, database type, etc.).           |
+
+## Developer Resources
+
+* View [Tools](https://github.com/agno-agi/agno/blob/main/libs/agno/agno/tools/memori.py)
+* View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/tools/memori_tools.py)
+* [Memori SDK Documentation](https://gibsonai.github.io/memori/)
+* [Memori GitHub repo](https://github.com/GibsonAI/memori)

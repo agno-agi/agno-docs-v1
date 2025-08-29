@@ -3,17 +3,21 @@ title: Gemini Embedder
 sidebarTitle: Gemini
 ---
 
-The `GeminiEmbedder` class is used to embed text data into vectors using the Gemini API. You can get one from [here](https://ai.google.dev/aistudio).
+The `GeminiEmbedder` class is used to embed text data into vectors using Google's Gemini API. You can use it through [Google AI Studio](https://ai.google.dev/aistudio) or [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/overview).
 
 ## Usage
 
-```python cookbook/embedders/gemini_embedder.py
+For Google AI Studio:
+
+```python
 from agno.agent import AgentKnowledge
 from agno.vectordb.pgvector import PgVector
 from agno.embedder.google import GeminiEmbedder
 
 # Embed sentence in database
-embeddings = GeminiEmbedder().get_embedding("The quick brown fox jumps over the lazy dog.")
+embeddings = GeminiEmbedder().get_embedding(
+    "The quick brown fox jumps over the lazy dog."
+)
 
 # Print the embeddings and their dimensions
 print(f"Embeddings: {embeddings[:5]}")
@@ -30,18 +34,45 @@ knowledge_base = AgentKnowledge(
 )
 ```
 
+For Vertex AI:
+
+```python
+from agno.agent import AgentKnowledge
+from agno.vectordb.pgvector import PgVector
+from agno.embedder.google import GeminiEmbedder
+
+embedder = GeminiEmbedder(
+    vertexai=True,
+    project_id="your-gcloud-project-id",  # Optional
+    location="us-central1",  # Optional
+)
+
+# Use in a knowledge base
+knowledge_base = AgentKnowledge(
+    vector_db=PgVector(
+        db_url="postgresql+psycopg://ai:ai@localhost:5532/ai",
+        table_name="gemini_embeddings_vertex",
+        embedder=embedder,
+    ),
+    num_documents=2,
+)
+```
+
 ## Params
 
-| Parameter        | Type                       | Default                     | Description                                                 |
-| ---------------- | -------------------------- | --------------------------- | ----------------------------------------------------------- |
-| `dimensions`     | `int`                      | `768`                       | The dimensionality of the generated embeddings              |
-| `model`          | `str`                      | `models/text-embedding-004` | The name of the Gemini model to use                         |
-| `task_type`      | `str`                      | -                           | The type of task for which embeddings are being generated   |
-| `title`          | `str`                      | -                           | Optional title for the embedding task                       |
-| `api_key`        | `str`                      | -                           | The API key used for authenticating requests.               |
-| `request_params` | `Optional[Dict[str, Any]]` | -                           | Optional dictionary of parameters for the embedding request |
-| `client_params`  | `Optional[Dict[str, Any]]` | -                           | Optional dictionary of parameters for the Gemini client     |
-| `gemini_client`  | `Optional[Client]`         | -                           | Optional pre-configured Gemini client instance              |
+| Parameter        | Type                       | Default                        | Description                                                 |
+| ---------------- | -------------------------- | ------------------------------ | ----------------------------------------------------------- |
+| `id`             | `str`                      | `gemini-embedding-exp-03-07`   | The Gemini embedding model ID to use              |
+| `task_type`      | `str`                      | `RETRIEVAL_QUERY`              | The type of task for which embeddings are being generated   |
+| `title`          | `Optional[str]`            | `None`                         | Optional title for the embedding task                       |
+| `dimensions`     | `Optional[int]`            | `1536`                         | The dimensionality of the generated embeddings              |
+| `api_key`        | `Optional[str]`            | `None`                         | The API key used for authenticating requests                |
+| `request_params` | `Optional[Dict[str, Any]]` | `None`                         | Optional dictionary of parameters for the embedding request |
+| `client_params`  | `Optional[Dict[str, Any]]` | `None`                         | Optional dictionary of parameters for the Gemini client     |
+| `gemini_client`  | `Optional[GeminiClient]`   | `None`                         | Optional pre-configured Gemini client instance              |
+| `vertexai`       | `bool`                     | `False`                        | Whether to use Vertex AI instead of Google AI Studio       |
+| `project_id`     | `Optional[str]`            | `None`                         | Google Cloud project ID for Vertex AI                      |
+| `location`       | `Optional[str]`            | `None`                         | Google Cloud region for Vertex AI                          |
 
 ## Developer Resources
 - View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/embedders/gemini_embedder.py)
