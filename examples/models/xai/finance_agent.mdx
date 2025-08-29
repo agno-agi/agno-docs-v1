@@ -5,81 +5,79 @@ title: Finance Agent
 ## Code
 
 ```python cookbook/models/xai/finance_agent.py
-"""🗞️ Finance Agent - Your Personal Market Analyst!
+"""� Finance Agent - Your Personal Market Analyst!
 
 This example shows how to create a sophisticated financial analyst that provides
-comprehensive market insights using real-time data. The agent combines stock market data,
-analyst recommendations, company information, and latest news to deliver professional-grade
-financial analysis.
+comprehensive market insights using real-time news and research data. The agent combines financial news,
+market analysis, company information, and expert insights to deliver professional-grade
+financial research and market commentary.
 
 Example prompts to try:
-- "What's the latest news and financial performance of Apple (AAPL)?"
-- "Give me a detailed analysis of Tesla's (TSLA) current market position"
-- "How are Microsoft's (MSFT) financials looking? Include analyst recommendations"
-- "Analyze NVIDIA's (NVDA) stock performance and future outlook"
-- "What's the market saying about Amazon's (AMZN) latest quarter?"
+- "What's the latest news and market sentiment around Apple?"
+- "Give me a detailed analysis of Tesla's recent market developments"
+- "How is Microsoft performing in the current market? Include recent news"
+- "Analyze NVIDIA's recent news and market position"
+- "What's the latest financial news about Amazon's business performance?"
 
-Run: `pip install openai yfinance agno` to install the dependencies
+Run: `pip install openai ddgs agno` to install the dependencies
 """
 
 from textwrap import dedent
 
 from agno.agent import Agent
 from agno.models.xai import xAI
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 finance_agent = Agent(
     model=xAI(id="grok-3-mini-beta"),
     tools=[
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            stock_fundamentals=True,
-            historical_prices=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         )
     ],
     instructions=dedent("""\
-        You are a seasoned Wall Street analyst with deep expertise in market analysis! 📊
+        You are a seasoned financial analyst with deep expertise in market analysis and financial research! 📊
 
         Follow these steps for comprehensive financial analysis:
         1. Market Overview
-           - Latest stock price
-           - 52-week high and low
+           - Search for latest company news and developments
+           - Current market sentiment and trends
         2. Financial Deep Dive
-           - Key metrics (P/E, Market Cap, EPS)
-        3. Professional Insights
-           - Analyst recommendations breakdown
-           - Recent rating changes
+           - Key financial developments and announcements
+           - Recent earnings or business updates
+        3. Professional Analysis
+           - Expert opinions and market commentary
+           - Recent news impact assessment
 
-        4. Market Context
-           - Industry trends and positioning
-           - Competitive analysis
-           - Market sentiment indicators
+        4. Context and Impact
+           - Industry trends and competitive positioning
+           - Comparative market analysis
+           - Current investor sentiment and market indicators
 
         Your reporting style:
         - Begin with an executive summary
-        - Use tables for data presentation
+        - Use tables for data presentation when available
         - Include clear section headers
         - Add emoji indicators for trends (📈 📉)
         - Highlight key insights with bullet points
-        - Compare metrics to industry averages
+        - Compare findings to industry benchmarks when possible
         - Include technical term explanations
-        - End with a forward-looking analysis
+        - End with a forward-looking market analysis
 
-        Risk Disclosure:
-        - Always highlight potential risk factors
-        - Note market uncertainties
-        - Mention relevant regulatory concerns
+        Financial Disclosure:
+        - Always highlight news sources and dates
+        - Note data limitations and availability
+        - Mention this is based on publicly available information
+        - This analysis is for educational purposes only
     """),
     add_datetime_to_instructions=True,
     markdown=True,
 )
 
-# Example usage with detailed market analysis request
+# Example usage with detailed financial analysis request
 finance_agent.print_response(
-    "Write a comprehensive report on TSLA",
+    "Provide a comprehensive financial analysis of Apple's recent market performance and news",
     stream=True,
     stream_intermediate_steps=True,
 )
@@ -98,7 +96,7 @@ finance_agent.print_response(
 
   <Step title="Install libraries">
     ```bash
-    pip install -U openai yfinance agno
+    pip install -U openai ddgs agno
     ```
   </Step>
 

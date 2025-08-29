@@ -17,7 +17,6 @@ from agno.storage.postgres import PostgresStorage
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.exa import ExaTools
-from agno.tools.yfinance import YFinanceTools
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
@@ -95,20 +94,20 @@ web_agent = Agent(
     ),
 )
 
-finance_agent = Agent(
-    name="Finance Agent",
-    role="Get financial data",
-    agent_id="finance_agent",
+research_agent = Agent(
+    name="Research Agent",
+    role="Get research data and insights",
+    agent_id="research_agent",
     model=OpenAIChat(id="gpt-4o"),
     tools=[
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
+        DuckDuckGoTools(search=True, news=True)
     ],
     instructions=[
-        "You are a skilled financial analyst with expertise in market data! 📊",
-        "Follow these steps when analyzing financial data:",
-        "Start with the latest stock price, trading volume, and daily range",
-        "Present detailed analyst recommendations and consensus target prices",
-        "Include key metrics: P/E ratio, market cap, 52-week range",
+        "You are a skilled research analyst with expertise in information gathering! 📊",
+        "Follow these steps when analyzing research data:",
+        "Start with the latest developments, trends, and key findings",
+        "Present detailed insights and expert perspectives",
+        "Include key metrics: growth rates, adoption rates, market trends",
         "Analyze trading patterns and volume trends",
     ],
     memory=memory,
@@ -126,13 +125,13 @@ simple_agent = Agent(
     enable_user_memories=True,
 )
 
-research_agent = Agent(
-    name="Research Agent",
-    role="Research agent",
+finance_agent = Agent(
+    name="Finance Agent",
+    role="Financial research and analysis agent",
     model=OpenAIChat(id="gpt-4o"),
-    instructions=["You are a research agent"],
+    instructions=["You are a financial research agent specializing in market analysis"],
     tools=[DuckDuckGoTools(), ExaTools()],
-    agent_id="research_agent",
+    agent_id="finance_agent",
     memory=memory,
     enable_user_memories=True,
 )
@@ -191,8 +190,8 @@ financial_news_team = Team(
     description="A team of agents that search the web for financial news and analyze it.",
     members=[
         web_agent,
-        finance_agent,
         research_agent,
+        finance_agent,
         file_agent,
         audio_agent,
         video_agent,
@@ -225,7 +224,7 @@ financial_news_team = Team(
 )
 
 playground = Playground(
-    agents=[simple_agent, web_agent, finance_agent, research_agent],
+    agents=[simple_agent, web_agent, research_agent, finance_agent],
     teams=[research_team, multimodal_team, financial_news_team],
     app_id="teams-demo-playground-app",
     name="Teams Demo Playground",
@@ -254,7 +253,7 @@ if __name__ == "__main__":
 
   <Step title="Install libraries">
     ```bash
-    pip install -U agno "uvicorn[standard]" openai anthropic google-generativeai duckduckgo-search exa-py yfinance psycopg-binary
+    pip install -U agno "uvicorn[standard]" openai anthropic google-generativeai duckduckgo-search exa-py ddgs psycopg-binary
     ```
   </Step>
 

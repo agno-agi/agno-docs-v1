@@ -1,5 +1,18 @@
 ---
-title: Reasoning Agent with Thinking Tools
+tifrom agno.agent import Agent
+from agno.models.anthropic import Claude
+from agno.tools.thinking import ThinkingTools
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+thinking_agent = Agent(
+    model=Claude(id="claude-3-7-sonnet-latest"),
+    tools=[
+        ThinkingTools(add_instructions=True),
+        DuckDuckGoTools(
+            search=True,
+            news=True,
+        ),
+    ],gent with Thinking Tools
 ---
 
 ## Code
@@ -8,17 +21,15 @@ title: Reasoning Agent with Thinking Tools
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 from agno.tools.thinking import ThinkingTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 reasoning_agent = Agent(
     model=Claude(id="claude-3-7-sonnet-latest"),
     tools=[
         ThinkingTools(add_instructions=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions="Use tables where possible",
@@ -27,7 +38,7 @@ reasoning_agent = Agent(
 
 if __name__ == "__main__":
     reasoning_agent.print_response(
-        "Write a report on NVDA. Only the report, no other text.",
+        "Write a report on the latest developments in artificial intelligence. Only the report, no other text.",
         stream=True,
         show_full_reasoning=True,
         stream_intermediate_steps=True,

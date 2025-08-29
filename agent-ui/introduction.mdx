@@ -74,7 +74,6 @@ from agno.models.openai import OpenAIChat
 from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.tools.yfinance import YFinanceTools
 
 agent_storage: str = "tmp/agents.db"
 
@@ -95,19 +94,19 @@ web_agent = Agent(
     markdown=True,
 )
 
-finance_agent = Agent(
-    name="Finance Agent",
+research_agent = Agent(
+    name="Research Agent",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions=["Always use tables to display data"],
-    storage=SqliteStorage(table_name="finance_agent", db_file=agent_storage),
+    storage=SqliteStorage(table_name="research_agent", db_file=agent_storage),
     add_datetime_to_instructions=True,
     add_history_to_messages=True,
     num_history_responses=5,
     markdown=True,
 )
 
-playground = Playground(agents=[web_agent, finance_agent])
+playground = Playground(agents=[web_agent, research_agent])
 app = playground.get_app()
 
 if __name__ == "__main__":
@@ -136,11 +135,11 @@ In another terminal, run the playground server:
 
     <CodeGroup>
     ```bash Mac
-    pip install -U openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agno
+    pip install -U openai duckduckgo-search sqlalchemy 'fastapi[standard]' agno
     ```
 
     ```bash Windows
-    pip install -U openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agno
+    pip install -U openai duckduckgo-search sqlalchemy 'fastapi[standard]' agno
     ```
     </CodeGroup>
 

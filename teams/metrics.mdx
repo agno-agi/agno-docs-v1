@@ -32,29 +32,29 @@ from typing import Iterator
 from agno.agent import Agent, RunResponse
 from agno.models.openai import OpenAIChat
 from agno.team.team import Team
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.pprint import pprint_run_response
 from rich.pretty import pprint
 
 # Create team members
-stock_searcher = Agent(
-    name="Stock Searcher",
+research_searcher = Agent(
+    name="Research Searcher",
     model=OpenAIChat("gpt-4o"),
-    role="Searches the web for information on a stock.",
-    tools=[YFinanceTools()],
+    role="Searches the web for information on various topics.",
+    tools=[DuckDuckGoTools(search=True, news=True)],
 )
 
 # Create the team
 team = Team(
-    name="Stock Research Team",
+    name="Research Team",
     model=OpenAIChat("gpt-4o"),
-    members=[stock_searcher],
+    members=[research_searcher],
     markdown=True,
 )
 
 # Run the team
 run_stream: Iterator[RunResponse] = team.run(
-    "What is the stock price of NVDA", stream=True
+    "What is the latest news about artificial intelligence", stream=True
 )
 pprint_run_response(run_stream, markdown=True)
 

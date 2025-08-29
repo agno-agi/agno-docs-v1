@@ -7,7 +7,7 @@ title: Agent with Tools
 ```python cookbook/models/litellm/tool_use.py
 from agno.agent import Agent
 from agno.models.litellm import LiteLLM
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 openai_agent = Agent(
     model=LiteLLM(
@@ -15,11 +15,11 @@ openai_agent = Agent(
         name="LiteLLM",
     ),
     markdown=True,
-    tools=[YFinanceTools()],
+    tools=[DuckDuckGoTools(search=True, news=True)],
 )
 
 # Ask a question that would likely trigger tool use
-openai_agent.print_response("How is TSLA stock doing right now?")
+openai_agent.print_response("What is the latest news about technology trends?")
 ```
 
 ## Usage

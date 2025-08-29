@@ -1,34 +1,34 @@
 ---
-title: Startup Idea Validator
+title: Research Report Generator
 description: This example demonstrates how to migrate from the similar workflows 1.0 example to workflows 2.0 structure.
 ---
 
-This advanced example demonstrates how to build a sophisticated investment analysis system that combines
-market research, financial analysis, and portfolio management. The workflow uses a three-stage
+This advanced example demonstrates how to build a sophisticated research analysis system that combines
+market research, trend analysis, and strategic insights. The workflow uses a three-stage
 approach:
-1. Comprehensive stock analysis and market research
-2. Investment potential evaluation and ranking
-3. Strategic portfolio allocation recommendations
+1. Comprehensive topic analysis and information gathering
+2. Research potential evaluation and ranking
+3. Strategic insights and recommendations
 
 Key capabilities:
-- Real-time market data analysis
-- Professional financial research
-- Investment risk assessment
-- Portfolio allocation strategy
-- Detailed investment rationale
+- Real-time information gathering
+- Professional research analysis
+- Trend assessment
+- Strategic recommendations
+- Detailed research rationale
 
-Example companies to analyze:
-- "AAPL, MSFT, GOOGL" (Tech Giants)
-- "NVDA, AMD, INTC" (Semiconductor Leaders)
-- "TSLA, F, GM" (Automotive Innovation)
-- "JPM, BAC, GS" (Banking Sector)
-- "AMZN, WMT, TGT" (Retail Competition)
-- "PFE, JNJ, MRNA" (Healthcare Focus)
-- "XOM, CVX, BP" (Energy Sector)
+Example research topics to analyze:
+- "AI, Machine Learning, Automation" (Technology Trends)
+- "Climate Change, Renewable Energy, Sustainability" (Environmental Focus)
+- "Electric Vehicles, Transportation, Infrastructure" (Mobility Innovation)
+- "Healthcare, Biotechnology, Medical Innovation" (Health Sector)
+- "E-commerce, Digital Marketing, Consumer Behavior" (Business Trends)
+- "Cybersecurity, Data Privacy, Digital Transformation" (Security Focus)
+- "Space Technology, Satellite Communications, Aerospace" (Space Industry)
 
-Run `pip install openai yfinance agno` to install dependencies.
+Run `pip install openai ddgs agno` to install dependencies.
 
-```python investment_report_generator.py
+```python research_report_generator.py
 import asyncio
 import random
 from pathlib import Path
@@ -37,7 +37,7 @@ from textwrap import dedent
 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.pprint import pprint_run_response
 from agno.workflow.v2.types import WorkflowExecutionInput
 from agno.workflow.v2.workflow import Workflow
@@ -45,294 +45,294 @@ from pydantic import BaseModel
 
 
 # --- Response models ---
-class StockAnalysisResult(BaseModel):
-    company_symbols: str
-    market_analysis: str
-    financial_metrics: str
-    risk_assessment: str
+class ResearchAnalysisResult(BaseModel):
+    research_topics: str
+    trend_analysis: str
+    information_metrics: str
+    impact_assessment: str
     recommendations: str
 
 
-class InvestmentRanking(BaseModel):
-    ranked_companies: str
-    investment_rationale: str
-    risk_evaluation: str
+class ResearchRanking(BaseModel):
+    ranked_topics: str
+    research_rationale: str
+    impact_evaluation: str
     growth_potential: str
 
 
-class PortfolioAllocation(BaseModel):
-    allocation_strategy: str
-    investment_thesis: str
-    risk_management: str
+class StrategicInsights(BaseModel):
+    strategic_approach: str
+    research_thesis: str
+    trend_management: str
     final_recommendations: str
 
 
 # --- File management ---
-reports_dir = Path(__file__).parent.joinpath("reports", "investment")
+reports_dir = Path(__file__).parent.joinpath("reports", "research")
 if reports_dir.is_dir():
     rmtree(path=reports_dir, ignore_errors=True)
 reports_dir.mkdir(parents=True, exist_ok=True)
 
-stock_analyst_report = str(reports_dir.joinpath("stock_analyst_report.md"))
 research_analyst_report = str(reports_dir.joinpath("research_analyst_report.md"))
-investment_report = str(reports_dir.joinpath("investment_report.md"))
+insights_analyst_report = str(reports_dir.joinpath("insights_analyst_report.md"))
+strategic_report = str(reports_dir.joinpath("strategic_report.md"))
 
 
 # --- Agents ---
-stock_analyst = Agent(
-    name="Stock Analyst",
-    model=OpenAIChat(id="gpt-4o"),
-    tools=[
-        YFinanceTools(
-            company_info=True, analyst_recommendations=True, company_news=True
-        )
-    ],
-    description=dedent("""\
-    You are MarketMaster-X, an elite Senior Investment Analyst at Goldman Sachs with expertise in:
-
-    - Comprehensive market analysis
-    - Financial statement evaluation
-    - Industry trend identification
-    - News impact assessment
-    - Risk factor analysis
-    - Growth potential evaluation\
-    """),
-    instructions=dedent("""\
-    1. Market Research 📊
-       - Analyze company fundamentals and metrics
-       - Review recent market performance
-       - Evaluate competitive positioning
-       - Assess industry trends and dynamics
-    2. Financial Analysis 💹
-       - Examine key financial ratios
-       - Review analyst recommendations
-       - Analyze recent news impact
-       - Identify growth catalysts
-    3. Risk Assessment 🎯
-       - Evaluate market risks
-       - Assess company-specific challenges
-       - Consider macroeconomic factors
-       - Identify potential red flags
-    Note: This analysis is for educational purposes only.\
-    """),
-    response_model=StockAnalysisResult,
-)
-
 research_analyst = Agent(
     name="Research Analyst",
     model=OpenAIChat(id="gpt-4o"),
+    tools=[
+        DuckDuckGoTools(
+            search=True, news=True
+        )
+    ],
     description=dedent("""\
-    You are ValuePro-X, an elite Senior Research Analyst at Goldman Sachs specializing in:
+    You are ResearchMaster-X, an elite Senior Research Analyst at a top consulting firm with expertise in:
 
-    - Investment opportunity evaluation
+    - Comprehensive information analysis
+    - Market trend evaluation
+    - Industry development identification
+    - News impact assessment
+    - Impact factor analysis
+    - Growth potential evaluation\
+    """),
+    instructions=dedent("""\
+    1. Information Research 📊
+       - Analyze topic fundamentals and current state
+       - Review recent developments and trends
+       - Evaluate competitive landscape
+       - Assess industry dynamics and growth factors
+    2. Trend Analysis 💹
+       - Examine key trend indicators
+       - Review expert opinions and forecasts
+       - Analyze recent news impact
+       - Identify growth catalysts and barriers
+    3. Impact Assessment 🎯
+       - Evaluate market implications
+       - Assess topic-specific challenges
+       - Consider macroeconomic factors
+       - Identify potential opportunities and risks
+    Note: This analysis is for educational and research purposes only.\
+    """),
+    response_model=ResearchAnalysisResult,
+)
+
+insights_analyst = Agent(
+    name="Insights Analyst",
+    model=OpenAIChat(id="gpt-4o"),
+    description=dedent("""\
+    You are InsightPro-X, an elite Senior Insights Analyst at a top consulting firm specializing in:
+
+    - Research opportunity evaluation
     - Comparative analysis
-    - Risk-reward assessment
+    - Impact-benefit assessment
     - Growth potential ranking
     - Strategic recommendations\
     """),
     instructions=dedent("""\
-    1. Investment Analysis 🔍
-       - Evaluate each company's potential
-       - Compare relative valuations
+    1. Research Analysis 🔍
+       - Evaluate each topic's potential
+       - Compare relative importance
        - Assess competitive advantages
        - Consider market positioning
-    2. Risk Evaluation 📈
-       - Analyze risk factors
+    2. Impact Evaluation 📈
+       - Analyze impact factors
        - Consider market conditions
        - Evaluate growth sustainability
-       - Assess management capability
-    3. Company Ranking 🏆
-       - Rank based on investment potential
+       - Assess implementation feasibility
+    3. Topic Ranking 🏆
+       - Rank based on research potential
        - Provide detailed rationale
-       - Consider risk-adjusted returns
-       - Explain competitive advantages\
+       - Consider impact-adjusted returns
+       - Explain strategic advantages\
     """),
-    response_model=InvestmentRanking,
+    response_model=ResearchRanking,
 )
 
-investment_lead = Agent(
-    name="Investment Lead",
+strategy_lead = Agent(
+    name="Strategy Lead",
     model=OpenAIChat(id="gpt-4o"),
     description=dedent("""\
-    You are PortfolioSage-X, a distinguished Senior Investment Lead at Goldman Sachs expert in:
+    You are StrategySage-X, a distinguished Senior Strategy Lead at a top consulting firm expert in:
 
-    - Portfolio strategy development
-    - Asset allocation optimization
-    - Risk management
-    - Investment rationale articulation
+    - Strategic approach development
+    - Resource allocation optimization
+    - Implementation planning
+    - Strategic rationale articulation
     - Client recommendation delivery\
     """),
     instructions=dedent("""\
-    1. Portfolio Strategy 💼
-       - Develop allocation strategy
-       - Optimize risk-reward balance
-       - Consider diversification
-       - Set investment timeframes
-    2. Investment Rationale 📝
-       - Explain allocation decisions
+    1. Strategic Planning 💼
+       - Develop strategic approach
+       - Optimize resource allocation
+       - Consider implementation roadmap
+       - Set strategic timeframes
+    2. Strategic Rationale 📝
+       - Explain strategic decisions
        - Support with analysis
        - Address potential concerns
-       - Highlight growth catalysts
+       - Highlight growth opportunities
     3. Recommendation Delivery 📊
-       - Present clear allocations
-       - Explain investment thesis
+       - Present clear strategic approach
+       - Explain research thesis
        - Provide actionable insights
-       - Include risk considerations\
+       - Include implementation considerations\
     """),
-    response_model=PortfolioAllocation,
+    response_model=StrategicInsights,
 )
 
 
 # --- Execution function ---
-async def investment_analysis_execution(
+async def research_analysis_execution(
     execution_input: WorkflowExecutionInput,
-    companies: str,
+    topics: str,
 ) -> str:
-    """Execute the complete investment analysis workflow"""
+    """Execute the complete research analysis workflow"""
 
     # Get inputs
     message: str = execution_input.message
-    company_symbols: str = companies
+    research_topics: str = topics
 
-    if not company_symbols:
-        return "❌ No company symbols provided"
+    if not research_topics:
+        return "❌ No research topics provided"
 
-    print(f"🚀 Starting investment analysis for companies: {company_symbols}")
+    print(f"🚀 Starting research analysis for topics: {research_topics}")
     print(f"💼 Analysis request: {message}")
 
-    # Phase 1: Stock Analysis
-    print(f"\n📊 PHASE 1: COMPREHENSIVE STOCK ANALYSIS")
+    # Phase 1: Research Analysis
+    print(f"\n📊 PHASE 1: COMPREHENSIVE RESEARCH ANALYSIS")
     print("=" * 60)
 
     analysis_prompt = f"""
     {message}
     
-    Please conduct a comprehensive analysis of the following companies: {company_symbols}
+    Please conduct a comprehensive research analysis of the following topics: {research_topics}
     
-    For each company, provide:
-    1. Current market position and financial metrics
-    2. Recent performance and analyst recommendations
-    3. Industry trends and competitive landscape
-    4. Risk factors and growth potential
+    For each topic, provide:
+    1. Current state and key developments
+    2. Recent trends and expert insights
+    3. Industry landscape and competitive dynamics
+    4. Growth factors and potential barriers
     5. News impact and market sentiment
     
-    Companies to analyze: {company_symbols}
+    Topics to analyze: {research_topics}
     """
 
-    print(f"🔍 Analyzing market data and fundamentals...")
-    stock_analysis_result = await stock_analyst.arun(analysis_prompt)
-    stock_analysis = stock_analysis_result.content
-
-    # Save to file
-    with open(stock_analyst_report, "w") as f:
-        f.write(f"# Stock Analysis Report\n\n")
-        f.write(f"**Companies:** {stock_analysis.company_symbols}\n\n")
-        f.write(f"## Market Analysis\n{stock_analysis.market_analysis}\n\n")
-        f.write(f"## Financial Metrics\n{stock_analysis.financial_metrics}\n\n")
-        f.write(f"## Risk Assessment\n{stock_analysis.risk_assessment}\n\n")
-        f.write(f"## Recommendations\n{stock_analysis.recommendations}\n")
-
-    print(f"✅ Stock analysis completed and saved to {stock_analyst_report}")
-
-    # Phase 2: Investment Ranking
-    print(f"\n🏆 PHASE 2: INVESTMENT POTENTIAL RANKING")
-    print("=" * 60)
-
-    ranking_prompt = f"""
-    Based on the comprehensive stock analysis below, please rank these companies by investment potential.
-    
-    STOCK ANALYSIS:
-    - Market Analysis: {stock_analysis.market_analysis}
-    - Financial Metrics: {stock_analysis.financial_metrics}
-    - Risk Assessment: {stock_analysis.risk_assessment}
-    - Initial Recommendations: {stock_analysis.recommendations}
-    
-    Please provide:
-    1. Detailed ranking of companies from best to worst investment potential
-    2. Investment rationale for each company
-    3. Risk evaluation and mitigation strategies
-    4. Growth potential assessment
-    """
-
-    print(f"📈 Ranking companies by investment potential...")
-    ranking_result = await research_analyst.arun(ranking_prompt)
-    ranking_analysis = ranking_result.content
+    print(f"🔍 Analyzing information and trends...")
+    research_analysis_result = await research_analyst.arun(analysis_prompt)
+    research_analysis = research_analysis_result.content
 
     # Save to file
     with open(research_analyst_report, "w") as f:
-        f.write(f"# Investment Ranking Report\n\n")
-        f.write(f"## Company Rankings\n{ranking_analysis.ranked_companies}\n\n")
-        f.write(f"## Investment Rationale\n{ranking_analysis.investment_rationale}\n\n")
-        f.write(f"## Risk Evaluation\n{ranking_analysis.risk_evaluation}\n\n")
-        f.write(f"## Growth Potential\n{ranking_analysis.growth_potential}\n")
+        f.write(f"# Research Analysis Report\n\n")
+        f.write(f"**Topics:** {research_analysis.research_topics}\n\n")
+        f.write(f"## Trend Analysis\n{research_analysis.trend_analysis}\n\n")
+        f.write(f"## Information Metrics\n{research_analysis.information_metrics}\n\n")
+        f.write(f"## Impact Assessment\n{research_analysis.impact_assessment}\n\n")
+        f.write(f"## Recommendations\n{research_analysis.recommendations}\n")
 
-    print(f"✅ Investment ranking completed and saved to {research_analyst_report}")
+    print(f"✅ Research analysis completed and saved to {research_analyst_report}")
 
-    # Phase 3: Portfolio Allocation Strategy
-    print(f"\n💼 PHASE 3: PORTFOLIO ALLOCATION STRATEGY")
+    # Phase 2: Research Ranking
+    print(f"\n🏆 PHASE 2: RESEARCH POTENTIAL RANKING")
     print("=" * 60)
 
-    portfolio_prompt = f"""
-    Based on the investment ranking and analysis below, create a strategic portfolio allocation.
+    ranking_prompt = f"""
+    Based on the comprehensive research analysis below, please rank these topics by research potential and impact.
     
-    INVESTMENT RANKING:
-    - Company Rankings: {ranking_analysis.ranked_companies}
-    - Investment Rationale: {ranking_analysis.investment_rationale}
-    - Risk Evaluation: {ranking_analysis.risk_evaluation}
+    RESEARCH ANALYSIS:
+    - Trend Analysis: {research_analysis.trend_analysis}
+    - Information Metrics: {research_analysis.information_metrics}
+    - Impact Assessment: {research_analysis.impact_assessment}
+    - Initial Recommendations: {research_analysis.recommendations}
+    
+    Please provide:
+    1. Detailed ranking of topics from highest to lowest research potential
+    2. Research rationale for each topic
+    3. Impact evaluation and strategic considerations
+    4. Growth potential assessment
+    """
+
+    print(f"📈 Ranking topics by research potential...")
+    ranking_result = await insights_analyst.arun(ranking_prompt)
+    ranking_analysis = ranking_result.content
+
+    # Save to file
+    with open(insights_analyst_report, "w") as f:
+        f.write(f"# Research Ranking Report\n\n")
+        f.write(f"## Topic Rankings\n{ranking_analysis.ranked_topics}\n\n")
+        f.write(f"## Research Rationale\n{ranking_analysis.research_rationale}\n\n")
+        f.write(f"## Impact Evaluation\n{ranking_analysis.impact_evaluation}\n\n")
+        f.write(f"## Growth Potential\n{ranking_analysis.growth_potential}\n")
+
+    print(f"✅ Research ranking completed and saved to {insights_analyst_report}")
+
+    # Phase 3: Strategic Insights Development
+    print(f"\n💼 PHASE 3: STRATEGIC INSIGHTS DEVELOPMENT")
+    print("=" * 60)
+
+    strategy_prompt = f"""
+    Based on the research ranking and analysis below, create strategic insights and recommendations.
+    
+    RESEARCH RANKING:
+    - Topic Rankings: {ranking_analysis.ranked_topics}
+    - Research Rationale: {ranking_analysis.research_rationale}
+    - Impact Evaluation: {ranking_analysis.impact_evaluation}
     - Growth Potential: {ranking_analysis.growth_potential}
     
     Please provide:
-    1. Specific allocation percentages for each company
-    2. Investment thesis and strategic rationale
-    3. Risk management approach
+    1. Strategic approach for each topic
+    2. Research thesis and strategic rationale
+    3. Implementation planning approach
     4. Final actionable recommendations
     """
 
-    print(f"💰 Developing portfolio allocation strategy...")
-    portfolio_result = await investment_lead.arun(portfolio_prompt)
-    portfolio_strategy = portfolio_result.content
+    print(f"💰 Developing strategic insights...")
+    strategy_result = await strategy_lead.arun(strategy_prompt)
+    strategy_insights = strategy_result.content
 
     # Save to file
-    with open(investment_report, "w") as f:
-        f.write(f"# Investment Portfolio Report\n\n")
-        f.write(f"## Allocation Strategy\n{portfolio_strategy.allocation_strategy}\n\n")
-        f.write(f"## Investment Thesis\n{portfolio_strategy.investment_thesis}\n\n")
-        f.write(f"## Risk Management\n{portfolio_strategy.risk_management}\n\n")
+    with open(strategic_report, "w") as f:
+        f.write(f"# Strategic Research Report\n\n")
+        f.write(f"## Strategic Approach\n{strategy_insights.strategic_approach}\n\n")
+        f.write(f"## Research Thesis\n{strategy_insights.research_thesis}\n\n")
+        f.write(f"## Trend Management\n{strategy_insights.trend_management}\n\n")
         f.write(
-            f"## Final Recommendations\n{portfolio_strategy.final_recommendations}\n"
+            f"## Final Recommendations\n{strategy_insights.final_recommendations}\n"
         )
 
-    print(f"✅ Portfolio strategy completed and saved to {investment_report}")
+    print(f"✅ Strategic insights completed and saved to {strategic_report}")
 
     # Final summary
     summary = f"""
-    🎉 INVESTMENT ANALYSIS WORKFLOW COMPLETED!
+    🎉 RESEARCH ANALYSIS WORKFLOW COMPLETED!
     
     📊 Analysis Summary:
-    • Companies Analyzed: {company_symbols}
-    • Market Analysis: ✅ Completed
-    • Investment Ranking: ✅ Completed  
-    • Portfolio Strategy: ✅ Completed
+    • Topics Analyzed: {research_topics}
+    • Research Analysis: ✅ Completed
+    • Research Ranking: ✅ Completed  
+    • Strategic Insights: ✅ Completed
     
     📁 Reports Generated:
-    • Stock Analysis: {stock_analyst_report}
-    • Investment Ranking: {research_analyst_report}
-    • Portfolio Strategy: {investment_report}
+    • Research Analysis: {research_analyst_report}
+    • Research Ranking: {insights_analyst_report}
+    • Strategic Insights: {strategic_report}
     
     💡 Key Insights:
-    {portfolio_strategy.allocation_strategy[:200]}...
+    {strategy_insights.strategic_approach[:200]}...
     
-    ⚠️ Disclaimer: This analysis is for educational purposes only and should not be considered as financial advice.
+    ⚠️ Disclaimer: This analysis is for educational and research purposes only.
     """
 
     return summary
 
 
 # --- Workflow definition ---
-investment_workflow = Workflow(
-    name="Investment Report Generator",
-    description="Automated investment analysis with market research and portfolio allocation",
-    steps=investment_analysis_execution,
+research_workflow = Workflow(
+    name="Research Report Generator",
+    description="Automated research analysis with trend evaluation and strategic insights",
+    steps=research_analysis_execution,
     workflow_session_state={},  # Initialize empty workflow session state
 )
 
@@ -342,30 +342,30 @@ if __name__ == "__main__":
     async def main():
         from rich.prompt import Prompt
 
-        # Example investment scenarios to showcase the analyzer's capabilities
+        # Example research scenarios to showcase the analyzer's capabilities
         example_scenarios = [
-            "AAPL, MSFT, GOOGL",  # Tech Giants
-            "NVDA, AMD, INTC",  # Semiconductor Leaders
-            "TSLA, F, GM",  # Automotive Innovation
-            "JPM, BAC, GS",  # Banking Sector
-            "AMZN, WMT, TGT",  # Retail Competition
-            "PFE, JNJ, MRNA",  # Healthcare Focus
-            "XOM, CVX, BP",  # Energy Sector
+            "AI, Machine Learning, Automation",  # Technology Trends
+            "Climate Change, Renewable Energy, Sustainability",  # Environmental Focus
+            "Electric Vehicles, Transportation, Infrastructure",  # Mobility Innovation
+            "Healthcare, Biotechnology, Medical Innovation",  # Health Sector
+            "E-commerce, Digital Marketing, Consumer Behavior",  # Business Trends
+            "Cybersecurity, Data Privacy, Digital Transformation",  # Security Focus
+            "Space Technology, Satellite Communications, Aerospace",  # Space Industry
         ]
 
-        # Get companies from user with example suggestion
-        companies = Prompt.ask(
-            "[bold]Enter company symbols (comma-separated)[/bold] "
-            "(or press Enter for a suggested portfolio)\n✨",
+        # Get topics from user with example suggestion
+        topics = Prompt.ask(
+            "[bold]Enter research topics (comma-separated)[/bold] "
+            "(or press Enter for a suggested research portfolio)\n✨",
             default=random.choice(example_scenarios),
         )
 
-        print("🧪 Testing Investment Report Generator with New Workflow Structure")
+        print("🧪 Testing Research Report Generator with New Workflow Structure")
         print("=" * 70)
 
-        result = await investment_workflow.arun(
-            message="Generate comprehensive investment analysis and portfolio allocation recommendations",
-            companies=companies,
+        result = await research_workflow.arun(
+            message="Generate comprehensive research analysis and strategic insights",
+            topics=topics,
         )
 
         pprint_run_response(result, markdown=True)
@@ -380,13 +380,13 @@ if __name__ == "__main__":
 
   <Step title="Install libraries">  
     ```bash
-    openai yfinance agno
+    openai ddgs agno
     ```
   </Step>
 
   <Step title="Run the workflow">
     ```bash
-    python investment_report_generator.py
+    python research_report_generator.py
     ```
   </Step>
 </Steps>

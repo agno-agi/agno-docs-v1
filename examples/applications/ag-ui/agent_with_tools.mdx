@@ -9,16 +9,16 @@ description: Expose your Agno Agent with tools as a AG-UI compatible app
 from agno.agent.agent import Agent
 from agno.app.agui.app import AGUIApp
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     tools=[
-        YFinanceTools(
-            stock_price=True, analyst_recommendations=True, stock_fundamentals=True
+        DuckDuckGoTools(
+            search=True, news=True
         )
     ],
-    description="You are an investment analyst that researches stock prices, analyst recommendations, and stock fundamentals.",
+    description="You are a research analyst that investigates topics, trends, and provides comprehensive information.",
     instructions="Format your response using markdown and use tables to display data where possible.",
 )
 

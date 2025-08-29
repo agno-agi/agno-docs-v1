@@ -10,18 +10,18 @@ This example shows how to use intermediate steps in an agent.
 from typing import Iterator
 from agno.agent import Agent, RunResponse
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from rich.pretty import pprint
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     markdown=True,
     show_tool_calls=True,
 )
 
 run_stream: Iterator[RunResponse] = agent.run(
-    "What is the stock price of NVDA", stream=True, stream_intermediate_steps=True
+    "What are the latest developments in renewable energy?", stream=True, stream_intermediate_steps=True
 )
 for chunk in run_stream:
     pprint(chunk.to_dict())
@@ -41,7 +41,7 @@ for chunk in run_stream:
 
   <Step title="Install libraries">
     ```bash
-    pip install -U openai agno yfinance rich
+    pip install -U openai agno ddgs rich
     ```
   </Step>
 

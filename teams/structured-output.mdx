@@ -8,81 +8,80 @@ Teams can generate structured data using Pydantic models, just like individual a
 
 Let's create a Stock Research Team that produces a structured `StockReport`.
 
-```python stock_team.py
+```python research_team.py
 from typing import List
 from pydantic import BaseModel, Field
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.team.team import Team
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
-class StockAnalysis(BaseModel):
-    symbol: str
-    company_name: str
+class NewsAnalysis(BaseModel):
+    topic: str
+    headline: str
     analysis: str
 
-class CompanyAnalysis(BaseModel):
-    company_name: str
+class TopicAnalysis(BaseModel):
+    topic_name: str
     analysis: str
 
-class StockReport(BaseModel):
-    symbol: str = Field(..., description="Stock ticker symbol")
-    company_name: str = Field(..., description="Full company name")
-    current_price: str = Field(..., description="Current stock price")
+class ResearchReport(BaseModel):
+    topic: str = Field(..., description="Research topic")
+    summary: str = Field(..., description="Brief summary of the topic")
+    latest_news: str = Field(..., description="Latest news about the topic")
     analysis: str = Field(..., description="Comprehensive analysis combining multiple perspectives")
-    recommendation: str = Field(..., description="Investment recommendation: Buy, Hold, or Sell")
+    recommendation: str = Field(..., description="Key insights and recommendations")
 
 # Create specialized agents
-stock_searcher = Agent(
-    name="Stock Searcher",
+news_searcher = Agent(
+    name="News Searcher",
     model=OpenAIChat("gpt-4o"),
-    response_model=StockAnalysis,
-    role="Searches for current stock information and price data.",
+    response_model=NewsAnalysis,
+    role="Searches for current news and trending information.",
     tools=[
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         )
     ],
 )
 
-company_info_agent = Agent(
-    name="Company Info Searcher", 
+topic_info_agent = Agent(
+    name="Topic Info Searcher", 
     model=OpenAIChat("gpt-4o"),
-    role="Researches company fundamentals and recent news.",
-    response_model=CompanyAnalysis,
+    role="Researches topic background and provides detailed information.",
+    response_model=TopicAnalysis,
     tools=[
-        YFinanceTools(
-            stock_price=False,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=False,
         )
     ],
 )
 
 # Create team with structured output
-stock_research_team = Team(
-    name="Stock Research Team",
+research_team = Team(
+    name="Research Team",
     mode="coordinate",
     model=OpenAIChat("gpt-4o"),
-    members=[stock_searcher, company_info_agent],
-    response_model=StockReport,
+    members=[news_searcher, topic_info_agent],
+    response_model=ResearchReport,
     markdown=True,
     show_members_responses=True,
 )
 
-stock_research_team.print_response("Give me a comprehensive stock report for NVDA")
+research_team.print_response("Give me a comprehensive research report on artificial intelligence developments")
 ```
 
-The team will coordinate between its members and produce a structured `StockReport` object:
+The team will coordinate between its members and produce a structured `ResearchReport` object:
 
 ```python
-StockReport(
-│   symbol='NVDA',
-│   company_name='NVIDIA Corporation',
-│   current_price='$875.42',
-│   analysis='NVIDIA continues to dominate the AI chip market with strong demand for its H100 and upcoming H200 GPUs. The company has shown exceptional growth in data center revenue, driven by enterprise AI adoption and cloud provider expansion. Recent partnerships with major tech companies strengthen its market position, though competition from AMD and Intel is intensifying.',
-│   recommendation='Buy'
+ResearchReport(
+│   topic='artificial intelligence developments',
+│   summary='AI technology advances across multiple domains',
+│   latest_news='Major breakthroughs in large language models, computer vision, and robotics',
+│   analysis='Artificial intelligence continues to evolve rapidly with significant advances in transformer architectures, multimodal models, and practical applications. Recent developments show increased focus on efficiency, safety, and real-world deployment. Major companies are investing heavily in AI infrastructure while addressing concerns about responsible development.',
+│   recommendation='Key areas to watch: multimodal AI, AI safety research, and practical enterprise applications'
 )
 ```
 
@@ -92,11 +91,11 @@ You can use an additional model to parse and structure the output from your prim
 
 ```python
 team = Team(
-    name="Stock Research Team",
+    name="Research Team",
     mode="coordinate",
     model=Claude(id="claude-sonnet-4-20250514"),
-    members=[stock_searcher, company_info_agent],
-    response_model=StockReport,
+    members=[news_searcher, topic_info_agent],
+    response_model=ResearchReport,
     parser_model=OpenAIChat(id="gpt-4o"),
 )
 ```
@@ -113,44 +112,44 @@ from pydantic import BaseModel, Field
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.team.team import Team
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
-class MarketAnalysis(BaseModel):
-    sector: str = Field(..., description="Market sector being analyzed")
+class TechnologyAnalysis(BaseModel):
+    sector: str = Field(..., description="Technology sector being analyzed")
     key_trends: List[str] = Field(..., description="Major trends affecting the sector")
-    top_performers: List[str] = Field(..., description="Best performing stocks in the sector")
-    market_outlook: str = Field(..., description="Overall market outlook and predictions")
+    top_developments: List[str] = Field(..., description="Most significant developments in the sector")
+    market_outlook: str = Field(..., description="Overall sector outlook and predictions")
     risk_factors: List[str] = Field(..., description="Key risks to consider")
 
 # Create research agents
 trend_analyst = Agent(
     name="Trend Analyst",
     model=OpenAIChat("gpt-4o"),
-    role="Analyzes market trends and sector performance.",
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True)]
+    role="Analyzes technology trends and sector developments.",
+    tools=[DuckDuckGoTools(search=True, news=True)]
 )
 
 risk_assessor = Agent(
     name="Risk Assessor", 
     model=OpenAIChat("gpt-4o"),
-    role="Identifies and evaluates market risks and opportunities.",
-    tools=[YFinanceTools(company_news=True, company_info=True)]
+    role="Identifies and evaluates technology risks and opportunities.",
+    tools=[DuckDuckGoTools(search=True, news=True)]
 )
 
 # Create streaming team
-market_research_team = Team(
-    name="Market Research Team",
+technology_research_team = Team(
+    name="Technology Research Team",
     mode="coordinate", 
     model=OpenAIChat("gpt-4o"),
     members=[trend_analyst, risk_assessor],
-    response_model=MarketAnalysis,
+    response_model=TechnologyAnalysis,
     markdown=True,
     show_members_responses=True,
 )
 
 # Stream the team response
-market_research_team.print_response(
-    "Analyze the technology sector for Q1 2024", 
+technology_research_team.print_response(
+    "Analyze the artificial intelligence sector developments for 2024", 
     stream=True, 
     stream_intermediate_steps=True
 )

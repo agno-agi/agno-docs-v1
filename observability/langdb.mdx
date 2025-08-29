@@ -83,7 +83,6 @@ from agno.agent import Agent
 from agno.team import Team
 from agno.models.langdb import LangDB
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.tools.yfinance import YFinanceTools
 
 # Research Agent
 web_agent = Agent(
@@ -93,29 +92,29 @@ web_agent = Agent(
     instructions="Research current market conditions and news"
 )
 
-# Financial Analysis Agent
-finance_agent = Agent(
-    name="Financial Analyst",
+# News Analysis Agent
+news_agent = Agent(
+    name="News Analyst",
     model=LangDB(id="xai/grok-4"),
-    tools=[YFinanceTools(stock_price=True, company_info=True)],
-    instructions="Perform quantitative financial analysis"
+    tools=[DuckDuckGoTools(search=True, news=True)],
+    instructions="Perform comprehensive news analysis and research"
 )
 
 # Coordinated Team
 reasoning_team = Team(
-    name="Finance Reasoning Team",
+    name="Research Reasoning Team",
     mode="coordinate",
     model=LangDB(id="xai/grok-4"),
-    members=[web_agent, finance_agent],
+    members=[web_agent, news_agent],
     instructions=[
-        "Collaborate to provide comprehensive financial insights",
-        "Consider both fundamental analysis and market sentiment"
-    ],- **Virtual Models**: Automatic model routing based on cost, performance, or capabilities
-    success_criteria="Complete financial analysis with recommendations"
+        "Collaborate to provide comprehensive research insights",
+        "Consider both current events and background information"
+    ],
+    success_criteria="Complete research analysis with recommendations"
 )
 
 # Execute team workflow
-reasoning_team.print_response("Analyze Apple (AAPL) investment potential")
+reasoning_team.print_response("Analyze recent developments in artificial intelligence technology")
 ```
 
 ## Sample Trace
