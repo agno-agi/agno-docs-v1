@@ -11,6 +11,10 @@
   "contextual": {
     "options": ["copy", "view", "chatgpt", "claude"]
   },
+  "banner": {
+    "content": "Run enterprise grade agent systems in your cloud with the AgentOS. [Join the waitlist.](https://www.agno.com/agent-os-waitlist)",
+    "dismissible": true
+  },
   "navigation": {
     "tabs": [
       {
@@ -189,6 +193,7 @@
                           "tools/toolkits/database/csv",
                           "tools/toolkits/database/duckdb",
                           "tools/toolkits/database/mem0",
+                          "tools/toolkits/database/memori",
                           "tools/toolkits/database/pandas",
                           "tools/toolkits/database/postgres",
                           "tools/toolkits/database/sql",
@@ -1073,6 +1078,7 @@
                     "pages": [
                       "examples/concepts/tools/social/discord",
                       "examples/concepts/tools/social/email",
+                      "examples/concepts/tools/social/gmail",
                       "examples/concepts/tools/social/slack",
                       "examples/concepts/tools/social/twilio",
                       "examples/concepts/tools/social/webex",
@@ -1169,6 +1175,7 @@
                       "examples/concepts/tools/mcp/airbnb",
                       "examples/concepts/tools/mcp/gibson_ai",
                       "examples/concepts/tools/mcp/github",
+                      "examples/concepts/tools/mcp/keboola",
                       "examples/concepts/tools/mcp/notion",
                       "examples/concepts/tools/mcp/pipedream_auth",
                       "examples/concepts/tools/mcp/pipedream_slack",
