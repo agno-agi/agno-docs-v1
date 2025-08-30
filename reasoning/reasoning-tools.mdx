@@ -16,17 +16,15 @@ The first version of the Think Tool was published by Anthropic in [this blog pos
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 from agno.tools.thinking import ThinkingTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 reasoning_agent = Agent(
     model=Claude(id="claude-3-7-sonnet-latest"),
     tools=[
         ThinkingTools(add_instructions=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions="Use tables where possible",
@@ -35,7 +33,7 @@ reasoning_agent = Agent(
 
 if __name__ == "__main__":
     reasoning_agent.print_response(
-        "Write a report on NVDA. Only the report, no other text.",
+        "Write a report on the latest developments in AI technology. Only the report, no other text.",
         stream=True,
         show_full_reasoning=True,
         stream_intermediate_steps=True,
@@ -52,18 +50,18 @@ While the v0 Think Tool is a great start, it is limited in that it only allows f
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 reasoning_agent = Agent(
     model=Claude(id="claude-3-7-sonnet-20250219"),
     tools=[
         ReasoningTools(add_instructions=True),
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True),
+        DuckDuckGoTools(search=True, news=True),
     ],
     show_tool_calls=True,
 )
 reasoning_agent.print_response(
-    "Write a report comparing NVDA to TSLA", stream=True, markdown=True
+    "Write a report comparing recent developments in renewable energy vs traditional energy", stream=True, markdown=True
 )
 ```
 

@@ -74,7 +74,7 @@ import os
 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from openinference.instrumentation.agno import AgnoInstrumentor
 from opentelemetry import trace as trace_api
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -108,14 +108,14 @@ AgnoInstrumentor().instrument()
 # Create and configure the agent
 agent = Agent(
     model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[YFinanceTools(stock_price=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions="Use tables to display data. Don't include any other text.",
     markdown=True,
     debug_mode=True
 )
 
 # Use the agent
-agent.print_response("What is the stock price of Apple?", stream=True)
+agent.print_response("What is the latest news about technology?", stream=True)
 ```
 
 ## Notes

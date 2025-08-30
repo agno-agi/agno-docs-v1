@@ -17,7 +17,6 @@ from agno.models.openai import OpenAIChat
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.knowledge import KnowledgeTools
-from agno.tools.yfinance import YFinanceTools
 from agno.vectordb.lancedb import LanceDb, SearchType
 
 agno_docs = UrlKnowledge(
@@ -47,23 +46,23 @@ web_agent = Agent(
     add_datetime_to_instructions=True,
 )
 
-finance_agent = Agent(
-    name="Finance Agent",
-    role="Handle financial data requests",
+research_agent = Agent(
+    name="Research Agent",
+    role="Handle research and news requests",
     model=OpenAIChat(id="gpt-4o-mini"),
     tools=[
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
+        DuckDuckGoTools(search=True, news=True)
     ],
     add_datetime_to_instructions=True,
 )
 
 team_leader = Team(
-    name="Reasoning Finance Team",
+    name="Reasoning Research Team",
     mode="coordinate",
     model=OpenAIChat(id="gpt-4o"),
     members=[
         web_agent,
-        finance_agent,
+        research_agent,
     ],
     tools=[knowledge_tools],
     instructions=[
@@ -91,7 +90,7 @@ def run_team(task: str):
 
 
 if __name__ == "__main__":
-    run_team("What does Paul Graham talk about the need to read in this essay?")
+    run_team("What insights can you provide about reading and learning based on the knowledge and recent educational trends?")
 ```
 
 ## Usage

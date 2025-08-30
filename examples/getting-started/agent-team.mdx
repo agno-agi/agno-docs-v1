@@ -22,7 +22,6 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.tools.yfinance import YFinanceTools
 
 web_agent = Agent(
     name="Web Agent",
@@ -52,22 +51,22 @@ web_agent = Agent(
     markdown=True,
 )
 
-finance_agent = Agent(
-    name="Finance Agent",
-    role="Get financial data",
+research_agent = Agent(
+    name="Research Agent",
+    role="Get research data and insights",
     model=OpenAIChat(id="gpt-4o"),
     tools=[
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
+        DuckDuckGoTools(search=True, news=True)
     ],
     instructions=dedent("""\
-        You are a skilled financial analyst with expertise in market data! 📊
+        You are a skilled research analyst with expertise in information gathering! 📊
 
-        Follow these steps when analyzing financial data:
-        1. Start with the latest stock price, trading volume, and daily range
-        2. Present detailed analyst recommendations and consensus target prices
-        3. Include key metrics: P/E ratio, market cap, 52-week range
-        4. Analyze trading patterns and volume trends
-        5. Compare performance against relevant sector indices
+        Follow these steps when analyzing research data:
+        1. Start with the latest developments, trends, and key findings
+        2. Present detailed insights and expert perspectives
+        3. Include key metrics: growth rates, market share, adoption rates
+        4. Analyze patterns and emerging trends
+        5. Compare developments against industry benchmarks
 
         Your style guide:
         - Use tables for structured data presentation
@@ -75,36 +74,36 @@ finance_agent = Agent(
         - Add brief explanations for technical terms
         - Highlight notable changes with emojis (📈 📉)
         - Use bullet points for quick insights
-        - Compare current values with historical averages
-        - End with a data-driven financial outlook\
+        - Compare current values with historical trends
+        - End with a data-driven research outlook\
     """),
     show_tool_calls=True,
     markdown=True,
 )
 
 agent_team = Agent(
-    team=[web_agent, finance_agent],
+    team=[web_agent, research_agent],
     model=OpenAIChat(id="gpt-4o"),
     instructions=dedent("""\
         You are the lead editor of a prestigious financial news desk! 📰
 
         Your role:
-        1. Coordinate between the web researcher and financial analyst
+        1. Coordinate between the web researcher and research analyst
         2. Combine their findings into a compelling narrative
         3. Ensure all information is properly sourced and verified
-        4. Present a balanced view of both news and data
-        5. Highlight key risks and opportunities
+        4. Present a balanced view of both news and research data
+        5. Highlight key trends and opportunities
 
         Your style guide:
         - Start with an attention-grabbing headline
         - Begin with a powerful executive summary
-        - Present financial data first, followed by news context
+        - Present research findings first, followed by news context
         - Use clear section breaks between different types of information
         - Include relevant charts or tables when available
-        - Add 'Market Sentiment' section with current mood
+        - Add 'Current Trends' section with emerging patterns
         - Include a 'Key Takeaways' section at the end
-        - End with 'Risk Factors' when appropriate
-        - Sign off with 'Market Watch Team' and the current date\
+        - End with 'Future Outlook' when appropriate
+        - Sign off with 'Research Team' and the current date\
     """),
     add_datetime_to_instructions=True,
     show_tool_calls=True,
@@ -113,10 +112,10 @@ agent_team = Agent(
 
 # Example usage with diverse queries
 agent_team.print_response(
-    "Summarize analyst recommendations and share the latest news for NVDA", stream=True
+    "Summarize the latest developments and share recent news about renewable energy technology", stream=True
 )
 agent_team.print_response(
-    "What's the market outlook and financial performance of AI semiconductor companies?",
+    "What's the current outlook and recent developments in artificial intelligence and machine learning?",
     stream=True,
 )
 agent_team.print_response(
@@ -141,7 +140,7 @@ Advanced queries to explore:
 
   <Step title="Install libraries">
     ```bash
-    pip install openai duckduckgo-search yfinance agno
+    pip install openai duckduckgo-search ddgs agno
     ```
   </Step>
 

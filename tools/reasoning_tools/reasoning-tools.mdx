@@ -20,17 +20,15 @@ Here's an example of how to use the `ReasoningTools` toolkit:
 from agno.agent import Agent
 from agno.models.anthropic import Claude
 from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 thinking_agent = Agent(
     model=Claude(id="claude-3-7-sonnet-latest"),
     tools=[
         ReasoningTools(add_instructions=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions="Use tables where possible",
@@ -38,7 +36,7 @@ thinking_agent = Agent(
     markdown=True,
 )
 
-thinking_agent.print_response("Write a report comparing NVDA to TSLA", stream=True)
+thinking_agent.print_response("Write a report comparing electric vehicles to renewable energy trends", stream=True)
 ```
 
 The toolkit comes with default instructions and few-shot examples to help the Agent use the tool effectively. Here is how you can enable them:

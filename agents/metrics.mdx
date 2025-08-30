@@ -27,18 +27,18 @@ from typing import Iterator
 
 from agno.agent import Agent, RunResponse
 from agno.models.google import Gemini
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from rich.pretty import pprint
 
 agent = Agent(
     model=Gemini(id="gemini-2.0-flash-001"),
-    tools=[YFinanceTools(stock_price=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     markdown=True,
     show_tool_calls=True,
 )
 
 agent.print_response(
-    "What is the stock price of NVDA", stream=True
+    "What is the latest news in the world", stream=True
 )
 
 # Print metrics per message

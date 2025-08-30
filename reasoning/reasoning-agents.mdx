@@ -43,20 +43,20 @@ If you set `reasoning_model` to a model that supports native Reasoning like o3-m
 
 You can also use tools with a reasoning agent. Lets create a finance agent that can reason.
 
-```python finance_reasoning.py
+```python research_reasoning.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 reasoning_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions=["Use tables to show data"],
     show_tool_calls=True,
     markdown=True,
     reasoning=True,
 )
-reasoning_agent.print_response("Write a report comparing NVDA to TSLA", stream=True, show_full_reasoning=True)
+reasoning_agent.print_response("Write a report comparing recent developments in renewable energy vs traditional energy", stream=True, show_full_reasoning=True)
 ```
 
 ## More Examples

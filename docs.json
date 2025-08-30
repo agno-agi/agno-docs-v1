@@ -252,7 +252,6 @@
                           "tools/toolkits/others/replicate",
                           "tools/toolkits/others/resend",
                           "tools/toolkits/others/todoist",
-                          "tools/toolkits/others/yfinance",
                           "tools/toolkits/others/youtube",
                           "tools/toolkits/others/zendesk",
                           "tools/toolkits/others/trello",
@@ -1164,7 +1163,6 @@
                       "examples/concepts/tools/others/replicate",
                       "examples/concepts/tools/others/resend",
                       "examples/concepts/tools/others/todoist",
-                      "examples/concepts/tools/others/yfinance",
                       "examples/concepts/tools/others/youtube",
                       "examples/concepts/tools/others/zendesk"
                     ]

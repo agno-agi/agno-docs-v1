@@ -1,25 +1,22 @@
 ---
-title: Gemini with Thinking Tools
+title: Gemini Thinking Tools
 ---
 
 ## Code
 
-```python cookbook/reasoning/tools/gemini_finance_agent.py
-
+```python cookbook/reasoning/tools/gemini_thinking_tools.py
 from agno.agent import Agent
 from agno.models.google import Gemini
 from agno.tools.thinking import ThinkingTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 thinking_agent = Agent(
     model=Gemini(id="gemini-2.0-flash"),
     tools=[
         ThinkingTools(add_instructions=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions="Use tables where possible",
@@ -27,8 +24,21 @@ thinking_agent = Agent(
     markdown=True,
     stream_intermediate_steps=True,
 )
+
+# Financial analysis with thinking tools
 thinking_agent.print_response(
-    "Write a report comparing NVDA to TSLA in detail", stream=True, show_reasoning=True
+    "Analyze the current state of cryptocurrency markets vs traditional banking. "
+    "Think through the key differences, risks, and opportunities for investors.", 
+    stream=True, 
+    show_reasoning=True
+)
+
+# Market trend analysis
+thinking_agent.print_response(
+    "Compare the financial performance and market outlook of electric vehicle companies "
+    "versus traditional automotive manufacturers. Consider Tesla, Ford, and GM in your analysis.",
+    stream=True,
+    show_reasoning=True
 )
 
 
@@ -54,11 +64,11 @@ thinking_agent.print_response(
   <Step title="Run Agent">
     <CodeGroup>
     ```bash Mac
-    python cookbook/reasoning/tools/gemini_finance_agent.py
+    python cookbook/reasoning/tools/gemini_thinking_tools.py
     ```
 
     ```bash Windows
-    python cookbook/reasoning/tools/gemini_finance_agent.py
+    python cookbook/reasoning/tools/gemini_thinking_tools.py
     ```
     </CodeGroup>
   </Step>

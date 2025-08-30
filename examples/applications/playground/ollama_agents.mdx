@@ -10,7 +10,6 @@ from agno.models.ollama import Ollama
 from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.tools.yfinance import YFinanceTools
 from agno.tools.youtube import YouTubeTools
 
 local_agent_storage_file: str = "tmp/local_agents.db"
@@ -38,23 +37,21 @@ web_agent = Agent(
     markdown=True,
 )
 
-finance_agent = Agent(
-    name="Finance Agent",
-    role="Get financial data",
-    agent_id="finance-agent",
+research_agent = Agent(
+    name="Research Agent",
+    role="Get research data and insights",
+    agent_id="research-agent",
     model=Ollama(id="llama3.1:8b"),
     tools=[
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         )
     ],
-    description="You are an investment analyst that researches stocks and helps users make informed decisions.",
+    description="You are a research analyst that investigates topics and helps users find comprehensive information.",
     instructions=["Always use tables to display data"] + common_instructions,
     storage=SqliteStorage(
-        table_name="finance_agent",
+        table_name="research_agent",
         db_file=local_agent_storage_file,
         auto_upgrade_schema=True,
     ),
@@ -94,7 +91,7 @@ youtube_agent = Agent(
 )
 
 playground = Playground(
-    agents=[web_agent, finance_agent, youtube_agent],
+    agents=[web_agent, research_agent, youtube_agent],
     name="Ollama Agents",
     description="A playground for ollama agents",
     app_id="ollama-agents",
@@ -126,7 +123,7 @@ if __name__ == "__main__":
 
   <Step title="Install libraries">
     ```bash
-    pip install -U "uvicorn[standard]" ollama duckduckgo-search yfinance pypdf sqlalchemy 'fastapi[standard]' youtube-transcript-api agno
+    pip install -U "uvicorn[standard]" ollama duckduckgo-search ddgs pypdf sqlalchemy 'fastapi[standard]' youtube-transcript-api agno
     ```
   </Step>
 

@@ -16,7 +16,6 @@ from agno.models.openai import OpenAIChat
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
 
 web_agent = Agent(
     name="Web Search Agent",
@@ -27,30 +26,30 @@ web_agent = Agent(
     add_datetime_to_instructions=True,
 )
 
-finance_agent = Agent(
-    name="Finance Agent",
-    role="Handle financial data requests",
+research_agent = Agent(
+    name="Research Agent",
+    role="Handle research and news requests",
     model=OpenAIChat(id="gpt-4o-mini"),
     tools=[
-        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
+        DuckDuckGoTools(search=True, news=True)
     ],
     instructions=[
-        "You are a financial data specialist. Provide concise and accurate data.",
-        "Use tables to display stock prices, fundamentals (P/E, Market Cap), and recommendations.",
-        "Clearly state the company name and ticker symbol.",
-        "Briefly summarize recent company-specific news if available.",
-        "Focus on delivering the requested financial data points clearly.",
+        "You are a research specialist. Provide comprehensive and accurate information.",
+        "Use tables to display research findings and data comparisons.",
+        "Clearly state sources and provide relevant context.",
+        "Summarize recent news and developments if available.",
+        "Focus on delivering the requested research data points clearly.",
     ],
     add_datetime_to_instructions=True,
 )
 
 team_leader = Team(
-    name="Reasoning Finance Team Leader",
+    name="Reasoning Research Team Leader",
     mode="coordinate",
     model=Claude(id="claude-3-7-sonnet-latest"),
     members=[
         web_agent,
-        finance_agent,
+        research_agent,
     ],
     tools=[ReasoningTools(add_instructions=True)],
     instructions=[
@@ -77,17 +76,18 @@ def run_team(task: str):
 if __name__ == "__main__":
     run_team(
         dedent("""\
-    Analyze the impact of recent US tariffs on market performance across these key sectors:
-    - Steel & Aluminum: (X, NUE, AA)
-    - Technology Hardware: (AAPL, DELL, HPQ)
-    - Agricultural Products: (ADM, BG, INGR)
-    - Automotive: (F, GM, TSLA)
+    Analyze the impact of recent global technology policy changes on development across these key sectors:
+    - Artificial Intelligence & Machine Learning
+    - Semiconductor Industry
+    - Renewable Energy Technology
+    - Electric Vehicle Technology
+    - Telecommunications Infrastructure
 
     For each sector:
-    1. Compare stock performance before and after tariff implementation
-    2. Identify supply chain disruptions and cost impact percentages
-    3. Analyze companies' strategic responses (reshoring, price adjustments, supplier diversification)
-    4. Assess analyst outlook changes directly attributed to tariff policies
+    1. Compare development trends before and after policy changes
+    2. Identify innovation disruptions and investment impact
+    3. Analyze companies' strategic responses (R&D investments, partnerships, market positioning)
+    4. Assess expert outlook changes directly attributed to policy shifts
     """)
     )
 
@@ -115,11 +115,11 @@ if __name__ == "__main__":
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/reasoning/teams/reasoning_finance_team.py
+    python cookbook/reasoning/teams/reasoning_research_team.py
     ```
 
     ```bash Windows
-    python cookbook/reasoning/teams/reasoning_finance_team.py
+    python cookbook/reasoning/teams/reasoning_research_team.py
     ```
     </CodeGroup>
   </Step>

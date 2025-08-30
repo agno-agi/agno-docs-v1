@@ -8,26 +8,25 @@ For detailed integration instructions, see the [LangDB Agno documentation](https
 
 ## Code
 
-```python cookbook/models/langdb/finance_agent.py
+```python cookbook/models/langdb/research_agent.py
 from agno.agent import Agent
 from agno.models.langdb import LangDB
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=LangDB(id="gpt-4o-mini"),
     tools=[
-        YFinanceTools(
-            stock_price=True, analyst_recommendations=True, stock_fundamentals=True
+        DuckDuckGoTools(
+            search=True, news=True
         )
     ],
     show_tool_calls=True,
-    description="You are an investment analyst that researches stocks and helps users make informed decisions.",
+    description="You are a research analyst that investigates topics and helps users find comprehensive information.",
     instructions=["Use tables to display data where possible."],
     markdown=True,
 )
 
-# agent.print_response("Share the NVDA stock price and analyst recommendations", stream=True)
-agent.print_response("Summarize fundamentals for TSLA", stream=True)
+agent.print_response("What are the latest developments in AI technology?", stream=True)
 ```
 
 ## Usage
@@ -44,7 +43,7 @@ agent.print_response("Summarize fundamentals for TSLA", stream=True)
 
   <Step title="Install libraries">
     ```bash
-    pip install -U yfinance agno
+    pip install -U ddgs agno
     ```
   </Step>
 

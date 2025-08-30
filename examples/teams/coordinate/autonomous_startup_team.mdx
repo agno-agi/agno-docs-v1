@@ -14,7 +14,7 @@ from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.exa import ExaTools
 from agno.tools.slack import SlackTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.vectordb.pgvector.pgvector import PgVector
 
 knowledge_base = PDFKnowledgeBase(
@@ -127,22 +127,22 @@ sales_agent = Agent(
 )
 
 
-financial_analyst_agent = Agent(
-    name="Financial Analyst Agent",
-    role="Financial Analyst",
+research_analyst_agent = Agent(
+    name="Research Analyst Agent",
+    role="Research Analyst",
     model=OpenAIChat("gpt-4o"),
     knowledge=knowledge_base,
-    tools=[YFinanceTools()],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions=[
-        "You are the Financial Analyst of a startup, responsible for financial planning and analysis.",
+        "You are the Research Analyst of a startup, responsible for market research and analysis.",
         "Key Responsibilities:",
-        "1. Develop financial models and projections",
-        "2. Create and analyze revenue forecasts",
-        "3. Evaluate pricing strategies and unit economics",
-        "4. Prepare investor reports and presentations",
-        "5. Monitor cash flow and burn rate",
-        "6. Analyze market conditions and financial trends",
-        "7. Assess potential investment opportunities",
+        "1. Develop market models and trend projections",
+        "2. Create and analyze market forecasts and opportunities",
+        "3. Evaluate competitive strategies and market positioning",
+        "4. Prepare research reports and market presentations",
+        "5. Monitor industry trends and developments",
+        "6. Analyze market conditions and growth trends",
+        "7. Assess potential research opportunities and partnerships",
         "8. Track key financial metrics and KPIs",
         "9. Provide financial insights for strategic decisions",
     ],
@@ -247,7 +247,7 @@ autonomous_startup_team.print_response(
 
     <Step title="Install required libraries">
         ```bash
-        pip install openai duckduckgo-search exa_py slack yfinance
+        pip install openai duckduckgo-search exa_py slack ddgs
         ```
     </Step>
 

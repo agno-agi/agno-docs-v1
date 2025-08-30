@@ -3,16 +3,16 @@ title: Finance Agent
 ---
 
 This example shows how to create a sophisticated financial analyst that provides
-comprehensive market insights using real-time data. The agent combines stock market data,
-analyst recommendations, company information, and latest news to deliver professional-grade
-financial analysis.
+comprehensive market insights using real-time news and research data. The agent combines financial news,
+market analysis, company information, and expert insights to deliver professional-grade
+financial research and market commentary.
 
 Example prompts to try:
-- "What's the latest news and financial performance of Apple (AAPL)?"
-- "Give me a detailed analysis of Tesla's (TSLA) current market position"
-- "How are Microsoft's (MSFT) financials looking? Include analyst recommendations"
-- "Analyze NVIDIA's (NVDA) stock performance and future outlook"
-- "What's the market saying about Amazon's (AMZN) latest quarter?"
+- "What's the latest news and market sentiment around Apple?"
+- "Give me a detailed analysis of Tesla's recent market developments"
+- "How is Microsoft performing in the current market? Include recent news"
+- "Analyze NVIDIA's recent news and market position"
+- "What's the latest financial news about Amazon's business performance?"
 
 ## Code
 
@@ -21,84 +21,82 @@ from textwrap import dedent
 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 finance_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     tools=[
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            stock_fundamentals=True,
-            historical_prices=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         )
     ],
     instructions=dedent("""\
-        You are a seasoned Wall Street analyst with deep expertise in market analysis! 📊
+        You are a seasoned financial analyst with deep expertise in market analysis and financial research! 📊
 
         Follow these steps for comprehensive financial analysis:
         1. Market Overview
-           - Latest stock price
-           - 52-week high and low
+           - Search for latest company news and developments
+           - Current market sentiment and trends
         2. Financial Deep Dive
-           - Key metrics (P/E, Market Cap, EPS)
-        3. Professional Insights
-           - Analyst recommendations breakdown
-           - Recent rating changes
+           - Key financial developments and announcements
+           - Recent earnings or business updates
+        3. Professional Analysis
+           - Expert opinions and market commentary
+           - Recent news impact assessment
 
-        4. Market Context
-           - Industry trends and positioning
-           - Competitive analysis
-           - Market sentiment indicators
+        4. Financial Context
+           - Industry trends and competitive positioning
+           - Comparative market analysis
+           - Current investor sentiment and market indicators
 
         Your reporting style:
         - Begin with an executive summary
-        - Use tables for data presentation
+        - Use tables for data presentation when available
         - Include clear section headers
         - Add emoji indicators for trends (📈 📉)
         - Highlight key insights with bullet points
-        - Compare metrics to industry averages
+        - Compare findings to industry benchmarks when possible
         - Include technical term explanations
-        - End with a forward-looking analysis
+        - End with a forward-looking market analysis
 
-        Risk Disclosure:
-        - Always highlight potential risk factors
-        - Note market uncertainties
-        - Mention relevant regulatory concerns
+        Financial Disclosure:
+        - Always highlight news sources and dates
+        - Note data limitations and availability
+        - Mention this is based on publicly available information
+        - This analysis is for educational purposes only
     """),
     add_datetime_to_instructions=True,
     show_tool_calls=True,
     markdown=True,
 )
 
-# Example usage with detailed market analysis request
+# Example usage with detailed financial analysis request
 finance_agent.print_response(
-    "What's the latest news and financial performance of Apple (AAPL)?", stream=True
+    "Provide a comprehensive financial analysis of Apple's recent market performance and news", stream=True
 )
 
-# Semiconductor market analysis example
+# Financial sector analysis example
 finance_agent.print_response(
     dedent("""\
-    Analyze the semiconductor market performance focusing on:
-    - NVIDIA (NVDA)
-    - AMD (AMD)
-    - Intel (INTC)
-    - Taiwan Semiconductor (TSM)
-    Compare their market positions, growth metrics, and future outlook."""),
+    Analyze the technology sector's financial performance focusing on:
+    - Apple's latest earnings and market position
+    - Microsoft's business developments and financial health
+    - Google's revenue streams and market outlook
+    - Tesla's financial performance and industry position
+    Compare their market positions, financial metrics, and future outlook."""),
     stream=True,
 )
 
-# Automotive market analysis example
+# Banking sector financial analysis example
 finance_agent.print_response(
     dedent("""\
-    Evaluate the automotive industry's current state:
-    - Tesla (TSLA)
-    - Ford (F)
-    - General Motors (GM)
-    - Toyota (TM)
-    Include EV transition progress and traditional auto metrics."""),
+    Evaluate the banking sector's current financial landscape:
+    - JPMorgan Chase's recent financial performance
+    - Bank of America's market position and earnings
+    - Wells Fargo's business developments
+    - Goldman Sachs' market activities and performance
+    Include profitability trends and regulatory impact analysis."""),
     stream=True,
 )
 
@@ -133,7 +131,7 @@ Automotive Industry:
 
   <Step title="Install libraries">
     ```bash
-    pip install openai yfinance agno
+    pip install openai ddgs agno
     ```
   </Step>
   <Step title="Set environment variables">
