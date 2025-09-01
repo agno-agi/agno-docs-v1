@@ -1,33 +1,30 @@
 ---
-title: Multiple Agents Sharing Memory
+title: Share Memory between Agents
 ---
-In this example, we have two agents that share the same memory.
+
+This example demonstrates how to share memory between Agents.
+
+This means that memories created by one Agent, will be available to the other Agents.
 
 ## Code
 
-```python cookbook/agent_concepts/memory/09_agents_share_memory.py
-
+```python cookbook/memory/03_agents_share_memory.py
 from agno.agent.agent import Agent
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.memory import Memory
-from agno.models.google.gemini import Gemini
+from agno.db.postgres import PostgresDb
+from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
 from rich.pretty import pprint
 
-memory_db = SqliteMemoryDb(table_name="memory", db_file="tmp/memory.db")
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
-# No need to set the model, it gets set by the agent to the agent's model
-memory = Memory(db=memory_db)
-
-# Reset the memory for this example
-memory.clear()
+db = PostgresDb(db_url=db_url)
 
 john_doe_id = "john_doe@example.com"
 
 chat_agent = Agent(
-    model=Gemini(id="gemini-2.0-flash-exp"),
+    model=OpenAIChat(id="gpt-4o"),
     description="You are a helpful assistant that can chat with users",
-    memory=memory,
+    db=db,
     enable_user_memories=True,
 )
 
@@ -41,10 +38,10 @@ chat_agent.print_response("What are my hobbies?", stream=True, user_id=john_doe_
 
 
 research_agent = Agent(
-    model=Gemini(id="gemini-2.0-flash-exp"),
+    model=OpenAIChat(id="gpt-4o"),
     description="You are a research assistant that can help users with their research questions",
     tools=[DuckDuckGoTools(cache_results=True)],
-    memory=memory,
+    db=db,
     enable_user_memories=True,
 )
 
@@ -54,9 +51,10 @@ research_agent.print_response(
     user_id=john_doe_id,
 )
 
-memories = memory.get_user_memories(user_id=john_doe_id)
+memories = research_agent.get_user_memories(user_id=john_doe_id)
 print("Memories about John Doe:")
 pprint(memories)
+
 ```
 
 ## Usage
@@ -64,26 +62,20 @@ pprint(memories)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export GOOGLE_API_KEY=xxx
-    ```
-  </Step>
-
   <Step title="Install libraries">
     ```bash
-    pip install -U agno google-generativeai duckduckgo-search
+    pip install -U agno rich
     ```
   </Step>
 
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/memory/09_agents_share_memory.py
+    python cookbook/memory/03_agents_share_memory.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/09_agents_share_memory.py
+    python cookbook/memory/03_agents_share_memory.py
     ```
     </CodeGroup>
   </Step>

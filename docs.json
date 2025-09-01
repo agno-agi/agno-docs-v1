@@ -955,20 +955,13 @@
               {
                 "group": "Memory",
                 "pages": [
-                  "examples/concepts/memory/00-built-in-memory",
-                  "examples/concepts/memory/01-standalone-memory",
-                  "examples/concepts/memory/02-persistent-memory",
-                  "examples/concepts/memory/03-custom-memory-creation",
-                  "examples/concepts/memory/04-memory-search",
-                  "examples/concepts/memory/05-agent-with-memory",
-                  "examples/concepts/memory/06-agentic-memory",
-                  "examples/concepts/memory/07-agent-with-summaries",
-                  "examples/concepts/memory/08-agents-share-memory",
-                  "examples/concepts/memory/09-custom-memory",
-                  "examples/concepts/memory/10-multi-user-multi-session-chat",
-                  "examples/concepts/memory/11-multi-user-multi-session-chat-concurrent",
-                  "examples/concepts/memory/12-memory-references",
-                  "examples/concepts/memory/13-session-summary-references",
+                  "examples/concepts/memory/01-agent-with-memory",
+                  "examples/concepts/memory/02-agentic-memory",
+                  "examples/concepts/memory/03-agents-share-memory",
+                  "examples/concepts/memory/04-custom-memory-manager",
+                  "examples/concepts/memory/05-multi-user-multi-session-chat",
+                  "examples/concepts/memory/06-multi-user-multi-session-chat-concurrent",
+                  "examples/concepts/memory/07-share-memory-and-history-between-agents",
                   "examples/concepts/memory/mem0-memory",
                   {
                     "group": "DB",
@@ -977,6 +970,15 @@
                       "examples/concepts/memory/db/mem-postgres-memory",
                       "examples/concepts/memory/db/mem-sqlite-memory",
                       "examples/concepts/memory/db/mem-redis-memory"
+                    ]
+                  },
+                  {
+                    "group": "Memory Manager",
+                    "pages": [
+                      "examples/concepts/memory/memory_manager/01-standalone-memory",
+                      "examples/concepts/memory/memory_manager/02-memory-creation",
+                      "examples/concepts/memory/memory_manager/03-custom-memory-instructions",
+                      "examples/concepts/memory/memory_manager/04-memory-search"
                     ]
                   }
                 ]

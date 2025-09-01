@@ -1,34 +1,30 @@
 ---
-title: Custom Memory Creation
+title: Custom Memory Instructions
 ---
 
-This example demonstrates how to create user memories with an Agent by providing either text or a list of messages. The Agent uses a custom memory manager to capture and store relevant details.
+Create user memories with an Agent by providing a either text or a list of messages.
 
 ## Code
 
-```python cookbook/agent_concepts/memory/04_custom_memory_creation.py
-from agno.memory.v2 import Memory
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.manager import MemoryManager
+```python cookbook/memory/memory_manager/03_custom_memory_instructions.py
+from agno.db.postgres import PostgresDb
+from agno.memory import MemoryManager
 from agno.models.anthropic.claude import Claude
-from agno.models.google import Gemini
 from agno.models.message import Message
+from agno.models.openai import OpenAIChat
 from rich.pretty import pprint
 
-memory_db = SqliteMemoryDb(table_name="memory", db_file="tmp/memory.db")
-# Reset for this example
-memory_db.clear()
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
-memory = Memory(
-    model=Gemini(id="gemini-2.0-flash-exp"),
-    memory_manager=MemoryManager(
-        model=Gemini(id="gemini-2.0-flash-exp"),
-        memory_capture_instructions="""\
+memory_db = PostgresDb(db_url=db_url)
+
+memory = MemoryManager(
+    model=OpenAIChat(id="gpt-4o"),
+    memory_capture_instructions="""\
                     Memories should only include details about the user's academic interests.
                     Only include which subjects they are interested in.
                     Ignore names, hobbies, and personal interests.
                     """,
-    ),
     db=memory_db,
 )
 
@@ -55,7 +51,7 @@ pprint(memories)
 
 
 # Use default memory manager
-memory = Memory(model=Claude(id="claude-3-5-sonnet-latest"), db=memory_db)
+memory = MemoryManager(model=Claude(id="claude-3-5-sonnet-latest"), db=memory_db)
 jane_doe_id = "jane_doe@example.com"
 
 # Send a history of messages and add memories
@@ -99,19 +95,19 @@ pprint(memories)
 
   <Step title="Install libraries">
     ```bash
-    pip install -U agno rich
+    pip install -U agno
     ```
   </Step>
 
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/memory/04_custom_memory_creation.py
+    python cookbook/memory/memory_manager/03_custom_memory_instructions.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/04_custom_memory_creation.py
+    python cookbook/memory/memory_manager/03_custom_memory_instructions.py
     ```
     </CodeGroup>
   </Step>
-</Steps> 
+</Steps>

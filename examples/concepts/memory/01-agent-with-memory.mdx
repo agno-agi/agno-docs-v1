@@ -1,5 +1,5 @@
 ---
-title: Agent With Memory
+title: Agent with Memory
 ---
 
 This example shows you how to use persistent memory with an Agent.
@@ -10,32 +10,26 @@ To enable this, set `enable_user_memories=True` in the Agent config.
 
 ## Code
 
-```python cookbook/agent_concepts/memory/06_agent_with_memory.py
+```python cookbook/memory/01_agent_with_memory.py
+from uuid import uuid4
+
 from agno.agent.agent import Agent
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.memory import Memory
+from agno.db.postgres import PostgresDb
 from agno.models.openai import OpenAIChat
-from agno.storage.sqlite import SqliteStorage
 from rich.pretty import pprint
-from utils import print_chat_history
 
-memory_db = SqliteMemoryDb(table_name="memory", db_file="tmp/memory.db")
+db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
-# No need to set the model, it gets set by the agent to the agent's model
-memory = Memory(db=memory_db)
+db = PostgresDb(db_url=db_url)
 
-# Reset the memory for this example
-memory.clear()
+db.clear_memories()
 
-session_id = "session_1"
+session_id = str(uuid4())
 john_doe_id = "john_doe@example.com"
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o-mini"),
-    memory=memory,
-    storage=SqliteStorage(
-        table_name="agent_sessions", db_file="tmp/persistent_memory.db"
-    ),
+    db=db,
     enable_user_memories=True,
 )
 
@@ -50,11 +44,7 @@ agent.print_response(
     "What are my hobbies?", stream=True, user_id=john_doe_id, session_id=session_id
 )
 
-# -*- Print the chat history
-session_run = memory.runs[session_id][-1]
-print_chat_history(session_run)
-
-memories = memory.get_user_memories(user_id=john_doe_id)
+memories = agent.get_user_memories(user_id=john_doe_id)
 print("John Doe's memories:")
 pprint(memories)
 
@@ -65,14 +55,11 @@ agent.print_response(
     session_id=session_id,
 )
 
-# -*- Print the chat history
-session_run = memory.runs[session_id][-1]
-print_chat_history(session_run)
-
 # You can also get the user memories from the agent
 memories = agent.get_user_memories(user_id=john_doe_id)
 print("John Doe's memories:")
 pprint(memories)
+
 ```
 
 ## Usage
@@ -80,26 +67,20 @@ pprint(memories)
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Set your API key">
-    ```bash
-    export GOOGLE_API_KEY=xxx
-    ```
-  </Step>
-
   <Step title="Install libraries">
     ```bash
-    pip install -U agno google-generativeai
+    pip install -U agno
     ```
   </Step>
 
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac
-    python cookbook/agent_concepts/memory/06_agent_with_memory.py
+    python cookbook/memory/01_agent_with_memory.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/06_agent_with_memory.py
+    python cookbook/memory/01_agent_with_memory.py
     ```
     </CodeGroup>
   </Step>

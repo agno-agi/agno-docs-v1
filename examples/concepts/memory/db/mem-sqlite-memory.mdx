@@ -1,69 +1,24 @@
 ---
-title: SQLite Memory Storage
+title: Memory with SQLite
 ---
 
 ## Code
 
-```python cookbook/agent_concepts/memory/sqlite_memory.py
-"""
-This example shows how to use the Memory class with SQLite storage.
-"""
+```python cookbook/memory/db/mem-sqlite-memory.py
+from agno.agent import Agent
+from agno.db.sqlite import SqliteDb
 
-from agno.agent.agent import Agent
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
-from agno.storage.sqlite import SqliteStorage
+# Setup the SQLite database
+db = SqliteDb(db_file="tmp/data.db")
 
-# Create SQLite memory database
-memory_db = SqliteMemoryDb(
-    table_name="agent_memories",  # Table name to use in the database
-    db_file="tmp/memory.db",      # Path to SQLite database file
-)
-
-# Create memory instance with SQLite backend
-memory = Memory(db=memory_db)
-
-# This will create the table if it doesn't exist
-memory.clear()
-
-# Session and user identifiers
-session_id = "sqlite_memories"
-user_id = "sqlite_user"
-
-# Create agent with memory and SQLite storage
+# Setup a basic agent with the SQLite database
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"),
-    memory=memory,
-    storage=SqliteStorage(
-        table_name="agent_sessions", 
-        db_file="tmp/memory.db"
-    ),
+    db=db,
     enable_user_memories=True,
-    enable_session_summaries=True,
 )
 
-# First interaction - introducing personal information
-agent.print_response(
-    "My name is John Doe and I like to hike in the mountains on weekends.",
-    stream=True,
-    user_id=user_id,
-    session_id=session_id,
-)
-
-# Second interaction - testing if memory was stored
-agent.print_response(
-    "What are my hobbies?", 
-    stream=True, 
-    user_id=user_id, 
-    session_id=session_id
-)
-
-# Display the memories stored in SQLite
-memories = memory.get_user_memories(user_id=user_id)
-print("Memories stored in SQLite:")
-for i, m in enumerate(memories):
-    print(f"{i}: {m.memory}")
+agent.print_response("How many people live in Canada?")
+agent.print_response("What is their national anthem?")
 ```
 
 ## Usage
@@ -86,11 +41,11 @@ for i, m in enumerate(memories):
   <Step title="Run Example">
     <CodeGroup>
     ```bash Mac/Linux
-    python cookbook/agent_concepts/memory/sqlite_memory.py
+    python cookbook/memory/db/mem-sqlite-memory.py
     ```
 
     ```bash Windows
-    python cookbook/agent_concepts/memory/sqlite_memory.py
+    python cookbook/memory/db/mem-sqlite-memory.py
     ```
     </CodeGroup>
   </Step>
