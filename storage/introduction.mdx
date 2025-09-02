@@ -104,6 +104,17 @@ The storage system in Agno also works with workflows, enabling more complex mult
 Learn more about using storage with [workflows](/workflows/) to build powerful multi-agent systems with state management.
 </Note>
 
+<Note>
+When creating a `Storage` instance, you can specify a **mode** to control which type of session state is persisted:
+
+- `"agent"` → saves and loads `AgentSession` (default)  
+- `"team"` → saves and loads `TeamSession`  
+- `"workflow"` → saves and loads `WorkflowSession`  
+- `"workflow_v2"` → saves and loads `WorkflowSessionV2`  
+
+If you don’t set a mode, storage defaults to `"agent"`, meaning all session state will be read back as `AgentSession` objects.
+</Note>
+
 ## Supported Storage Backends
 
 The following options are supported as a storage backend:
