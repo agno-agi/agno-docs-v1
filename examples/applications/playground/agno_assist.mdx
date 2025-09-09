@@ -100,7 +100,7 @@ _instructions = dedent("""\
 
 # Initialize knowledge base
 agent_knowledge = UrlKnowledge(
-    urls=["https://docs.agno.com/llms-full.txt"],
+    urls=["https://docs-v1.agno.com/llms-full.txt"],
     vector_db=LanceDb(
         uri="tmp/lancedb",
         table_name="agno_assist_knowledge",

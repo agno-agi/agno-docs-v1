@@ -10,7 +10,7 @@ The **URLKnowledgeBase** reads **URLs** links, converts them into vector embeddi
 
 <Note>
 
-We are using a local Qdrant database for this example. [Make sure it's running](https://docs.agno.com/vectordb/qdrant)
+We are using a local Qdrant database for this example. [Make sure it's running](https://docs-v1.agno.com/vectordb/qdrant)
 
 </Note>
 
@@ -28,7 +28,7 @@ COLLECTION_NAME = "website-content"
 vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
 
 knowledge_base = UrlKnowledge(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     vector_db=vector_db,
 )
 ```
@@ -46,7 +46,7 @@ COLLECTION_NAME = "website-content"
 vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
 
 knowledge_base = UrlKnowledge(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     vector_db=vector_db,
 )
 agent_with_knowledge = Agent(
@@ -81,7 +81,7 @@ COLLECTION_NAME = "website-content"
 
 # Initialize knowledge base
 agent_knowledge = UrlKnowledge(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     vector_db=Qdrant(
         collection=COLLECTION_NAME,
         url="http://localhost:6333",

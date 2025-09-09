@@ -10,7 +10,7 @@ The **WebsiteKnowledgeBase** reads websites, converts them into vector embedding
 
 <Note>
 
-We are using a local PgVector database for this example. [Make sure it's running](https://docs.agno.com/vectordb/pgvector)
+We are using a local PgVector database for this example. [Make sure it's running](https://docs-v1.agno.com/vectordb/pgvector)
 
 </Note>
 
@@ -23,7 +23,7 @@ from agno.knowledge.website import WebsiteKnowledgeBase
 from agno.vectordb.pgvector import PgVector
 
 knowledge_base = WebsiteKnowledgeBase(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     # Number of links to follow from the seed URLs
     max_links=10,
     # Table name: ai.website_documents
@@ -54,7 +54,7 @@ agent.print_response("Ask me about something from the knowledge base")
 ```shell
 pip install qdrant-client
 ```
-We are using a local Qdrant database for this example. [Make sure it's running](https://docs.agno.com/vectordb/qdrant)
+We are using a local Qdrant database for this example. [Make sure it's running](https://docs-v1.agno.com/vectordb/qdrant)
 
 ```python async_knowledge_base.py
 import asyncio
@@ -72,7 +72,7 @@ vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
 
 # Create a knowledge base with the seed URLs
 knowledge_base = WebsiteKnowledgeBase(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     # Number of links to follow from the seed URLs
     max_links=5,
     # Table name: ai.website_documents

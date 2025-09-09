@@ -108,7 +108,7 @@ mode: "wide"
 
 ## New Features:
 
-- **Updated MCP Tools:** Our ****`MCPTools` and `MultiMCPTools` classes can now be initialized and used without an async context manager, providing a much easier experience. See the updated [docs](https://docs.agno.com/tools/mcp/mcp).
+- **Updated MCP Tools:** Our ****`MCPTools` and `MultiMCPTools` classes can now be initialized and used without an async context manager, providing a much easier experience. See the updated [docs](https://docs-v1.agno.com/tools/mcp/mcp).
 - **Morph Tools:** Morph’s Fast Apply model as a Tool, it intelligently merges your original code with update snippets at 98% accuracy and 4500+ tokens/second.
 
 ## Improvements:
@@ -129,7 +129,7 @@ mode: "wide"
 - **Row Chunking**: Added `RowChunking` as a CSV chunking strategy.
 - **EVM Toolkit**: Added `EvmTools` to do transactions on EVM compatible blockchains using `web3`.
 - **LinkUp Toolkit**: Added `LinkupTools` for powerful search.
-- **Background Execution Support for Workflows 2.0:** Introduced background execution capabilities for Workflows 2.0, enabling non-blocking workflow execution with polling support. See docs [here](https://docs.agno.com/workflows_2/background-execution).
+- **Background Execution Support for Workflows 2.0:** Introduced background execution capabilities for Workflows 2.0, enabling non-blocking workflow execution with polling support. See docs [here](https://docs-v1.agno.com/workflows_2/background-execution).
 
 ## Improvements:
 
@@ -176,7 +176,7 @@ mode: "wide"
         - **Smart Routing**: Dynamic step selection based on content analysis or user intent
         - **Mixed Components**: Combine agents, teams, and functions seamlessly
         - **State Management:** Share data across steps with session state
-    - For a comprehensive guide to the new Workflows system, check out the [docs](https://docs.agno.com/workflows_2/overview).
+    - For a comprehensive guide to the new Workflows system, check out the [docs](https://docs-v1.agno.com/workflows_2/overview).
 - **Pydantic Input for Agents/Teams:** Both Agent and Team now accepts structured input (i.e. a pydantic model) on run() and print_response().
 
 </Update>
@@ -184,7 +184,7 @@ mode: "wide"
 
 ## New Features:
 
-- **Session State on Run**: You can now pass `session_state` when running an agent or team. See [docs](https://docs.agno.com/agents/state) for more information.
+- **Session State on Run**: You can now pass `session_state` when running an agent or team. See [docs](https://docs-v1.agno.com/agents/state) for more information.
 - **GCS Support for PDF Knowledge Base:** Added `GCSPDFKnowledgeBase` to support PDFs on Google Cloud Storage.
 
 ## Bug Fixes:
@@ -226,7 +226,7 @@ mode: "wide"
 
 ## Improvements:
 
-- **Parser Model on Teams**: Added `parser_model` support for `Team`. See docs [here](https://docs.agno.com/teams/structured-output#using-a-parser-model).
+- **Parser Model on Teams**: Added `parser_model` support for `Team`. See docs [here](https://docs-v1.agno.com/teams/structured-output#using-a-parser-model).
 - **Support for Gemini Thinking**: Added `thinking_budget` and `include_thoughts` parameters for `Gemini` model class.
 - **Serper Tools**: Made updates to the toolkit to include new tools `search_news` , `search_scholar` and `scrape_webpage`.
 - **Valyu Tools:** New Valyu toolkit for Deep Search capabilities of academic sources.
@@ -348,7 +348,7 @@ mode: "wide"
             - `ReasoningCompleted`
             - `MemoryUpdateStarted`
             - `MemoryUpdateCompleted`
-    - See detailed documentation [here](https://docs.agno.com/agents/run).
+    - See detailed documentation [here](https://docs-v1.agno.com/agents/run).
 - **Updates to Teams:**
     - Teams have the following event types:
         - `TeamRunResponseContent`
@@ -365,7 +365,7 @@ mode: "wide"
             - `TeamMemoryUpdateStarted`
             - `TeamMemoryUpdateCompleted`
     - Teams will also yield events from team members as they are executed.
-    - See detailed documentation [here](https://docs.agno.com/teams/run).
+    - See detailed documentation [here](https://docs-v1.agno.com/teams/run).
 - **Updates to Workflows:**
     - You should now yield `WorkflowRunResponseStartedEvent` and `WorkflowRunResponseCompletedEvent` events.
 </Update>
@@ -762,7 +762,7 @@ mode: "wide"
 
 ## New Features:
 
-- **Memory Generally Available**: We have made improvements and adjustments to how Agentic user memory management works. This is now out of beta and generally available. See these [examples](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/memory) and these [docs](https://docs.agno.com/agents/memory) for more info.
+- **Memory Generally Available**: We have made improvements and adjustments to how Agentic user memory management works. This is now out of beta and generally available. See these [examples](https://github.com/agno-agi/agno/tree/main/cookbook/agent_concepts/memory) and these [docs](https://docs-v1.agno.com/agents/memory) for more info.
 - **OpenAI Tools**: Added `OpenAITools` to enable text-to-speech and image generation through OpenAI’s APIs.
 - **Zep Tools**: Added `ZepTools` and `AsyncZepTools` to manage memories for your Agent using `zep-cloud`
 
@@ -848,7 +848,7 @@ mode: "wide"
 
 ## New Features:
 
-- **Redis Memory DB**: Added Redis as a storage provider for `Memory`. See [here](https://docs.agno.com/examples/concepts/memory/mem-redis-memory).
+- **Redis Memory DB**: Added Redis as a storage provider for `Memory`. See [here](https://docs-v1.agno.com/examples/concepts/memory/mem-redis-memory).
 
 ## Improvements:
 
@@ -870,7 +870,7 @@ mode: "wide"
 <Update label="2025-04-12" description="v1.3.0">
 ## New Features:
 
-- **Memory Revamp (Beta)**: This is a beta release of a complete revamp of Agno Memory. This includes a new `Memory` class that supports adding, updating and deleting user memories, as well as doing semantic search with a model. This also adds additional abilities to the agent to manage memories on your behalf. See the docs [here](https://docs.agno.com/memory/introduction).
+- **Memory Revamp (Beta)**: This is a beta release of a complete revamp of Agno Memory. This includes a new `Memory` class that supports adding, updating and deleting user memories, as well as doing semantic search with a model. This also adds additional abilities to the agent to manage memories on your behalf. See the docs [here](https://docs-v1.agno.com/memory/introduction).
 - **User ID and Session ID on Run**: You can now pass `user_id` and `session_id` on `agent.run()`. This will ensure the agent is set up for the session belonging to the `session_id` and that only the memories of the current user is accessible to the agent. This allows you to build multi-user and multi-session applications with a single agent configuration.
 - **Redis Storage**: Support added for Redis as a session storage provider.
 
@@ -969,7 +969,7 @@ mode: "wide"
 ## Improvements:
 
 - **Vertex AI**: Improved use of Vertex AI with Gemini Model class to closely follow the official Google specification
-- **Function Result Caching Improvement:** We now have result caching on all Agno Toolkits and any custom functions using the `@tool` decorator. See the docs [here](https://docs.agno.com/tools/functions).
+- **Function Result Caching Improvement:** We now have result caching on all Agno Toolkits and any custom functions using the `@tool` decorator. See the docs [here](https://docs-v1.agno.com/tools/functions).
 - **Async Vector DB and Knowledge Base Improvements**: Various knowledge bases, readers and vector DBs now have `async-await` support, so it will be used in `agent.arun` and `agent.aprint_response`. This also means that `knowledge_base.aload()` is possible which should greatly increase loading speed in some cases. The following have been converted:
   - Vector DBs:
     - `LanceDb` → [Here](https://github.com/agno-agi/agno/blob/main/cookbook/agent_concepts/knowledge/vector_dbs/lance_db/async_lance_db.py) is a cookbook to illustrate how to use it.
@@ -1035,7 +1035,7 @@ mode: "wide"
 
 ## Bug Fixes:
 
-- **Sessions not created**: Made issue where sessions would not be created in existing tables without a migration be more visible. Please read the docs on [storage schema migrations](https://docs.agno.com/agents/storage).
+- **Sessions not created**: Made issue where sessions would not be created in existing tables without a migration be more visible. Please read the docs on [storage schema migrations](https://docs-v1.agno.com/agents/storage).
 - **Todoist fixes**: Fixed `update_task` on `TodoistTools`.
 
 </Update>
@@ -1079,7 +1079,7 @@ mode: "wide"
 ## Improvements:
 
 - **Teams Improvements:** Reasoning enabled for the team.
-- **MCP Simplification:** Simplified creation of `MCPTools` for connections to external MCP servers. See the updated [docs](https://docs.agno.com/tools/mcp#example%3A-filesystem-agent).
+- **MCP Simplification:** Simplified creation of `MCPTools` for connections to external MCP servers. See the updated [docs](https://docs-v1.agno.com/tools/mcp#example%3A-filesystem-agent).
 
 ## Bug Fixes:
 
@@ -1135,7 +1135,7 @@ mode: "wide"
   - Various improvements have been made that was broken with the previous teams implementation. Including returning structured output from member agents (for “route” mode), passing images, audio and video to member agents, etc.
   - It has added features like “agentic shared context” between team members and sharing of individual team member responses with other team members.
   - This also comes with a revamp of Agent and Team debug logs. Use `debug_mode=True` and `team.print_response(...)` to see it in action.
-  - Find the docs [here](https://docs.agno.com/teams/introduction). Please look at the example implementations [here](https://github.com/agno-agi/agno/blob/c8e47d1643065a0a6ee795c6b063f8576a7a2ef6/cookbook/examples/teams).
+  - Find the docs [here](https://docs-v1.agno.com/teams/introduction). Please look at the example implementations [here](https://github.com/agno-agi/agno/blob/c8e47d1643065a0a6ee795c6b063f8576a7a2ef6/cookbook/examples/teams).
   - This is the first release. Please give us feedback. Updates and improvements will follow.
   - Support for `Agent(team=[])` is still there, but deprecated (see below).
 - **LiteLLM:** Added [LiteLLM](https://www.litellm.ai/) support, both as a native implementation and via the `OpenAILike` interface.
@@ -1154,7 +1154,7 @@ mode: "wide"
 ## Deprecations:
 
 - **Structured Output:** `Agent.structured_output` has been replaced by `Agent.use_json_mode`. This will be removed in a future major version release.
-- **Agent Team:** `Agent.team` is deprecated with the release of our new Teams implementation [here](https://docs.agno.com/teams/introduction). This will be removed in a future major version release.
+- **Agent Team:** `Agent.team` is deprecated with the release of our new Teams implementation [here](https://docs-v1.agno.com/teams/introduction). This will be removed in a future major version release.
 
 </Update>
 
@@ -1213,8 +1213,8 @@ mode: "wide"
 ## New Features:
 
 - **File Prompts**: Introduced a new `File` type that can be added to prompts and will be sent to the model providers. Only Gemini and Anthropic Claude supported for now.
-- **LMStudio:** Added support for [LMStudio](https://lmstudio.ai/) as a model provider. See the [docs](https://docs.agno.com/models/lmstudio).
-- **AgentQL Tools**: Added tools to support [AgentQL](https://www.agentql.com/) for connecting agents to websites for scraping, etc. See the [docs](https://docs.agno.com/tools/toolkits/agentql).
+- **LMStudio:** Added support for [LMStudio](https://lmstudio.ai/) as a model provider. See the [docs](https://docs-v1.agno.com/models/lmstudio).
+- **AgentQL Tools**: Added tools to support [AgentQL](https://www.agentql.com/) for connecting agents to websites for scraping, etc. See the [docs](https://docs-v1.agno.com/tools/toolkits/agentql).
 - **Browserbase Tool:** Added [Browserbase](https://www.browserbase.com/) tool.
 
 ## Improvements:
@@ -1233,8 +1233,8 @@ mode: "wide"
 
 ## New Features:
 
-- **IBM Watson X:** Added support for IBM Watson X as a model provider. Find the docs [here](https://docs.agno.com/models/ibm-watsonx).
-- **DeepInfra**: Added support for [DeepInfra](https://deepinfra.com). Find the docs [here](https://docs.agno.com/models/deepinfra).
+- **IBM Watson X:** Added support for IBM Watson X as a model provider. Find the docs [here](https://docs-v1.agno.com/models/ibm-watsonx).
+- **DeepInfra**: Added support for [DeepInfra](https://deepinfra.com). Find the docs [here](https://docs-v1.agno.com/models/deepinfra).
 - **Support for MCP**: Introducing `MCPTools` along with examples for using MCP with Agno agents.
 
 ## Bug Fixes:

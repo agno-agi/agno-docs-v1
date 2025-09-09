@@ -126,7 +126,7 @@ tmp_dir.mkdir(parents=True, exist_ok=True)
 
 # Initialize knowledge base
 agno_docs_knowledge = UrlKnowledge(
-    urls=["https://docs.agno.com/llms-full.txt"],
+    urls=["https://docs-v1.agno.com/llms-full.txt"],
     vector_db=LanceDb(
         uri=str(tmp_dir.joinpath("lancedb")),
         table_name="agno_docs",

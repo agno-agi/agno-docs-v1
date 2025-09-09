@@ -10,7 +10,7 @@ The **FirecrawlKnowledgeBase** reads **URLs** links, converts them into vector e
 
 <Note>
 
-We are using a local Qdrant database for this example. [Make sure it's running](https://docs.agno.com/vectordb/qdrant)
+We are using a local Qdrant database for this example. [Make sure it's running](https://docs-v1.agno.com/vectordb/qdrant)
 
 </Note>
 
@@ -29,7 +29,7 @@ vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
 
 # Create a knowledge base with the seed URLs
 knowledge_base = FireCrawlKnowledgeBase(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     vector_db=vector_db,
 )
 ```
@@ -47,7 +47,7 @@ vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
 
 # Create a knowledge base with the seed URLs
 knowledge_base = FireCrawlKnowledgeBase(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     vector_db=vector_db,
 )
 
@@ -76,7 +76,7 @@ vector_db = Qdrant(collection=COLLECTION_NAME, url="http://localhost:6333")
 
 # Create a knowledge base with the seed URLs
 knowledge_base = FireCrawlKnowledgeBase(
-    urls=["https://docs.agno.com/introduction"],
+    urls=["https://docs-v1.agno.com/introduction"],
     vector_db=vector_db,
 )
 
