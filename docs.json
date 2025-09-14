@@ -115,6 +115,7 @@
                   "models/portkey",
                   "models/sambanova",
                   "models/together",
+                  "models/truefoundry",
                   "models/vercel",
                   "models/vllm",
                   "models/xai"

@@ -1,0 +1,150 @@
+---
+title: "TrueFoundry"
+---
+
+This guide provides instructions for integrating Agno AI with the [Truefoundry AI Gateway](https://www.truefoundry.com/ai-gateway).
+
+## What is TrueFoundry AI Gateway?
+
+TrueFoundry provides an enterprise-ready [AI Gateway](https://www.truefoundry.com/ai-gateway) which can integrate with agentic frameworks like Agno AI and provides governance and observability for your AI Applications.
+
+## Prerequisites
+
+Before integrating Agno AI with TrueFoundry, ensure you have:
+
+1. **TrueFoundry Account**: Create a [Truefoundry account](https://www.truefoundry.com/register) and follow the instructions in our [Gateway Quick Start Guide](https://docs.truefoundry.com/gateway/quick-start)
+2. **Agno Installation**: In your project directory, install Agno using pip: `pip install agno`        #See [PyPI](https://pypi.org/project/agno/1.1.6/) for latest updates
+
+## Setup Process
+
+### 1. Configure Environment Variables (Optional)
+
+Set up your environment variables to connect Agno with TrueFoundry Gateway:
+
+```bash
+export API_KEY="your-truefoundry-api-key"
+export BASE_URL="your-truefoundry-gateway-url"
+```
+
+You will get your 'truefoundry-api-key', 'truefoundry-gateway-url' and model name directly from the unified code snippet
+
+<Frame>
+  <img src="/images/new-code-snippet.png" />
+</Frame>
+
+### 2. Configure Agno Agents
+
+Create your Agno agents with TrueFoundry Gateway configuration:
+
+
+```python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+# Configure agent with TrueFoundry Gateway
+agent = Agent(
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",    # Use TrueFoundry model name. Similarly you can call any model from any model provider like anthropic, gemini etc
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+    ),
+    description="AI assistant powered by TrueFoundry Gateway",
+    instructions=[
+        "You are a helpful AI assistant",
+        "Provide accurate and concise responses"
+    ]
+)
+```
+
+## Usage Examples
+
+### Basic Single Agent
+
+Create a simple agent using the configured TrueFoundry Gateway:
+
+```python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+# Single agent with TrueFoundry Gateway
+agent = Agent(
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+        ),
+    name="Assistant",
+    description="General purpose AI assistant"
+)
+
+# Run the agent
+response = agent.run("What is the capital of Brazil?")
+print(response.content)
+```
+
+### Multi-Agent Team
+
+Create a team of specialized agents for complex tasks:
+
+```python
+from agno.agent import Agent
+from agno.team import Team
+from agno.models.openai import OpenAIChat
+
+# Research Agent
+researcher = Agent(
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+        ),
+    name="Researcher",
+    description="Conducts thorough research on topics",
+    instructions=[
+        "Research the given topic thoroughly",
+        "Provide factual and well-sourced information"
+    ]
+)
+
+# Writer Agent
+writer = Agent(
+    model=OpenAIChat(
+        id="openai-main/gpt-4o",
+        api_key="your-truefoundry-api-key",
+        base_url="your-truefoundry-gateway-url"
+        ),
+    name="Writer",
+    description="Creates well-structured content",
+    instructions=[
+        "Write clear and engaging content",
+        "Structure information logically"
+    ]
+)
+
+# Create team
+research_team = Team(
+    agents=[researcher, writer],
+    instructions=[
+        "Researcher should investigate the topic first",
+        "Writer should create content based on research findings"
+    ]
+)
+
+# Execute team task
+result = research_team.run("Research and write about sustainable energy solutions")
+```
+
+
+## Benefits of Using TrueFoundry Gateway with Agno AI
+
+1. **Cost Tracking**: Monitor and track costs across all your Agno AI agents and teams
+2. **Security**: Enhanced security with centralized API key management
+3. **Access Controls**: Implement fine-grained access controls for different teams and agents
+4. **Rate Limiting**: Prevent API quota exhaustion with intelligent rate limiting
+5. **Fallback Support**: Automatic failover to alternative providers when needed
+6. **Analytics**: Detailed analytics and monitoring for all LLM calls across your agent ecosystem
+7. **Multi-Provider Support**: Seamlessly switch between different model providers
+
+<Frame>
+  <img src="/images/monitoring-cost.png" />
+</Frame>
