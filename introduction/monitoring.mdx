@@ -9,7 +9,7 @@ You can track your Agent in real-time on [app.agno.com](https://app.agno.com).
 
 ## Authenticate
 Authenticate with [agno.com](https://app.agno.com) to start monitoring your sessions.
-Check out [Authentication guide](how-to/authentication) for instructions on how to Authenticate with Agno.
+Check out [Authentication guide](/how-to/authentication) for instructions on how to Authenticate with Agno.
 
 ## Enable Monitoring
 
@@ -73,16 +73,16 @@ Agno includes a built-in debugger that will print debug logs in the terminal. Se
 ```python debug_logs.py
 from agno.agent import Agent
 from agno.models.anthropic import Claude
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=Claude(id="claude-sonnet-4-20250514"),
-    tools=[YFinanceTools(stock_price=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions="Use tables to display data. Don't include any other text.",
     markdown=True,
     debug_mode=True,
 )
-agent.print_response("What is the stock price of Apple?", stream=True)
+agent.print_response("What is the latest news about technology?", stream=True)
 ```
 
 Run the agent to view debug logs in the terminal:
@@ -100,3 +100,9 @@ python debug_logs.py
    src="/videos/debug_logs.mp4"
 ></video>
 
+## Telemetry
+
+Agno logs which model an agent used so we can prioritize updates to the most popular providers. You can disable this by setting `AGNO_TELEMETRY=false` in your environment.
+
+```bash
+export AGNO_TELEMETRY=false

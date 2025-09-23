@@ -88,15 +88,15 @@ You can also specify which tools in a toolkit require confirmation.
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools import tool
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils import pprint
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[YFinanceTools(requires_confirmation_tools=["get_current_stock_price"])],
+    tools=[DuckDuckGoTools(requires_confirmation_tools=["duckduckgo_search"])],
 )
 
-agent.run("What is the current stock price of Apple?")
+agent.run("Search for the latest news on Apple?")
 if agent.is_paused:
     for tool in agent.run_response.tools_requiring_confirmation:
         print(f"Tool {tool.tool_name}({tool.tool_args}) requires confirmation")
@@ -368,6 +368,11 @@ if run_response.is_paused:
 1. **Sanitise user input**: Always validate and sanitize user input to prevent security vulnerabilities.
 2. **Error Handling**: Always implement proper error handling for user input and external calls
 3. **Input Validation**: Validate user input before processing
+
+<Note>
+  If you are using streaming, it is recommended to pass the `run_id` and a list of `updated_tools` to the `continue_run` or `acontinue_run` method.
+  See an example [here](/examples/concepts/user-control-flows/10-external-tool-execution-stream.mdx).
+</Note>
 
 ## Developer Resources
 

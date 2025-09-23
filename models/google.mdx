@@ -68,6 +68,22 @@ agent = Agent(
 )
 ```
 
+To use Vertex AI Search:
+
+```python
+# Replace with your actual datastore ID
+datastore_id = "projects/your-project-id/locations/global/collections/default_collection/dataStores/your-datastore-id"
+
+agent = Agent(
+    model=Gemini(
+        id="gemini-2.5-flash",
+        vertexai_search=True,
+        vertexai_search_datastore=datastore_id,
+        vertexai=True,  # Required for Vertex AI Search
+    ),
+)
+```
+
 ## Example
 
 Use `Gemini` with your `Agent`:
@@ -147,7 +163,7 @@ agent.print_response("What's happening in France?")
 
 </CodeGroup>
 
-Set `show_tool_calls=True` in your Agent configuration to see the grounding or search results in the output.
+<Tip> Combine `URL context` with `Google Search` to get a more in-depth analysis </Tip>
 
 ## Parameters
 

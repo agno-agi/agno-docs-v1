@@ -89,6 +89,7 @@
                     "pages": ["models/cerebras", "models/cerebras_openai"]
                   },
                   "models/cohere",
+                  "models/dashscope",
                   "models/deepinfra",
                   "models/deepseek",
                   "models/fireworks",
@@ -96,6 +97,7 @@
                   "models/groq",
                   "models/huggingface",
                   "models/ibm-watsonx",
+                  "models/langdb",
                   {
                     "group": "LiteLLM",
                     "pages": ["models/litellm", "models/litellm_openai"]
@@ -110,6 +112,7 @@
                   "models/openai-responses",
                   "models/openrouter",
                   "models/perplexity",
+                  "models/portkey",
                   "models/sambanova",
                   "models/together",
                   "models/vercel",
@@ -138,6 +141,7 @@
                           "tools/toolkits/search/exa",
                           "tools/toolkits/search/googlesearch",
                           "tools/toolkits/search/hackernews",
+                          "tools/toolkits/search/linkup",
                           "tools/toolkits/search/pubmed",
                           "tools/toolkits/search/searxng",
                           "tools/toolkits/search/serpapi",
@@ -184,6 +188,8 @@
                         "pages": [
                           "tools/toolkits/database/csv",
                           "tools/toolkits/database/duckdb",
+                          "tools/toolkits/database/mem0",
+                          "tools/toolkits/database/memori",
                           "tools/toolkits/database/pandas",
                           "tools/toolkits/database/postgres",
                           "tools/toolkits/database/sql",
@@ -242,7 +248,6 @@
                           "tools/toolkits/others/replicate",
                           "tools/toolkits/others/resend",
                           "tools/toolkits/others/todoist",
-                          "tools/toolkits/others/yfinance",
                           "tools/toolkits/others/youtube",
                           "tools/toolkits/others/zendesk",
                           "tools/toolkits/others/trello",
@@ -351,18 +356,19 @@
                 "group": "Vector DBs",
                 "pages": [
                   "vectordb/introduction",
-                  "vectordb/pgvector",
                   "vectordb/cassandra",
                   "vectordb/chroma",
-                  "vectordb/couchbase",
                   "vectordb/clickhouse",
+                  "vectordb/couchbase",
                   "vectordb/lancedb",
                   "vectordb/milvus",
+                  "vectordb/mongodb",
+                  "vectordb/azure_cosmos_mongodb",
+                  "vectordb/pgvector",
                   "vectordb/pinecone",
                   "vectordb/qdrant",
                   "vectordb/singlestore",
-                  "vectordb/mongodb",
-                  "vectordb/azure_cosmos_mongodb",
+                  "vectordb/surrealdb",
                   "vectordb/weaviate"
                 ]
               },
@@ -370,15 +376,16 @@
                 "group": "Storage",
                 "pages": [
                   "storage/introduction",
-                  "storage/dynamodb",
-                  "storage/json",
-                  "storage/mongodb",
-                  "storage/mysql",
                   "storage/postgres",
                   "storage/sqlite",
-                  "storage/yaml",
+                  "storage/in-memory",
+                  "storage/dynamodb",
+                  "storage/redis",
+                  "storage/mongodb",
+                  "storage/mysql",
                   "storage/singlestore",
-                  "storage/redis"
+                  "storage/yaml",
+                  "storage/json"
                 ]
               },
               {
@@ -393,11 +400,13 @@
                   "embedder/fireworks",
                   "embedder/huggingface",
                   "embedder/mistral",
+                  "embedder/nebius",
                   "embedder/qdrant_fastembed",
                   "embedder/sentencetransformers",
                   "embedder/together",
                   "embedder/voyageai",
-                  "embedder/aws_bedrock"
+                  "embedder/aws_bedrock",
+                  "embedder/jina"
                 ]
               },
               {
@@ -410,6 +419,17 @@
                   "workflows/introduction",
                   "workflows/state",
                   "workflows/advanced"
+                ]
+              },
+              {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "workflows_2/overview",
+                  "workflows_2/types_of_workflows",
+                  "workflows_2/run_workflow",
+                  "workflows_2/workflow_session_state",
+                  "workflows_2/advanced",
+                  "workflows_2/migration"
                 ]
               },
               {
@@ -442,7 +462,11 @@
                   "observability/introduction",
                   "observability/agentops",
                   "observability/arize",
+                  "observability/atla",
+                  "observability/langdb",
                   "observability/langfuse",
+                  "observability/mlflow",
+                  "observability/langwatch",
                   "observability/langsmith",
                   "observability/langtrace",
                   "observability/maxim",
@@ -550,6 +574,7 @@
               {
                 "group": "Workflows",
                 "pages": [
+                  "examples/workflows/agentic-deep-researcher",
                   "examples/workflows/blog-post-generator",
                   "examples/workflows/investment-report-generator",
                   "examples/workflows/personalized-email-generator",
@@ -558,6 +583,65 @@
                   "examples/workflows/product-manager",
                   "examples/workflows/team-workflow",
                   "examples/workflows/async-hackernews-reporter"
+                ]
+              },
+              {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  {
+                    "group": "Basic Workflows",
+                    "pages": [
+                      "examples/workflows_2/01-basic-workflows/function_instead_of_steps",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_functions_and_agents",
+                      "examples/workflows_2/01-basic-workflows/sequence_of_steps",
+                      "examples/workflows_2/01-basic-workflows/step_with_function",
+                      "examples/workflows_2/01-basic-workflows/workflow_using_steps",
+                      "examples/workflows_2/01-basic-workflows/workflow_using_steps_nested"
+                    ]
+                  },
+                  {
+                    "group": "Conditional Execution",
+                    "pages": [
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_steps_workflow_stream",
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_with_list_of_steps",
+                      "examples/workflows_2/02-workflows-conditional-execution/condition_and_parallel_steps_stream"
+                    ]
+                  },
+                  {
+                    "group": "Parallel Execution",
+                    "pages": [
+                      "examples/workflows_2/04-workflows-parallel-execution/parallel_steps_workflow"
+                    ]
+                  },
+                  {
+                    "group": "Loop Execution",
+                    "pages": [
+                      "examples/workflows_2/03-workflows-loop-execution/loop_steps_workflow",
+                      "examples/workflows_2/03-workflows-loop-execution/loop_with_parallel_steps_stream"
+                    ]
+                  },
+                  {
+                    "group": "Conditional Branching (Router)",
+                    "pages": [
+                      "examples/workflows_2/05-workflows-conditional-branching/router_steps_workflow",
+                      "examples/workflows_2/05-workflows-conditional-branching/router_with_loop_steps",
+                      "examples/workflows_2/05-workflows-conditional-branching/selector_for_image_video_generation_pipelines"
+                    ]
+                  },
+                  {
+                    "group": "Advanced Concepts",
+                    "pages": [
+                      "examples/workflows_2/06-workflows-advanced-concepts/early_stop_workflow",
+                      "examples/workflows_2/06-workflows-advanced-concepts/step_with_function_additional_data",
+                      "examples/workflows_2/06-workflows-advanced-concepts/access_multiple_previous_steps_output",
+                      "examples/workflows_2/06-workflows-advanced-concepts/store_events_and_events_to_skip_in_a_workflow",
+                      "examples/workflows_2/06-workflows-advanced-concepts/structured_io_at_each_step_level",
+                      "examples/workflows_2/06-workflows-advanced-concepts/background_execution_poll"
+                    ]
+                  },
+                  "examples/workflows_2/blog-post-generator",
+                  "examples/workflows_2/employee-recruiter",
+                  "examples/workflows_2/startup-idea-validator"
                 ]
               },
               {
@@ -854,6 +938,7 @@
                       "examples/concepts/knowledge/filters/filtering_lance_db",
                       "examples/concepts/knowledge/filters/filtering_chroma_db",
                       "examples/concepts/knowledge/filters/filtering_pinecone",
+                      "examples/concepts/knowledge/filters/filtering_surreal_db",
                       "examples/concepts/knowledge/filters/filtering-traditional-RAG"
                     ]
                   },
@@ -975,9 +1060,11 @@
                       "examples/concepts/tools/search/exa",
                       "examples/concepts/tools/search/google_search",
                       "examples/concepts/tools/search/hackernews",
+                      "examples/concepts/tools/search/linkup",
                       "examples/concepts/tools/search/pubmed",
                       "examples/concepts/tools/search/searxng",
                       "examples/concepts/tools/search/serpapi",
+                      "examples/concepts/tools/search/serper",
                       "examples/concepts/tools/search/tavily",
                       "examples/concepts/tools/search/wikipedia",
                       "examples/concepts/tools/search/bravesearch"
@@ -988,6 +1075,7 @@
                     "pages": [
                       "examples/concepts/tools/social/discord",
                       "examples/concepts/tools/social/email",
+                      "examples/concepts/tools/social/gmail",
                       "examples/concepts/tools/social/slack",
                       "examples/concepts/tools/social/twilio",
                       "examples/concepts/tools/social/webex",
@@ -1013,6 +1101,7 @@
                     "pages": [
                       "examples/concepts/tools/database/csv",
                       "examples/concepts/tools/database/duckdb",
+                      "examples/concepts/tools/database/mem0",
                       "examples/concepts/tools/database/pandas",
                       "examples/concepts/tools/database/postgres",
                       "examples/concepts/tools/database/sql",
@@ -1072,7 +1161,6 @@
                       "examples/concepts/tools/others/replicate",
                       "examples/concepts/tools/others/resend",
                       "examples/concepts/tools/others/todoist",
-                      "examples/concepts/tools/others/yfinance",
                       "examples/concepts/tools/others/youtube",
                       "examples/concepts/tools/others/zendesk"
                     ]
@@ -1081,7 +1169,9 @@
                     "group": "MCP",
                     "pages": [
                       "examples/concepts/tools/mcp/airbnb",
+                      "examples/concepts/tools/mcp/gibson_ai",
                       "examples/concepts/tools/mcp/github",
+                      "examples/concepts/tools/mcp/keboola",
                       "examples/concepts/tools/mcp/notion",
                       "examples/concepts/tools/mcp/pipedream_auth",
                       "examples/concepts/tools/mcp/pipedream_slack",
@@ -1129,9 +1219,11 @@
                   "examples/concepts/embedders/gemini-embedder",
                   "examples/concepts/embedders/huggingface-embedder",
                   "examples/concepts/embedders/mistral-embedder",
+                  "examples/concepts/embedders/nebius-embedder",
                   "examples/concepts/embedders/ollama-embedder",
                   "examples/concepts/embedders/openai-embedder",
-                  "examples/concepts/embedders/qdrant-fastembed"
+                  "examples/concepts/embedders/qdrant-fastembed",
+                  "examples/concepts/embedders/jina-embedder"
                 ]
               },
               {
@@ -1219,7 +1311,9 @@
                 "pages": [
                   "examples/models/aws/bedrock/basic",
                   "examples/models/aws/bedrock/basic_stream",
+                  "examples/models/aws/bedrock/async_basic_stream",
                   "examples/models/aws/bedrock/tool_use",
+                  "examples/models/aws/bedrock/async_tool_use_stream",
                   "examples/models/aws/bedrock/structured_output",
                   "examples/models/aws/bedrock/storage",
                   "examples/models/aws/bedrock/knowledge",
@@ -1291,6 +1385,15 @@
                 ]
               },
               {
+                "group": "DashScope",
+                "pages": [
+                  "examples/models/dashscope/basic",
+                  "examples/models/dashscope/basic_stream",
+                  "examples/models/dashscope/tool_use",
+                  "examples/models/dashscope/structured_output"
+                ]
+              },
+              {
                 "group": "DeepInfra",
                 "pages": [
                   "examples/models/deepinfra/basic",
@@ -1327,6 +1430,9 @@
                   "examples/models/gemini/storage",
                   "examples/models/gemini/knowledge",
                   "examples/models/gemini/image_input",
+                  "examples/models/gemini/vertex_ai_search",
+                  "examples/models/gemini/grounding",
+                  "examples/models/gemini/search",
                   "examples/models/gemini/flash_thinking",
                   "examples/models/gemini/audio_input_bytes_content",
                   "examples/models/gemini/audio_input_file_upload",
@@ -1371,6 +1477,14 @@
                   "examples/models/ibm/storage",
                   "examples/models/ibm/knowledge",
                   "examples/models/ibm/image_agent_bytes"
+                ]
+              },
+              {
+                "group": "LangDB",
+                "pages": [
+                  "examples/models/langdb/basic",
+                  "examples/models/langdb/basic_stream",
+                  "examples/models/langdb/tool_use"
                 ]
               },
               {
@@ -1501,6 +1615,15 @@
                 "pages": [
                   "examples/models/perplexity/basic",
                   "examples/models/perplexity/basic_stream"
+                ]
+              },
+              {
+                "group": "Portkey",
+                "pages": [
+                  "examples/models/portkey/basic",
+                  "examples/models/portkey/basic_stream",
+                  "examples/models/portkey/tool_use",
+                  "examples/models/portkey/structured_output"
                 ]
               },
               {
@@ -1654,6 +1777,20 @@
                 ]
               },
               {
+                "group": "Workflows v2 (Beta)",
+                "pages": [
+                  "reference/workflows_2/workflow",
+                  "reference/workflows_2/workflow_run_response",
+                  "reference/workflows_2/step_input",
+                  "reference/workflows_2/step_output",
+                  "reference/workflows_2/conditional-steps",
+                  "reference/workflows_2/parallel-steps",
+                  "reference/workflows_2/router-steps",
+                  "reference/workflows_2/loop-steps",
+                  "reference/workflows_2/steps-step"
+                ]
+              },
+              {
                 "group": "Models",
                 "pages": [
                   "reference/models/model",
@@ -1662,6 +1799,7 @@
                   "reference/models/ollama",
                   "reference/models/anthropic",
                   "reference/models/cohere",
+                  "reference/models/dashscope",
                   "reference/models/deepinfra",
                   "reference/models/deepseek",
                   "reference/models/gemini",
@@ -1681,6 +1819,7 @@
                   "reference/models/azure_open_ai",
                   "reference/models/fireworks",
                   "reference/models/openrouter",
+                  "reference/models/portkey",
                   "reference/models/sambanova",
                   "reference/models/internlm",
                   "reference/models/ollama_tools",
@@ -1713,8 +1852,8 @@
                 "pages": [
                   "reference/vector_db/cassandra",
                   "reference/vector_db/chromadb",
-                  "reference/vector_db/couchbase",
                   "reference/vector_db/clickhouse",
+                  "reference/vector_db/couchbase",
                   "reference/vector_db/lancedb",
                   "reference/vector_db/milvus",
                   "reference/vector_db/mongodb",
@@ -1722,6 +1861,7 @@
                   "reference/vector_db/pinecone",
                   "reference/vector_db/qdrant",
                   "reference/vector_db/singlestore",
+                  "reference/vector_db/surrealdb",
                   "reference/vector_db/weaviate"
                 ]
               },
@@ -1735,6 +1875,7 @@
                   "reference/embedder/gemini",
                   "reference/embedder/huggingface",
                   "reference/embedder/mistral",
+                  "reference/embedder/nebius",
                   "reference/embedder/ollama",
                   "reference/embedder/openai",
                   "reference/embedder/sentence-transformer",

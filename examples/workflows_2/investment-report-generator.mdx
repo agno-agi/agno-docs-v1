@@ -1,0 +1,392 @@
+---
+title: Research Report Generator
+description: This example demonstrates how to migrate from the similar workflows 1.0 example to workflows 2.0 structure.
+---
+
+This advanced example demonstrates how to build a sophisticated research analysis system that combines
+market research, trend analysis, and strategic insights. The workflow uses a three-stage
+approach:
+1. Comprehensive topic analysis and information gathering
+2. Research potential evaluation and ranking
+3. Strategic insights and recommendations
+
+Key capabilities:
+- Real-time information gathering
+- Professional research analysis
+- Trend assessment
+- Strategic recommendations
+- Detailed research rationale
+
+Example research topics to analyze:
+- "AI, Machine Learning, Automation" (Technology Trends)
+- "Climate Change, Renewable Energy, Sustainability" (Environmental Focus)
+- "Electric Vehicles, Transportation, Infrastructure" (Mobility Innovation)
+- "Healthcare, Biotechnology, Medical Innovation" (Health Sector)
+- "E-commerce, Digital Marketing, Consumer Behavior" (Business Trends)
+- "Cybersecurity, Data Privacy, Digital Transformation" (Security Focus)
+- "Space Technology, Satellite Communications, Aerospace" (Space Industry)
+
+Run `pip install openai ddgs agno` to install dependencies.
+
+```python research_report_generator.py
+import asyncio
+import random
+from pathlib import Path
+from shutil import rmtree
+from textwrap import dedent
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.utils.pprint import pprint_run_response
+from agno.workflow.v2.types import WorkflowExecutionInput
+from agno.workflow.v2.workflow import Workflow
+from pydantic import BaseModel
+
+
+# --- Response models ---
+class ResearchAnalysisResult(BaseModel):
+    research_topics: str
+    trend_analysis: str
+    information_metrics: str
+    impact_assessment: str
+    recommendations: str
+
+
+class ResearchRanking(BaseModel):
+    ranked_topics: str
+    research_rationale: str
+    impact_evaluation: str
+    growth_potential: str
+
+
+class StrategicInsights(BaseModel):
+    strategic_approach: str
+    research_thesis: str
+    trend_management: str
+    final_recommendations: str
+
+
+# --- File management ---
+reports_dir = Path(__file__).parent.joinpath("reports", "research")
+if reports_dir.is_dir():
+    rmtree(path=reports_dir, ignore_errors=True)
+reports_dir.mkdir(parents=True, exist_ok=True)
+
+research_analyst_report = str(reports_dir.joinpath("research_analyst_report.md"))
+insights_analyst_report = str(reports_dir.joinpath("insights_analyst_report.md"))
+strategic_report = str(reports_dir.joinpath("strategic_report.md"))
+
+
+# --- Agents ---
+research_analyst = Agent(
+    name="Research Analyst",
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[
+        DuckDuckGoTools(
+            search=True, news=True
+        )
+    ],
+    description=dedent("""\
+    You are ResearchMaster-X, an elite Senior Research Analyst at a top consulting firm with expertise in:
+
+    - Comprehensive information analysis
+    - Market trend evaluation
+    - Industry development identification
+    - News impact assessment
+    - Impact factor analysis
+    - Growth potential evaluation\
+    """),
+    instructions=dedent("""\
+    1. Information Research 📊
+       - Analyze topic fundamentals and current state
+       - Review recent developments and trends
+       - Evaluate competitive landscape
+       - Assess industry dynamics and growth factors
+    2. Trend Analysis 💹
+       - Examine key trend indicators
+       - Review expert opinions and forecasts
+       - Analyze recent news impact
+       - Identify growth catalysts and barriers
+    3. Impact Assessment 🎯
+       - Evaluate market implications
+       - Assess topic-specific challenges
+       - Consider macroeconomic factors
+       - Identify potential opportunities and risks
+    Note: This analysis is for educational and research purposes only.\
+    """),
+    response_model=ResearchAnalysisResult,
+)
+
+insights_analyst = Agent(
+    name="Insights Analyst",
+    model=OpenAIChat(id="gpt-4o"),
+    description=dedent("""\
+    You are InsightPro-X, an elite Senior Insights Analyst at a top consulting firm specializing in:
+
+    - Research opportunity evaluation
+    - Comparative analysis
+    - Impact-benefit assessment
+    - Growth potential ranking
+    - Strategic recommendations\
+    """),
+    instructions=dedent("""\
+    1. Research Analysis 🔍
+       - Evaluate each topic's potential
+       - Compare relative importance
+       - Assess competitive advantages
+       - Consider market positioning
+    2. Impact Evaluation 📈
+       - Analyze impact factors
+       - Consider market conditions
+       - Evaluate growth sustainability
+       - Assess implementation feasibility
+    3. Topic Ranking 🏆
+       - Rank based on research potential
+       - Provide detailed rationale
+       - Consider impact-adjusted returns
+       - Explain strategic advantages\
+    """),
+    response_model=ResearchRanking,
+)
+
+strategy_lead = Agent(
+    name="Strategy Lead",
+    model=OpenAIChat(id="gpt-4o"),
+    description=dedent("""\
+    You are StrategySage-X, a distinguished Senior Strategy Lead at a top consulting firm expert in:
+
+    - Strategic approach development
+    - Resource allocation optimization
+    - Implementation planning
+    - Strategic rationale articulation
+    - Client recommendation delivery\
+    """),
+    instructions=dedent("""\
+    1. Strategic Planning 💼
+       - Develop strategic approach
+       - Optimize resource allocation
+       - Consider implementation roadmap
+       - Set strategic timeframes
+    2. Strategic Rationale 📝
+       - Explain strategic decisions
+       - Support with analysis
+       - Address potential concerns
+       - Highlight growth opportunities
+    3. Recommendation Delivery 📊
+       - Present clear strategic approach
+       - Explain research thesis
+       - Provide actionable insights
+       - Include implementation considerations\
+    """),
+    response_model=StrategicInsights,
+)
+
+
+# --- Execution function ---
+async def research_analysis_execution(
+    execution_input: WorkflowExecutionInput,
+    topics: str,
+) -> str:
+    """Execute the complete research analysis workflow"""
+
+    # Get inputs
+    message: str = execution_input.message
+    research_topics: str = topics
+
+    if not research_topics:
+        return "❌ No research topics provided"
+
+    print(f"🚀 Starting research analysis for topics: {research_topics}")
+    print(f"💼 Analysis request: {message}")
+
+    # Phase 1: Research Analysis
+    print(f"\n📊 PHASE 1: COMPREHENSIVE RESEARCH ANALYSIS")
+    print("=" * 60)
+
+    analysis_prompt = f"""
+    {message}
+    
+    Please conduct a comprehensive research analysis of the following topics: {research_topics}
+    
+    For each topic, provide:
+    1. Current state and key developments
+    2. Recent trends and expert insights
+    3. Industry landscape and competitive dynamics
+    4. Growth factors and potential barriers
+    5. News impact and market sentiment
+    
+    Topics to analyze: {research_topics}
+    """
+
+    print(f"🔍 Analyzing information and trends...")
+    research_analysis_result = await research_analyst.arun(analysis_prompt)
+    research_analysis = research_analysis_result.content
+
+    # Save to file
+    with open(research_analyst_report, "w") as f:
+        f.write(f"# Research Analysis Report\n\n")
+        f.write(f"**Topics:** {research_analysis.research_topics}\n\n")
+        f.write(f"## Trend Analysis\n{research_analysis.trend_analysis}\n\n")
+        f.write(f"## Information Metrics\n{research_analysis.information_metrics}\n\n")
+        f.write(f"## Impact Assessment\n{research_analysis.impact_assessment}\n\n")
+        f.write(f"## Recommendations\n{research_analysis.recommendations}\n")
+
+    print(f"✅ Research analysis completed and saved to {research_analyst_report}")
+
+    # Phase 2: Research Ranking
+    print(f"\n🏆 PHASE 2: RESEARCH POTENTIAL RANKING")
+    print("=" * 60)
+
+    ranking_prompt = f"""
+    Based on the comprehensive research analysis below, please rank these topics by research potential and impact.
+    
+    RESEARCH ANALYSIS:
+    - Trend Analysis: {research_analysis.trend_analysis}
+    - Information Metrics: {research_analysis.information_metrics}
+    - Impact Assessment: {research_analysis.impact_assessment}
+    - Initial Recommendations: {research_analysis.recommendations}
+    
+    Please provide:
+    1. Detailed ranking of topics from highest to lowest research potential
+    2. Research rationale for each topic
+    3. Impact evaluation and strategic considerations
+    4. Growth potential assessment
+    """
+
+    print(f"📈 Ranking topics by research potential...")
+    ranking_result = await insights_analyst.arun(ranking_prompt)
+    ranking_analysis = ranking_result.content
+
+    # Save to file
+    with open(insights_analyst_report, "w") as f:
+        f.write(f"# Research Ranking Report\n\n")
+        f.write(f"## Topic Rankings\n{ranking_analysis.ranked_topics}\n\n")
+        f.write(f"## Research Rationale\n{ranking_analysis.research_rationale}\n\n")
+        f.write(f"## Impact Evaluation\n{ranking_analysis.impact_evaluation}\n\n")
+        f.write(f"## Growth Potential\n{ranking_analysis.growth_potential}\n")
+
+    print(f"✅ Research ranking completed and saved to {insights_analyst_report}")
+
+    # Phase 3: Strategic Insights Development
+    print(f"\n💼 PHASE 3: STRATEGIC INSIGHTS DEVELOPMENT")
+    print("=" * 60)
+
+    strategy_prompt = f"""
+    Based on the research ranking and analysis below, create strategic insights and recommendations.
+    
+    RESEARCH RANKING:
+    - Topic Rankings: {ranking_analysis.ranked_topics}
+    - Research Rationale: {ranking_analysis.research_rationale}
+    - Impact Evaluation: {ranking_analysis.impact_evaluation}
+    - Growth Potential: {ranking_analysis.growth_potential}
+    
+    Please provide:
+    1. Strategic approach for each topic
+    2. Research thesis and strategic rationale
+    3. Implementation planning approach
+    4. Final actionable recommendations
+    """
+
+    print(f"💰 Developing strategic insights...")
+    strategy_result = await strategy_lead.arun(strategy_prompt)
+    strategy_insights = strategy_result.content
+
+    # Save to file
+    with open(strategic_report, "w") as f:
+        f.write(f"# Strategic Research Report\n\n")
+        f.write(f"## Strategic Approach\n{strategy_insights.strategic_approach}\n\n")
+        f.write(f"## Research Thesis\n{strategy_insights.research_thesis}\n\n")
+        f.write(f"## Trend Management\n{strategy_insights.trend_management}\n\n")
+        f.write(
+            f"## Final Recommendations\n{strategy_insights.final_recommendations}\n"
+        )
+
+    print(f"✅ Strategic insights completed and saved to {strategic_report}")
+
+    # Final summary
+    summary = f"""
+    🎉 RESEARCH ANALYSIS WORKFLOW COMPLETED!
+    
+    📊 Analysis Summary:
+    • Topics Analyzed: {research_topics}
+    • Research Analysis: ✅ Completed
+    • Research Ranking: ✅ Completed  
+    • Strategic Insights: ✅ Completed
+    
+    📁 Reports Generated:
+    • Research Analysis: {research_analyst_report}
+    • Research Ranking: {insights_analyst_report}
+    • Strategic Insights: {strategic_report}
+    
+    💡 Key Insights:
+    {strategy_insights.strategic_approach[:200]}...
+    
+    ⚠️ Disclaimer: This analysis is for educational and research purposes only.
+    """
+
+    return summary
+
+
+# --- Workflow definition ---
+research_workflow = Workflow(
+    name="Research Report Generator",
+    description="Automated research analysis with trend evaluation and strategic insights",
+    steps=research_analysis_execution,
+    workflow_session_state={},  # Initialize empty workflow session state
+)
+
+
+if __name__ == "__main__":
+
+    async def main():
+        from rich.prompt import Prompt
+
+        # Example research scenarios to showcase the analyzer's capabilities
+        example_scenarios = [
+            "AI, Machine Learning, Automation",  # Technology Trends
+            "Climate Change, Renewable Energy, Sustainability",  # Environmental Focus
+            "Electric Vehicles, Transportation, Infrastructure",  # Mobility Innovation
+            "Healthcare, Biotechnology, Medical Innovation",  # Health Sector
+            "E-commerce, Digital Marketing, Consumer Behavior",  # Business Trends
+            "Cybersecurity, Data Privacy, Digital Transformation",  # Security Focus
+            "Space Technology, Satellite Communications, Aerospace",  # Space Industry
+        ]
+
+        # Get topics from user with example suggestion
+        topics = Prompt.ask(
+            "[bold]Enter research topics (comma-separated)[/bold] "
+            "(or press Enter for a suggested research portfolio)\n✨",
+            default=random.choice(example_scenarios),
+        )
+
+        print("🧪 Testing Research Report Generator with New Workflow Structure")
+        print("=" * 70)
+
+        result = await research_workflow.arun(
+            message="Generate comprehensive research analysis and strategic insights",
+            topics=topics,
+        )
+
+        pprint_run_response(result, markdown=True)
+
+    asyncio.run(main())
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Install libraries">  
+    ```bash
+    openai ddgs agno
+    ```
+  </Step>
+
+  <Step title="Run the workflow">
+    ```bash
+    python research_report_generator.py
+    ```
+  </Step>
+</Steps>

@@ -1,0 +1,121 @@
+---
+title: In-Memory Storage
+sidebarTitle: In-Memory
+description: A flexible, lightweight storage solution that keeps all session data in memory, with the option to hook it up to any custom persistent storage solution.
+---
+
+`InMemoryStorage` provides a flexible, lightweight storage solution that keeps all session data in memory, with the option to hook it up to any custom persistent storage solution.
+
+## Summary
+
+- **No setup or additional dependencies**: No installations or database setup required.
+- **Custom storage options**: Use the built-in dictionary or provide your own for custom persistence.
+
+### Use Cases
+
+`InMemoryStorage` is ideal for:
+
+- **Custom Storage Solutions**: When you need to integrate with a persistence layer that doesn't (yet) have first-party agno support (snowflake, AWS S3, etc).
+- **Development and Testing**: Quick setup without external dependencies.
+- **Temporary Sessions**: Short-lived applications where persistence isn't required.
+
+### Important Notes
+
+- **Data Persistence**: Session data is **not persistent** across program restarts unless you provide an external dictionary with your own persistence mechanism.
+- **Memory Usage**: All session data is stored in RAM. For applications with many long sessions, monitor memory usage.
+
+<Warning>
+Remember that data is lost when your application restarts unless you implement your own persistence mechanism using a custom dictionary.
+</Warning>
+
+## Usage
+
+### Basic Agent with In-Memory Storage
+
+Here's a simple example of using in-memory storage with an agent:
+
+```python agent.py
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.storage.in_memory import InMemoryStorage
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o-mini"),
+    storage=InMemoryStorage(),
+    add_history_to_messages=True,
+)
+
+# Run some conversations
+agent.print_response("What is the capital of France?")
+agent.print_response("What is its population?")
+```
+
+### Bring Your Own Dictionary (Custom Storage Integration)
+
+The real power of `InMemoryStorage` comes from providing your own dictionary for custom storage mechanisms:
+
+```python custom_persistence.py
+import json
+
+import boto3
+from agno.storage.in_memory import InMemoryStorage
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+
+# Example: Save and load sessions to/from S3
+def save_sessions_to_s3(sessions_dict, bucket_name, key_name):
+    """Save sessions dictionary to S3"""
+    s3 = boto3.client('s3')
+    s3.put_object(
+        Bucket=bucket_name,
+        Key=key_name,
+        Body=json.dumps(sessions_dict, default=str)
+    )
+
+def load_sessions_from_s3(bucket_name, key_name):
+    """Load sessions dictionary from S3"""
+    s3 = boto3.client('s3')
+    try:
+        response = s3.get_object(Bucket=bucket_name, Key=key_name)
+        return json.loads(response['Body'].read())
+    except:
+        return {}  # Return empty dict if file doesn't exist
+
+# Step 1: Create agent with external dictionary
+my_sessions = {}
+storage = InMemoryStorage(storage_dict=my_sessions)
+
+agent = Agent(
+    model=OpenAIChat(id="gpt-4o-mini"),
+    storage=storage,
+    add_history_to_messages=True,
+)
+
+# Run some conversations
+agent.print_response("What is the capital of France?")
+agent.print_response("What is its population?")
+
+print(f"Sessions in memory: {len(my_sessions)}")
+
+# Step 2: Save sessions to S3
+save_sessions_to_s3(my_sessions, "my-bucket", "agent-sessions.json")
+print("Sessions saved to S3!")
+
+# Step 3: Later, load sessions from S3 and use with new agent
+loaded_sessions = load_sessions_from_s3("my-bucket", "agent-sessions.json")
+new_storage = InMemoryStorage(storage_dict=loaded_sessions)
+
+new_agent = Agent(
+    model=OpenAIChat(id="gpt-4o-mini"),
+    storage=new_storage,
+    session_id=agent.session_id,  # Use same session ID
+    add_history_to_messages=True,
+)
+
+# This agent now has access to the previous conversation
+new_agent.print_response("What was my first question?")
+```
+
+## Developer Resources
+
+- View [Cookbook](https://github.com/agno-agi/agno/blob/main/cookbook/storage/in_memory_storage)

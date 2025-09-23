@@ -1,0 +1,55 @@
+---
+title: Basic Agent
+---
+
+## Code
+
+```python cookbook/models/portkey/basic.py
+from agno.agent import Agent, RunResponse  # noqa
+from agno.models.portkey import Portkey
+
+# Create model using Portkey
+model = Portkey(
+    id="gpt-4o-mini",
+)
+
+agent = Agent(model=model, markdown=True)
+
+# Get the response in a variable
+# run: RunResponse = agent.run("What is Portkey and why would I use it as an AI gateway?")
+# print(run.content)
+
+# Print the response in the terminal
+agent.print_response("What is Portkey and why would I use it as an AI gateway?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API keys">
+    ```bash
+    export PORTKEY_API_KEY=xxx
+    export PORTKEY_VIRTUAL_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U agno portkey_ai
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/portkey/basic.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/portkey/basic.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

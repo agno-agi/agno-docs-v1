@@ -8,17 +8,15 @@ title: Reasoning Agent
 from agno.agent import Agent
 from agno.models.xai import xAI
 from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 reasoning_agent = Agent(
     model=xAI(id="grok-3-beta"),
     tools=[
         ReasoningTools(add_instructions=True, add_few_shot=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions=[
@@ -28,7 +26,7 @@ reasoning_agent = Agent(
     markdown=True,
 )
 reasoning_agent.print_response(
-    "Write a report on TSLA",
+    "Write a report on the latest developments in electric vehicle technology",
     stream=True,
     show_full_reasoning=True,
     stream_intermediate_steps=True,
@@ -48,7 +46,7 @@ reasoning_agent.print_response(
 
   <Step title="Install libraries">
     ```bash
-    pip install -U openai yfinance agno
+    pip install -U openai ddgs agno
     ```
   </Step>
 

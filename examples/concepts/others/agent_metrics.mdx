@@ -10,19 +10,19 @@ This example shows how to get the metrics of an agent run.
 from typing import Iterator
 from agno.agent import Agent, RunResponse
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.pprint import pprint_run_response
 from rich.pretty import pprint
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     markdown=True,
     show_tool_calls=True,
 )
 
 run_stream: Iterator[RunResponse] = agent.run(
-    "What is the stock price of NVDA", stream=True
+    "What is the latest news about artificial intelligence", stream=True
 )
 pprint_run_response(run_stream, markdown=True)
 
@@ -59,7 +59,7 @@ pprint(agent.session_metrics)
 
   <Step title="Install libraries">
     ```bash
-    pip install -U openai agno yfinance rich
+    pip install -U openai agno duckduckgo-search rich
     ```
   </Step>
 

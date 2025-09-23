@@ -11,16 +11,14 @@ from typing import Iterator
 from rich.pretty import pprint
 from agno.agent import Agent, RunResponse
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     tools=[
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         )
     ],
     instructions=["Use tables where possible"],
@@ -28,10 +26,10 @@ agent = Agent(
     markdown=True,
 )
 
-run_response: RunResponse = agent.run("What is the stock price of NVDA")
+run_response: RunResponse = agent.run("What are the latest developments in artificial intelligence?")
 pprint(run_response)
 
-# run_response_strem: Iterator[RunResponse] = agent.run("What is the stock price of NVDA", stream=True)
+# run_response_strem: Iterator[RunResponse] = agent.run("What are the latest developments in artificial intelligence?", stream=True)
 # for response in run_response_strem:
 #     pprint(response)
 ```
@@ -49,7 +47,7 @@ pprint(run_response)
 
   <Step title="Install libraries">
     ```bash
-    pip install -U openai agno yfinance rich
+    pip install -U openai agno ddgs rich
     ```
   </Step>
 

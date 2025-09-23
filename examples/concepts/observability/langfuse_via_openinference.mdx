@@ -14,7 +14,7 @@ import os
 
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from openinference.instrumentation.agno import AgnoInstrumentor
 from opentelemetry import trace as trace_api
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -42,7 +42,7 @@ AgnoInstrumentor().instrument()
 agent = Agent(
     name="Stock Price Agent",
     model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[YFinanceTools()],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions="You are a stock price agent. Answer questions in the style of a stock analyst.",
     debug_mode=True,
 )
@@ -55,7 +55,7 @@ agent.print_response("What is the current price of Tesla?")
 <Steps>
   <Step title="Install Dependencies">
     ```bash
-    pip install agno openai langfuse opentelemetry-sdk opentelemetry-exporter-otlp openinference-instrumentation-agno
+    pip install agno openai opentelemetry-sdk opentelemetry-exporter-otlp openinference-instrumentation-agno arize-otel
     ```
   </Step>
 

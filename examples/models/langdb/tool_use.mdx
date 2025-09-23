@@ -1,0 +1,61 @@
+---
+title: Finance Agent with Tools
+---
+
+This example demonstrates tool usage with [LangDB AI Gateway](https://langdb.ai/).
+
+For detailed integration instructions, see the [LangDB Agno documentation](https://docs.langdb.ai/getting-started/working-with-agent-frameworks/working-with-agno).
+
+## Code
+
+```python cookbook/models/langdb/research_agent.py
+from agno.agent import Agent
+from agno.models.langdb import LangDB
+from agno.tools.duckduckgo import DuckDuckGoTools
+
+agent = Agent(
+    model=LangDB(id="gpt-4o-mini"),
+    tools=[
+        DuckDuckGoTools(
+            search=True, news=True
+        )
+    ],
+    show_tool_calls=True,
+    description="You are a research analyst that investigates topics and helps users find comprehensive information.",
+    instructions=["Use tables to display data where possible."],
+    markdown=True,
+)
+
+agent.print_response("What are the latest developments in AI technology?", stream=True)
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export LANGDB_API_KEY=xxx
+    export LANGDB_PROJECT_ID=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U ddgs agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac
+    python cookbook/models/langdb/finance_agent.py
+    ```
+
+    ```bash Windows
+    python cookbook/models/langdb/finance_agent.py
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>

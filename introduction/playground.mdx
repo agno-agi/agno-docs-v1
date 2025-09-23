@@ -45,7 +45,6 @@ from agno.models.openai import OpenAIChat
 from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.tools.yfinance import YFinanceTools
 
 agent_storage: str = "tmp/agents.db"
 
@@ -66,19 +65,19 @@ web_agent = Agent(
     markdown=True,
 )
 
-finance_agent = Agent(
-    name="Finance Agent",
+news_agent = Agent(
+    name="News Agent",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions=["Always use tables to display data"],
-    storage=SqliteStorage(table_name="finance_agent", db_file=agent_storage),
+    storage=SqliteStorage(table_name="news_agent", db_file=agent_storage),
     add_datetime_to_instructions=True,
     add_history_to_messages=True,
     num_history_responses=5,
     markdown=True,
 )
 
-playground_app = Playground(agents=[web_agent, finance_agent])
+playground_app = Playground(agents=[web_agent, news_agent])
 app = playground_app.get_app()
 
 if __name__ == "__main__":
@@ -95,7 +94,7 @@ Remember to export your `OPENAI_API_KEY` before running the playground applicati
 
 Authenticate with [agno.com](https://app.agno.com) so your local application can let agno know which port you are running the playground on.
 
-Check out [Authentication guide](how-to/authentication) for instructions on how to Authenticate with Agno.
+Check out [Authentication guide](/how-to/authentication) for instructions on how to Authenticate with Agno.
 
 <Note>
 No data is sent to agno.com, all agent data is stored locally in your sqlite database.
@@ -110,7 +109,7 @@ No data is sent to agno.com, all agent data is stored locally in your sqlite dat
 Install dependencies and run your playground server:
 
 ```shell
-pip install openai duckduckgo-search yfinance sqlalchemy 'fastapi[standard]' agno
+pip install openai duckduckgo-search sqlalchemy 'fastapi[standard]' agno
 
 python playground.py
 ```
@@ -120,7 +119,7 @@ python playground.py
 <Step title="View the Playground">
 
 - Open the link provided or navigate to `http://app.agno.com/playground` (login required).
-- Add/Select the `localhost:7777` endpoint and start chatting with your agents!
+- Add/Select the `localhost:7777/v1` (v1 is default prefix) endpoint and start chatting with your agents!
 
 <video
   autoPlay

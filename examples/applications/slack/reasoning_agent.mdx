@@ -9,18 +9,16 @@ from agno.agent import Agent
 from agno.app.slack.app import SlackAPI
 from agno.models.anthropic.claude import Claude
 from agno.tools.thinking import ThinkingTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
-reasoning_finance_agent = Agent(
-    name="Reasoning Finance Agent",
+reasoning_research_agent = Agent(
+    name="Reasoning Research Agent",
     model=Claude(id="claude-3-7-sonnet-latest"),
     tools=[
         ThinkingTools(add_instructions=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions="Use tables to display data. When you use thinking tools, keep the thinking brief.",
@@ -29,10 +27,10 @@ reasoning_finance_agent = Agent(
 )
 
 slack_api_app = SlackAPI(
-    agent=reasoning_finance_agent,
-    name="Reasoning Finance Agent",
-    app_id="reasoning_finance_agent",
-    description="A agent that can reason about finance and stock prices.",
+    agent=reasoning_research_agent,
+    name="Reasoning Research Agent",
+    app_id="reasoning_research_agent",
+    description="A agent that can reason about research topics and current events.",
 )
 app = slack_api_app.get_app()
 

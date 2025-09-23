@@ -11,18 +11,16 @@ from agno.agent import Agent
 from agno.app.whatsapp.app import WhatsappAPI
 from agno.models.anthropic.claude import Claude
 from agno.tools.thinking import ThinkingTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
-reasoning_finance_agent = Agent(
-    name="Reasoning Finance Agent",
+reasoning_research_agent = Agent(
+    name="Reasoning Research Agent",
     model=Claude(id="claude-3-7-sonnet-latest"),
     tools=[
         ThinkingTools(add_instructions=True),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions="Use tables to display data. When you use thinking tools, keep the thinking brief.",
@@ -31,10 +29,10 @@ reasoning_finance_agent = Agent(
 )
 
 whatsapp_app = WhatsappAPI(
-    agent=reasoning_finance_agent,
-    name="Reasoning Finance Agent",
-    app_id="reasoning_finance_agent",
-    description="A finance agent that uses tables to display data and reasoning tools to reason about the data.",
+    agent=reasoning_research_agent,
+    name="Reasoning Research Agent",
+    app_id="reasoning_research_agent",
+    description="A research agent that uses tables to display data and reasoning tools to analyze information.",
 )
 
 app = whatsapp_app.get_app()
@@ -57,7 +55,7 @@ if __name__ == "__main__":
 
   <Step title="Install libraries">
     ```bash
-    pip install -U agno anthropic yfinance "uvicorn[standard]"
+    pip install -U agno anthropic ddgs "uvicorn[standard]"
     ```
   </Step>
 

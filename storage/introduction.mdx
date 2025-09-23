@@ -104,17 +104,21 @@ The storage system in Agno also works with workflows, enabling more complex mult
 Learn more about using storage with [workflows](/workflows/) to build powerful multi-agent systems with state management.
 </Note>
 
+<Tip>
+ Use the `mode` parameter to specify the storage mode. Defaults to "agent".
+</Tip>
 ## Supported Storage Backends
 
-The following databases are supported as a storage backend:
+The following options are supported as a storage backend:
 
 - [PostgreSQL](/storage/postgres)
 - [Sqlite](/storage/sqlite)
+- [In-Memory](/storage/in-memory)
 - [SingleStore](/storage/singlestore)
 - [DynamoDB](/storage/dynamodb)
 - [MongoDB](/storage/mongodb)
+- [Redis](/storage/redis)
 - [YAML](/storage/yaml)
 - [JSON](/storage/json)
-- [Redis](/storage/redis)
 
 Check detailed [examples](/examples/concepts/storage) for each storage

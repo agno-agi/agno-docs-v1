@@ -1,0 +1,50 @@
+---
+title: Search Agent
+---
+
+## Code
+
+```python cookbook/models/google/gemini/search.py
+from agno.agent import Agent
+from agno.models.google import Gemini
+
+agent = Agent(
+    model=Gemini(id="gemini-2.0-flash-exp", search=True),
+    show_tool_calls=True,
+    markdown=True,
+)
+
+agent.print_response("What are the latest developments in AI technology this week?")
+```
+
+## Usage
+
+<Steps>
+  <Snippet file="create-venv-step.mdx" />
+
+  <Step title="Set your API key">
+    ```bash
+    export GOOGLE_API_KEY=xxx
+    ```
+  </Step>
+
+  <Step title="Install libraries">
+    ```bash
+    pip install -U google-genai agno
+    ```
+  </Step>
+
+  <Step title="Run Agent">
+    <CodeGroup>
+    ```bash Mac/Linux
+    python cookbook/models/google/gemini/search.py
+    ```
+    ```bash Windows
+    python cookbook/models/google/gemini/search.py
+    ```
+    </CodeGroup>
+  </Step>
+
+</Steps>
+
+<Tip> Combine `URL context` with `Google Search` to get a more in-depth analysis </Tip>

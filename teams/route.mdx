@@ -156,38 +156,37 @@ from agno.models.openai import OpenAIChat
 from agno.team import Team
 
 
-class StockAnalysis(BaseModel):
-    symbol: str
-    company_name: str
+class NewsAnalysis(BaseModel):
+    topic: str
+    headline: str
     analysis: str
 
-class CompanyAnalysis(BaseModel):
-    company_name: str
+class TopicAnalysis(BaseModel):
+    topic_name: str
     analysis: str
 
-stock_searcher = Agent(
-    name="Stock Searcher",
+news_searcher = Agent(
+    name="News Searcher",
     model=OpenAIChat("gpt-4o"),
-    response_model=StockAnalysis,
-    role="Searches for information on stocks and provides price analysis.",
+    response_model=NewsAnalysis,
+    role="Searches for news and provides current analysis.",
     tools=[
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         )
     ],
 )
 
-company_info_agent = Agent(
-    name="Company Info Searcher",
+topic_info_agent = Agent(
+    name="Topic Info Searcher",
     model=OpenAIChat("gpt-4o"),
-    role="Searches for information about companies and recent news.",
-    response_model=CompanyAnalysis,
+    role="Searches for information about topics and background details.",
+    response_model=TopicAnalysis,
     tools=[
-        YFinanceTools(
-            stock_price=False,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=False,
         )
     ],
 )

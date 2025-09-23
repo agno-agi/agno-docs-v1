@@ -8,7 +8,7 @@ title: Gemini with Reasoning Tools
 from agno.agent import Agent
 from agno.models.google import Gemini
 from agno.tools.reasoning import ReasoningTools
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 reasoning_agent = Agent(
     model=Gemini(id="gemini-2.5-pro-preview-03-25"),
@@ -18,11 +18,9 @@ reasoning_agent = Agent(
             analyze=True,
             add_instructions=True,
         ),
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         ),
     ],
     instructions="Use tables where possible",
@@ -32,7 +30,7 @@ reasoning_agent = Agent(
     debug_mode=True,
 )
 reasoning_agent.print_response(
-    "Write a report comparing NVDA to TSLA.", show_full_reasoning=True
+    "Write a report on the latest global technology trends and their impact.", show_full_reasoning=True
 )
 
 ```

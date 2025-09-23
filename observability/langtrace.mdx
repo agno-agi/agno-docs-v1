@@ -37,7 +37,7 @@ This example demonstrates how to instrument your Agno agent with Langtrace.
 ```python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 from langtrace_python_sdk import langtrace
 from langtrace_python_sdk.utils.with_root_span import with_langtrace_root_span
 
@@ -46,15 +46,15 @@ langtrace.init()
 
 # Create and configure the agent
 agent = Agent(
-    name="Stock Price Agent",
+    name="Research Agent",
     model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[YFinanceTools()],
-    instructions="You are a stock price agent. Answer questions in the style of a stock analyst.",
+    tools=[DuckDuckGoTools(search=True, news=True)],
+    instructions="You are a research agent. Answer questions in the style of a professional researcher.",
     debug_mode=True,
 )
 
 # Use the agent
-agent.print_response("What is the current price of Tesla?")
+agent.print_response("What is the latest news about artificial intelligence?")
 ```
 
 ## Notes

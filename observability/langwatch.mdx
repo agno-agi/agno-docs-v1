@@ -1,0 +1,62 @@
+---
+title: LangWatch
+description: Integrate Agno with LangWatch to send traces and gain insights into your agent's performance.
+---
+
+## Prerequisites
+
+1. **Install Dependencies**
+
+   ```bash
+   pip install agno openai langwatch openinference-instrumentation-agno
+   ```
+
+2. **Create a Langwatch Account**
+
+   - Sign up or log in to your [LangWatch dashboard](https://app.langwatch.ai/).
+   - Obtain your API key from your project settings.
+
+3. **Set Environment Variables**
+
+   ```bash
+   export LANGWATCH_API_KEY=your-langwatch-api-key
+   export OPENAI_API_KEY=your-openai-key
+   ```
+
+
+## Sending Traces to LangWatch
+
+This example demonstrates how to instrument your Agno agent and send traces to LangWatch
+
+```python
+import langwatch
+import os
+
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+from openinference.instrumentation.agno import AgnoInstrumentor
+
+# Initialize LangWatch and instrument Agno
+langwatch.setup(
+    instrumentors=[AgnoInstrumentor()]
+)
+
+agent = Agent(
+    name="Research Agent",
+    model=OpenAIChat(id="gpt-4o-mini"),
+    tools=[DuckDuckGoTools(search=True, news=True)],
+    instructions="You are a research agent. Answer questions in the style of a professional researcher.",
+    debug_mode=True,
+)
+
+agent.print_response("What is the latest news about artificial intelligence?")
+```
+
+## Notes
+
+- **No OpenTelemetry Setup Needed**: You do **not** need to set any OpenTelemetry environment variables or configure exporters manually—`langwatch.setup()` handles everything.
+- **Troubleshooting**: If you see no traces in LangWatch, ensure your `LANGWATCH_API_KEY` is set and that the instrumentor is included in `langwatch.setup()`.
+- For advanced configuration (custom attributes, endpoint, etc.), see the [LangWatch Python integration guide](https://docs.langwatch.ai/integration/python/integrations/agno).
+
+By following these steps, you can effectively integrate Agno with LangWatch,  enabling comprehensive observability and monitoring of your AI agents.

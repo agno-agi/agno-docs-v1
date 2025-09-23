@@ -17,7 +17,6 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.knowledge import KnowledgeTools
 from agno.tools.reasoning import ReasoningTools
 from agno.tools.thinking import ThinkingTools
-from agno.tools.yfinance import YFinanceTools
 from agno.vectordb.lancedb import LanceDb, SearchType
 
 agent_storage_file: str = "tmp/agents.db"
@@ -26,22 +25,20 @@ image_agent_storage_file: str = "tmp/image_agent.db"
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 
-finance_agent = Agent(
-    name="Finance Agent",
-    role="Get financial data",
-    agent_id="finance-agent",
+research_agent = Agent(
+    name="Research Agent",
+    role="Get research data and insights",
+    agent_id="research-agent",
     model=OpenAIChat(id="gpt-4o"),
     tools=[
-        YFinanceTools(
-            stock_price=True,
-            analyst_recommendations=True,
-            company_info=True,
-            company_news=True,
+        DuckDuckGoTools(
+            search=True,
+            news=True,
         )
     ],
     instructions=["Always use tables to display data"],
     storage=SqliteStorage(
-        table_name="finance_agent", db_file=agent_storage_file, auto_upgrade_schema=True
+        table_name="research_agent", db_file=agent_storage_file, auto_upgrade_schema=True
     ),
     add_history_to_messages=True,
     num_history_responses=5,
@@ -118,7 +115,7 @@ thinking_tool_agent = Agent(
     name="Thinking Tool Agent",
     agent_id="thinking_tool_agent",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[ThinkingTools(add_instructions=True), YFinanceTools(enable_all=True)],
+    tools=[ThinkingTools(add_instructions=True), DuckDuckGoTools(search=True, news=True)],
     instructions=dedent("""\
         You are a seasoned Wall Street analyst with deep expertise in market analysis! 📊
 
@@ -195,19 +192,19 @@ knowledge_agent = Agent(
     ),
 )
 
-reasoning_finance_team = Team(
-    name="Reasoning Finance Team",
+reasoning_research_team = Team(
+    name="Reasoning Research Team",
     mode="coordinate",
     model=OpenAIChat(id="gpt-4o"),
     members=[
         web_agent,
-        finance_agent,
+        research_agent,
     ],
     # reasoning=True,
     tools=[ReasoningTools(add_instructions=True)],
     # uncomment it to use knowledge tools
     # tools=[knowledge_tools],
-    team_id="reasoning_finance_team",
+    team_id="reasoning_research_team",
     debug_mode=True,
     instructions=[
         "Only output the final answer, no other text.",
@@ -219,7 +216,7 @@ reasoning_finance_team = Team(
     add_datetime_to_instructions=True,
     success_criteria="The team has successfully completed the task.",
     storage=SqliteStorage(
-        table_name="reasoning_finance_team",
+        table_name="reasoning_research_team",
         db_file=agent_storage_file,
         auto_upgrade_schema=True,
     ),
@@ -234,7 +231,7 @@ playground = Playground(
         knowledge_agent,
         thinking_tool_agent,
     ],
-    teams=[reasoning_finance_team],
+    teams=[reasoning_research_team],
     name="Reasoning Demo",
     app_id="reasoning-demo",
     description="A playground for reasoning",
@@ -270,7 +267,7 @@ if __name__ == "__main__":
 
   <Step title="Install libraries">
     ```bash
-    pip install -U agno "uvicorn[standard]" openai duckduckgo-search yfinance lancedb sqlalchemy 
+    pip install -U agno "uvicorn[standard]" openai duckduckgo-search ddgs lancedb sqlalchemy 
     ```
   </Step>
 

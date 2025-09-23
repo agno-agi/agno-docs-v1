@@ -31,16 +31,16 @@ agent.print_response(
 ```python o3_mini_with_tools.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=OpenAIChat(id="o3-mini"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions="Use tables to display data.",
     show_tool_calls=True,
     markdown=True,
 )
-agent.print_response("Write a report comparing NVDA to TSLA", stream=True)
+agent.print_response("Write a report comparing recent developments in renewable energy vs traditional energy", stream=True)
 ```
 
 ### o3-mini with reasoning effort
@@ -48,16 +48,16 @@ agent.print_response("Write a report comparing NVDA to TSLA", stream=True)
 ```python o3_mini_with_reasoning_effort.py
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.tools.yfinance import YFinanceTools
+from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
     model=OpenAIChat(id="o3-mini", reasoning_effort="high"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
+    tools=[DuckDuckGoTools(search=True, news=True)],
     instructions="Use tables to display data.",
     show_tool_calls=True,
     markdown=True,
 )
-agent.print_response("Write a report comparing NVDA to TSLA", stream=True)
+agent.print_response("Write a report comparing recent developments in renewable energy vs traditional energy", stream=True)
 ```
 
 ### DeepSeek-R1 using Groq

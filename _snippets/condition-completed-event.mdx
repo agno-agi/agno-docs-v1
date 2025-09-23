@@ -1,0 +1,9 @@
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `event` | `str` | `WorkflowRunEvent.condition_execution_completed.value` | Event type identifier |
+| `step_name` | `Optional[str]` | `None` | Name of the condition step |
+| `step_index` | `Optional[Union[int, tuple]]` | `None` | Index or position of the condition |
+| `condition_result` | `Optional[bool]` | `None` | Result of the condition evaluation |
+| `executed_steps` | `Optional[int]` | `None` | Number of steps executed based on condition |
+| `step_results` | `List[StepOutput]` | `[]` | Results from executed steps |
+| *Inherits all fields from `BaseWorkflowRunResponseEvent`* |
