@@ -2,6 +2,10 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Agno",
+  "banner": {
+    "content": "You are viewing v1 docs. For the latest documentation, visit [docs.agno.com](https://docs.agno.com)",
+    "dismissible": true
+  },
   "colors": {
     "primary": "#FF4017",
     "light": "#FF4017",
